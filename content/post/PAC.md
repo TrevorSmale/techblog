@@ -9,7 +9,7 @@ tags = [
 categories = [
     "Learning",
 ]
-series = ["About Me"]
+series = ["Learning"]
 
 +++
 

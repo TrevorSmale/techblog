@@ -33,7 +33,16 @@ ProLUG Book: &lt;a href=&#34;https://leanpub.com/theprolugbigbookoflabs&#34;&gt;
 KillerCoda: &lt;a href=&#34;https://killercoda.com/het-tanis&#34;&gt;https://killercoda.com/het-tanis&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Studying for the LPIC1 Certification</title>
+      <title>That Unix file is not deleted 👺</title>
+      <link>http://localhost:1313/post/nd/</link>
+      <pubDate>Sun, 01 Sep 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/nd/</guid>
+      <description>&lt;p&gt;Removing a file in Unux does not actually remove it from memory. You are only reducing the number of hardlinks pointing to the file to &amp;lsquo;0&amp;rsquo;.
+In order to actually delete the information is to overwrite it. This will happen over time as the disk fills, or if one would like to delete a file in a timely fashion should over write empty drive sectors.&lt;/p&gt;
+</description>
+    </item>
+    <item>
+      <title>Studying for the LPIC1 Certification 📖</title>
       <link>http://localhost:1313/post/lpic/</link>
       <pubDate>Fri, 30 Aug 2024 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/post/lpic/</guid>
@@ -76,6 +85,55 @@ KillerCoda: &lt;a href=&#34;https://killercoda.com/het-tanis&#34;&gt;https://kil
   &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/lpic/#udemy--youtube&#34;&gt;Udemy / Youtube&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;Though video courses are pretty low bandwidth information sources, I still like to follow chapterized courses, especially on Udemy. On a sale day I can grab a comprehensive chapterised video course for less than 20 Dollars, a steal in comparison to a college course.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>ProxMox is great 🏆</title>
+      <link>http://localhost:1313/post/proxmox/</link>
+      <pubDate>Mon, 26 Aug 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/proxmox/</guid>
+      <description>&lt;h3 id=&#34;intro-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/proxmox/#intro-&#34;&gt;Intro 👋&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;ProxMox is an free open source virtualisation host built atop debian. It can both run Virtual machines and Linux Containers with a host of features.
+I am continuously learning new systems and software. Prior to using ProxMox, I was installing and reinstalling Unix systems on an old laptop. This help me learn about installation, configuration and a whole host of other things. However this was very tedious and in efficient. The laptop was under powered, so running several virtual machines was not possible. I needed a multicore X86 machine with lots of memory in order to do this. Wanting to get more serious about learning systems engineering, I decided to build and x86 machine for the sole purpose of learning without fear of messing things up. While researching virtualization software I cam accross proxmox.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;installation&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/proxmox/#installation&#34;&gt;Installation&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Installation is very straightforward for someone like me who has installed all of the major distros to bare-metal. It was a matter of downloading the latest ISO and creating a boot disk using Balena Etcher.
+The installation process is very similar to the one debian has, a series of prompts, choosing a target disk, locale and you are off to the races.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;accessing&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/proxmox/#accessing&#34;&gt;Accessing&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Once Proxmox is installed it becomes a headless network machine. If you plug in a monitor, you will see a black screen indicating the host address and not much more. The way one interfaces with the system is through a browser on a computer tied to the local network. I open up a browser on my macbook and head to the address to see the sign in screen. You would have set up your username and password during the setup process, so it is just a matter of typing those in.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/pctower1.png&#34; alt=&#34;ProxMox Dashboard&#34;&gt;&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;the-dashboard&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/proxmox/#the-dashboard&#34;&gt;The Dashboard&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Proxmox provides an easy to use dashboard that indicated system load and memory usage. Creating a virtual machine is as simple as clicking &amp;lsquo;create new vm&amp;rsquo; and uploading a sufficient ISO for the purpose. The deep learning comes from automating this process and managing a number of machines. This is where Youtube tutorials come in handing. It helps to know a little bit about networking in order to set up self hosted services like Jellyfin or Database based services like NextCloud.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/proxdash.png&#34; alt=&#34;ProxMox Dashboard&#34;&gt;&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;what-i-use-it-for&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/proxmox/#what-i-use-it-for&#34;&gt;What I use it for&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;I like to create machine templates that I can utilize for automated provissioning with tools like Ansible and Terraform. This simulates setting up a large collection of machines that must be pre-configured and communicate amongst one another. Lately I have been creating templates using Cloud-Init images with the extension Qcow2 to build out templates that have randomized SSH keys and uninitiated hostnames, much like the way Azure, AWS or google cloud sets up PAAS.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;in-summary&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/proxmox/#in-summary&#34;&gt;In summary&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;If you are serious about learning systems and practicing with many machines, I definately recommend setting up a ProxMox machine. Even an older PC will suffice for this purpose, though some limitation will apply; something there will take research.&lt;/p&gt;</description>
     </item>
     <item>
       <title>File Systems 💾</title>

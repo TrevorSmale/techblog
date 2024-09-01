@@ -1,6 +1,6 @@
 +++
 author = "Hugo Authors"
-title = "Studying for the LPIC1 Certification"
+title = "Studying for the LPIC1 Certification 📖"
 date = "2024-08-30"
 description = "One of my goals is to be LPIC 1 certified and this is how I intend to get there"
 tags = [
@@ -9,7 +9,7 @@ tags = [
 categories = [
     "Learning",
 ]
-series = ["About Me"]
+series = ["Learning"]
 
 +++
 

@@ -1,0 +1,736 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet type="text/xsl" href="http://localhost:1313/xml/base.min.xml" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>TidBits on Tech Blog</title>
+    <link>http://localhost:1313/categories/tidbits/</link>
+    <description>Recent content in TidBits on Tech Blog</description>
+    <generator>Hugo 0.133.1</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 01 Sep 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link rel="self" href="http://localhost:1313/categories/tidbits/feed.xml" type="application/rss+xml" />
+    <item>
+      <title>ProLUG Admin Course 🐧</title>
+      <link>http://localhost:1313/post/pac/</link>
+      <pubDate>Sun, 01 Sep 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/pac/</guid>
+      <description>&lt;h3 id=&#34;intro-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pac/#intro-&#34;&gt;Intro 👋&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;I am a member of a fantastic group called the Professional Linux User Group lead by Scott Champine. The home base is on Discord where over 2000 people discuss Linux daily.
+Scott and other members teach via Live-Streaming and Interactive Labs with supporting documentation. Scott has created a 16 week deep dive course into linux adminstration starting September 14th that I have gladly enrolled in.
+This course will take place every Saturday via a livestream with interactive Q/A wherein participants leave with assignments. This blog is in part, related to the course as I will document my learning among other things.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;links-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pac/#links-&#34;&gt;Links ⛓️&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Discord: &lt;a href=&#34;https://discord.com/invite/m6VPPD9usw&#34;&gt;https://discord.com/invite/m6VPPD9usw&lt;/a&gt;
+Youtube: &lt;a href=&#34;https://www.youtube.com/@het_tanis8213&#34;&gt;https://www.youtube.com/@het_tanis8213&lt;/a&gt;
+Twitch: &lt;a href=&#34;https://www.twitch.tv/het_tanis&#34;&gt;https://www.twitch.tv/het_tanis&lt;/a&gt;
+ProLUG Book: &lt;a href=&#34;https://leanpub.com/theprolugbigbookoflabs&#34;&gt;https://leanpub.com/theprolugbigbookoflabs&lt;/a&gt;
+KillerCoda: &lt;a href=&#34;https://killercoda.com/het-tanis&#34;&gt;https://killercoda.com/het-tanis&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>That Unix file is not deleted 👺</title>
+      <link>http://localhost:1313/post/nd/</link>
+      <pubDate>Sun, 01 Sep 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/nd/</guid>
+      <description>&lt;p&gt;Removing a file in Unux does not actually remove it from memory. You are only reducing the number of hardlinks pointing to the file to &amp;lsquo;0&amp;rsquo;.
+In order to actually delete the information is to overwrite it. This will happen over time as the disk fills, or if one would like to delete a file in a timely fashion should over write empty drive sectors.&lt;/p&gt;
+</description>
+    </item>
+    <item>
+      <title>Studying for the LPIC1 Certification 📖</title>
+      <link>http://localhost:1313/post/lpic/</link>
+      <pubDate>Fri, 30 Aug 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/lpic/</guid>
+      <description>&lt;h3 id=&#34;intro-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/lpic/#intro-&#34;&gt;Intro 👋&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;I am intent on becoming a Linux Professional Institute Certified Administrator. It has been a goal of mine for a little while now. However goals are just aspirational, reaching a goal such as this requires a structured, systematic approach. As a life-long learner, I am always improving my study methods by being more efficient with my time and energy. As we all know life can get in the way of our goals, so we must find methods that work when conditions are not ideal for studying. For instance, I brake up my study sessions into smaller, more bite sized chunks that I can do when time permits. I take much more comprehensive notes than I did in the past and I work on wrought memorization through the use of flash cards; something that I really wasn&amp;rsquo;t into before.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;creating-a-work-breakdown-structure&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/lpic/#creating-a-work-breakdown-structure&#34;&gt;Creating a Work Breakdown Structure&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;The first thing I do when starting to study a new topic is creating a simple structure from a high level view. A handful of bullet points can simply outline the structure of the knowledge. In regards to the LPIC, most of this had already been done as the curriculum for the exam is open source.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;hands-on-practice&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/lpic/#hands-on-practice&#34;&gt;Hands on practice&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;For each item that the course cover, I set up a lab and run through all of the commands by actually typing them in and seeing what kind of errors or typos I may run into. The LPIC has a huge list of commands that we must remember which makes it very difficult for me.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;taking-comprehensive-notes&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/lpic/#taking-comprehensive-notes&#34;&gt;Taking comprehensive notes&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;I recently started using LogSeq, a markdown ++ notetaking applicaton that allows for interlinking of notes. This has really upped my game when it comes to keeping track of notes and refering back to them. In the past, I would just take notes for the task at hand, not really refering back to them often. I was just taking notes as a memory retention aid.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;flash-cards&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/lpic/#flash-cards&#34;&gt;Flash Cards&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Another recent addition to my study arsenal is Anki, a smart flashcard application that I use for wrought memorization. The application and many flash card decks are open source, so I was up and running in a short period of time with a large deck of LPIC flashcards.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;udemy--youtube&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/lpic/#udemy--youtube&#34;&gt;Udemy / Youtube&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Though video courses are pretty low bandwidth information sources, I still like to follow chapterized courses, especially on Udemy. On a sale day I can grab a comprehensive chapterised video course for less than 20 Dollars, a steal in comparison to a college course.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>ProxMox is great 🏆</title>
+      <link>http://localhost:1313/post/proxmox/</link>
+      <pubDate>Mon, 26 Aug 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/proxmox/</guid>
+      <description>&lt;h3 id=&#34;intro-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/proxmox/#intro-&#34;&gt;Intro 👋&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;ProxMox is an free open source virtualisation host built atop debian. It can both run Virtual machines and Linux Containers with a host of features.
+I am continuously learning new systems and software. Prior to using ProxMox, I was installing and reinstalling Unix systems on an old laptop. This help me learn about installation, configuration and a whole host of other things. However this was very tedious and in efficient. The laptop was under powered, so running several virtual machines was not possible. I needed a multicore X86 machine with lots of memory in order to do this. Wanting to get more serious about learning systems engineering, I decided to build and x86 machine for the sole purpose of learning without fear of messing things up. While researching virtualization software I cam accross proxmox.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;installation&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/proxmox/#installation&#34;&gt;Installation&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Installation is very straightforward for someone like me who has installed all of the major distros to bare-metal. It was a matter of downloading the latest ISO and creating a boot disk using Balena Etcher.
+The installation process is very similar to the one debian has, a series of prompts, choosing a target disk, locale and you are off to the races.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;accessing&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/proxmox/#accessing&#34;&gt;Accessing&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Once Proxmox is installed it becomes a headless network machine. If you plug in a monitor, you will see a black screen indicating the host address and not much more. The way one interfaces with the system is through a browser on a computer tied to the local network. I open up a browser on my macbook and head to the address to see the sign in screen. You would have set up your username and password during the setup process, so it is just a matter of typing those in.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/pctower1.png&#34; alt=&#34;ProxMox Dashboard&#34;&gt;&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;the-dashboard&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/proxmox/#the-dashboard&#34;&gt;The Dashboard&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Proxmox provides an easy to use dashboard that indicated system load and memory usage. Creating a virtual machine is as simple as clicking &amp;lsquo;create new vm&amp;rsquo; and uploading a sufficient ISO for the purpose. The deep learning comes from automating this process and managing a number of machines. This is where Youtube tutorials come in handing. It helps to know a little bit about networking in order to set up self hosted services like Jellyfin or Database based services like NextCloud.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/proxdash.png&#34; alt=&#34;ProxMox Dashboard&#34;&gt;&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;what-i-use-it-for&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/proxmox/#what-i-use-it-for&#34;&gt;What I use it for&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;I like to create machine templates that I can utilize for automated provissioning with tools like Ansible and Terraform. This simulates setting up a large collection of machines that must be pre-configured and communicate amongst one another. Lately I have been creating templates using Cloud-Init images with the extension Qcow2 to build out templates that have randomized SSH keys and uninitiated hostnames, much like the way Azure, AWS or google cloud sets up PAAS.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;in-summary&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/proxmox/#in-summary&#34;&gt;In summary&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;If you are serious about learning systems and practicing with many machines, I definately recommend setting up a ProxMox machine. Even an older PC will suffice for this purpose, though some limitation will apply; something there will take research.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>File Systems 💾</title>
+      <link>http://localhost:1313/post/fs/</link>
+      <pubDate>Sun, 25 Aug 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/fs/</guid>
+      <description>
+
+
+&lt;h2 id=&#34;1-ext4--linux-bsd&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#1-ext4--linux-bsd&#34;&gt;1. ext4 💾 (Linux, BSD)&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;intro&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#intro&#34;&gt;Intro&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;ext4&lt;/strong&gt; (Extended File System version 4) is the default file system for many Linux distributions.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;links&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#links&#34;&gt;Links&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Ext4&#34;&gt;https://en.wikipedia.org/wiki/Ext4&lt;/a&gt;
+&lt;a href=&#34;https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/6/html/storage_administration_guide/ch-ext4#ch-ext4&#34;&gt;https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/6/html/storage_administration_guide/ch-ext4#ch-ext4&lt;/a&gt;&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;technical-features-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#technical-features-&#34;&gt;Technical Features: 🔍&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Journaling&lt;/li&gt;
+&lt;li&gt;Extent-Based Allocation&lt;/li&gt;
+&lt;li&gt;Delayed Allocation&lt;/li&gt;
+&lt;li&gt;Persistent Pre-allocation&lt;/li&gt;
+&lt;li&gt;Multi-block Allocation&lt;/li&gt;
+&lt;li&gt;Online Resizing&lt;/li&gt;
+&lt;li&gt;64-bit File System Support&lt;/li&gt;
+&lt;li&gt;Directory Indexing with HTree&lt;/li&gt;
+&lt;li&gt;Defragmentation&lt;/li&gt;
+&lt;li&gt;Backward Compatibility with ext2/ext3&lt;/li&gt;
+&lt;li&gt;Barriers for Data Integrity&lt;/li&gt;
+&lt;li&gt;Large File Support (up to 16 TiB)&lt;/li&gt;
+&lt;li&gt;Metadata Checksumming (optional)&lt;/li&gt;
+&lt;li&gt;Quotas&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;advantages-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#advantages-&#34;&gt;Advantages 👍&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Mature and Stable&lt;/strong&gt;: ext4 is a well-tested and widely-used file system with a long history of stability.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Performance&lt;/strong&gt;: It offers good performance for most workloads, especially for general-purpose usage.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Backward Compatibility&lt;/strong&gt;: Supports ext3 and ext2 file systems, making it easy to upgrade.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Journaling&lt;/strong&gt;: Provides a journaling feature that helps to prevent data corruption in case of a crash.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Wide Support&lt;/strong&gt;: Supported by almost all Linux distributions and has a large community.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;downsides-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#downsides-&#34;&gt;Downsides 👎&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Limited Scalability&lt;/strong&gt;: While adequate for most users, ext4 doesn&amp;rsquo;t scale as well as newer file systems for very large volumes and large numbers of files.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Lack of Advanced Features&lt;/strong&gt;: ext4 lacks features like snapshotting and built-in data integrity checks (e.g., checksums).&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;scale&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#scale&#34;&gt;Scale&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Maximum File Size&lt;/strong&gt;: 16 TiB&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Maximum Volume Size&lt;/strong&gt;: 1 EiB&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;distro-usage&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#distro-usage&#34;&gt;Distro Usage&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;ext4 is the most widely used format spanning Linux and BSD.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 id=&#34;2-xfs--linux-bsd&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#2-xfs--linux-bsd&#34;&gt;2. XFS 💾 (Linux, BSD)&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;intro-1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#intro-1&#34;&gt;Intro&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;XFS&lt;/strong&gt; is a high-performance file system designed for parallel I/O operations, often used in enterprise environments.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;links-1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#links-1&#34;&gt;Links&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/XFS&#34;&gt;https://en.wikipedia.org/wiki/XFS&lt;/a&gt;
+&lt;a href=&#34;https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/storage_administration_guide/ch-xfs&#34;&gt;https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/storage_administration_guide/ch-xfs&lt;/a&gt;&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;technical-features--1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#technical-features--1&#34;&gt;Technical Features: 🔍&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Extent-Based Allocation&lt;/li&gt;
+&lt;li&gt;Journaling (Metadata Journaling)&lt;/li&gt;
+&lt;li&gt;Delayed Allocation&lt;/li&gt;
+&lt;li&gt;Persistent Pre-allocation&lt;/li&gt;
+&lt;li&gt;Online Resizing (grow only)&lt;/li&gt;
+&lt;li&gt;Dynamic Inode Allocation&lt;/li&gt;
+&lt;li&gt;B+ Tree Directory Structure - (Quick Access B Tree)&lt;/li&gt;
+&lt;li&gt;Direct I/O Support&lt;/li&gt;
+&lt;li&gt;Data Striping for Performance&lt;/li&gt;
+&lt;li&gt;Advanced Metadata Management&lt;/li&gt;
+&lt;li&gt;Large File and Volume Support (up to 8 EiB)&lt;/li&gt;
+&lt;li&gt;Online Defragmentation&lt;/li&gt;
+&lt;li&gt;Quotas and Project Quotas&lt;/li&gt;
+&lt;li&gt;Realtime Subvolume for Real-Time I/O&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;advantages--1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#advantages--1&#34;&gt;Advantages 👍&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;High Performance&lt;/strong&gt;: Optimized for large files and supports high-performance parallel I/O, making it ideal for environments with large data sets.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Scalability&lt;/strong&gt;: Scales well with large volumes and large numbers of files, supporting file systems up to 500 TB.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Journaling&lt;/strong&gt;: Uses journaling to help prevent data corruption.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Online Resizing&lt;/strong&gt;: Supports online resizing of file systems (only grow).&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;downsides--1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#downsides--1&#34;&gt;Downsides 👎&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Complexity&lt;/strong&gt;: XFS is more complex to manage compared to ext4.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Limited Snapshot Support&lt;/strong&gt;: Has limited support for snapshots compared to Btrfs and OpenZFS.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Potential Data Loss on Power Failure&lt;/strong&gt;: In certain configurations, XFS may be more susceptible to data loss in the event of a sudden power loss.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;technical-details-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#technical-details-&#34;&gt;Technical Details 🔍&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Maximum File Size&lt;/strong&gt;: 8 EiB&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Maximum Volume Size&lt;/strong&gt;: 8 EiB&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;distro-usage-1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#distro-usage-1&#34;&gt;Distro Usage&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;XFS has been in the Linux Kernel since 2001
+It is the default file system for RHEL&lt;/p&gt;
+
+
+
+&lt;h2 id=&#34;3-btrfs--linux&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#3-btrfs--linux&#34;&gt;3. Btrfs 💾 (Linux)&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;intro-2&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#intro-2&#34;&gt;Intro&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Btrfs (B-tree File System) is a modern, copy-on-write file system designed for Linux that offers advanced features like snapshots, RAID support, self-healing, and efficient storage management, making it suitable for scalable and reliable data storage.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;links-2&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#links-2&#34;&gt;Links&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Btrfs&#34;&gt;https://en.wikipedia.org/wiki/Btrfs&lt;/a&gt;
+&lt;a href=&#34;https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/6/html/storage_administration_guide/ch-btrfs&#34;&gt;https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/6/html/storage_administration_guide/ch-btrfs&lt;/a&gt;
+&lt;a href=&#34;https://docs.kernel.org/filesystems/btrfs.html&#34;&gt;https://docs.kernel.org/filesystems/btrfs.html&lt;/a&gt;&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;technical-features--2&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#technical-features--2&#34;&gt;Technical Features: 🔍&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Journaling&lt;/li&gt;
+&lt;li&gt;Extent Base Allocation&lt;/li&gt;
+&lt;li&gt;Persistent Pre-allocation&lt;/li&gt;
+&lt;li&gt;Delayed Allocation&lt;/li&gt;
+&lt;li&gt;Multi-block Allocation&lt;/li&gt;
+&lt;li&gt;Stripe-aware Allocation&lt;/li&gt;
+&lt;li&gt;Resizeable with resize2fs&lt;/li&gt;
+&lt;li&gt;*B-tree Balancing Algorithm - Different from XFS (COW B Tee)&lt;/li&gt;
+&lt;li&gt;Copy-on-Write (COW)&lt;/li&gt;
+&lt;li&gt;Snapshots and Clones&lt;/li&gt;
+&lt;li&gt;Built-in RAID Support&lt;/li&gt;
+&lt;li&gt;Data and Metadata Checksumming&lt;/li&gt;
+&lt;li&gt;Self-Healing&lt;/li&gt;
+&lt;li&gt;Dynamic Subvolumes&lt;/li&gt;
+&lt;li&gt;Online Resizing&lt;/li&gt;
+&lt;li&gt;Compression (LZO. ZLIB. ZSTD)&lt;/li&gt;
+&lt;li&gt;Deduplication&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;advantages--2&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#advantages--2&#34;&gt;Advantages 👍&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Snapshot Support&lt;/strong&gt;: Provides built-in support for snapshots, allowing for quick backups and rollbacks.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Data Integrity&lt;/strong&gt;: Includes checksumming of data and metadata, which helps to ensure data integrity.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Self-Healing&lt;/strong&gt;: With RAID support, Btrfs can automatically repair corrupted data.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Dynamic Storage&lt;/strong&gt;: Allows for the dynamic addition and removal of storage devices.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;downsides--2&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#downsides--2&#34;&gt;Downsides 👎&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Stability&lt;/strong&gt;: Btrfs is considered less mature than ext4 or XFS, particularly for certain features like RAID 5/6.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Performance&lt;/strong&gt;: May not perform as well as XFS or ext4 in certain high-performance scenarios, particularly with heavy random writes.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Complexity&lt;/strong&gt;: The advanced features of Btrfs come with increased complexity.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;technical-details--1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#technical-details--1&#34;&gt;Technical Details 🔍&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Maximum File Size&lt;/strong&gt;: 16 EiB&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Maximum Volume Size&lt;/strong&gt;: 16 EiB&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Better on SSDs&lt;/strong&gt;: Btrfs is well-suited for flash/solid-state storage because of TRIM support and CoW, which reduces write amplification.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;distro-usage-2&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#distro-usage-2&#34;&gt;Distro Usage&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Btrfs has been in the mainline linux Kernel since 2008
+it is the default file system for SUSE and Fedora&lt;/p&gt;
+
+
+
+&lt;h2 id=&#34;4-openzfs--unix&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#4-openzfs--unix&#34;&gt;4. OpenZFS 💾 (Unix)&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;intro-3&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#intro-3&#34;&gt;Intro&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;OpenZFS&lt;/strong&gt; is an advanced file system and volume manager that originated from Sun Microsystems&amp;rsquo; ZFS and is now maintained by the OpenZFS project.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;links-3&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#links-3&#34;&gt;Links&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/OpenZFS&#34;&gt;https://en.wikipedia.org/wiki/OpenZFS&lt;/a&gt;
+&lt;a href=&#34;https://openzfs.org/wiki/Main_Page&#34;&gt;https://openzfs.org/wiki/Main_Page&lt;/a&gt;&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;technical-features--3&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#technical-features--3&#34;&gt;Technical Features: 🔍&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Copy-on-Write (COW)&lt;/li&gt;
+&lt;li&gt;Snapshots and Clones&lt;/li&gt;
+&lt;li&gt;Pooled Storage (ZFS Storage Pools)&lt;/li&gt;
+&lt;li&gt;Dynamic Striping&lt;/li&gt;
+&lt;li&gt;Built-in RAID Support (RAID-Z1, RAID-Z2, RAID-Z3)&lt;/li&gt;
+&lt;li&gt;Data and Metadata Checksumming&lt;/li&gt;
+&lt;li&gt;Self-Healing&lt;/li&gt;
+&lt;li&gt;Deduplication&lt;/li&gt;
+&lt;li&gt;Compression (LZ4, GZIP, ZLE, etc.)&lt;/li&gt;
+&lt;li&gt;Online Resizing&lt;/li&gt;
+&lt;li&gt;Dynamic Block Size&lt;/li&gt;
+&lt;li&gt;End-to-End Data Integrity&lt;/li&gt;
+&lt;li&gt;ZFS Datasets (File Systems and Volumes)&lt;/li&gt;
+&lt;li&gt;Adaptive Replacement Cache (ARC)&lt;/li&gt;
+&lt;li&gt;Transparent Data Encryption&lt;/li&gt;
+&lt;li&gt;ZFS Send/Receive for Backup and Replication&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;advantages--3&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#advantages--3&#34;&gt;Advantages 👍&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Data Integrity&lt;/strong&gt;: Uses end-to-end checksums for all data, ensuring high data integrity.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Snapshots and Clones&lt;/strong&gt;: Supports efficient, low-overhead snapshots and clones, useful for backups and development.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;RAID-Z Support&lt;/strong&gt;: Offers advanced RAID options (RAID-Z1, RAID-Z2, RAID-Z3), providing redundancy and fault tolerance.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Compression&lt;/strong&gt;: Built-in compression can save space and improve performance in certain workloads.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Scalability&lt;/strong&gt;: Designed to handle very large data sets and scales well with both size and number of files.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;downsides--3&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#downsides--3&#34;&gt;Downsides 👎&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Resource Intensive&lt;/strong&gt;: Can be resource-intensive, particularly in terms of memory usage.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Complexity&lt;/strong&gt;: The advanced features and flexibility of OpenZFS come with a steep learning curve.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Portability&lt;/strong&gt;: While available on many platforms, it is not as natively supported in Linux as ext4 or XFS.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Licensing&lt;/strong&gt;: OpenZFS is licensed under CDDL, which is incompatible with the GPL.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;technical-details--2&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#technical-details--2&#34;&gt;Technical Details 🔍&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Maximum File Size&lt;/strong&gt;: 16 EiB&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Maximum Volume Size&lt;/strong&gt;: 256 ZiB (theoretical)&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;distro-usage-3&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#distro-usage-3&#34;&gt;Distro Usage&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Open ZFS is &lt;strong&gt;Not&lt;/strong&gt; available in the mainline Linux Kernel. Rather, it is available through a 3rd party module.
+Works on Linux, BSD, and Mac&lt;/p&gt;
+
+
+
+&lt;h2 id=&#34;hammer2--dragonflybsd&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#hammer2--dragonflybsd&#34;&gt;HAMMER2 💾 (DragonflyBSD)&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;intro-4&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#intro-4&#34;&gt;Intro&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Hammer2&lt;/strong&gt; is a modern, advanced file system designed for high-performance and scalable storage solutions, particularly in clustered environments. It features robust capabilities such as copy-on-write, data deduplication, and built-in snapshots, providing high data integrity, efficient storage management, and instant crash recovery.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;links-4&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#links-4&#34;&gt;Links&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/HAMMER2&#34;&gt;Wikipedia: HAMMER2&lt;/a&gt;
+&lt;a href=&#34;https://www.dragonflybsd.org/hammer/&#34;&gt;DragonFly BSD Hammer2&lt;/a&gt;&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;technical-features--4&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#technical-features--4&#34;&gt;Technical Features: 🔍&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Clustered File System Support&lt;/li&gt;
+&lt;li&gt;Snapshot and Cloning Support&lt;/li&gt;
+&lt;li&gt;Copy-on-Write (COW)&lt;/li&gt;
+&lt;li&gt;Data Deduplication&lt;/li&gt;
+&lt;li&gt;Data Compression (LZ4, ZLIB)&lt;/li&gt;
+&lt;li&gt;Data and Metadata Checksumming&lt;/li&gt;
+&lt;li&gt;Multi-Volume Support&lt;/li&gt;
+&lt;li&gt;Instant Crash Recovery&lt;/li&gt;
+&lt;li&gt;Fine-Grained Locking (for SMP scalability)&lt;/li&gt;
+&lt;li&gt;RAID Support (1, 1+0)&lt;/li&gt;
+&lt;li&gt;Thin Provisioning&lt;/li&gt;
+&lt;li&gt;Asynchronous Bulk-Freeing&lt;/li&gt;
+&lt;li&gt;Large Directory Support&lt;/li&gt;
+&lt;li&gt;Built-in Data Integrity and Self-Healing&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;advantages--4&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#advantages--4&#34;&gt;Advantages 👍&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;High Performance&lt;/strong&gt;: Optimized for high-performance and scalable storage solutions.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Data Integrity&lt;/strong&gt;: Incorporates checksumming and self-healing features to maintain data integrity.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Efficient Storage Management&lt;/strong&gt;: Offers advanced features like data deduplication and compression to manage storage efficiently.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Scalability&lt;/strong&gt;: Designed to handle large volumes of data and support clustered environments.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;downsides--4&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#downsides--4&#34;&gt;Downsides 👎&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Complexity&lt;/strong&gt;: The advanced features and configuration options can introduce complexity.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Maturity&lt;/strong&gt;: As a newer file system, it may have fewer tools and less mature support compared to more established file systems.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Limited Adoption&lt;/strong&gt;: Less commonly used than other file systems, which may affect community support and documentation.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;technical-details--3&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#technical-details--3&#34;&gt;Technical Details 🔍&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Maximum File Size&lt;/strong&gt;: Not explicitly defined, but supports very large files.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Maximum Volume Size&lt;/strong&gt;: Not explicitly defined, but designed for large-scale storage.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;distro-usage-4&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#distro-usage-4&#34;&gt;Distro Usage&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;DragonFly BSD&lt;/strong&gt;: The primary platform where Hammer2 is used and supported.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Limited Availability&lt;/strong&gt;: Not available in mainstream Linux distributions; primarily associated with DragonFly BSD.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 id=&#34;key-concepts--glossary-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#key-concepts--glossary-&#34;&gt;Key Concepts / Glossary 🔑&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;snapshots-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#snapshots-&#34;&gt;Snapshots 📸&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Snapshots&lt;/strong&gt; are read-only copies of a file system at a specific point in time, allowing users to save the state of the file system for backup and recovery purposes. They are efficient and consume minimal space, as only the differences between the current state and the snapshot are stored.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;clones-vs-snapshots-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#clones-vs-snapshots-&#34;&gt;Clones vs. Snapshots 📸🧬&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Snapshots&lt;/strong&gt;: Read-only copies of the file system at a specific time.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Clones&lt;/strong&gt;: Writable copies of snapshots that can be modified independently.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;raid-z-levels-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#raid-z-levels-&#34;&gt;RAID-Z Levels ⛓️&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;RAID-Z1&lt;/strong&gt;: Single parity; can tolerate the loss of one disk.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;RAID-Z2&lt;/strong&gt;: Double parity; can tolerate the loss of two disks.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;RAID-Z3&lt;/strong&gt;: Triple parity; can tolerate the loss of three disks.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;raid-5-and-raid-6-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#raid-5-and-raid-6-&#34;&gt;RAID 5 and RAID 6 ⛓️&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;RAID 5&lt;/strong&gt;: Stripes data across disks with single parity; can tolerate the loss of one disk.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;RAID 6&lt;/strong&gt;: Stripes data across disks with double parity; can tolerate the loss of two disks.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;issues-with-raid-56-in-btrfs&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#issues-with-raid-56-in-btrfs&#34;&gt;Issues with RAID 5/6 in Btrfs&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Btrfs&amp;rsquo;s implementation of RAID 5/6 is considered unstable due to issues like the write hole problem, making it less reliable for production use. Data integrity may be compromised, leading to potential data loss.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;cddl-license-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#cddl-license-&#34;&gt;CDDL License 🪪&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;The &lt;strong&gt;Common Development and Distribution License (CDDL)&lt;/strong&gt; is an open-source license created by Sun Microsystems. It is incompatible with the GPL, which can complicate integration with Linux.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;btrfs-self-healing-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#btrfs-self-healing-&#34;&gt;Btrfs Self-Healing ❤️‍🩹&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Self-Healing&lt;/strong&gt; in Btrfs works by verifying data against checksums and repairing any detected corruption using redundant data stored on other disks in a RAID configuration.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;dynamic-storage-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#dynamic-storage-&#34;&gt;Dynamic Storage 🧱&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Dynamic Storage&lt;/strong&gt; refers to the ability to manage multiple storage devices within a single file system, allowing for on-the-fly addition and removal of devices, with the file system automatically balancing data across them.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;online-resizing-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#online-resizing-&#34;&gt;Online Resizing 🗺️&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Online Resizing&lt;/strong&gt; allows the resizing of a file system while it is mounted and in use. XFS supports growing the file system online, while Btrfs supports both growing and shrinking.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;b-trees-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#b-trees-&#34;&gt;B-Trees ⚖️&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;A &lt;strong&gt;B-tree&lt;/strong&gt; is a self-balancing tree data structure that maintains sorted data and allows efficient insertion, deletion, and search operations. B-trees are used in file systems like Btrfs to manage metadata and data blocks.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;extent-base-allocation-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#extent-base-allocation-&#34;&gt;Extent Base Allocation 👠&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;is a method used by modern file systems to manage data storage efficiently. Instead of tracking individual fixed-size blocks, the file system groups contiguous blocks into larger units called extents.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;persistent-pre-allocation-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#persistent-pre-allocation-&#34;&gt;Persistent Pre-allocation 🎟️&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;This technique reserves a specific amount of disk space for a file in advance, ensuring that the allocated space remains available, which helps in reducing fragmentation and guaranteeing storage for large files.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;delayed-allocation-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#delayed-allocation-&#34;&gt;Delayed Allocation ⏱️&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Delayed allocation defers the assignment of specific disk blocks to file data until the data is flushed to disk, optimizing the allocation process and reducing fragmentation by allowing the file system to make better decisions about where to place data.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;multi-block-allocation-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#multi-block-allocation-&#34;&gt;Multi-block Allocation ⋔&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Multi-block allocation allows a file system to allocate multiple contiguous blocks at once, rather than individually, improving performance and reducing fragmentation, especially for large files.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;stripe-aware-allocation-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#stripe-aware-allocation-&#34;&gt;Stripe-aware Allocation 🧠&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Stripe-aware allocation is used in RAID configurations to ensure that data is distributed evenly across all disks in the array, optimizing performance by aligning data placement with the underlying stripe size of the RAID setup.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;fine-grained-locking-for-smp-scalability-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#fine-grained-locking-for-smp-scalability-&#34;&gt;Fine-Grained Locking (for SMP Scalability) 🚀&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Fine-grained locking applies locks at a granular level, allowing multiple processors to concurrently access different parts of the file system, enhancing performance and scalability in multi-core environments.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;raid-10-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#raid-10-&#34;&gt;RAID 1+0 🖇️&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;RAID support includes configurations such as RAID 1 for data mirroring and RAID 1+0 for combining mirroring with striping to provide both redundancy and improved performance.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;thin-provisioning-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#thin-provisioning-&#34;&gt;Thin Provisioning 🔮&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Thin provisioning allocates disk space on-demand rather than reserving it all upfront, optimizing storage utilization by only using the space actually required by data.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;asynchronous-bulk-freeing-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#asynchronous-bulk-freeing-&#34;&gt;Asynchronous Bulk-Freeing 🗑️&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Asynchronous bulk-freeing performs large-scale space reclamation in the background, allowing the file system to manage deletions efficiently without impacting overall performance.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;large-directory-support-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#large-directory-support-&#34;&gt;Large Directory Support 🏢&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Large directory support enables efficient management of directories with a vast number of entries, using optimized data structures to ensure fast performance for directory operations.&lt;/p&gt;
+</description>
+    </item>
+  </channel>
+</rss>
