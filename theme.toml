@@ -1,0 +1,9 @@
+name = "HG"
+license = "BSD"
+description = "A lightweight Hugo theme"
+homepage = "https://github.com/trevorsmale"
+features = ["blog", "contact form", "dark mode", "multilingual", "posts"]
+
+[author]
+  name = "Trevor Smale"
+  homepage = "https://github.com/trevorsmale/"
