@@ -5,7 +5,7 @@
     <title>Administration on Tech Blog</title>
     <link>http://localhost:1313/tags/administration/</link>
     <description>Recent content in Administration on Tech Blog</description>
-    <generator>Hugo 0.133.1</generator>
+    <generator>Hugo 0.134.1</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 01 Sep 2024 00:00:00 +0000</lastBuildDate>
     <atom:link rel="self" href="http://localhost:1313/tags/administration/feed.xml" type="application/rss+xml" />
@@ -37,7 +37,7 @@ KillerCoda: &lt;a href=&#34;https://killercoda.com/het-tanis&#34;&gt;https://kil
       <link>http://localhost:1313/post/nd/</link>
       <pubDate>Sun, 01 Sep 2024 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/post/nd/</guid>
-      <description>&lt;p&gt;Removing a file in Unux does not actually remove it from memory. You are only reducing the number of hardlinks pointing to the file to &amp;lsquo;0&amp;rsquo;.
+      <description>&lt;p&gt;Removing a file in Unix does not actually remove it from memory. You are only reducing the number of Hard-Links pointing to the file to &amp;lsquo;0&amp;rsquo;.
 In order to actually delete the information is to overwrite it. This will happen over time as the disk fills, or if one would like to delete a file in a timely fashion should over write empty drive sectors.&lt;/p&gt;
 </description>
     </item>
@@ -730,6 +730,107 @@ Works on Linux, BSD, and Mac&lt;/p&gt;
   &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#large-directory-support-&#34;&gt;Large Directory Support 🏢&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;Large directory support enables efficient management of directories with a vast number of entries, using optimized data structures to ensure fast performance for directory operations.&lt;/p&gt;
+</description>
+    </item>
+    <item>
+      <title>My WebDev Preferences 👍</title>
+      <link>http://localhost:1313/post/ws/</link>
+      <pubDate>Sat, 24 Aug 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/ws/</guid>
+      <description>
+
+
+&lt;h3 id=&#34;intro&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/ws/#intro&#34;&gt;Intro&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;This blog will likely be dominated by Linux talk as that is what I spend most of my time with. However, I do full-stack web development on occlusion.
+In fact, I have worked as a professional web Designer/Developer on and off, doing simple full stack projects in a range of languages. Recently, I have been stepping up my game with the intention of creating web applications with great GUIs, not only information pages. I think that with mature Javascript frameworks like NextJS or React and WASM (Web Assembly), we are going to see high performance desktop applications transition to being web-apps. This potential has me excited about learning more sophisticated tools.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;go&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/ws/#go&#34;&gt;GO&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Golang is a dead simple systems focused language created by GOATED Unix contributors. When I started picking up Go a few years back, it was not really popular. Web development was dominated by NodeJS on the backend and there were no job posting for the skill. However, I tend to have good instincts and decided to eschew Node in favor of GO. I am very happy with this decision as it is clear, strongly typed, easy to set up and fast as hell.
+You can classify me as a GO enjoyer and back-ned deployer. GO now has a built-in HTTPs service and muxer, so it is my go-to for serving static and dynamic content.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;tailwind&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/ws/#tailwind&#34;&gt;TailWind&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;I really regret not checking out TailWind CSS earlier, it is so nice. I totally had the wrong idea and thought that it was just another annoying framework that over complicates and I was sorely wrong. It really helps in combination with GO templates to create beautiful responsive layouts. There is not much too a simple TW setup, just a simple call-out in the header. When things needs to be more expansive, one can use a config file to specify rules.
+I think I will be using a lot more TW in the future.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;react&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/ws/#react&#34;&gt;React&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;I am not a major fan of JS because I am a fan of simplicity, alas it is the language of the Web, so I must tango with wild syntax. Most web experiences  require reactive interaction and content delivery. I am not locked into react as there are so many similar frameworks, but I am saying it is a must in ones stack.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;vscode&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/ws/#vscode&#34;&gt;VSCode&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Having a customizable proper IDE is important for getting things done. As much as I like learning Vim, Helix, or even Sublime, I know that no-matter the level of configuration it wont even come close to a proper IDE that lints, detects bugs, has a large ecosystem of plug-ins and comfy features like workspaces and built in problem console. If you just want to make stuff, then reduce your cognitive overhead and utilize a user friendly IDE.&lt;/p&gt;
+</description>
+    </item>
+    <item>
+      <title>New WebDev framework</title>
+      <link>http://localhost:1313/post/vue/</link>
+      <pubDate>Sat, 24 Aug 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/vue/</guid>
+      <description>
+
+
+&lt;h3 id=&#34;intro&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/vue/#intro&#34;&gt;Intro&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;I frequent a Discord group called ProLUG (Professional Linux User Group). The group is organized around cooperative, project-based learning, led by experienced members. One of these groups, called Coding Cove, is led by Ryan Long (SaltyCatfish). Ryan is a very experienced and senior developer who introduces us to new concepts on a weekly basis.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;vue&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/vue/#vue&#34;&gt;Vue&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;This past weekend, Ryan introduced Vue.js and the ideas behind the framework. We spent over an hour discussing and interacting with Vue, and I came away from the meeting excited to learn more and start building projects.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;why-vue-is-exciting&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/vue/#why-vue-is-exciting&#34;&gt;Why Vue is Exciting&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;What I really liked about Vue is the concept of templates and components. These ideas seemed logical from the start. Templates can be created and reused on multiple pages, while components provide modularity. Together, these features result in a very clean and easy-to-read codebase, especially for larger projects.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;what-i-was-using&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/vue/#what-i-was-using&#34;&gt;What I Was Using&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Prior to learning about Vue, I had completed a few projects using HTML, Tailwind CSS, and React. While I’m a big fan of Go (for reasons I won’t get into here), I found React to be cumbersome. React often creates messy code, especially when combined with Tailwind.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;go--vue&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/vue/#go--vue&#34;&gt;Go + Vue?&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;After the meeting, I felt inspired to explore combining the power of Go with Vue. I started searching for examples, and it’s definitely doable for simple or small projects. However, when I looked at more advanced projects, the situation became complicated. Gluing a Go backend to a Vue frontend felt relatively simple at first, but when you introduce middleware, SSR/CSR, OAuth2, and more, things quickly become complex.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;then-i-found-nuxt&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/vue/#then-i-found-nuxt&#34;&gt;Then I Found Nuxt&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Nuxt is a &amp;ldquo;batteries-included&amp;rdquo; framework built on top of Vue. It comes with all the modern build tools and services needed for a professional project, and everything ties together elegantly.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;where-i-am-now&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/vue/#where-i-am-now&#34;&gt;Where I Am Now&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;I’ve done a deep dive into Nuxt, and it feels very comfortable to work with. After purchasing a course on Udemy, I’ve completed a few simple projects and intend to build a mid-level project soon. With Vue’s templating and components, along with Tailwind’s efficiency, I’m confident I can create a functional and aesthetically pleasing project that runs efficiently across different systems.&lt;/p&gt;
 </description>
     </item>
   </channel>

@@ -21,7 +21,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.133.1">
+<meta name="generator" content="Hugo 0.134.1">
   <title>That Unix file is not deleted 👺 | Tech Blog</title>
   <link rel="canonical" href="http://localhost:1313/post/nd/">
 
@@ -104,7 +104,7 @@
     <time datetime="2024-09-01T00:00:00Z">September 1, 2024</time>
   
 </header>
-  <p>Removing a file in Unux does not actually remove it from memory. You are only reducing the number of hardlinks pointing to the file to &lsquo;0&rsquo;.
+  <p>Removing a file in Unix does not actually remove it from memory. You are only reducing the number of Hard-Links pointing to the file to &lsquo;0&rsquo;.
 In order to actually delete the information is to overwrite it. This will happen over time as the disk fills, or if one would like to delete a file in a timely fashion should over write empty drive sectors.</p>
 
   

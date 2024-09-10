@@ -5,6 +5,9 @@
     <loc>http://localhost:1313/</loc>
     <lastmod>2024-09-29T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/post/</loc>
+    <lastmod>2024-09-14T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/tags/administration/</loc>
     <lastmod>2024-09-01T00:00:00+00:00</lastmod>
   </url><url>
@@ -18,9 +21,6 @@
     <lastmod>2024-09-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/linux/</loc>
-    <lastmod>2024-09-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/post/</loc>
     <lastmod>2024-09-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/post/pac/</loc>
@@ -85,5 +85,41 @@
   </url><url>
     <loc>http://localhost:1313/tags/notes/</loc>
     <lastmod>2024-08-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/design/</loc>
+    <lastmod>2024-08-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/go/</loc>
+    <lastmod>2024-08-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/post/ws/</loc>
+    <lastmod>2024-08-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/post/vue/</loc>
+    <lastmod>2024-08-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/nuxt/</loc>
+    <lastmod>2024-08-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/stacks/</loc>
+    <lastmod>2024-08-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/tailwind/</loc>
+    <lastmod>2024-08-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/techstack/</loc>
+    <lastmod>2024-08-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/tools/</loc>
+    <lastmod>2024-08-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/vue/</loc>
+    <lastmod>2024-08-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/webdev/</loc>
+    <lastmod>2024-08-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/webdev/</loc>
+    <lastmod>2024-08-24T00:00:00+00:00</lastmod>
   </url>
 </urlset>
