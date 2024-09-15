@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <meta name="description" content="ProLUG Admin Course Day 1">
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.134.1">
+  <title>ProLUG Admin Course Capstone Project 🐧 | Tech Blog</title>
+  <link rel="canonical" href="http://localhost:1313/post/paccapstoneproject1/">
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+    <link rel="stylesheet" href="/css/base.css">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <a class="Banner-link u-clickable" href="/">Tech Blog</a>
+      </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/">About</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/post/">Posts</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/tags/">Tags</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/categories/">Categories</a>
+        </li>
+      
+        
+        
+          
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/feed.xml">RSS</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/paccapstoneproject1/" rel="bookmark">ProLUG Admin Course Capstone Project 🐧</a>
+  </h1>
+  
+    <time datetime="2024-09-15T00:00:00Z">September 15, 2024</time>
+  
+</header>
+  <h3 id="intro-">
+  <a class="Heading-link u-clickable" href="/post/paccapstoneproject1/#intro-">Intro 👋</a>
+</h3>
+<p>To complete this course, we are required to undertake a capstone project. Before the course began, I created a graphic design and branding package for ProLUG, as I felt the group was gaining critical mass but lacked visual cohesion. As part of that package, I designed a certificate template for use in this course, which included the suggestion of a verification link. I have received several certifications from the Linux Professional Institute, all of which include a verification link to a server hosted by the organization. I believe this feature is crucial in a world of diploma mills and AI-generated credentials, as it ensures that those who put in real work are properly accredited.</p>
+
+
+
+<h3 id="locking-in-a-project-">
+  <a class="Heading-link u-clickable" href="/post/paccapstoneproject1/#locking-in-a-project-">Locking in a project 🔒</a>
+</h3>
+<p>The night before the course started, I reached out to Scott to ensure he had everything he needed in terms of graphics and to let him know that I was available for further support if required. During our conversation, I mentioned the idea of a verification link and server, which led to my proposing it as a project. His response was, &ldquo;possibly.&rdquo; The next day, while teaching, Scott announced that a student would be creating a verification server for the certificates, so I guess the project is green-lit! 🤣</p>
+
+
+
+<h3 id="preface-">
+  <a class="Heading-link u-clickable" href="/post/paccapstoneproject1/#preface-">Preface 🤨</a>
+</h3>
+<p>I would like to preface this writing by stating that I have limited programming experience. This project is beyond my current understanding and that I will have to brake everything down into bite size pieces in order to fully comprehend. So follow me on my journey to creating a verification server.</p>
+
+
+
+<h3 id="outline-of-the-project-">
+  <a class="Heading-link u-clickable" href="/post/paccapstoneproject1/#outline-of-the-project-">Outline of the Project 🧭</a>
+</h3>
+<p>Essentially the project is to create a system that when prompted with a unique id, returns information that matches what is written on the certificate. So for each certificate created, we must create a unique id/link that leads to matching credentials.</p>
+
+
+
+<h3 id="my-initial-simple-planoutline">
+  <a class="Heading-link u-clickable" href="/post/paccapstoneproject1/#my-initial-simple-planoutline">My initial simple plan/outline</a>
+</h3>
+<ol>
+<li>Creating the data</li>
+</ol>
+<p>Intake the first name, last name and date to create a unique hash.</p>
+<ol start="2">
+<li>Storing the data</li>
+</ol>
+<p>this info is then added to columns in a database.</p>
+<ol start="3">
+<li>Retrieving the data</li>
+</ol>
+<p>With the use of an API and Web Interface, we can use the hash to prompt for more data.</p>
+
+
+
+<h3 id="initial-tech-stack-">
+  <a class="Heading-link u-clickable" href="/post/paccapstoneproject1/#initial-tech-stack-">Initial Tech Stack 🤔</a>
+</h3>
+<p>Data Generation: GO
+Database: SQLight
+Interface: HTML, CSS, JS</p>
+
+
+
+<h3 id="prolug-links-">
+  <a class="Heading-link u-clickable" href="/post/paccapstoneproject1/#prolug-links-">ProLUG Links ⛓️</a>
+</h3>
+<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
+Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
+Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
+ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
+KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
+  
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/prolug-course/" rel="tag">ProLUG Course</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/project/" rel="tag">Project</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+  
+  
+
+
+
+      </div>
+    </div>
+  </main>
+  
+</body>
+
+</html>
