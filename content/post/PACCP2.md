@@ -169,7 +169,7 @@ for example the Navigation bar is coded similarly to any old navbar and saved in
 
 ![Alt Text]({{ "techblog/images/Sep22site/shot1.png" | relURL }})
 
-![ProLUG Homepage](techblog/public/images/Sep22site/shot1.png)
+![ProLUG Homepage](https://trevorsmale.github.io/techblog/images/Sep22site/shot1.png)
 
 #### Current About Page
 ![ProLUG Homepage](/public/images/Sep22site/shot2.png)
