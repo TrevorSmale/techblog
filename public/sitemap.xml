@@ -2,148 +2,148 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/</loc>
+    <loc>/</loc>
     <lastmod>2024-09-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/administration/</loc>
-    <lastmod>2024-09-24T00:00:00+00:00</lastmod>
+    <loc>/tags/administration/</loc>
+    <lastmod>2024-09-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
-    <lastmod>2024-09-24T00:00:00+00:00</lastmod>
+    <loc>/tags/capstoneproject/</loc>
+    <lastmod>2024-09-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/engineering/</loc>
-    <lastmod>2024-09-24T00:00:00+00:00</lastmod>
+    <loc>/categories/</loc>
+    <lastmod>2024-09-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/learning/</loc>
-    <lastmod>2024-09-24T00:00:00+00:00</lastmod>
+    <loc>/tags/engineering/</loc>
+    <lastmod>2024-09-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/linux/</loc>
-    <lastmod>2024-09-24T00:00:00+00:00</lastmod>
+    <loc>/categories/learning/</loc>
+    <lastmod>2024-09-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/</loc>
-    <lastmod>2024-09-24T00:00:00+00:00</lastmod>
+    <loc>/tags/linux/</loc>
+    <lastmod>2024-09-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/pacu2/</loc>
-    <lastmod>2024-09-24T00:00:00+00:00</lastmod>
+    <loc>/post/</loc>
+    <lastmod>2024-09-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/prolug-course/</loc>
-    <lastmod>2024-09-24T00:00:00+00:00</lastmod>
+    <loc>/post/paccp2/</loc>
+    <lastmod>2024-09-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2024-09-24T00:00:00+00:00</lastmod>
+    <loc>/post/pacu2/</loc>
+    <lastmod>2024-09-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/tech/</loc>
-    <lastmod>2024-09-24T00:00:00+00:00</lastmod>
+    <loc>/tags/prolug-course/</loc>
+    <lastmod>2024-09-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/capstoneproject/</loc>
-    <lastmod>2024-09-22T00:00:00+00:00</lastmod>
+    <loc>/tags/</loc>
+    <lastmod>2024-09-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/paccp2/</loc>
-    <lastmod>2024-09-22T00:00:00+00:00</lastmod>
+    <loc>/tags/tech/</loc>
+    <lastmod>2024-09-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/paccp1/</loc>
+    <loc>/post/paccp1/</loc>
     <lastmod>2024-09-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/pacu1/</loc>
+    <loc>/post/pacu1/</loc>
     <lastmod>2024-09-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/vt/</loc>
+    <loc>/post/vt/</loc>
     <lastmod>2024-09-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/certification/</loc>
+    <loc>/tags/certification/</loc>
     <lastmod>2024-09-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/projects/</loc>
+    <loc>/categories/projects/</loc>
     <lastmod>2024-09-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/prolug/</loc>
+    <loc>/tags/prolug/</loc>
     <lastmod>2024-09-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/study-technique/</loc>
+    <loc>/tags/study-technique/</loc>
     <lastmod>2024-09-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/vim/</loc>
+    <loc>/tags/vim/</loc>
     <lastmod>2024-09-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/design/</loc>
+    <loc>/tags/design/</loc>
     <lastmod>2024-09-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/vue/</loc>
+    <loc>/post/vue/</loc>
     <lastmod>2024-09-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/nuxt/</loc>
+    <loc>/tags/nuxt/</loc>
     <lastmod>2024-09-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/stacks/</loc>
+    <loc>/categories/stacks/</loc>
     <lastmod>2024-09-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/tailwind/</loc>
+    <loc>/tags/tailwind/</loc>
     <lastmod>2024-09-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/techstack/</loc>
+    <loc>/tags/techstack/</loc>
     <lastmod>2024-09-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/tools/</loc>
+    <loc>/categories/tools/</loc>
     <lastmod>2024-09-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/vue/</loc>
+    <loc>/tags/vue/</loc>
     <lastmod>2024-09-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/webdev/</loc>
+    <loc>/tags/webdev/</loc>
     <lastmod>2024-09-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/webdev/</loc>
+    <loc>/categories/webdev/</loc>
     <lastmod>2024-09-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/pac/</loc>
+    <loc>/post/pac/</loc>
     <lastmod>2024-09-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/nd/</loc>
+    <loc>/post/nd/</loc>
     <lastmod>2024-09-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/tidbits/</loc>
+    <loc>/tags/tidbits/</loc>
     <lastmod>2024-09-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/tidbits/</loc>
+    <loc>/categories/tidbits/</loc>
     <lastmod>2024-09-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/unix/</loc>
+    <loc>/tags/unix/</loc>
     <lastmod>2024-09-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/lpic/</loc>
+    <loc>/tags/lpic/</loc>
     <lastmod>2024-08-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/lpic/</loc>
+    <loc>/post/lpic/</loc>
     <lastmod>2024-08-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/lxc/</loc>
+    <loc>/tags/lxc/</loc>
     <lastmod>2024-08-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/proxmox/</loc>
+    <loc>/tags/proxmox/</loc>
     <lastmod>2024-08-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/proxmox/</loc>
+    <loc>/post/proxmox/</loc>
     <lastmod>2024-08-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/self-hosting/</loc>
+    <loc>/tags/self-hosting/</loc>
     <lastmod>2024-08-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/virtual-machines/</loc>
+    <loc>/tags/virtual-machines/</loc>
     <lastmod>2024-08-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/fs/</loc>
+    <loc>/post/fs/</loc>
     <lastmod>2024-08-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/filesystems/</loc>
+    <loc>/tags/filesystems/</loc>
     <lastmod>2024-08-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/notes/</loc>
+    <loc>/tags/notes/</loc>
     <lastmod>2024-08-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/go/</loc>
+    <loc>/tags/go/</loc>
     <lastmod>2024-08-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/ws/</loc>
+    <loc>/post/ws/</loc>
     <lastmod>2024-08-24T00:00:00+00:00</lastmod>
   </url>
 </urlset>
