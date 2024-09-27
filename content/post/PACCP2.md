@@ -167,6 +167,8 @@ for example the Navigation bar is coded similarly to any old navbar and saved in
 
 #### Current Home Page
 
+![Alt Text]({{ "techblog/images/Sep22site/shot1.png" | relURL }})
+
 ![ProLUG Homepage](techblog/public/images/Sep22site/shot1.png)
 
 #### Current About Page
