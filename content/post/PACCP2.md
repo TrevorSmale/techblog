@@ -182,7 +182,7 @@ for example the Navigation bar is coded similarly to any old navbar and saved in
 
 #### Current Verify Page
 
-![ProLUG Homepage](/images/Sep22site/shot5.png)
+![ProLUG Homepage](images/Sep22site/shot5.png)
 
 
 ### Next Steps... 🥾
