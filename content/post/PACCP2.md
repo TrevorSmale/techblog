@@ -124,19 +124,19 @@ type Certificate struct {
 ```
 #### The prompt
 
-![ProLUG Homepage](/images/Sep22site/shot5.png)
+![ProLUG Verify Step 1](https://trevorsmale.github.io/techblog/images/Sep22site/shot5.png)
 
 #### Inputting a UID hash string
 
-![ProLUG Homepage](/images/Sep22site/shot6.png)
+![ProLUG Verify Step 2](https://trevorsmale.github.io/techblog/images/Sep22site/shot6.png)
 
 #### Matching string results in a info retrieval 
 
-![ProLUG Homepage](/images/Sep22site/shot7.png)
+![ProLUG Verify Step 3](https://trevorsmale.github.io/techblog/images/Sep22site/shot7.png)
 
 #### An unrecognized string results in an error message
 
-![ProLUG Homepage](/images/Sep22site/shot8.png)
+![ProLUG Verify Step 4](https://trevorsmale.github.io/techblog/images/Sep22site/shot8.png)
 
 
 ### Current Site 💄
@@ -167,24 +167,22 @@ for example the Navigation bar is coded similarly to any old navbar and saved in
 
 #### Current Home Page
 
-![Alt Text]({{ "techblog/images/Sep22site/shot1.png" | relURL }})
-
-![ProLUG Homepage](https://trevorsmale.github.io/techblog/images/Sep22site/shot1.png)
+![ProLUG Home Page](https://trevorsmale.github.io/techblog/images/Sep22site/shot1.png)
 
 #### Current About Page
-![ProLUG Homepage](/public/images/Sep22site/shot2.png)
+![ProLUG About Page](https://trevorsmale.github.io/techblog/images/Sep22site/shot2.png)
 
 #### Current Join Page
 
-![ProLUG Homepage](techblog/public/images/Sep22site/shot3.png)
+![ProLUG Join Page](https://trevorsmale.github.io/techblog/images/Sep22site/shot3.png)
 
 #### Current Certify Page
 
-![ProLUG Homepage](/images/Sep22site/shot4.png)
+![ProLUG Certify Page](https://trevorsmale.github.io/techblog/images/Sep22site/shot4.png)
 
 #### Current Verify Page
 
-![ProLUG Homepage](images/Sep22site/shot5.png)
+![ProLUG Verify Page](https://trevorsmale.github.io/techblog/images/Sep22site/shot5.png)
 
 
 ### Next Steps... 🥾

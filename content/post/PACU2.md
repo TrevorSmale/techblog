@@ -261,13 +261,13 @@ A few weeks ago, I learned how to create uninitialized templates with Proxmox, m
 
 So today I created a clone of my template specifically for getting hands on experience with SElinux
 
-![ProLUG Homepage](/images/PACU2/prox1.png)
+![ProLUG Homepage](https://trevorsmale.github.io/techblog/images/PACU2/prox1.png)
 
 I opened the **/etc/selinux/config** and set se to enforce. I then ran **sestatus** to confirm selinux had been activated.
 I created a new user policy for myself with **semanage user -a -R 'staff_r webadm_r' Treasure** here is the result after running **semanage user -l**
 
 
-![ProLUG Homepage](/images/PACU2/selinux1.png)
+![ProLUG Homepage](https://trevorsmale.github.io/techblog/images/PACU2/selinux1.png)
 
 ### SELinux scenario contemplation
 

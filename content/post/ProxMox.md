@@ -29,13 +29,13 @@ The installation process is very similar to the one debian has, a series of prom
 
 Once Proxmox is installed it becomes a headless network machine. If you plug in a monitor, you will see a black screen indicating the host address and not much more. The way one interfaces with the system is through a browser on a computer tied to the local network. I open up a browser on my macbook and head to the address to see the sign in screen. You would have set up your username and password during the setup process, so it is just a matter of typing those in.
 
-![ProxMox Dashboard](/images/pctower1.png)
+![ProxMox Dashboard](https://trevorsmale.github.io/techblog/images/pctower1.png)
 
 ### The Dashboard
 
 Proxmox provides an easy to use dashboard that indicated system load and memory usage. Creating a virtual machine is as simple as clicking 'create new vm' and uploading a sufficient ISO for the purpose. The deep learning comes from automating this process and managing a number of machines. This is where Youtube tutorials come in handing. It helps to know a little bit about networking in order to set up self hosted services like Jellyfin or Database based services like NextCloud.
 
-![ProxMox Dashboard](/images/proxdash.png)
+![ProxMox Dashboard](https://trevorsmale.github.io/techblog/images/proxdash.png)
 
 ### What I use it for
 
