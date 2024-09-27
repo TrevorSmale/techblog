@@ -1,8 +1,8 @@
 +++
 author = "Hugo Authors"
-title = "ProLUG Admin Course Day 1 🐧"
+title = "ProLUG Admin Course Unit 1 🐧"
 date = "2024-09-15"
-description = "ProLUG Admin Course Day 1"
+description = "ProLUG Admin Course Unit 1"
 tags = [
   "Tech", "Linux", "Administration", "Engineering", "ProLUG Course"
 ]

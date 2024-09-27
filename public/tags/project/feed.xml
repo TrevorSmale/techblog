@@ -1,76 +1,356 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<?xml-stylesheet type="text/xsl" href="https://example.org/xml/base.min.xml" ?>
+<?xml-stylesheet type="text/xsl" href="http://localhost:1313/xml/base.min.xml" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Project on Tech Blog</title>
-    <link>https://example.org/tags/project/</link>
+    <link>http://localhost:1313/tags/project/</link>
     <description>Recent content in Project on Tech Blog</description>
-    <generator>Hugo 0.134.1</generator>
+    <generator>Hugo 0.134.3</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 15 Sep 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link rel="self" href="https://example.org/tags/project/feed.xml" type="application/rss+xml" />
+    <atom:link rel="self" href="http://localhost:1313/tags/project/feed.xml" type="application/rss+xml" />
+    <item>
+      <title>ProLUG Admin Course Unit 2 🐧</title>
+      <link>http://localhost:1313/post/pacu2/</link>
+      <pubDate>Sat, 21 Sep 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/pacu2/</guid>
+      <description>&lt;h3 id=&#34;intro-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pacu2/#intro-&#34;&gt;Intro 👋&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;We have reached the second week of the PAC and things are getting more serious. Now that we are familiar with the flow of the course and expectations are set, the second lesson has start&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h3 id=&#34;lab-exercises-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pacu2/#lab-exercises-&#34;&gt;Lab exercises 🧪🤔&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;I am completing the labs locally since I have experience with Proxmox and, fortunately, a good homelab setup. While I know how to access Scott&amp;rsquo;s Warewolf system remotely, working locally is much more comfortable for me.&lt;/p&gt;
+
+
+
+&lt;h4 id=&#34;-basic-cli-exercise&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pacu2/#-basic-cli-exercise&#34;&gt;🧭 Basic CLI exercise:&lt;/a&gt;
+&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;cd ~ : Change Directory to Home&lt;/li&gt;
+&lt;li&gt;ls ~ : List&lt;/li&gt;
+&lt;li&gt;mkdir evaluation : Make Directory called &amp;rsquo;evaluation&#39;&lt;/li&gt;
+&lt;li&gt;mkdir evaluation/test/round6 : This fails why? We need to use the Parent option &amp;lsquo;-p&amp;rsquo;&lt;/li&gt;
+&lt;li&gt;mkdir -p evaluation/test/round6 : Make parent directory with subdirectories&lt;/li&gt;
+&lt;li&gt;cd evaluation : change directory to evaluation&lt;/li&gt;
+&lt;li&gt;pwd : present/print working directory = /home/ts/evaluation&lt;/li&gt;
+&lt;li&gt;touch testfile1 : create file name &amp;rsquo;testfile1&amp;rsquo; in current directory&lt;/li&gt;
+&lt;li&gt;ls : list = test testfile1&lt;/li&gt;
+&lt;li&gt;touch testfile{2..10} : Creates a numbered range of testfile&lt;/li&gt;
+&lt;li&gt;touch .hfile .hfile2 .hfile3 : this creates three dot files which are not visible to a normal listing method, we must use list all (ls -a)&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h4 id=&#34;-gathering-system-information&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pacu2/#-gathering-system-information&#34;&gt;🔍 Gathering System Information&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;I am running Rocky Linux 9 on a local Proxmox container for this course.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;hostname = localhost.localdomain&lt;/li&gt;
+&lt;li&gt;uname : system info command which stands for Unix Name&lt;/li&gt;
+&lt;li&gt;uname -a : shows a comprehensive list of system info Kernal name: Hostname, Kernel release, Kernel version, Machine hardware name, Processor type, Hardware platform, Operating system.&lt;/li&gt;
+&lt;li&gt;uname -r : the -r option stands for release and shows the kernel release version.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h4 id=&#34;-checking-the-amount-of-rammemory&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pacu2/#-checking-the-amount-of-rammemory&#34;&gt;🧠 Checking the amount of RAM/Memory&lt;/a&gt;
+&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;sudo&lt;/em&gt; cat/proc/meminfo : concatenate process memory information&lt;/li&gt;
+&lt;li&gt;free : displays total, used, free, shared, buffer, and available memory (RAM and SWAP)&lt;/li&gt;
+&lt;li&gt;free -m : megabyte display option for the free command&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h4 id=&#34;-checking-the-number-of-processors-and-processor-info&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pacu2/#-checking-the-number-of-processors-and-processor-info&#34;&gt;👨🏻‍💻 Checking the number of processors and processor info&lt;/a&gt;
+&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;cat/proc/cpuinfo : concatenate process central processor unit information = 4 processors on my lab.&lt;/li&gt;
+&lt;li&gt;cat /proc/cpuinfo | grep proc | wc -l : what we are doing here is piping the output of the previous command to grep which is filtering lines starting with proc, then we pipe through to word count with line option to cleverly count the number of processors, the result is 4&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h4 id=&#34;-checking-storage-usage-and-mounted-filesystems&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pacu2/#-checking-storage-usage-and-mounted-filesystems&#34;&gt;💾 Checking storage usage and mounted filesystems&lt;/a&gt;
+&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;df : the disk free command&lt;/li&gt;
+&lt;li&gt;df -h : we are adding the human readable option to df in order to more easily ascertain what is going on.&lt;/li&gt;
+&lt;li&gt;df -h | grep -i var :&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&amp;hellip; todo finish labs&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h3 id=&#34;reflecting-on-unit-1-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pacu2/#reflecting-on-unit-1-&#34;&gt;Reflecting on Unit 1 🤔&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Week 1 went well for me. I was very excited to start this course as it strongly aligns with my professional interests, and it came at a great time. I am incredibly grateful to have access to such a talented group of like-minded and enthusiastic professionals.&lt;/p&gt;
+&lt;p&gt;I managed to complete everything for Week 1 by preparing in advance. For example, I created this blog and started some of the materials early. The night before the course began, I went through Vim Tutor and Vim Adventures to give myself a bit of a head start, as my time is currently divided between various responsibilities. I also dedicated a significant portion of my time to starting my capstone project and troubleshooting issues.&lt;/p&gt;
+&lt;p&gt;I’ve set aside 8 hours per week, as suggested by Scott, for attending lectures, reading materials, practicing labs, and doing general research. During Week 1, I used roughly 6 hours, so I believe I’ve allocated enough time to complete the course work.&lt;/p&gt;
+&lt;p&gt;My note-taking has been excellent for this course. Prior to starting, I learned how essential note-taking is to the administration and engineering process, so I began using LogSeq as my note-taking tool four months ago. This gave me time to familiarize myself with its features, allowing me to dive into the lectures fully prepared. I’m also a fast touch typist, so I can easily listen and type simultaneously. After each lecture, I review and organize my notes by nesting and tagging information to relate it to other topics. Additionally, I’ve been reflecting on everything by writing in this blog.&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h3 id=&#34;prompt&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pacu2/#prompt&#34;&gt;Prompt&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;What is the significance of contexts?&lt;/li&gt;
+&lt;li&gt;What are the significance of labels?&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;learning-about-security-enhanced-linux-selinux-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pacu2/#learning-about-security-enhanced-linux-selinux-&#34;&gt;Learning about Security Enhanced Linux (SELinux) 🔐&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;It is a security architecture integrated into the Linux kernel that provides mechanisms to enforce access control security policies.&lt;/p&gt;
+
+
+
+&lt;h4 id=&#34;activating--enabling-selinux&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pacu2/#activating--enabling-selinux&#34;&gt;Activating / enabling SELinux&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;Before activating we can verify the status by running sestatus which is short for &amp;lsquo;Security Enhanced Status&amp;rsquo;
+requires modification of a config file located in /etc/selinux/config. There are two active states selinux can run in.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;enforcing&lt;/li&gt;
+&lt;li&gt;permissive : permissive does not enforce, but logs events that would be denied during enforcing mode&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;h4 id=&#34;contexts-in-respect-to-selinux&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pacu2/#contexts-in-respect-to-selinux&#34;&gt;Contexts in respect to SELinux&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;a context is a set of security labels that SELinux uses to control access to files, processes, and other resources on the system.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A context is a field of parameters separated by colons (p1:p2:p3:p4)&lt;/li&gt;
+&lt;li&gt;More specifically we have (user:role:type:level)&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h5 id=&#34;user&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pacu2/#user&#34;&gt;User&lt;/a&gt;
+&lt;/h5&gt;
+
+
+
+&lt;h5 id=&#34;role&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pacu2/#role&#34;&gt;Role&lt;/a&gt;
+&lt;/h5&gt;
+
+
+
+&lt;h5 id=&#34;type&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pacu2/#type&#34;&gt;Type&lt;/a&gt;
+&lt;/h5&gt;
+
+
+
+&lt;h5 id=&#34;level&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pacu2/#level&#34;&gt;Level&lt;/a&gt;
+&lt;/h5&gt;
+&lt;hr&gt;
+
+
+
+&lt;h3 id=&#34;selinux-scenario-contemplation--dead-reckoning&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pacu2/#selinux-scenario-contemplation--dead-reckoning&#34;&gt;SELinux scenario contemplation / dead reckoning&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;You follow your company instructions to add a new user to a set of 10 Linux servers.&lt;/li&gt;
+&lt;li&gt;They cannot access just one (1) of the servers.&lt;/li&gt;
+&lt;li&gt;When you review the differences in the servers you see that the server they cannot access is running SELINUX.&lt;/li&gt;
+&lt;li&gt;On checking other users have no problem getting into the system.&lt;/li&gt;
+&lt;li&gt;You find nothing in the documentation (typical) about this different system or how these users are accessing it.&lt;/li&gt;
+&lt;li&gt;What do you do? Where do you check?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Definitions/Terminology
+Uptime –
+Standard input -
+Standard output -
+Standard error –
+Mandatory Access Control –
+Discretionary Access Control –
+Security contexts (SELINUX) –
+SELINUX operating modes -&lt;/p&gt;
+&lt;p&gt;Notes During Lecture/Class:
+Links:&lt;/p&gt;
+&lt;p&gt;Terms:&lt;/p&gt;
+&lt;p&gt;Useful tools:&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h3 id=&#34;response-to-redhat-article-comparing-apparmor-and-selinux-for-container-separation&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pacu2/#response-to-redhat-article-comparing-apparmor-and-selinux-for-container-separation&#34;&gt;Response to RedHat Article: Comparing AppArmor and SELinux for Container Separation&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;This article provides a brief comparison between &lt;strong&gt;SELinux&lt;/strong&gt; and &lt;strong&gt;AppArmor&lt;/strong&gt; regarding their effectiveness in securely separating containers.&lt;/p&gt;
+&lt;p&gt;After reading, it became clear that &lt;strong&gt;AppArmor&lt;/strong&gt; is not an ideal choice for &lt;strong&gt;DevSecOps&lt;/strong&gt; when it comes to securely separating containers. This is due to &lt;strong&gt;AppArmor&amp;rsquo;s lack of support for Multi-Category Security (MCS)&lt;/strong&gt;. MCS allows for a hierarchy of controls, granting varying levels of access.&lt;/p&gt;
+&lt;p&gt;Therefore, if you&amp;rsquo;re looking to securely separate containers without relying on &lt;strong&gt;Virtual Machines&lt;/strong&gt;—which can be costly—&lt;strong&gt;SELinux&lt;/strong&gt; emerges as the better option for such tasks. 💡🔒&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;key-takeaways-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pacu2/#key-takeaways-&#34;&gt;Key Takeaways 📝&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;🔐 &lt;strong&gt;AppArmor&lt;/strong&gt; is &lt;strong&gt;not label-based&lt;/strong&gt;, unlike SELinux.&lt;/li&gt;
+&lt;li&gt;👨‍💻 &lt;strong&gt;AppArmor&lt;/strong&gt; is generally seen as more &lt;strong&gt;user-friendly&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;🛑 &lt;strong&gt;AppArmor&lt;/strong&gt; has fewer controls compared to SELinux.&lt;/li&gt;
+&lt;li&gt;⚙️ &lt;strong&gt;AppArmor&lt;/strong&gt; has &lt;strong&gt;fewer operations&lt;/strong&gt; available.&lt;/li&gt;
+&lt;li&gt;✔️ Both support the &lt;strong&gt;Type Enforcement&lt;/strong&gt; security model (a form of &lt;strong&gt;mandatory access control&lt;/strong&gt;).&lt;/li&gt;
+&lt;li&gt;📂 The security model is based on rules where subjects (like processes or users) are allowed to access objects (e.g., files, directories, sockets, etc.).&lt;/li&gt;
+&lt;li&gt;❌ &lt;strong&gt;AppArmor&lt;/strong&gt; lacks &lt;strong&gt;Multi-Level Security (MLS)&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;❌ &lt;strong&gt;AppArmor&lt;/strong&gt; does not support &lt;strong&gt;Multi-Category Security (MCS)&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;🔄 Because &lt;strong&gt;MCS is unavailable&lt;/strong&gt;, &lt;strong&gt;AppArmor&lt;/strong&gt; cannot maintain proper separation between containers.&lt;/li&gt;
+&lt;li&gt;⚠️ The default container policy in AppArmor is &lt;strong&gt;very loose&lt;/strong&gt;, which could present security risks.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;quick-comparison-table-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pacu2/#quick-comparison-table-&#34;&gt;Quick Comparison Table 🔍&lt;/a&gt;
+&lt;/h3&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Technology&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Type Enforcement&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;MLS/MCS&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Policy Generator&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Generator for Containers&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;AppArmor&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Yes&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;No&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Yes&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;No&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;SELinux&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Yes&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Yes&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;No*&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Yes&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;p&gt;By understanding these differences, it’s clear that &lt;strong&gt;SELinux&lt;/strong&gt; provides a more secure framework for container separation, making it a crucial tool for modern &lt;strong&gt;DevSecOps&lt;/strong&gt; workflows. When choosing between &lt;strong&gt;AppArmor&lt;/strong&gt; and &lt;strong&gt;SELinux&lt;/strong&gt;, it’s important to consider the level of security and isolation required for your containers.&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h3 id=&#34;interactive-killercoda-lab&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pacu2/#interactive-killercoda-lab&#34;&gt;Interactive Killercoda Lab&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://killercoda.com/killer-shell-cks/scenario/apparmor&#34;&gt;https://killercoda.com/killer-shell-cks/scenario/apparmor&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h3 id=&#34;-digging-deeper&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pacu2/#-digging-deeper&#34;&gt;⛏️ Digging Deeper&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;1.How does troubleshooting differ between system administration and system engineering? To clarify, how might you troubleshoot differently if you know a system was running v. if you’re building a new system out?&lt;/p&gt;
+&lt;p&gt;2.Investigate a troubleshooting methodology, by either google or AI search. Does the methodology fit for you in an IT sense, why or why not?&lt;/p&gt;
+&lt;p&gt;Reflection Questions
+1.What questions do you still have about this week?&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;prolug-links-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pacu2/#prolug-links-&#34;&gt;ProLUG Links ⛓️&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Discord: &lt;a href=&#34;https://discord.com/invite/m6VPPD9usw&#34;&gt;https://discord.com/invite/m6VPPD9usw&lt;/a&gt;
+Youtube: &lt;a href=&#34;https://www.youtube.com/@het_tanis8213&#34;&gt;https://www.youtube.com/@het_tanis8213&lt;/a&gt;
+Twitch: &lt;a href=&#34;https://www.twitch.tv/het_tanis&#34;&gt;https://www.twitch.tv/het_tanis&lt;/a&gt;
+ProLUG Book: &lt;a href=&#34;https://leanpub.com/theprolugbigbookoflabs&#34;&gt;https://leanpub.com/theprolugbigbookoflabs&lt;/a&gt;
+KillerCoda: &lt;a href=&#34;https://killercoda.com/het-tanis&#34;&gt;https://killercoda.com/het-tanis&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>ProLUG Admin Course Capstone Project Stage 1 🐧</title>
-      <link>https://example.org/post/paccps1/</link>
+      <link>http://localhost:1313/post/paccp1/</link>
       <pubDate>Sun, 15 Sep 2024 00:00:00 +0000</pubDate>
-      <guid>https://example.org/post/paccps1/</guid>
+      <guid>http://localhost:1313/post/paccp1/</guid>
       <description>&lt;h3 id=&#34;intro-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/paccps1/#intro-&#34;&gt;Intro 👋&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/paccp1/#intro-&#34;&gt;Intro 👋&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;To complete this course, we are required to undertake a capstone project. Before the course began, I created a graphic design and branding package for ProLUG, as I felt the group was gaining critical mass but lacked visual cohesion. As part of that package, I designed a certificate template for use in this course, which included the suggestion of a verification link. I have received several certifications from the Linux Professional Institute, all of which include a verification link to a server hosted by the organization. I believe this feature is crucial in a world of diploma mills and AI-generated credentials, as it ensures that those who put in real work are properly accredited.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;locking-in-a-project-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/paccps1/#locking-in-a-project-&#34;&gt;Locking in a project 🔒&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/paccp1/#locking-in-a-project-&#34;&gt;Locking in a project 🔒&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;The night before the course started, I reached out to Scott to ensure he had everything he needed in terms of graphics and to let him know that I was available for further support if required. During our conversation, I mentioned the idea of a verification link and server, which led to my proposing it as a project. His response was, &amp;ldquo;possibly.&amp;rdquo; The next day, while teaching, Scott announced that a student would be creating a verification server for the certificates, so I guess the project is green-lit! 🤣&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;preface-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/paccps1/#preface-&#34;&gt;Preface 🤨&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/paccp1/#preface-&#34;&gt;Preface 🤨&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;I’d like to preface this by stating that I have limited programming experience. This project is beyond my current understanding, and I’ll need to break everything down into bite-sized pieces to fully grasp it. So, follow me on my journey to creating a verification server.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;outline-of-the-project-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/paccps1/#outline-of-the-project-&#34;&gt;Outline of the Project 🧭&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/paccp1/#outline-of-the-project-&#34;&gt;Outline of the Project 🧭&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;The project involves creating a system that, when given a unique ID, returns information matching what is written on the certificate. For each certificate issued, we need to generate a unique ID and link that directs to the corresponding credentials.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;my-initial-simple-planoutline&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/paccps1/#my-initial-simple-planoutline&#34;&gt;My initial simple plan/outline&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/paccp1/#my-initial-simple-planoutline&#34;&gt;My initial simple plan/outline&lt;/a&gt;
 &lt;/h3&gt;
 
 
 
 &lt;h3 id=&#34;1-creating-the-data&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/paccps1/#1-creating-the-data&#34;&gt;1. Creating the data&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/paccp1/#1-creating-the-data&#34;&gt;1. Creating the data&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;Intake the first name, last name and date to create a unique hash.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;2-storing-the-data&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/paccps1/#2-storing-the-data&#34;&gt;2. Storing the data&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/paccp1/#2-storing-the-data&#34;&gt;2. Storing the data&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;this info is then added to columns in a database.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;3-retrieving-the-data&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/paccps1/#3-retrieving-the-data&#34;&gt;3. Retrieving the data&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/paccp1/#3-retrieving-the-data&#34;&gt;3. Retrieving the data&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;With the use of an API and Web Interface, we can use the hash to prompt for more data.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;initial-tech-stack-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/paccps1/#initial-tech-stack-&#34;&gt;Initial Tech Stack 🤔&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/paccp1/#initial-tech-stack-&#34;&gt;Initial Tech Stack 🤔&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;Data Generation: GO
 Database: SQLight
@@ -79,7 +359,7 @@ Interface: HTML, CSS, JS&lt;/p&gt;
 
 
 &lt;h3 id=&#34;next-steps-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/paccps1/#next-steps-&#34;&gt;Next Steps&amp;hellip; 🥾&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/paccp1/#next-steps-&#34;&gt;Next Steps&amp;hellip; 🥾&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;I plan on discussing this in the Code Cove group in ProLUG&lt;/li&gt;
@@ -90,7 +370,7 @@ Interface: HTML, CSS, JS&lt;/p&gt;
 
 
 &lt;h3 id=&#34;prolug-links-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/paccps1/#prolug-links-&#34;&gt;ProLUG Links ⛓️&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/paccp1/#prolug-links-&#34;&gt;ProLUG Links ⛓️&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;Discord: &lt;a href=&#34;https://discord.com/invite/m6VPPD9usw&#34;&gt;https://discord.com/invite/m6VPPD9usw&lt;/a&gt;
 Youtube: &lt;a href=&#34;https://www.youtube.com/@het_tanis8213&#34;&gt;https://www.youtube.com/@het_tanis8213&lt;/a&gt;
@@ -99,26 +379,116 @@ ProLUG Book: &lt;a href=&#34;https://leanpub.com/theprolugbigbookoflabs&#34;&gt;
 KillerCoda: &lt;a href=&#34;https://killercoda.com/het-tanis&#34;&gt;https://killercoda.com/het-tanis&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
-      <title>ProLUG Admin Course Day 1 🐧</title>
-      <link>https://example.org/post/pacday1/</link>
+      <title>ProLUG Admin Course Capstone Project Stage 2 🐧</title>
+      <link>http://localhost:1313/post/paccp2/</link>
       <pubDate>Sun, 15 Sep 2024 00:00:00 +0000</pubDate>
-      <guid>https://example.org/post/pacday1/</guid>
+      <guid>http://localhost:1313/post/paccp2/</guid>
       <description>&lt;h3 id=&#34;intro-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/pacday1/#intro-&#34;&gt;Intro 👋&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/paccp2/#intro-&#34;&gt;Intro 👋&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Well I was able to get pretty far with the idea. A few changes have been made to the approach for ease of use and the scope of the project has expanded to ecompass building a full website.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;current-appearance-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/paccp2/#current-appearance-&#34;&gt;Current Appearance 💄&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/Sep22site/shot1.png&#34; alt=&#34;ProxMox Dashboard&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The night before the course started, I reached out to Scott to ensure he had everything he needed in terms of graphics and to let him know that I was available for further support if required. During our conversation, I mentioned the idea of a verification link and server, which led to my proposing it as a project. His response was, &amp;ldquo;possibly.&amp;rdquo; The next day, while teaching, Scott announced that a student would be creating a verification server for the certificates, so I guess the project is green-lit! 🤣&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;current-functionality-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/paccp2/#current-functionality-&#34;&gt;Current Functionality ⚙️&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;I’d like to preface this by stating that I have limited programming experience. This project is beyond my current understanding, and I’ll need to break everything down into bite-sized pieces to fully grasp it. So, follow me on my journey to creating a verification server.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;outline-of-the-project-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/paccp2/#outline-of-the-project-&#34;&gt;Outline of the Project 🧭&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;The project involves creating a system that, when given a unique ID, returns information matching what is written on the certificate. For each certificate issued, we need to generate a unique ID and link that directs to the corresponding credentials.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;my-initial-simple-planoutline&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/paccp2/#my-initial-simple-planoutline&#34;&gt;My initial simple plan/outline&lt;/a&gt;
+&lt;/h3&gt;
+
+
+
+&lt;h3 id=&#34;1-creating-the-data&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/paccp2/#1-creating-the-data&#34;&gt;1. Creating the data&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Intake the first name, last name and date to create a unique hash.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;2-storing-the-data&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/paccp2/#2-storing-the-data&#34;&gt;2. Storing the data&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;this info is then added to columns in a database.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;3-retrieving-the-data&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/paccp2/#3-retrieving-the-data&#34;&gt;3. Retrieving the data&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;With the use of an API and Web Interface, we can use the hash to prompt for more data.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;initial-tech-stack-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/paccp2/#initial-tech-stack-&#34;&gt;Initial Tech Stack 🤔&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Data Generation: GO
+Database: SQLight
+Interface: HTML, CSS, JS&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;next-steps-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/paccp2/#next-steps-&#34;&gt;Next Steps&amp;hellip; 🥾&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;I plan on discussing this in the Code Cove group in ProLUG&lt;/li&gt;
+&lt;li&gt;I plan on researching how LPI has created their verification server&lt;/li&gt;
+&lt;li&gt;I plan on creating comprehensive build notes in LogSeq/here&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;h3 id=&#34;prolug-links-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/paccp2/#prolug-links-&#34;&gt;ProLUG Links ⛓️&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Discord: &lt;a href=&#34;https://discord.com/invite/m6VPPD9usw&#34;&gt;https://discord.com/invite/m6VPPD9usw&lt;/a&gt;
+Youtube: &lt;a href=&#34;https://www.youtube.com/@het_tanis8213&#34;&gt;https://www.youtube.com/@het_tanis8213&lt;/a&gt;
+Twitch: &lt;a href=&#34;https://www.twitch.tv/het_tanis&#34;&gt;https://www.twitch.tv/het_tanis&lt;/a&gt;
+ProLUG Book: &lt;a href=&#34;https://leanpub.com/theprolugbigbookoflabs&#34;&gt;https://leanpub.com/theprolugbigbookoflabs&lt;/a&gt;
+KillerCoda: &lt;a href=&#34;https://killercoda.com/het-tanis&#34;&gt;https://killercoda.com/het-tanis&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>ProLUG Admin Course Unit 1 🐧</title>
+      <link>http://localhost:1313/post/pacu1/</link>
+      <pubDate>Sun, 15 Sep 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/pacu1/</guid>
+      <description>&lt;h3 id=&#34;intro-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pacu1/#intro-&#34;&gt;Intro 👋&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;Well the ProLUG course is a go. We had a great meeting yesterday with a group of over 80 people. There was a slight snafu regarding thread size limits, so mid lesson we jumped into a presenter room. The session ran for a solid two hours wherein Scott went over command line interface essentials, networking essentials, VIM, pathing, redirects, Xargs, man pages and more. Although I have decent foundational knowledge of Linux, I know that there is always something to learn or better understand. I came away from this first class with a handful of things to review and practice for sure.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;prompts-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/pacday1/#prompts-&#34;&gt;prompts 🦮&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pacu1/#prompts-&#34;&gt;prompts 🦮&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;Group discussions have kicked off early in #ProLUG-Projects. Scott has prompted us with a few questions for Unit 1 that we are to post and discuss. I thought it would be good to post these answers in a longer form on my blog. This acts as a review of yesterdays work and gives me a chance to further reflect.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;discussion-post-1-technical-skill-assessment-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/pacday1/#discussion-post-1-technical-skill-assessment-&#34;&gt;Discussion Post 1: Technical Skill Assessment 🔍&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pacu1/#discussion-post-1-technical-skill-assessment-&#34;&gt;Discussion Post 1: Technical Skill Assessment 🔍&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;Using this rubric, we are to self-assess our skills in various areas with a score from 1-10, giving us a total score at the end. My score was 48 out of a potential 110. I would never rate myself above a 7, as that feels like Demi-God territory!&lt;/p&gt;
 &lt;p&gt;Given the pace we started at in the first class, I’m confident that my skills will improve throughout this course. I plan to really go for it and challenge myself along the way.&lt;/p&gt;
@@ -216,21 +586,21 @@ KillerCoda: &lt;a href=&#34;https://killercoda.com/het-tanis&#34;&gt;https://kil
 
 
 &lt;h3 id=&#34;what-do-i-hope-to-learn-in-this-course-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/pacday1/#what-do-i-hope-to-learn-in-this-course-&#34;&gt;What do I hope to learn in this course? 🤔&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pacu1/#what-do-i-hope-to-learn-in-this-course-&#34;&gt;What do I hope to learn in this course? 🤔&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;I aim to gain hands-on experience in all aspects of system administration. While I have studied Linux and system administration, I understand that skill levels in this field can vary widely. As I work toward becoming a Systems Engineer, I recognize the importance of consistently challenging myself. Through this journey, I hope to build confidence in managing existing systems, configuring services, securing environments, and automating tasks.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;what-type-of-career-are-you-looking-for-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/pacday1/#what-type-of-career-are-you-looking-for-&#34;&gt;What type of career are you looking for? 🥕&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pacu1/#what-type-of-career-are-you-looking-for-&#34;&gt;What type of career are you looking for? 🥕&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;I am looking to become a full time Linux System Engineer. I am currently in an administrative support role wherein I am tasked with setting up new systems on a small scale. I would like to be able to manage a large number of servers with automation.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;discussion-post-2-target-job-and-skills-gap-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/pacday1/#discussion-post-2-target-job-and-skills-gap-&#34;&gt;Discussion Post 2: Target Job and Skills Gap 🎯&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pacu1/#discussion-post-2-target-job-and-skills-gap-&#34;&gt;Discussion Post 2: Target Job and Skills Gap 🎯&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;Our second task is to look for a job we would like to target and list the requirements posted for that given job.&lt;br&gt;
 I found this job posted by &lt;strong&gt;OERP Canada&lt;/strong&gt;, located in Toronto, Ontario, with the following information.&lt;/p&gt;
@@ -239,7 +609,7 @@ I found this job posted by &lt;strong&gt;OERP Canada&lt;/strong&gt;, located in 
 
 
 &lt;h3 id=&#34;job-overview&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/pacday1/#job-overview&#34;&gt;Job Overview&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pacu1/#job-overview&#34;&gt;Job Overview&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;The role will be 100% remote for now (#socialdistancing). Eventually, it will convert into an onsite role in Toronto, ON. We are only accepting applications from residents of Canada.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;OERP Canada&lt;/strong&gt; is looking for a full-time, experienced &lt;strong&gt;LINUX System Administrator&lt;/strong&gt; to help maintain our operations and support our Odoo application deployment team, which deploys the Odoo Business Application suite for our clients. The successful candidate will have a technical background in &lt;strong&gt;LINUX&lt;/strong&gt;, experience with hosting, web and proxy servers, database administration, mail routing, network security, strong communication skills, and the willingness and ability to think creatively and flexibly. A desire to learn is an important requirement of being part of our team.&lt;/p&gt;
@@ -248,7 +618,7 @@ I found this job posted by &lt;strong&gt;OERP Canada&lt;/strong&gt;, located in 
 
 
 &lt;h3 id=&#34;responsibilities&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/pacday1/#responsibilities&#34;&gt;Responsibilities&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pacu1/#responsibilities&#34;&gt;Responsibilities&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Manage cloud and on-premise hosting environments&lt;/li&gt;
@@ -261,7 +631,7 @@ I found this job posted by &lt;strong&gt;OERP Canada&lt;/strong&gt;, located in 
 
 
 &lt;h3 id=&#34;must-have-skills&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/pacday1/#must-have-skills&#34;&gt;Must-Have Skills&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pacu1/#must-have-skills&#34;&gt;Must-Have Skills&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Ubuntu / Debian server&lt;/li&gt;
@@ -275,7 +645,7 @@ I found this job posted by &lt;strong&gt;OERP Canada&lt;/strong&gt;, located in 
 
 
 &lt;h3 id=&#34;nice-to-have-skills&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/pacday1/#nice-to-have-skills&#34;&gt;Nice-to-Have Skills&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pacu1/#nice-to-have-skills&#34;&gt;Nice-to-Have Skills&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;PostgreSQL high availability, load balancing, and replication&lt;/li&gt;
@@ -288,7 +658,7 @@ I found this job posted by &lt;strong&gt;OERP Canada&lt;/strong&gt;, located in 
 
 
 &lt;h3 id=&#34;what-i-am-currently-able-to-do-in-this-position-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/pacday1/#what-i-am-currently-able-to-do-in-this-position-&#34;&gt;What I am currently able to do in this position 💪🏻&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pacu1/#what-i-am-currently-able-to-do-in-this-position-&#34;&gt;What I am currently able to do in this position 💪🏻&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Solid experience with Debian/Ubuntu&lt;/li&gt;
@@ -304,7 +674,7 @@ I found this job posted by &lt;strong&gt;OERP Canada&lt;/strong&gt;, located in 
 
 
 &lt;h3 id=&#34;what-i-am-currently-incapable-of-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/pacday1/#what-i-am-currently-incapable-of-&#34;&gt;What I am currently incapable of 😓&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pacu1/#what-i-am-currently-incapable-of-&#34;&gt;What I am currently incapable of 😓&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Lack confidence in managing firewalls&lt;/li&gt;
@@ -316,14 +686,14 @@ I found this job posted by &lt;strong&gt;OERP Canada&lt;/strong&gt;, located in 
 
 
 &lt;h3 id=&#34;how-i-plan-to-close-the-gap-on-these-missing-skills-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/pacday1/#how-i-plan-to-close-the-gap-on-these-missing-skills-&#34;&gt;How I plan to close the gap on these missing skills 🎯&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pacu1/#how-i-plan-to-close-the-gap-on-these-missing-skills-&#34;&gt;How I plan to close the gap on these missing skills 🎯&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;I plan to close this gap by learning more about general Linux security and networking principles from this course. Additionally, I&amp;rsquo;ve already purchased a recently published book by Michael Lucas on running and maintaining mail servers, which I intend to skim through. Additionally, I am studying ITIL to improve my understanding of technical support and service management.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;prolug-links-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/pacday1/#prolug-links-&#34;&gt;ProLUG Links ⛓️&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pacu1/#prolug-links-&#34;&gt;ProLUG Links ⛓️&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;Discord: &lt;a href=&#34;https://discord.com/invite/m6VPPD9usw&#34;&gt;https://discord.com/invite/m6VPPD9usw&lt;/a&gt;
 Youtube: &lt;a href=&#34;https://www.youtube.com/@het_tanis8213&#34;&gt;https://www.youtube.com/@het_tanis8213&lt;/a&gt;
@@ -333,32 +703,32 @@ KillerCoda: &lt;a href=&#34;https://killercoda.com/het-tanis&#34;&gt;https://kil
     </item>
     <item>
       <title>Actually completing VimTutor</title>
-      <link>https://example.org/post/vt/</link>
+      <link>http://localhost:1313/post/vt/</link>
       <pubDate>Tue, 10 Sep 2024 00:00:00 +0000</pubDate>
-      <guid>https://example.org/post/vt/</guid>
+      <guid>http://localhost:1313/post/vt/</guid>
       <description>&lt;h3 id=&#34;intro&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/vt/#intro&#34;&gt;Intro&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/vt/#intro&#34;&gt;Intro&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;Vim is a program created by the late Bram Moolenaar as an improvement to an older program called Vi. It is a modal text editor, meaning there are different modes of usage — I&amp;rsquo;ll get into that later. While strongly associated with UNIX systems, Vim is available on other platforms as well. It is used to efficiently create and modify files from a simple terminal, requiring very limited system resources. Vim is a foundational tool for mastering Linux, allowing one to navigate the directory structure and edit configuration files like no other. Furthermore, Vi and/or Vim come bundled with most minimal Linux distributions.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;vim-tutor&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/vt/#vim-tutor&#34;&gt;Vim Tutor&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/vt/#vim-tutor&#34;&gt;Vim Tutor&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;Vim Tutor is an in-built interactive tutorial that comes pre-packaged with Vim, designed to bring novices up to speed with the various modes and functions of this nimble tool. I had hopped into Vim Tutor before but never felt the need to complete it, as it seemed long and complex. Recently, my teacher and mentor Scott C. mentioned that this would be one of the first lessons we would undertake as part of the ProLUG system administration course. Being a dedicated student, I decided to give it my full attention — and I’m glad I did.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;the-halfway-point&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/vt/#the-halfway-point&#34;&gt;The Halfway Point&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/vt/#the-halfway-point&#34;&gt;The Halfway Point&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;In previous attempts, I had reached the halfway point and felt confident I had gained enough information to edit files. Some functions are unintuitive at first, like using the &lt;code&gt;hjkl&lt;/code&gt; keys for navigation instead of arrow keys. There are many jokes about the overload people feel when they first encounter Vim&amp;rsquo;s conventions. Jokes like never being able to exit the program or forgetting one&amp;rsquo;s own name after memorizing commands are common. Mastering Vim requires memorizing commands until they become second nature, which simply takes time. This is why I hadn&amp;rsquo;t completed Vim Tutor before — there’s only so much one can absorb before needing a break. However, this time, I was able to make it through to the end, pleasantly surprised by the new techniques I had learned.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;understanding-the-modes&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/vt/#understanding-the-modes&#34;&gt;Understanding the Modes&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/vt/#understanding-the-modes&#34;&gt;Understanding the Modes&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;Modes are what make Vim a powerful tool. There are three modes in Vim: Normal, Insert, and Visual.&lt;/p&gt;
 &lt;ul&gt;
@@ -377,107 +747,107 @@ KillerCoda: &lt;a href=&#34;https://killercoda.com/het-tanis&#34;&gt;https://kil
 
 
 &lt;h3 id=&#34;what-i-recently-picked-up&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/vt/#what-i-recently-picked-up&#34;&gt;What I Recently Picked Up&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/vt/#what-i-recently-picked-up&#34;&gt;What I Recently Picked Up&lt;/a&gt;
 &lt;/h3&gt;
 
 
 
 &lt;h4 id=&#34;stringing-commands&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/vt/#stringing-commands&#34;&gt;Stringing Commands&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/vt/#stringing-commands&#34;&gt;Stringing Commands&lt;/a&gt;
 &lt;/h4&gt;
 &lt;p&gt;What did I actually learn that I will immediately employ? Well, I now have a solid grasp of most single-key commands, so I’ll start stringing commands and motions together, such as deleting three words and appending text to the end of a line.&lt;/p&gt;
 
 
 
 &lt;h4 id=&#34;global-search-and-replace&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/vt/#global-search-and-replace&#34;&gt;Global Search and Replace&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/vt/#global-search-and-replace&#34;&gt;Global Search and Replace&lt;/a&gt;
 &lt;/h4&gt;
 &lt;p&gt;Additionally, I had known about global search and replace, but I hadn’t really used it before since it’s only useful for certain file types.&lt;/p&gt;
 
 
 
 &lt;h4 id=&#34;buffers-and-deleted-lines&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/vt/#buffers-and-deleted-lines&#34;&gt;Buffers and Deleted Lines&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/vt/#buffers-and-deleted-lines&#34;&gt;Buffers and Deleted Lines&lt;/a&gt;
 &lt;/h4&gt;
 &lt;p&gt;I also learned that Vim’s buffer, much like a clipboard, stores strings for later use — and deleted lines are stored there as well. I’ll be more mindful of using the buffer going forward.&lt;/p&gt;
 
 
 
 &lt;h4 id=&#34;running-shell-commands&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/vt/#running-shell-commands&#34;&gt;Running Shell Commands&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/vt/#running-shell-commands&#34;&gt;Running Shell Commands&lt;/a&gt;
 &lt;/h4&gt;
 &lt;p&gt;Lastly, running shell commands from within Vim seemed inefficient to me before, since I could easily jump in and out of files. However, I now understand that it can speed things up.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;in-summary&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/vt/#in-summary&#34;&gt;In Summary&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/vt/#in-summary&#34;&gt;In Summary&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;Vim isn’t something you just pick up on a whim. It’s more like a martial art, where you practice movements until they become second nature. In a world dominated by graphical user interfaces, Vim can seem like a waste of time and effort. Yet, when you’re working under the hood of an operating system, especially on bare-bones UNIX servers, it becomes clear that if everything is a file and many configurations must be made, Vim is the right tool for the job.&lt;/p&gt;</description>
     </item>
     <item>
       <title>New WebDev framework</title>
-      <link>https://example.org/post/vue/</link>
+      <link>http://localhost:1313/post/vue/</link>
       <pubDate>Wed, 04 Sep 2024 00:00:00 +0000</pubDate>
-      <guid>https://example.org/post/vue/</guid>
+      <guid>http://localhost:1313/post/vue/</guid>
       <description>
 
 
 &lt;h3 id=&#34;intro&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/vue/#intro&#34;&gt;Intro&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/vue/#intro&#34;&gt;Intro&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;I frequent a Discord group called ProLUG (Professional Linux User Group). The group is organized around cooperative, project-based learning, led by experienced members. One of these groups, called Coding Cove, is led by Ryan Long (SaltyCatfish). Ryan is a very experienced and senior developer who introduces us to new concepts on a weekly basis.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;vue&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/vue/#vue&#34;&gt;Vue&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/vue/#vue&#34;&gt;Vue&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;This past weekend, Ryan introduced Vue.js and the ideas behind the framework. We spent over an hour discussing and interacting with Vue, and I came away from the meeting excited to learn more and start building projects.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;why-vue-is-exciting&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/vue/#why-vue-is-exciting&#34;&gt;Why Vue is Exciting&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/vue/#why-vue-is-exciting&#34;&gt;Why Vue is Exciting&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;What I really liked about Vue is the concept of templates and components. These ideas seemed logical from the start. Templates can be created and reused on multiple pages, while components provide modularity. Together, these features result in a very clean and easy-to-read codebase, especially for larger projects.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;what-i-was-using&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/vue/#what-i-was-using&#34;&gt;What I Was Using&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/vue/#what-i-was-using&#34;&gt;What I Was Using&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;Prior to learning about Vue, I had completed a few projects using HTML, Tailwind CSS, and React. While I’m a big fan of Go (for reasons I won’t get into here), I found React to be cumbersome. React often creates messy code, especially when combined with Tailwind.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;go--vue&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/vue/#go--vue&#34;&gt;Go + Vue?&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/vue/#go--vue&#34;&gt;Go + Vue?&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;After the meeting, I felt inspired to explore combining the power of Go with Vue. I started searching for examples, and it’s definitely doable for simple or small projects. However, when I looked at more advanced projects, the situation became complicated. Gluing a Go backend to a Vue frontend felt relatively simple at first, but when you introduce middleware, SSR/CSR, OAuth2, and more, things quickly become complex.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;then-i-found-nuxt&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/vue/#then-i-found-nuxt&#34;&gt;Then I Found Nuxt&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/vue/#then-i-found-nuxt&#34;&gt;Then I Found Nuxt&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;Nuxt is a &amp;ldquo;batteries-included&amp;rdquo; framework built on top of Vue. It comes with all the modern build tools and services needed for a professional project, and everything ties together elegantly.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;where-i-am-now&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/vue/#where-i-am-now&#34;&gt;Where I Am Now&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/vue/#where-i-am-now&#34;&gt;Where I Am Now&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;I’ve done a deep dive into Nuxt, and it feels very comfortable to work with. After purchasing a course on Udemy, I’ve completed a few simple projects and intend to build a mid-level project soon. With Vue’s templating and components, along with Tailwind’s efficiency, I’m confident I can create a functional and aesthetically pleasing project that runs efficiently across different systems.&lt;/p&gt;
 </description>
     </item>
     <item>
       <title>ProLUG Admin Course 🐧</title>
-      <link>https://example.org/post/pac/</link>
+      <link>http://localhost:1313/post/pac/</link>
       <pubDate>Sun, 01 Sep 2024 00:00:00 +0000</pubDate>
-      <guid>https://example.org/post/pac/</guid>
+      <guid>http://localhost:1313/post/pac/</guid>
       <description>&lt;h3 id=&#34;intro-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/pac/#intro-&#34;&gt;Intro 👋&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pac/#intro-&#34;&gt;Intro 👋&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;I am a member of a fantastic group called the Professional Linux User Group lead by Scott Champine. The home base is on Discord where over 2000 people discuss Linux daily.
 Scott and other members teach via Live-Streaming and Interactive Labs with supporting documentation. Scott has created a 16 week deep dive course into linux adminstration starting September 14th that I have gladly enrolled in.
@@ -486,7 +856,7 @@ This course will take place every Saturday via a livestream with interactive Q/A
 
 
 &lt;h3 id=&#34;links-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/pac/#links-&#34;&gt;Links ⛓️&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/pac/#links-&#34;&gt;Links ⛓️&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;Discord: &lt;a href=&#34;https://discord.com/invite/m6VPPD9usw&#34;&gt;https://discord.com/invite/m6VPPD9usw&lt;/a&gt;
 Youtube: &lt;a href=&#34;https://www.youtube.com/@het_tanis8213&#34;&gt;https://www.youtube.com/@het_tanis8213&lt;/a&gt;
@@ -496,65 +866,65 @@ KillerCoda: &lt;a href=&#34;https://killercoda.com/het-tanis&#34;&gt;https://kil
     </item>
     <item>
       <title>That Unix file is not deleted 👺</title>
-      <link>https://example.org/post/nd/</link>
+      <link>http://localhost:1313/post/nd/</link>
       <pubDate>Sun, 01 Sep 2024 00:00:00 +0000</pubDate>
-      <guid>https://example.org/post/nd/</guid>
+      <guid>http://localhost:1313/post/nd/</guid>
       <description>&lt;p&gt;Removing a file in Unix does not actually remove it from memory. You are only reducing the number of Hard-Links pointing to the file to &amp;lsquo;0&amp;rsquo;.
 In order to actually delete the information is to overwrite it. This will happen over time as the disk fills, or if one would like to delete a file in a timely fashion should over write empty drive sectors.&lt;/p&gt;
 </description>
     </item>
     <item>
       <title>Studying for the LPIC1 Certification 📖</title>
-      <link>https://example.org/post/lpic/</link>
+      <link>http://localhost:1313/post/lpic/</link>
       <pubDate>Fri, 30 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>https://example.org/post/lpic/</guid>
+      <guid>http://localhost:1313/post/lpic/</guid>
       <description>&lt;h3 id=&#34;intro-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/lpic/#intro-&#34;&gt;Intro 👋&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/lpic/#intro-&#34;&gt;Intro 👋&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;I am intent on becoming a Linux Professional Institute Certified Administrator. It has been a goal of mine for a little while now. However goals are just aspirational, reaching a goal such as this requires a structured, systematic approach. As a life-long learner, I am always improving my study methods by being more efficient with my time and energy. As we all know life can get in the way of our goals, so we must find methods that work when conditions are not ideal for studying. For instance, I brake up my study sessions into smaller, more bite sized chunks that I can do when time permits. I take much more comprehensive notes than I did in the past and I work on wrought memorization through the use of flash cards; something that I really wasn&amp;rsquo;t into before.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;creating-a-work-breakdown-structure&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/lpic/#creating-a-work-breakdown-structure&#34;&gt;Creating a Work Breakdown Structure&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/lpic/#creating-a-work-breakdown-structure&#34;&gt;Creating a Work Breakdown Structure&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;The first thing I do when starting to study a new topic is creating a simple structure from a high level view. A handful of bullet points can simply outline the structure of the knowledge. In regards to the LPIC, most of this had already been done as the curriculum for the exam is open source.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;hands-on-practice&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/lpic/#hands-on-practice&#34;&gt;Hands on practice&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/lpic/#hands-on-practice&#34;&gt;Hands on practice&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;For each item that the course cover, I set up a lab and run through all of the commands by actually typing them in and seeing what kind of errors or typos I may run into. The LPIC has a huge list of commands that we must remember which makes it very difficult for me.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;taking-comprehensive-notes&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/lpic/#taking-comprehensive-notes&#34;&gt;Taking comprehensive notes&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/lpic/#taking-comprehensive-notes&#34;&gt;Taking comprehensive notes&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;I recently started using LogSeq, a markdown ++ notetaking applicaton that allows for interlinking of notes. This has really upped my game when it comes to keeping track of notes and refering back to them. In the past, I would just take notes for the task at hand, not really refering back to them often. I was just taking notes as a memory retention aid.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;flash-cards&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/lpic/#flash-cards&#34;&gt;Flash Cards&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/lpic/#flash-cards&#34;&gt;Flash Cards&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;Another recent addition to my study arsenal is Anki, a smart flashcard application that I use for wrought memorization. The application and many flash card decks are open source, so I was up and running in a short period of time with a large deck of LPIC flashcards.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;udemy--youtube&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/lpic/#udemy--youtube&#34;&gt;Udemy / Youtube&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/lpic/#udemy--youtube&#34;&gt;Udemy / Youtube&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;Though video courses are pretty low bandwidth information sources, I still like to follow chapterized courses, especially on Udemy. On a sale day I can grab a comprehensive chapterised video course for less than 20 Dollars, a steal in comparison to a college course.&lt;/p&gt;</description>
     </item>
     <item>
       <title>ProxMox is great 🏆</title>
-      <link>https://example.org/post/proxmox/</link>
+      <link>http://localhost:1313/post/proxmox/</link>
       <pubDate>Mon, 26 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>https://example.org/post/proxmox/</guid>
+      <guid>http://localhost:1313/post/proxmox/</guid>
       <description>&lt;h3 id=&#34;intro-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/proxmox/#intro-&#34;&gt;Intro 👋&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/proxmox/#intro-&#34;&gt;Intro 👋&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;ProxMox is an free open source virtualisation host built atop debian. It can both run Virtual machines and Linux Containers with a host of features.
 I am continuously learning new systems and software. Prior to using ProxMox, I was installing and reinstalling Unix systems on an old laptop. This help me learn about installation, configuration and a whole host of other things. However this was very tedious and in efficient. The laptop was under powered, so running several virtual machines was not possible. I needed a multicore X86 machine with lots of memory in order to do this. Wanting to get more serious about learning systems engineering, I decided to build and x86 machine for the sole purpose of learning without fear of messing things up. While researching virtualization software I cam accross proxmox.&lt;/p&gt;
@@ -562,7 +932,7 @@ I am continuously learning new systems and software. Prior to using ProxMox, I w
 
 
 &lt;h3 id=&#34;installation&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/proxmox/#installation&#34;&gt;Installation&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/proxmox/#installation&#34;&gt;Installation&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;Installation is very straightforward for someone like me who has installed all of the major distros to bare-metal. It was a matter of downloading the latest ISO and creating a boot disk using Balena Etcher.
 The installation process is very similar to the one debian has, a series of prompts, choosing a target disk, locale and you are off to the races.&lt;/p&gt;
@@ -570,56 +940,56 @@ The installation process is very similar to the one debian has, a series of prom
 
 
 &lt;h3 id=&#34;accessing&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/proxmox/#accessing&#34;&gt;Accessing&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/proxmox/#accessing&#34;&gt;Accessing&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;Once Proxmox is installed it becomes a headless network machine. If you plug in a monitor, you will see a black screen indicating the host address and not much more. The way one interfaces with the system is through a browser on a computer tied to the local network. I open up a browser on my macbook and head to the address to see the sign in screen. You would have set up your username and password during the setup process, so it is just a matter of typing those in.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://example.org/images/pctower1.png&#34; alt=&#34;ProxMox Dashboard&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/pctower1.png&#34; alt=&#34;ProxMox Dashboard&#34;&gt;&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;the-dashboard&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/proxmox/#the-dashboard&#34;&gt;The Dashboard&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/proxmox/#the-dashboard&#34;&gt;The Dashboard&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;Proxmox provides an easy to use dashboard that indicated system load and memory usage. Creating a virtual machine is as simple as clicking &amp;lsquo;create new vm&amp;rsquo; and uploading a sufficient ISO for the purpose. The deep learning comes from automating this process and managing a number of machines. This is where Youtube tutorials come in handing. It helps to know a little bit about networking in order to set up self hosted services like Jellyfin or Database based services like NextCloud.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://example.org/images/proxdash.png&#34; alt=&#34;ProxMox Dashboard&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/proxdash.png&#34; alt=&#34;ProxMox Dashboard&#34;&gt;&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;what-i-use-it-for&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/proxmox/#what-i-use-it-for&#34;&gt;What I use it for&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/proxmox/#what-i-use-it-for&#34;&gt;What I use it for&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;I like to create machine templates that I can utilize for automated provissioning with tools like Ansible and Terraform. This simulates setting up a large collection of machines that must be pre-configured and communicate amongst one another. Lately I have been creating templates using Cloud-Init images with the extension Qcow2 to build out templates that have randomized SSH keys and uninitiated hostnames, much like the way Azure, AWS or google cloud sets up PAAS.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;in-summary&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/proxmox/#in-summary&#34;&gt;In summary&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/proxmox/#in-summary&#34;&gt;In summary&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;If you are serious about learning systems and practicing with many machines, I definately recommend setting up a ProxMox machine. Even an older PC will suffice for this purpose, though some limitation will apply; something there will take research.&lt;/p&gt;</description>
     </item>
     <item>
       <title>File Systems 💾</title>
-      <link>https://example.org/post/fs/</link>
+      <link>http://localhost:1313/post/fs/</link>
       <pubDate>Sun, 25 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>https://example.org/post/fs/</guid>
+      <guid>http://localhost:1313/post/fs/</guid>
       <description>
 
 
 &lt;h2 id=&#34;1-ext4--linux-bsd&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#1-ext4--linux-bsd&#34;&gt;1. ext4 💾 (Linux, BSD)&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#1-ext4--linux-bsd&#34;&gt;1. ext4 💾 (Linux, BSD)&lt;/a&gt;
 &lt;/h2&gt;
 
 
 
 &lt;h3 id=&#34;intro&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#intro&#34;&gt;Intro&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#intro&#34;&gt;Intro&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;ext4&lt;/strong&gt; (Extended File System version 4) is the default file system for many Linux distributions.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;links&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#links&#34;&gt;Links&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#links&#34;&gt;Links&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Ext4&#34;&gt;https://en.wikipedia.org/wiki/Ext4&lt;/a&gt;
 &lt;a href=&#34;https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/6/html/storage_administration_guide/ch-ext4#ch-ext4&#34;&gt;https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/6/html/storage_administration_guide/ch-ext4#ch-ext4&lt;/a&gt;&lt;/p&gt;
@@ -627,7 +997,7 @@ The installation process is very similar to the one debian has, a series of prom
 
 
 &lt;h3 id=&#34;technical-features-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#technical-features-&#34;&gt;Technical Features: 🔍&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#technical-features-&#34;&gt;Technical Features: 🔍&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Journaling&lt;/li&gt;
@@ -649,7 +1019,7 @@ The installation process is very similar to the one debian has, a series of prom
 
 
 &lt;h3 id=&#34;advantages-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#advantages-&#34;&gt;Advantages 👍&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#advantages-&#34;&gt;Advantages 👍&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Mature and Stable&lt;/strong&gt;: ext4 is a well-tested and widely-used file system with a long history of stability.&lt;/li&gt;
@@ -662,7 +1032,7 @@ The installation process is very similar to the one debian has, a series of prom
 
 
 &lt;h3 id=&#34;downsides-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#downsides-&#34;&gt;Downsides 👎&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#downsides-&#34;&gt;Downsides 👎&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Limited Scalability&lt;/strong&gt;: While adequate for most users, ext4 doesn&amp;rsquo;t scale as well as newer file systems for very large volumes and large numbers of files.&lt;/li&gt;
@@ -672,7 +1042,7 @@ The installation process is very similar to the one debian has, a series of prom
 
 
 &lt;h3 id=&#34;scale&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#scale&#34;&gt;Scale&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#scale&#34;&gt;Scale&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Maximum File Size&lt;/strong&gt;: 16 TiB&lt;/li&gt;
@@ -682,7 +1052,7 @@ The installation process is very similar to the one debian has, a series of prom
 
 
 &lt;h3 id=&#34;distro-usage&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#distro-usage&#34;&gt;Distro Usage&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#distro-usage&#34;&gt;Distro Usage&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;ext4 is the most widely used format spanning Linux and BSD.&lt;/li&gt;
@@ -691,20 +1061,20 @@ The installation process is very similar to the one debian has, a series of prom
 
 
 &lt;h2 id=&#34;2-xfs--linux-bsd&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#2-xfs--linux-bsd&#34;&gt;2. XFS 💾 (Linux, BSD)&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#2-xfs--linux-bsd&#34;&gt;2. XFS 💾 (Linux, BSD)&lt;/a&gt;
 &lt;/h2&gt;
 
 
 
 &lt;h3 id=&#34;intro-1&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#intro-1&#34;&gt;Intro&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#intro-1&#34;&gt;Intro&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;XFS&lt;/strong&gt; is a high-performance file system designed for parallel I/O operations, often used in enterprise environments.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;links-1&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#links-1&#34;&gt;Links&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#links-1&#34;&gt;Links&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/XFS&#34;&gt;https://en.wikipedia.org/wiki/XFS&lt;/a&gt;
 &lt;a href=&#34;https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/storage_administration_guide/ch-xfs&#34;&gt;https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/storage_administration_guide/ch-xfs&lt;/a&gt;&lt;/p&gt;
@@ -712,7 +1082,7 @@ The installation process is very similar to the one debian has, a series of prom
 
 
 &lt;h3 id=&#34;technical-features--1&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#technical-features--1&#34;&gt;Technical Features: 🔍&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#technical-features--1&#34;&gt;Technical Features: 🔍&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Extent-Based Allocation&lt;/li&gt;
@@ -734,7 +1104,7 @@ The installation process is very similar to the one debian has, a series of prom
 
 
 &lt;h3 id=&#34;advantages--1&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#advantages--1&#34;&gt;Advantages 👍&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#advantages--1&#34;&gt;Advantages 👍&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;High Performance&lt;/strong&gt;: Optimized for large files and supports high-performance parallel I/O, making it ideal for environments with large data sets.&lt;/li&gt;
@@ -746,7 +1116,7 @@ The installation process is very similar to the one debian has, a series of prom
 
 
 &lt;h3 id=&#34;downsides--1&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#downsides--1&#34;&gt;Downsides 👎&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#downsides--1&#34;&gt;Downsides 👎&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Complexity&lt;/strong&gt;: XFS is more complex to manage compared to ext4.&lt;/li&gt;
@@ -757,7 +1127,7 @@ The installation process is very similar to the one debian has, a series of prom
 
 
 &lt;h3 id=&#34;technical-details-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#technical-details-&#34;&gt;Technical Details 🔍&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#technical-details-&#34;&gt;Technical Details 🔍&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Maximum File Size&lt;/strong&gt;: 8 EiB&lt;/li&gt;
@@ -767,7 +1137,7 @@ The installation process is very similar to the one debian has, a series of prom
 
 
 &lt;h3 id=&#34;distro-usage-1&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#distro-usage-1&#34;&gt;Distro Usage&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#distro-usage-1&#34;&gt;Distro Usage&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;XFS has been in the Linux Kernel since 2001
 It is the default file system for RHEL&lt;/p&gt;
@@ -775,20 +1145,20 @@ It is the default file system for RHEL&lt;/p&gt;
 
 
 &lt;h2 id=&#34;3-btrfs--linux&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#3-btrfs--linux&#34;&gt;3. Btrfs 💾 (Linux)&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#3-btrfs--linux&#34;&gt;3. Btrfs 💾 (Linux)&lt;/a&gt;
 &lt;/h2&gt;
 
 
 
 &lt;h3 id=&#34;intro-2&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#intro-2&#34;&gt;Intro&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#intro-2&#34;&gt;Intro&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;Btrfs (B-tree File System) is a modern, copy-on-write file system designed for Linux that offers advanced features like snapshots, RAID support, self-healing, and efficient storage management, making it suitable for scalable and reliable data storage.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;links-2&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#links-2&#34;&gt;Links&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#links-2&#34;&gt;Links&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Btrfs&#34;&gt;https://en.wikipedia.org/wiki/Btrfs&lt;/a&gt;
 &lt;a href=&#34;https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/6/html/storage_administration_guide/ch-btrfs&#34;&gt;https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/6/html/storage_administration_guide/ch-btrfs&lt;/a&gt;
@@ -797,7 +1167,7 @@ It is the default file system for RHEL&lt;/p&gt;
 
 
 &lt;h3 id=&#34;technical-features--2&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#technical-features--2&#34;&gt;Technical Features: 🔍&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#technical-features--2&#34;&gt;Technical Features: 🔍&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Journaling&lt;/li&gt;
@@ -822,7 +1192,7 @@ It is the default file system for RHEL&lt;/p&gt;
 
 
 &lt;h3 id=&#34;advantages--2&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#advantages--2&#34;&gt;Advantages 👍&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#advantages--2&#34;&gt;Advantages 👍&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Snapshot Support&lt;/strong&gt;: Provides built-in support for snapshots, allowing for quick backups and rollbacks.&lt;/li&gt;
@@ -834,7 +1204,7 @@ It is the default file system for RHEL&lt;/p&gt;
 
 
 &lt;h3 id=&#34;downsides--2&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#downsides--2&#34;&gt;Downsides 👎&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#downsides--2&#34;&gt;Downsides 👎&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Stability&lt;/strong&gt;: Btrfs is considered less mature than ext4 or XFS, particularly for certain features like RAID 5/6.&lt;/li&gt;
@@ -845,7 +1215,7 @@ It is the default file system for RHEL&lt;/p&gt;
 
 
 &lt;h3 id=&#34;technical-details--1&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#technical-details--1&#34;&gt;Technical Details 🔍&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#technical-details--1&#34;&gt;Technical Details 🔍&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Maximum File Size&lt;/strong&gt;: 16 EiB&lt;/li&gt;
@@ -856,7 +1226,7 @@ It is the default file system for RHEL&lt;/p&gt;
 
 
 &lt;h3 id=&#34;distro-usage-2&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#distro-usage-2&#34;&gt;Distro Usage&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#distro-usage-2&#34;&gt;Distro Usage&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;Btrfs has been in the mainline linux Kernel since 2008
 it is the default file system for SUSE and Fedora&lt;/p&gt;
@@ -864,20 +1234,20 @@ it is the default file system for SUSE and Fedora&lt;/p&gt;
 
 
 &lt;h2 id=&#34;4-openzfs--unix&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#4-openzfs--unix&#34;&gt;4. OpenZFS 💾 (Unix)&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#4-openzfs--unix&#34;&gt;4. OpenZFS 💾 (Unix)&lt;/a&gt;
 &lt;/h2&gt;
 
 
 
 &lt;h3 id=&#34;intro-3&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#intro-3&#34;&gt;Intro&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#intro-3&#34;&gt;Intro&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;OpenZFS&lt;/strong&gt; is an advanced file system and volume manager that originated from Sun Microsystems&amp;rsquo; ZFS and is now maintained by the OpenZFS project.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;links-3&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#links-3&#34;&gt;Links&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#links-3&#34;&gt;Links&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/OpenZFS&#34;&gt;https://en.wikipedia.org/wiki/OpenZFS&lt;/a&gt;
 &lt;a href=&#34;https://openzfs.org/wiki/Main_Page&#34;&gt;https://openzfs.org/wiki/Main_Page&lt;/a&gt;&lt;/p&gt;
@@ -885,7 +1255,7 @@ it is the default file system for SUSE and Fedora&lt;/p&gt;
 
 
 &lt;h3 id=&#34;technical-features--3&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#technical-features--3&#34;&gt;Technical Features: 🔍&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#technical-features--3&#34;&gt;Technical Features: 🔍&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Copy-on-Write (COW)&lt;/li&gt;
@@ -909,7 +1279,7 @@ it is the default file system for SUSE and Fedora&lt;/p&gt;
 
 
 &lt;h3 id=&#34;advantages--3&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#advantages--3&#34;&gt;Advantages 👍&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#advantages--3&#34;&gt;Advantages 👍&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Data Integrity&lt;/strong&gt;: Uses end-to-end checksums for all data, ensuring high data integrity.&lt;/li&gt;
@@ -922,7 +1292,7 @@ it is the default file system for SUSE and Fedora&lt;/p&gt;
 
 
 &lt;h3 id=&#34;downsides--3&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#downsides--3&#34;&gt;Downsides 👎&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#downsides--3&#34;&gt;Downsides 👎&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Resource Intensive&lt;/strong&gt;: Can be resource-intensive, particularly in terms of memory usage.&lt;/li&gt;
@@ -934,7 +1304,7 @@ it is the default file system for SUSE and Fedora&lt;/p&gt;
 
 
 &lt;h3 id=&#34;technical-details--2&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#technical-details--2&#34;&gt;Technical Details 🔍&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#technical-details--2&#34;&gt;Technical Details 🔍&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Maximum File Size&lt;/strong&gt;: 16 EiB&lt;/li&gt;
@@ -944,7 +1314,7 @@ it is the default file system for SUSE and Fedora&lt;/p&gt;
 
 
 &lt;h3 id=&#34;distro-usage-3&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#distro-usage-3&#34;&gt;Distro Usage&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#distro-usage-3&#34;&gt;Distro Usage&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;Open ZFS is &lt;strong&gt;Not&lt;/strong&gt; available in the mainline Linux Kernel. Rather, it is available through a 3rd party module.
 Works on Linux, BSD, and Mac&lt;/p&gt;
@@ -952,20 +1322,20 @@ Works on Linux, BSD, and Mac&lt;/p&gt;
 
 
 &lt;h2 id=&#34;hammer2--dragonflybsd&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#hammer2--dragonflybsd&#34;&gt;HAMMER2 💾 (DragonflyBSD)&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#hammer2--dragonflybsd&#34;&gt;HAMMER2 💾 (DragonflyBSD)&lt;/a&gt;
 &lt;/h2&gt;
 
 
 
 &lt;h3 id=&#34;intro-4&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#intro-4&#34;&gt;Intro&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#intro-4&#34;&gt;Intro&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;Hammer2&lt;/strong&gt; is a modern, advanced file system designed for high-performance and scalable storage solutions, particularly in clustered environments. It features robust capabilities such as copy-on-write, data deduplication, and built-in snapshots, providing high data integrity, efficient storage management, and instant crash recovery.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;links-4&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#links-4&#34;&gt;Links&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#links-4&#34;&gt;Links&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/HAMMER2&#34;&gt;Wikipedia: HAMMER2&lt;/a&gt;
 &lt;a href=&#34;https://www.dragonflybsd.org/hammer/&#34;&gt;DragonFly BSD Hammer2&lt;/a&gt;&lt;/p&gt;
@@ -973,7 +1343,7 @@ Works on Linux, BSD, and Mac&lt;/p&gt;
 
 
 &lt;h3 id=&#34;technical-features--4&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#technical-features--4&#34;&gt;Technical Features: 🔍&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#technical-features--4&#34;&gt;Technical Features: 🔍&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Clustered File System Support&lt;/li&gt;
@@ -995,7 +1365,7 @@ Works on Linux, BSD, and Mac&lt;/p&gt;
 
 
 &lt;h3 id=&#34;advantages--4&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#advantages--4&#34;&gt;Advantages 👍&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#advantages--4&#34;&gt;Advantages 👍&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;High Performance&lt;/strong&gt;: Optimized for high-performance and scalable storage solutions.&lt;/li&gt;
@@ -1007,7 +1377,7 @@ Works on Linux, BSD, and Mac&lt;/p&gt;
 
 
 &lt;h3 id=&#34;downsides--4&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#downsides--4&#34;&gt;Downsides 👎&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#downsides--4&#34;&gt;Downsides 👎&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Complexity&lt;/strong&gt;: The advanced features and configuration options can introduce complexity.&lt;/li&gt;
@@ -1018,7 +1388,7 @@ Works on Linux, BSD, and Mac&lt;/p&gt;
 
 
 &lt;h3 id=&#34;technical-details--3&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#technical-details--3&#34;&gt;Technical Details 🔍&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#technical-details--3&#34;&gt;Technical Details 🔍&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Maximum File Size&lt;/strong&gt;: Not explicitly defined, but supports very large files.&lt;/li&gt;
@@ -1028,7 +1398,7 @@ Works on Linux, BSD, and Mac&lt;/p&gt;
 
 
 &lt;h3 id=&#34;distro-usage-4&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#distro-usage-4&#34;&gt;Distro Usage&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#distro-usage-4&#34;&gt;Distro Usage&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;DragonFly BSD&lt;/strong&gt;: The primary platform where Hammer2 is used and supported.&lt;/li&gt;
@@ -1038,13 +1408,13 @@ Works on Linux, BSD, and Mac&lt;/p&gt;
 
 
 &lt;h2 id=&#34;key-concepts--glossary-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#key-concepts--glossary-&#34;&gt;Key Concepts / Glossary 🔑&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#key-concepts--glossary-&#34;&gt;Key Concepts / Glossary 🔑&lt;/a&gt;
 &lt;/h2&gt;
 
 
 
 &lt;h3 id=&#34;snapshots-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#snapshots-&#34;&gt;Snapshots 📸&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#snapshots-&#34;&gt;Snapshots 📸&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Snapshots&lt;/strong&gt; are read-only copies of a file system at a specific point in time, allowing users to save the state of the file system for backup and recovery purposes. They are efficient and consume minimal space, as only the differences between the current state and the snapshot are stored.&lt;/li&gt;
@@ -1053,7 +1423,7 @@ Works on Linux, BSD, and Mac&lt;/p&gt;
 
 
 &lt;h3 id=&#34;clones-vs-snapshots-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#clones-vs-snapshots-&#34;&gt;Clones vs. Snapshots 📸🧬&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#clones-vs-snapshots-&#34;&gt;Clones vs. Snapshots 📸🧬&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Snapshots&lt;/strong&gt;: Read-only copies of the file system at a specific time.&lt;/li&gt;
@@ -1063,7 +1433,7 @@ Works on Linux, BSD, and Mac&lt;/p&gt;
 
 
 &lt;h3 id=&#34;raid-z-levels-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#raid-z-levels-&#34;&gt;RAID-Z Levels ⛓️&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#raid-z-levels-&#34;&gt;RAID-Z Levels ⛓️&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;RAID-Z1&lt;/strong&gt;: Single parity; can tolerate the loss of one disk.&lt;/li&gt;
@@ -1074,7 +1444,7 @@ Works on Linux, BSD, and Mac&lt;/p&gt;
 
 
 &lt;h3 id=&#34;raid-5-and-raid-6-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#raid-5-and-raid-6-&#34;&gt;RAID 5 and RAID 6 ⛓️&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#raid-5-and-raid-6-&#34;&gt;RAID 5 and RAID 6 ⛓️&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;RAID 5&lt;/strong&gt;: Stripes data across disks with single parity; can tolerate the loss of one disk.&lt;/li&gt;
@@ -1084,126 +1454,126 @@ Works on Linux, BSD, and Mac&lt;/p&gt;
 
 
 &lt;h3 id=&#34;issues-with-raid-56-in-btrfs&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#issues-with-raid-56-in-btrfs&#34;&gt;Issues with RAID 5/6 in Btrfs&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#issues-with-raid-56-in-btrfs&#34;&gt;Issues with RAID 5/6 in Btrfs&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;Btrfs&amp;rsquo;s implementation of RAID 5/6 is considered unstable due to issues like the write hole problem, making it less reliable for production use. Data integrity may be compromised, leading to potential data loss.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;cddl-license-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#cddl-license-&#34;&gt;CDDL License 🪪&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#cddl-license-&#34;&gt;CDDL License 🪪&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;The &lt;strong&gt;Common Development and Distribution License (CDDL)&lt;/strong&gt; is an open-source license created by Sun Microsystems. It is incompatible with the GPL, which can complicate integration with Linux.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;btrfs-self-healing-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#btrfs-self-healing-&#34;&gt;Btrfs Self-Healing ❤️‍🩹&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#btrfs-self-healing-&#34;&gt;Btrfs Self-Healing ❤️‍🩹&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;Self-Healing&lt;/strong&gt; in Btrfs works by verifying data against checksums and repairing any detected corruption using redundant data stored on other disks in a RAID configuration.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;dynamic-storage-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#dynamic-storage-&#34;&gt;Dynamic Storage 🧱&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#dynamic-storage-&#34;&gt;Dynamic Storage 🧱&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;Dynamic Storage&lt;/strong&gt; refers to the ability to manage multiple storage devices within a single file system, allowing for on-the-fly addition and removal of devices, with the file system automatically balancing data across them.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;online-resizing-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#online-resizing-&#34;&gt;Online Resizing 🗺️&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#online-resizing-&#34;&gt;Online Resizing 🗺️&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;Online Resizing&lt;/strong&gt; allows the resizing of a file system while it is mounted and in use. XFS supports growing the file system online, while Btrfs supports both growing and shrinking.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;b-trees-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#b-trees-&#34;&gt;B-Trees ⚖️&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#b-trees-&#34;&gt;B-Trees ⚖️&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;A &lt;strong&gt;B-tree&lt;/strong&gt; is a self-balancing tree data structure that maintains sorted data and allows efficient insertion, deletion, and search operations. B-trees are used in file systems like Btrfs to manage metadata and data blocks.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;extent-base-allocation-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#extent-base-allocation-&#34;&gt;Extent Base Allocation 👠&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#extent-base-allocation-&#34;&gt;Extent Base Allocation 👠&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;is a method used by modern file systems to manage data storage efficiently. Instead of tracking individual fixed-size blocks, the file system groups contiguous blocks into larger units called extents.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;persistent-pre-allocation-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#persistent-pre-allocation-&#34;&gt;Persistent Pre-allocation 🎟️&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#persistent-pre-allocation-&#34;&gt;Persistent Pre-allocation 🎟️&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;This technique reserves a specific amount of disk space for a file in advance, ensuring that the allocated space remains available, which helps in reducing fragmentation and guaranteeing storage for large files.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;delayed-allocation-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#delayed-allocation-&#34;&gt;Delayed Allocation ⏱️&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#delayed-allocation-&#34;&gt;Delayed Allocation ⏱️&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;Delayed allocation defers the assignment of specific disk blocks to file data until the data is flushed to disk, optimizing the allocation process and reducing fragmentation by allowing the file system to make better decisions about where to place data.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;multi-block-allocation-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#multi-block-allocation-&#34;&gt;Multi-block Allocation ⋔&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#multi-block-allocation-&#34;&gt;Multi-block Allocation ⋔&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;Multi-block allocation allows a file system to allocate multiple contiguous blocks at once, rather than individually, improving performance and reducing fragmentation, especially for large files.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;stripe-aware-allocation-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#stripe-aware-allocation-&#34;&gt;Stripe-aware Allocation 🧠&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#stripe-aware-allocation-&#34;&gt;Stripe-aware Allocation 🧠&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;Stripe-aware allocation is used in RAID configurations to ensure that data is distributed evenly across all disks in the array, optimizing performance by aligning data placement with the underlying stripe size of the RAID setup.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;fine-grained-locking-for-smp-scalability-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#fine-grained-locking-for-smp-scalability-&#34;&gt;Fine-Grained Locking (for SMP Scalability) 🚀&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#fine-grained-locking-for-smp-scalability-&#34;&gt;Fine-Grained Locking (for SMP Scalability) 🚀&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;Fine-grained locking applies locks at a granular level, allowing multiple processors to concurrently access different parts of the file system, enhancing performance and scalability in multi-core environments.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;raid-10-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#raid-10-&#34;&gt;RAID 1+0 🖇️&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#raid-10-&#34;&gt;RAID 1+0 🖇️&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;RAID support includes configurations such as RAID 1 for data mirroring and RAID 1+0 for combining mirroring with striping to provide both redundancy and improved performance.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;thin-provisioning-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#thin-provisioning-&#34;&gt;Thin Provisioning 🔮&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#thin-provisioning-&#34;&gt;Thin Provisioning 🔮&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;Thin provisioning allocates disk space on-demand rather than reserving it all upfront, optimizing storage utilization by only using the space actually required by data.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;asynchronous-bulk-freeing-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#asynchronous-bulk-freeing-&#34;&gt;Asynchronous Bulk-Freeing 🗑️&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#asynchronous-bulk-freeing-&#34;&gt;Asynchronous Bulk-Freeing 🗑️&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;Asynchronous bulk-freeing performs large-scale space reclamation in the background, allowing the file system to manage deletions efficiently without impacting overall performance.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;large-directory-support-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/fs/#large-directory-support-&#34;&gt;Large Directory Support 🏢&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/fs/#large-directory-support-&#34;&gt;Large Directory Support 🏢&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;Large directory support enables efficient management of directories with a vast number of entries, using optimized data structures to ensure fast performance for directory operations.&lt;/p&gt;
 </description>
     </item>
     <item>
       <title>My WebDev Preferences 👍</title>
-      <link>https://example.org/post/ws/</link>
+      <link>http://localhost:1313/post/ws/</link>
       <pubDate>Sat, 24 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>https://example.org/post/ws/</guid>
+      <guid>http://localhost:1313/post/ws/</guid>
       <description>
 
 
 &lt;h3 id=&#34;intro&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/ws/#intro&#34;&gt;Intro&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/ws/#intro&#34;&gt;Intro&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;This blog will likely be dominated by Linux talk as that is what I spend most of my time with. However, I do full-stack web development on occlusion.
 In fact, I have worked as a professional web Designer/Developer on and off, doing simple full stack projects in a range of languages. Recently, I have been stepping up my game with the intention of creating web applications with great GUIs, not only information pages. I think that with mature Javascript frameworks like NextJS or React and WASM (Web Assembly), we are going to see high performance desktop applications transition to being web-apps. This potential has me excited about learning more sophisticated tools.&lt;/p&gt;
@@ -1211,7 +1581,7 @@ In fact, I have worked as a professional web Designer/Developer on and off, doin
 
 
 &lt;h3 id=&#34;go&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/ws/#go&#34;&gt;GO&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/ws/#go&#34;&gt;GO&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;Golang is a dead simple systems focused language created by GOATED Unix contributors. When I started picking up Go a few years back, it was not really popular. Web development was dominated by NodeJS on the backend and there were no job posting for the skill. However, I tend to have good instincts and decided to eschew Node in favor of GO. I am very happy with this decision as it is clear, strongly typed, easy to set up and fast as hell.
 You can classify me as a GO enjoyer and back-ned deployer. GO now has a built-in HTTPs service and muxer, so it is my go-to for serving static and dynamic content.&lt;/p&gt;
@@ -1219,7 +1589,7 @@ You can classify me as a GO enjoyer and back-ned deployer. GO now has a built-in
 
 
 &lt;h3 id=&#34;tailwind&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/ws/#tailwind&#34;&gt;TailWind&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/ws/#tailwind&#34;&gt;TailWind&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;I really regret not checking out TailWind CSS earlier, it is so nice. I totally had the wrong idea and thought that it was just another annoying framework that over complicates and I was sorely wrong. It really helps in combination with GO templates to create beautiful responsive layouts. There is not much too a simple TW setup, just a simple call-out in the header. When things needs to be more expansive, one can use a config file to specify rules.
 I think I will be using a lot more TW in the future.&lt;/p&gt;
@@ -1227,14 +1597,14 @@ I think I will be using a lot more TW in the future.&lt;/p&gt;
 
 
 &lt;h3 id=&#34;react&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/ws/#react&#34;&gt;React&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/ws/#react&#34;&gt;React&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;I am not a major fan of JS because I am a fan of simplicity, alas it is the language of the Web, so I must tango with wild syntax. Most web experiences  require reactive interaction and content delivery. I am not locked into react as there are so many similar frameworks, but I am saying it is a must in ones stack.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;vscode&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://example.org/post/ws/#vscode&#34;&gt;VSCode&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/post/ws/#vscode&#34;&gt;VSCode&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;Having a customizable proper IDE is important for getting things done. As much as I like learning Vim, Helix, or even Sublime, I know that no-matter the level of configuration it wont even come close to a proper IDE that lints, detects bugs, has a large ecosystem of plug-ins and comfy features like workspaces and built in problem console. If you just want to make stuff, then reduce your cognitive overhead and utilize a user friendly IDE.&lt;/p&gt;
 </description>

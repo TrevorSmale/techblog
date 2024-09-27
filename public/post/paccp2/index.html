@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <meta name="description" content="ProLUG Admin Course Unit 2">
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.134.3">
+  <title>ProLUG Admin Course Capstone Project Stage 2 🐧 | Tech Blog</title>
+  <link rel="canonical" href="http://localhost:1313/post/paccp2/">
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+    <link rel="stylesheet" href="/css/base.css">
+
+    <link rel="stylesheet" href="/css/syntax.css">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <a class="Banner-link u-clickable" href="/">Tech Blog</a>
+      </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/">About</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/post/">Posts</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/tags/">Tags</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/categories/">Categories</a>
+        </li>
+      
+        
+        
+          
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/feed.xml">RSS</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/paccp2/" rel="bookmark">ProLUG Admin Course Capstone Project Stage 2 🐧</a>
+  </h1>
+  
+    <time datetime="2024-09-27T00:00:00Z">September 27, 2024</time>
+  
+</header>
+  <h3 id="intro-">
+  <a class="Heading-link u-clickable" href="/post/paccp2/#intro-">Intro 👋</a>
+</h3>
+<p>I’ve made significant progress with the idea! Some changes have been implemented to improve ease of use, and the scope of the project has expanded to include building a full website.</p>
+<hr>
+
+
+
+<h3 id="technologies-the-what-and-why">
+  <a class="Heading-link u-clickable" href="/post/paccp2/#technologies-the-what-and-why">Technologies: The What and Why</a>
+</h3>
+<p>The website uses Go on the backend to serve templates. While I’ve used Go for template servers before, incorporating templated components similar to Vue.js is new to me. The certificate verification system serves as the core of the project.</p>
+<p>Initially, I chose SQLite as the database for storing key-value pairs. However, after considering usability, I switched to a simple CSV file, inspired by the built-in security features of Go’s HTTP server. The standard server is resistant to injection attacks, even if files are stored in the root directory. Using typical database Get/Post logic would complicate usability when entering and editing information. With CSV, Scott can easily edit entries and see changes reflected internally after pushing updates.</p>
+
+
+
+<h4 id="heres-why-go-excels-for-this-type-of-project">
+  <a class="Heading-link u-clickable" href="/post/paccp2/#heres-why-go-excels-for-this-type-of-project">Here’s why Go excels for this type of project:</a>
+</h4>
+<ul>
+<li>The codebase remains clean, minimal, and easy to understand.</li>
+<li>The dependency system is simple, with no clutter of unnecessary packages.</li>
+<li>It ensures memory safety.</li>
+<li>Go’s HTTP server protects against injection, MITM, side-channel, and other common attacks.</li>
+<li>HTML templating allows for modularity similar to Vue.js.</li>
+<li>Garbage collection ensures long-term running without memory issues.</li>
+<li>The project can be easily containerized or built into a single binary.</li>
+<li>The Go module system (go.mod) ensures future stability through version control.</li>
+</ul>
+<hr>
+
+
+
+<h3 id="on-to-the-certificate-verifier">
+  <a class="Heading-link u-clickable" href="/post/paccp2/#on-to-the-certificate-verifier">On to the Certificate Verifier</a>
+</h3>
+
+
+
+<h4 id="pulling-from-this-test-csv-file">
+  <a class="Heading-link u-clickable" href="/post/paccp2/#pulling-from-this-test-csv-file">Pulling from this test CSV file:</a>
+</h4>
+
+  
+
+<pre tabindex="0"><code class="language-csv" data-lang="csv">Johny,Exampleseed,ProLUG Admin Course,2024-11-15,f078b6c4f26a2fae59d50fdb7c761a7f9523d240b2c18b332aac11e0
+Kate,Testinger,ProLUG Admin Course,2024-11-15,a523e6d1ece5bb2758f71993ba1a460024dcd10243fa17654af90257
+Het, Tanis, ProLUG Admin Course,2015-11-02,a523e6d1ece5bb2758f71993ba1a460024dcd10243fa17324af90257</code></pre>
+
+
+
+<h4 id="using-this-logic">
+  <a class="Heading-link u-clickable" href="/post/paccp2/#using-this-logic">Using this logic:</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// Certificate verification handler
+</span></span></span><span class="line"><span class="cl"><span class="c1">// This function is the HTTP handler responsible for verifying certificates.
+</span></span></span><span class="line"><span class="cl"><span class="c1">// It is triggered when a user accesses the relevant URL and checks for a certificate based on a hash parameter.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="nf">certHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Extract hash value from the URL query parameters.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// The hash is used to identify the certificate to verify.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">hash</span> <span class="o">:=</span> <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nf">Query</span><span class="p">().</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;hash&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// If no hash is provided in the query, return a &#34;Bad Request&#34; error.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="nx">hash</span> <span class="o">==</span> <span class="s">&#34;&#34;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Send an HTTP error response indicating that the hash is missing.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">http</span><span class="p">.</span><span class="nf">Error</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;Hash not provided&#34;</span><span class="p">,</span> <span class="nx">http</span><span class="p">.</span><span class="nx">StatusBadRequest</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="c1">// Exit the handler function since no hash is available.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Load certificates from a CSV file.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// This function attempts to retrieve all certificates stored in the &#34;certificates.csv&#34; file.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">certificates</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">LoadCertificates</span><span class="p">(</span><span class="s">&#34;certificates.csv&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">// If there&#39;s an error loading the certificates (e.g., file not found or corrupted), log the error.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Log the error message to the server logs and return a &#34;Server Error&#34; to the client.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Error loading certificates: %v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">http</span><span class="p">.</span><span class="nf">Error</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;Server Error&#34;</span><span class="p">,</span> <span class="nx">http</span><span class="p">.</span><span class="nx">StatusInternalServerError</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="c1">// Exit the handler function due to the error.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Initialize a pointer to a Certificate struct.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// This will hold the matching certificate if a valid hash is found.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">var</span> <span class="nx">cert</span> <span class="o">*</span><span class="nx">Certificate</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Iterate over all loaded certificates.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// Check each certificate&#39;s hash to see if it matches the one provided in the query.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">c</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">certificates</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nx">c</span><span class="p">.</span><span class="nx">Hash</span> <span class="o">==</span> <span class="nx">hash</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// If a matching certificate is found, assign it to the &#39;cert&#39; pointer and break the loop.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="nx">cert</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">c</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Render the result page using the template engine.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// Pass the certificate (or nil if not found) to the template &#34;result.html&#34; for display.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">err</span> <span class="p">=</span> <span class="nx">templates</span><span class="p">.</span><span class="nf">ExecuteTemplate</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;result.html&#34;</span><span class="p">,</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}{</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;Certificate&#34;</span><span class="p">:</span> <span class="nx">cert</span><span class="p">,</span> <span class="c1">// Include the certificate as part of the template data.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// If there&#39;s an error rendering the page (e.g., template not found or syntax error), log the issue.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Log the error message to the server logs and return an &#34;Internal Server Error&#34; to the client.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Error rendering verification page: %v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">http</span><span class="p">.</span><span class="nf">Error</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;Internal Server Error&#34;</span><span class="p">,</span> <span class="nx">http</span><span class="p">.</span><span class="nx">StatusInternalServerError</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-GO" data-lang="GO"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Certificate represents a learning certificate with associated data.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">type</span> <span class="nx">Certificate</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">FirstName</span>     <span class="kt">string</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">LastName</span>      <span class="kt">string</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">CertType</span>      <span class="kt">string</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">DateCompleted</span> <span class="kt">string</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Hash</span>          <span class="kt">string</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+
+
+
+<h4 id="the-prompt">
+  <a class="Heading-link u-clickable" href="/post/paccp2/#the-prompt">The prompt</a>
+</h4>
+<p><img src="/images/Sep22site/shot5.png" alt="ProLUG Homepage"></p>
+
+
+
+<h4 id="inputting-a-uid-hash-string">
+  <a class="Heading-link u-clickable" href="/post/paccp2/#inputting-a-uid-hash-string">Inputting a UID hash string</a>
+</h4>
+<p><img src="/images/Sep22site/shot6.png" alt="ProLUG Homepage"></p>
+
+
+
+<h4 id="matching-string-results-in-a-info-retrieval">
+  <a class="Heading-link u-clickable" href="/post/paccp2/#matching-string-results-in-a-info-retrieval">Matching string results in a info retrieval</a>
+</h4>
+<p><img src="/images/Sep22site/shot7.png" alt="ProLUG Homepage"></p>
+
+
+
+<h4 id="an-unrecognized-string-results-in-an-error-message">
+  <a class="Heading-link u-clickable" href="/post/paccp2/#an-unrecognized-string-results-in-an-error-message">An unrecognized string results in an error message</a>
+</h4>
+<p><img src="/images/Sep22site/shot8.png" alt="ProLUG Homepage"></p>
+
+
+
+<h3 id="current-site-">
+  <a class="Heading-link u-clickable" href="/post/paccp2/#current-site-">Current Site 💄</a>
+</h3>
+<p>After getting a working verification system worked out, I moved on to creating a broader website.</p>
+
+
+
+<h4 id="styling">
+  <a class="Heading-link u-clickable" href="/post/paccp2/#styling">Styling</a>
+</h4>
+<p>I like sites with a clean, easy to use and accessible appearance. I have a solid understanding of graphic design for accessibility and wanted to put that into practice here. So the design is stark, compact, clear and contrasting. This language carries throughout.</p>
+
+
+
+<h4 id="technique">
+  <a class="Heading-link u-clickable" href="/post/paccp2/#technique">Technique</a>
+</h4>
+<p>So as mentioned previously, I am serving html templates with GO. This can be pretty simple, we can serve a single basic html page with no modular components. I wanted to try out some fancy tricks using modularized components in this project, cutting down on the size of each template. The way this works within this project is very similar to Vue.js templating. We must declare a template as a component by encapsulating the html with tags.</p>
+<p>for example the Navigation bar is coded similarly to any old navbar and saved in templates as navbar.html. The fancy bit is enclosing the code with the tag</p>
+
+
+
+<h4 id="defining-a-component">
+  <a class="Heading-link u-clickable" href="/post/paccp2/#defining-a-component">Defining a component</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span> <span class="nx">define</span> <span class="s">&#34;navbar&#34;</span> <span class="p">}}</span> <span class="nx">Code</span> <span class="nx">goes</span> <span class="nx">here</span> <span class="p">{{</span> <span class="nx">end</span> <span class="p">}}</span></span></span></code></pre></div>
+
+
+
+<h4 id="using-a-template-component">
+  <a class="Heading-link u-clickable" href="/post/paccp2/#using-a-template-component">Using a template component</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span> <span class="nx">template</span> <span class="s">&#34;navbar&#34;</span> <span class="p">.</span> <span class="p">}}</span></span></span></code></pre></div>
+
+
+
+<h4 id="current-home-page">
+  <a class="Heading-link u-clickable" href="/post/paccp2/#current-home-page">Current Home Page</a>
+</h4>
+<p><img src="/images/Sep22site/shot1.png" alt="ProLUG Homepage"></p>
+
+
+
+<h4 id="current-about-page">
+  <a class="Heading-link u-clickable" href="/post/paccp2/#current-about-page">Current About Page</a>
+</h4>
+<p><img src="/images/Sep22site/shot2.png" alt="ProLUG Homepage"></p>
+
+
+
+<h4 id="current-join-page">
+  <a class="Heading-link u-clickable" href="/post/paccp2/#current-join-page">Current Join Page</a>
+</h4>
+<p><img src="/images/Sep22site/shot3.png" alt="ProLUG Homepage"></p>
+
+
+
+<h4 id="current-certify-page">
+  <a class="Heading-link u-clickable" href="/post/paccp2/#current-certify-page">Current Certify Page</a>
+</h4>
+<p><img src="/images/Sep22site/shot4.png" alt="ProLUG Homepage"></p>
+
+
+
+<h4 id="current-verify-page">
+  <a class="Heading-link u-clickable" href="/post/paccp2/#current-verify-page">Current Verify Page</a>
+</h4>
+<p><img src="/images/Sep22site/shot5.png" alt="ProLUG Homepage"></p>
+
+
+
+<h3 id="next-steps-">
+  <a class="Heading-link u-clickable" href="/post/paccp2/#next-steps-">Next Steps&hellip; 🥾</a>
+</h3>
+<ol>
+<li>I plan on discussing this in the Code Cove group in ProLUG</li>
+<li>I plan on creating a scoreboard as ideated in unit 2 by scott by reading from a CSV and writing to an order list</li>
+<li>I plan on spiffying up the appearance and useability of the site using tailwind and a bit more js logic</li>
+</ol>
+
+
+
+<h3 id="prolug-links-">
+  <a class="Heading-link u-clickable" href="/post/paccp2/#prolug-links-">ProLUG Links ⛓️</a>
+</h3>
+<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
+Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
+Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
+ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
+KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
+  
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/prolug-course/" rel="tag">ProLUG Course</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/capstoneproject/" rel="tag">CapstoneProject</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+  
+  
+
+
+
+      </div>
+    </div>
+  </main>
+  
+</body>
+
+</html>

@@ -4,7 +4,7 @@ title = "Actually completing VimTutor"
 date = "2024-09-10"
 description = "Finishing VimTutor has really changed my perspective of VIM as is much more useful and efficient than I had previously thought"
 tags = [
-  "Tech", "Linux", "Administration", "Engineering", "Certification", "LPIC", "Study Technique", "Self Hosting", "ProLUG",
+  "Tech", "Linux", "Administration", "Engineering", "Certification", "ProLUG Course", "Study Technique", "Vim", "ProLUG",
 ]
 categories = [
     "Learning", "Projects",

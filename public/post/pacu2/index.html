@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <meta name="description" content="ProLUG Admin Course Unit 2">
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.134.3">
+  <title>ProLUG Admin Course Unit 2 🐧 | Tech Blog</title>
+  <link rel="canonical" href="http://localhost:1313/post/pacu2/">
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+    <link rel="stylesheet" href="/css/base.css">
+
+    <link rel="stylesheet" href="/css/syntax.css">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <a class="Banner-link u-clickable" href="/">Tech Blog</a>
+      </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/">About</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/post/">Posts</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/tags/">Tags</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/categories/">Categories</a>
+        </li>
+      
+        
+        
+          
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/feed.xml">RSS</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/pacu2/" rel="bookmark">ProLUG Admin Course Unit 2 🐧</a>
+  </h1>
+  
+    <time datetime="2024-09-24T00:00:00Z">September 24, 2024</time>
+  
+</header>
+  <h2 id="intro">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#intro">Intro</a>
+</h2>
+<p>We have reached the second week of the PAC and things are getting more serious. Now that we are familiar with the flow of the course and expectations are set, the second lesson has started with some momentum. 💺</p>
+<hr>
+
+
+
+<h2 id="unit-2-lab-exercise-notes-">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#unit-2-lab-exercise-notes-">Unit 2 lab exercise notes 🧪</a>
+</h2>
+<p>I am completing the labs locally carefully covering every command listed by running them and checking output, making sure to pay attention to details like options. It was fairly time consuming, yet I learned quite a bit.</p>
+
+
+
+<h4 id="-basic-cli-exercise">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#-basic-cli-exercise">🧭 Basic CLI exercise:</a>
+</h4>
+<ul>
+<li>cd ~ : Change Directory to Home</li>
+<li>ls ~ : List</li>
+<li>mkdir evaluation : Make Directory called &rsquo;evaluation'</li>
+<li>mkdir evaluation/test/round6 : This fails why? We need to use the Parent option &lsquo;-p&rsquo;</li>
+<li>mkdir -p evaluation/test/round6 : Make parent directory with subdirectories</li>
+<li>cd evaluation : change directory to evaluation</li>
+<li>pwd : present/print working directory = /home/ts/evaluation</li>
+<li>touch testfile1 : create file name &rsquo;testfile1&rsquo; in current directory</li>
+<li>ls : list = test testfile1</li>
+<li>touch testfile{2..10} : Creates a numbered range of testfile</li>
+<li>touch .hfile .hfile2 .hfile3 : this creates three dot files which are not visible to a normal listing method, we must use list all (ls -a)</li>
+</ul>
+
+
+
+<h4 id="-gathering-system-information">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#-gathering-system-information">🔍 Gathering System Information</a>
+</h4>
+<p>I am running Rocky Linux 9 on a local Proxmox container for this course.</p>
+<ul>
+<li>hostname = localhost.localdomain</li>
+<li>uname : system info command which stands for Unix Name</li>
+<li>uname -a : shows a comprehensive list of system info Kernal name: Hostname, Kernel release, Kernel version, Machine hardware name, Processor type, Hardware platform, Operating system.</li>
+<li>uname -r : the -r option stands for release and shows the kernel release version.</li>
+</ul>
+
+
+
+<h4 id="-checking-the-amount-of-rammemory">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#-checking-the-amount-of-rammemory">🧠 Checking the amount of RAM/Memory</a>
+</h4>
+<ul>
+<li><em>sudo</em> cat/proc/meminfo : concatenate process memory information</li>
+<li>free : displays total, used, free, shared, buffer, and available memory (RAM and SWAP)</li>
+<li>free -m : megabyte display option for the free command</li>
+</ul>
+
+
+
+<h4 id="-checking-the-number-of-processors-and-processor-info">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#-checking-the-number-of-processors-and-processor-info">👨🏻‍💻 Checking the number of processors and processor info</a>
+</h4>
+<ul>
+<li>cat/proc/cpuinfo : concatenate process central processor unit information = 4 processors on my lab.</li>
+<li>cat /proc/cpuinfo | grep proc | wc -l : what we are doing here is piping the output of the previous command to grep which is filtering lines starting with proc, then we pipe through to word count with line option to cleverly count the number of processors, the result is 4</li>
+</ul>
+
+
+
+<h4 id="-checking-storage-usage-and-mounted-filesystems">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#-checking-storage-usage-and-mounted-filesystems">💾 Checking storage usage and mounted filesystems</a>
+</h4>
+<ul>
+<li>df : the disk free command</li>
+<li>df -h : we are adding the human readable option to df in order to more easily ascertain what is going on.</li>
+<li>df -h | grep -i var :</li>
+</ul>
+
+
+
+<h4 id="-mounting-a-new-file-system">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#-mounting-a-new-file-system">💾 Mounting a new file system</a>
+</h4>
+
+
+
+<h5 id="common-mount-command-options">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#common-mount-command-options">Common <code>mount</code> Command Options</a>
+</h5>
+<ul>
+<li>
+<p><strong>-t</strong> : Specify the filesystem type (e.g., <code>ext4</code>, <code>xfs</code>, <code>vfat</code>).</p>
+</li>
+<li>
+<p><strong>-o</strong> : Specify options in a comma-separated list (e.g., <code>rw</code>, <code>ro</code>, <code>noexec</code>).</p>
+</li>
+<li>
+<p><strong>-a</strong> : Mount all filesystems defined in <code>/etc/fstab</code>.</p>
+</li>
+<li>
+<p><strong>-r</strong> : Mount the filesystem as read-only.</p>
+</li>
+<li>
+<p><strong>-w</strong> : Mount the filesystem as read-write.</p>
+</li>
+<li>
+<p><strong>-v</strong> : Verbose mode, provides more detailed output.</p>
+</li>
+<li>
+<p><strong>&ndash;bind</strong> : Bind mount, remount part of the filesystem elsewhere.</p>
+</li>
+<li>
+<p><strong>&ndash;make-shared</strong> : Make a mounted file system shared (for propagating mount events).</p>
+</li>
+<li>
+<p><strong>-L</strong> : Mount by filesystem label.</p>
+</li>
+<li>
+<p><strong>-U</strong> : Mount by UUID.</p>
+</li>
+<li>
+<p>mount | grep –i home: lists all mounts starting with the case sensitive phrase home (I was not getting any result 🤔)</p>
+</li>
+<li>
+<p>mount | grep -i sd: this lists all SCSK disks, normally named sda, sdb, sdc etc&hellip;</p>
+</li>
+</ul>
+
+
+
+<h5 id="trying-out-alternative-commands">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#trying-out-alternative-commands">Trying out alternative commands</a>
+</h5>
+<ul>
+<li><strong>findmt</strong>: find mount</li>
+<li><strong>cat /proc/mounts</strong>: concatenate in-process mounts</li>
+<li><strong>lsblk</strong>: list block devices</li>
+</ul>
+
+
+
+<h5 id="i-was-unaware-that-commands-could-be-chained-together-with-a-semicolon">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#i-was-unaware-that-commands-could-be-chained-together-with-a-semicolon">I was unaware that commands could be chained together with a semicolon</a>
+</h5>
+<ul>
+<li><code>cd ~; pwd; df -h</code>: change directory to home, then print working directory, then list disk usage in a human-readable format 🧐.</li>
+<li><code>du -sh</code>: disk usage summary in a human-readable format.</li>
+</ul>
+
+
+
+<h5 id="du-command-options">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#du-command-options"><code>du</code> Command Options</a>
+</h5>
+<ul>
+<li><strong><code>-a</code></strong>: Display disk usage for all files, not just directories.</li>
+<li><strong><code>-h</code></strong>: Show disk usage in human-readable format (e.g., KB, MB, GB).</li>
+<li><strong><code>-s</code></strong>: Show summary of total disk usage for a directory.</li>
+<li><strong><code>-c</code></strong>: Produce a grand total at the end.</li>
+<li><strong><code>-L</code></strong>: Follow symbolic links (default <code>du</code> doesn&rsquo;t follow symlinks).</li>
+<li><strong><code>-d N</code></strong> or <strong><code>--max-depth=N</code></strong>: Limit directory depth to N levels.</li>
+<li><strong><code>--time</code></strong>: Show modification time of directories.</li>
+<li><strong><code>-b</code></strong>: Show disk usage in bytes.</li>
+<li><strong><code>-k</code></strong>: Show disk usage in kilobytes.</li>
+<li><strong><code>-m</code></strong>: Show disk usage in megabytes.</li>
+<li><strong><code>--apparent-size</code></strong>: Show the apparent size instead of disk usage.</li>
+<li><strong><code>-x</code></strong>: Skip directories on different file systems.</li>
+<li><strong><code>--exclude=PATTERN</code></strong>: Exclude files matching a pattern.</li>
+</ul>
+
+
+
+<h3 id="uptime">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#uptime">Uptime</a>
+</h3>
+<p><code>uptime</code>: Shows time in HH:MM:SS Unix time format in local time. If the time is not set, like in my instance, I get UTC 0🧐. Next, it shows how long the system has been running, the number of logged-in users, and finally, the load average over the last 1, 5, and 15 minutes.</p>
+
+
+
+<h3 id="last">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#last">Last</a>
+</h3>
+<ul>
+<li><strong><code>last</code></strong>: Lists all users who have logged in from latest to oldest.</li>
+<li><strong><code>w</code></strong>: Lists current users and associated processes.</li>
+<li><strong><code>who</code></strong>: Shows who is currently logged on. The output <code>pts/0</code> stands for pseudo terminal, typically shown when logged in remotely. It will show either an IPv4 or IPv6 address and the login time. When I logged into my Ubuntu server via SSH, I was shown the IPv6 address. 🤯</li>
+<li><strong><code>whoami</code></strong>: Tells which user you are.</li>
+</ul>
+
+
+
+<h3 id="checking-environment">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#checking-environment">Checking environment</a>
+</h3>
+<ul>
+<li><strong><code>printenv</code></strong>: Shows a long list of environmental information.</li>
+<li><strong><code>printenv | grep -i home</code></strong>: Shows that I am in the home directory of <code>root</code>.</li>
+<li><strong><code>id</code></strong>: Shows a lot of info about UID, GID, and group memberships, including SELinux policies.</li>
+<li><strong><code>echo $SHELL</code></strong>: Displays the path of the shell environment variable, in my case, <code>/bin/bash</code>.</li>
+</ul>
+
+
+
+<h3 id="check-running-processes-and-services">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#check-running-processes-and-services">Check running processes and services</a>
+</h3>
+<ul>
+<li><strong><code>ps -aux | more</code></strong></li>
+<li><strong><code>ps -ef | more</code></strong></li>
+<li><strong><code>ps -ef | wc -l</code></strong></li>
+</ul>
+
+
+
+<h3 id="check-memory-usage">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#check-memory-usage">Check memory usage</a>
+</h3>
+<p>Run each of these commands individually for understanding:</p>
+<ul>
+<li><strong><code>free -m</code></strong></li>
+<li><strong><code>free -m | egrep &quot;Mem|Swap&quot;</code></strong></li>
+<li><strong><code>free -m | egrep &quot;Mem|Swap&quot; | awk '{print $1, $2, $3}'</code></strong>: What are the first, second, and third columns? How would I know the variable names?</li>
+<li><strong><code>free -t | egrep &quot;Mem|Swap&quot; | awk '{print $1 &quot; Used Space = &quot; ($3 / $2) * 100&quot;%&quot;}'</code></strong>: Similar question for these variables.</li>
+</ul>
+
+
+
+<h3 id="testing-out-scripts">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#testing-out-scripts">Testing out scripts</a>
+</h3>
+
+
+
+<h5 id="q-have-you-ever-written-a-basic-check-script-or-touched-on-conditional-statements-or-loops">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#q-have-you-ever-written-a-basic-check-script-or-touched-on-conditional-statements-or-loops">Q: Have you ever written a basic check script or touched on conditional statements or loops?</a>
+</h5>
+
+
+
+<h5 id="a-yes-very-basic-">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#a-yes-very-basic-">A: Yes very basic 😅</a>
+</h5>
+<p>(Use ctrl + c to break out of these) 👍</p>
+<p>while true; do free -m; sleep 3; done
+Watch this output for a few and then break with ctrl + c
+Try to edit this to wait for 5 seconds
+Try to add a check for uptime and date each loop with a blank line between each and 10 second wait:
+while true; do date; uptime; free -m; echo “ “; sleep 10; done
+Since we can wrap anything inside of our while statements, let’s try adding something from earlier:
+While true; do free -t | egrep &ldquo;Mem|Swap&rdquo; | awk &lsquo;{print $1 &quot; Used Space = &quot; ($3 / $2) * 100&quot;%&quot;}&rsquo;; sleep 3; done 👍</p>
+<p><strong>seq 1 10</strong></p>
+
+
+
+<h5 id="q-what-did-this-do">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#q-what-did-this-do">Q: What did this do?</a>
+</h5>
+
+
+
+<h5 id="a-it-counts-from-1-to-10-creating-a-new-line-for-each-char">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#a-it-counts-from-1-to-10-creating-a-new-line-for-each-char">A: it counts from 1 to 10, creating a new line for each char.</a>
+</h5>
+
+
+
+<h5 id="q-can-you-man-seq-to-modify-that-to-count-from-2-to-20-by-2s">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#q-can-you-man-seq-to-modify-that-to-count-from-2-to-20-by-2s">Q: Can you man seq to modify that to count from 2 to 20 by 2’s?</a>
+</h5>
+
+
+
+<h5 id="a-yes-by-using-first-increment-last-so-2-2-20">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#a-yes-by-using-first-increment-last-so-2-2-20">A: yes by using &lsquo;First Increment Last, so 2 2 20&rsquo;</a>
+</h5>
+<p>Let’s make a counting for loop from that sequence ✅
+for i in <code>seq 1 20</code>; do echo &ldquo;I am counting i and am on $i times through the loop&rdquo;; done 👍</p>
+
+
+
+<h5 id="q-can-you-tell-me-what-is-the-difference-or-significance-of-the--in-the-command-above-what-does-that-denote-to-the-system">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#q-can-you-tell-me-what-is-the-difference-or-significance-of-the--in-the-command-above-what-does-that-denote-to-the-system">Q: Can you tell me what is the difference or significance of the $ in the command above? What does that denote to the system?</a>
+</h5>
+
+
+
+<h5 id="a-we-are-using-the--to-access-a-variable">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#a-we-are-using-the--to-access-a-variable">A: we are using the $ to access a variable.</a>
+</h5>
+<p>Uptime – The time a system has been running for without interruption.
+Standard input - stdin &lsquo;0&rsquo; the default stream where a program receives data.
+Standard output - stdout &lsquo;1&rsquo; refers to default stream output of a program.
+Standard error – stderr &lsquo;2&rsquo; refers to a default stream wherein an error is sent.</p>
+<hr>
+
+
+
+<h3 id="reflecting-on-unit-1-">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#reflecting-on-unit-1-">Reflecting on Unit 1 🤔</a>
+</h3>
+<p>Week 1 went well for me. I was very excited to start this course as it strongly aligns with my professional interests, and it came at a great time. I am incredibly grateful to have access to such a talented group of like-minded and enthusiastic professionals.</p>
+<p>I managed to complete everything for Week 1 by preparing in advance. For example, I created this blog and started some of the materials early. The night before the course began, I went through Vim Tutor and Vim Adventures to give myself a bit of a head start, as my time is currently divided between various responsibilities. I also dedicated a significant portion of my time to starting my capstone project and troubleshooting issues.</p>
+<p>I’ve set aside 8 hours per week, as suggested by Scott, for attending lectures, reading materials, practicing labs, and doing general research. During Week 1, I used roughly 6 hours, so I believe I’ve allocated enough time to complete the course work.</p>
+<p>My note-taking has been excellent for this course. Prior to starting, I learned how essential note-taking is to the administration and engineering process, so I began using LogSeq as my note-taking tool four months ago. This gave me time to familiarize myself with its features, allowing me to dive into the lectures fully prepared. I’m also a fast touch typist, so I can easily listen and type simultaneously. After each lecture, I review and organize my notes by nesting and tagging information to relate it to other topics. Additionally, I’ve been reflecting on everything by writing in this blog.</p>
+<hr>
+
+
+
+<h2 id="security-enhanced-linux">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#security-enhanced-linux">Security Enhanced Linux</a>
+</h2>
+
+
+
+<h3 id="brief-intro-to-selinux">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#brief-intro-to-selinux">Brief intro to SELinux</a>
+</h3>
+<p>SELinux (Security-Enhanced Linux) is a security module integrated into the Linux kernel that enforces mandatory access control policies to provide more granular control over how processes and users interact with files and resources. By defining strict rules on what actions each program or user can perform, SELinux significantly enhances the security posture of a Linux system, helping to prevent unauthorized access and exploits.</p>
+
+
+
+<h3 id="brief-intro-to-apparmor">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#brief-intro-to-apparmor">Brief intro to Apparmor</a>
+</h3>
+<p>AppArmor (Application Armor) is a Linux security module that enforces access control policies based on file paths, limiting what resources applications can access to enhance system security. It provides a simpler, profile-based alternative to SELinux, allowing administrators to create restrictive environments for individual applications without requiring deep changes to system configuration.</p>
+
+
+
+<h3 id="key-terminology">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#key-terminology">Key Terminology</a>
+</h3>
+<p>Mandatory Access Control –
+Discretionary Access Control –
+Security contexts (SELINUX) –
+SELINUX operating modes -</p>
+
+
+
+<h3 id="comparing-apparmor-and-selinux-for-container-separation">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#comparing-apparmor-and-selinux-for-container-separation">Comparing AppArmor and SELinux for Container Separation</a>
+</h3>
+<p><a href="https://www.redhat.com/sysadmin/apparmor-selinux-isolation">https://www.redhat.com/sysadmin/apparmor-selinux-isolation</a></p>
+<p>This article provides a brief comparison between <strong>SELinux</strong> and <strong>AppArmor</strong> regarding their effectiveness in securely separating containers.</p>
+<p>After reading, it became clear that <strong>AppArmor</strong> is not an ideal choice for <strong>DevSecOps</strong> when it comes to securely separating containers. This is due to <strong>AppArmor&rsquo;s lack of support for Multi-Category Security (MCS)</strong>. MCS allows for a hierarchy of controls, granting varying levels of access.</p>
+<p>Therefore, if you&rsquo;re looking to securely separate containers without relying on <strong>Virtual Machines</strong>—which can be costly—<strong>SELinux</strong> emerges as the better option for such tasks.</p>
+
+
+
+<h3 id="key-takeaways-">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#key-takeaways-">Key Takeaways 📝</a>
+</h3>
+<ul>
+<li><strong>AppArmor</strong> is <strong>not label-based</strong>, unlike SELinux.</li>
+<li><strong>AppArmor</strong> is generally seen as more <strong>user-friendly</strong>.</li>
+<li><strong>AppArmor</strong> has fewer controls compared to SELinux.</li>
+<li><strong>AppArmor</strong> has <strong>fewer operations</strong> available.</li>
+<li>Both support the <strong>Type Enforcement</strong> security model (a form of <strong>mandatory access control</strong>).</li>
+<li>The security model is based on rules where subjects (like processes or users) are allowed to access objects (e.g., files, directories, sockets, etc.).</li>
+<li><strong>AppArmor</strong> lacks <strong>Multi-Level Security (MLS)</strong>.</li>
+<li><strong>AppArmor</strong> does not support <strong>Multi-Category Security (MCS)</strong>.</li>
+<li>🔄 Because <strong>MCS is unavailable</strong>, <strong>AppArmor</strong> cannot maintain proper separation between containers.</li>
+<li>⚠️ The default container policy in AppArmor is <strong>very loose</strong>, which could present security risks.</li>
+</ul>
+
+
+
+<h3 id="quick-comparison-table-">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#quick-comparison-table-">Quick Comparison Table 🔍</a>
+</h3>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Technology</th>
+          <th style="text-align: left">Type Enforcement</th>
+          <th style="text-align: left">MLS/MCS</th>
+          <th style="text-align: left">Policy Generator</th>
+          <th style="text-align: left">Generator for Containers</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>AppArmor</strong></td>
+          <td style="text-align: left">Yes</td>
+          <td style="text-align: left">No</td>
+          <td style="text-align: left">Yes</td>
+          <td style="text-align: left">No</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>SELinux</strong></td>
+          <td style="text-align: left">Yes</td>
+          <td style="text-align: left">Yes</td>
+          <td style="text-align: left">No*</td>
+          <td style="text-align: left">Yes</td>
+      </tr>
+  </tbody>
+</table>
+<p>By understanding these differences, it’s clear that <strong>SELinux</strong> provides a more secure framework for container separation, making it a crucial tool for modern <strong>DevSecOps</strong> workflows.</p>
+
+
+
+<h3 id="enabling-selinux">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#enabling-selinux">Enabling SELinux</a>
+</h3>
+<p>Before enabling SELinux, you can verify its current status by running the <code>sestatus</code> command, which provides the <strong>Security Enhanced Status</strong> of the system. To activate or configure SELinux, you need to modify the configuration file located at <code>/etc/selinux/config</code>. SELinux can operate in two modes:</p>
+<ol>
+<li><strong>Enforcing</strong>: SELinux policies are actively enforced, and violations are blocked.</li>
+<li><strong>Permissive</strong>: Policies are not enforced, but violations are logged for review, allowing for troubleshooting without blocking actions.</li>
+</ol>
+
+
+
+<h3 id="selinux-contexts">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#selinux-contexts">SELinux Contexts</a>
+</h3>
+<p>A <strong>context</strong> in SELinux is a set of security labels used to manage access to files, processes, and other system resources. The context is composed of several fields:</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">system_u:object_r:httpd_sys_content_t:s0</span></span></code></pre></div>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">user:role:type:level</span></span></code></pre></div>
+
+
+
+<h4 id="breakdown-of-context-components">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#breakdown-of-context-components">Breakdown of Context Components:</a>
+</h4>
+<p><strong>User:</strong> Represents the SELinux identity of a subject (process) or object (file).
+<strong>Role:</strong> Groups privileges for processes and users, determining what they are allowed to do.
+<strong>Type:</strong> Defines how subjects (processes) can interact with objects (files or resources).
+<strong>Level:</strong> Used in Multi-Level Security (MLS) or Multi-Category Security (MCS) systems for additional granularity in access control.</p>
+
+
+
+<h3 id="taking-selinux-for-a-spin-on-a-rocky-9-vm-in-my-proxmox-homelab">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#taking-selinux-for-a-spin-on-a-rocky-9-vm-in-my-proxmox-homelab">Taking SELinux for a spin on a Rocky 9 VM in my Proxmox Homelab</a>
+</h3>
+<p>A few weeks ago, I learned how to create uninitialized templates with Proxmox, meaning the SSH keys are generated for each copy of the template. This is done with cloud init.</p>
+<p>So today I created a clone of my template specifically for getting hands on experience with SElinux</p>
+<p><img src="/images/PACU2/prox1.png" alt="ProLUG Homepage"></p>
+<p>I opened the <strong>/etc/selinux/config</strong> and set se to enforce. I then ran <strong>sestatus</strong> to confirm selinux had been activated.
+I created a new user policy for myself with <strong>semanage user -a -R &lsquo;staff_r webadm_r&rsquo; Treasure</strong> here is the result after running <strong>semanage user -l</strong></p>
+<p><img src="/images/PACU2/selinux1.png" alt="ProLUG Homepage"></p>
+
+
+
+<h3 id="selinux-scenario-contemplation">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#selinux-scenario-contemplation">SELinux scenario contemplation</a>
+</h3>
+<ul>
+<li>You follow your company instructions to add a new user to a set of 10 Linux servers.</li>
+<li>They cannot access just one (1) of the servers.</li>
+<li>When you review the differences in the servers you see that the server they cannot access is running SELINUX.</li>
+<li>On checking other users have no problem getting into the system.</li>
+<li>You find nothing in the documentation (typical) about this different system or how these users are accessing it.</li>
+<li>What do you do? Where do you check?</li>
+</ul>
+<p>From the given information, it seems likely that SELinux is denying access to the new user. To troubleshoot this, I would take the following steps:</p>
+<ol>
+<li>
+<p><strong>Check SELinux User Configuration</strong>:<br>
+I would run the command <code>semanage user -l</code> to list all SELinux users and confirm whether the new user exists within the SELinux policy.</p>
+</li>
+<li>
+<p><strong>Verify MLS/MCS Levels and Roles</strong>:<br>
+If the user is already registered, I would review the user&rsquo;s Multi-Level Security (MLS) or Multi-Category Security (MCS) level and verify the role assigned to the user. It&rsquo;s important that the user&rsquo;s role matches those that have the necessary access permissions.</p>
+</li>
+<li>
+<p><strong>Assign Appropriate Role</strong>:<br>
+If the current role restricts access, I would assign the user to an SELinux role that permits access to the system, ensuring that role-based access control (RBAC) is properly configured.</p>
+</li>
+</ol>
+<hr>
+
+
+
+<h3 id="interactive-killercoda-lab">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#interactive-killercoda-lab">Interactive Killercoda Lab</a>
+</h3>
+<p><a href="https://killercoda.com/killer-shell-cks/scenario/apparmor">https://killercoda.com/killer-shell-cks/scenario/apparmor</a></p>
+
+
+
+<h4 id="i-hope-this-was-designed-to-be-challenging-because-i-was-challenged-">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#i-hope-this-was-designed-to-be-challenging-because-i-was-challenged-">I hope this was designed to be challenging, because I was challenged 😅</a>
+</h4>
+<p>Despite paying close attention, I somehow got confused by this challenge. I suppose the exercise was designed to force me to read through documentation, which was tough.
+But I am proud to say that through trial and error, I was able to get through.</p>
+
+
+
+<h4 id="commands-i-looked-up-in-the-documentation">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#commands-i-looked-up-in-the-documentation">Commands I looked up in the documentation:</a>
+</h4>
+<ul>
+<li>kubectl get deployment spacecow -n moon -o yaml &gt; spacecow-deployment.yaml</li>
+<li>vim spacecow-deployment.yaml</li>
+<li>kubectl apply -f spacecow-deployment.yaml</li>
+</ul>
+<hr>
+
+
+
+<h2 id="troubleshooting">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#troubleshooting">Troubleshooting</a>
+</h2>
+
+
+
+<h3 id="how-troubleshooting-differs-between-administrator-and-engineer">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#how-troubleshooting-differs-between-administrator-and-engineer">How Troubleshooting Differs Between Administrator and Engineer</a>
+</h3>
+<ul>
+<li><strong>Administrators</strong> focus on <strong>restoring functionality</strong> to existing systems, while <strong>Engineers</strong> work on <strong>building and implementing</strong> new systems or improvements.</li>
+<li><strong>Administrators</strong> have <strong>existing documentation</strong> to reference for troubleshooting, whereas <strong>Engineers</strong> are responsible for <strong>creating new documentation</strong>.</li>
+<li><strong>Administrators</strong> can compare similar systems for <strong>inconsistencies</strong>, but <strong>Engineers</strong> may be working with entirely new systems or solutions, making such comparisons difficult.</li>
+</ul>
+
+
+
+<h4 id="administrators">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#administrators">Administrators:</a>
+</h4>
+<ul>
+<li><strong>Fix</strong>: Restore systems to their previous, working state.</li>
+<li><strong>Optimize</strong>: Use tools like <strong>Ansible</strong> or custom scripts to streamline operations and automate repetitive tasks.</li>
+<li><strong>Operate</strong>: Handle daily tasks that <strong>cannot be automated</strong>, such as monitoring or handling unexpected issues.</li>
+</ul>
+
+
+
+<h4 id="engineers">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#engineers">Engineers:</a>
+</h4>
+<ul>
+<li><strong>Prepare</strong>: Configure pre-built tools for daily use and ensure they integrate smoothly with existing systems.</li>
+<li><strong>Plan</strong>: Anticipate and strategize operational changes, such as the introduction of new tools or system upgrades.</li>
+<li><strong>Design</strong>: Create new tools, systems, or measures that address organizational needs and future challenges.</li>
+<li><strong>Implement</strong>: Deploy new or upgraded systems and produce comprehensive documentation to support ongoing maintenance and troubleshooting.</li>
+</ul>
+
+
+
+<h3 id="key-differences-in-troubleshooting">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#key-differences-in-troubleshooting">Key Differences in Troubleshooting:</a>
+</h3>
+<ul>
+<li>Administrators typically deal with <strong>reactive troubleshooting</strong>, where the goal is to quickly restore functionality after an issue occurs. Engineers, on the other hand, often engage in <strong>proactive troubleshooting</strong> by identifying potential problems before they happen, ensuring that systems are scalable and sustainable.</li>
+<li>While administrators may focus on resolving immediate operational issues, engineers are responsible for the <strong>long-term stability</strong> of systems, often troubleshooting while keeping future requirements in mind.</li>
+</ul>
+
+
+
+<h3 id="troubleshooting-procedure">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#troubleshooting-procedure">Troubleshooting Procedure</a>
+</h3>
+
+
+
+<h4 id="1-identify-the-problem">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#1-identify-the-problem">1. <strong>Identify the Problem</strong></a>
+</h4>
+<ul>
+<li><strong>Gather Information</strong>: Ask questions, check logs, or run diagnostics to gather all necessary details.</li>
+<li><strong>Reproduce the Issue</strong>: Try to replicate the problem to confirm its existence and scope.</li>
+</ul>
+
+
+
+<h4 id="2-establish-a-theory-of-cause">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#2-establish-a-theory-of-cause">2. <strong>Establish a Theory of Cause</strong></a>
+</h4>
+<ul>
+<li><strong>Look for Patterns</strong>: Are there recurring errors or conditions?</li>
+<li><strong>Use Known Issues</strong>: Refer to documentation, previous cases, or online resources to match symptoms to potential causes.</li>
+<li><strong>Hypothesize</strong>: Develop potential explanations based on the data you&rsquo;ve collected.</li>
+</ul>
+
+
+
+<h4 id="3-test-the-theory">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#3-test-the-theory">3. <strong>Test the Theory</strong></a>
+</h4>
+<ul>
+<li><strong>Isolate Variables</strong>: Disable or eliminate components one by one to test your theory.</li>
+<li><strong>Try Quick Fixes</strong>: Implement minor changes to see if the problem is resolved, such as restarting services or clearing caches.</li>
+</ul>
+
+
+
+<h4 id="4-create-an-action-plan">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#4-create-an-action-plan">4. <strong>Create an Action Plan</strong></a>
+</h4>
+<ul>
+<li><strong>Plan for Resolution</strong>: Identify the steps needed to fix the problem if your theory is confirmed.</li>
+<li><strong>Consider Impact</strong>: Make sure to assess any risks or side effects of your solution.</li>
+</ul>
+
+
+
+<h4 id="5-implement-the-solution">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#5-implement-the-solution">5. <strong>Implement the Solution</strong></a>
+</h4>
+<ul>
+<li><strong>Execute the Fix</strong>: Apply the necessary changes, whether it&rsquo;s a configuration adjustment, software update, or hardware replacement.</li>
+<li><strong>Monitor</strong>: Observe the system closely to ensure the issue doesn&rsquo;t recur.</li>
+</ul>
+
+
+
+<h4 id="6-verify-full-system-functionality">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#6-verify-full-system-functionality">6. <strong>Verify Full System Functionality</strong></a>
+</h4>
+<ul>
+<li><strong>Test the Fix</strong>: Confirm the problem is fully resolved and that other services or systems haven’t been affected.</li>
+<li><strong>Ask Stakeholders</strong>: Ensure end-users or relevant parties can validate the fix.</li>
+</ul>
+
+
+
+<h4 id="7-document-the-findings">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#7-document-the-findings">7. <strong>Document the Findings</strong></a>
+</h4>
+<ul>
+<li><strong>Write It Down</strong>: Document the issue, the root cause, the solution, and any potential future prevention methods.</li>
+<li><strong>Share Knowledge</strong>: Ensure others on your team or organization can reference the solution.</li>
+</ul>
+
+
+
+<h4 id="8-prevent-future-issues">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#8-prevent-future-issues">8. <strong>Prevent Future Issues</strong></a>
+</h4>
+<ul>
+<li><strong>Review System</strong>: Investigate whether the root cause indicates a larger problem.</li>
+<li><strong>Proactive Monitoring</strong>: Set up alerts, automations, or optimizations to prevent recurrence.</li>
+</ul>
+<hr>
+
+
+
+<h2 id="notes">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#notes">Notes</a>
+</h2>
+
+
+
+<h3 id="dhcp">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#dhcp">DHCP</a>
+</h3>
+<ul>
+<li>DHCP Should only be assigned by one server</li>
+<li>What is a BootP?</li>
+<li>DHCP is a process that comes from BootP?</li>
+<li>Layer 2 based on Mac address</li>
+</ul>
+
+
+
+<h3 id="first-day-on-the-job-you-must-inventory-the-servers">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#first-day-on-the-job-you-must-inventory-the-servers">First day on the job, you must inventory the servers</a>
+</h3>
+<ul>
+<li>Nmap</li>
+<li>History on CommandLine (Find the IP&rsquo;s)</li>
+<li>Ping Sweep for OpenSSH</li>
+<li>Create a local Inventory File</li>
+</ul>
+
+
+
+<h3 id="questions-i-have-from-this-week">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#questions-i-have-from-this-week">Questions I have from this week:</a>
+</h3>
+<ul>
+<li>How often does a Jr. Admin implement SELinux?</li>
+<li>If apparmor is so much less functional than SELinux, why is it still a popular choice? is it due to ease of use?</li>
+<li>you mentioned Irata? I was unable to look it up.</li>
+<li><strong>free –m| egrep “Mem|Swap” | awk ‘{print $1, $2, $3}’</strong>: what is 1, 2 and 3. Is there an easy way to know which variables pertain to which data?</li>
+</ul>
+
+
+
+<h3 id="how-are-you-going-to-use-what-youve-learned-in-your-current-role">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#how-are-you-going-to-use-what-youve-learned-in-your-current-role">How are you going to use what you’ve learned in your current role?</a>
+</h3>
+<p>I have no direct application for most of this stuff at the moment. however I will definitely use scripting in my current position in order to automate tasks. Furthermore, I will def remember several commands from the labs that I will likely use daily.</p>
+<hr>
+
+
+
+<h3 id="prolug-links-">
+  <a class="Heading-link u-clickable" href="/post/pacu2/#prolug-links-">ProLUG Links ⛓️</a>
+</h3>
+<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
+Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
+Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
+ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
+KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
+  
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/prolug-course/" rel="tag">ProLUG Course</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+  
+  
+
+
+
+      </div>
+    </div>
+  </main>
+  
+</body>
+
+</html>

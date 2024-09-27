@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <meta name="description" content="ProLUG Admin Course Unit 2">
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.134.3">
+  <title>ProLUG Admin Course Unit 2 🐧 | Tech Blog</title>
+  <link rel="canonical" href="http://localhost:1313/post/pacday2/">
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+    <link rel="stylesheet" href="/css/base.css">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <a class="Banner-link u-clickable" href="/">Tech Blog</a>
+      </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/">About</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/post/">Posts</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/tags/">Tags</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/categories/">Categories</a>
+        </li>
+      
+        
+        
+          
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/feed.xml">RSS</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/pacday2/" rel="bookmark">ProLUG Admin Course Unit 2 🐧</a>
+  </h1>
+  
+    <time datetime="2024-09-21T00:00:00Z">September 21, 2024</time>
+  
+</header>
+  <h3 id="intro-">
+  <a class="Heading-link u-clickable" href="/post/pacday2/#intro-">Intro 👋</a>
+</h3>
+<p>We have reached the second week of the PAC and things are getting more serious. Now that we are familiar with the flow of the course and expectations are set, the second lesson has started off smoothly.</p>
+
+
+
+<h3 id="content-covered-during-lab-exercises-">
+  <a class="Heading-link u-clickable" href="/post/pacday2/#content-covered-during-lab-exercises-">Content Covered during Lab exercises 🧪🤔</a>
+</h3>
+
+
+
+<h4 id="basic-cli-exercise">
+  <a class="Heading-link u-clickable" href="/post/pacday2/#basic-cli-exercise">Basic CLI exercise:</a>
+</h4>
+<ul>
+<li>cd ~ : Change Directory to Home</li>
+<li>ls ~ : List</li>
+<li>mkdir evaluation : Make Directory called &rsquo;evaluation'</li>
+<li>mkdir evaluation/test/round6 : This fails why? We need to use the Parent option &lsquo;-p&rsquo;</li>
+<li>mkdir -p evaluation/test/round6 : Make parent directory with subdirectories</li>
+<li>cd evaluation : change directory to evaluation</li>
+<li>pwd : present/print working directory = /home/ts/evaluation</li>
+<li>touch testfile1 : create file name &rsquo;testfile1&rsquo; in current directory</li>
+<li>ls : list = test testfile1</li>
+<li>touch testfile{2..10} : Creates a numbered range of testfile</li>
+<li>touch .hfile .hfile2 .hfile3 : this creates three dot files which are not visible to a normal listing method, we must use list all (ls -a)</li>
+</ul>
+
+
+
+<h4 id="gathering-system-information">
+  <a class="Heading-link u-clickable" href="/post/pacday2/#gathering-system-information">Gathering System Information</a>
+</h4>
+<p>I am running Rocky Linux 9 on a local Proxmox container for this course.</p>
+<ul>
+<li>hostname = localhost.localdomain</li>
+<li>uname : system info command which stands for Unix Name</li>
+<li>uname -a : shows a comprehensive list of system info Kernal name: Hostname, Kernel release, Kernel version, Machine hardware name, Processor type, Hardware platform, Operating system.</li>
+<li>uname -r : the -r option stands for release and shows the kernel release version.</li>
+</ul>
+
+
+
+<h4 id="checking-the-amount-of-rammemory">
+  <a class="Heading-link u-clickable" href="/post/pacday2/#checking-the-amount-of-rammemory">Checking the amount of RAM/Memory</a>
+</h4>
+<ul>
+<li><em>sudo</em> cat/proc/meminfo : concatenate process memory information</li>
+<li>free : displays total, used, free, shared, buffer, and available memory (RAM and SWAP)</li>
+<li>free -m : megabyte display option for the free command</li>
+</ul>
+
+
+
+<h4 id="checking-the-number-of-processors-and-processor-info">
+  <a class="Heading-link u-clickable" href="/post/pacday2/#checking-the-number-of-processors-and-processor-info">Checking the number of processors and processor info</a>
+</h4>
+<ul>
+<li>cat/proc/cpuinfo : concatenate process central processor unit information = 4 processors on my lab.</li>
+<li>cat /proc/cpuinfo | grep proc | wc -l : what we are doing here is piping the output of the previous command to grep which is filtering lines starting with proc, then we pipe through to word count with line option to cleverly count the number of processors, the result is 4</li>
+</ul>
+
+
+
+<h4 id="checking-storage-usage-and-mounted-filesystems">
+  <a class="Heading-link u-clickable" href="/post/pacday2/#checking-storage-usage-and-mounted-filesystems">Checking storage usage and mounted filesystems</a>
+</h4>
+<ul>
+<li>df : the disk free command</li>
+<li>df -h : we are adding the human readable option to df in order to more easily ascertain what is going on.</li>
+<li>df -h | grep -i var :</li>
+</ul>
+<p>&hellip; todo finish labs</p>
+<hr>
+
+
+
+<h3 id="reflecting-on-unit-1">
+  <a class="Heading-link u-clickable" href="/post/pacday2/#reflecting-on-unit-1">Reflecting on Unit 1</a>
+</h3>
+<p>Think about how week 1 went for you.</p>
+<p>Week 1 went well for me, I was very excited to get started on a course like this as it strongly relates to my professional interests and has come along at an opportune time. I am very greatful that I have access to such a great group of skilled professionals who are like minded and enthusiastic.</p>
+<p>I was able to get everything done for week 1 by getting set up a bit in advanced by creating this blog and doing some of the materials a little early. For example the night before the course started I went through Vim Tutor and Vim Adventures to have a bit of a head start as my time is split between many duties atm. I had sunk a good chunk of my time into starting my capstone project and working out bugs.</p>
+<p>I have set aside 8 hours per week as suggested by Scott for attending the lecture, reading materials, practicing labs and doing general research. So far during the first week I had used roughly 6 hours, so I think I have sufficient time allotted to getting the course materials done.</p>
+<p>3.How well did you take notes during the lecture? Do you need to improve this?</p>
+<p>Unit 1 Discussion Post 2:
+Read a blog, check a search engine, or ask an AI about SELINUX.
+What is the significance of contexts?
+What are the significance of labels?</p>
+<p>You follow your company instructions to add a new user to a set of 10 Linux servers. They cannot access just one (1) of the servers. When you review the differences in the servers you see that the server they cannot access is running SELINUX. On checking other users have no problem getting into the system. You find nothing in the documentation (typical) about this different system or how these users are accessing it. What do you do? Where do you check? (you may use any online resources to help you answer this. This is not a trick and it is not a “one answer solution”. This is for you to think through.)
+Definitions/Terminology
+Uptime –
+Standard input -
+Standard output -
+Standard error –
+Mandatory Access Control –
+Discretionary Access Control –
+Security contexts (SELINUX) –
+SELINUX operating modes -</p>
+<p>Notes During Lecture/Class:
+Links:</p>
+<p>Terms:</p>
+<p>Useful tools:</p>
+<p>Lab and Assignment
+Unit2_ProLUG_LabEssentials2 - To be completed outside of lecture time
+Compare SELINUX to Apparmor, following the below 2 tasks:
+a.Read this article: <a href="https://www.redhat.com/sysadmin/apparmor-selinux-isolation">https://www.redhat.com/sysadmin/apparmor-selinux-isolation</a>
+b.Do this lab: <a href="https://killercoda.com/killer-shell-cks/scenario/apparmor">https://killercoda.com/killer-shell-cks/scenario/apparmor</a>
+Start thinking about your project ideas (more to come in future weeks):
+Topics:
+1.System Stability
+2.System Performance
+3.System Security
+4.System monitoring
+5.Kubernetes
+6.Programming/Automation</p>
+<p>You will research, design, deploy, and document a system that improves your administration of Linux systems in some way.</p>
+<p>Digging Deeper</p>
+<p>1.How does troubleshooting differ between system administration and system engineering? To clarify, how might you troubleshoot differently if you know a system was running v. if you’re building a new system out?</p>
+<p>2.Investigate a troubleshooting methodology, by either google or AI search. Does the methodology fit for you in an IT sense, why or why not?</p>
+<p>Reflection Questions
+1.What questions do you still have about this week?</p>
+
+
+
+<h3 id="prolug-links-">
+  <a class="Heading-link u-clickable" href="/post/pacday2/#prolug-links-">ProLUG Links ⛓️</a>
+</h3>
+<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
+Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
+Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
+ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
+KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
+  
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/prolug-course/" rel="tag">ProLUG Course</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+  
+  
+
+
+
+      </div>
+    </div>
+  </main>
+  
+</body>
+
+</html>
