@@ -23,7 +23,7 @@
 
 <meta name="generator" content="Hugo 0.134.3">
   <title>ProxMox is great 🏆 | Tech Blog</title>
-  <link rel="canonical" href="/post/proxmox/">
+  <link rel="canonical" href="https://trevorsmale.github.io/techblog/post/proxmox/">
 
 
 
@@ -41,7 +41,7 @@
     
   
   
-      <link rel="stylesheet" href="/css/base.min.77ec62ba0b16c97f12070ff63174c3711ba36779d23242ea60e7e3f9fadea037.css" integrity="sha256-d&#43;xiugsWyX8SBw/2MXTDcRujZ3nSMkLqYOfj&#43;freoDc=" crossorigin="anonymous">
+      <link rel="stylesheet" href="/techblog/css/base.min.77ec62ba0b16c97f12070ff63174c3711ba36779d23242ea60e7e3f9fadea037.css" integrity="sha256-d&#43;xiugsWyX8SBw/2MXTDcRujZ3nSMkLqYOfj&#43;freoDc=" crossorigin="anonymous">
 
 
 
@@ -52,31 +52,31 @@
   <div class="u-wrapper">
     <ul class="Banner">
       <li class="Banner-item Banner-item--title">
-        <a class="Banner-link u-clickable" href="/">Tech Blog</a>
+        <a class="Banner-link u-clickable" href="/techblog/">Tech Blog</a>
       </li>
       
         
         
         <li class="Banner-item">
-          <a class="Banner-link u-clickable" href="/">About</a>
+          <a class="Banner-link u-clickable" href="/techblog/">About</a>
         </li>
       
         
         
         <li class="Banner-item">
-          <a class="Banner-link u-clickable" href="/post/">Posts</a>
+          <a class="Banner-link u-clickable" href="/techblog/post/">Posts</a>
         </li>
       
         
         
         <li class="Banner-item">
-          <a class="Banner-link u-clickable" href="/tags/">Tags</a>
+          <a class="Banner-link u-clickable" href="/techblog/tags/">Tags</a>
         </li>
       
         
         
         <li class="Banner-item">
-          <a class="Banner-link u-clickable" href="/categories/">Categories</a>
+          <a class="Banner-link u-clickable" href="/techblog/categories/">Categories</a>
         </li>
       
         
@@ -84,7 +84,7 @@
           
         
         <li class="Banner-item">
-          <a class="Banner-link u-clickable" href="/feed.xml">RSS</a>
+          <a class="Banner-link u-clickable" href="/techblog/feed.xml">RSS</a>
         </li>
       
     </ul>
@@ -98,14 +98,14 @@
 
   <header class="Heading">
   <h1 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/post/proxmox/" rel="bookmark">ProxMox is great 🏆</a>
+    <a class="Heading-link u-clickable" href="/techblog/post/proxmox/" rel="bookmark">ProxMox is great 🏆</a>
   </h1>
   
     <time datetime="2024-08-26T00:00:00Z">August 26, 2024</time>
   
 </header>
   <h3 id="intro-">
-  <a class="Heading-link u-clickable" href="/post/proxmox/#intro-">Intro 👋</a>
+  <a class="Heading-link u-clickable" href="/techblog/post/proxmox/#intro-">Intro 👋</a>
 </h3>
 <p>ProxMox is an free open source virtualisation host built atop debian. It can both run Virtual machines and Linux Containers with a host of features.
 I am continuously learning new systems and software. Prior to using ProxMox, I was installing and reinstalling Unix systems on an old laptop. This help me learn about installation, configuration and a whole host of other things. However this was very tedious and in efficient. The laptop was under powered, so running several virtual machines was not possible. I needed a multicore X86 machine with lots of memory in order to do this. Wanting to get more serious about learning systems engineering, I decided to build and x86 machine for the sole purpose of learning without fear of messing things up. While researching virtualization software I cam accross proxmox.</p>
@@ -113,7 +113,7 @@ I am continuously learning new systems and software. Prior to using ProxMox, I w
 
 
 <h3 id="installation">
-  <a class="Heading-link u-clickable" href="/post/proxmox/#installation">Installation</a>
+  <a class="Heading-link u-clickable" href="/techblog/post/proxmox/#installation">Installation</a>
 </h3>
 <p>Installation is very straightforward for someone like me who has installed all of the major distros to bare-metal. It was a matter of downloading the latest ISO and creating a boot disk using Balena Etcher.
 The installation process is very similar to the one debian has, a series of prompts, choosing a target disk, locale and you are off to the races.</p>
@@ -121,7 +121,7 @@ The installation process is very similar to the one debian has, a series of prom
 
 
 <h3 id="accessing">
-  <a class="Heading-link u-clickable" href="/post/proxmox/#accessing">Accessing</a>
+  <a class="Heading-link u-clickable" href="/techblog/post/proxmox/#accessing">Accessing</a>
 </h3>
 <p>Once Proxmox is installed it becomes a headless network machine. If you plug in a monitor, you will see a black screen indicating the host address and not much more. The way one interfaces with the system is through a browser on a computer tied to the local network. I open up a browser on my macbook and head to the address to see the sign in screen. You would have set up your username and password during the setup process, so it is just a matter of typing those in.</p>
 <p><img src="/images/pctower1.png" alt="ProxMox Dashboard"></p>
@@ -129,7 +129,7 @@ The installation process is very similar to the one debian has, a series of prom
 
 
 <h3 id="the-dashboard">
-  <a class="Heading-link u-clickable" href="/post/proxmox/#the-dashboard">The Dashboard</a>
+  <a class="Heading-link u-clickable" href="/techblog/post/proxmox/#the-dashboard">The Dashboard</a>
 </h3>
 <p>Proxmox provides an easy to use dashboard that indicated system load and memory usage. Creating a virtual machine is as simple as clicking &lsquo;create new vm&rsquo; and uploading a sufficient ISO for the purpose. The deep learning comes from automating this process and managing a number of machines. This is where Youtube tutorials come in handing. It helps to know a little bit about networking in order to set up self hosted services like Jellyfin or Database based services like NextCloud.</p>
 <p><img src="/images/proxdash.png" alt="ProxMox Dashboard"></p>
@@ -137,14 +137,14 @@ The installation process is very similar to the one debian has, a series of prom
 
 
 <h3 id="what-i-use-it-for">
-  <a class="Heading-link u-clickable" href="/post/proxmox/#what-i-use-it-for">What I use it for</a>
+  <a class="Heading-link u-clickable" href="/techblog/post/proxmox/#what-i-use-it-for">What I use it for</a>
 </h3>
 <p>I like to create machine templates that I can utilize for automated provissioning with tools like Ansible and Terraform. This simulates setting up a large collection of machines that must be pre-configured and communicate amongst one another. Lately I have been creating templates using Cloud-Init images with the extension Qcow2 to build out templates that have randomized SSH keys and uninitiated hostnames, much like the way Azure, AWS or google cloud sets up PAAS.</p>
 
 
 
 <h3 id="in-summary">
-  <a class="Heading-link u-clickable" href="/post/proxmox/#in-summary">In summary</a>
+  <a class="Heading-link u-clickable" href="/techblog/post/proxmox/#in-summary">In summary</a>
 </h3>
 <p>If you are serious about learning systems and practicing with many machines, I definately recommend setting up a ProxMox machine. Even an older PC will suffice for this purpose, though some limitation will apply; something there will take research.</p>
   
@@ -163,11 +163,11 @@ The installation process is very similar to the one debian has, a series of prom
         <ul class="Tags">
           
             <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/categories/learning/" rel="tag">Learning</a>
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
             </li>
           
             <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/categories/projects/" rel="tag">Projects</a>
+              <a class="Tags-link u-clickable" href="/techblog/categories/projects/" rel="tag">Projects</a>
             </li>
           
         </ul>
@@ -177,47 +177,47 @@ The installation process is very similar to the one debian has, a series of prom
         <ul class="Tags">
           
             <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/tech/" rel="tag">Tech</a>
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
             </li>
           
             <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/linux/" rel="tag">Linux</a>
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
             </li>
           
             <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/administration/" rel="tag">Administration</a>
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
             </li>
           
             <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/engineering/" rel="tag">Engineering</a>
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
             </li>
           
             <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/certification/" rel="tag">Certification</a>
+              <a class="Tags-link u-clickable" href="/techblog/tags/certification/" rel="tag">Certification</a>
             </li>
           
             <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/lpic/" rel="tag">LPIC</a>
+              <a class="Tags-link u-clickable" href="/techblog/tags/lpic/" rel="tag">LPIC</a>
             </li>
           
             <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/study-technique/" rel="tag">Study Technique</a>
+              <a class="Tags-link u-clickable" href="/techblog/tags/study-technique/" rel="tag">Study Technique</a>
             </li>
           
             <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/self-hosting/" rel="tag">Self Hosting</a>
+              <a class="Tags-link u-clickable" href="/techblog/tags/self-hosting/" rel="tag">Self Hosting</a>
             </li>
           
             <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/lxc/" rel="tag">LXC</a>
+              <a class="Tags-link u-clickable" href="/techblog/tags/lxc/" rel="tag">LXC</a>
             </li>
           
             <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/virtual-machines/" rel="tag">Virtual Machines</a>
+              <a class="Tags-link u-clickable" href="/techblog/tags/virtual-machines/" rel="tag">Virtual Machines</a>
             </li>
           
             <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/proxmox/" rel="tag">ProxMox</a>
+              <a class="Tags-link u-clickable" href="/techblog/tags/proxmox/" rel="tag">ProxMox</a>
             </li>
           
         </ul>

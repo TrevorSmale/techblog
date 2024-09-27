@@ -170,11 +170,11 @@ for example the Navigation bar is coded similarly to any old navbar and saved in
 ![ProLUG Homepage](/images/Sep22site/shot1.png)
 
 #### Current About Page
-![ProLUG Homepage](/images/Sep22site/shot2.png)
+![ProLUG Homepage](/public/images/Sep22site/shot2.png)
 
 #### Current Join Page
 
-![ProLUG Homepage](/images/Sep22site/shot3.png)
+![ProLUG Homepage](/static/images/Sep22site/shot3.png)
 
 #### Current Certify Page
 
