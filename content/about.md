@@ -15,4 +15,4 @@ series = ["About Me"]
 
 <!--more-->
 
-Hello my name is Trevor, I study often and take a lot of notes while doing it. This blog with automatic pagination, indexing and tagging is a great way to share what I am working on with others. I cover a fairly wide range of topics relating to technology, so the tags help narrow down posts to a category you may be interested in.
+Hello my name is Trevor (Treasure on Discord), I study often and take a lot of notes while doing it. This blog with automatic pagination, indexing and tagging is a great way to share what I am working on with others. I cover a fairly wide range of topics relating to technology, so the tags help narrow down posts to topical groupings.

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
 
-<head>
+<head><script src="/techblog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=techblog/livereload" data-no-instant defer></script>
   
   <meta charset="utf-8">
 
@@ -21,9 +21,9 @@
 
 
 
-<meta name="generator" content="Hugo 0.134.3">
-  <title>ProxMox is great 🏆 | Tech Blog</title>
-  <link rel="canonical" href="https://trevorsmale.github.io/techblog/post/proxmox/">
+<meta name="generator" content="Hugo 0.135.0">
+  <title>ProxMox for the win 🏆 | Tech Blog</title>
+  <link rel="canonical" href="http://localhost:1313/techblog/post/proxmox/">
 
 
 
@@ -41,7 +41,7 @@
     
   
   
-      <link rel="stylesheet" href="/techblog/css/base.min.77ec62ba0b16c97f12070ff63174c3711ba36779d23242ea60e7e3f9fadea037.css" integrity="sha256-d&#43;xiugsWyX8SBw/2MXTDcRujZ3nSMkLqYOfj&#43;freoDc=" crossorigin="anonymous">
+    <link rel="stylesheet" href="/techblog/css/base.css">
 
 
 
@@ -58,7 +58,7 @@
         
         
         <li class="Banner-item">
-          <a class="Banner-link u-clickable" href="/techblog/">About</a>
+          <a class="Banner-link u-clickable" href="/techblog/about/">About</a>
         </li>
       
         
@@ -98,7 +98,7 @@
 
   <header class="Heading">
   <h1 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/techblog/post/proxmox/" rel="bookmark">ProxMox is great 🏆</a>
+    <a class="Heading-link u-clickable" href="/techblog/post/proxmox/" rel="bookmark">ProxMox for the win 🏆</a>
   </h1>
   
     <time datetime="2024-08-26T00:00:00Z">August 26, 2024</time>
@@ -107,46 +107,50 @@
   <h3 id="intro-">
   <a class="Heading-link u-clickable" href="/techblog/post/proxmox/#intro-">Intro 👋</a>
 </h3>
-<p>ProxMox is an free open source virtualisation host built atop debian. It can both run Virtual machines and Linux Containers with a host of features.
-I am continuously learning new systems and software. Prior to using ProxMox, I was installing and reinstalling Unix systems on an old laptop. This help me learn about installation, configuration and a whole host of other things. However this was very tedious and in efficient. The laptop was under powered, so running several virtual machines was not possible. I needed a multicore X86 machine with lots of memory in order to do this. Wanting to get more serious about learning systems engineering, I decided to build and x86 machine for the sole purpose of learning without fear of messing things up. While researching virtualization software I cam accross proxmox.</p>
+<p>Proxmox is a free, open-source virtualization host built on top of Debian. It can run both virtual machines (VMs) and Linux containers, offering a wide array of features. 🚀</p>
+<p>I&rsquo;m always learning new systems and software. Before using Proxmox, I was repeatedly installing and reinstalling Unix systems on an old laptop. This helped me understand installation, configuration, and a host of other things—but it was very tedious and inefficient. That laptop was underpowered, so running multiple VMs was out of the question. I needed a multicore x86 machine with ample memory to achieve this.</p>
+<p>Wanting to take my systems engineering learning more seriously, I decided to build an x86 machine dedicated to learning without the fear of messing things up. While researching virtualization software, I discovered Proxmox.</p>
 
 
 
-<h3 id="installation">
-  <a class="Heading-link u-clickable" href="/techblog/post/proxmox/#installation">Installation</a>
+<h3 id="installation-">
+  <a class="Heading-link u-clickable" href="/techblog/post/proxmox/#installation-">Installation 🛠️</a>
 </h3>
-<p>Installation is very straightforward for someone like me who has installed all of the major distros to bare-metal. It was a matter of downloading the latest ISO and creating a boot disk using Balena Etcher.
-The installation process is very similar to the one debian has, a series of prompts, choosing a target disk, locale and you are off to the races.</p>
+<p>Installing Proxmox is straightforward, especially for someone who has installed many major distros on bare-metal systems. The process involves downloading the latest ISO, creating a boot disk using Balena Etcher, and then following a series of prompts, choosing the target disk and locale—just like a typical Debian installation.</p>
 
 
 
-<h3 id="accessing">
-  <a class="Heading-link u-clickable" href="/techblog/post/proxmox/#accessing">Accessing</a>
+<h3 id="accessing-proxmox-">
+  <a class="Heading-link u-clickable" href="/techblog/post/proxmox/#accessing-proxmox-">Accessing Proxmox 🌐</a>
 </h3>
-<p>Once Proxmox is installed it becomes a headless network machine. If you plug in a monitor, you will see a black screen indicating the host address and not much more. The way one interfaces with the system is through a browser on a computer tied to the local network. I open up a browser on my macbook and head to the address to see the sign in screen. You would have set up your username and password during the setup process, so it is just a matter of typing those in.</p>
-<p><img src="/images/pctower1.png" alt="ProxMox Dashboard"></p>
+<p>Once installed, Proxmox operates as a headless network machine. If you plug in a monitor, you&rsquo;ll only see a black screen showing the host address—nothing more. The way to interact with Proxmox is through a browser on a device connected to the same local network.</p>
+<p>For example, I open a browser on my MacBook, navigate to the host&rsquo;s IP address, and am greeted by the login screen. You would have set up your username and password during installation, so just log in from there. 👍</p>
+<p><img src="https://trevorsmale.github.io/techblog/images/Proxmox/pctower1.png" alt="PC Tower"></p>
 
 
 
-<h3 id="the-dashboard">
-  <a class="Heading-link u-clickable" href="/techblog/post/proxmox/#the-dashboard">The Dashboard</a>
+<h3 id="the-dashboard-">
+  <a class="Heading-link u-clickable" href="/techblog/post/proxmox/#the-dashboard-">The Dashboard 📊</a>
 </h3>
-<p>Proxmox provides an easy to use dashboard that indicated system load and memory usage. Creating a virtual machine is as simple as clicking &lsquo;create new vm&rsquo; and uploading a sufficient ISO for the purpose. The deep learning comes from automating this process and managing a number of machines. This is where Youtube tutorials come in handing. It helps to know a little bit about networking in order to set up self hosted services like Jellyfin or Database based services like NextCloud.</p>
-<p><img src="/images/proxdash.png" alt="ProxMox Dashboard"></p>
+<p>Proxmox provides an easy-to-use dashboard that shows system load and memory usage at a glance. Creating a virtual machine is as simple as clicking &ldquo;Create New VM&rdquo; and uploading a suitable ISO. The real learning comes when you automate the process and manage multiple machines.</p>
+<p><img src="https://trevorsmale.github.io/techblog/images/Proxmox/proxdash.png" alt="Proxmox Dashboard"></p>
 
 
 
-<h3 id="what-i-use-it-for">
-  <a class="Heading-link u-clickable" href="/techblog/post/proxmox/#what-i-use-it-for">What I use it for</a>
+<h3 id="learning-platform-">
+  <a class="Heading-link u-clickable" href="/techblog/post/proxmox/#learning-platform-">Learning Platform 🎓</a>
 </h3>
-<p>I like to create machine templates that I can utilize for automated provissioning with tools like Ansible and Terraform. This simulates setting up a large collection of machines that must be pre-configured and communicate amongst one another. Lately I have been creating templates using Cloud-Init images with the extension Qcow2 to build out templates that have randomized SSH keys and uninitiated hostnames, much like the way Azure, AWS or google cloud sets up PAAS.</p>
+<p>Proxmox gives you the freedom to create, break, and destroy VMs—allowing you to learn new things without sweating the small stuff. Through it, I&rsquo;ve gained a wealth of systems engineering knowledge by completing small projects outside of work.</p>
+<p>I like to create machine templates that can be reused for automated provisioning using tools like Ansible and Terraform. This simulates setting up clusters of machines that need to be pre-configured and communicate with each other.</p>
+<p>I also create Cloud-Init images in Qcow2 format to build templates with randomized SSH keys and uninitialized hostnames, much like how Azure, AWS, or Google Cloud sets up Platform-as-a-Service (PaaS) environments.</p>
+<p>Through Proxmox, I&rsquo;ve gone through installation and configuration procedures for large, complex systems like Kubernetes. This allows me to gain valuable experience with these cumbersome tools before working on similar setups in production environments. 🖥️</p>
 
 
 
-<h3 id="in-summary">
-  <a class="Heading-link u-clickable" href="/techblog/post/proxmox/#in-summary">In summary</a>
+<h3 id="in-summary-">
+  <a class="Heading-link u-clickable" href="/techblog/post/proxmox/#in-summary-">In Summary 📝</a>
 </h3>
-<p>If you are serious about learning systems and practicing with many machines, I definately recommend setting up a ProxMox machine. Even an older PC will suffice for this purpose, though some limitation will apply; something there will take research.</p>
+<p>If you&rsquo;re serious about learning systems engineering and working with multiple machines, I highly recommend setting up a Proxmox machine. Even an older PC can suffice, although some limitations may apply—but that&rsquo;s part of the research and learning process! 😄</p>
   
 
   

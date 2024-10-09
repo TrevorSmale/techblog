@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/techblog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=techblog/livereload" data-no-instant defer></script>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <meta name="description" content="Really Getting to know B-Tree File System">
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.135.0">
+  <title>Why Btrfs 🤔 | Tech Blog</title>
+  <link rel="canonical" href="http://localhost:1313/techblog/post/btrfs/">
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+    <link rel="stylesheet" href="/techblog/css/base.css">
+
+    <link rel="stylesheet" href="/techblog/css/syntax.css">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <a class="Banner-link u-clickable" href="/techblog/">Tech Blog</a>
+      </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/about/">About</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/post/">Posts</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/tags/">Tags</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/categories/">Categories</a>
+        </li>
+      
+        
+        
+          
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/feed.xml">RSS</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/btrfs/" rel="bookmark">Why Btrfs 🤔</a>
+  </h1>
+  
+    <time datetime="2024-10-03T00:00:00Z">October 3, 2024</time>
+  
+</header>
+  <p><img src="https://trevorsmale.github.io/techblog/images/Btrfs/btrfslogo.png" alt="Custom Btrfs Banner"></p>
+
+
+
+<h1 id="btrfs-">
+  <a class="Heading-link u-clickable" href="/techblog/post/btrfs/#btrfs-">Btrfs 💾</a>
+</h1>
+<p>Btrfs stands for <strong>B-tree File System</strong>, not &ldquo;Better File System,&rdquo; though it’s easy to see why people might think that. I believe Btrfs is the future for both small and large-scale projects, as it reduces the need for manual and automated maintenance, while simplifying backup and restoration processes.</p>
+<p>This article aims to shed light on the history and motivation behind creating Btrfs, its core functionality, and the standout features that set it apart from the competition.</p>
+
+
+
+<h2 id="history">
+  <a class="Heading-link u-clickable" href="/techblog/post/btrfs/#history">History</a>
+</h2>
+
+
+
+<h3 id="motivation">
+  <a class="Heading-link u-clickable" href="/techblog/post/btrfs/#motivation">Motivation</a>
+</h3>
+<p>The idea for Btrfs was first proposed by IBM researcher and bioinformatician <strong>Ohad Rodeh</strong> at a USENIX conference in 2007. The goal was to develop a <strong>copy-on-write (COW)</strong>-friendly B-tree algorithm, which would allow for efficient data storage and retrieval without the overhead typical of other file systems.</p>
+<p>As Valerie Aurora explained:</p>
+<blockquote>
+<p>&ldquo;To start with, B-trees in their native form are wildly incompatible with COW. The leaves of the tree are linked together, so when the location of one leaf changes (via a write—which implies a copy to a new block), the link in the adjacent leaf changes, which triggers another copy-on-write and location change, which changes the link in the next leaf&hellip; The result is that the entire B-tree, from top to bottom, has to be rewritten every time one leaf is changed.&rdquo;<br>
+– Valerie Aurora<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+</blockquote>
+<p><strong>Chris Mason</strong>, a core developer of the <strong>Reiser Filesystem</strong>, liked the idea and saw an opportunity to move beyond Reiser, which used B-trees but wasn’t optimized for COW. Mason brought the idea to his new job at Oracle, where development of Btrfs began in earnest.</p>
+<blockquote>
+<p>&ldquo;I started Btrfs soon after joining Oracle. I had a unique opportunity to take a detailed look at the features missing from Linux, and felt that Btrfs was the best way to solve them.&rdquo;<br>
+– Chris Mason<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
+</blockquote>
+<p>In collaboration with Oracle colleague <strong>Zach Brown</strong>, they drafted the initial version of Btrfs.</p>
+
+
+
+<h3 id="rapid-development-">
+  <a class="Heading-link u-clickable" href="/techblog/post/btrfs/#rapid-development-">Rapid Development ⏱️</a>
+</h3>
+<p>Thanks to corporate backing and a team of experienced developers, Btrfs moved through an aggressive development cycle. Within two years of the technical proposal, a working 1.0 version of Btrfs was released in late 2008.</p>
+<p>Shortly after its introduction, Btrfs was merged into the <strong>mainline Linux kernel</strong>. Despite the conservative nature of file system adoption—where admins, systems engineers, and software engineers prefer proven, stable systems—Btrfs quickly gained traction.</p>
+<p>In 2015, <strong>SUSE Linux Enterprise Server (SLES)</strong> became the first major Linux distribution to adopt Btrfs as its default file system, citing it as the future of Linux storage solutions.</p>
+
+
+
+<h3 id="enterprise-adoption-">
+  <a class="Heading-link u-clickable" href="/techblog/post/btrfs/#enterprise-adoption-">Enterprise Adoption 📊</a>
+</h3>
+<p>Today, Btrfs is the default file system for several major enterprise Linux distributions, including <strong>SUSE</strong>, <strong>Fujitsu Linux</strong>, <strong>Ubuntu</strong>, <strong>Oracle Linux</strong>, and popular user distributions like <strong>Fedora</strong>, <strong>Arch</strong>, and <strong>Gentoo</strong>.</p>
+<p>In fact, <strong>Meta</strong> (formerly Facebook) uses Btrfs to manage their large, dynamic data sets. According to core developer <strong>Josef Bacik</strong>, using Btrfs at Meta has significantly reduced access times and contributed to cost reductions in production environments.<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
+
+
+
+<h2 id="how-btrfs-works-">
+  <a class="Heading-link u-clickable" href="/techblog/post/btrfs/#how-btrfs-works-">How Btrfs Works ⚙️</a>
+</h2>
+
+
+
+<h3 id="the-b-tree-algorithm-">
+  <a class="Heading-link u-clickable" href="/techblog/post/btrfs/#the-b-tree-algorithm-">The B-Tree+ Algorithm 🌳</a>
+</h3>
+<p>At its core, Btrfs relies on a <strong>B-tree</strong>, a type of data structure designed to organize and store data efficiently.</p>
+<p>Here is a basic diagram of a B-tree, though in file systems, it gets more complex:</p>
+<p><img src="https://raw.github.com/alexeygrigorev/wiki-figures/master/ulb/dbsa/ind/btree-ex.png" alt="B-Tree Diagram"></p>
+<p>A B-tree consists of <strong>nodes</strong> and <strong>links</strong> (sometimes referred to as <strong>keys</strong> and <strong>pointers</strong> or <strong>leaves</strong> and <strong>branches</strong>), which drastically reduce seek time. This ensures that, no matter how much data you store, finding the right file is quick and doesn’t require searching through everything.</p>
+<p>The <strong>root node</strong> is a type of index stored in a fixed location on the disk. It serves as the starting point for a rapid search called <strong>fanning out</strong>.</p>
+<p>This structure reduces disk access time and, in turn, improves overall system efficiency. The relationship between the depth of nodes and the breadth of data is known as the <strong>fan-out factor</strong>. Tuning this ratio can either speed up searches (with a wider spread) or reduce write size for smaller segments.</p>
+
+
+
+<h3 id="copy-on-write-cow-">
+  <a class="Heading-link u-clickable" href="/techblog/post/btrfs/#copy-on-write-cow-">Copy-on-Write (COW) 🐄</a>
+</h3>
+<p><strong>Copy-on-Write (COW)</strong> is a method where data and metadata are not overwritten in place. Instead, they are copied to a new location before the update is finalized. Btrfs employs COW in conjunction with its B-tree algorithm to maintain data integrity.</p>
+<p>Btrfs also uses <strong>delayed allocation</strong>, where metadata is updated first, linking it to new data before the actual data is copied <strong>Persistant Pre Allocation</strong> to a new location. This delay allows the file system to organize sector placement called <strong>Extent Base Allocation</strong> and optimize metadata before the actual write <strong>Multi-Block Allocation</strong>, reducing unnecessary reads and writes.</p>
+<p>This delayed allocation process supports <strong>wear leveling</strong> (also known as <strong>TRIM</strong>) on SSDs, where data is written to new sectors to avoid repeatedly writing to the same location, thus extending the lifespan of the drive.</p>
+
+
+
+<h3 id="snapshots-">
+  <a class="Heading-link u-clickable" href="/techblog/post/btrfs/#snapshots-">Snapshots 📸</a>
+</h3>
+<p><strong>Snapshots</strong> are one of Btrfs&rsquo;s standout features. They use COW to create lightweight, efficient snapshots of data at any given time.</p>
+<p>Unlike traditional Linux filesystems, which only allow snapshots of <strong>logical volumes</strong>, Btrfs can snapshot both <strong>volumes</strong> and <strong>subvolumes</strong>. This means that the entire data set—down to the subvolume level—can be efficiently snapshotted. Snapshots in Btrfs do not require duplication of data, only tracking changes made after the snapshot was taken.</p>
+
+
+
+<h3 id="cloning-">
+  <a class="Heading-link u-clickable" href="/techblog/post/btrfs/#cloning-">Cloning 🐑🐑</a>
+</h3>
+<p><strong>Cloning</strong> in Btrfs allows you to create <strong>writeable copies</strong> of subvolumes or snapshots, which share the same data blocks until changes are made. Unlike traditional file copying, cloning doesn&rsquo;t duplicate the original data, making it fast and storage-efficient. When modifications are made, only the changed blocks are copied, leaving the rest shared between the clone and the original.</p>
+<p>This makes cloning in Btrfs ideal for use cases where multiple environments or datasets need to be derived from the same base system, without significant storage overhead.</p>
+
+
+
+<h3 id="dynamic-online-storage-">
+  <a class="Heading-link u-clickable" href="/techblog/post/btrfs/#dynamic-online-storage-">Dynamic Online Storage 📈📉</a>
+</h3>
+<p>Btrfs allows you to manage storage pools dynamically with <strong>online resizing</strong> and device management, meaning that you can expand and shrink file systems while they are mounted and in use. This flexibility helps reduce downtime and allows systems to scale easily with growing storage needs.</p>
+
+
+
+<h4 id="expanding-disk-pools-">
+  <a class="Heading-link u-clickable" href="/techblog/post/btrfs/#expanding-disk-pools-">Expanding Disk Pools 🏊‍♂️🏊‍♂️🏊‍♂️</a>
+</h4>
+<p>You can add new disks to a Btrfs file system without stopping the system. With a simple command, Btrfs integrates the new storage into the existing pool, redistributing data across devices if necessary. This feature makes Btrfs highly scalable, especially in environments where storage demands can grow unpredictably.</p>
+
+
+
+<h4 id="resizeable-">
+  <a class="Heading-link u-clickable" href="/techblog/post/btrfs/#resizeable-">Resizeable 📏</a>
+</h4>
+<p>Btrfs volumes can be <strong>expanded or shrunk</strong> online, without unmounting the file system. Expanding is as simple as adding more storage, while shrinking requires no special process apart from the resizing command. This dynamic resizing means you can adjust the size of your file system to suit your current storage needs.</p>
+
+
+
+<h4 id="self-healing-">
+  <a class="Heading-link u-clickable" href="/techblog/post/btrfs/#self-healing-">Self-Healing ❤️‍🩹</a>
+</h4>
+<p>Btrfs provides <strong>self-healing</strong> capabilities when used in a redundant RAID setup. Through <strong>data and metadata checksumming</strong>, Btrfs can detect corrupted blocks and automatically fix them using redundant copies of the data. This ensures data integrity without user intervention, particularly useful for critical data environments.</p>
+
+
+
+<h3 id="compression-">
+  <a class="Heading-link u-clickable" href="/techblog/post/btrfs/#compression-">Compression 🪗</a>
+</h3>
+<p>Btrfs supports <strong>transparent compression</strong>, which means files can be compressed as they are written to disk, saving space without requiring manual compression. It supports multiple algorithms like <strong>LZO</strong>, <strong>Zlib</strong>, and <strong>Zstandard (ZSTD)</strong>, each with different balances of speed and compression ratio. This feature helps save storage space and can improve performance, especially when working with large datasets.</p>
+
+
+
+<h3 id="technical-feature-list-">
+  <a class="Heading-link u-clickable" href="/techblog/post/btrfs/#technical-feature-list-">Technical Feature List: 🔍</a>
+</h3>
+<ul>
+<li><strong>Journaling</strong>: Keeps track of changes before they are committed, helping with data recovery in case of a crash.</li>
+<li><strong>Extent Base Allocation</strong>: Allocates large, contiguous blocks of storage to reduce fragmentation.</li>
+<li><strong>Persistent Pre-allocation</strong>: Reserves space for a file at creation to prevent fragmentation and improve performance.</li>
+<li><strong>Delayed Allocation</strong>: Delays the allocation of disk space until data is written, optimizing space management.</li>
+<li><strong>Multi-block Allocation</strong>: Allocates multiple blocks at once to increase efficiency, especially for large files.</li>
+<li><strong>Stripe-aware Allocation</strong>: Optimizes block allocation for RAID systems by aligning data with RAID stripes.</li>
+<li><strong>Resizeable with resize2fs</strong>: Can be resized (grown or shrunk) using the resize2fs tool.</li>
+<li><strong>B-tree Balancing Algorithm - Different from XFS (COW B Tree)</strong>: Uses a specific B-tree balancing algorithm for efficient file system organization and copy-on-write operations.</li>
+<li><strong>Copy-on-Write (COW)</strong>: Writes modified data to new locations rather than overwriting existing data, preventing data corruption.</li>
+<li><strong>Snapshots and Clones</strong>: Creates point-in-time copies of data (snapshots) and allows for duplication (clones) without full data replication.</li>
+<li><strong>Built-in RAID Support</strong>: Provides native support for RAID configurations, improving data redundancy and performance.</li>
+<li><strong>Data and Metadata Checksumming</strong>: Ensures data integrity by verifying both data and metadata through checksums.</li>
+<li><strong>Self-Healing</strong>: Automatically repairs corrupted data using mirrored or parity blocks in RAID configurations.</li>
+<li><strong>Dynamic Subvolumes</strong>: Supports the creation of isolated subvolumes within the same file system for better data management.</li>
+<li><strong>Online Resizing</strong>: Allows the file system to be resized while it&rsquo;s still mounted and in use.</li>
+<li><strong>Compression (LZO, ZLIB, ZSTD)</strong>: Offers various compression algorithms to reduce storage space usage.</li>
+<li><strong>Deduplication</strong>: Eliminates duplicate copies of repeating data to save space.</li>
+</ul>
+
+
+
+<h2 id="core-commands-">
+  <a class="Heading-link u-clickable" href="/techblog/post/btrfs/#core-commands-">Core Commands 🪨</a>
+</h2>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mkfs.btrfs</span></span></code></pre></div>
+<p>Creates a new Btrfs file system on a specified device or partition.</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">btrfs subvolume create</span></span></code></pre></div>
+<p>Creates a new subvolume within an existing Btrfs file system.</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">btrfs subvolume delete </span></span></code></pre></div>
+<p>Deletes a specified subvolume from the Btrfs file system.</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">btrfs subvolume list </span></span></code></pre></div>
+<p>Lists all subvolumes within a Btrfs file system.</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">btrfs filesystem show </span></span></code></pre></div>
+<p>Displays detailed information about the Btrfs file systems on all mounted devices.</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">btrfs filesystem df </span></span></code></pre></div>
+<p>Shows disk space usage, including metadata and data, for a Btrfs file system.</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">btrfs balance start </span></span></code></pre></div>
+<p>Begins a balancing operation to redistribute data and metadata across the Btrfs file system.</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">btrfs balance cancel </span></span></code></pre></div>
+<p>Cancels an ongoing balancing operation.</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">btrfs scrub start </span></span></code></pre></div>
+<p>Initiates a scrub operation to verify data integrity on a Btrfs file system.</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">btrfs scrub status </span></span></code></pre></div>
+<p>Shows the status of an ongoing scrub operation.</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">btrfs device add </span></span></code></pre></div>
+<p>Adds a new device to an existing Btrfs file system, allowing for dynamic storage expansion.</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">btrfs device delete</span></span></code></pre></div>
+<p>Removes a specified device from a Btrfs file system.</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">btrfs device stats </span></span></code></pre></div>
+<p>Displays statistics and error information about devices in a Btrfs file system.</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">btrfs check </span></span></code></pre></div>
+<p>Checks the integrity of a Btrfs file system, often used for troubleshooting.</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">btrfs rescue chunk-recover </span></span></code></pre></div>
+<p>Attempts to recover data chunks from a damaged Btrfs file system.</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">btrfs filesystem resize </span></span></code></pre></div>
+<p>Resizes a Btrfs file system, either expanding or shrinking it dynamically.</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">btrfs snapshot </span></span></code></pre></div>
+<p>Creates a read-only or read-write snapshot of a subvolume or file system.</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">btrfs property set</span></span></code></pre></div>
+<p>Modifies properties of a Btrfs file system or its subvolumes (e.g., enabling compression).</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">btrfs quota enable</span></span></code></pre></div>
+<p>Enables quota enforcement on a Btrfs file system to limit space usage.</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">btrfs quota rescan</span></span></code></pre></div>
+<p>Rescans the file system to enforce or update quota limits.</p>
+
+
+
+<h2 id="conclusion">
+  <a class="Heading-link u-clickable" href="/techblog/post/btrfs/#conclusion">Conclusion</a>
+</h2>
+<p>Well I hope that has opened your eyes to the benefits of Btrfs. Researching for this article has helped me to learn some more about the subject.
+If will definitely add to the article as I learn more about the subject, so consider this evergreen information 🌲</p>
+<hr>
+
+
+
+<h3 id="helpful-links-">
+  <a class="Heading-link u-clickable" href="/techblog/post/btrfs/#helpful-links-">Helpful Links ⛓️</a>
+</h3>
+<p><a href="https://en.wikipedia.org/wiki/Btrfs">https://en.wikipedia.org/wiki/Btrfs</a>
+<a href="https://docs.kernel.org/filesystems/btrfs.html">https://docs.kernel.org/filesystems/btrfs.html</a>
+Footnotes</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>The above quote is excerpted from Valerie Aurora <a href="https://lwn.net/Articles/342892/">Article</a> lwn.net, 2009.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>Chris Mason <a href="https://www.youtube.com/watch?v=oSgGVX2CGOQ">Interview</a> during LF Collaboration Summit, 2009.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>The above reference is to the first proposal for the Btrfs file system <a href="https://www.youtube.com/watch?v=PAAkCSZUG1c">Technical Proposal</a> during Gopherfest, Tues, June 12th, 2017.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+  
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/filesystems/" rel="tag">FileSystems</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/notes/" rel="tag">Notes</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/research/" rel="tag">Research</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+  
+  
+
+
+
+      </div>
+    </div>
+  </main>
+  
+</body>
+
+</html>

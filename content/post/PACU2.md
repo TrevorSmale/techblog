@@ -15,6 +15,8 @@ series = ["Learning"]
 
 <!--more-->
 
+# Essential Tools 🛠️
+
 ## Intro 
 
 We have reached the second week of the PAC and things are getting more serious. Now that we are familiar with the flow of the course and expectations are set, the second lesson has started with some momentum. 💺
@@ -26,116 +28,116 @@ We have reached the second week of the PAC and things are getting more serious. 
 I am completing the labs locally carefully covering every command listed by running them and checking output, making sure to pay attention to details like options. It was fairly time consuming, yet I learned quite a bit.
 
 #### 🧭 Basic CLI exercise: 
-- cd ~ : Change Directory to Home
-- ls ~ : List
-- mkdir evaluation : Make Directory called 'evaluation'
-- mkdir evaluation/test/round6 : This fails why? We need to use the Parent option '-p'
-- mkdir -p evaluation/test/round6 : Make parent directory with subdirectories
-- cd evaluation : change directory to evaluation
-- pwd : present/print working directory = /home/ts/evaluation
-- touch testfile1 : create file name 'testfile1' in current directory
-- ls : list = test testfile1
-- touch testfile{2..10} : Creates a numbered range of testfile
-- touch .hfile .hfile2 .hfile3 : this creates three dot files which are not visible to a normal listing method, we must use list all (ls -a)
+- cd ~ # Change Directory to Home
+- ls ~ # List
+- mkdir evaluation # Make Directory called 'evaluation'
+- mkdir evaluation/test/round6 # This fails why? We need to use the Parent option '-p'
+- mkdir -p evaluation/test/round6 # Make parent directory with subdirectories
+- cd evaluation # change directory to evaluation
+- pwd # present/print working directory = /home/ts/evaluation
+- touch testfile1 # create file name 'testfile1' in current directory
+- ls # list = test testfile1
+- touch testfile{2..10} # Creates a numbered range of testfile
+touch .hfile .hfile2 .hfile3 # this creates three dot files which are not visible to a normal listing method, we must use list all (ls -a)
 
 #### 🔍 Gathering System Information
 I am running Rocky Linux 9 on a local Proxmox container for this course.
 - hostname = localhost.localdomain
-- uname : system info command which stands for Unix Name
-- uname -a : shows a comprehensive list of system info Kernal name: Hostname, Kernel release, Kernel version, Machine hardware name, Processor type, Hardware platform, Operating system.
-- uname -r : the -r option stands for release and shows the kernel release version.
+- uname # system info command which stands for Unix Name
+- uname -a # shows a comprehensive list of system info Kernal name# Hostname, Kernel release, Kernel version, Machine hardware name, Processor type, Hardware platform, Operating system.
+- uname -r # the -r option stands for release and shows the kernel release version.
 
 #### 🧠 Checking the amount of RAM/Memory
-- *sudo* cat/proc/meminfo : concatenate process memory information
-- free : displays total, used, free, shared, buffer, and available memory (RAM and SWAP)
-- free -m : megabyte display option for the free command
+- *sudo* cat/proc/meminfo # concatenate process memory information
+- free # displays total, used, free, shared, buffer, and available memory (RAM and SWAP)
+- free -m # megabyte display option for the free command
 
 #### 👨🏻‍💻 Checking the number of processors and processor info
-- cat/proc/cpuinfo : concatenate process central processor unit information = 4 processors on my lab.
-- cat /proc/cpuinfo | grep proc | wc -l : what we are doing here is piping the output of the previous command to grep which is filtering lines starting with proc, then we pipe through to word count with line option to cleverly count the number of processors, the result is 4
+- cat/proc/cpuinfo # concatenate process central processor unit information = 4 processors on my lab.
+- cat /proc/cpuinfo | grep proc | wc -l # what we are doing here is piping the output of the previous command to grep which is filtering lines starting with proc, then we pipe through to word count with line option to cleverly count the number of processors, the result is 4
 
 #### 💾 Checking storage usage and mounted filesystems
-- df : the disk free command
-- df -h : we are adding the human readable option to df in order to more easily ascertain what is going on.
-- df -h | grep -i var : 
+- df # the disk free command
+- df -h # we are adding the human readable option to df in order to more easily ascertain what is going on.
+- df -h | grep -i var # 
 
 #### 💾 Mounting a new file system
 
 ##### Common `mount` Command Options
 
-- **-t** : Specify the filesystem type (e.g., `ext4`, `xfs`, `vfat`).
-- **-o** : Specify options in a comma-separated list (e.g., `rw`, `ro`, `noexec`).
-- **-a** : Mount all filesystems defined in `/etc/fstab`.
-- **-r** : Mount the filesystem as read-only.
-- **-w** : Mount the filesystem as read-write.
-- **-v** : Verbose mode, provides more detailed output.
-- **--bind** : Bind mount, remount part of the filesystem elsewhere.
-- **--make-shared** : Make a mounted file system shared (for propagating mount events).
-- **-L** : Mount by filesystem label.
-- **-U** : Mount by UUID.
+- **-t** # Specify the filesystem type (e.g., `ext4`, `xfs`, `vfat`).
+- **-o** # Specify options in a comma-separated list (e.g., `rw`, `ro`, `noexec`).
+- **-a** # Mount all filesystems defined in `/etc/fstab`.
+- **-r** # Mount the filesystem as read-only.
+- **-w** # Mount the filesystem as read-write.
+- **-v** # Verbose mode, provides more detailed output.
+- **--bind** # Bind mount, remount part of the filesystem elsewhere.
+- **--make-shared** # Make a mounted file system shared (for propagating mount events).
+- **-L** # Mount by filesystem label.
+- **-U** # Mount by UUID.
 
-- mount | grep –i home: lists all mounts starting with the case sensitive phrase home (I was not getting any result 🤔)
-- mount | grep -i sd: this lists all SCSK disks, normally named sda, sdb, sdc etc...
+- mount | grep –i home# lists all mounts starting with the case sensitive phrase home (I was not getting any result 🤔)
+- mount | grep -i sd# this lists all SCSK disks, normally named sda, sdb, sdc etc...
 
 ##### Trying out alternative commands
 
-- **findmt**: find mount
-- **cat /proc/mounts**: concatenate in-process mounts
-- **lsblk**: list block devices
+- **findmt**# find mount
+- **cat /proc/mounts**# concatenate in-process mounts
+- **lsblk**# list block devices
 
 ##### I was unaware that commands could be chained together with a semicolon
 
-- `cd ~; pwd; df -h`: change directory to home, then print working directory, then list disk usage in a human-readable format 🧐.
-- `du -sh`: disk usage summary in a human-readable format.
+- `cd ~; pwd; df -h`# change directory to home, then print working directory, then list disk usage in a human-readable format 🧐.
+- `du -sh`# disk usage summary in a human-readable format.
 
 ##### `du` Command Options
 
-- **`-a`**: Display disk usage for all files, not just directories.
-- **`-h`**: Show disk usage in human-readable format (e.g., KB, MB, GB).
-- **`-s`**: Show summary of total disk usage for a directory.
-- **`-c`**: Produce a grand total at the end.
-- **`-L`**: Follow symbolic links (default `du` doesn't follow symlinks).
-- **`-d N`** or **`--max-depth=N`**: Limit directory depth to N levels.
-- **`--time`**: Show modification time of directories.
-- **`-b`**: Show disk usage in bytes.
-- **`-k`**: Show disk usage in kilobytes.
-- **`-m`**: Show disk usage in megabytes.
-- **`--apparent-size`**: Show the apparent size instead of disk usage.
-- **`-x`**: Skip directories on different file systems.
-- **`--exclude=PATTERN`**: Exclude files matching a pattern.
+      **`-a`**# Display disk usage for all files, not just directories.
+      **`-h`**# Show disk usage in human-readable format (e.g., KB, MB, GB).
+      **`-s`**# Show summary of total disk usage for a directory.
+      **`-c`**# Produce a grand total at the end.
+      **`-L`**# Follow symbolic links (default `du` doesn't follow symlinks).
+      **`-d N`** or **`--max-depth=N`**# Limit directory depth to N levels.
+      **`--time`**# Show modification time of directories.
+      **`-b`**# Show disk usage in bytes.
+      **`-k`**# Show disk usage in kilobytes.
+      **`-m`**# Show disk usage in megabytes.
+      **`--apparent-size`**# Show the apparent size instead of disk usage.
+      **`-x`**# Skip directories on different file systems.
+      **`--exclude=PATTERN`**# Exclude files matching a pattern.
 
 ### Uptime
 
-`uptime`: Shows time in HH:MM:SS Unix time format in local time. If the time is not set, like in my instance, I get UTC 0🧐. Next, it shows how long the system has been running, the number of logged-in users, and finally, the load average over the last 1, 5, and 15 minutes.
+      `uptime`# Shows time in HH:MM:SS Unix time format in local time. If the time is not set, like in my instance, I get UTC 0🧐. Next, it shows how long the system has been running, the number of logged-in users, and finally, the load average over the last 1, 5, and 15 minutes.
 
 ### Last
 
-- **`last`**: Lists all users who have logged in from latest to oldest.
-- **`w`**: Lists current users and associated processes.
-- **`who`**: Shows who is currently logged on. The output `pts/0` stands for pseudo terminal, typically shown when logged in remotely. It will show either an IPv4 or IPv6 address and the login time. When I logged into my Ubuntu server via SSH, I was shown the IPv6 address. 🤯
-- **`whoami`**: Tells which user you are.
+      **`last`**# Lists all users who have logged in from latest to oldest.
+      **`w`**# Lists current users and associated processes.
+      **`who`**# Shows who is currently logged on. The output `pts/0` stands for pseudo terminal, typically shown when logged in remotely. It will show either an IPv4 or IPv6 address and the login time. When I logged into my Ubuntu server via SSH, I was shown the IPv6 address. 🤯
+      **`whoami`**# Tells which user you are.
 
 ### Checking environment
 
-- **`printenv`**: Shows a long list of environmental information.
-- **`printenv | grep -i home`**: Shows that I am in the home directory of `root`.
-- **`id`**: Shows a lot of info about UID, GID, and group memberships, including SELinux policies.
-- **`echo $SHELL`**: Displays the path of the shell environment variable, in my case, `/bin/bash`.
+      **`printenv`**# Shows a long list of environmental information.
+      **`printenv | grep -i home`**# Shows that I am in the home directory of `root`.
+      **`id`**# Shows a lot of info about UID, GID, and group memberships, including SELinux policies.
+      **`echo $SHELL`**# Displays the path of the shell environment variable, in my case, `/bin/bash`.
 
 ### Check running processes and services
 
-- **`ps -aux | more`**
-- **`ps -ef | more`**
-- **`ps -ef | wc -l`**
+      **`ps -aux | more`**
+      **`ps -ef | more`**
+      **`ps -ef | wc -l`**
 
 ### Check memory usage
 
 Run each of these commands individually for understanding:
 
-- **`free -m`**
-- **`free -m | egrep "Mem|Swap"`**
-- **`free -m | egrep "Mem|Swap" | awk '{print $1, $2, $3}'`**: What are the first, second, and third columns? How would I know the variable names?
-- **`free -t | egrep "Mem|Swap" | awk '{print $1 " Used Space = " ($3 / $2) * 100"%"}'`**: Similar question for these variables.
+      **`free -m`**
+      **`free -m | egrep "Mem|Swap"`**
+      **`free -m | egrep "Mem|Swap" | awk '{print $1, $2, $3}'`**: What are the first, second, and third columns? How would I know the variable names?
+      **`free -t | egrep "Mem|Swap" | awk '{print $1 " Used Space = " ($3 / $2) * 100"%"}'`**: Similar question for these variables.
 
 ### Testing out scripts
 
@@ -143,13 +145,13 @@ Run each of these commands individually for understanding:
 ##### A: Yes very basic 😅
 (Use ctrl + c to break out of these) 👍
 
-while true; do free -m; sleep 3; done
-Watch this output for a few and then break with ctrl + c
-Try to edit this to wait for 5 seconds
-Try to add a check for uptime and date each loop with a blank line between each and 10 second wait:
-while true; do date; uptime; free -m; echo “ “; sleep 10; done
-Since we can wrap anything inside of our while statements, let’s try adding something from earlier:
-While true; do free -t | egrep "Mem|Swap" | awk '{print $1 " Used Space = " ($3 / $2) * 100"%"}'; sleep 3; done 👍
+      while true; do free -m; sleep 3; done
+      Watch this output for a few and then break with ctrl + c
+      Try to edit this to wait for 5 seconds
+      Try to add a check for uptime and date each loop with a blank line between each and 10 second wait:
+      while true; do date; uptime; free -m; echo “ “; sleep 10; done
+      Since we can wrap anything inside of our while statements, let’s try adding something from earlier:
+      While true; do free -t | egrep "Mem|Swap" | awk '{print $1 " Used Space = " ($3 / $2) * 100"%"}'; sleep 3; done 👍
 
 **seq 1 10**
 
@@ -199,9 +201,7 @@ Discretionary Access Control –
 Security contexts (SELINUX) –
 SELINUX operating modes - 
 
-### Comparing AppArmor and SELinux for Container Separation
-
-https://www.redhat.com/sysadmin/apparmor-selinux-isolation
+### Comparing AppArmor and SELinux for Container Separation [^1]
 
 This article provides a brief comparison between **SELinux** and **AppArmor** regarding their effectiveness in securely separating containers.
 
@@ -292,9 +292,9 @@ From the given information, it seems likely that SELinux is denying access to th
 
 ---
 
-### Interactive Killercoda Lab 
+### Interactive Killercoda Lab [^2]
 
-https://killercoda.com/killer-shell-cks/scenario/apparmor
+
 
 #### I hope this was designed to be challenging, because I was challenged 😅
 Despite paying close attention, I somehow got confused by this challenge. I suppose the exercise was designed to force me to read through documentation, which was tough.
@@ -400,3 +400,7 @@ Youtube: https://www.youtube.com/@het_tanis8213
 Twitch: https://www.twitch.tv/het_tanis
 ProLUG Book: https://leanpub.com/theprolugbigbookoflabs
 KillerCoda: https://killercoda.com/het-tanis
+
+[^1]: Comparing Apparmor to Se Linux Isolation [Article](https://www.redhat.com/sysadmin/apparmor-selinux-isolation) Redhat.
+[^2]: Apparmor Interactive Lab [Site](https://killercoda.com/killer-shell-cks/scenario/apparmor) Killercoda.
+

@@ -1,6 +1,6 @@
 +++
 author = "Hugo Authors"
-title = "File Systems 💾"
+title = "Linux File Systems Overview 💾"
 date = "2024-08-25"
 description = "A huge note I made about Unix File System"
 tags = [

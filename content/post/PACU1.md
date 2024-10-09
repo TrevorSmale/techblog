@@ -15,7 +15,9 @@ series = ["Learning"]
 
 <!--more-->
 
-### Intro 👋
+# Command Line Interface Primer 👨🏻‍🏫
+
+## Intro 👋
 
 Well the ProLUG course is a go. We had a great meeting yesterday with a group of over 80 people. There was a slight snafu regarding thread size limits, so mid lesson we jumped into a presenter room. The session ran for a solid two hours wherein Scott went over command line interface essentials, networking essentials, VIM, pathing, redirects, Xargs, man pages and more. Although I have decent foundational knowledge of Linux, I know that there is always something to learn or better understand. I came away from this first class with a handful of things to review and practice for sure.
 

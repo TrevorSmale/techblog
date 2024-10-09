@@ -2,7 +2,7 @@
 author = "Hugo Authors"
 title = "ProLUG Admin Course Capstone Project Stage 2 🐧"
 date = "2024-09-27"
-description = "ProLUG Admin Course Unit 2"
+description = "ProLUG Admin Course Capstone Project Week 2"
 tags = [
   "Tech", "Linux", "Administration", "Engineering", "ProLUG Course", "CapstoneProject"
 ]
@@ -15,17 +15,33 @@ series = ["Learning"]
 
 <!--more-->
 
-### Intro 👋
+# Intro 👋
 
-I’ve made significant progress with the idea! Some changes have been implemented to improve ease of use, and the scope of the project has expanded to include building a full website.
+I’ve made significant progress with the Capstone Project, the project has expanded to include building a full website.
 
 ---
 
-### Technologies: The What and Why
+## Planning
 
-The website uses Go on the backend to serve templates. While I’ve used Go for template servers before, incorporating templated components similar to Vue.js is new to me. The certificate verification system serves as the core of the project.
+### Integration
 
-Initially, I chose SQLite as the database for storing key-value pairs. However, after considering usability, I switched to a simple CSV file, inspired by the built-in security features of Go’s HTTP server. The standard server is resistant to injection attacks, even if files are stored in the root directory. Using typical database Get/Post logic would complicate usability when entering and editing information. With CSV, Scott can easily edit entries and see changes reflected internally after pushing updates.
+It seemed silly to develop such a complex mechanism that would later require integration into an unknown larger structure.
+
+### No site to begin with
+
+After asking Scott about it, I learned that there has never been a ProLUG website and that he has been meaning to get something up.
+
+### Naturally
+
+It seemed like taking on the entire website project was a good course of action. That way I would be able to decide the layout, functionality and logic all while learning new tools and techniques.
+
+## Technology
+
+### Going with GO
+
+![Go Logo x Deal with it](https://trevorsmale.github.io/techblog/images/PACCP2/godeal.png)
+
+The website uses Go on the backend to serve templates and for back-end logic. While I’ve used Go for template servers before, incorporating templated components similar to Vue.js is new to me. 
 
 #### Here’s why Go excels for this type of project:
 
@@ -38,9 +54,27 @@ Initially, I chose SQLite as the database for storing key-value pairs. However, 
 - The project can be easily containerized or built into a single binary.
 - The Go module system (go.mod) ensures future stability through version control.
 
+### Storing Data
+
+Initially, I was looking at SQLite for storing key-value pairs. However, after considering usability, I switched to a simple CSV file.
+
+### Why CSV
+
+The stored data must be easily manipulated by the administrator in a human readable format. With CSV, Scott would be able to amend or edit certificate holders at a glance.
+
+### Operationally
+
+This method is both secure and integral
+
+### How is it secure?
+
+As stated before GO can securely transmit backend data without many common attacks. Additionally using GIT diff feature would ensure alterations are spotted should a compromise be made.
+
 ---
 
-### On to the Certificate Verifier
+## The Structure
+
+### Certificate Verifier
 
 #### Pulling from this test CSV file:
 

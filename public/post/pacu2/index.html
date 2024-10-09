@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
 
-<head>
+<head><script src="/techblog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=techblog/livereload" data-no-instant defer></script>
   
   <meta charset="utf-8">
 
@@ -21,9 +21,9 @@
 
 
 
-<meta name="generator" content="Hugo 0.134.3">
+<meta name="generator" content="Hugo 0.135.0">
   <title>ProLUG Admin Course Unit 2 🐧 | Tech Blog</title>
-  <link rel="canonical" href="https://trevorsmale.github.io/techblog/post/pacu2/">
+  <link rel="canonical" href="http://localhost:1313/techblog/post/pacu2/">
 
 
 
@@ -41,9 +41,9 @@
     
   
   
-      <link rel="stylesheet" href="/techblog/css/base.min.77ec62ba0b16c97f12070ff63174c3711ba36779d23242ea60e7e3f9fadea037.css" integrity="sha256-d&#43;xiugsWyX8SBw/2MXTDcRujZ3nSMkLqYOfj&#43;freoDc=" crossorigin="anonymous">
+    <link rel="stylesheet" href="/techblog/css/base.css">
 
-      <link rel="stylesheet" href="/techblog/css/syntax.min.065df42d2be658bb8e0720297aadf469355a5ffaf863b00e3cce0627dd106ca0.css" integrity="sha256-Bl30LSvmWLuOByApeq30aTVaX/r4Y7AOPM4GJ90QbKA=" crossorigin="anonymous">
+    <link rel="stylesheet" href="/techblog/css/syntax.css">
 
 
 
@@ -60,7 +60,7 @@
         
         
         <li class="Banner-item">
-          <a class="Banner-link u-clickable" href="/techblog/">About</a>
+          <a class="Banner-link u-clickable" href="/techblog/about/">About</a>
         </li>
       
         
@@ -106,7 +106,13 @@
     <time datetime="2024-09-27T00:00:00Z">September 27, 2024</time>
   
 </header>
-  <h2 id="intro">
+  <h1 id="essential-tools-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#essential-tools-">Essential Tools 🛠️</a>
+</h1>
+
+
+
+<h2 id="intro">
   <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#intro">Intro</a>
 </h2>
 <p>We have reached the second week of the PAC and things are getting more serious. Now that we are familiar with the flow of the course and expectations are set, the second lesson has started with some momentum. 💺</p>
@@ -125,17 +131,17 @@
   <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#-basic-cli-exercise">🧭 Basic CLI exercise:</a>
 </h4>
 <ul>
-<li>cd ~ : Change Directory to Home</li>
-<li>ls ~ : List</li>
-<li>mkdir evaluation : Make Directory called &rsquo;evaluation'</li>
-<li>mkdir evaluation/test/round6 : This fails why? We need to use the Parent option &lsquo;-p&rsquo;</li>
-<li>mkdir -p evaluation/test/round6 : Make parent directory with subdirectories</li>
-<li>cd evaluation : change directory to evaluation</li>
-<li>pwd : present/print working directory = /home/ts/evaluation</li>
-<li>touch testfile1 : create file name &rsquo;testfile1&rsquo; in current directory</li>
-<li>ls : list = test testfile1</li>
-<li>touch testfile{2..10} : Creates a numbered range of testfile</li>
-<li>touch .hfile .hfile2 .hfile3 : this creates three dot files which are not visible to a normal listing method, we must use list all (ls -a)</li>
+<li>cd ~ # Change Directory to Home</li>
+<li>ls ~ # List</li>
+<li>mkdir evaluation # Make Directory called &rsquo;evaluation'</li>
+<li>mkdir evaluation/test/round6 # This fails why? We need to use the Parent option &lsquo;-p&rsquo;</li>
+<li>mkdir -p evaluation/test/round6 # Make parent directory with subdirectories</li>
+<li>cd evaluation # change directory to evaluation</li>
+<li>pwd # present/print working directory = /home/ts/evaluation</li>
+<li>touch testfile1 # create file name &rsquo;testfile1&rsquo; in current directory</li>
+<li>ls # list = test testfile1</li>
+<li>touch testfile{2..10} # Creates a numbered range of testfile
+touch .hfile .hfile2 .hfile3 # this creates three dot files which are not visible to a normal listing method, we must use list all (ls -a)</li>
 </ul>
 
 
@@ -146,9 +152,9 @@
 <p>I am running Rocky Linux 9 on a local Proxmox container for this course.</p>
 <ul>
 <li>hostname = localhost.localdomain</li>
-<li>uname : system info command which stands for Unix Name</li>
-<li>uname -a : shows a comprehensive list of system info Kernal name: Hostname, Kernel release, Kernel version, Machine hardware name, Processor type, Hardware platform, Operating system.</li>
-<li>uname -r : the -r option stands for release and shows the kernel release version.</li>
+<li>uname # system info command which stands for Unix Name</li>
+<li>uname -a # shows a comprehensive list of system info Kernal name# Hostname, Kernel release, Kernel version, Machine hardware name, Processor type, Hardware platform, Operating system.</li>
+<li>uname -r # the -r option stands for release and shows the kernel release version.</li>
 </ul>
 
 
@@ -157,9 +163,9 @@
   <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#-checking-the-amount-of-rammemory">🧠 Checking the amount of RAM/Memory</a>
 </h4>
 <ul>
-<li><em>sudo</em> cat/proc/meminfo : concatenate process memory information</li>
-<li>free : displays total, used, free, shared, buffer, and available memory (RAM and SWAP)</li>
-<li>free -m : megabyte display option for the free command</li>
+<li><em>sudo</em> cat/proc/meminfo # concatenate process memory information</li>
+<li>free # displays total, used, free, shared, buffer, and available memory (RAM and SWAP)</li>
+<li>free -m # megabyte display option for the free command</li>
 </ul>
 
 
@@ -168,8 +174,8 @@
   <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#-checking-the-number-of-processors-and-processor-info">👨🏻‍💻 Checking the number of processors and processor info</a>
 </h4>
 <ul>
-<li>cat/proc/cpuinfo : concatenate process central processor unit information = 4 processors on my lab.</li>
-<li>cat /proc/cpuinfo | grep proc | wc -l : what we are doing here is piping the output of the previous command to grep which is filtering lines starting with proc, then we pipe through to word count with line option to cleverly count the number of processors, the result is 4</li>
+<li>cat/proc/cpuinfo # concatenate process central processor unit information = 4 processors on my lab.</li>
+<li>cat /proc/cpuinfo | grep proc | wc -l # what we are doing here is piping the output of the previous command to grep which is filtering lines starting with proc, then we pipe through to word count with line option to cleverly count the number of processors, the result is 4</li>
 </ul>
 
 
@@ -178,9 +184,9 @@
   <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#-checking-storage-usage-and-mounted-filesystems">💾 Checking storage usage and mounted filesystems</a>
 </h4>
 <ul>
-<li>df : the disk free command</li>
-<li>df -h : we are adding the human readable option to df in order to more easily ascertain what is going on.</li>
-<li>df -h | grep -i var :</li>
+<li>df # the disk free command</li>
+<li>df -h # we are adding the human readable option to df in order to more easily ascertain what is going on.</li>
+<li>df -h | grep -i var #</li>
 </ul>
 
 
@@ -196,40 +202,40 @@
 </h5>
 <ul>
 <li>
-<p><strong>-t</strong> : Specify the filesystem type (e.g., <code>ext4</code>, <code>xfs</code>, <code>vfat</code>).</p>
+<p><strong>-t</strong> # Specify the filesystem type (e.g., <code>ext4</code>, <code>xfs</code>, <code>vfat</code>).</p>
 </li>
 <li>
-<p><strong>-o</strong> : Specify options in a comma-separated list (e.g., <code>rw</code>, <code>ro</code>, <code>noexec</code>).</p>
+<p><strong>-o</strong> # Specify options in a comma-separated list (e.g., <code>rw</code>, <code>ro</code>, <code>noexec</code>).</p>
 </li>
 <li>
-<p><strong>-a</strong> : Mount all filesystems defined in <code>/etc/fstab</code>.</p>
+<p><strong>-a</strong> # Mount all filesystems defined in <code>/etc/fstab</code>.</p>
 </li>
 <li>
-<p><strong>-r</strong> : Mount the filesystem as read-only.</p>
+<p><strong>-r</strong> # Mount the filesystem as read-only.</p>
 </li>
 <li>
-<p><strong>-w</strong> : Mount the filesystem as read-write.</p>
+<p><strong>-w</strong> # Mount the filesystem as read-write.</p>
 </li>
 <li>
-<p><strong>-v</strong> : Verbose mode, provides more detailed output.</p>
+<p><strong>-v</strong> # Verbose mode, provides more detailed output.</p>
 </li>
 <li>
-<p><strong>&ndash;bind</strong> : Bind mount, remount part of the filesystem elsewhere.</p>
+<p><strong>&ndash;bind</strong> # Bind mount, remount part of the filesystem elsewhere.</p>
 </li>
 <li>
-<p><strong>&ndash;make-shared</strong> : Make a mounted file system shared (for propagating mount events).</p>
+<p><strong>&ndash;make-shared</strong> # Make a mounted file system shared (for propagating mount events).</p>
 </li>
 <li>
-<p><strong>-L</strong> : Mount by filesystem label.</p>
+<p><strong>-L</strong> # Mount by filesystem label.</p>
 </li>
 <li>
-<p><strong>-U</strong> : Mount by UUID.</p>
+<p><strong>-U</strong> # Mount by UUID.</p>
 </li>
 <li>
-<p>mount | grep –i home: lists all mounts starting with the case sensitive phrase home (I was not getting any result 🤔)</p>
+<p>mount | grep –i home# lists all mounts starting with the case sensitive phrase home (I was not getting any result 🤔)</p>
 </li>
 <li>
-<p>mount | grep -i sd: this lists all SCSK disks, normally named sda, sdb, sdc etc&hellip;</p>
+<p>mount | grep -i sd# this lists all SCSK disks, normally named sda, sdb, sdc etc&hellip;</p>
 </li>
 </ul>
 
@@ -239,9 +245,9 @@
   <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#trying-out-alternative-commands">Trying out alternative commands</a>
 </h5>
 <ul>
-<li><strong>findmt</strong>: find mount</li>
-<li><strong>cat /proc/mounts</strong>: concatenate in-process mounts</li>
-<li><strong>lsblk</strong>: list block devices</li>
+<li><strong>findmt</strong># find mount</li>
+<li><strong>cat /proc/mounts</strong># concatenate in-process mounts</li>
+<li><strong>lsblk</strong># list block devices</li>
 </ul>
 
 
@@ -250,8 +256,8 @@
   <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#i-was-unaware-that-commands-could-be-chained-together-with-a-semicolon">I was unaware that commands could be chained together with a semicolon</a>
 </h5>
 <ul>
-<li><code>cd ~; pwd; df -h</code>: change directory to home, then print working directory, then list disk usage in a human-readable format 🧐.</li>
-<li><code>du -sh</code>: disk usage summary in a human-readable format.</li>
+<li><code>cd ~; pwd; df -h</code># change directory to home, then print working directory, then list disk usage in a human-readable format 🧐.</li>
+<li><code>du -sh</code># disk usage summary in a human-readable format.</li>
 </ul>
 
 
@@ -259,63 +265,60 @@
 <h5 id="du-command-options">
   <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#du-command-options"><code>du</code> Command Options</a>
 </h5>
-<ul>
-<li><strong><code>-a</code></strong>: Display disk usage for all files, not just directories.</li>
-<li><strong><code>-h</code></strong>: Show disk usage in human-readable format (e.g., KB, MB, GB).</li>
-<li><strong><code>-s</code></strong>: Show summary of total disk usage for a directory.</li>
-<li><strong><code>-c</code></strong>: Produce a grand total at the end.</li>
-<li><strong><code>-L</code></strong>: Follow symbolic links (default <code>du</code> doesn&rsquo;t follow symlinks).</li>
-<li><strong><code>-d N</code></strong> or <strong><code>--max-depth=N</code></strong>: Limit directory depth to N levels.</li>
-<li><strong><code>--time</code></strong>: Show modification time of directories.</li>
-<li><strong><code>-b</code></strong>: Show disk usage in bytes.</li>
-<li><strong><code>-k</code></strong>: Show disk usage in kilobytes.</li>
-<li><strong><code>-m</code></strong>: Show disk usage in megabytes.</li>
-<li><strong><code>--apparent-size</code></strong>: Show the apparent size instead of disk usage.</li>
-<li><strong><code>-x</code></strong>: Skip directories on different file systems.</li>
-<li><strong><code>--exclude=PATTERN</code></strong>: Exclude files matching a pattern.</li>
-</ul>
+<pre><code>  **`-a`**# Display disk usage for all files, not just directories.
+  **`-h`**# Show disk usage in human-readable format (e.g., KB, MB, GB).
+  **`-s`**# Show summary of total disk usage for a directory.
+  **`-c`**# Produce a grand total at the end.
+  **`-L`**# Follow symbolic links (default `du` doesn't follow symlinks).
+  **`-d N`** or **`--max-depth=N`**# Limit directory depth to N levels.
+  **`--time`**# Show modification time of directories.
+  **`-b`**# Show disk usage in bytes.
+  **`-k`**# Show disk usage in kilobytes.
+  **`-m`**# Show disk usage in megabytes.
+  **`--apparent-size`**# Show the apparent size instead of disk usage.
+  **`-x`**# Skip directories on different file systems.
+  **`--exclude=PATTERN`**# Exclude files matching a pattern.
+</code></pre>
 
 
 
 <h3 id="uptime">
   <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#uptime">Uptime</a>
 </h3>
-<p><code>uptime</code>: Shows time in HH:MM:SS Unix time format in local time. If the time is not set, like in my instance, I get UTC 0🧐. Next, it shows how long the system has been running, the number of logged-in users, and finally, the load average over the last 1, 5, and 15 minutes.</p>
+<pre><code>  `uptime`# Shows time in HH:MM:SS Unix time format in local time. If the time is not set, like in my instance, I get UTC 0🧐. Next, it shows how long the system has been running, the number of logged-in users, and finally, the load average over the last 1, 5, and 15 minutes.
+</code></pre>
 
 
 
 <h3 id="last">
   <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#last">Last</a>
 </h3>
-<ul>
-<li><strong><code>last</code></strong>: Lists all users who have logged in from latest to oldest.</li>
-<li><strong><code>w</code></strong>: Lists current users and associated processes.</li>
-<li><strong><code>who</code></strong>: Shows who is currently logged on. The output <code>pts/0</code> stands for pseudo terminal, typically shown when logged in remotely. It will show either an IPv4 or IPv6 address and the login time. When I logged into my Ubuntu server via SSH, I was shown the IPv6 address. 🤯</li>
-<li><strong><code>whoami</code></strong>: Tells which user you are.</li>
-</ul>
+<pre><code>  **`last`**# Lists all users who have logged in from latest to oldest.
+  **`w`**# Lists current users and associated processes.
+  **`who`**# Shows who is currently logged on. The output `pts/0` stands for pseudo terminal, typically shown when logged in remotely. It will show either an IPv4 or IPv6 address and the login time. When I logged into my Ubuntu server via SSH, I was shown the IPv6 address. 🤯
+  **`whoami`**# Tells which user you are.
+</code></pre>
 
 
 
 <h3 id="checking-environment">
   <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#checking-environment">Checking environment</a>
 </h3>
-<ul>
-<li><strong><code>printenv</code></strong>: Shows a long list of environmental information.</li>
-<li><strong><code>printenv | grep -i home</code></strong>: Shows that I am in the home directory of <code>root</code>.</li>
-<li><strong><code>id</code></strong>: Shows a lot of info about UID, GID, and group memberships, including SELinux policies.</li>
-<li><strong><code>echo $SHELL</code></strong>: Displays the path of the shell environment variable, in my case, <code>/bin/bash</code>.</li>
-</ul>
+<pre><code>  **`printenv`**# Shows a long list of environmental information.
+  **`printenv | grep -i home`**# Shows that I am in the home directory of `root`.
+  **`id`**# Shows a lot of info about UID, GID, and group memberships, including SELinux policies.
+  **`echo $SHELL`**# Displays the path of the shell environment variable, in my case, `/bin/bash`.
+</code></pre>
 
 
 
 <h3 id="check-running-processes-and-services">
   <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#check-running-processes-and-services">Check running processes and services</a>
 </h3>
-<ul>
-<li><strong><code>ps -aux | more</code></strong></li>
-<li><strong><code>ps -ef | more</code></strong></li>
-<li><strong><code>ps -ef | wc -l</code></strong></li>
-</ul>
+<pre><code>  **`ps -aux | more`**
+  **`ps -ef | more`**
+  **`ps -ef | wc -l`**
+</code></pre>
 
 
 
@@ -323,12 +326,11 @@
   <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#check-memory-usage">Check memory usage</a>
 </h3>
 <p>Run each of these commands individually for understanding:</p>
-<ul>
-<li><strong><code>free -m</code></strong></li>
-<li><strong><code>free -m | egrep &quot;Mem|Swap&quot;</code></strong></li>
-<li><strong><code>free -m | egrep &quot;Mem|Swap&quot; | awk '{print $1, $2, $3}'</code></strong>: What are the first, second, and third columns? How would I know the variable names?</li>
-<li><strong><code>free -t | egrep &quot;Mem|Swap&quot; | awk '{print $1 &quot; Used Space = &quot; ($3 / $2) * 100&quot;%&quot;}'</code></strong>: Similar question for these variables.</li>
-</ul>
+<pre><code>  **`free -m`**
+  **`free -m | egrep &quot;Mem|Swap&quot;`**
+  **`free -m | egrep &quot;Mem|Swap&quot; | awk '{print $1, $2, $3}'`**: What are the first, second, and third columns? How would I know the variable names?
+  **`free -t | egrep &quot;Mem|Swap&quot; | awk '{print $1 &quot; Used Space = &quot; ($3 / $2) * 100&quot;%&quot;}'`**: Similar question for these variables.
+</code></pre>
 
 
 
@@ -348,13 +350,14 @@
   <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#a-yes-very-basic-">A: Yes very basic 😅</a>
 </h5>
 <p>(Use ctrl + c to break out of these) 👍</p>
-<p>while true; do free -m; sleep 3; done
-Watch this output for a few and then break with ctrl + c
-Try to edit this to wait for 5 seconds
-Try to add a check for uptime and date each loop with a blank line between each and 10 second wait:
-while true; do date; uptime; free -m; echo “ “; sleep 10; done
-Since we can wrap anything inside of our while statements, let’s try adding something from earlier:
-While true; do free -t | egrep &ldquo;Mem|Swap&rdquo; | awk &lsquo;{print $1 &quot; Used Space = &quot; ($3 / $2) * 100&quot;%&quot;}&rsquo;; sleep 3; done 👍</p>
+<pre><code>  while true; do free -m; sleep 3; done
+  Watch this output for a few and then break with ctrl + c
+  Try to edit this to wait for 5 seconds
+  Try to add a check for uptime and date each loop with a blank line between each and 10 second wait:
+  while true; do date; uptime; free -m; echo “ “; sleep 10; done
+  Since we can wrap anything inside of our while statements, let’s try adding something from earlier:
+  While true; do free -t | egrep &quot;Mem|Swap&quot; | awk '{print $1 &quot; Used Space = &quot; ($3 / $2) * 100&quot;%&quot;}'; sleep 3; done 👍
+</code></pre>
 <p><strong>seq 1 10</strong></p>
 
 
@@ -443,10 +446,9 @@ SELINUX operating modes -</p>
 
 
 
-<h3 id="comparing-apparmor-and-selinux-for-container-separation">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#comparing-apparmor-and-selinux-for-container-separation">Comparing AppArmor and SELinux for Container Separation</a>
+<h3 id="comparing-apparmor-and-selinux-for-container-separation-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#comparing-apparmor-and-selinux-for-container-separation-1">Comparing AppArmor and SELinux for Container Separation <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></a>
 </h3>
-<p><a href="https://www.redhat.com/sysadmin/apparmor-selinux-isolation">https://www.redhat.com/sysadmin/apparmor-selinux-isolation</a></p>
 <p>This article provides a brief comparison between <strong>SELinux</strong> and <strong>AppArmor</strong> regarding their effectiveness in securely separating containers.</p>
 <p>After reading, it became clear that <strong>AppArmor</strong> is not an ideal choice for <strong>DevSecOps</strong> when it comes to securely separating containers. This is due to <strong>AppArmor&rsquo;s lack of support for Multi-Category Security (MCS)</strong>. MCS allows for a hierarchy of controls, granting varying levels of access.</p>
 <p>Therefore, if you&rsquo;re looking to securely separate containers without relying on <strong>Virtual Machines</strong>—which can be costly—<strong>SELinux</strong> emerges as the better option for such tasks.</p>
@@ -546,10 +548,10 @@ SELINUX operating modes -</p>
 </h3>
 <p>A few weeks ago, I learned how to create uninitialized templates with Proxmox, meaning the SSH keys are generated for each copy of the template. This is done with cloud init.</p>
 <p>So today I created a clone of my template specifically for getting hands on experience with SElinux</p>
-<p><img src="/images/PACU2/prox1.png" alt="ProLUG Homepage"></p>
+<p><img src="https://trevorsmale.github.io/techblog/images/PACU2/prox1.png" alt="ProLUG Homepage"></p>
 <p>I opened the <strong>/etc/selinux/config</strong> and set se to enforce. I then ran <strong>sestatus</strong> to confirm selinux had been activated.
 I created a new user policy for myself with <strong>semanage user -a -R &lsquo;staff_r webadm_r&rsquo; Treasure</strong> here is the result after running <strong>semanage user -l</strong></p>
-<p><img src="/images/PACU2/selinux1.png" alt="ProLUG Homepage"></p>
+<p><img src="https://trevorsmale.github.io/techblog/images/PACU2/selinux1.png" alt="ProLUG Homepage"></p>
 
 
 
@@ -583,10 +585,9 @@ If the current role restricts access, I would assign the user to an SELinux role
 
 
 
-<h3 id="interactive-killercoda-lab">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#interactive-killercoda-lab">Interactive Killercoda Lab</a>
+<h3 id="interactive-killercoda-lab-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#interactive-killercoda-lab-2">Interactive Killercoda Lab <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></a>
 </h3>
-<p><a href="https://killercoda.com/killer-shell-cks/scenario/apparmor">https://killercoda.com/killer-shell-cks/scenario/apparmor</a></p>
 
 
 
@@ -806,6 +807,17 @@ Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.co
 Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
 ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
 KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Comparing Apparmor to Se Linux Isolation <a href="https://www.redhat.com/sysadmin/apparmor-selinux-isolation">Article</a> Redhat.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>Apparmor Interactive Lab <a href="https://killercoda.com/killer-shell-cks/scenario/apparmor">Site</a> Killercoda.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
   
 
   
