@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <meta name="description" content="The Process of creating a personal utility for Linux using GO and Cobra CLI">
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.135.0">
+  <title>GO CLI Utility | Tech Blog</title>
+  <link rel="canonical" href="https://trevorsmale.github.io/techblog/post/goclisysutil/">
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+      <link rel="stylesheet" href="/techblog/css/base.min.77ec62ba0b16c97f12070ff63174c3711ba36779d23242ea60e7e3f9fadea037.css" integrity="sha256-d&#43;xiugsWyX8SBw/2MXTDcRujZ3nSMkLqYOfj&#43;freoDc=" crossorigin="anonymous">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <a class="Banner-link u-clickable" href="/techblog/">Tech Blog</a>
+      </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/about/">About</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/post/">Posts</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/tags/">Tags</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/categories/">Categories</a>
+        </li>
+      
+        
+        
+          
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/feed.xml">RSS</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/" rel="bookmark">GO CLI Utility</a>
+  </h1>
+  
+    <time datetime="2024-10-15T00:00:00Z">October 15, 2024</time>
+  
+</header>
+  <h1 id="making-a-utility-for-linux-">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#making-a-utility-for-linux-">Making a Utility for Linux 🚀</a>
+</h1>
+<p>Recently, I was chatting with fellow enthusiasts in the ProLUG group about creating system utilities with Go.</p>
+<p>Between learning about it on my own time and getting input from others, I realized there are so many compelling reasons for using Go as a utility language. 🛠️</p>
+<p>Currently, the idea isn&rsquo;t as prevalent as Python or Bash, but it’s gaining traction. This makes sense since Go was designed with modern, interconnected systems in mind.</p>
+
+
+
+<h2 id="what-is-a-utility-">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#what-is-a-utility-">What is a Utility? 🤔</a>
+</h2>
+<p>A system utility streamlines repetitive tasks by offering custom commands tailored to your workflow, boosting efficiency for system administrators and engineers. Work smarter, not harder. 💡</p>
+
+
+
+<h2 id="cli-tool-">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#cli-tool-">CLI Tool 🖥️</a>
+</h2>
+<p>Go offers a package called Cobra CLI <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>, which enables the creation of command-line interfaces that take input from the terminal and execute predetermined logic. I’m putting this simply in case you’re unfamiliar with how programs work 😆.</p>
+<p>The CLI is the simplest form of a computer program and is perfect for Linux system folks.</p>
+
+
+
+<h2 id="core-idea-">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#core-idea-">Core Idea 🎯</a>
+</h2>
+<p>The core idea of this article is to explain how a Go program can act as a personalized utility that lives on your system or can be deployed across many. Go compiles code into a binary—native computer language. Once built, the binary runs reliably without failure, assuming the program logic is solid. This makes Go ideal for utilities that are called repeatedly to perform simple tasks.</p>
+
+
+
+<h2 id="automate-everything-">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#automate-everything-">Automate Everything 🤖</a>
+</h2>
+<p>Managing systems involves a lot of repetitive tasks, and the goal of any sysadmin or engineer is to automate them. Tools like Ansible, Python, and Bash are already well-known for automation. However, there are specific reasons to use Go, which I’ll explore further in a future article titled <em>&ldquo;Why Go?&rdquo;</em> where I’ll break down why it belongs in your quiver of tools 🏹.</p>
+<hr>
+
+
+
+<h3 id="cli-programming-portion-">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#cli-programming-portion-">CLI Programming Portion ⚙️</a>
+</h3>
+
+
+
+<h4 id="setup">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#setup">Setup</a>
+</h4>
+<ol>
+<li><strong>Install</strong> Go and Cobra CLI (if not already installed).</li>
+<li><strong>Initialize</strong> a new Go project with Cobra CLI.</li>
+</ol>
+
+
+
+<h4 id="cli-logic">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#cli-logic">CLI Logic</a>
+</h4>
+<ol>
+<li><strong>Add commands and flags</strong> to the Cobra application.</li>
+<li><strong>Implement utility functions</strong>, such as disk usage checks or file listings.</li>
+</ol>
+
+
+
+<h3 id="compilation-and-installation-">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#compilation-and-installation-">Compilation and Installation 🏗️</a>
+</h3>
+
+
+
+<h4 id="compile">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#compile">Compile</a>
+</h4>
+<ol>
+<li><strong>Build</strong> the Go project into a single x86 Linux binary.</li>
+<li><strong>Test</strong> the binary locally to confirm functionality.</li>
+</ol>
+
+
+
+<h4 id="install">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#install">Install</a>
+</h4>
+<ol>
+<li><strong>Move</strong> the binary to <code>/usr/local/bin</code> for global access.</li>
+<li><strong>Set permissions</strong> on the binary to allow execution.</li>
+</ol>
+
+
+
+<h4 id="add-to-path">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#add-to-path">Add to PATH</a>
+</h4>
+<ol>
+<li><strong>Check</strong> if <code>/usr/local/bin</code> is in your PATH.</li>
+<li>If not, <strong>add it</strong> to your <code>.bashrc</code> or <code>.bash_profile</code>.</li>
+</ol>
+
+
+
+<h3 id="testing-portion-">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#testing-portion-">Testing Portion 🧪</a>
+</h3>
+<ol>
+<li><strong>Run</strong> the utility from any location to confirm it works.</li>
+<li>Optionally, <strong>add help documentation</strong> or more commands to the CLI.</li>
+</ol>
+
+
+
+<h3 id="packaging-">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#packaging-">Packaging 📦</a>
+</h3>
+<ol>
+<li><strong>Provide installation instructions</strong> if you plan to share it.</li>
+<li><strong>Upload</strong> the binary or source code to GitHub for distribution.</li>
+</ol>
+<hr>
+
+
+
+<h2 id="learning-resources">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#learning-resources">Learning Resources</a>
+</h2>
+<p>Ok this was just a simple outline you say. Yes, I am trying to convey information simply for sanities sake, this is how I process things anyway.</p>
+<p>In order to make your own utility you will have to go off on your own learning adventure. Below I am giving you some resources for getting started.</p>
+
+
+
+<h3 id="getting-up-and-running-with-go">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#getting-up-and-running-with-go">Getting up and running with GO</a>
+</h3>
+
+
+
+<h4 id="brief-intro-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#brief-intro-2">Brief Intro <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></a>
+</h4>
+
+
+
+<h4 id="for-the-impatient-3">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#for-the-impatient-3">For the impatient <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></a>
+</h4>
+<p>There are many ways to get this done. For the clever and impatient, I suggest finding a pre-made CLI application that you can deconstruct. <sup id="fnref1:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
+
+
+
+<h4 id="for-the-patient-4">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#for-the-patient-4">For the Patient <sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup></a>
+</h4>
+<p>For those who like to build a foundation of understanding, I suggest watching a lecture followed by a tutorial and finally doing the project. <sup id="fnref1:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup></p>
+
+
+
+<h2 id="conclusion">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#conclusion">Conclusion</a>
+</h2>
+<p>I try to keep things simple and succinct, so this is where I ride off into the sunset. Good luck and happy learning.</p>
+<hr>
+
+
+
+<h2 id="footnotes-">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#footnotes-">Footnotes ⛓️</a>
+</h2>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Cobra CLI Source Code <a href="https://github.com/spf13/cobra">GitHub Repository</a> User: spf13, Current.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>GO in 100 Seconds <a href="https://www.youtube.com/watch?v=446E-r0rXHI">Youtube Video</a> Channel: Fireship, 2021.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>Cobra CLI Samples <a href="https://github.com/Adron/cobra-cli-samples">GitHub Repository</a> User: Adron, 2022.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a>&#160;<a href="#fnref1:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4">
+<p>Golang Tutorial Series Playlist <a href="https://www.youtube.com/watch?v=etSN4X_fCnM&amp;list=PL4cUxeGkcC9gC88BEo9czgyS72A3doDeM">Youtube Channel</a> Channel: Net Ninja, 2021.&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a>&#160;<a href="#fnref1:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+  
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/knowledge-exchange/" rel="tag">Knowledge Exchange</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/go/" rel="tag">GO</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/notes/" rel="tag">Notes</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/research/" rel="tag">Research</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+  
+  
+
+
+
+      </div>
+    </div>
+  </main>
+  
+</body>
+
+</html>

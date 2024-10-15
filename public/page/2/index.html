@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
 
-<head><script src="/techblog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=techblog/livereload" data-no-instant defer></script>
+<head>
   
 
   
@@ -32,7 +32,7 @@
 
 <meta name="generator" content="Hugo 0.135.0">
   <title>Tech Blog</title>
-  <link rel="canonical" href="http://localhost:1313/techblog/">
+  <link rel="canonical" href="https://trevorsmale.github.io/techblog/">
 
 
 
@@ -54,11 +54,8 @@
     
     
     
-    
-    
-  
-    
-    
+      
+      
     
     
     
@@ -66,11 +63,8 @@
     
     
     
-    
-    
-  
-    
-    
+      
+      
     
     
     
@@ -78,17 +72,53 @@
     
     
     
-    
-    
-  
-    
-    
+      
+      
     
     
     
   
     
     
+    
+      
+      
+    
+    
+    
+  
+    
+    
+    
+      
+      
+    
+    
+    
+  
+    
+    
+    
+      
+      
+    
+    
+    
+  
+    
+    
+    
+      
+      
+    
+    
+    
+  
+    
+    
+    
+      
+      
     
     
     
@@ -96,7 +126,9 @@
 
 
   
-    <link rel="stylesheet" href="/techblog/css/base.css">
+      <link rel="stylesheet" href="/techblog/css/base.min.77ec62ba0b16c97f12070ff63174c3711ba36779d23242ea60e7e3f9fadea037.css" integrity="sha256-d&#43;xiugsWyX8SBw/2MXTDcRujZ3nSMkLqYOfj&#43;freoDc=" crossorigin="anonymous">
+
+      <link rel="stylesheet" href="/techblog/css/syntax.min.065df42d2be658bb8e0720297aadf469355a5ffaf863b00e3cce0627dd106ca0.css" integrity="sha256-Bl30LSvmWLuOByApeq30aTVaX/r4Y7AOPM4GJ90QbKA=" crossorigin="anonymous">
 
 
 
@@ -157,7 +189,7 @@
     <a class="Heading-link u-clickable" href="/techblog/" rel="bookmark">Tech Blog</a>
   </h1>
   
-    <time datetime="2024-10-06T00:00:00Z">October 6, 2024</time>
+    <time datetime="2024-10-15T00:00:00Z">October 15, 2024</time>
   
 </header>
   
@@ -165,6 +197,170 @@
   
 
   
+  
+    <article>
+      <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/vt/" rel="bookmark">Actually completing VimTutor</a>
+  </h1>
+  
+    <time datetime="2024-09-10T00:00:00Z">September 10, 2024</time>
+  
+</header>
+      
+        <h3 id="intro">
+  <a class="Heading-link u-clickable" href="/techblog/post/vt/#intro">Intro</a>
+</h3>
+<p>Vim is a program created by the late Bram Moolenaar as an improvement to an older program called Vi. It is a modal text editor, meaning there are different modes of usage — I&rsquo;ll get into that later. While strongly associated with UNIX systems, Vim is available on other platforms as well. It is used to efficiently create and modify files from a simple terminal, requiring very limited system resources. Vim is a foundational tool for mastering Linux, allowing one to navigate the directory structure and edit configuration files like no other. Furthermore, Vi and/or Vim come bundled with most minimal Linux distributions.</p>
+
+
+
+<h3 id="vim-tutor">
+  <a class="Heading-link u-clickable" href="/techblog/post/vt/#vim-tutor">Vim Tutor</a>
+</h3>
+<p>Vim Tutor is an in-built interactive tutorial that comes pre-packaged with Vim, designed to bring novices up to speed with the various modes and functions of this nimble tool. I had hopped into Vim Tutor before but never felt the need to complete it, as it seemed long and complex. Recently, my teacher and mentor Scott C. mentioned that this would be one of the first lessons we would undertake as part of the ProLUG system administration course. Being a dedicated student, I decided to give it my full attention — and I’m glad I did.</p>
+
+
+
+<h3 id="the-halfway-point">
+  <a class="Heading-link u-clickable" href="/techblog/post/vt/#the-halfway-point">The Halfway Point</a>
+</h3>
+<p>In previous attempts, I had reached the halfway point and felt confident I had gained enough information to edit files. Some functions are unintuitive at first, like using the <code>hjkl</code> keys for navigation instead of arrow keys. There are many jokes about the overload people feel when they first encounter Vim&rsquo;s conventions. Jokes like never being able to exit the program or forgetting one&rsquo;s own name after memorizing commands are common. Mastering Vim requires memorizing commands until they become second nature, which simply takes time. This is why I hadn&rsquo;t completed Vim Tutor before — there’s only so much one can absorb before needing a break. However, this time, I was able to make it through to the end, pleasantly surprised by the new techniques I had learned.</p>
+
+
+
+<h3 id="understanding-the-modes">
+  <a class="Heading-link u-clickable" href="/techblog/post/vt/#understanding-the-modes">Understanding the Modes</a>
+</h3>
+<p>Modes are what make Vim a powerful tool. There are three modes in Vim: Normal, Insert, and Visual.</p>
+<ul>
+<li>
+<p><strong>Normal mode</strong> is the default mode, where you navigate a document using motions. It protects the document from accidental modifications and allows for a broader range of single-key commands.</p>
+</li>
+<li>
+<p><strong>Insert mode</strong> is where characters or strings are added — fairly self-explanatory.</p>
+</li>
+<li>
+<p><strong>Visual mode</strong> allows you to make selections, much like clicking and dragging with a mouse to highlight text.</p>
+</li>
+</ul>
+<p>Although I had known about these modes, it once seemed improbable that I would ever memorize them well enough to use them reflexively. However, with practice, I have done just that. Combining motions and commands can lead to huge efficiency gains. For example, you can navigate to a specific line, delete the first three letters, and paste something at the end of the line with just a few keystrokes.</p>
+
+
+
+<h3 id="what-i-recently-picked-up">
+  <a class="Heading-link u-clickable" href="/techblog/post/vt/#what-i-recently-picked-up">What I Recently Picked Up</a>
+</h3>
+
+
+
+<h4 id="stringing-commands">
+  <a class="Heading-link u-clickable" href="/techblog/post/vt/#stringing-commands">Stringing Commands</a>
+</h4>
+<p>What did I actually learn that I will immediately employ? Well, I now have a solid grasp of most single-key commands, so I’ll start stringing commands and motions together, such as deleting three words and appending text to the end of a line.</p>
+
+
+
+<h4 id="global-search-and-replace">
+  <a class="Heading-link u-clickable" href="/techblog/post/vt/#global-search-and-replace">Global Search and Replace</a>
+</h4>
+<p>Additionally, I had known about global search and replace, but I hadn’t really used it before since it’s only useful for certain file types.</p>
+
+
+
+<h4 id="buffers-and-deleted-lines">
+  <a class="Heading-link u-clickable" href="/techblog/post/vt/#buffers-and-deleted-lines">Buffers and Deleted Lines</a>
+</h4>
+<p>I also learned that Vim’s buffer, much like a clipboard, stores strings for later use — and deleted lines are stored there as well. I’ll be more mindful of using the buffer going forward.</p>
+
+
+
+<h4 id="running-shell-commands">
+  <a class="Heading-link u-clickable" href="/techblog/post/vt/#running-shell-commands">Running Shell Commands</a>
+</h4>
+<p>Lastly, running shell commands from within Vim seemed inefficient to me before, since I could easily jump in and out of files. However, I now understand that it can speed things up.</p>
+
+
+
+<h3 id="in-summary">
+  <a class="Heading-link u-clickable" href="/techblog/post/vt/#in-summary">In Summary</a>
+</h3>
+<p>Vim isn’t something you just pick up on a whim. It’s more like a martial art, where you practice movements until they become second nature. In a world dominated by graphical user interfaces, Vim can seem like a waste of time and effort. Yet, when you’re working under the hood of an operating system, especially on bare-bones UNIX servers, it becomes clear that if everything is a file and many configurations must be made, Vim is the right tool for the job.</p>
+      
+      
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/projects/" rel="tag">Projects</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/certification/" rel="tag">Certification</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/study-technique/" rel="tag">Study Technique</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/vim/" rel="tag">Vim</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/prolug/" rel="tag">ProLUG</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+    </article>
+    
+      <div class="Divider"></div>
+    
   
     <article>
       <header class="Heading">

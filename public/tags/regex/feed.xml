@@ -10,254 +10,666 @@
     <lastBuildDate>Thu, 03 Oct 2024 00:00:00 +0000</lastBuildDate>
     <atom:link rel="self" href="http://localhost:1313/techblog/tags/regex/feed.xml" type="application/rss+xml" />
     <item>
-      <title>Life of a Linux System Administrator 🐧</title>
-      <link>http://localhost:1313/techblog/post/sysadminlife/</link>
-      <pubDate>Sun, 06 Oct 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/techblog/post/sysadminlife/</guid>
-      <description>&lt;h1 id=&#34;intro-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/sysadminlife/#intro-&#34;&gt;Intro 👋&lt;/a&gt;
+      <title>Signals</title>
+      <link>http://localhost:1313/techblog/post/signals/</link>
+      <pubDate>Sun, 13 Oct 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/techblog/post/signals/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://trevorsmale.github.io/techblog/images/Btrfs/btrfslogo.png&#34; alt=&#34;Custom Btrfs Banner&#34;&gt;&lt;/p&gt;
+
+
+
+&lt;h1 id=&#34;signals-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/signals/#signals-&#34;&gt;Signals 🚥&lt;/a&gt;
 &lt;/h1&gt;
-&lt;p&gt;To complete the Professional Linux User Group (ProLUG) Professional Administrator Course (PAC), we are required to submit a final Capstone Project.&lt;/p&gt;
-&lt;p&gt;This article is a bit out of order, as I proactively chose a project topic before it was formally introduced. The purpose of this article is to document the project requirements as set out by our instructor.&lt;/p&gt;
-&lt;p&gt;Of course, I like to make slight modifications to ensure everything is neatly formatted and grouped—with plenty of emoji usage for extra flair! 😉&lt;/p&gt;
+&lt;p&gt;In Unix-like operating systems, a signal is a limited form of inter-process communication (IPC) used to notify a process that a specific event has occurred. Signals are used to interrupt a process and convey a message (like an alert), often in response to hardware or software events. Each signal has a unique number and symbolic name, and they can be sent by the kernel, another process, or the user.&lt;/p&gt;
+&lt;p&gt;Signals operate at a relatively low level within the operating system, but they are not the lowest level of communication or control.&lt;/p&gt;
+&lt;p&gt;Interrupts: Even lower-level than signals, these are triggered by hardware devices to notify the CPU of events (e.g., disk I/O completion).&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=d0gS5TXarXc&amp;amp;t=1009s&#34;&gt;https://www.youtube.com/watch?v=d0gS5TXarXc&amp;amp;t=1009s&lt;/a&gt;&lt;/p&gt;
 
 
 
-&lt;h2 id=&#34;step-1select-a-topic-and-do-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/sysadminlife/#step-1select-a-topic-and-do-&#34;&gt;Step 1.Select a topic and do 📌&lt;/a&gt;
+&lt;h2 id=&#34;history&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/signals/#history&#34;&gt;History&lt;/a&gt;
 &lt;/h2&gt;
 
 
 
-&lt;h4 id=&#34;a-write-a-brief-intro-to-the-project&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/sysadminlife/#a-write-a-brief-intro-to-the-project&#34;&gt;A) Write a brief intro to the project&lt;/a&gt;
-&lt;/h4&gt;
+&lt;h3 id=&#34;the-60-signals&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/signals/#the-60-signals&#34;&gt;The 60 Signals&lt;/a&gt;
+&lt;/h3&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Signal&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Description&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGHUP&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Hangup detected on controlling terminal or death of controlling process.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGINT&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Interrupt from keyboard (e.g., Ctrl+C).&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGQUIT&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Quit signal from keyboard (with core dump).&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGILL&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Illegal instruction (invalid machine code).&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGTRAP&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Trace or breakpoint trap.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGABRT&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Process abort signal.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGBUS&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Bus error (misaligned memory access).&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGFPE&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Floating-point exception (e.g., division by zero).&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGKILL&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Kill signal that terminates a process immediately.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGUSR1&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;User-defined signal 1.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGSEGV&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Segmentation fault (invalid memory access).&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGUSR2&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;User-defined signal 2.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGPIPE&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Broken pipe: write to pipe with no readers.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGALRM&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Alarm clock signal (used for timers).&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGTERM&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Termination signal for graceful shutdown.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGSTKFLT&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Stack fault on coprocessor.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGCHLD&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Child process terminated or stopped.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGCONT&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Continue a stopped process.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGSTOP&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Stop a process (cannot be caught or ignored).&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGTSTP&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Stop signal from terminal (e.g., Ctrl+Z).&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGTTIN&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Background process attempts to read from terminal.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGTTOU&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Background process attempts to write to terminal.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGURG&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Urgent condition on socket.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGXCPU&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;CPU time limit exceeded.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGXFSZ&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;File size limit exceeded.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGVTALRM&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Virtual alarm clock (user-time timer).&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGPROF&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Profiling timer expired.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGWINCH&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Window size change signal.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGIO&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;I/O now possible on file descriptor.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGPWR&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Power failure.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGSYS&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Bad system call.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGRTMIN&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;First real-time signal.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGRTMIN+1&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Real-time signal + 1.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGRTMIN+2&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Real-time signal + 2.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGRTMIN+3&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Real-time signal + 3.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGRTMIN+4&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Real-time signal + 4.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGRTMIN+5&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Real-time signal + 5.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGRTMIN+6&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Real-time signal + 6.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGRTMIN+7&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Real-time signal + 7.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGRTMIN+8&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Real-time signal + 8.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGRTMIN+9&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Real-time signal + 9.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGRTMIN+10&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Real-time signal + 10.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGRTMIN+11&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Real-time signal + 11.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGRTMIN+12&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Real-time signal + 12.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGRTMIN+13&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Real-time signal + 13.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGRTMIN+14&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Real-time signal + 14.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGRTMIN+15&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Real-time signal + 15.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGRTMAX-14&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Real-time signal - 14.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGRTMAX-13&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Real-time signal - 13.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGRTMAX-12&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Real-time signal - 12.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGRTMAX-11&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Real-time signal - 11.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGRTMAX-10&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Real-time signal - 10.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGRTMAX-9&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Real-time signal - 9.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGRTMAX-8&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Real-time signal - 8.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGRTMAX-7&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Real-time signal - 7.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGRTMAX-6&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Real-time signal - 6.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGRTMAX-5&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Real-time signal - 5.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGRTMAX-4&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Real-time signal - 4.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGRTMAX-3&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Real-time signal - 3.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGRTMAX-2&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Real-time signal - 2.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGRTMAX-1&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Real-time signal - 1.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;SIGRTMAX&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Last real-time signal.&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
 
 
-&lt;h4 id=&#34;b-outline-technologies&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/sysadminlife/#b-outline-technologies&#34;&gt;B) Outline Technologies&lt;/a&gt;
-&lt;/h4&gt;
-
-
-
-&lt;h4 id=&#34;c-propose-idea-to-instructor&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/sysadminlife/#c-propose-idea-to-instructor&#34;&gt;C) Propose idea to Instructor&lt;/a&gt;
-&lt;/h4&gt;
-
-
-
-&lt;h2 id=&#34;step-2research-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/sysadminlife/#step-2research-&#34;&gt;Step 2.Research 🤓&lt;/a&gt;
+&lt;h2 id=&#34;signal-event-processing&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/signals/#signal-event-processing&#34;&gt;Signal Event Processing&lt;/a&gt;
 &lt;/h2&gt;
 
 
 
-&lt;h4 id=&#34;a-confirm-this-is-doable&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/sysadminlife/#a-confirm-this-is-doable&#34;&gt;A) Confirm this is doable&lt;/a&gt;
-&lt;/h4&gt;
+&lt;h3 id=&#34;command&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/signals/#command&#34;&gt;Command&lt;/a&gt;
+&lt;/h3&gt;
 
 
 
-&lt;h4 id=&#34;b-estimate-time&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/sysadminlife/#b-estimate-time&#34;&gt;B) Estimate time&lt;/a&gt;
-&lt;/h4&gt;
+&lt;h3 id=&#34;processes&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/signals/#processes&#34;&gt;Processes&lt;/a&gt;
+&lt;/h3&gt;
 
 
 
-&lt;h4 id=&#34;c-find-snippets-manuals&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/sysadminlife/#c-find-snippets-manuals&#34;&gt;C) Find snippets, manuals&lt;/a&gt;
-&lt;/h4&gt;
+&lt;h3 id=&#34;trigger&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/signals/#trigger&#34;&gt;Trigger&lt;/a&gt;
+&lt;/h3&gt;
 
 
 
-&lt;h2 id=&#34;step-3plan-project-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/sysadminlife/#step-3plan-project-&#34;&gt;Step 3.Plan Project 📍&lt;/a&gt;
+&lt;h3 id=&#34;ingest&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/signals/#ingest&#34;&gt;Ingest&lt;/a&gt;
+&lt;/h3&gt;
+
+
+
+&lt;h3 id=&#34;sub-routine&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/signals/#sub-routine&#34;&gt;Sub-Routine&lt;/a&gt;
+&lt;/h3&gt;
+
+
+
+&lt;h3 id=&#34;return&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/signals/#return&#34;&gt;Return&lt;/a&gt;
+&lt;/h3&gt;
+&lt;hr&gt;
+
+
+
+&lt;h3 id=&#34;helpful-links-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/signals/#helpful-links-&#34;&gt;Helpful Links ⛓️&lt;/a&gt;
+&lt;/h3&gt;</description>
+    </item>
+    <item>
+      <title>ProLUG Admin Course Unit 5 🐧</title>
+      <link>http://localhost:1313/techblog/post/pacu5/</link>
+      <pubDate>Sat, 12 Oct 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/techblog/post/pacu5/</guid>
+      <description>&lt;h1 id=&#34;managing-users--groups&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu5/#managing-users--groups&#34;&gt;Managing Users &amp;amp; Groups&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;The overarching theme of this Unit is in the title, we are looking at Managing Users &amp;amp; Groups. Managing users and groups in Linux within an enterprise involves creating, modifying, and organizing user accounts and permissions to enforce security and control over resources.&lt;/p&gt;
+&lt;p&gt;Organizing permissions to enforce security is more important than it has ever been, as we live in a hyper connected world with many bad actors and large amounts of sensitive data.&lt;/p&gt;
+&lt;p&gt;Linux is fundamentally well suited for Managing Users &amp;amp; Groups because permissions permeate every aspect of a Linux environment. Everything is a file and every file has associated permissions, Therefore we have granular control over the comings and goings of users as administrators.&lt;/p&gt;
+
+
+
+&lt;h2 id=&#34;lab-work-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu5/#lab-work-&#34;&gt;Lab Work 🧪🥼&lt;/a&gt;
 &lt;/h2&gt;
 
 
 
-&lt;h4 id=&#34;a-find-comparables&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/sysadminlife/#a-find-comparables&#34;&gt;A) Find Comparables&lt;/a&gt;
+&lt;h3 id=&#34;unit-5-assignment-mapping-the-lab-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu5/#unit-5-assignment-mapping-the-lab-&#34;&gt;Unit 5 Assignment: Mapping the Lab 🗺️🤔&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Objectives:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Map the Internal ProLUG Network (192.168.200.0/24):&lt;/li&gt;
+&lt;li&gt;Map the network from one of the rocky nodes.&lt;/li&gt;
+&lt;li&gt;Using a template that you build or find from the internet&lt;/li&gt;
+&lt;li&gt;Provide a 1 page summary of what you find in the network.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;approach-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu5/#approach-&#34;&gt;Approach 🤔&lt;/a&gt;
+&lt;/h3&gt;
+
+
+
+&lt;h4 id=&#34;a-briefing-on-the-infra-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu5/#a-briefing-on-the-infra-&#34;&gt;A briefing on the infra. 🔍🖥️&lt;/a&gt;
 &lt;/h4&gt;
+&lt;p&gt;Het&amp;rsquo; server is unique to me. He uses an injest system that makes a jump to the actual server for security purposes. Within the main server we have a warewulf managed cluster running a series of Rocky Linux VM&amp;rsquo;s. ⛰&lt;/p&gt;
+&lt;p&gt;Since we will be doing this from one of the Rocky Nodes within the system, the jump server will not be an issue I recon. 🤔&lt;/p&gt;
 
 
 
-&lt;h4 id=&#34;b-document-procedure&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/sysadminlife/#b-document-procedure&#34;&gt;B) Document Procedure&lt;/a&gt;
+&lt;h4 id=&#34;mapping-strategy-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu5/#mapping-strategy-&#34;&gt;Mapping Strategy 📍🗺️&lt;/a&gt;
 &lt;/h4&gt;
+&lt;p&gt;So I shouldn&amp;rsquo;t just pop into the server and go willy nilly with scanning commands. This sever is managed by someone who understands security. So it is best to do some &lt;strong&gt;Dead Reckoning&lt;/strong&gt; beforehand.&lt;/p&gt;
 
 
 
-&lt;h4 id=&#34;c-diagram-project&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/sysadminlife/#c-diagram-project&#34;&gt;C) Diagram Project&lt;/a&gt;
+&lt;h4 id=&#34;the-basic-commands-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu5/#the-basic-commands-&#34;&gt;The Basic Commands ⌨️&lt;/a&gt;
 &lt;/h4&gt;
+&lt;p&gt;Mapping the remote servers open ports with nmap.
+nmap stands for Network Mapper. A quick perusal of the man page states it is an exploration tool and security / port scanner. It was designed to rapidly scan large networks. Nmap uses raw IP packets in novel ways to determine what hosts
+are available on the network, what services (application name and version) those hosts are offering, what operating systems (and OS versions) they are running, what type of packet filters/firewalls are in use, and dozens of other characteristics.&lt;/p&gt;
+&lt;p&gt;In order to Map the network I am going to use the ip address for the argument/target of the nmap command.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;nmap &amp;lt;server-ip&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Checking mounted filesystem&amp;rsquo; with df. stands for &lt;strong&gt;Display Free&lt;/strong&gt; disk space. It is a utility that displays statistics about the amount of free disk space on the specified mounted file system or on the file system of which file is a past.&lt;/p&gt;
+&lt;p&gt;I will be using the -h flag for human readable format, which ads unit suffixes eg. Gibibyte (GiB) to the ends of values. There is more to it, but I am mentioning the bread and butter of the flag.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;df -h
+&lt;/code&gt;&lt;/pre&gt;
 
 
 
-&lt;h2 id=&#34;step-4diagram-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/sysadminlife/#step-4diagram-&#34;&gt;Step 4.Diagram ⧄&lt;/a&gt;
+&lt;h3 id=&#34;digging-deeper-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu5/#digging-deeper-&#34;&gt;Digging Deeper ⛏️&lt;/a&gt;
+&lt;/h3&gt;
+
+
+
+&lt;h4 id=&#34;getting-to-know-nmap-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu5/#getting-to-know-nmap-&#34;&gt;Getting to know nmap 🫶&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;nmap&lt;/strong&gt; is actually a big command, by big I mean the number of options and capabilities are vast. It is quite popular with pen testers and is packaged with Kali Linux &amp;ndash; a security analysis and exploitation focused distribution of Linux, so best believe it is something important. This essentially means I should take some time to get to know it more.&lt;/p&gt;
+
+
+
+&lt;h4 id=&#34;stealth-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu5/#stealth-&#34;&gt;Stealth 🥷&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;Beware that &lt;strong&gt;nmap&lt;/strong&gt; can and will trigger detection software like an active firewall, because &lt;strong&gt;nmap&lt;/strong&gt; is conducting &lt;strong&gt;Funny Bizniz&lt;/strong&gt; by way of packet &lt;strong&gt;trickery&lt;/strong&gt; inside a network, both are technical terms. Luckily there is a &lt;strong&gt;stealth&lt;/strong&gt; option ( -s ) that enables the mapping to take place un-detected &amp;ndash;for the most part.&lt;/p&gt;
+&lt;p&gt;Contrary to what I assumed, the lower case &lt;strong&gt;s&lt;/strong&gt; does not even stand for stealth, though it still helps as a mnemonic. No, it actually stands for SYN and
+SYN stands for Synchronize. It is part of the TCP three-way handshake, which is a process used to establish a reliable connection between two devices on a network and has nothing to do with guys meeting at a bar.&lt;/p&gt;
+&lt;p&gt;I thought we were trying to be stealthy, not synchronized 🤔
+Well is actually a form of &lt;strong&gt;Funny Bizniz&lt;/strong&gt; wherein SYN is sent and never acknowledged, thustly not completing the handshake process and therefore hiding activity &lt;strong&gt;somehow&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;but &lt;strong&gt;how?&lt;/strong&gt; Well&amp;hellip; it reduces the chance of being logged by the target system’s monitoring tools, such as firewalls or intrusion detection systems. Now we both know.&lt;/p&gt;
+&lt;p&gt;Keep in mind this is only one command option, just imagine how deep the rabbit hole goes.&lt;/p&gt;
+
+
+
+&lt;h4 id=&#34;important-mapping-command-list&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu5/#important-mapping-command-list&#34;&gt;Important Mapping Command List&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;Ninjas mark stealthier techniques.&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;#&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Command&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;1&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap -sS &amp;lt;target&amp;gt;&lt;/code&gt; 🥷&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;TCP SYN scan (stealth mode)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;2&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap -sT &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;TCP connect scan (full connection)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;3&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap -sA &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;ACK scan to detect firewalls&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;4&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap -sU &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;UDP scan&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;5&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap -sP &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Ping scan to detect live hosts&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;6&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap -sV &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Detect service versions on open ports&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;7&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap -O &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;OS detection&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;8&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap -A &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Aggressive scan (OS, version, scripts)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;9&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap -Pn &amp;lt;target&amp;gt;&lt;/code&gt; 🥷&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Disable ping (stealthy, avoid detection)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;10&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap -p- &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Scan all 65,535 TCP ports&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;11&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap --top-ports 100 &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Scan the top 100 most common ports&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;12&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap --script &amp;lt;script&amp;gt; &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Use Nmap scripts for detailed scanning&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;13&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap -sC &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Run default NSE scripts&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;14&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap -sW &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;TCP window scan&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;15&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap -T4 &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Faster scan using timing template T4&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;16&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap -v &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Enable verbose output&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;17&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap -oN scan.txt &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Save output in normal format&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;18&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap -oX scan.xml &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Save output in XML format&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;19&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap -6 &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Scan IPv6 targets&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;20&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap -D RND:10 &amp;lt;target&amp;gt;&lt;/code&gt; 🥷&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Decoy scan to mask source of scan&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;mitre-attck---1-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu5/#mitre-attck---1-&#34;&gt;MITRE ATT&amp;amp;CK - &lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; 🪚&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;is a globally-accessible knowledge base of adversary tactics and techniques based on real-world observations.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;unfamiliar-terminology-for-me&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu5/#unfamiliar-terminology-for-me&#34;&gt;Unfamiliar Terminology for me&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Lateral Movement&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Lateral movement in the context of cyber exploitation refers to an attacker’s strategy of moving across a network to gain access to additional systems or sensitive data after initially infiltrating a single point. This involves leveraging compromised credentials, escalating privileges, or exploiting vulnerabilities to navigate between hosts and systems. The objective is often to broaden access within the environment while avoiding detection, eventually targeting critical infrastructure or data.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Exfiltration 🧳🚀&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;refers to the unauthorized transfer of data from a target system or network to an external location controlled by an attacker. This can involve methods such as encrypted tunnels, covert channels, or compromised accounts to avoid detection. Exfiltration is typically the final step in a cyberattack, allowing attackers to steal sensitive data, intellectual property, or credentials for further malicious activities.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;security-is-everybodys-issue&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu5/#security-is-everybodys-issue&#34;&gt;Security is everybody&amp;rsquo;s issue&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;What impact to the organization is data exfiltration? Even if you’re not a data owner or data custodian, why is it so important to understand the data on your systems?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Unit 5 Discussion Post 2: Find a blog or article on the web that discusses the user environment in Linux. You may want to search for .bashrc or (dot) environment files in Linux.&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;What types of customizations might you setup for your environment? Why?&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;What problems can you anticipate around helping users with their dot files?&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;h3 id=&#34;impact-of-exfiltration&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu5/#impact-of-exfiltration&#34;&gt;Impact of Exfiltration&lt;/a&gt;
+&lt;/h3&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;the-linux-user-environment&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu5/#the-linux-user-environment&#34;&gt;The Linux User Environment&lt;/a&gt;
 &lt;/h2&gt;
 
 
 
-&lt;h4 id=&#34;a-create-a-system-diagram-excalidraw&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/sysadminlife/#a-create-a-system-diagram-excalidraw&#34;&gt;A) Create a System Diagram (ExcaliDraw)&lt;/a&gt;
+&lt;h3 id=&#34;customizations-to-the-user-environment&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu5/#customizations-to-the-user-environment&#34;&gt;Customizations to the User Environment&lt;/a&gt;
+&lt;/h3&gt;
+
+
+
+&lt;h4 id=&#34;configs&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu5/#configs&#34;&gt;Configs&lt;/a&gt;
 &lt;/h4&gt;
 
 
 
-&lt;h4 id=&#34;b-combine-with-documentation&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/sysadminlife/#b-combine-with-documentation&#34;&gt;B) Combine with Documentation&lt;/a&gt;
-&lt;/h4&gt;
-
-
-
-&lt;h4 id=&#34;c-export-for-use-in-keynote&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/sysadminlife/#c-export-for-use-in-keynote&#34;&gt;C) Export for use in Keynote&lt;/a&gt;
-&lt;/h4&gt;
-
-
-
-&lt;h2 id=&#34;step-5build-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/sysadminlife/#step-5build-&#34;&gt;Step 5.Build 🛠️&lt;/a&gt;
-&lt;/h2&gt;
-
-
-
-&lt;h4 id=&#34;a-document-process&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/sysadminlife/#a-document-process&#34;&gt;A) Document Process&lt;/a&gt;
-&lt;/h4&gt;
-
-
-
-&lt;h4 id=&#34;b-create-demo&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/sysadminlife/#b-create-demo&#34;&gt;B) Create Demo&lt;/a&gt;
-&lt;/h4&gt;
-
-
-
-&lt;h4 id=&#34;c-essential-truth&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/sysadminlife/#c-essential-truth&#34;&gt;C) Essential Truth&lt;/a&gt;
-&lt;/h4&gt;
-
-
-
-&lt;h2 id=&#34;step-6-documentation-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/sysadminlife/#step-6-documentation-&#34;&gt;Step 6. Documentation 📕&lt;/a&gt;
-&lt;/h2&gt;
-
-
-
-&lt;h4 id=&#34;a-create-redline-documentation&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/sysadminlife/#a-create-redline-documentation&#34;&gt;A) Create Redline Documentation&lt;/a&gt;
-&lt;/h4&gt;
-
-
-
-&lt;h4 id=&#34;b-format-in-a-comprehensible-way&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/sysadminlife/#b-format-in-a-comprehensible-way&#34;&gt;B) Format in a comprehensible way&lt;/a&gt;
-&lt;/h4&gt;
-
-
-
-&lt;h4 id=&#34;c-organize-logically&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/sysadminlife/#c-organize-logically&#34;&gt;C) Organize logically&lt;/a&gt;
-&lt;/h4&gt;
-
-
-
-&lt;h2 id=&#34;step-7-prepare--present-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/sysadminlife/#step-7-prepare--present-&#34;&gt;Step 7. Prepare &amp;amp; Present 👨🏻‍🏫&lt;/a&gt;
-&lt;/h2&gt;
-
-
-
-&lt;h4 id=&#34;a-volunteer-to-present&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/sysadminlife/#a-volunteer-to-present&#34;&gt;A) Volunteer to Present&lt;/a&gt;
-&lt;/h4&gt;
-
-
-
-&lt;h4 id=&#34;b-create-keynote-15-20-slides&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/sysadminlife/#b-create-keynote-15-20-slides&#34;&gt;B) Create Keynote (15-20) Slides&lt;/a&gt;
-&lt;/h4&gt;
-
-
-
-&lt;h4 id=&#34;i-project-purpose&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/sysadminlife/#i-project-purpose&#34;&gt;i. project Purpose&lt;/a&gt;
-&lt;/h4&gt;
-
-
-
-&lt;h4 id=&#34;ii-diagram&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/sysadminlife/#ii-diagram&#34;&gt;ii. Diagram&lt;/a&gt;
-&lt;/h4&gt;
-
-
-
-&lt;h4 id=&#34;iii-build-process&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/sysadminlife/#iii-build-process&#34;&gt;iii. Build Process&lt;/a&gt;
-&lt;/h4&gt;
-
-
-
-&lt;h4 id=&#34;iv-what-did-you-learn&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/sysadminlife/#iv-what-did-you-learn&#34;&gt;iv. What did you learn?&lt;/a&gt;
-&lt;/h4&gt;
-
-
-
-&lt;h4 id=&#34;v-what-transferable-skills-did-you-gain&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/sysadminlife/#v-what-transferable-skills-did-you-gain&#34;&gt;v. What transferable skills did you gain?&lt;/a&gt;
+&lt;h4 id=&#34;why-would-one-customize-their-environment&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu5/#why-would-one-customize-their-environment&#34;&gt;Why would one customize their environment&lt;/a&gt;
 &lt;/h4&gt;
 &lt;hr&gt;
 
 
 
-&lt;h1 id=&#34;deliverables-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/sysadminlife/#deliverables-&#34;&gt;Deliverables 🔑&lt;/a&gt;
-&lt;/h1&gt;
-
-
-
-&lt;h3 id=&#34;-1-comprehensive-documentation-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/sysadminlife/#-1-comprehensive-documentation-&#34;&gt;✔️ 1. Comprehensive Documentation 📕&lt;/a&gt;
-&lt;/h3&gt;
-
-
-
-&lt;h3 id=&#34;-2-system-diagram-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/sysadminlife/#-2-system-diagram-&#34;&gt;✔️ 2. System Diagram ⧄&lt;/a&gt;
-&lt;/h3&gt;
-
-
-
-&lt;h3 id=&#34;-3-communicative-examples-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/sysadminlife/#-3-communicative-examples-&#34;&gt;✔️ 3. Communicative Examples 📸&lt;/a&gt;
-&lt;/h3&gt;
-
-
-
-&lt;h3 id=&#34;-4-keynote-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/sysadminlife/#-4-keynote-&#34;&gt;✔️ 4. Keynote 👨🏻‍🏫&lt;/a&gt;
-&lt;/h3&gt;
-&lt;hr&gt;
+&lt;h2 id=&#34;definitionsterminology&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu5/#definitionsterminology&#34;&gt;Definitions/Terminology&lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Footprinting 👣&lt;/li&gt;
+&lt;li&gt;Scanning 🔍&lt;/li&gt;
+&lt;li&gt;Enumeration 💯&lt;/li&gt;
+&lt;li&gt;System Hacking 🪓&lt;/li&gt;
+&lt;li&gt;Escalation of Privilege 🥉🥈🥇&lt;/li&gt;
+&lt;li&gt;Rule of least privilege 🔐&lt;/li&gt;
+&lt;li&gt;Covering Tracks 🧹👣&lt;/li&gt;
+&lt;li&gt;Planting Backdoors 🪴🚪&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Notes During Lecture/Class:
+Links:&lt;/p&gt;
+&lt;p&gt;Terms:&lt;/p&gt;
+&lt;p&gt;Useful tools:&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;prolug-links-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/sysadminlife/#prolug-links-&#34;&gt;ProLUG Links ⛓️&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu5/#prolug-links-&#34;&gt;ProLUG Links ⛓️&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;Discord: &lt;a href=&#34;https://discord.com/invite/m6VPPD9usw&#34;&gt;https://discord.com/invite/m6VPPD9usw&lt;/a&gt;
 Youtube: &lt;a href=&#34;https://www.youtube.com/@het_tanis8213&#34;&gt;https://www.youtube.com/@het_tanis8213&lt;/a&gt;
 Twitch: &lt;a href=&#34;https://www.twitch.tv/het_tanis&#34;&gt;https://www.twitch.tv/het_tanis&lt;/a&gt;
 ProLUG Book: &lt;a href=&#34;https://leanpub.com/theprolugbigbookoflabs&#34;&gt;https://leanpub.com/theprolugbigbookoflabs&lt;/a&gt;
-KillerCoda: &lt;a href=&#34;https://killercoda.com/het-tanis&#34;&gt;https://killercoda.com/het-tanis&lt;/a&gt;&lt;/p&gt;</description>
+KillerCoda: &lt;a href=&#34;https://killercoda.com/het-tanis&#34;&gt;https://killercoda.com/het-tanis&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;
+&lt;p&gt;MITRE | ATT&amp;amp;CK &lt;a href=&#34;https://attack.mitre.org/&#34;&gt;Site&lt;/a&gt; Knowledge Base.&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
     </item>
     <item>
-      <title>ProLUG Admin Course Capstone Project Stage 1 🐧</title>
+      <title>ProLUG Admin Course Capstone Submission Requirements 🐧</title>
       <link>http://localhost:1313/techblog/post/paccp0/</link>
       <pubDate>Sun, 06 Oct 2024 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/techblog/post/paccp0/</guid>
@@ -858,13 +1270,6 @@ sar 2 5 # runs sar every 2 seconds for a total duration of 5 seconds
 
 
 
-&lt;h2 id=&#34;-todo-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu4/#-todo-&#34;&gt;🚨 TODO 🚨&lt;/a&gt;
-&lt;/h2&gt;
-&lt;p&gt;More sar&lt;/p&gt;
-
-
-
 &lt;h3 id=&#34;exploring-cron&#34;&gt;
   &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu4/#exploring-cron&#34;&gt;Exploring Cron&lt;/a&gt;
 &lt;/h3&gt;
@@ -883,13 +1288,6 @@ systemctl status crond
 
 ls -ld /etc/cron*
 &lt;/code&gt;&lt;/pre&gt;
-
-
-
-&lt;h2 id=&#34;-todo--1&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu4/#-todo--1&#34;&gt;🚨 TODO 🚨&lt;/a&gt;
-&lt;/h2&gt;
-&lt;p&gt;Final page of cron&lt;/p&gt;
 &lt;hr&gt;
 
 
@@ -1275,12 +1673,6 @@ Develop a procedure detailing what an operations person should do when a system 
 
 
 
-&lt;h1 id=&#34;terminology--todo-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu4/#terminology--todo-&#34;&gt;Terminology 🚨 TODO 🚨&lt;/a&gt;
-&lt;/h1&gt;
-
-
-
 &lt;h3 id=&#34;detection&#34;&gt;
   &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu4/#detection&#34;&gt;Detection&lt;/a&gt;
 &lt;/h3&gt;
@@ -1394,303 +1786,178 @@ KillerCoda: &lt;a href=&#34;https://killercoda.com/het-tanis&#34;&gt;https://kil
     </item>
     <item>
       <title>Learning Regex</title>
-      <link>http://localhost:1313/techblog/post/regex/</link>
+      <link>http://localhost:1313/techblog/post/goclisysutil/</link>
       <pubDate>Thu, 03 Oct 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/techblog/post/regex/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://trevorsmale.github.io/techblog/images/Btrfs/btrfslogo.png&#34; alt=&#34;Custom Btrfs Banner&#34;&gt;&lt;/p&gt;
-
-
-
-&lt;h1 id=&#34;btrfs-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/regex/#btrfs-&#34;&gt;Btrfs 💾&lt;/a&gt;
+      <guid>http://localhost:1313/techblog/post/goclisysutil/</guid>
+      <description>&lt;h1 id=&#34;making-a-utility-for-linux&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#making-a-utility-for-linux&#34;&gt;Making a Utility for Linux&lt;/a&gt;
 &lt;/h1&gt;
-&lt;p&gt;Btrfs stands for &lt;strong&gt;B-tree File System&lt;/strong&gt;, not &amp;ldquo;Better File System,&amp;rdquo; though it’s easy to see why people might think that. I believe Btrfs is the future for both small and large-scale projects, as it reduces the need for manual and automated maintenance, while simplifying backup and restoration processes.&lt;/p&gt;
-&lt;p&gt;This article aims to shed light on the history and motivation behind creating Btrfs, its core functionality, and the standout features that set it apart from the competition.&lt;/p&gt;
+&lt;p&gt;Recently I was speaking with fellow enthusiasts in the ProLUG group about creating system utils with GO.&lt;/p&gt;
+&lt;p&gt;Between learning about it on my own time and getting input from others, I realized there are so many compelling reasons for using GO as a utility language.&lt;/p&gt;
 
 
 
-&lt;h2 id=&#34;history&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/regex/#history&#34;&gt;History&lt;/a&gt;
+&lt;h2 id=&#34;cli-tool&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#cli-tool&#34;&gt;CLI Tool&lt;/a&gt;
 &lt;/h2&gt;
+&lt;p&gt;There exists a package for GO called Cobra CLI &lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; it enables the creation of a Command Line Interface, that takes input from a terminal emulator and outputs or controls something from based on predetermined logic. I phrase this in simple terms in the case you may be unfamiliar with how programs work😆. Anyway the CLI is the simplest form of computer program and suitable for Linux Systems folk.&lt;/p&gt;
 
 
 
-&lt;h3 id=&#34;motivation&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/regex/#motivation&#34;&gt;Motivation&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;The idea for Btrfs was first proposed by IBM researcher and bioinformatician &lt;strong&gt;Ohad Rodeh&lt;/strong&gt; at a USENIX conference in 2007. The goal was to develop a &lt;strong&gt;copy-on-write (COW)&lt;/strong&gt;-friendly B-tree algorithm, which would allow for efficient data storage and retrieval without the overhead typical of other file systems.&lt;/p&gt;
-&lt;p&gt;As Valerie Aurora explained:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&amp;ldquo;To start with, B-trees in their native form are wildly incompatible with COW. The leaves of the tree are linked together, so when the location of one leaf changes (via a write—which implies a copy to a new block), the link in the adjacent leaf changes, which triggers another copy-on-write and location change, which changes the link in the next leaf&amp;hellip; The result is that the entire B-tree, from top to bottom, has to be rewritten every time one leaf is changed.&amp;rdquo;&lt;br&gt;
-– Valerie Aurora&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Chris Mason&lt;/strong&gt;, a core developer of the &lt;strong&gt;Reiser Filesystem&lt;/strong&gt;, liked the idea and saw an opportunity to move beyond Reiser, which used B-trees but wasn’t optimized for COW. Mason brought the idea to his new job at Oracle, where development of Btrfs began in earnest.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&amp;ldquo;I started Btrfs soon after joining Oracle. I had a unique opportunity to take a detailed look at the features missing from Linux, and felt that Btrfs was the best way to solve them.&amp;rdquo;&lt;br&gt;
-– Chris Mason&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;In collaboration with Oracle colleague &lt;strong&gt;Zach Brown&lt;/strong&gt;, they drafted the initial version of Btrfs.&lt;/p&gt;
-
-
-
-&lt;h3 id=&#34;rapid-development-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/regex/#rapid-development-&#34;&gt;Rapid Development ⏱️&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;Thanks to corporate backing and a team of experienced developers, Btrfs moved through an aggressive development cycle. Within two years of the technical proposal, a working 1.0 version of Btrfs was released in late 2008.&lt;/p&gt;
-&lt;p&gt;Shortly after its introduction, Btrfs was merged into the &lt;strong&gt;mainline Linux kernel&lt;/strong&gt;. Despite the conservative nature of file system adoption—where admins, systems engineers, and software engineers prefer proven, stable systems—Btrfs quickly gained traction.&lt;/p&gt;
-&lt;p&gt;In 2015, &lt;strong&gt;SUSE Linux Enterprise Server (SLES)&lt;/strong&gt; became the first major Linux distribution to adopt Btrfs as its default file system, citing it as the future of Linux storage solutions.&lt;/p&gt;
-
-
-
-&lt;h3 id=&#34;enterprise-adoption-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/regex/#enterprise-adoption-&#34;&gt;Enterprise Adoption 📊&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;Today, Btrfs is the default file system for several major enterprise Linux distributions, including &lt;strong&gt;SUSE&lt;/strong&gt;, &lt;strong&gt;Fujitsu Linux&lt;/strong&gt;, &lt;strong&gt;Ubuntu&lt;/strong&gt;, &lt;strong&gt;Oracle Linux&lt;/strong&gt;, and popular user distributions like &lt;strong&gt;Fedora&lt;/strong&gt;, &lt;strong&gt;Arch&lt;/strong&gt;, and &lt;strong&gt;Gentoo&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;In fact, &lt;strong&gt;Meta&lt;/strong&gt; (formerly Facebook) uses Btrfs to manage their large, dynamic data sets. According to core developer &lt;strong&gt;Josef Bacik&lt;/strong&gt;, using Btrfs at Meta has significantly reduced access times and contributed to cost reductions in production environments.&lt;sup id=&#34;fnref:3&#34;&gt;&lt;a href=&#34;#fn:3&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-
-
-&lt;h2 id=&#34;how-btrfs-works-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/regex/#how-btrfs-works-&#34;&gt;How Btrfs Works ⚙️&lt;/a&gt;
+&lt;h2 id=&#34;core-idea&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#core-idea&#34;&gt;Core Idea&lt;/a&gt;
 &lt;/h2&gt;
+&lt;p&gt;Now, the core idea of this article is explaining how a GO program can be used as a personalized utility that resides on ones own system, or is planted on many. You see, go is a compiled program, meaning it will take the code and convert it into a binary, the native language of the computer. Once produced, a binary can be used continuously without failure, assuming the program logic is written well. This makes it suitable for system utilities that may be repeatedly called on to do simple tasks.&lt;/p&gt;
 
 
 
-&lt;h3 id=&#34;the-b-tree-algorithm-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/regex/#the-b-tree-algorithm-&#34;&gt;The B-Tree+ Algorithm 🌳&lt;/a&gt;
+&lt;h2 id=&#34;automate-everything&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#automate-everything&#34;&gt;Automate Everything&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;As you may know, managing systems can involve many minute repetitive tasks and the goal of the System Administrator or Engineer is to automate. There are some elegant solutions for this already eg. Ansible, Python, Bash that are already well regarded as automation tools. However there are some reasons to use GO that will be in a future article called &amp;lsquo;Why GO&amp;rsquo; where I breakdown the reasons it should be in your Quiver.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;cli-programming-portion&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#cli-programming-portion&#34;&gt;CLI Programming Portion&lt;/a&gt;
 &lt;/h3&gt;
-&lt;p&gt;At its core, Btrfs relies on a &lt;strong&gt;B-tree&lt;/strong&gt;, a type of data structure designed to organize and store data efficiently.&lt;/p&gt;
-&lt;p&gt;Here is a basic diagram of a B-tree, though in file systems, it gets more complex:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://raw.github.com/alexeygrigorev/wiki-figures/master/ulb/dbsa/ind/btree-ex.png&#34; alt=&#34;B-Tree Diagram&#34;&gt;&lt;/p&gt;
-&lt;p&gt;A B-tree consists of &lt;strong&gt;nodes&lt;/strong&gt; and &lt;strong&gt;links&lt;/strong&gt; (sometimes referred to as &lt;strong&gt;keys&lt;/strong&gt; and &lt;strong&gt;pointers&lt;/strong&gt; or &lt;strong&gt;leaves&lt;/strong&gt; and &lt;strong&gt;branches&lt;/strong&gt;), which drastically reduce seek time. This ensures that, no matter how much data you store, finding the right file is quick and doesn’t require searching through everything.&lt;/p&gt;
-&lt;p&gt;The &lt;strong&gt;root node&lt;/strong&gt; is a type of index stored in a fixed location on the disk. It serves as the starting point for a rapid search called &lt;strong&gt;fanning out&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;This structure reduces disk access time and, in turn, improves overall system efficiency. The relationship between the depth of nodes and the breadth of data is known as the &lt;strong&gt;fan-out factor&lt;/strong&gt;. Tuning this ratio can either speed up searches (with a wider spread) or reduce write size for smaller segments.&lt;/p&gt;
 
 
 
-&lt;h3 id=&#34;copy-on-write-cow-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/regex/#copy-on-write-cow-&#34;&gt;Copy-on-Write (COW) 🐄&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Copy-on-Write (COW)&lt;/strong&gt; is a method where data and metadata are not overwritten in place. Instead, they are copied to a new location before the update is finalized. Btrfs employs COW in conjunction with its B-tree algorithm to maintain data integrity.&lt;/p&gt;
-&lt;p&gt;Btrfs also uses &lt;strong&gt;delayed allocation&lt;/strong&gt;, where metadata is updated first, linking it to new data before the actual data is copied &lt;strong&gt;Persistant Pre Allocation&lt;/strong&gt; to a new location. This delay allows the file system to organize sector placement called &lt;strong&gt;Extent Base Allocation&lt;/strong&gt; and optimize metadata before the actual write &lt;strong&gt;Multi-Block Allocation&lt;/strong&gt;, reducing unnecessary reads and writes.&lt;/p&gt;
-&lt;p&gt;This delayed allocation process supports &lt;strong&gt;wear leveling&lt;/strong&gt; (also known as &lt;strong&gt;TRIM&lt;/strong&gt;) on SSDs, where data is written to new sectors to avoid repeatedly writing to the same location, thus extending the lifespan of the drive.&lt;/p&gt;
-
-
-
-&lt;h3 id=&#34;snapshots-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/regex/#snapshots-&#34;&gt;Snapshots 📸&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Snapshots&lt;/strong&gt; are one of Btrfs&amp;rsquo;s standout features. They use COW to create lightweight, efficient snapshots of data at any given time.&lt;/p&gt;
-&lt;p&gt;Unlike traditional Linux filesystems, which only allow snapshots of &lt;strong&gt;logical volumes&lt;/strong&gt;, Btrfs can snapshot both &lt;strong&gt;volumes&lt;/strong&gt; and &lt;strong&gt;subvolumes&lt;/strong&gt;. This means that the entire data set—down to the subvolume level—can be efficiently snapshotted. Snapshots in Btrfs do not require duplication of data, only tracking changes made after the snapshot was taken.&lt;/p&gt;
-
-
-
-&lt;h3 id=&#34;cloning-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/regex/#cloning-&#34;&gt;Cloning 🐑🐑&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Cloning&lt;/strong&gt; in Btrfs allows you to create &lt;strong&gt;writeable copies&lt;/strong&gt; of subvolumes or snapshots, which share the same data blocks until changes are made. Unlike traditional file copying, cloning doesn&amp;rsquo;t duplicate the original data, making it fast and storage-efficient. When modifications are made, only the changed blocks are copied, leaving the rest shared between the clone and the original.&lt;/p&gt;
-&lt;p&gt;This makes cloning in Btrfs ideal for use cases where multiple environments or datasets need to be derived from the same base system, without significant storage overhead.&lt;/p&gt;
-
-
-
-&lt;h3 id=&#34;dynamic-online-storage-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/regex/#dynamic-online-storage-&#34;&gt;Dynamic Online Storage 📈📉&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;Btrfs allows you to manage storage pools dynamically with &lt;strong&gt;online resizing&lt;/strong&gt; and device management, meaning that you can expand and shrink file systems while they are mounted and in use. This flexibility helps reduce downtime and allows systems to scale easily with growing storage needs.&lt;/p&gt;
-
-
-
-&lt;h4 id=&#34;expanding-disk-pools-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/regex/#expanding-disk-pools-&#34;&gt;Expanding Disk Pools 🏊‍♂️🏊‍♂️🏊‍♂️&lt;/a&gt;
+&lt;h4 id=&#34;setup&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#setup&#34;&gt;Setup&lt;/a&gt;
 &lt;/h4&gt;
-&lt;p&gt;You can add new disks to a Btrfs file system without stopping the system. With a simple command, Btrfs integrates the new storage into the existing pool, redistributing data across devices if necessary. This feature makes Btrfs highly scalable, especially in environments where storage demands can grow unpredictably.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Install Go and Cobra CLI (if not installed).&lt;/li&gt;
+&lt;li&gt;Set up a new Go project and initialize a Cobra CLI application.&lt;/li&gt;
+&lt;/ol&gt;
 
 
 
-&lt;h4 id=&#34;resizeable-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/regex/#resizeable-&#34;&gt;Resizeable 📏&lt;/a&gt;
+&lt;h4 id=&#34;cli-logic&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#cli-logic&#34;&gt;CLI Logic&lt;/a&gt;
 &lt;/h4&gt;
-&lt;p&gt;Btrfs volumes can be &lt;strong&gt;expanded or shrunk&lt;/strong&gt; online, without unmounting the file system. Expanding is as simple as adding more storage, while shrinking requires no special process apart from the resizing command. This dynamic resizing means you can adjust the size of your file system to suit your current storage needs.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Add commands and flags to the Cobra application.&lt;/li&gt;
+&lt;li&gt;Implement simple utility functions (e.g., disk usage check, file listing).&lt;/li&gt;
+&lt;/ol&gt;
 
 
 
-&lt;h4 id=&#34;self-healing-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/regex/#self-healing-&#34;&gt;Self-Healing ❤️‍🩹&lt;/a&gt;
+&lt;h3 id=&#34;compilation-and-installation&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#compilation-and-installation&#34;&gt;Compilation and Installation&lt;/a&gt;
+&lt;/h3&gt;
+
+
+
+&lt;h4 id=&#34;compile&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#compile&#34;&gt;Compile&lt;/a&gt;
 &lt;/h4&gt;
-&lt;p&gt;Btrfs provides &lt;strong&gt;self-healing&lt;/strong&gt; capabilities when used in a redundant RAID setup. Through &lt;strong&gt;data and metadata checksumming&lt;/strong&gt;, Btrfs can detect corrupted blocks and automatically fix them using redundant copies of the data. This ensures data integrity without user intervention, particularly useful for critical data environments.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Build the Go project into a single x86 Linux binary.&lt;/li&gt;
+&lt;li&gt;Test the binary locally to ensure it works.&lt;/li&gt;
+&lt;/ol&gt;
 
 
 
-&lt;h3 id=&#34;compression-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/regex/#compression-&#34;&gt;Compression 🪗&lt;/a&gt;
+&lt;h4 id=&#34;install&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#install&#34;&gt;Install&lt;/a&gt;
+&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;Move the binary to &lt;code&gt;/usr/local/bin&lt;/code&gt; for global access.&lt;/li&gt;
+&lt;li&gt;Set appropriate permissions on the binary.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;h4 id=&#34;add-to-path&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#add-to-path&#34;&gt;Add to PATH&lt;/a&gt;
+&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;Verify if &lt;code&gt;/usr/local/bin&lt;/code&gt; is in your PATH.&lt;/li&gt;
+&lt;li&gt;Add it to the PATH in &lt;code&gt;.bashrc&lt;/code&gt; or &lt;code&gt;.bash_profile&lt;/code&gt; if not already present.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;h3 id=&#34;testing-portion&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#testing-portion&#34;&gt;Testing Portion&lt;/a&gt;
 &lt;/h3&gt;
-&lt;p&gt;Btrfs supports &lt;strong&gt;transparent compression&lt;/strong&gt;, which means files can be compressed as they are written to disk, saving space without requiring manual compression. It supports multiple algorithms like &lt;strong&gt;LZO&lt;/strong&gt;, &lt;strong&gt;Zlib&lt;/strong&gt;, and &lt;strong&gt;Zstandard (ZSTD)&lt;/strong&gt;, each with different balances of speed and compression ratio. This feature helps save storage space and can improve performance, especially when working with large datasets.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Run the utility from any location to confirm it works.&lt;/li&gt;
+&lt;li&gt;Optionally, add help documentation or more commands to the CLI.&lt;/li&gt;
+&lt;/ol&gt;
 
 
 
-&lt;h3 id=&#34;technical-feature-list-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/regex/#technical-feature-list-&#34;&gt;Technical Feature List: 🔍&lt;/a&gt;
+&lt;h3 id=&#34;packaging&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#packaging&#34;&gt;Packaging&lt;/a&gt;
 &lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Journaling&lt;/strong&gt;: Keeps track of changes before they are committed, helping with data recovery in case of a crash.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Extent Base Allocation&lt;/strong&gt;: Allocates large, contiguous blocks of storage to reduce fragmentation.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Persistent Pre-allocation&lt;/strong&gt;: Reserves space for a file at creation to prevent fragmentation and improve performance.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Delayed Allocation&lt;/strong&gt;: Delays the allocation of disk space until data is written, optimizing space management.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Multi-block Allocation&lt;/strong&gt;: Allocates multiple blocks at once to increase efficiency, especially for large files.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Stripe-aware Allocation&lt;/strong&gt;: Optimizes block allocation for RAID systems by aligning data with RAID stripes.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Resizeable with resize2fs&lt;/strong&gt;: Can be resized (grown or shrunk) using the resize2fs tool.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;B-tree Balancing Algorithm - Different from XFS (COW B Tree)&lt;/strong&gt;: Uses a specific B-tree balancing algorithm for efficient file system organization and copy-on-write operations.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Copy-on-Write (COW)&lt;/strong&gt;: Writes modified data to new locations rather than overwriting existing data, preventing data corruption.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Snapshots and Clones&lt;/strong&gt;: Creates point-in-time copies of data (snapshots) and allows for duplication (clones) without full data replication.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Built-in RAID Support&lt;/strong&gt;: Provides native support for RAID configurations, improving data redundancy and performance.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Data and Metadata Checksumming&lt;/strong&gt;: Ensures data integrity by verifying both data and metadata through checksums.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Self-Healing&lt;/strong&gt;: Automatically repairs corrupted data using mirrored or parity blocks in RAID configurations.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Dynamic Subvolumes&lt;/strong&gt;: Supports the creation of isolated subvolumes within the same file system for better data management.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Online Resizing&lt;/strong&gt;: Allows the file system to be resized while it&amp;rsquo;s still mounted and in use.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Compression (LZO, ZLIB, ZSTD)&lt;/strong&gt;: Offers various compression algorithms to reduce storage space usage.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Deduplication&lt;/strong&gt;: Eliminates duplicate copies of repeating data to save space.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;Provide installation instructions for others (if needed).&lt;/li&gt;
+&lt;li&gt;Upload the binary or code to GitHub for distribution.&lt;/li&gt;
+&lt;/ol&gt;
 
 
 
-&lt;h2 id=&#34;core-commands-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/regex/#core-commands-&#34;&gt;Core Commands 🪨&lt;/a&gt;
-&lt;/h2&gt;
-
-  
-
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mkfs.btrfs&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Creates a new Btrfs file system on a specified device or partition.&lt;/p&gt;
-
-  
-
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;btrfs subvolume create&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Creates a new subvolume within an existing Btrfs file system.&lt;/p&gt;
-
-  
-
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;btrfs subvolume delete &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Deletes a specified subvolume from the Btrfs file system.&lt;/p&gt;
-
-  
-
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;btrfs subvolume list &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Lists all subvolumes within a Btrfs file system.&lt;/p&gt;
-
-  
-
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;btrfs filesystem show &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Displays detailed information about the Btrfs file systems on all mounted devices.&lt;/p&gt;
-
-  
-
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;btrfs filesystem df &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Shows disk space usage, including metadata and data, for a Btrfs file system.&lt;/p&gt;
-
-  
-
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;btrfs balance start &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Begins a balancing operation to redistribute data and metadata across the Btrfs file system.&lt;/p&gt;
-
-  
-
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;btrfs balance cancel &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Cancels an ongoing balancing operation.&lt;/p&gt;
-
-  
-
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;btrfs scrub start &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Initiates a scrub operation to verify data integrity on a Btrfs file system.&lt;/p&gt;
-
-  
-
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;btrfs scrub status &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Shows the status of an ongoing scrub operation.&lt;/p&gt;
-
-  
-
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;btrfs device add &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Adds a new device to an existing Btrfs file system, allowing for dynamic storage expansion.&lt;/p&gt;
-
-  
-
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;btrfs device delete&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Removes a specified device from a Btrfs file system.&lt;/p&gt;
-
-  
-
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;btrfs device stats &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Displays statistics and error information about devices in a Btrfs file system.&lt;/p&gt;
-
-  
-
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;btrfs check &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Checks the integrity of a Btrfs file system, often used for troubleshooting.&lt;/p&gt;
-
-  
-
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;btrfs rescue chunk-recover &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Attempts to recover data chunks from a damaged Btrfs file system.&lt;/p&gt;
-
-  
-
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;btrfs filesystem resize &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Resizes a Btrfs file system, either expanding or shrinking it dynamically.&lt;/p&gt;
-
-  
-
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;btrfs snapshot &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Creates a read-only or read-write snapshot of a subvolume or file system.&lt;/p&gt;
-
-  
-
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;btrfs property set&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Modifies properties of a Btrfs file system or its subvolumes (e.g., enabling compression).&lt;/p&gt;
-
-  
-
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;btrfs quota enable&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Enables quota enforcement on a Btrfs file system to limit space usage.&lt;/p&gt;
-
-  
-
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;btrfs quota rescan&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Rescans the file system to enforce or update quota limits.&lt;/p&gt;
+&lt;h3 id=&#34;ed&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#ed&#34;&gt;ed&lt;/a&gt;
+&lt;/h3&gt;
 
 
 
-&lt;h2 id=&#34;conclusion&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/regex/#conclusion&#34;&gt;Conclusion&lt;/a&gt;
-&lt;/h2&gt;
-&lt;p&gt;Well I hope that has opened your eyes to the benefits of Btrfs. Researching for this article has helped me to learn some more about the subject.
-If will definitely add to the article as I learn more about the subject, so consider this evergreen information 🌲&lt;/p&gt;
+&lt;h3 id=&#34;grep&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#grep&#34;&gt;grep&lt;/a&gt;
+&lt;/h3&gt;
+
+
+
+&lt;h3 id=&#34;sed&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#sed&#34;&gt;sed&lt;/a&gt;
+&lt;/h3&gt;
+
+
+
+&lt;h3 id=&#34;awk&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#awk&#34;&gt;awk&lt;/a&gt;
+&lt;/h3&gt;
+
+
+
+&lt;h3 id=&#34;perl&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#perl&#34;&gt;Perl&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Known as the Swiss army knife of scripting languages&amp;quot;&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;broader-unix-tools&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#broader-unix-tools&#34;&gt;Broader UNIX tools&lt;/a&gt;
+&lt;/h3&gt;
+
+
+
+&lt;h3 id=&#34;standardization&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#standardization&#34;&gt;Standardization&lt;/a&gt;
+&lt;/h3&gt;
 &lt;hr&gt;
 
 
 
 &lt;h3 id=&#34;helpful-links-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/regex/#helpful-links-&#34;&gt;Helpful Links ⛓️&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#helpful-links-&#34;&gt;Helpful Links ⛓️&lt;/a&gt;
 &lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Btrfs&#34;&gt;https://en.wikipedia.org/wiki/Btrfs&lt;/a&gt;
-&lt;a href=&#34;https://docs.kernel.org/filesystems/btrfs.html&#34;&gt;https://docs.kernel.org/filesystems/btrfs.html&lt;/a&gt;
-Footnotes&lt;/p&gt;
 &lt;div class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
 &lt;hr&gt;
 &lt;ol&gt;
 &lt;li id=&#34;fn:1&#34;&gt;
-&lt;p&gt;The above quote is excerpted from Valerie Aurora &lt;a href=&#34;https://lwn.net/Articles/342892/&#34;&gt;Article&lt;/a&gt; lwn.net, 2009.&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id=&#34;fn:2&#34;&gt;
-&lt;p&gt;Chris Mason &lt;a href=&#34;https://www.youtube.com/watch?v=oSgGVX2CGOQ&#34;&gt;Interview&lt;/a&gt; during LF Collaboration Summit, 2009.&amp;#160;&lt;a href=&#34;#fnref:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id=&#34;fn:3&#34;&gt;
-&lt;p&gt;The above reference is to the first proposal for the Btrfs file system &lt;a href=&#34;https://www.youtube.com/watch?v=PAAkCSZUG1c&#34;&gt;Technical Proposal&lt;/a&gt; during Gopherfest, Tues, June 12th, 2017.&amp;#160;&lt;a href=&#34;#fnref:3&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Cobra CLI Source Code &lt;a href=&#34;https://github.com/spf13/cobra&#34;&gt;GitHub Repository&lt;/a&gt; User: spf13, 2024.&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
     </item>
     <item>
-      <title>Why Btrfs</title>
+      <title>Why Btrfs 🤔</title>
       <link>http://localhost:1313/techblog/post/btrfs/</link>
       <pubDate>Thu, 03 Oct 2024 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/techblog/post/btrfs/</guid>
@@ -2290,7 +2557,6 @@ rl_localhost-live      1      2       0   wz--n-    &amp;lt;31.00g    0
 root rL_localhost-live -wi-ao---- 27.79g
 swap rL_localhost-live -wi-ao----  3.20g
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;🚨 TODO 🚨&lt;/p&gt;
 
 
 

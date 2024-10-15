@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/techblog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=techblog/livereload" data-no-instant defer></script>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <meta name="description" content="The Why, What and How of Signals">
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.135.0">
+  <title>Signals | Tech Blog</title>
+  <link rel="canonical" href="http://localhost:1313/techblog/post/signals/">
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+    <link rel="stylesheet" href="/techblog/css/base.css">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <a class="Banner-link u-clickable" href="/techblog/">Tech Blog</a>
+      </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/about/">About</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/post/">Posts</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/tags/">Tags</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/categories/">Categories</a>
+        </li>
+      
+        
+        
+          
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/feed.xml">RSS</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/signals/" rel="bookmark">Signals</a>
+  </h1>
+  
+    <time datetime="2024-10-13T00:00:00Z">October 13, 2024</time>
+  
+</header>
+  <p><img src="https://trevorsmale.github.io/techblog/images/Btrfs/btrfslogo.png" alt="Custom Btrfs Banner"></p>
+
+
+
+<h1 id="signals-">
+  <a class="Heading-link u-clickable" href="/techblog/post/signals/#signals-">Signals 🚥</a>
+</h1>
+<p>In Unix-like operating systems, a signal is a limited form of inter-process communication (IPC) used to notify a process that a specific event has occurred. Signals are used to interrupt a process and convey a message (like an alert), often in response to hardware or software events. Each signal has a unique number and symbolic name, and they can be sent by the kernel, another process, or the user.</p>
+<p>Signals operate at a relatively low level within the operating system, but they are not the lowest level of communication or control.</p>
+<p>Interrupts: Even lower-level than signals, these are triggered by hardware devices to notify the CPU of events (e.g., disk I/O completion).</p>
+<p><a href="https://www.youtube.com/watch?v=d0gS5TXarXc&amp;t=1009s">https://www.youtube.com/watch?v=d0gS5TXarXc&amp;t=1009s</a></p>
+
+
+
+<h2 id="history">
+  <a class="Heading-link u-clickable" href="/techblog/post/signals/#history">History</a>
+</h2>
+
+
+
+<h3 id="the-60-signals">
+  <a class="Heading-link u-clickable" href="/techblog/post/signals/#the-60-signals">The 60 Signals</a>
+</h3>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Signal</th>
+          <th style="text-align: left">Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>SIGHUP</code></td>
+          <td style="text-align: left">Hangup detected on controlling terminal or death of controlling process.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGINT</code></td>
+          <td style="text-align: left">Interrupt from keyboard (e.g., Ctrl+C).</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGQUIT</code></td>
+          <td style="text-align: left">Quit signal from keyboard (with core dump).</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGILL</code></td>
+          <td style="text-align: left">Illegal instruction (invalid machine code).</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGTRAP</code></td>
+          <td style="text-align: left">Trace or breakpoint trap.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGABRT</code></td>
+          <td style="text-align: left">Process abort signal.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGBUS</code></td>
+          <td style="text-align: left">Bus error (misaligned memory access).</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGFPE</code></td>
+          <td style="text-align: left">Floating-point exception (e.g., division by zero).</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGKILL</code></td>
+          <td style="text-align: left">Kill signal that terminates a process immediately.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGUSR1</code></td>
+          <td style="text-align: left">User-defined signal 1.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGSEGV</code></td>
+          <td style="text-align: left">Segmentation fault (invalid memory access).</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGUSR2</code></td>
+          <td style="text-align: left">User-defined signal 2.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGPIPE</code></td>
+          <td style="text-align: left">Broken pipe: write to pipe with no readers.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGALRM</code></td>
+          <td style="text-align: left">Alarm clock signal (used for timers).</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGTERM</code></td>
+          <td style="text-align: left">Termination signal for graceful shutdown.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGSTKFLT</code></td>
+          <td style="text-align: left">Stack fault on coprocessor.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGCHLD</code></td>
+          <td style="text-align: left">Child process terminated or stopped.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGCONT</code></td>
+          <td style="text-align: left">Continue a stopped process.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGSTOP</code></td>
+          <td style="text-align: left">Stop a process (cannot be caught or ignored).</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGTSTP</code></td>
+          <td style="text-align: left">Stop signal from terminal (e.g., Ctrl+Z).</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGTTIN</code></td>
+          <td style="text-align: left">Background process attempts to read from terminal.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGTTOU</code></td>
+          <td style="text-align: left">Background process attempts to write to terminal.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGURG</code></td>
+          <td style="text-align: left">Urgent condition on socket.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGXCPU</code></td>
+          <td style="text-align: left">CPU time limit exceeded.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGXFSZ</code></td>
+          <td style="text-align: left">File size limit exceeded.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGVTALRM</code></td>
+          <td style="text-align: left">Virtual alarm clock (user-time timer).</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGPROF</code></td>
+          <td style="text-align: left">Profiling timer expired.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGWINCH</code></td>
+          <td style="text-align: left">Window size change signal.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGIO</code></td>
+          <td style="text-align: left">I/O now possible on file descriptor.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGPWR</code></td>
+          <td style="text-align: left">Power failure.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGSYS</code></td>
+          <td style="text-align: left">Bad system call.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGRTMIN</code></td>
+          <td style="text-align: left">First real-time signal.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGRTMIN+1</code></td>
+          <td style="text-align: left">Real-time signal + 1.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGRTMIN+2</code></td>
+          <td style="text-align: left">Real-time signal + 2.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGRTMIN+3</code></td>
+          <td style="text-align: left">Real-time signal + 3.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGRTMIN+4</code></td>
+          <td style="text-align: left">Real-time signal + 4.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGRTMIN+5</code></td>
+          <td style="text-align: left">Real-time signal + 5.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGRTMIN+6</code></td>
+          <td style="text-align: left">Real-time signal + 6.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGRTMIN+7</code></td>
+          <td style="text-align: left">Real-time signal + 7.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGRTMIN+8</code></td>
+          <td style="text-align: left">Real-time signal + 8.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGRTMIN+9</code></td>
+          <td style="text-align: left">Real-time signal + 9.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGRTMIN+10</code></td>
+          <td style="text-align: left">Real-time signal + 10.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGRTMIN+11</code></td>
+          <td style="text-align: left">Real-time signal + 11.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGRTMIN+12</code></td>
+          <td style="text-align: left">Real-time signal + 12.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGRTMIN+13</code></td>
+          <td style="text-align: left">Real-time signal + 13.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGRTMIN+14</code></td>
+          <td style="text-align: left">Real-time signal + 14.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGRTMIN+15</code></td>
+          <td style="text-align: left">Real-time signal + 15.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGRTMAX-14</code></td>
+          <td style="text-align: left">Real-time signal - 14.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGRTMAX-13</code></td>
+          <td style="text-align: left">Real-time signal - 13.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGRTMAX-12</code></td>
+          <td style="text-align: left">Real-time signal - 12.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGRTMAX-11</code></td>
+          <td style="text-align: left">Real-time signal - 11.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGRTMAX-10</code></td>
+          <td style="text-align: left">Real-time signal - 10.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGRTMAX-9</code></td>
+          <td style="text-align: left">Real-time signal - 9.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGRTMAX-8</code></td>
+          <td style="text-align: left">Real-time signal - 8.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGRTMAX-7</code></td>
+          <td style="text-align: left">Real-time signal - 7.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGRTMAX-6</code></td>
+          <td style="text-align: left">Real-time signal - 6.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGRTMAX-5</code></td>
+          <td style="text-align: left">Real-time signal - 5.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGRTMAX-4</code></td>
+          <td style="text-align: left">Real-time signal - 4.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGRTMAX-3</code></td>
+          <td style="text-align: left">Real-time signal - 3.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGRTMAX-2</code></td>
+          <td style="text-align: left">Real-time signal - 2.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGRTMAX-1</code></td>
+          <td style="text-align: left">Real-time signal - 1.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>SIGRTMAX</code></td>
+          <td style="text-align: left">Last real-time signal.</td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+<h2 id="signal-event-processing">
+  <a class="Heading-link u-clickable" href="/techblog/post/signals/#signal-event-processing">Signal Event Processing</a>
+</h2>
+
+
+
+<h3 id="command">
+  <a class="Heading-link u-clickable" href="/techblog/post/signals/#command">Command</a>
+</h3>
+
+
+
+<h3 id="processes">
+  <a class="Heading-link u-clickable" href="/techblog/post/signals/#processes">Processes</a>
+</h3>
+
+
+
+<h3 id="trigger">
+  <a class="Heading-link u-clickable" href="/techblog/post/signals/#trigger">Trigger</a>
+</h3>
+
+
+
+<h3 id="ingest">
+  <a class="Heading-link u-clickable" href="/techblog/post/signals/#ingest">Ingest</a>
+</h3>
+
+
+
+<h3 id="sub-routine">
+  <a class="Heading-link u-clickable" href="/techblog/post/signals/#sub-routine">Sub-Routine</a>
+</h3>
+
+
+
+<h3 id="return">
+  <a class="Heading-link u-clickable" href="/techblog/post/signals/#return">Return</a>
+</h3>
+<hr>
+
+
+
+<h3 id="helpful-links-">
+  <a class="Heading-link u-clickable" href="/techblog/post/signals/#helpful-links-">Helpful Links ⛓️</a>
+</h3>
+  
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/signals/" rel="tag">Signals</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/notes/" rel="tag">Notes</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/research/" rel="tag">Research</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+  
+  
+
+
+
+      </div>
+    </div>
+  </main>
+  
+</body>
+
+</html>

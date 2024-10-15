@@ -20,12 +20,13 @@ series = ["Learning"]
 
 # Regular Expressions 😐
 
-Rregex are tools used for pattern matching and searching text.
+Regex are tools used for pattern matching and searching text.
 
 ## History
 
 Regular expressions has a surprising history prior to being adopted into UNIX. It has roots in Mathematics and Logic with formal language theory and automata theory in the 1940's.
-Noam Chomsky addressed regular expressions in the formalization of language theory during the 50s. Ken Thomson introduced the concept to text search in the ed text editor during the late 1960s which lead to the implemenetation in grep, then Sed and awk.
+
+Noam Chomsky addressed regular expressions in his formalization of language theory during the 50s. Ken Thomson introduced the concept to text search in the ed text editor during the late 1960s which lead to the implemenetation in grep, then Sed and awk.
 
 ### ed
 

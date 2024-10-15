@@ -2,193 +2,196 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/techblog/tags/administration/</loc>
+    <loc>https://trevorsmale.github.io/techblog/tags/administration/</loc>
+    <lastmod>2024-10-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://trevorsmale.github.io/techblog/categories/</loc>
+    <lastmod>2024-10-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://trevorsmale.github.io/techblog/tags/engineering/</loc>
+    <lastmod>2024-10-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://trevorsmale.github.io/techblog/tags/go/</loc>
+    <lastmod>2024-10-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://trevorsmale.github.io/techblog/post/goclisysutil/</loc>
+    <lastmod>2024-10-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://trevorsmale.github.io/techblog/categories/knowledge-exchange/</loc>
+    <lastmod>2024-10-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://trevorsmale.github.io/techblog/tags/linux/</loc>
+    <lastmod>2024-10-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://trevorsmale.github.io/techblog/tags/notes/</loc>
+    <lastmod>2024-10-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://trevorsmale.github.io/techblog/post/</loc>
+    <lastmod>2024-10-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://trevorsmale.github.io/techblog/tags/research/</loc>
+    <lastmod>2024-10-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://trevorsmale.github.io/techblog/tags/</loc>
+    <lastmod>2024-10-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://trevorsmale.github.io/techblog/tags/tech/</loc>
+    <lastmod>2024-10-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://trevorsmale.github.io/techblog/</loc>
+    <lastmod>2024-10-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://trevorsmale.github.io/techblog/tags/capstoneproject/</loc>
     <lastmod>2024-10-06T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/tags/capstoneproject/</loc>
+    <loc>https://trevorsmale.github.io/techblog/categories/learning/</loc>
     <lastmod>2024-10-06T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/categories/</loc>
+    <loc>https://trevorsmale.github.io/techblog/post/paccp0/</loc>
     <lastmod>2024-10-06T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/tags/engineering/</loc>
+    <loc>https://trevorsmale.github.io/techblog/tags/prolug-course/</loc>
     <lastmod>2024-10-06T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/categories/learning/</loc>
-    <lastmod>2024-10-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/techblog/post/sysadminlife/</loc>
-    <lastmod>2024-10-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/techblog/tags/linux/</loc>
-    <lastmod>2024-10-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/techblog/post/</loc>
-    <lastmod>2024-10-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/techblog/post/paccp0/</loc>
-    <lastmod>2024-10-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/techblog/tags/prolug-course/</loc>
-    <lastmod>2024-10-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/techblog/tags/</loc>
-    <lastmod>2024-10-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/techblog/tags/tech/</loc>
-    <lastmod>2024-10-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/techblog/</loc>
-    <lastmod>2024-10-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/techblog/tags/operating-systems/</loc>
+    <loc>https://trevorsmale.github.io/techblog/tags/operating-systems/</loc>
     <lastmod>2024-10-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/post/pacu4/</loc>
+    <loc>https://trevorsmale.github.io/techblog/post/pacu4/</loc>
     <lastmod>2024-10-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/tags/filesystems/</loc>
+    <loc>https://trevorsmale.github.io/techblog/tags/filesystems/</loc>
     <lastmod>2024-10-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/tags/notes/</loc>
+    <loc>https://trevorsmale.github.io/techblog/post/btrfs/</loc>
     <lastmod>2024-10-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/tags/research/</loc>
-    <lastmod>2024-10-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/techblog/post/btrfs/</loc>
-    <lastmod>2024-10-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/techblog/post/paccp3/</loc>
+    <loc>https://trevorsmale.github.io/techblog/post/paccp3/</loc>
     <lastmod>2024-09-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/post/pacu3/</loc>
+    <loc>https://trevorsmale.github.io/techblog/post/pacu3/</loc>
     <lastmod>2024-09-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/tags/course-work/</loc>
+    <loc>https://trevorsmale.github.io/techblog/tags/course-work/</loc>
     <lastmod>2024-09-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/about/</loc>
+    <loc>https://trevorsmale.github.io/techblog/about/</loc>
     <lastmod>2024-09-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/tags/networking/</loc>
+    <loc>https://trevorsmale.github.io/techblog/tags/networking/</loc>
     <lastmod>2024-09-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/tags/note-taking/</loc>
+    <loc>https://trevorsmale.github.io/techblog/tags/note-taking/</loc>
     <lastmod>2024-09-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/tags/programming/</loc>
+    <loc>https://trevorsmale.github.io/techblog/tags/programming/</loc>
     <lastmod>2024-09-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/tags/systems/</loc>
+    <loc>https://trevorsmale.github.io/techblog/tags/systems/</loc>
     <lastmod>2024-09-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/tags/technology/</loc>
+    <loc>https://trevorsmale.github.io/techblog/tags/technology/</loc>
     <lastmod>2024-09-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/tags/unix/</loc>
+    <loc>https://trevorsmale.github.io/techblog/tags/unix/</loc>
     <lastmod>2024-09-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/post/paccp2/</loc>
+    <loc>https://trevorsmale.github.io/techblog/post/paccp2/</loc>
     <lastmod>2024-09-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/post/pacu2/</loc>
+    <loc>https://trevorsmale.github.io/techblog/post/pacu2/</loc>
     <lastmod>2024-09-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/post/paccp1/</loc>
+    <loc>https://trevorsmale.github.io/techblog/post/paccp1/</loc>
     <lastmod>2024-09-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/post/pacu1/</loc>
+    <loc>https://trevorsmale.github.io/techblog/post/pacu1/</loc>
     <lastmod>2024-09-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/post/vt/</loc>
+    <loc>https://trevorsmale.github.io/techblog/post/vt/</loc>
     <lastmod>2024-09-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/tags/certification/</loc>
+    <loc>https://trevorsmale.github.io/techblog/tags/certification/</loc>
     <lastmod>2024-09-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/categories/projects/</loc>
+    <loc>https://trevorsmale.github.io/techblog/categories/projects/</loc>
     <lastmod>2024-09-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/tags/prolug/</loc>
+    <loc>https://trevorsmale.github.io/techblog/tags/prolug/</loc>
     <lastmod>2024-09-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/tags/study-technique/</loc>
+    <loc>https://trevorsmale.github.io/techblog/tags/study-technique/</loc>
     <lastmod>2024-09-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/tags/vim/</loc>
+    <loc>https://trevorsmale.github.io/techblog/tags/vim/</loc>
     <lastmod>2024-09-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/tags/design/</loc>
+    <loc>https://trevorsmale.github.io/techblog/tags/design/</loc>
     <lastmod>2024-09-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/post/vue/</loc>
+    <loc>https://trevorsmale.github.io/techblog/post/vue/</loc>
     <lastmod>2024-09-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/tags/nuxt/</loc>
+    <loc>https://trevorsmale.github.io/techblog/tags/nuxt/</loc>
     <lastmod>2024-09-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/categories/stacks/</loc>
+    <loc>https://trevorsmale.github.io/techblog/categories/stacks/</loc>
     <lastmod>2024-09-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/tags/tailwind/</loc>
+    <loc>https://trevorsmale.github.io/techblog/tags/tailwind/</loc>
     <lastmod>2024-09-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/tags/techstack/</loc>
+    <loc>https://trevorsmale.github.io/techblog/tags/techstack/</loc>
     <lastmod>2024-09-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/categories/tools/</loc>
+    <loc>https://trevorsmale.github.io/techblog/categories/tools/</loc>
     <lastmod>2024-09-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/tags/vue/</loc>
+    <loc>https://trevorsmale.github.io/techblog/tags/vue/</loc>
     <lastmod>2024-09-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/tags/webdev/</loc>
+    <loc>https://trevorsmale.github.io/techblog/tags/webdev/</loc>
     <lastmod>2024-09-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/categories/webdev/</loc>
+    <loc>https://trevorsmale.github.io/techblog/categories/webdev/</loc>
     <lastmod>2024-09-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/post/pac/</loc>
+    <loc>https://trevorsmale.github.io/techblog/post/pac/</loc>
     <lastmod>2024-09-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/post/nd/</loc>
+    <loc>https://trevorsmale.github.io/techblog/post/nd/</loc>
     <lastmod>2024-09-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/tags/tidbits/</loc>
+    <loc>https://trevorsmale.github.io/techblog/tags/tidbits/</loc>
     <lastmod>2024-09-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/categories/tidbits/</loc>
+    <loc>https://trevorsmale.github.io/techblog/categories/tidbits/</loc>
     <lastmod>2024-09-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/tags/lpic/</loc>
+    <loc>https://trevorsmale.github.io/techblog/tags/lpic/</loc>
     <lastmod>2024-08-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/post/lpic/</loc>
+    <loc>https://trevorsmale.github.io/techblog/post/lpic/</loc>
     <lastmod>2024-08-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/tags/lxc/</loc>
+    <loc>https://trevorsmale.github.io/techblog/tags/lxc/</loc>
     <lastmod>2024-08-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/tags/proxmox/</loc>
+    <loc>https://trevorsmale.github.io/techblog/tags/proxmox/</loc>
     <lastmod>2024-08-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/post/proxmox/</loc>
+    <loc>https://trevorsmale.github.io/techblog/post/proxmox/</loc>
     <lastmod>2024-08-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/tags/self-hosting/</loc>
+    <loc>https://trevorsmale.github.io/techblog/tags/self-hosting/</loc>
     <lastmod>2024-08-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/tags/virtual-machines/</loc>
+    <loc>https://trevorsmale.github.io/techblog/tags/virtual-machines/</loc>
     <lastmod>2024-08-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/post/fs/</loc>
+    <loc>https://trevorsmale.github.io/techblog/post/fs/</loc>
     <lastmod>2024-08-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/tags/go/</loc>
-    <lastmod>2024-08-24T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/techblog/post/ws/</loc>
+    <loc>https://trevorsmale.github.io/techblog/post/ws/</loc>
     <lastmod>2024-08-24T00:00:00+00:00</lastmod>
   </url>
 </urlset>

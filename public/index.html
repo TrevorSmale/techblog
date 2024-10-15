@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
 
-<head><script src="/techblog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=techblog/livereload" data-no-instant defer></script>
+<head>
   
 
   
@@ -30,7 +30,7 @@
 
 <meta name="generator" content="Hugo 0.135.0">
   <title>Tech Blog</title>
-  <link rel="canonical" href="http://localhost:1313/techblog/">
+  <link rel="canonical" href="https://trevorsmale.github.io/techblog/">
 
 
 
@@ -52,11 +52,8 @@
     
     
     
-    
-    
-  
-    
-    
+      
+      
     
     
     
@@ -64,11 +61,8 @@
     
     
     
-    
-    
-  
-    
-    
+      
+      
     
     
     
@@ -76,11 +70,8 @@
     
     
     
-    
-    
-  
-    
-    
+      
+      
     
     
     
@@ -88,11 +79,8 @@
     
     
     
-    
-    
-  
-    
-    
+      
+      
     
     
     
@@ -100,11 +88,53 @@
     
     
     
+      
+      
+    
     
     
   
     
     
+    
+      
+      
+    
+    
+    
+  
+    
+    
+    
+      
+      
+    
+    
+    
+  
+    
+    
+    
+      
+      
+    
+    
+    
+  
+    
+    
+    
+      
+      
+    
+    
+    
+  
+    
+    
+    
+      
+      
     
     
     
@@ -112,7 +142,9 @@
 
 
   
-    <link rel="stylesheet" href="/techblog/css/base.css">
+      <link rel="stylesheet" href="/techblog/css/base.min.77ec62ba0b16c97f12070ff63174c3711ba36779d23242ea60e7e3f9fadea037.css" integrity="sha256-d&#43;xiugsWyX8SBw/2MXTDcRujZ3nSMkLqYOfj&#43;freoDc=" crossorigin="anonymous">
+
+      <link rel="stylesheet" href="/techblog/css/syntax.min.065df42d2be658bb8e0720297aadf469355a5ffaf863b00e3cce0627dd106ca0.css" integrity="sha256-Bl30LSvmWLuOByApeq30aTVaX/r4Y7AOPM4GJ90QbKA=" crossorigin="anonymous">
 
 
 
@@ -173,7 +205,7 @@
     <a class="Heading-link u-clickable" href="/techblog/" rel="bookmark">Tech Blog</a>
   </h1>
   
-    <time datetime="2024-10-06T00:00:00Z">October 6, 2024</time>
+    <time datetime="2024-10-15T00:00:00Z">October 15, 2024</time>
   
 </header>
   
@@ -181,6 +213,264 @@
   
 
   
+  
+    <article>
+      <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/" rel="bookmark">GO CLI Utility</a>
+  </h1>
+  
+    <time datetime="2024-10-15T00:00:00Z">October 15, 2024</time>
+  
+</header>
+      
+        <h1 id="making-a-utility-for-linux-">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#making-a-utility-for-linux-">Making a Utility for Linux 🚀</a>
+</h1>
+<p>Recently, I was chatting with fellow enthusiasts in the ProLUG group about creating system utilities with Go.</p>
+<p>Between learning about it on my own time and getting input from others, I realized there are so many compelling reasons for using Go as a utility language. 🛠️</p>
+<p>Currently, the idea isn&rsquo;t as prevalent as Python or Bash, but it’s gaining traction. This makes sense since Go was designed with modern, interconnected systems in mind.</p>
+
+
+
+<h2 id="what-is-a-utility-">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#what-is-a-utility-">What is a Utility? 🤔</a>
+</h2>
+<p>A system utility streamlines repetitive tasks by offering custom commands tailored to your workflow, boosting efficiency for system administrators and engineers. Work smarter, not harder. 💡</p>
+
+
+
+<h2 id="cli-tool-">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#cli-tool-">CLI Tool 🖥️</a>
+</h2>
+<p>Go offers a package called Cobra CLI <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>, which enables the creation of command-line interfaces that take input from the terminal and execute predetermined logic. I’m putting this simply in case you’re unfamiliar with how programs work 😆.</p>
+<p>The CLI is the simplest form of a computer program and is perfect for Linux system folks.</p>
+
+
+
+<h2 id="core-idea-">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#core-idea-">Core Idea 🎯</a>
+</h2>
+<p>The core idea of this article is to explain how a Go program can act as a personalized utility that lives on your system or can be deployed across many. Go compiles code into a binary—native computer language. Once built, the binary runs reliably without failure, assuming the program logic is solid. This makes Go ideal for utilities that are called repeatedly to perform simple tasks.</p>
+
+
+
+<h2 id="automate-everything-">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#automate-everything-">Automate Everything 🤖</a>
+</h2>
+<p>Managing systems involves a lot of repetitive tasks, and the goal of any sysadmin or engineer is to automate them. Tools like Ansible, Python, and Bash are already well-known for automation. However, there are specific reasons to use Go, which I’ll explore further in a future article titled <em>&ldquo;Why Go?&rdquo;</em> where I’ll break down why it belongs in your quiver of tools 🏹.</p>
+<hr>
+
+
+
+<h3 id="cli-programming-portion-">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#cli-programming-portion-">CLI Programming Portion ⚙️</a>
+</h3>
+
+
+
+<h4 id="setup">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#setup">Setup</a>
+</h4>
+<ol>
+<li><strong>Install</strong> Go and Cobra CLI (if not already installed).</li>
+<li><strong>Initialize</strong> a new Go project with Cobra CLI.</li>
+</ol>
+
+
+
+<h4 id="cli-logic">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#cli-logic">CLI Logic</a>
+</h4>
+<ol>
+<li><strong>Add commands and flags</strong> to the Cobra application.</li>
+<li><strong>Implement utility functions</strong>, such as disk usage checks or file listings.</li>
+</ol>
+
+
+
+<h3 id="compilation-and-installation-">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#compilation-and-installation-">Compilation and Installation 🏗️</a>
+</h3>
+
+
+
+<h4 id="compile">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#compile">Compile</a>
+</h4>
+<ol>
+<li><strong>Build</strong> the Go project into a single x86 Linux binary.</li>
+<li><strong>Test</strong> the binary locally to confirm functionality.</li>
+</ol>
+
+
+
+<h4 id="install">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#install">Install</a>
+</h4>
+<ol>
+<li><strong>Move</strong> the binary to <code>/usr/local/bin</code> for global access.</li>
+<li><strong>Set permissions</strong> on the binary to allow execution.</li>
+</ol>
+
+
+
+<h4 id="add-to-path">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#add-to-path">Add to PATH</a>
+</h4>
+<ol>
+<li><strong>Check</strong> if <code>/usr/local/bin</code> is in your PATH.</li>
+<li>If not, <strong>add it</strong> to your <code>.bashrc</code> or <code>.bash_profile</code>.</li>
+</ol>
+
+
+
+<h3 id="testing-portion-">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#testing-portion-">Testing Portion 🧪</a>
+</h3>
+<ol>
+<li><strong>Run</strong> the utility from any location to confirm it works.</li>
+<li>Optionally, <strong>add help documentation</strong> or more commands to the CLI.</li>
+</ol>
+
+
+
+<h3 id="packaging-">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#packaging-">Packaging 📦</a>
+</h3>
+<ol>
+<li><strong>Provide installation instructions</strong> if you plan to share it.</li>
+<li><strong>Upload</strong> the binary or source code to GitHub for distribution.</li>
+</ol>
+<hr>
+
+
+
+<h2 id="learning-resources">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#learning-resources">Learning Resources</a>
+</h2>
+<p>Ok this was just a simple outline you say. Yes, I am trying to convey information simply for sanities sake, this is how I process things anyway.</p>
+<p>In order to make your own utility you will have to go off on your own learning adventure. Below I am giving you some resources for getting started.</p>
+
+
+
+<h3 id="getting-up-and-running-with-go">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#getting-up-and-running-with-go">Getting up and running with GO</a>
+</h3>
+
+
+
+<h4 id="brief-intro-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#brief-intro-2">Brief Intro <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></a>
+</h4>
+
+
+
+<h4 id="for-the-impatient-3">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#for-the-impatient-3">For the impatient <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></a>
+</h4>
+<p>There are many ways to get this done. For the clever and impatient, I suggest finding a pre-made CLI application that you can deconstruct. <sup id="fnref1:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
+
+
+
+<h4 id="for-the-patient-4">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#for-the-patient-4">For the Patient <sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup></a>
+</h4>
+<p>For those who like to build a foundation of understanding, I suggest watching a lecture followed by a tutorial and finally doing the project. <sup id="fnref1:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup></p>
+
+
+
+<h2 id="conclusion">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#conclusion">Conclusion</a>
+</h2>
+<p>I try to keep things simple and succinct, so this is where I ride off into the sunset. Good luck and happy learning.</p>
+<hr>
+
+
+
+<h2 id="footnotes-">
+  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#footnotes-">Footnotes ⛓️</a>
+</h2>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Cobra CLI Source Code <a href="https://github.com/spf13/cobra">GitHub Repository</a> User: spf13, Current.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>GO in 100 Seconds <a href="https://www.youtube.com/watch?v=446E-r0rXHI">Youtube Video</a> Channel: Fireship, 2021.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>Cobra CLI Samples <a href="https://github.com/Adron/cobra-cli-samples">GitHub Repository</a> User: Adron, 2022.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a>&#160;<a href="#fnref1:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4">
+<p>Golang Tutorial Series Playlist <a href="https://www.youtube.com/watch?v=etSN4X_fCnM&amp;list=PL4cUxeGkcC9gC88BEo9czgyS72A3doDeM">Youtube Channel</a> Channel: Net Ninja, 2021.&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a>&#160;<a href="#fnref1:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+      
+      
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/knowledge-exchange/" rel="tag">Knowledge Exchange</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/go/" rel="tag">GO</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/notes/" rel="tag">Notes</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/research/" rel="tag">Research</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+    </article>
+    
+      <div class="Divider"></div>
+    
   
     <article>
       <header class="Heading">
@@ -5114,170 +5404,6 @@ KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/he
           
             <li class="Tags-item u-background">
               <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
-            </li>
-          
-        </ul>
-      
-    
-  </footer>
-
-    </article>
-    
-      <div class="Divider"></div>
-    
-  
-    <article>
-      <header class="Heading">
-  <h1 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/techblog/post/vt/" rel="bookmark">Actually completing VimTutor</a>
-  </h1>
-  
-    <time datetime="2024-09-10T00:00:00Z">September 10, 2024</time>
-  
-</header>
-      
-        <h3 id="intro">
-  <a class="Heading-link u-clickable" href="/techblog/post/vt/#intro">Intro</a>
-</h3>
-<p>Vim is a program created by the late Bram Moolenaar as an improvement to an older program called Vi. It is a modal text editor, meaning there are different modes of usage — I&rsquo;ll get into that later. While strongly associated with UNIX systems, Vim is available on other platforms as well. It is used to efficiently create and modify files from a simple terminal, requiring very limited system resources. Vim is a foundational tool for mastering Linux, allowing one to navigate the directory structure and edit configuration files like no other. Furthermore, Vi and/or Vim come bundled with most minimal Linux distributions.</p>
-
-
-
-<h3 id="vim-tutor">
-  <a class="Heading-link u-clickable" href="/techblog/post/vt/#vim-tutor">Vim Tutor</a>
-</h3>
-<p>Vim Tutor is an in-built interactive tutorial that comes pre-packaged with Vim, designed to bring novices up to speed with the various modes and functions of this nimble tool. I had hopped into Vim Tutor before but never felt the need to complete it, as it seemed long and complex. Recently, my teacher and mentor Scott C. mentioned that this would be one of the first lessons we would undertake as part of the ProLUG system administration course. Being a dedicated student, I decided to give it my full attention — and I’m glad I did.</p>
-
-
-
-<h3 id="the-halfway-point">
-  <a class="Heading-link u-clickable" href="/techblog/post/vt/#the-halfway-point">The Halfway Point</a>
-</h3>
-<p>In previous attempts, I had reached the halfway point and felt confident I had gained enough information to edit files. Some functions are unintuitive at first, like using the <code>hjkl</code> keys for navigation instead of arrow keys. There are many jokes about the overload people feel when they first encounter Vim&rsquo;s conventions. Jokes like never being able to exit the program or forgetting one&rsquo;s own name after memorizing commands are common. Mastering Vim requires memorizing commands until they become second nature, which simply takes time. This is why I hadn&rsquo;t completed Vim Tutor before — there’s only so much one can absorb before needing a break. However, this time, I was able to make it through to the end, pleasantly surprised by the new techniques I had learned.</p>
-
-
-
-<h3 id="understanding-the-modes">
-  <a class="Heading-link u-clickable" href="/techblog/post/vt/#understanding-the-modes">Understanding the Modes</a>
-</h3>
-<p>Modes are what make Vim a powerful tool. There are three modes in Vim: Normal, Insert, and Visual.</p>
-<ul>
-<li>
-<p><strong>Normal mode</strong> is the default mode, where you navigate a document using motions. It protects the document from accidental modifications and allows for a broader range of single-key commands.</p>
-</li>
-<li>
-<p><strong>Insert mode</strong> is where characters or strings are added — fairly self-explanatory.</p>
-</li>
-<li>
-<p><strong>Visual mode</strong> allows you to make selections, much like clicking and dragging with a mouse to highlight text.</p>
-</li>
-</ul>
-<p>Although I had known about these modes, it once seemed improbable that I would ever memorize them well enough to use them reflexively. However, with practice, I have done just that. Combining motions and commands can lead to huge efficiency gains. For example, you can navigate to a specific line, delete the first three letters, and paste something at the end of the line with just a few keystrokes.</p>
-
-
-
-<h3 id="what-i-recently-picked-up">
-  <a class="Heading-link u-clickable" href="/techblog/post/vt/#what-i-recently-picked-up">What I Recently Picked Up</a>
-</h3>
-
-
-
-<h4 id="stringing-commands">
-  <a class="Heading-link u-clickable" href="/techblog/post/vt/#stringing-commands">Stringing Commands</a>
-</h4>
-<p>What did I actually learn that I will immediately employ? Well, I now have a solid grasp of most single-key commands, so I’ll start stringing commands and motions together, such as deleting three words and appending text to the end of a line.</p>
-
-
-
-<h4 id="global-search-and-replace">
-  <a class="Heading-link u-clickable" href="/techblog/post/vt/#global-search-and-replace">Global Search and Replace</a>
-</h4>
-<p>Additionally, I had known about global search and replace, but I hadn’t really used it before since it’s only useful for certain file types.</p>
-
-
-
-<h4 id="buffers-and-deleted-lines">
-  <a class="Heading-link u-clickable" href="/techblog/post/vt/#buffers-and-deleted-lines">Buffers and Deleted Lines</a>
-</h4>
-<p>I also learned that Vim’s buffer, much like a clipboard, stores strings for later use — and deleted lines are stored there as well. I’ll be more mindful of using the buffer going forward.</p>
-
-
-
-<h4 id="running-shell-commands">
-  <a class="Heading-link u-clickable" href="/techblog/post/vt/#running-shell-commands">Running Shell Commands</a>
-</h4>
-<p>Lastly, running shell commands from within Vim seemed inefficient to me before, since I could easily jump in and out of files. However, I now understand that it can speed things up.</p>
-
-
-
-<h3 id="in-summary">
-  <a class="Heading-link u-clickable" href="/techblog/post/vt/#in-summary">In Summary</a>
-</h3>
-<p>Vim isn’t something you just pick up on a whim. It’s more like a martial art, where you practice movements until they become second nature. In a world dominated by graphical user interfaces, Vim can seem like a waste of time and effort. Yet, when you’re working under the hood of an operating system, especially on bare-bones UNIX servers, it becomes clear that if everything is a file and many configurations must be made, Vim is the right tool for the job.</p>
-      
-      
-
-  
-
-  
-
-
-
-
-
-  <footer>
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/categories/projects/" rel="tag">Projects</a>
-            </li>
-          
-        </ul>
-      
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/certification/" rel="tag">Certification</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/study-technique/" rel="tag">Study Technique</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/vim/" rel="tag">Vim</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/prolug/" rel="tag">ProLUG</a>
             </li>
           
         </ul>
