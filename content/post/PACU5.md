@@ -1,9 +1,9 @@
 +++
 author = "Hugo Authors"
 title = "ProLUG Admin Course Unit 5 🐧"
-date = "2024-10-12"
+date = "2024-10-18"
 description = "ProLUG Admin Course Unit 5"
-draft = "true"
+draft = "false"
 tags = [
   "Tech", "Linux", "Administration", "Engineering", "ProLUG Course", "Operating Systems"
 ]
@@ -26,7 +26,87 @@ Linux is fundamentally well suited for Managing Users & Groups because permissio
 
 ## Lab Work 🧪🥼
 
-### Unit 5 Assignment: Mapping the Lab 🗺️🤔
+### Primary Commands / Tools
+
+- **alias**: Creates a shortcut or alias for a command.
+- **unalias**: Removes an alias that was previously defined.
+- **awk**: A powerful text-processing tool used for pattern scanning and processing.
+- **useradd**: Adds a new user to the system.
+- **vi .bashrc**: Opens the `.bashrc` file in the vi editor to customize shell settings.
+- **UID_MIN 1000**: The minimum user ID value for normal users (as defined in `/etc/login.defs`).
+- **UID_MAX 60000**: The maximum user ID value for normal users (as defined in `/etc/login.defs`).
+- **groupadd –g 60001 project**: Creates a new group named "project" with a GID of 60001.
+- **id user4**: Displays the user ID (UID), group ID (GID), and group memberships of user "user4."
+
+---
+
+#### etc directories
+
+- Looking at etc directories relating to Users, Groups and Associated Security
+
+        /etc/passwd 
+
+- contains essential information about users, including their username, user ID (UID), group ID (GID), home directory, and default shell, with each entry separated by a colon.
+
+        /etc/group
+
+- stores group information, listing each group’s name, group ID (GID), and its members, with each entry separated by a colon, allowing users to belong to one or more groups for access control purposes.
+
+        /etc/shadow
+
+- contains encrypted password information and related security details for user accounts, such as password aging and expiration
+
+        /etc/gshadow
+
+- stores encrypted passwords for group accounts, as well as information about group administrators and members, providing enhanced security for group access by restricting who can modify or access specific group data.
+
+        /etc/login.defs 
+
+- configuration settings for user account creation and login parameters, such as password aging policies, UID and GID ranges, and the default paths for user home directories, helping to control system-wide authentication behavior.
+
+        /etc/skel/
+
+- provides template files that are automatically copied to a new user’s home directory when the user is created, ensuring they have default configuration settings.
+
+
+### Other interesting directories
+
+- Brief Description
+- Associated permissions
+
+        /etc/fstab
+
+- This file contains information about disk partitions and other block storage devices and how they should be automatically mounted during the boot process.
+- Permissions: Usually -rw-r--r-- (readable by all users, writable only by the root).
+
+        /etc/hostname
+
+- This file stores the system’s hostname, which is a unique identifier for the machine in a network.
+- Permissions: Usually -rw-r--r-- (readable by all users, writable only by the root).
+
+        /proc
+
+- This is a virtual filesystem that provides detailed information about processes and system resources. It does not contain actual files but rather system and process information in real-time.
+- Permissions: dr-xr-xr-x (readable and executable by all users, writable only by root).
+
+        /boot
+
+- Contains the kernel, initial ramdisk, and bootloader files needed to start the system.
+- Permissions: drwxr-xr-x (readable and executable by all users, writable only by root).
+
+        /root
+
+- This is the home directory for the root user (the system administrator).
+- Permissions: drwx------ (only root has read, write, and execute permissions).
+
+        /usr/bin
+
+- Contains binary executables for user programs.
+- Permissions: drwxr-xr-x (readable and executable by all users, writable by root).
+
+---
+
+## Mapping unknown infrastructure 🗺️🤔
 **Objectives:**
 
 - Map the Internal ProLUG Network (192.168.200.0/24):
@@ -108,13 +188,50 @@ Ninjas mark stealthier techniques.
 | 19    | `nmap -6 <target>`              | Scan IPv6 targets                                |
 | 20    | `nmap -D RND:10 <target>` 🥷     | Decoy scan to mask source of scan                |
 
+## The Actual Mapping
+
+![Network Map](https://trevorsmale.github.io/techblog/images/PACU5/cnm.png)
+
+### 🚀 Accessing the Secure Jump Point
+
+The network is safely tucked behind a Dynamic Domain Name System (DDNS) running on an Asus Router. This setup allows access from a WAN, in this case, *The Internet* (if you’ve heard of it 🌐). It securely gate-keeps the network via login credentials, because let’s be honest, the Internet can be a scary place with bots... and sometimes people 👀.
+
+So, what exactly does DDNS do? Well, I’m glad you asked! Most home internet connections don’t offer a static IP address, which makes hosting things tricky because the IP will randomly change. The IP is dynamic for a few reasons, including cost savings and the limited availability of IPv4 addresses. Anyway, I’m getting off track 🛤️. A DDNS monitors this dynamic IP and links it to a stable address that stays fixed. 
+
+**TL;DR**: DDNS bonds a dynamic IP with a fixed address, offering the added bonus of hiding the internal IP from bad actors, or as I like to call them, *the baddies* in London 🕵️‍♂️. So, this network has a DDNS gateway in place for that extra layer of security 🔒.
+
+### 🎯 Jumping into a Node
+
+Once a credentialed fellow enters their login while hanging at the gateway, a list of servers appears, like a digital menu 🍽️. From this list, one can choose where to jump to. In my case, I leapt to *Rocky12*, a node within a managed cluster. I knew a little about this network thanks to earlier sessions, but most of this can also be discovered by doing some network scanning 🕵️.
+
+### 🔍 Doing a Broad Inventory Scan
+
+This is where the magic of `nmap` comes into play! I used two stealthy commands: **nmap -sS** and **nmap -sT**. The `sT` option scanned a wide range of ports and connections, giving me a detailed list that I piped into `less` for easier viewing 📜.
+
+### 🎯 Doing Targeted Scans
+
+I grepped all the IP addresses and ran an **-sS SYN Scan** to gather more details on each node. These scans revealed loads of information about open ports and, in some cases, the hostnames of devices 🎯.
+
+### 🧩 Identifying Devices
+
+I quickly identified the *warewulf orchestration device* and all of the *Rocky nodes*. However, a few mysterious devices needed some detective work 🔎. I noticed **glrpc** listed as a service while scanning six addresses—three on one IP range and three on another. A quick Google search revealed that **glrpc** relates to *GlusterFS*, a filesystem specific to Red Hat systems. After watching a video explainer on GlusterFS, I figured out that these two IP ranges were likely a RAID or high availability configuration 💾.
+
+### 🗺️ Mapping with Excalidraw
+
+I initially created a highly technical Engineer’s map filled with data and presented it to Het for feedback. He advised me to think about how management would interpret it 🤔. So, back to the drawing board! I focused on improving the visual presentation and labeling, keeping in mind that management doesn’t care about the nitty-gritty; they just need a clear, high-level understanding during briefings 📊.
+
+### 🎉 Wrapping Up
+
+This concludes my exercise in mapping an unknown network! I learned a lot from this experience and am quite proud of the outcome 💪. It will undoubtedly come in handy when I find myself in future scenarios with many unknowns. 
 
 ---
 
 ## MITRE ATT&CK - [^1] 🪚
 is a globally-accessible knowledge base of adversary tactics and techniques based on real-world observations. 
 
-### Unfamiliar Terminology for me
+---
+
+### Somewhat unfamiliar terminology for me
 
 - Lateral Movement
 
@@ -126,51 +243,63 @@ refers to the unauthorized transfer of data from a target system or network to a
 
 ### Security is everybody's issue
 
-
-1. What impact to the organization is data exfiltration? Even if you’re not a data owner or data custodian, why is it so important to understand the data on your systems?
-
-Unit 5 Discussion Post 2: Find a blog or article on the web that discusses the user environment in Linux. You may want to search for .bashrc or (dot) environment files in Linux. 
-
-2. What types of customizations might you setup for your environment? Why?
-
-3. What problems can you anticipate around helping users with their dot files?
+It is important to understand the data on your system regardless of specific responsibility in order to asses risk. 
 
 ### Impact of Exfiltration
+
+The impacts of data exfiltration can be massive. Given the level of severity an exfiltration incident can entirely destroy an organization or cause financial losses, reputational damage, labour force diversion, data loss and jeopardizing future security.
 
 ---
 
 ## The Linux User Environment
+
+The Linux user environment is a customizable space that includes settings like environment variables, shell configurations, and startup scripts, typically defined in files such as .bashrc or .profile. These configurations allow users to tailor command line behavior, automate tasks, and create a personalized and efficient working environment.
+
 ### Customizations to the User Environment
-#### Configs
-#### Why would one customize their environment
+
+Customizations for the user environment in Linux might include setting up aliases for frequently used commands, configuring environment variables, and adding functions to streamline workflows. These changes can make repetitive tasks faster, improve the command line interface's convenience, and adapt the environment to personal preferences.
+
+#### Problems may arise
+
+Problems around helping users with their dot files often stem from the diverse and sometimes incompatible changes users make to suit their needs. This can lead to issues like conflicting configurations, inconsistent behavior across systems, or difficult debugging when unexpected behaviors arise from custom scripts.
 
 ---
 
 ## Definitions/Terminology
 
-- Footprinting 👣
-- Scanning 🔍
-- Enumeration 💯
-- System Hacking 🪓
-- Escalation of Privilege 🥉🥈🥇
-- Rule of least privilege 🔐
-- Covering Tracks 🧹👣
-- Planting Backdoors 🪴🚪
+#### Footprinting 👣
 
-Notes During Lecture/Class:
-Links:
+Footprinting is an essential phase in ethical hacking and system security. It involves gathering information about a computer system, network, or organization to understand its structure and identify potential vulnerabilities. Footprinting is often the first step of a cyberattack or penetration test, allowing attackers or security professionals to map out an environment before deciding how to approach the next steps.
 
-Terms:
+#### Scanning 🔍
 
-Useful tools:
+Scanning is a process of actively probing systems or networks to identify open ports, services, and vulnerabilities. It's used by attackers to gather deeper insights for potential exploitation and by security professionals to assess weaknesses. Common tools include Nmap and Nessus, while defenses include firewalls and IDS/IPS systems.
 
+#### Enumeration 💯
 
- 
+Enumeration is the process of extracting more detailed information about a target, such as usernames, network shares, and system services, after identifying open ports and active systems. It typically involves active engagement with the target to gain in-depth knowledge that can be used for exploitation.
 
+#### System Hacking 🪓
 
+System hacking is the process of gaining unauthorized access to individual systems or networks by exploiting vulnerabilities. It involves activities such as password cracking, privilege escalation, installing backdoors, and covering tracks. Ethical hackers use these techniques to assess system security and recommend protective measures.
 
+#### Escalation of Privilege 🥉🥈🥇
 
+Privilege escalation is the process of gaining higher-level permissions or privileges than initially granted, allowing an attacker to execute commands with elevated authority. This can be achieved through exploiting vulnerabilities or misconfigurations, leading to unauthorized access to restricted resources or system control.
 
+#### Rule of least privilege 🔐
+
+The Rule of Least Privilege (LoP) is a security principle that states users, applications, and systems should only be granted the minimum level of access or permissions necessary to perform their tasks. This helps reduce the attack surface, limit potential damage from breaches, and mitigate insider threats.
+
+#### Covering Tracks 🧹👣
+
+Covering tracks is the process attackers use to hide their unauthorized activities and avoid detection. This involves techniques such as deleting or modifying system logs, using rootkits, and clearing command histories to prevent system administrators or security teams from discovering their presence or actions.
+
+#### Planting Backdoors 🪴🚪
+
+Planting backdoors involves installing hidden access points in a system, allowing attackers to bypass regular authentication and gain unauthorized access at a later time. Backdoors can be inserted through malicious code, vulnerabilities, or modifications to existing software, making them useful for maintaining persistent control over compromised systems.
+
+---
 
 ### ProLUG Links ⛓️
 
@@ -179,5 +308,6 @@ Youtube: https://www.youtube.com/@het_tanis8213
 Twitch: https://www.twitch.tv/het_tanis
 ProLUG Book: https://leanpub.com/theprolugbigbookoflabs
 KillerCoda: https://killercoda.com/het-tanis
+
 
 [^1]: MITRE | ATT&CK [Site](https://attack.mitre.org/) Knowledge Base.

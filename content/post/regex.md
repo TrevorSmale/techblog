@@ -2,7 +2,7 @@
 author = "Hugo Authors"
 title = "Learning Regex"
 date = "2024-10-03"
-description = "Really Getting to know Regular Expressions"
+description = "I am learning how to regularly express myself 💃"
 draft = "true"
 tags = [
   "Tech", "Linux", "Administration", "Engineering", "Regex", "Notes", "Research"
@@ -24,11 +24,23 @@ Regex are tools used for pattern matching and searching text.
 
 ## History
 
-Regular expressions has a surprising history prior to being adopted into UNIX. It has roots in Mathematics and Logic with formal language theory and automata theory in the 1940's.
+Prior to digital computation regular expressions had a surprising history -- **To Me**. The concept of pattern matching had its roots in Mathematics. The name regular expressions was not used as the idea was not formalized beyond niche disciplines like set theory and automata theory wherein special symbols were used to identify patterns in a large strings or concatenate ie. Combine chunks into a single string. Words like Kleene star (*) and union were used (|), though the collection of expressions were limited to a handful of characters.
 
-Noam Chomsky addressed regular expressions in his formalization of language theory during the 50s. Ken Thomson introduced the concept to text search in the ed text editor during the late 1960s which lead to the implemenetation in grep, then Sed and awk.
+Later came formal language theory where patterns in languages were identified and compared to find commonalities. Noam Chomsky most famously brought together formal language theory and computational ideas in formal grammars.
+
+Regex became a much broader tool when Ken Thompson recognized their utility in computer science. Large amounts of data was being processed and sifting through it with human interaction was difficult. During the creation of UNIX, Ken Thompson opted to include regular expressions in ed, followed by grep, sed and awk, each adding more functionality. 
 
 ### ed
+
+UNIX's original line-based text editor, allowing users to edit files with commands and regular expressions.
+
+### ex
+
+To improve usability, Bill Joy introduced ex, which added a visual mode for more interactive editing.
+
+### vi
+
+This evolved into **vi**," a full-screen editor that combined ed`'s power with real-time text display and navigation, becoming the standard for UNIX text editing.
 
 ### grep
 

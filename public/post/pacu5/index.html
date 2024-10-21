@@ -101,7 +101,7 @@
     <a class="Heading-link u-clickable" href="/techblog/post/pacu5/" rel="bookmark">ProLUG Admin Course Unit 5 🐧</a>
   </h1>
   
-    <time datetime="2024-10-12T00:00:00Z">October 12, 2024</time>
+    <time datetime="2024-10-18T00:00:00Z">October 18, 2024</time>
   
 </header>
   <h1 id="managing-users--groups">
@@ -119,9 +119,180 @@
 
 
 
-<h3 id="unit-5-assignment-mapping-the-lab-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#unit-5-assignment-mapping-the-lab-">Unit 5 Assignment: Mapping the Lab 🗺️🤔</a>
+<h4 id="warmup">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#warmup">Warmup</a>
+</h4>
+<p>🗂️ Create a directory named &rsquo;lab_users'</p>
+<pre><code>mkdir lab_users               
+</code></pre>
+<p>📂 Change to the &rsquo;lab_users&rsquo; directory</p>
+<pre><code>cd /lab_users  
+</code></pre>
+<p>📄 Display the contents of the &lsquo;/etc/passwd&rsquo; file (system user info)</p>
+<pre><code>cat /etc/passwd 
+
+cat /etc/passwd | tail -5     # 🔍 View the last 5 lines of the '/etc/passwd' file
+
+# ❓ What did this do to the output of the file?
+
+cat /etc/passwd | tail -5 | nl    
+</code></pre>
+<p>Number the lines of the last 5 entries of &lsquo;/etc/passwd&rsquo;</p>
+<pre><code>cat /etc/passwd | tail -5 | awk -F : ‘{print $1, $3, $7}’  # 🧾 Extract and print the username, UID, and shell for last 5 users
+</code></pre>
+<p>What did that do and what do each of the $# represent?</p>
+<pre><code>Each $ followed by a number represents the respective field in the record (line)    
+</code></pre>
+<p>Can you give the 2nd, 5th, and 6th fields?</p>
+<pre><code>cat /etc/passwd | tail -5 | awk –F : ‘{print $NF}’  # 🧮 Print the last field (shell) of the last 5 users
+</code></pre>
+<p>What does this $NF mean? Why might this be useful to us as administrators?</p>
+<p>Print the last field (shell) of the last 5 users</p>
+<pre><code>alias  # ⌨️ List or set command aliases
+</code></pre>
+<p>look at the things you have aliased. These come from defaults in your .bashrc file.</p>
+<pre><code>    We’ll configure these later
+
+    cd /root
+
+    ls -l
+
+    ll
+
+    unalias ll
+
+    ll
+
+    you shouldn’t have this command available anymore
+
+    ls
+
+    unalias ls
+
+    How did ls change on your screen?
+
+    No worries, there are two ways to fix the mess you’ve made.
+    Nothing you’ve done is permanent, so logging out and reloading a shell (logging back in) would fix this
+
+    We just put the aliases back 
+
+    alias ll='ls -l --color=auto'
+
+    alias ls='ls --color=auto'
+
+    test with alias to see them added and also use ll and ls to see them work properly.
+
+    This lab is designed to help you get familiar with the basics of the systems you will be working on. Some of you will find that you know the basic material but the techniques here 
+    allow you to put it together in a more complex fashion.
+
+    It is recommended that you type these commands and do not copy and paste them. Word sometimes likes to format characters and they don’t always play nice with Linux.
+</code></pre>
+<hr>
+
+
+
+<h4 id="etc-directories">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#etc-directories">etc directories</a>
+</h4>
+<ul>
+<li>
+<p>Looking at etc directories relating to Users, Groups and Associated Security</p>
+<pre><code>  /etc/passwd 
+</code></pre>
+</li>
+<li>
+<p>contains essential information about users, including their username, user ID (UID), group ID (GID), home directory, and default shell, with each entry separated by a colon.</p>
+<pre><code>  /etc/group
+</code></pre>
+</li>
+<li>
+<p>stores group information, listing each group’s name, group ID (GID), and its members, with each entry separated by a colon, allowing users to belong to one or more groups for access control purposes.</p>
+<pre><code>  /etc/shadow
+</code></pre>
+</li>
+<li>
+<p>contains encrypted password information and related security details for user accounts, such as password aging and expiration</p>
+<pre><code>  /etc/gshadow
+</code></pre>
+</li>
+<li>
+<p>stores encrypted passwords for group accounts, as well as information about group administrators and members, providing enhanced security for group access by restricting who can modify or access specific group data.</p>
+<pre><code>  /etc/login.defs 
+</code></pre>
+</li>
+<li>
+<p>configuration settings for user account creation and login parameters, such as password aging policies, UID and GID ranges, and the default paths for user home directories, helping to control system-wide authentication behavior.</p>
+</li>
+</ul>
+
+
+
+<h3 id="other-interesting-directories">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#other-interesting-directories">Other interesting directories</a>
 </h3>
+<ul>
+<li>
+<p>Brief Description</p>
+</li>
+<li>
+<p>Associated permissions</p>
+<pre><code>  /etc/fstab
+</code></pre>
+</li>
+<li>
+<p>This file contains information about disk partitions and other block storage devices and how they should be automatically mounted during the boot process.</p>
+</li>
+<li>
+<p>Permissions: Usually -rw-r&ndash;r&ndash; (readable by all users, writable only by the root).</p>
+<pre><code>  /etc/hostname
+</code></pre>
+</li>
+<li>
+<p>This file stores the system’s hostname, which is a unique identifier for the machine in a network.</p>
+</li>
+<li>
+<p>Permissions: Usually -rw-r&ndash;r&ndash; (readable by all users, writable only by the root).</p>
+<pre><code>  /proc
+</code></pre>
+</li>
+<li>
+<p>This is a virtual filesystem that provides detailed information about processes and system resources. It does not contain actual files but rather system and process information in real-time.</p>
+</li>
+<li>
+<p>Permissions: dr-xr-xr-x (readable and executable by all users, writable only by root).</p>
+<pre><code>  /boot
+</code></pre>
+</li>
+<li>
+<p>Contains the kernel, initial ramdisk, and bootloader files needed to start the system.</p>
+</li>
+<li>
+<p>Permissions: drwxr-xr-x (readable and executable by all users, writable only by root).</p>
+<pre><code>  /root
+</code></pre>
+</li>
+<li>
+<p>This is the home directory for the root user (the system administrator).</p>
+</li>
+<li>
+<p>Permissions: drwx&mdash;&mdash; (only root has read, write, and execute permissions).</p>
+<pre><code>  /usr/bin
+</code></pre>
+</li>
+<li>
+<p>Contains binary executables for user programs.</p>
+</li>
+<li>
+<p>Permissions: drwxr-xr-x (readable and executable by all users, writable by root).</p>
+</li>
+</ul>
+<hr>
+
+
+
+<h2 id="mapping-unknown-infrastructure-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#mapping-unknown-infrastructure-">Mapping unknown infrastructure 🗺️🤔</a>
+</h2>
 <p><strong>Objectives:</strong></p>
 <ul>
 <li>Map the Internal ProLUG Network (192.168.200.0/24):</li>
@@ -310,6 +481,64 @@ Well is actually a form of <strong>Funny Bizniz</strong> wherein SYN is sent and
       </tr>
   </tbody>
 </table>
+
+
+
+<h2 id="the-actual-mapping">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#the-actual-mapping">The Actual Mapping</a>
+</h2>
+<p><img src="https://trevorsmale.github.io/techblog/images/PACU5/cnm.png" alt="Network Map"></p>
+
+
+
+<h3 id="-accessing-the-secure-jump-point">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#-accessing-the-secure-jump-point">🚀 Accessing the Secure Jump Point</a>
+</h3>
+<p>The network is safely tucked behind a Dynamic Domain Name System (DDNS) running on an Asus Router. This setup allows access from a WAN, in this case, <em>The Internet</em> (if you’ve heard of it 🌐). It securely gate-keeps the network via login credentials, because let’s be honest, the Internet can be a scary place with bots&hellip; and sometimes people 👀.</p>
+<p>So, what exactly does DDNS do? Well, I’m glad you asked! Most home internet connections don’t offer a static IP address, which makes hosting things tricky because the IP will randomly change. The IP is dynamic for a few reasons, including cost savings and the limited availability of IPv4 addresses. Anyway, I’m getting off track 🛤️. A DDNS monitors this dynamic IP and links it to a stable address that stays fixed.</p>
+<p><strong>TL;DR</strong>: DDNS bonds a dynamic IP with a fixed address, offering the added bonus of hiding the internal IP from bad actors, or as I like to call them, <em>the baddies</em> in London 🕵️‍♂️. So, this network has a DDNS gateway in place for that extra layer of security 🔒.</p>
+
+
+
+<h3 id="-jumping-into-a-node">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#-jumping-into-a-node">🎯 Jumping into a Node</a>
+</h3>
+<p>Once a credentialed fellow enters their login while hanging at the gateway, a list of servers appears, like a digital menu 🍽️. From this list, one can choose where to jump to. In my case, I leapt to <em>Rocky12</em>, a node within a managed cluster. I knew a little about this network thanks to earlier sessions, but most of this can also be discovered by doing some network scanning 🕵️.</p>
+
+
+
+<h3 id="-doing-a-broad-inventory-scan">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#-doing-a-broad-inventory-scan">🔍 Doing a Broad Inventory Scan</a>
+</h3>
+<p>This is where the magic of <code>nmap</code> comes into play! I used two stealthy commands: <strong>nmap -sS</strong> and <strong>nmap -sT</strong>. The <code>sT</code> option scanned a wide range of ports and connections, giving me a detailed list that I piped into <code>less</code> for easier viewing 📜.</p>
+
+
+
+<h3 id="-doing-targeted-scans">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#-doing-targeted-scans">🎯 Doing Targeted Scans</a>
+</h3>
+<p>I grepped all the IP addresses and ran an <strong>-sS SYN Scan</strong> to gather more details on each node. These scans revealed loads of information about open ports and, in some cases, the hostnames of devices 🎯.</p>
+
+
+
+<h3 id="-identifying-devices">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#-identifying-devices">🧩 Identifying Devices</a>
+</h3>
+<p>I quickly identified the <em>warewulf orchestration device</em> and all of the <em>Rocky nodes</em>. However, a few mysterious devices needed some detective work 🔎. I noticed <strong>glrpc</strong> listed as a service while scanning six addresses—three on one IP range and three on another. A quick Google search revealed that <strong>glrpc</strong> relates to <em>GlusterFS</em>, a filesystem specific to Red Hat systems. After watching a video explainer on GlusterFS, I figured out that these two IP ranges were likely a RAID or high availability configuration 💾.</p>
+
+
+
+<h3 id="-mapping-with-excalidraw">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#-mapping-with-excalidraw">🗺️ Mapping with Excalidraw</a>
+</h3>
+<p>I initially created a highly technical Engineer’s map filled with data and presented it to Het for feedback. He advised me to think about how management would interpret it 🤔. So, back to the drawing board! I focused on improving the visual presentation and labeling, keeping in mind that management doesn’t care about the nitty-gritty; they just need a clear, high-level understanding during briefings 📊.</p>
+
+
+
+<h3 id="-wrapping-up">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#-wrapping-up">🎉 Wrapping Up</a>
+</h3>
+<p>This concludes my exercise in mapping an unknown network! I learned a lot from this experience and am quite proud of the outcome 💪. It will undoubtedly come in handy when I find myself in future scenarios with many unknowns.</p>
 <hr>
 
 
@@ -318,11 +547,12 @@ Well is actually a form of <strong>Funny Bizniz</strong> wherein SYN is sent and
   <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#mitre-attck---1-">MITRE ATT&amp;CK - <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> 🪚</a>
 </h2>
 <p>is a globally-accessible knowledge base of adversary tactics and techniques based on real-world observations.</p>
+<hr>
 
 
 
-<h3 id="unfamiliar-terminology-for-me">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#unfamiliar-terminology-for-me">Unfamiliar Terminology for me</a>
+<h3 id="somewhat-unfamiliar-terminology-for-me">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#somewhat-unfamiliar-terminology-for-me">Somewhat unfamiliar terminology for me</a>
 </h3>
 <ul>
 <li>Lateral Movement</li>
@@ -338,24 +568,14 @@ Well is actually a form of <strong>Funny Bizniz</strong> wherein SYN is sent and
 <h3 id="security-is-everybodys-issue">
   <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#security-is-everybodys-issue">Security is everybody&rsquo;s issue</a>
 </h3>
-<ol>
-<li>What impact to the organization is data exfiltration? Even if you’re not a data owner or data custodian, why is it so important to understand the data on your systems?</li>
-</ol>
-<p>Unit 5 Discussion Post 2: Find a blog or article on the web that discusses the user environment in Linux. You may want to search for .bashrc or (dot) environment files in Linux.</p>
-<ol start="2">
-<li>
-<p>What types of customizations might you setup for your environment? Why?</p>
-</li>
-<li>
-<p>What problems can you anticipate around helping users with their dot files?</p>
-</li>
-</ol>
+<p>It is important to understand the data on your system regardless of specific responsibility in order to asses risk.</p>
 
 
 
 <h3 id="impact-of-exfiltration">
   <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#impact-of-exfiltration">Impact of Exfiltration</a>
 </h3>
+<p>The impacts of data exfiltration can be massive. Given the level of severity an exfiltration incident can entirely destroy an organization or cause financial losses, reputational damage, labour force diversion, data loss and jeopardizing future security.</p>
 <hr>
 
 
@@ -363,24 +583,21 @@ Well is actually a form of <strong>Funny Bizniz</strong> wherein SYN is sent and
 <h2 id="the-linux-user-environment">
   <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#the-linux-user-environment">The Linux User Environment</a>
 </h2>
+<p>The Linux user environment is a customizable space that includes settings like environment variables, shell configurations, and startup scripts, typically defined in files such as .bashrc or .profile. These configurations allow users to tailor command line behavior, automate tasks, and create a personalized and efficient working environment.</p>
 
 
 
 <h3 id="customizations-to-the-user-environment">
   <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#customizations-to-the-user-environment">Customizations to the User Environment</a>
 </h3>
+<p>Customizations for the user environment in Linux might include setting up aliases for frequently used commands, configuring environment variables, and adding functions to streamline workflows. These changes can make repetitive tasks faster, improve the command line interface&rsquo;s convenience, and adapt the environment to personal preferences.</p>
 
 
 
-<h4 id="configs">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#configs">Configs</a>
+<h4 id="problems-may-arise">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#problems-may-arise">Problems may arise</a>
 </h4>
-
-
-
-<h4 id="why-would-one-customize-their-environment">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#why-would-one-customize-their-environment">Why would one customize their environment</a>
-</h4>
+<p>Problems around helping users with their dot files often stem from the diverse and sometimes incompatible changes users make to suit their needs. This can lead to issues like conflicting configurations, inconsistent behavior across systems, or difficult debugging when unexpected behaviors arise from custom scripts.</p>
 <hr>
 
 
@@ -388,20 +605,63 @@ Well is actually a form of <strong>Funny Bizniz</strong> wherein SYN is sent and
 <h2 id="definitionsterminology">
   <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#definitionsterminology">Definitions/Terminology</a>
 </h2>
-<ul>
-<li>Footprinting 👣</li>
-<li>Scanning 🔍</li>
-<li>Enumeration 💯</li>
-<li>System Hacking 🪓</li>
-<li>Escalation of Privilege 🥉🥈🥇</li>
-<li>Rule of least privilege 🔐</li>
-<li>Covering Tracks 🧹👣</li>
-<li>Planting Backdoors 🪴🚪</li>
-</ul>
-<p>Notes During Lecture/Class:
-Links:</p>
-<p>Terms:</p>
-<p>Useful tools:</p>
+
+
+
+<h4 id="footprinting-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#footprinting-">Footprinting 👣</a>
+</h4>
+<p>Footprinting is an essential phase in ethical hacking and system security. It involves gathering information about a computer system, network, or organization to understand its structure and identify potential vulnerabilities. Footprinting is often the first step of a cyberattack or penetration test, allowing attackers or security professionals to map out an environment before deciding how to approach the next steps.</p>
+
+
+
+<h4 id="scanning-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#scanning-">Scanning 🔍</a>
+</h4>
+<p>Scanning is a process of actively probing systems or networks to identify open ports, services, and vulnerabilities. It&rsquo;s used by attackers to gather deeper insights for potential exploitation and by security professionals to assess weaknesses. Common tools include Nmap and Nessus, while defenses include firewalls and IDS/IPS systems.</p>
+
+
+
+<h4 id="enumeration-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#enumeration-">Enumeration 💯</a>
+</h4>
+<p>Enumeration is the process of extracting more detailed information about a target, such as usernames, network shares, and system services, after identifying open ports and active systems. It typically involves active engagement with the target to gain in-depth knowledge that can be used for exploitation.</p>
+
+
+
+<h4 id="system-hacking-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#system-hacking-">System Hacking 🪓</a>
+</h4>
+<p>System hacking is the process of gaining unauthorized access to individual systems or networks by exploiting vulnerabilities. It involves activities such as password cracking, privilege escalation, installing backdoors, and covering tracks. Ethical hackers use these techniques to assess system security and recommend protective measures.</p>
+
+
+
+<h4 id="escalation-of-privilege-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#escalation-of-privilege-">Escalation of Privilege 🥉🥈🥇</a>
+</h4>
+<p>Privilege escalation is the process of gaining higher-level permissions or privileges than initially granted, allowing an attacker to execute commands with elevated authority. This can be achieved through exploiting vulnerabilities or misconfigurations, leading to unauthorized access to restricted resources or system control.</p>
+
+
+
+<h4 id="rule-of-least-privilege-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#rule-of-least-privilege-">Rule of least privilege 🔐</a>
+</h4>
+<p>The Rule of Least Privilege (LoP) is a security principle that states users, applications, and systems should only be granted the minimum level of access or permissions necessary to perform their tasks. This helps reduce the attack surface, limit potential damage from breaches, and mitigate insider threats.</p>
+
+
+
+<h4 id="covering-tracks-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#covering-tracks-">Covering Tracks 🧹👣</a>
+</h4>
+<p>Covering tracks is the process attackers use to hide their unauthorized activities and avoid detection. This involves techniques such as deleting or modifying system logs, using rootkits, and clearing command histories to prevent system administrators or security teams from discovering their presence or actions.</p>
+
+
+
+<h4 id="planting-backdoors-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#planting-backdoors-">Planting Backdoors 🪴🚪</a>
+</h4>
+<p>Planting backdoors involves installing hidden access points in a system, allowing attackers to bypass regular authentication and gain unauthorized access at a later time. Backdoors can be inserted through malicious code, vulnerabilities, or modifications to existing software, making them useful for maintaining persistent control over compromised systems.</p>
+<hr>
 
 
 

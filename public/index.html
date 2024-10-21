@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
 
-<head>
+<head><script src="/techblog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=techblog/livereload" data-no-instant defer></script>
   
 
   
@@ -30,7 +30,7 @@
 
 <meta name="generator" content="Hugo 0.135.0">
   <title>Tech Blog</title>
-  <link rel="canonical" href="https://trevorsmale.github.io/techblog/">
+  <link rel="canonical" href="http://localhost:1313/techblog/">
 
 
 
@@ -61,8 +61,11 @@
     
     
     
-      
-      
+    
+    
+  
+    
+    
     
     
     
@@ -70,8 +73,11 @@
     
     
     
-      
-      
+    
+    
+  
+    
+    
     
     
     
@@ -79,8 +85,11 @@
     
     
     
-      
-      
+    
+    
+  
+    
+    
     
     
     
@@ -88,53 +97,17 @@
     
     
     
-      
-      
-    
     
     
   
     
     
     
-      
-      
-    
     
     
   
     
     
-    
-      
-      
-    
-    
-    
-  
-    
-    
-    
-      
-      
-    
-    
-    
-  
-    
-    
-    
-      
-      
-    
-    
-    
-  
-    
-    
-    
-      
-      
     
     
     
@@ -142,9 +115,7 @@
 
 
   
-      <link rel="stylesheet" href="/techblog/css/base.min.77ec62ba0b16c97f12070ff63174c3711ba36779d23242ea60e7e3f9fadea037.css" integrity="sha256-d&#43;xiugsWyX8SBw/2MXTDcRujZ3nSMkLqYOfj&#43;freoDc=" crossorigin="anonymous">
-
-      <link rel="stylesheet" href="/techblog/css/syntax.min.065df42d2be658bb8e0720297aadf469355a5ffaf863b00e3cce0627dd106ca0.css" integrity="sha256-Bl30LSvmWLuOByApeq30aTVaX/r4Y7AOPM4GJ90QbKA=" crossorigin="anonymous">
+    <link rel="stylesheet" href="/techblog/css/base.css">
 
 
 
@@ -205,7 +176,7 @@
     <a class="Heading-link u-clickable" href="/techblog/" rel="bookmark">Tech Blog</a>
   </h1>
   
-    <time datetime="2024-10-15T00:00:00Z">October 15, 2024</time>
+    <time datetime="2024-10-18T00:00:00Z">October 18, 2024</time>
   
 </header>
   
@@ -213,6 +184,653 @@
   
 
   
+  
+    <article>
+      <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/pacu5/" rel="bookmark">ProLUG Admin Course Unit 5 🐧</a>
+  </h1>
+  
+    <time datetime="2024-10-18T00:00:00Z">October 18, 2024</time>
+  
+</header>
+      
+        <h1 id="managing-users--groups">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#managing-users--groups">Managing Users &amp; Groups</a>
+</h1>
+<p>The overarching theme of this Unit is in the title, we are looking at Managing Users &amp; Groups. Managing users and groups in Linux within an enterprise involves creating, modifying, and organizing user accounts and permissions to enforce security and control over resources.</p>
+<p>Organizing permissions to enforce security is more important than it has ever been, as we live in a hyper connected world with many bad actors and large amounts of sensitive data.</p>
+<p>Linux is fundamentally well suited for Managing Users &amp; Groups because permissions permeate every aspect of a Linux environment. Everything is a file and every file has associated permissions, Therefore we have granular control over the comings and goings of users as administrators.</p>
+
+
+
+<h2 id="lab-work-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#lab-work-">Lab Work 🧪🥼</a>
+</h2>
+
+
+
+<h4 id="warmup">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#warmup">Warmup</a>
+</h4>
+<p>🗂️ Create a directory named &rsquo;lab_users'</p>
+<pre><code>mkdir lab_users               
+</code></pre>
+<p>📂 Change to the &rsquo;lab_users&rsquo; directory</p>
+<pre><code>cd /lab_users  
+</code></pre>
+<p>📄 Display the contents of the &lsquo;/etc/passwd&rsquo; file (system user info)</p>
+<pre><code>cat /etc/passwd 
+
+cat /etc/passwd | tail -5     # 🔍 View the last 5 lines of the '/etc/passwd' file
+
+# ❓ What did this do to the output of the file?
+
+cat /etc/passwd | tail -5 | nl    
+</code></pre>
+<p>Number the lines of the last 5 entries of &lsquo;/etc/passwd&rsquo;</p>
+<pre><code>cat /etc/passwd | tail -5 | awk -F : ‘{print $1, $3, $7}’  # 🧾 Extract and print the username, UID, and shell for last 5 users
+</code></pre>
+<p>What did that do and what do each of the $# represent?</p>
+<pre><code>Each $ followed by a number represents the respective field in the record (line)    
+</code></pre>
+<p>Can you give the 2nd, 5th, and 6th fields?</p>
+<pre><code>cat /etc/passwd | tail -5 | awk –F : ‘{print $NF}’  # 🧮 Print the last field (shell) of the last 5 users
+</code></pre>
+<p>What does this $NF mean? Why might this be useful to us as administrators?</p>
+<p>Print the last field (shell) of the last 5 users</p>
+<pre><code>alias  # ⌨️ List or set command aliases
+</code></pre>
+<p>look at the things you have aliased. These come from defaults in your .bashrc file.</p>
+<pre><code>    We’ll configure these later
+
+    cd /root
+
+    ls -l
+
+    ll
+
+    unalias ll
+
+    ll
+
+    you shouldn’t have this command available anymore
+
+    ls
+
+    unalias ls
+
+    How did ls change on your screen?
+
+    No worries, there are two ways to fix the mess you’ve made.
+    Nothing you’ve done is permanent, so logging out and reloading a shell (logging back in) would fix this
+
+    We just put the aliases back 
+
+    alias ll='ls -l --color=auto'
+
+    alias ls='ls --color=auto'
+
+    test with alias to see them added and also use ll and ls to see them work properly.
+
+    This lab is designed to help you get familiar with the basics of the systems you will be working on. Some of you will find that you know the basic material but the techniques here 
+    allow you to put it together in a more complex fashion.
+
+    It is recommended that you type these commands and do not copy and paste them. Word sometimes likes to format characters and they don’t always play nice with Linux.
+</code></pre>
+<hr>
+
+
+
+<h4 id="etc-directories">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#etc-directories">etc directories</a>
+</h4>
+<ul>
+<li>
+<p>Looking at etc directories relating to Users, Groups and Associated Security</p>
+<pre><code>  /etc/passwd 
+</code></pre>
+</li>
+<li>
+<p>contains essential information about users, including their username, user ID (UID), group ID (GID), home directory, and default shell, with each entry separated by a colon.</p>
+<pre><code>  /etc/group
+</code></pre>
+</li>
+<li>
+<p>stores group information, listing each group’s name, group ID (GID), and its members, with each entry separated by a colon, allowing users to belong to one or more groups for access control purposes.</p>
+<pre><code>  /etc/shadow
+</code></pre>
+</li>
+<li>
+<p>contains encrypted password information and related security details for user accounts, such as password aging and expiration</p>
+<pre><code>  /etc/gshadow
+</code></pre>
+</li>
+<li>
+<p>stores encrypted passwords for group accounts, as well as information about group administrators and members, providing enhanced security for group access by restricting who can modify or access specific group data.</p>
+<pre><code>  /etc/login.defs 
+</code></pre>
+</li>
+<li>
+<p>configuration settings for user account creation and login parameters, such as password aging policies, UID and GID ranges, and the default paths for user home directories, helping to control system-wide authentication behavior.</p>
+</li>
+</ul>
+
+
+
+<h3 id="other-interesting-directories">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#other-interesting-directories">Other interesting directories</a>
+</h3>
+<ul>
+<li>
+<p>Brief Description</p>
+</li>
+<li>
+<p>Associated permissions</p>
+<pre><code>  /etc/fstab
+</code></pre>
+</li>
+<li>
+<p>This file contains information about disk partitions and other block storage devices and how they should be automatically mounted during the boot process.</p>
+</li>
+<li>
+<p>Permissions: Usually -rw-r&ndash;r&ndash; (readable by all users, writable only by the root).</p>
+<pre><code>  /etc/hostname
+</code></pre>
+</li>
+<li>
+<p>This file stores the system’s hostname, which is a unique identifier for the machine in a network.</p>
+</li>
+<li>
+<p>Permissions: Usually -rw-r&ndash;r&ndash; (readable by all users, writable only by the root).</p>
+<pre><code>  /proc
+</code></pre>
+</li>
+<li>
+<p>This is a virtual filesystem that provides detailed information about processes and system resources. It does not contain actual files but rather system and process information in real-time.</p>
+</li>
+<li>
+<p>Permissions: dr-xr-xr-x (readable and executable by all users, writable only by root).</p>
+<pre><code>  /boot
+</code></pre>
+</li>
+<li>
+<p>Contains the kernel, initial ramdisk, and bootloader files needed to start the system.</p>
+</li>
+<li>
+<p>Permissions: drwxr-xr-x (readable and executable by all users, writable only by root).</p>
+<pre><code>  /root
+</code></pre>
+</li>
+<li>
+<p>This is the home directory for the root user (the system administrator).</p>
+</li>
+<li>
+<p>Permissions: drwx&mdash;&mdash; (only root has read, write, and execute permissions).</p>
+<pre><code>  /usr/bin
+</code></pre>
+</li>
+<li>
+<p>Contains binary executables for user programs.</p>
+</li>
+<li>
+<p>Permissions: drwxr-xr-x (readable and executable by all users, writable by root).</p>
+</li>
+</ul>
+<hr>
+
+
+
+<h2 id="mapping-unknown-infrastructure-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#mapping-unknown-infrastructure-">Mapping unknown infrastructure 🗺️🤔</a>
+</h2>
+<p><strong>Objectives:</strong></p>
+<ul>
+<li>Map the Internal ProLUG Network (192.168.200.0/24):</li>
+<li>Map the network from one of the rocky nodes.</li>
+<li>Using a template that you build or find from the internet</li>
+<li>Provide a 1 page summary of what you find in the network.</li>
+</ul>
+
+
+
+<h3 id="approach-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#approach-">Approach 🤔</a>
+</h3>
+
+
+
+<h4 id="a-briefing-on-the-infra-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#a-briefing-on-the-infra-">A briefing on the infra. 🔍🖥️</a>
+</h4>
+<p>Het&rsquo; server is unique to me. He uses an injest system that makes a jump to the actual server for security purposes. Within the main server we have a warewulf managed cluster running a series of Rocky Linux VM&rsquo;s. ⛰</p>
+<p>Since we will be doing this from one of the Rocky Nodes within the system, the jump server will not be an issue I recon. 🤔</p>
+
+
+
+<h4 id="mapping-strategy-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#mapping-strategy-">Mapping Strategy 📍🗺️</a>
+</h4>
+<p>So I shouldn&rsquo;t just pop into the server and go willy nilly with scanning commands. This sever is managed by someone who understands security. So it is best to do some <strong>Dead Reckoning</strong> beforehand.</p>
+
+
+
+<h4 id="the-basic-commands-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#the-basic-commands-">The Basic Commands ⌨️</a>
+</h4>
+<p>Mapping the remote servers open ports with nmap.
+nmap stands for Network Mapper. A quick perusal of the man page states it is an exploration tool and security / port scanner. It was designed to rapidly scan large networks. Nmap uses raw IP packets in novel ways to determine what hosts
+are available on the network, what services (application name and version) those hosts are offering, what operating systems (and OS versions) they are running, what type of packet filters/firewalls are in use, and dozens of other characteristics.</p>
+<p>In order to Map the network I am going to use the ip address for the argument/target of the nmap command.</p>
+<pre><code>nmap &lt;server-ip&gt;
+</code></pre>
+<p>Checking mounted filesystem&rsquo; with df. stands for <strong>Display Free</strong> disk space. It is a utility that displays statistics about the amount of free disk space on the specified mounted file system or on the file system of which file is a past.</p>
+<p>I will be using the -h flag for human readable format, which ads unit suffixes eg. Gibibyte (GiB) to the ends of values. There is more to it, but I am mentioning the bread and butter of the flag.</p>
+<pre><code>df -h
+</code></pre>
+
+
+
+<h3 id="digging-deeper-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#digging-deeper-">Digging Deeper ⛏️</a>
+</h3>
+
+
+
+<h4 id="getting-to-know-nmap-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#getting-to-know-nmap-">Getting to know nmap 🫶</a>
+</h4>
+<p><strong>nmap</strong> is actually a big command, by big I mean the number of options and capabilities are vast. It is quite popular with pen testers and is packaged with Kali Linux &ndash; a security analysis and exploitation focused distribution of Linux, so best believe it is something important. This essentially means I should take some time to get to know it more.</p>
+
+
+
+<h4 id="stealth-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#stealth-">Stealth 🥷</a>
+</h4>
+<p>Beware that <strong>nmap</strong> can and will trigger detection software like an active firewall, because <strong>nmap</strong> is conducting <strong>Funny Bizniz</strong> by way of packet <strong>trickery</strong> inside a network, both are technical terms. Luckily there is a <strong>stealth</strong> option ( -s ) that enables the mapping to take place un-detected &ndash;for the most part.</p>
+<p>Contrary to what I assumed, the lower case <strong>s</strong> does not even stand for stealth, though it still helps as a mnemonic. No, it actually stands for SYN and
+SYN stands for Synchronize. It is part of the TCP three-way handshake, which is a process used to establish a reliable connection between two devices on a network and has nothing to do with guys meeting at a bar.</p>
+<p>I thought we were trying to be stealthy, not synchronized 🤔
+Well is actually a form of <strong>Funny Bizniz</strong> wherein SYN is sent and never acknowledged, thustly not completing the handshake process and therefore hiding activity <strong>somehow</strong></p>
+<p>but <strong>how?</strong> Well&hellip; it reduces the chance of being logged by the target system’s monitoring tools, such as firewalls or intrusion detection systems. Now we both know.</p>
+<p>Keep in mind this is only one command option, just imagine how deep the rabbit hole goes.</p>
+
+
+
+<h4 id="important-mapping-command-list">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#important-mapping-command-list">Important Mapping Command List</a>
+</h4>
+<p>Ninjas mark stealthier techniques.</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left"><strong>#</strong></th>
+          <th style="text-align: left"><strong>Command</strong></th>
+          <th style="text-align: left"><strong>Description</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">1</td>
+          <td style="text-align: left"><code>nmap -sS &lt;target&gt;</code> 🥷</td>
+          <td style="text-align: left">TCP SYN scan (stealth mode)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">2</td>
+          <td style="text-align: left"><code>nmap -sT &lt;target&gt;</code></td>
+          <td style="text-align: left">TCP connect scan (full connection)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">3</td>
+          <td style="text-align: left"><code>nmap -sA &lt;target&gt;</code></td>
+          <td style="text-align: left">ACK scan to detect firewalls</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">4</td>
+          <td style="text-align: left"><code>nmap -sU &lt;target&gt;</code></td>
+          <td style="text-align: left">UDP scan</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">5</td>
+          <td style="text-align: left"><code>nmap -sP &lt;target&gt;</code></td>
+          <td style="text-align: left">Ping scan to detect live hosts</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">6</td>
+          <td style="text-align: left"><code>nmap -sV &lt;target&gt;</code></td>
+          <td style="text-align: left">Detect service versions on open ports</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">7</td>
+          <td style="text-align: left"><code>nmap -O &lt;target&gt;</code></td>
+          <td style="text-align: left">OS detection</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">8</td>
+          <td style="text-align: left"><code>nmap -A &lt;target&gt;</code></td>
+          <td style="text-align: left">Aggressive scan (OS, version, scripts)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">9</td>
+          <td style="text-align: left"><code>nmap -Pn &lt;target&gt;</code> 🥷</td>
+          <td style="text-align: left">Disable ping (stealthy, avoid detection)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">10</td>
+          <td style="text-align: left"><code>nmap -p- &lt;target&gt;</code></td>
+          <td style="text-align: left">Scan all 65,535 TCP ports</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">11</td>
+          <td style="text-align: left"><code>nmap --top-ports 100 &lt;target&gt;</code></td>
+          <td style="text-align: left">Scan the top 100 most common ports</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">12</td>
+          <td style="text-align: left"><code>nmap --script &lt;script&gt; &lt;target&gt;</code></td>
+          <td style="text-align: left">Use Nmap scripts for detailed scanning</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">13</td>
+          <td style="text-align: left"><code>nmap -sC &lt;target&gt;</code></td>
+          <td style="text-align: left">Run default NSE scripts</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">14</td>
+          <td style="text-align: left"><code>nmap -sW &lt;target&gt;</code></td>
+          <td style="text-align: left">TCP window scan</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">15</td>
+          <td style="text-align: left"><code>nmap -T4 &lt;target&gt;</code></td>
+          <td style="text-align: left">Faster scan using timing template T4</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">16</td>
+          <td style="text-align: left"><code>nmap -v &lt;target&gt;</code></td>
+          <td style="text-align: left">Enable verbose output</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">17</td>
+          <td style="text-align: left"><code>nmap -oN scan.txt &lt;target&gt;</code></td>
+          <td style="text-align: left">Save output in normal format</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">18</td>
+          <td style="text-align: left"><code>nmap -oX scan.xml &lt;target&gt;</code></td>
+          <td style="text-align: left">Save output in XML format</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">19</td>
+          <td style="text-align: left"><code>nmap -6 &lt;target&gt;</code></td>
+          <td style="text-align: left">Scan IPv6 targets</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">20</td>
+          <td style="text-align: left"><code>nmap -D RND:10 &lt;target&gt;</code> 🥷</td>
+          <td style="text-align: left">Decoy scan to mask source of scan</td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+<h2 id="the-actual-mapping">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#the-actual-mapping">The Actual Mapping</a>
+</h2>
+<p><img src="https://trevorsmale.github.io/techblog/images/PACU5/cnm.png" alt="Network Map"></p>
+
+
+
+<h3 id="-accessing-the-secure-jump-point">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#-accessing-the-secure-jump-point">🚀 Accessing the Secure Jump Point</a>
+</h3>
+<p>The network is safely tucked behind a Dynamic Domain Name System (DDNS) running on an Asus Router. This setup allows access from a WAN, in this case, <em>The Internet</em> (if you’ve heard of it 🌐). It securely gate-keeps the network via login credentials, because let’s be honest, the Internet can be a scary place with bots&hellip; and sometimes people 👀.</p>
+<p>So, what exactly does DDNS do? Well, I’m glad you asked! Most home internet connections don’t offer a static IP address, which makes hosting things tricky because the IP will randomly change. The IP is dynamic for a few reasons, including cost savings and the limited availability of IPv4 addresses. Anyway, I’m getting off track 🛤️. A DDNS monitors this dynamic IP and links it to a stable address that stays fixed.</p>
+<p><strong>TL;DR</strong>: DDNS bonds a dynamic IP with a fixed address, offering the added bonus of hiding the internal IP from bad actors, or as I like to call them, <em>the baddies</em> in London 🕵️‍♂️. So, this network has a DDNS gateway in place for that extra layer of security 🔒.</p>
+
+
+
+<h3 id="-jumping-into-a-node">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#-jumping-into-a-node">🎯 Jumping into a Node</a>
+</h3>
+<p>Once a credentialed fellow enters their login while hanging at the gateway, a list of servers appears, like a digital menu 🍽️. From this list, one can choose where to jump to. In my case, I leapt to <em>Rocky12</em>, a node within a managed cluster. I knew a little about this network thanks to earlier sessions, but most of this can also be discovered by doing some network scanning 🕵️.</p>
+
+
+
+<h3 id="-doing-a-broad-inventory-scan">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#-doing-a-broad-inventory-scan">🔍 Doing a Broad Inventory Scan</a>
+</h3>
+<p>This is where the magic of <code>nmap</code> comes into play! I used two stealthy commands: <strong>nmap -sS</strong> and <strong>nmap -sT</strong>. The <code>sT</code> option scanned a wide range of ports and connections, giving me a detailed list that I piped into <code>less</code> for easier viewing 📜.</p>
+
+
+
+<h3 id="-doing-targeted-scans">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#-doing-targeted-scans">🎯 Doing Targeted Scans</a>
+</h3>
+<p>I grepped all the IP addresses and ran an <strong>-sS SYN Scan</strong> to gather more details on each node. These scans revealed loads of information about open ports and, in some cases, the hostnames of devices 🎯.</p>
+
+
+
+<h3 id="-identifying-devices">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#-identifying-devices">🧩 Identifying Devices</a>
+</h3>
+<p>I quickly identified the <em>warewulf orchestration device</em> and all of the <em>Rocky nodes</em>. However, a few mysterious devices needed some detective work 🔎. I noticed <strong>glrpc</strong> listed as a service while scanning six addresses—three on one IP range and three on another. A quick Google search revealed that <strong>glrpc</strong> relates to <em>GlusterFS</em>, a filesystem specific to Red Hat systems. After watching a video explainer on GlusterFS, I figured out that these two IP ranges were likely a RAID or high availability configuration 💾.</p>
+
+
+
+<h3 id="-mapping-with-excalidraw">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#-mapping-with-excalidraw">🗺️ Mapping with Excalidraw</a>
+</h3>
+<p>I initially created a highly technical Engineer’s map filled with data and presented it to Het for feedback. He advised me to think about how management would interpret it 🤔. So, back to the drawing board! I focused on improving the visual presentation and labeling, keeping in mind that management doesn’t care about the nitty-gritty; they just need a clear, high-level understanding during briefings 📊.</p>
+
+
+
+<h3 id="-wrapping-up">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#-wrapping-up">🎉 Wrapping Up</a>
+</h3>
+<p>This concludes my exercise in mapping an unknown network! I learned a lot from this experience and am quite proud of the outcome 💪. It will undoubtedly come in handy when I find myself in future scenarios with many unknowns.</p>
+<hr>
+
+
+
+<h2 id="mitre-attck---1-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#mitre-attck---1-">MITRE ATT&amp;CK - <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> 🪚</a>
+</h2>
+<p>is a globally-accessible knowledge base of adversary tactics and techniques based on real-world observations.</p>
+<hr>
+
+
+
+<h3 id="somewhat-unfamiliar-terminology-for-me">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#somewhat-unfamiliar-terminology-for-me">Somewhat unfamiliar terminology for me</a>
+</h3>
+<ul>
+<li>Lateral Movement</li>
+</ul>
+<p>Lateral movement in the context of cyber exploitation refers to an attacker’s strategy of moving across a network to gain access to additional systems or sensitive data after initially infiltrating a single point. This involves leveraging compromised credentials, escalating privileges, or exploiting vulnerabilities to navigate between hosts and systems. The objective is often to broaden access within the environment while avoiding detection, eventually targeting critical infrastructure or data.</p>
+<ul>
+<li>Exfiltration 🧳🚀</li>
+</ul>
+<p>refers to the unauthorized transfer of data from a target system or network to an external location controlled by an attacker. This can involve methods such as encrypted tunnels, covert channels, or compromised accounts to avoid detection. Exfiltration is typically the final step in a cyberattack, allowing attackers to steal sensitive data, intellectual property, or credentials for further malicious activities.</p>
+
+
+
+<h3 id="security-is-everybodys-issue">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#security-is-everybodys-issue">Security is everybody&rsquo;s issue</a>
+</h3>
+<p>It is important to understand the data on your system regardless of specific responsibility in order to asses risk.</p>
+
+
+
+<h3 id="impact-of-exfiltration">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#impact-of-exfiltration">Impact of Exfiltration</a>
+</h3>
+<p>The impacts of data exfiltration can be massive. Given the level of severity an exfiltration incident can entirely destroy an organization or cause financial losses, reputational damage, labour force diversion, data loss and jeopardizing future security.</p>
+<hr>
+
+
+
+<h2 id="the-linux-user-environment">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#the-linux-user-environment">The Linux User Environment</a>
+</h2>
+<p>The Linux user environment is a customizable space that includes settings like environment variables, shell configurations, and startup scripts, typically defined in files such as .bashrc or .profile. These configurations allow users to tailor command line behavior, automate tasks, and create a personalized and efficient working environment.</p>
+
+
+
+<h3 id="customizations-to-the-user-environment">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#customizations-to-the-user-environment">Customizations to the User Environment</a>
+</h3>
+<p>Customizations for the user environment in Linux might include setting up aliases for frequently used commands, configuring environment variables, and adding functions to streamline workflows. These changes can make repetitive tasks faster, improve the command line interface&rsquo;s convenience, and adapt the environment to personal preferences.</p>
+
+
+
+<h4 id="problems-may-arise">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#problems-may-arise">Problems may arise</a>
+</h4>
+<p>Problems around helping users with their dot files often stem from the diverse and sometimes incompatible changes users make to suit their needs. This can lead to issues like conflicting configurations, inconsistent behavior across systems, or difficult debugging when unexpected behaviors arise from custom scripts.</p>
+<hr>
+
+
+
+<h2 id="definitionsterminology">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#definitionsterminology">Definitions/Terminology</a>
+</h2>
+
+
+
+<h4 id="footprinting-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#footprinting-">Footprinting 👣</a>
+</h4>
+<p>Footprinting is an essential phase in ethical hacking and system security. It involves gathering information about a computer system, network, or organization to understand its structure and identify potential vulnerabilities. Footprinting is often the first step of a cyberattack or penetration test, allowing attackers or security professionals to map out an environment before deciding how to approach the next steps.</p>
+
+
+
+<h4 id="scanning-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#scanning-">Scanning 🔍</a>
+</h4>
+<p>Scanning is a process of actively probing systems or networks to identify open ports, services, and vulnerabilities. It&rsquo;s used by attackers to gather deeper insights for potential exploitation and by security professionals to assess weaknesses. Common tools include Nmap and Nessus, while defenses include firewalls and IDS/IPS systems.</p>
+
+
+
+<h4 id="enumeration-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#enumeration-">Enumeration 💯</a>
+</h4>
+<p>Enumeration is the process of extracting more detailed information about a target, such as usernames, network shares, and system services, after identifying open ports and active systems. It typically involves active engagement with the target to gain in-depth knowledge that can be used for exploitation.</p>
+
+
+
+<h4 id="system-hacking-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#system-hacking-">System Hacking 🪓</a>
+</h4>
+<p>System hacking is the process of gaining unauthorized access to individual systems or networks by exploiting vulnerabilities. It involves activities such as password cracking, privilege escalation, installing backdoors, and covering tracks. Ethical hackers use these techniques to assess system security and recommend protective measures.</p>
+
+
+
+<h4 id="escalation-of-privilege-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#escalation-of-privilege-">Escalation of Privilege 🥉🥈🥇</a>
+</h4>
+<p>Privilege escalation is the process of gaining higher-level permissions or privileges than initially granted, allowing an attacker to execute commands with elevated authority. This can be achieved through exploiting vulnerabilities or misconfigurations, leading to unauthorized access to restricted resources or system control.</p>
+
+
+
+<h4 id="rule-of-least-privilege-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#rule-of-least-privilege-">Rule of least privilege 🔐</a>
+</h4>
+<p>The Rule of Least Privilege (LoP) is a security principle that states users, applications, and systems should only be granted the minimum level of access or permissions necessary to perform their tasks. This helps reduce the attack surface, limit potential damage from breaches, and mitigate insider threats.</p>
+
+
+
+<h4 id="covering-tracks-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#covering-tracks-">Covering Tracks 🧹👣</a>
+</h4>
+<p>Covering tracks is the process attackers use to hide their unauthorized activities and avoid detection. This involves techniques such as deleting or modifying system logs, using rootkits, and clearing command histories to prevent system administrators or security teams from discovering their presence or actions.</p>
+
+
+
+<h4 id="planting-backdoors-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#planting-backdoors-">Planting Backdoors 🪴🚪</a>
+</h4>
+<p>Planting backdoors involves installing hidden access points in a system, allowing attackers to bypass regular authentication and gain unauthorized access at a later time. Backdoors can be inserted through malicious code, vulnerabilities, or modifications to existing software, making them useful for maintaining persistent control over compromised systems.</p>
+<hr>
+
+
+
+<h3 id="prolug-links-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#prolug-links-">ProLUG Links ⛓️</a>
+</h3>
+<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
+Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
+Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
+ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
+KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>MITRE | ATT&amp;CK <a href="https://attack.mitre.org/">Site</a> Knowledge Base.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+      
+      
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/operating-systems/" rel="tag">Operating Systems</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+    </article>
+    
+      <div class="Divider"></div>
+    
   
     <article>
       <header class="Heading">
@@ -5105,305 +5723,6 @@ KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/he
           
             <li class="Tags-item u-background">
               <a class="Tags-link u-clickable" href="/techblog/tags/capstoneproject/" rel="tag">CapstoneProject</a>
-            </li>
-          
-        </ul>
-      
-    
-  </footer>
-
-    </article>
-    
-      <div class="Divider"></div>
-    
-  
-    <article>
-      <header class="Heading">
-  <h1 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/techblog/post/pacu1/" rel="bookmark">ProLUG Admin Course Unit 1 🐧</a>
-  </h1>
-  
-    <time datetime="2024-09-15T00:00:00Z">September 15, 2024</time>
-  
-</header>
-      
-        <h1 id="command-line-interface-primer-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#command-line-interface-primer-">Command Line Interface Primer 👨🏻‍🏫</a>
-</h1>
-
-
-
-<h2 id="intro-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#intro-">Intro 👋</a>
-</h2>
-<p>Well the ProLUG course is a go. We had a great meeting yesterday with a group of over 80 people. There was a slight snafu regarding thread size limits, so mid lesson we jumped into a presenter room. The session ran for a solid two hours wherein Scott went over command line interface essentials, networking essentials, VIM, pathing, redirects, Xargs, man pages and more. Although I have decent foundational knowledge of Linux, I know that there is always something to learn or better understand. I came away from this first class with a handful of things to review and practice for sure.</p>
-
-
-
-<h3 id="prompts-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#prompts-">prompts 🦮</a>
-</h3>
-<p>Group discussions have kicked off early in #ProLUG-Projects. Scott has prompted us with a few questions for Unit 1 that we are to post and discuss. I thought it would be good to post these answers in a longer form on my blog. This acts as a review of yesterdays work and gives me a chance to further reflect.</p>
-
-
-
-<h3 id="discussion-post-1-technical-skill-assessment-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#discussion-post-1-technical-skill-assessment-">Discussion Post 1: Technical Skill Assessment 🔍</a>
-</h3>
-<p>Using this rubric, we are to self-assess our skills in various areas with a score from 1-10, giving us a total score at the end. My score was 48 out of a potential 110. I would never rate myself above a 7, as that feels like Demi-God territory!</p>
-<p>Given the pace we started at in the first class, I’m confident that my skills will improve throughout this course. I plan to really go for it and challenge myself along the way.</p>
-<table>
-  <thead>
-      <tr>
-          <th style="text-align: left"><strong>Skill</strong></th>
-          <th style="text-align: left"><strong>High (8-10)</strong></th>
-          <th style="text-align: left"><strong>Mid (4-7)</strong></th>
-          <th style="text-align: left"><strong>Low (0-3)</strong></th>
-          <th style="text-align: left"><strong>Total</strong></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left"><strong>Linux</strong></td>
-          <td style="text-align: left">-</td>
-          <td style="text-align: left">6</td>
-          <td style="text-align: left">-</td>
-          <td style="text-align: left"></td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>Storage</strong></td>
-          <td style="text-align: left">-</td>
-          <td style="text-align: left">5</td>
-          <td style="text-align: left">-</td>
-          <td style="text-align: left"></td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>Security</strong></td>
-          <td style="text-align: left">-</td>
-          <td style="text-align: left">6</td>
-          <td style="text-align: left">-</td>
-          <td style="text-align: left"></td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>Networking</strong></td>
-          <td style="text-align: left">-</td>
-          <td style="text-align: left">-</td>
-          <td style="text-align: left">3</td>
-          <td style="text-align: left"></td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>Git</strong></td>
-          <td style="text-align: left">-</td>
-          <td style="text-align: left">7</td>
-          <td style="text-align: left">-</td>
-          <td style="text-align: left"></td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>Automation</strong></td>
-          <td style="text-align: left">-</td>
-          <td style="text-align: left">5</td>
-          <td style="text-align: left">-</td>
-          <td style="text-align: left"></td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>Monitoring</strong></td>
-          <td style="text-align: left">-</td>
-          <td style="text-align: left">-</td>
-          <td style="text-align: left">3</td>
-          <td style="text-align: left"></td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>Database</strong></td>
-          <td style="text-align: left">-</td>
-          <td style="text-align: left">4</td>
-          <td style="text-align: left">-</td>
-          <td style="text-align: left"></td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>Cloud</strong></td>
-          <td style="text-align: left">-</td>
-          <td style="text-align: left">6</td>
-          <td style="text-align: left">-</td>
-          <td style="text-align: left"></td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>Kubernetes</strong></td>
-          <td style="text-align: left">-</td>
-          <td style="text-align: left">-</td>
-          <td style="text-align: left">3</td>
-          <td style="text-align: left"></td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>Total</strong></td>
-          <td style="text-align: left">-</td>
-          <td style="text-align: left">-</td>
-          <td style="text-align: left">-</td>
-          <td style="text-align: left"><strong>48</strong></td>
-      </tr>
-  </tbody>
-</table>
-
-
-
-<h3 id="what-do-i-hope-to-learn-in-this-course-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#what-do-i-hope-to-learn-in-this-course-">What do I hope to learn in this course? 🤔</a>
-</h3>
-<p>I aim to gain hands-on experience in all aspects of system administration. While I have studied Linux and system administration, I understand that skill levels in this field can vary widely. As I work toward becoming a Systems Engineer, I recognize the importance of consistently challenging myself. Through this journey, I hope to build confidence in managing existing systems, configuring services, securing environments, and automating tasks.</p>
-
-
-
-<h3 id="what-type-of-career-are-you-looking-for-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#what-type-of-career-are-you-looking-for-">What type of career are you looking for? 🥕</a>
-</h3>
-<p>I am looking to become a full time Linux System Engineer. I am currently in an administrative support role wherein I am tasked with setting up new systems on a small scale. I would like to be able to manage a large number of servers with automation.</p>
-
-
-
-<h3 id="discussion-post-2-target-job-and-skills-gap-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#discussion-post-2-target-job-and-skills-gap-">Discussion Post 2: Target Job and Skills Gap 🎯</a>
-</h3>
-<p>Our second task is to look for a job we would like to target and list the requirements posted for that given job.<br>
-I found this job posted by <strong>OERP Canada</strong>, located in Toronto, Ontario, with the following information.</p>
-<hr>
-
-
-
-<h3 id="job-overview">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#job-overview">Job Overview</a>
-</h3>
-<p>The role will be 100% remote for now (#socialdistancing). Eventually, it will convert into an onsite role in Toronto, ON. We are only accepting applications from residents of Canada.</p>
-<p><strong>OERP Canada</strong> is looking for a full-time, experienced <strong>LINUX System Administrator</strong> to help maintain our operations and support our Odoo application deployment team, which deploys the Odoo Business Application suite for our clients. The successful candidate will have a technical background in <strong>LINUX</strong>, experience with hosting, web and proxy servers, database administration, mail routing, network security, strong communication skills, and the willingness and ability to think creatively and flexibly. A desire to learn is an important requirement of being part of our team.</p>
-<p>This position is both creative and rigorous by nature—you need to think outside the box. We expect the candidate to be proactive and have a &ldquo;get it done&rdquo; spirit.</p>
-
-
-
-<h3 id="responsibilities">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#responsibilities">Responsibilities</a>
-</h3>
-<ul>
-<li>Manage cloud and on-premise hosting environments</li>
-<li>Endless security improvements</li>
-<li>Improve automation tools</li>
-<li>Improve scripting</li>
-<li>Provide technical support as needed</li>
-</ul>
-
-
-
-<h3 id="must-have-skills">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#must-have-skills">Must-Have Skills</a>
-</h3>
-<ul>
-<li>Ubuntu / Debian server</li>
-<li>NGINX</li>
-<li>Security best practices: Firewalls &amp; WAF</li>
-<li>Automation tools and server scripting</li>
-<li>Functional knowledge of networking: VPNs, DNS, mail routing and delivery, etc.</li>
-<li>University degree or 3-5 years of work experience</li>
-</ul>
-
-
-
-<h3 id="nice-to-have-skills">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#nice-to-have-skills">Nice-to-Have Skills</a>
-</h3>
-<ul>
-<li>PostgreSQL high availability, load balancing, and replication</li>
-<li>Virtualization: VMware, vSphere, KVM</li>
-<li>VCS/Git working knowledge</li>
-<li>FreeBSD</li>
-</ul>
-<hr>
-
-
-
-<h3 id="what-i-am-currently-able-to-do-in-this-position-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#what-i-am-currently-able-to-do-in-this-position-">What I am currently able to do in this position 💪🏻</a>
-</h3>
-<ul>
-<li>Solid experience with Debian/Ubuntu</li>
-<li>Confident in managing both cloud and on-premise hosting environments</li>
-<li>Skilled in improving automation through the use of Ansible, Terraform, and Bash scripting</li>
-<li>While I may not have 3-5 years of continuous working experience, I have been involved in IT work on and off</li>
-<li>Experienced in setting up and managing PostgreSQL</li>
-<li>Proficient with Oracle VirtualBox and Proxmox, which I believe translates well to VMware, vSphere, and KVM</li>
-<li>Knowledgeable in Git, including branch management and command-line usage</li>
-<li>Familiar with FreeBSD and BSD-specific commands</li>
-</ul>
-
-
-
-<h3 id="what-i-am-currently-incapable-of-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#what-i-am-currently-incapable-of-">What I am currently incapable of 😓</a>
-</h3>
-<ul>
-<li>Lack confidence in managing firewalls</li>
-<li>Limited experience with VPNs, DNS, and mail handling</li>
-<li>Basic hands-on experience with NGINX, but skills are limited</li>
-<li>Minimal technical support experience</li>
-</ul>
-
-
-
-<h3 id="how-i-plan-to-close-the-gap-on-these-missing-skills-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#how-i-plan-to-close-the-gap-on-these-missing-skills-">How I plan to close the gap on these missing skills 🎯</a>
-</h3>
-<p>I plan to close this gap by learning more about general Linux security and networking principles from this course. Additionally, I&rsquo;ve already purchased a recently published book by Michael Lucas on running and maintaining mail servers, which I intend to skim through. Additionally, I am studying ITIL to improve my understanding of technical support and service management.</p>
-
-
-
-<h3 id="prolug-links-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#prolug-links-">ProLUG Links ⛓️</a>
-</h3>
-<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
-Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
-Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
-ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
-KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
-      
-      
-
-  
-
-  
-
-
-
-
-
-  <footer>
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
-            </li>
-          
-        </ul>
-      
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
             </li>
           
         </ul>
