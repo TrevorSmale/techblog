@@ -119,74 +119,20 @@
 
 
 
-<h4 id="warmup">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#warmup">Warmup</a>
-</h4>
-<p>🗂️ Create a directory named &rsquo;lab_users'</p>
-<pre><code>mkdir lab_users               
-</code></pre>
-<p>📂 Change to the &rsquo;lab_users&rsquo; directory</p>
-<pre><code>cd /lab_users  
-</code></pre>
-<p>📄 Display the contents of the &lsquo;/etc/passwd&rsquo; file (system user info)</p>
-<pre><code>cat /etc/passwd 
-
-cat /etc/passwd | tail -5     # 🔍 View the last 5 lines of the '/etc/passwd' file
-
-# ❓ What did this do to the output of the file?
-
-cat /etc/passwd | tail -5 | nl    
-</code></pre>
-<p>Number the lines of the last 5 entries of &lsquo;/etc/passwd&rsquo;</p>
-<pre><code>cat /etc/passwd | tail -5 | awk -F : ‘{print $1, $3, $7}’  # 🧾 Extract and print the username, UID, and shell for last 5 users
-</code></pre>
-<p>What did that do and what do each of the $# represent?</p>
-<pre><code>Each $ followed by a number represents the respective field in the record (line)    
-</code></pre>
-<p>Can you give the 2nd, 5th, and 6th fields?</p>
-<pre><code>cat /etc/passwd | tail -5 | awk –F : ‘{print $NF}’  # 🧮 Print the last field (shell) of the last 5 users
-</code></pre>
-<p>What does this $NF mean? Why might this be useful to us as administrators?</p>
-<p>Print the last field (shell) of the last 5 users</p>
-<pre><code>alias  # ⌨️ List or set command aliases
-</code></pre>
-<p>look at the things you have aliased. These come from defaults in your .bashrc file.</p>
-<pre><code>    We’ll configure these later
-
-    cd /root
-
-    ls -l
-
-    ll
-
-    unalias ll
-
-    ll
-
-    you shouldn’t have this command available anymore
-
-    ls
-
-    unalias ls
-
-    How did ls change on your screen?
-
-    No worries, there are two ways to fix the mess you’ve made.
-    Nothing you’ve done is permanent, so logging out and reloading a shell (logging back in) would fix this
-
-    We just put the aliases back 
-
-    alias ll='ls -l --color=auto'
-
-    alias ls='ls --color=auto'
-
-    test with alias to see them added and also use ll and ls to see them work properly.
-
-    This lab is designed to help you get familiar with the basics of the systems you will be working on. Some of you will find that you know the basic material but the techniques here 
-    allow you to put it together in a more complex fashion.
-
-    It is recommended that you type these commands and do not copy and paste them. Word sometimes likes to format characters and they don’t always play nice with Linux.
-</code></pre>
+<h3 id="primary-commands--tools">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#primary-commands--tools">Primary Commands / Tools</a>
+</h3>
+<ul>
+<li><strong>alias</strong>: Creates a shortcut or alias for a command.</li>
+<li><strong>unalias</strong>: Removes an alias that was previously defined.</li>
+<li><strong>awk</strong>: A powerful text-processing tool used for pattern scanning and processing.</li>
+<li><strong>useradd</strong>: Adds a new user to the system.</li>
+<li><strong>vi .bashrc</strong>: Opens the <code>.bashrc</code> file in the vi editor to customize shell settings.</li>
+<li><strong>UID_MIN 1000</strong>: The minimum user ID value for normal users (as defined in <code>/etc/login.defs</code>).</li>
+<li><strong>UID_MAX 60000</strong>: The maximum user ID value for normal users (as defined in <code>/etc/login.defs</code>).</li>
+<li><strong>groupadd –g 60001 project</strong>: Creates a new group named &ldquo;project&rdquo; with a GID of 60001.</li>
+<li><strong>id user4</strong>: Displays the user ID (UID), group ID (GID), and group memberships of user &ldquo;user4.&rdquo;</li>
+</ul>
 <hr>
 
 
@@ -222,6 +168,11 @@ cat /etc/passwd | tail -5 | nl
 </li>
 <li>
 <p>configuration settings for user account creation and login parameters, such as password aging policies, UID and GID ranges, and the default paths for user home directories, helping to control system-wide authentication behavior.</p>
+<pre><code>  /etc/skel/
+</code></pre>
+</li>
+<li>
+<p>provides template files that are automatically copied to a new user’s home directory when the user is created, ensuring they have default configuration settings.</p>
 </li>
 </ul>
 

@@ -7,8 +7,791 @@
     <description>Recent content on Tech Blog</description>
     <generator>Hugo 0.135.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 18 Oct 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 21 Oct 2024 00:00:00 +0000</lastBuildDate>
     <atom:link rel="self" href="http://localhost:1313/techblog/feed.xml" type="application/rss+xml" />
+    <item>
+      <title>ProLUG Admin Course Unit 6 🐧</title>
+      <link>http://localhost:1313/techblog/post/pacu6/</link>
+      <pubDate>Mon, 21 Oct 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/techblog/post/pacu6/</guid>
+      <description>&lt;h1 id=&#34;security--firewalld--ufw-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#security--firewalld--ufw-&#34;&gt;Security – Firewalld &amp;amp; UFW 🔥🧱&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;In this unit, we explore essential concepts in firewall management using Firewalld and UFW. A firewall acts as a security system, controlling the flow of traffic between networks by enforcing rules based on zones —logical areas with different security policies. Services are predefined sets of ports or protocols that firewalls allow or block, and zones like DMZ (Demilitarized Zone) provide added security layers by isolating public-facing systems. Stateful packet filtering tracks the state of connections, allowing more dynamic rules, while stateless packet filtering inspects individual packets without connection context. Proxies facilitate indirect network connections for security and privacy, while advanced security measures such as Web Application Firewalls (WAF) and Next-Generation Firewalls (NGFW) offer specialized protection against modern threats.&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h1 id=&#34;lab-work-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#lab-work-&#34;&gt;Lab Work 🧪🥼&lt;/a&gt;
+&lt;/h1&gt;
+
+
+
+&lt;h2 id=&#34;intro&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#intro&#34;&gt;Intro&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;This week, we dove deep into configuring and testing firewall settings in our Discord study group. I had several virtual machines set up in my ProxMox home lab, and we experimented while completing the lab work. As usual, we went on several tangents, verifying ideas. In total, we spent over 5 hours running commands, experimenting with different configurations, breaking things, and debating solutions. By the end of the session, I gained a practical understanding of Firewalld configuration, packet sending, and packet tracing with Wireshark. It was frustrating at times, but ultimately rewarding.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;sending--receiving-test-packets-experiment&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#sending--receiving-test-packets-experiment&#34;&gt;Sending &amp;amp; Receiving test packets experiment&lt;/a&gt;
+&lt;/h3&gt;
+
+
+
+&lt;h4 id=&#34;1-so-we-set-up-one-server-to-receive-a-packet&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#1-so-we-set-up-one-server-to-receive-a-packet&#34;&gt;1. So we set up one server to receive a packet:&lt;/a&gt;
+&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;    nc -l -p -u 12345 &amp;gt; received_file
+&lt;/code&gt;&lt;/pre&gt;
+
+
+
+&lt;h4 id=&#34;2-sending-from-another-server-and-noted-that-the-packet-was-recorded-in-received_file&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#2-sending-from-another-server-and-noted-that-the-packet-was-recorded-in-received_file&#34;&gt;2. Sending from another server and noted that the packet was recorded in &lt;strong&gt;received_file&lt;/strong&gt;&lt;/a&gt;
+&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;    echo &#39;message1&#39; | nc -u server_b_ip 12345
+&lt;/code&gt;&lt;/pre&gt;
+
+
+
+&lt;h4 id=&#34;3-we-set-firewalld-to-block-udp-port-12345&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#3-we-set-firewalld-to-block-udp-port-12345&#34;&gt;3. We set Firewalld to block udp port 12345&lt;/a&gt;
+&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;    sudo firewall-cmd --zone=public --add-rich-rule=&#39;rule family=&amp;quot;ipv4&amp;quot; source address=&amp;quot;192.168.2.166&amp;quot; port protocol=&amp;quot;udp&amp;quot; port=&amp;quot;12345&amp;quot; accept&#39; --permanent
+&lt;/code&gt;&lt;/pre&gt;
+
+
+
+&lt;h4 id=&#34;4-so-we-set-up-one-server-to-receive-a-packet&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#4-so-we-set-up-one-server-to-receive-a-packet&#34;&gt;4. So we set up one server to receive a packet:&lt;/a&gt;
+&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;    nc -l -p -u 12345 &amp;gt; received_file
+&lt;/code&gt;&lt;/pre&gt;
+
+
+
+&lt;h4 id=&#34;5-sending-from-another-server&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#5-sending-from-another-server&#34;&gt;5. Sending from another server:&lt;/a&gt;
+&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;    echo &#39;Blocked&#39; | nc -u server_b_ip 12345
+&lt;/code&gt;&lt;/pre&gt;
+
+
+
+&lt;h4 id=&#34;6-we-then-noted-that-this-packet-did-not-come-through&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#6-we-then-noted-that-this-packet-did-not-come-through&#34;&gt;6. We then noted that this packet did not come through&lt;/a&gt;
+&lt;/h4&gt;
+
+
+
+&lt;h4 id=&#34;7-we-then-set-up-netcat-to-listen-for-packets-on-udp-port-12346-slightly-different&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#7-we-then-set-up-netcat-to-listen-for-packets-on-udp-port-12346-slightly-different&#34;&gt;7. We then set up netcat to listen for packets on udp port 12346 &amp;lsquo;slightly different&amp;rsquo;&lt;/a&gt;
+&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;    nc -l -p -u 12346 &amp;gt; received_file
+&lt;/code&gt;&lt;/pre&gt;
+
+
+
+&lt;h4 id=&#34;8-sending-from-another-server-and-noted-that-the-packet-was-recorded-in-received_file&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#8-sending-from-another-server-and-noted-that-the-packet-was-recorded-in-received_file&#34;&gt;8. Sending from another server and noted that the packet was recorded in &lt;strong&gt;received_file&lt;/strong&gt;&lt;/a&gt;
+&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;    echo &#39;message2&#39; | nc -u server_b_ip 12346
+&lt;/code&gt;&lt;/pre&gt;
+
+
+
+&lt;h4 id=&#34;9-then-we-busted-open-wireshark-on-the-packet-receiving-vm-and-turned-on-general-packet-scanning&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#9-then-we-busted-open-wireshark-on-the-packet-receiving-vm-and-turned-on-general-packet-scanning&#34;&gt;9. Then we busted open WireShark on the packet receiving VM and turned on general packet scanning&lt;/a&gt;
+&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;    echo &#39;mom&#39; | nc -u server_b_ip 12346 
+&lt;/code&gt;&lt;/pre&gt;
+
+
+
+&lt;h4 id=&#34;10-we-then-looked-at-all-of-the-ways-we-could-inspect-the-packets-including-additional-data-bits-over-udp-for-no-apparent-reason&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#10-we-then-looked-at-all-of-the-ways-we-could-inspect-the-packets-including-additional-data-bits-over-udp-for-no-apparent-reason&#34;&gt;10. We then looked at all of the ways we could inspect the packets including additional data bits over UDP for no apparent reason.&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;Fin&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h1 id=&#34;types-of-firewalls-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#types-of-firewalls-&#34;&gt;Types of Firewalls 🔍&lt;/a&gt;
+&lt;/h1&gt;
+
+
+
+&lt;h2 id=&#34;firewalld-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#firewalld-&#34;&gt;Firewalld 🔥🧱&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Uses &lt;strong&gt;zones&lt;/strong&gt; to define the level of trust for network connections, making it easy to apply different security settings to various types of connections (like home, public, or work). It’s dynamic, meaning changes can be made without restarting the firewall, ensuring smooth operation.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;zones-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#zones-&#34;&gt;Zones 🍱&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;The concept is specific to Firewalld. Zones are a predefined set of firewall rules that determine the level of trust assigned to a network connection. Zones allow you to apply different security policies to different network interfaces based on how much you trust the network.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;common-commands&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#common-commands&#34;&gt;Common Commands&lt;/a&gt;
+&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;    firewall-cmd --state
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Checks if Firewalld is running.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    firewall-cmd --get-active-zones
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Lists all active zones and the interfaces associated with them.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    firewall-cmd --get-default-zone
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Displays the default zone for new interfaces or connections.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    firewall-cmd --set-default-zone=ZONE
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Changes the default zone to the specified zone.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    firewall-cmd --zone=ZONE --add-service=SERVICE
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Allows a service (e.g., SSH, HTTP) in the specified zone.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    firewall-cmd --zone=ZONE --remove-service=SERVICE
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Removes a service from the specified zone.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    firewall-cmd --zone=ZONE --add-port=PORT/PROTOCOL
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Opens a specific port (e.g., 80/tcp) in the specified zone.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    firewall-cmd --zone=ZONE --remove-port=PORT/PROTOCOL
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Closes a specific port in the specified zone.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    firewall-cmd --reload
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Reloads the Firewalld configuration without dropping active connections.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    firewall-cmd --list-all
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Lists all the rules and settings in the active zone.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    firewall-cmd --permanent
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Applies changes permanently (used with other commands to ensure changes persist after reboots).&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    firewall-cmd --runtime-to-permanent
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Converts the current runtime configuration to a permanent one.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;zone-example&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#zone-example&#34;&gt;Zone example&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;A public zone might have stricter rules, blocking most traffic except for essential services like web browsing.&lt;/li&gt;
+&lt;li&gt;A home zone could allow more open traffic, such as file sharing, because the network is more trusted.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 id=&#34;ufw-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#ufw-&#34;&gt;UFW 🔥🧱&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Uncomplicated Firewall&lt;/strong&gt; is a user-friendly firewall designed to simplify the process of controlling network traffic by allowing or blocking connections. UFW is commonly used on &lt;strong&gt;Ubuntu&lt;/strong&gt; and provides easy commands for setting up firewall rules, making it ideal for beginners. Despite it is simplicity, it is powerful enough to handle complex configurations.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;default-deny-policy-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#default-deny-policy-&#34;&gt;Default Deny Policy 🔐&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;By default, UFW denies all incoming connections while allowing outgoing ones. This enhances security by requiring users to explicitly allow any incoming traffic.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;common-commands-1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#common-commands-1&#34;&gt;Common Commands&lt;/a&gt;
+&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;    sudo ufw status
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Displays the current status of UFW and active rules.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo ufw enable
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Enables the UFW firewall.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo ufw disable
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Disables the UFW firewall.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo ufw default deny incoming
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Sets the default policy to deny all incoming connections.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo ufw default allow outgoing
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Sets the default policy to allow all outgoing connections.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo ufw allow PORT
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Allows traffic on a specific port (e.g., &lt;code&gt;sudo ufw allow 22&lt;/code&gt; to allow SSH).&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo ufw deny PORT
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Denies traffic on a specific port.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo ufw delete allow PORT
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Removes a previously allowed rule for a port.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo ufw allow SERVICE
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Allows traffic for a service by name (e.g., &lt;code&gt;sudo ufw allow ssh&lt;/code&gt;).&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo ufw deny SERVICE
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Denies traffic for a service by name.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo ufw allow from IP
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Allows traffic from a specific IP address.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo ufw deny from IP
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Denies traffic from a specific IP address.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo ufw allow proto PROTOCOL from IP to any port PORT
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Allows traffic for a specific protocol, source IP, and port (e.g., &lt;code&gt;sudo ufw allow proto tcp from 192.168.1.100 to any port 80&lt;/code&gt;).&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo ufw reset
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Resets all UFW rules to default.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo ufw reload
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Reloads UFW rules without disabling the firewall.&lt;/p&gt;
+
+
+
+&lt;h2 id=&#34;waf-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#waf-&#34;&gt;WAF 🔥🧱&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Web Application Firewall&lt;/strong&gt; is a security system designed to protect web applications by filtering and monitoring HTTP traffic between a web application and the internet. It helps prevent common web-based attacks like SQL injection, cross-site scripting (XSS), and cross-site request forgery (CSRF) by analyzing the incoming and outgoing traffic and blocking malicious requests. Unlike traditional firewalls that focus on network security, a WAF specifically targets the security of web applications and can be an important part of a layered defense strategy.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;more-sophisticated-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#more-sophisticated-&#34;&gt;More Sophisticated 🍷&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;are generally more sophisticated than Firewalld or UFW because they operate at the application layer (Layer 7) of the OSI model. Blocking traffic is one thing, but packet inspection is another.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;quite-a-few-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#quite-a-few-&#34;&gt;Quite a few ⚖️&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;There are many Web Application Firewalls out there that cover specific cloud platforms or web services. Here is a list of some popular ones:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;AWS WAF&lt;/li&gt;
+&lt;li&gt;Cloudflare WAF&lt;/li&gt;
+&lt;li&gt;F5 Advanced WAF&lt;/li&gt;
+&lt;li&gt;Imperva WAF&lt;/li&gt;
+&lt;li&gt;ModSecurity&lt;/li&gt;
+&lt;li&gt;Barracuda WAF&lt;/li&gt;
+&lt;li&gt;Sucuri WAF&lt;/li&gt;
+&lt;li&gt;Akamai Kona Site Defender&lt;/li&gt;
+&lt;li&gt;Fortinet FortiWeb&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 id=&#34;ngfw-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#ngfw-&#34;&gt;NGFW 🔥🧱🧠&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Next-Generation Firewall&lt;/strong&gt; is an advanced type of firewall that goes beyond traditional firewall features like packet filtering. It combines standard firewall capabilities with more advanced functionalities such as deep packet inspection (DPI), intrusion prevention systems (IPS), and application-level control. NGWs can inspect and control traffic at a more granular level, allowing administrators to set security rules based on specific applications, users, or behaviors.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;features-of-a-typical-ngfw&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#features-of-a-typical-ngfw&#34;&gt;Features of a typical NGFW&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Deep Packet Inspection (DPI)&lt;/strong&gt;: Examines the content of data packets, not just their headers, allowing the firewall to identify and block threats hidden in the traffic.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Intrusion Detection and Prevention System (IDS/IPS)&lt;/strong&gt;: Monitors network traffic for suspicious activity and can take action (like blocking or alerting) to prevent attacks in real-time.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Application Awareness and Control&lt;/strong&gt;: Recognizes and manages specific applications (e.g., Facebook, Skype) regardless of port or protocol, allowing for fine-grained traffic control.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Advanced Malware Protection (AMP)&lt;/strong&gt;: Detects and blocks malware using both signature-based detection and behavioral analysis to prevent malware from entering the network.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SSL/TLS Decryption&lt;/strong&gt;: Decrypts encrypted traffic (HTTPS) for inspection to detect threats hiding inside secure channels.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;User Identity Integration&lt;/strong&gt;: Applies firewall rules based on user identity or group membership rather than just IP addresses, providing more flexible access control.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Threat Intelligence Feeds&lt;/strong&gt;: Uses real-time threat data from global databases to protect against emerging threats and malicious IP addresses or domains.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cloud-Delivered Security&lt;/strong&gt;: Provides scalable and flexible cloud-based protection services such as sandboxing, traffic analysis, and updates for zero-day attacks.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Virtual Private Network (VPN) Support&lt;/strong&gt;: Allows secure, encrypted connections for remote users or between different networks (site-to-site or remote access VPNs).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;URL Filtering&lt;/strong&gt;: Controls access to websites based on categories (e.g., social media, gambling) or specific URLs, helping enforce acceptable use policies.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Quality of Service (QoS)&lt;/strong&gt;: Prioritizes certain types of traffic, ensuring that critical applications receive the necessary bandwidth and reducing congestion.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Zero-Trust Network Segmentation&lt;/strong&gt;: Implements policies based on strict access control, ensuring that users and devices only access the resources they are explicitly permitted.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Sandboxing&lt;/strong&gt;: Isolates suspicious files or code in a secure environment to detect malicious behavior without affecting the rest of the network.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Logging and Reporting&lt;/strong&gt;: Provides detailed logs and reports on network traffic, blocked threats, and firewall activity for auditing and troubleshooting.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;ngfw-products&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#ngfw-products&#34;&gt;NGFW Products&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Palo Alto Networks NGFW&lt;/li&gt;
+&lt;li&gt;Cisco Firepower NGFW&lt;/li&gt;
+&lt;li&gt;Fortinet FortiGate NGFW&lt;/li&gt;
+&lt;li&gt;Check Point NGFW&lt;/li&gt;
+&lt;li&gt;Sophos XG NGFW&lt;/li&gt;
+&lt;li&gt;Juniper Networks SRX Series NGFW&lt;/li&gt;
+&lt;li&gt;Barracuda CloudGen NGFW&lt;/li&gt;
+&lt;li&gt;SonicWall NGFW&lt;/li&gt;
+&lt;li&gt;WatchGuard Firebox NGFW&lt;/li&gt;
+&lt;li&gt;Forcepoint NGFW&lt;/li&gt;
+&lt;li&gt;PfSense NGFW&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;experience-with-pfsense&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#experience-with-pfsense&#34;&gt;Experience with PFSense&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;I am familiar with PfSense as it is &lt;strong&gt;Open Source&lt;/strong&gt; and popular among the Homelab enthusiasts because it is offers expansive features built upon FreeBSD which has killer networking.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;some-limitations&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#some-limitations&#34;&gt;Some limitations&lt;/a&gt;
+&lt;/h3&gt;
+
+
+
+&lt;h4 id=&#34;pre-packaged-features&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#pre-packaged-features&#34;&gt;Pre-packaged Features&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;Commercial NGFWs (e.g., Palo Alto Networks, Cisco Firepower) often come with built-in advanced features such as cloud-delivered threat intelligence, AI-powered threat detection, and sandboxing for zero-day threats. While pfSense can be extended with third-party packages, it doesn’t natively offer the same level of seamless integration or automation.&lt;/p&gt;
+
+
+
+&lt;h4 id=&#34;unified-management&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#unified-management&#34;&gt;Unified Management&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;Commercial NGFWs typically provide a centralized management console for handling multiple firewalls across large networks. While pfSense can handle multiple installations, managing them requires more manual effort and may not be as streamlined as the enterprise-grade management consoles of commercial NGFWs.&lt;/p&gt;
+
+
+
+&lt;h4 id=&#34;enterprise-support&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#enterprise-support&#34;&gt;Enterprise Support&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;pfSense relies on community and third-party support, whereas commercial NGFWs offer direct vendor support with service level agreements (SLAs), which can be crucial for large enterprises needing guaranteed response times and assistance.&lt;/p&gt;
+
+
+
+&lt;h4 id=&#34;threat-intelligence&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#threat-intelligence&#34;&gt;Threat Intelligence&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;NGFWs like those from Palo Alto or Cisco often integrate with real-time global threat intelligence networks, offering constant updates about emerging threats. While pfSense can be configured with tools like Snort for intrusion detection, it lacks the built-in, cloud-powered intelligence found in commercial NGFWs.&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h1 id=&#34;case-study-1-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#case-study-1-&#34;&gt;Case Study #1 🤔&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;A ticket has come in from an application team. Some of the servers your team built for them last week have not been reporting up to enterprise monitoring and they need it to be able to troubleshoot a current issue, but they have no data. You jump on the new servers and find that your engineer built everything correctly and the agents for node_exporter, ceph_exporter and logstash exporter that your teams use. But, they also have adhered to the new company standard of firewalld must be running. No one has documented the ports that need to be open, so you’re stuck between the new standards and fixing this problem on live systems.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;1-initial-research&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#1-initial-research&#34;&gt;1. Initial Research&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Findings:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;node_exporter typically uses port &lt;strong&gt;9100&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;ceph_exporter may use port &lt;strong&gt;9128&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;logstash commonly uses ports &lt;strong&gt;5044&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;2-checking-configs&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#2-checking-configs&#34;&gt;2. Checking Configs&lt;/a&gt;
+&lt;/h3&gt;
+
+
+
+&lt;h4 id=&#34;a-logstash-config&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#a-logstash-config&#34;&gt;A. LogStash Config&lt;/a&gt;
+&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;    cat /etc/logstash/conf.d/
+&lt;/code&gt;&lt;/pre&gt;
+
+
+
+&lt;h4 id=&#34;b-node-exporter-config&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#b-node-exporter-config&#34;&gt;B. node exporter config&lt;/a&gt;
+&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;    cat /etc/systemd/system/node_exporter.service
+&lt;/code&gt;&lt;/pre&gt;
+
+
+
+&lt;h4 id=&#34;c-ceph-exporter-config&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#c-ceph-exporter-config&#34;&gt;C. ceph exporter config&lt;/a&gt;
+&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;    cat /etc/systemd/system/ceph_exporter.service
+&lt;/code&gt;&lt;/pre&gt;
+
+
+
+&lt;h1 id=&#34;or&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#or&#34;&gt;Or&lt;/a&gt;
+&lt;/h1&gt;
+
+
+
+&lt;h3 id=&#34;3-gathering-socket-statistics&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#3-gathering-socket-statistics&#34;&gt;3. Gathering Socket Statistics&lt;/a&gt;
+&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;    sudo ss -tuln | grep LISTEN
+&lt;/code&gt;&lt;/pre&gt;
+
+
+
+&lt;h4 id=&#34;options-breakdown&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#options-breakdown&#34;&gt;Options Breakdown&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;-t: Show TCP sockets.
+-u: Show UDP sockets.
+-l: Show listening sockets, i.e., those waiting for incoming connections.
+-n: Show the output numerically, without resolving service names (e.g., display IP addresses and port numbers instead of domain names or service names like “http”).&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;q-1-as-youre-looking-this-up-what-terms-and-concepts-are-new-to-you&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#q-1-as-youre-looking-this-up-what-terms-and-concepts-are-new-to-you&#34;&gt;Q: 1. As you’re looking this up, what terms and concepts are new to you?&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Basically all of the concepts used are new to me. I am not very well versed in networking, network scanning or inspecting service configs.
+So this became a research and practice exercise that has shown me quite a lot of new tricks.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;q-2-what-are-the-ports-that-you-need-to-expose-how-did-you-find-the-answer&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#q-2-what-are-the-ports-that-you-need-to-expose-how-did-you-find-the-answer&#34;&gt;Q: 2. What are the ports that you need to expose? How did you find the answer?&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Theoretically I would expose port &lt;strong&gt;9100&lt;/strong&gt;, &lt;strong&gt;9128&lt;/strong&gt;, &lt;strong&gt;5044&lt;/strong&gt; from research. Furthermore, I now know how to check configs and/or gathering sockets statistics&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;q-3-what-are-you-going-to-do-to-fix-this-on-your-firewall&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#q-3-what-are-you-going-to-do-to-fix-this-on-your-firewall&#34;&gt;Q: 3. What are you going to do to fix this on your firewall?&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;I would add these services to the internal zone:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    firewall-cmd --zone=ZONE --add-service=SERVICE
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Allows a service (e.g., SSH, HTTP) in the specified zone.&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h1 id=&#34;case-study-2-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#case-study-2-&#34;&gt;Case Study #2 🤔&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;A manager heard you were the one that saved the new application by fixing the firewall. They get your manager to approach you with a request to review some documentation from a vendor that is pushing them hard to run a WAF in front of their web application. You are “the firewall” guy now, and they’re asking you to give them a review of the differences between the firewalls you set up (which they think should be enough to protect them) and what a WAF is doing.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;q-1-what-do-you-know-about-the-differences-now&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#q-1-what-do-you-know-about-the-differences-now&#34;&gt;Q: 1. What do you know about the differences now?&lt;/a&gt;
+&lt;/h3&gt;
+
+
+
+&lt;h4 id=&#34;traditional-firewalls-firewalldufw&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#traditional-firewalls-firewalldufw&#34;&gt;Traditional Firewalls (firewalld/ufw):&lt;/a&gt;
+&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Operate at network and transport layers (OSI Layer 3 &amp;amp; 4).&lt;/li&gt;
+&lt;li&gt;Control traffic based on IP addresses, ports, and protocols.&lt;/li&gt;
+&lt;li&gt;Block or allow entire network connections.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h4 id=&#34;web-application-firewalls-wafs&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#web-application-firewalls-wafs&#34;&gt;Web Application Firewalls (WAFs):&lt;/a&gt;
+&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Operate at the application layer (OSI Layer 7).&lt;/li&gt;
+&lt;li&gt;Inspect HTTP/HTTPS traffic, focusing on web application security.&lt;/li&gt;
+&lt;li&gt;Protect against attacks like SQL injection, XSS, and other web vulnerabilities.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;q-2-what-are-you-going-to-do-to-figure-out-more&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#q-2-what-are-you-going-to-do-to-figure-out-more&#34;&gt;Q: 2. What are you going to do to figure out more?&lt;/a&gt;
+&lt;/h3&gt;
+
+
+
+&lt;h3 id=&#34;q-3-prepare-a-report-for-them-comparing-it-to-the-firewall-you-did-in-the-first-discussion&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#q-3-prepare-a-report-for-them-comparing-it-to-the-firewall-you-did-in-the-first-discussion&#34;&gt;Q: 3. Prepare a report for them comparing it to the firewall you did in the first discussion.&lt;/a&gt;
+&lt;/h3&gt;
+
+
+
+&lt;h1 id=&#34;report-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#report-&#34;&gt;Report 🗒️&lt;/a&gt;
+&lt;/h1&gt;
+
+
+
+&lt;h3 id=&#34;evaluation-of-implementing-a-web-application-firewall-waf&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#evaluation-of-implementing-a-web-application-firewall-waf&#34;&gt;Evaluation of Implementing a Web Application Firewall &lt;strong&gt;WAF&lt;/strong&gt;&lt;/a&gt;
+&lt;/h3&gt;
+
+
+
+&lt;h3 id=&#34;prepared-by-treasure&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#prepared-by-treasure&#34;&gt;&lt;strong&gt;Prepared by:&lt;/strong&gt; Treasure&lt;/a&gt;
+&lt;/h3&gt;
+
+
+
+&lt;h3 id=&#34;date-oct-20th-2024&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#date-oct-20th-2024&#34;&gt;&lt;strong&gt;Date:&lt;/strong&gt; Oct 20th 2024&lt;/a&gt;
+&lt;/h3&gt;
+
+
+
+&lt;h3 id=&#34;subject-evaluation-of-waf-implementation-suitability-and-comparison-with-traditional-firewalls&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#subject-evaluation-of-waf-implementation-suitability-and-comparison-with-traditional-firewalls&#34;&gt;&lt;strong&gt;Subject:&lt;/strong&gt; Evaluation of WAF Implementation Suitability and Comparison with Traditional Firewalls&lt;/a&gt;
+&lt;/h3&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;1-introduction&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#1-introduction&#34;&gt;&lt;strong&gt;1. Introduction&lt;/strong&gt;&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;This report has been prepared in response to a request to evaluate the suitability of implementing a Web Application Firewall (WAF) within our infrastructure. The aim of this report is to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Compare WAF technology with traditional firewall solutions currently implemented.&lt;/li&gt;
+&lt;li&gt;Assess the benefits and limitations of each.&lt;/li&gt;
+&lt;li&gt;Provide recommendations based on the findings.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 id=&#34;2-objectives&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#2-objectives&#34;&gt;&lt;strong&gt;2. Objectives&lt;/strong&gt;&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;The key objectives of this evaluation are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;To determine the suitability of WAF in enhancing our web application security.&lt;/li&gt;
+&lt;li&gt;To identify potential risks and benefits associated with the deployment of WAF.&lt;/li&gt;
+&lt;li&gt;To compare traditional firewall solutions with WAF in terms of functionality, security, and cost.&lt;/li&gt;
+&lt;li&gt;To make recommendations based on the current and future needs of our IT infrastructure.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 id=&#34;3-comparison-of-technologies&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#3-comparison-of-technologies&#34;&gt;&lt;strong&gt;3. Comparison of Technologies&lt;/strong&gt;&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;31-traditional-firewalls-firewalldufw&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#31-traditional-firewalls-firewalldufw&#34;&gt;&lt;strong&gt;3.1 Traditional Firewalls (firewalld/ufw)&lt;/strong&gt;&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Primary Function&lt;/strong&gt;: Control and filter network traffic based on IP addresses, ports, and protocols.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Strengths&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;Blocks unwanted connections at the network level.&lt;/li&gt;
+&lt;li&gt;Suitable for general network protection.&lt;/li&gt;
+&lt;li&gt;Easy to configure and manage.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Limitations&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;Does not inspect web traffic at the application level.&lt;/li&gt;
+&lt;li&gt;Cannot protect against specific web application attacks (e.g., SQL injection, XSS).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;32-web-application-firewalls-waf&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#32-web-application-firewalls-waf&#34;&gt;&lt;strong&gt;3.2 Web Application Firewalls (WAF)&lt;/strong&gt;&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Primary Function&lt;/strong&gt;: Protect web applications by filtering and monitoring HTTP/HTTPS traffic.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Strengths&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;Protects against common web application vulnerabilities (e.g., SQL injection, XSS).&lt;/li&gt;
+&lt;li&gt;Monitors web traffic to block malicious requests.&lt;/li&gt;
+&lt;li&gt;Can provide real-time threat detection and logging.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Limitations&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;May require more resources and specialized configuration.&lt;/li&gt;
+&lt;li&gt;Focused solely on web applications, not general network traffic.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;33-key-differences&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#33-key-differences&#34;&gt;&lt;strong&gt;3.3 Key Differences&lt;/strong&gt;&lt;/a&gt;
+&lt;/h3&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Feature&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Traditional Firewall&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Web Application Firewall (WAF)&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Layer&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Network (Layer 3/4)&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Application (Layer 7)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Traffic Type&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;IP, ports, protocols&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;HTTP/HTTPS, web requests&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Use Case&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;General network security&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Web application protection&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Threat Coverage&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Blocks IP-based threats&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Mitigates web vulnerabilities (SQLi, XSS)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Cost&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Typically lower&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Generally higher due to specialized focus&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+
+
+&lt;h2 id=&#34;4-key-considerations-for-waf-implementation&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#4-key-considerations-for-waf-implementation&#34;&gt;&lt;strong&gt;4. Key Considerations for WAF Implementation&lt;/strong&gt;&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;41-security-benefits&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#41-security-benefits&#34;&gt;&lt;strong&gt;4.1 Security Benefits&lt;/strong&gt;&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Enhanced protection against web-specific attacks.&lt;/li&gt;
+&lt;li&gt;Ability to monitor and block suspicious activity in real-time.&lt;/li&gt;
+&lt;li&gt;Added layer of security on top of traditional network firewalls.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;42-cost-analysis&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#42-cost-analysis&#34;&gt;&lt;strong&gt;4.2 Cost Analysis&lt;/strong&gt;&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Initial Investment&lt;/strong&gt;: The upfront cost of acquiring and configuring a WAF solution.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ongoing Costs&lt;/strong&gt;: Maintenance, updates, and potential personnel training.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;43-operational-impact&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#43-operational-impact&#34;&gt;&lt;strong&gt;4.3 Operational Impact&lt;/strong&gt;&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;May require additional resources for setup, monitoring, and incident response.&lt;/li&gt;
+&lt;li&gt;Potential need for collaboration between the security and development teams to ensure smooth integration.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 id=&#34;5-risk-assessment&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#5-risk-assessment&#34;&gt;&lt;strong&gt;5. Risk Assessment&lt;/strong&gt;&lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Without WAF&lt;/strong&gt;: Increased vulnerability to web application-specific threats, such as cross-site scripting (XSS) and SQL injection, especially for critical applications.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;With WAF&lt;/strong&gt;: Increased security for web applications but requires ongoing monitoring and adjustment to ensure performance and efficacy.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 id=&#34;6-recommendations&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#6-recommendations&#34;&gt;&lt;strong&gt;6. Recommendations&lt;/strong&gt;&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Based on the evaluation, I recommend the following:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Implement a WAF&lt;/strong&gt;: Due to the increasing reliance on web applications and the rise in web-based attacks, implementing a WAF would provide an essential layer of security.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Maintain Traditional Firewalls&lt;/strong&gt;: Existing firewalls should continue to be used for network-level protection alongside the WAF.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Pilot Implementation&lt;/strong&gt;: Begin with a limited deployment of WAF for high-risk applications to evaluate performance and cost before a full-scale rollout.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Staff Training&lt;/strong&gt;: Ensure the security and IT teams are trained in WAF management to maximize its effectiveness.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;h2 id=&#34;7-conclusion&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#7-conclusion&#34;&gt;&lt;strong&gt;7. Conclusion&lt;/strong&gt;&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;The implementation of a Web Application Firewall is a strategic move to protect our web applications from evolving security threats. While traditional firewalls remain crucial for network security, they cannot defend against the types of attacks WAFs are designed to mitigate. By implementing both WAF and traditional firewall solutions, we can ensure comprehensive security coverage across both network and application layers.&lt;/p&gt;
+
+
+
+&lt;h2 id=&#34;8-next-steps&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#8-next-steps&#34;&gt;&lt;strong&gt;8. Next Steps&lt;/strong&gt;&lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Further evaluation of potential WAF solutions based on budget, compatibility, and scalability.&lt;/li&gt;
+&lt;li&gt;Engage with the security team for a detailed implementation plan.&lt;/li&gt;
+&lt;li&gt;Prepare a pilot program for critical applications and monitor its performance.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;approved-by-bob-saggit&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#approved-by-bob-saggit&#34;&gt;&lt;strong&gt;Approved by:&lt;/strong&gt; Bob Saggit&lt;/a&gt;
+&lt;/h3&gt;
+
+
+
+&lt;h3 id=&#34;date-october-25th-2024&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#date-october-25th-2024&#34;&gt;&lt;strong&gt;Date:&lt;/strong&gt; October 25th 2024&lt;/a&gt;
+&lt;/h3&gt;
+&lt;hr&gt;
+
+
+
+&lt;h3 id=&#34;definitions&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#definitions&#34;&gt;Definitions&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Firewall&lt;/strong&gt;: A security device that monitors and controls incoming and outgoing network traffic based on predetermined security rules.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Zone&lt;/strong&gt;: A defined area within a network that contains systems with similar security requirements, separated by a firewall.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Service&lt;/strong&gt;: A specific type of network functionality, like HTTP or DNS, that can be allowed or blocked by a firewall.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DMZ&lt;/strong&gt;: A &amp;ldquo;Demilitarized Zone&amp;rdquo; is a network segment that serves as a buffer between a secure internal network and untrusted external networks.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Proxy&lt;/strong&gt;: A server that acts as an intermediary for requests between clients and servers, often used for filtering, security, or caching.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Stateful packet filtering&lt;/strong&gt;: A firewall feature that tracks the state of active connections and makes filtering decisions based on the connection&amp;rsquo;s state.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Stateless packet filtering&lt;/strong&gt;: A type of firewall filtering that analyzes each packet independently without considering the state of the connection.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;WAF&lt;/strong&gt;: A Web Application Firewall that protects web applications by filtering and monitoring HTTP/HTTPS traffic for threats like SQL injection and XSS.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;NGFW&lt;/strong&gt;: A Next-Generation Firewall that combines traditional firewall functions with additional features like application awareness, integrated intrusion prevention, and advanced threat detection.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+
+
+
+&lt;h3 id=&#34;prolug-links-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#prolug-links-&#34;&gt;ProLUG Links ⛓️&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Discord: &lt;a href=&#34;https://discord.com/invite/m6VPPD9usw&#34;&gt;https://discord.com/invite/m6VPPD9usw&lt;/a&gt;
+Youtube: &lt;a href=&#34;https://www.youtube.com/@het_tanis8213&#34;&gt;https://www.youtube.com/@het_tanis8213&lt;/a&gt;
+Twitch: &lt;a href=&#34;https://www.twitch.tv/het_tanis&#34;&gt;https://www.twitch.tv/het_tanis&lt;/a&gt;
+ProLUG Book: &lt;a href=&#34;https://leanpub.com/theprolugbigbookoflabs&#34;&gt;https://leanpub.com/theprolugbigbookoflabs&lt;/a&gt;
+KillerCoda: &lt;a href=&#34;https://killercoda.com/het-tanis&#34;&gt;https://killercoda.com/het-tanis&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>ProLUG Admin Course Unit 5 🐧</title>
       <link>http://localhost:1313/techblog/post/pacu5/</link>
@@ -29,74 +812,20 @@
 
 
 
-&lt;h4 id=&#34;warmup&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu5/#warmup&#34;&gt;Warmup&lt;/a&gt;
-&lt;/h4&gt;
-&lt;p&gt;🗂️ Create a directory named &amp;rsquo;lab_users&#39;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;mkdir lab_users               
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;📂 Change to the &amp;rsquo;lab_users&amp;rsquo; directory&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;cd /lab_users  
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;📄 Display the contents of the &amp;lsquo;/etc/passwd&amp;rsquo; file (system user info)&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;cat /etc/passwd 
-
-cat /etc/passwd | tail -5     # 🔍 View the last 5 lines of the &#39;/etc/passwd&#39; file
-
-# ❓ What did this do to the output of the file?
-
-cat /etc/passwd | tail -5 | nl    
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Number the lines of the last 5 entries of &amp;lsquo;/etc/passwd&amp;rsquo;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;cat /etc/passwd | tail -5 | awk -F : ‘{print $1, $3, $7}’  # 🧾 Extract and print the username, UID, and shell for last 5 users
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;What did that do and what do each of the $# represent?&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;Each $ followed by a number represents the respective field in the record (line)    
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Can you give the 2nd, 5th, and 6th fields?&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;cat /etc/passwd | tail -5 | awk –F : ‘{print $NF}’  # 🧮 Print the last field (shell) of the last 5 users
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;What does this $NF mean? Why might this be useful to us as administrators?&lt;/p&gt;
-&lt;p&gt;Print the last field (shell) of the last 5 users&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;alias  # ⌨️ List or set command aliases
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;look at the things you have aliased. These come from defaults in your .bashrc file.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;    We’ll configure these later
-
-    cd /root
-
-    ls -l
-
-    ll
-
-    unalias ll
-
-    ll
-
-    you shouldn’t have this command available anymore
-
-    ls
-
-    unalias ls
-
-    How did ls change on your screen?
-
-    No worries, there are two ways to fix the mess you’ve made.
-    Nothing you’ve done is permanent, so logging out and reloading a shell (logging back in) would fix this
-
-    We just put the aliases back 
-
-    alias ll=&#39;ls -l --color=auto&#39;
-
-    alias ls=&#39;ls --color=auto&#39;
-
-    test with alias to see them added and also use ll and ls to see them work properly.
-
-    This lab is designed to help you get familiar with the basics of the systems you will be working on. Some of you will find that you know the basic material but the techniques here 
-    allow you to put it together in a more complex fashion.
-
-    It is recommended that you type these commands and do not copy and paste them. Word sometimes likes to format characters and they don’t always play nice with Linux.
-&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;primary-commands--tools&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu5/#primary-commands--tools&#34;&gt;Primary Commands / Tools&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;alias&lt;/strong&gt;: Creates a shortcut or alias for a command.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;unalias&lt;/strong&gt;: Removes an alias that was previously defined.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;awk&lt;/strong&gt;: A powerful text-processing tool used for pattern scanning and processing.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;useradd&lt;/strong&gt;: Adds a new user to the system.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;vi .bashrc&lt;/strong&gt;: Opens the &lt;code&gt;.bashrc&lt;/code&gt; file in the vi editor to customize shell settings.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;UID_MIN 1000&lt;/strong&gt;: The minimum user ID value for normal users (as defined in &lt;code&gt;/etc/login.defs&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;UID_MAX 60000&lt;/strong&gt;: The maximum user ID value for normal users (as defined in &lt;code&gt;/etc/login.defs&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;groupadd –g 60001 project&lt;/strong&gt;: Creates a new group named &amp;ldquo;project&amp;rdquo; with a GID of 60001.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;id user4&lt;/strong&gt;: Displays the user ID (UID), group ID (GID), and group memberships of user &amp;ldquo;user4.&amp;rdquo;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;hr&gt;
 
 
@@ -132,6 +861,11 @@ cat /etc/passwd | tail -5 | nl
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;configuration settings for user account creation and login parameters, such as password aging policies, UID and GID ranges, and the default paths for user home directories, helping to control system-wide authentication behavior.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  /etc/skel/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;provides template files that are automatically copied to a new user’s home directory when the user is created, ensuring they have default configuration settings.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 

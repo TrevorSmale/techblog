@@ -10,199 +10,122 @@
     <lastBuildDate>Tue, 15 Oct 2024 00:00:00 +0000</lastBuildDate>
     <atom:link rel="self" href="http://localhost:1313/techblog/tags/research/feed.xml" type="application/rss+xml" />
     <item>
-      <title>GO CLI Utility</title>
-      <link>http://localhost:1313/techblog/post/goclisysutil/</link>
-      <pubDate>Tue, 15 Oct 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/techblog/post/goclisysutil/</guid>
-      <description>&lt;h1 id=&#34;making-a-utility-for-linux-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#making-a-utility-for-linux-&#34;&gt;Making a Utility for Linux 🚀&lt;/a&gt;
+      <title>ProLUG Admin Course Unit 6 🐧</title>
+      <link>http://localhost:1313/techblog/post/pacu6/</link>
+      <pubDate>Sat, 19 Oct 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/techblog/post/pacu6/</guid>
+      <description>&lt;h1 id=&#34;security--firewalld--ufw-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#security--firewalld--ufw-&#34;&gt;Security – Firewalld &amp;amp; UFW 🔥🧱&lt;/a&gt;
 &lt;/h1&gt;
-&lt;p&gt;Recently, I was chatting with fellow enthusiasts in the ProLUG group about creating system utilities with Go.&lt;/p&gt;
-&lt;p&gt;Between learning about it on my own time and getting input from others, I realized there are so many compelling reasons for using Go as a utility language. 🛠️&lt;/p&gt;
-&lt;p&gt;Currently, the idea isn&amp;rsquo;t as prevalent as Python or Bash, but it’s gaining traction. This makes sense since Go was designed with modern, interconnected systems in mind.&lt;/p&gt;
-
-
-
-&lt;h2 id=&#34;what-is-a-utility-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#what-is-a-utility-&#34;&gt;What is a Utility? 🤔&lt;/a&gt;
-&lt;/h2&gt;
-&lt;p&gt;A system utility streamlines repetitive tasks by offering custom commands tailored to your workflow, boosting efficiency for system administrators and engineers. Work smarter, not harder. 💡&lt;/p&gt;
-
-
-
-&lt;h2 id=&#34;cli-tool-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#cli-tool-&#34;&gt;CLI Tool 🖥️&lt;/a&gt;
-&lt;/h2&gt;
-&lt;p&gt;Go offers a package called Cobra CLI &lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;, which enables the creation of command-line interfaces that take input from the terminal and execute predetermined logic. I’m putting this simply in case you’re unfamiliar with how programs work 😆.&lt;/p&gt;
-&lt;p&gt;The CLI is the simplest form of a computer program and is perfect for Linux system folks.&lt;/p&gt;
-
-
-
-&lt;h2 id=&#34;core-idea-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#core-idea-&#34;&gt;Core Idea 🎯&lt;/a&gt;
-&lt;/h2&gt;
-&lt;p&gt;The core idea of this article is to explain how a Go program can act as a personalized utility that lives on your system or can be deployed across many. Go compiles code into a binary—native computer language. Once built, the binary runs reliably without failure, assuming the program logic is solid. This makes Go ideal for utilities that are called repeatedly to perform simple tasks.&lt;/p&gt;
-
-
-
-&lt;h2 id=&#34;automate-everything-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#automate-everything-&#34;&gt;Automate Everything 🤖&lt;/a&gt;
-&lt;/h2&gt;
-&lt;p&gt;Managing systems involves a lot of repetitive tasks, and the goal of any sysadmin or engineer is to automate them. Tools like Ansible, Python, and Bash are already well-known for automation. However, there are specific reasons to use Go, which I’ll explore further in a future article titled &lt;em&gt;&amp;ldquo;Why Go?&amp;rdquo;&lt;/em&gt; where I’ll break down why it belongs in your quiver of tools 🏹.&lt;/p&gt;
+&lt;p&gt;In this unit, we explore essential concepts in firewall management using Firewalld and UFW. A firewall acts as a security system, controlling the flow of traffic between networks by enforcing rules based on zones —logical areas with different security policies. Services are predefined sets of ports or protocols that firewalls allow or block, and zones like DMZ (Demilitarized Zone) provide added security layers by isolating public-facing systems. Stateful packet filtering tracks the state of connections, allowing more dynamic rules, while stateless packet filtering inspects individual packets without connection context. Proxies facilitate indirect network connections for security and privacy, while advanced security measures such as Web Application Firewalls (WAF) and Next-Generation Firewalls (NGFW) offer specialized protection against modern threats.&lt;/p&gt;
 &lt;hr&gt;
 
 
 
-&lt;h3 id=&#34;cli-programming-portion-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#cli-programming-portion-&#34;&gt;CLI Programming Portion ⚙️&lt;/a&gt;
+&lt;h1 id=&#34;types-of-firewalls-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#types-of-firewalls-&#34;&gt;Types of Firewalls 🔍&lt;/a&gt;
+&lt;/h1&gt;
+
+
+
+&lt;h2 id=&#34;firewalld-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#firewalld-&#34;&gt;Firewalld 🔥🧱&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Uses &lt;strong&gt;zones&lt;/strong&gt; to define the level of trust for network connections, making it easy to apply different security settings to various types of connections (like home, public, or work). It’s dynamic, meaning changes can be made without restarting the firewall, ensuring smooth operation.&lt;/p&gt;
+
+
+
+&lt;h2 id=&#34;ufw-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#ufw-&#34;&gt;UFW 🔥🧱&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Uncomplicated Firewall&lt;/strong&gt; is a user-friendly firewall designed to simplify the process of controlling network traffic by allowing or blocking connections. UFW is commonly used on Ubuntu and provides easy commands for setting up firewall rules, making it ideal for beginners. Despite it is simplicity, it is powerful enough to handle complex configurations.&lt;/p&gt;
+
+
+
+&lt;h2 id=&#34;waf-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#waf-&#34;&gt;WAF 🔥🧱&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Web Application Firewall&lt;/strong&gt; is a security system designed to protect web applications by filtering and monitoring HTTP traffic between a web application and the internet. It helps prevent common web-based attacks like SQL injection, cross-site scripting (XSS), and cross-site request forgery (CSRF) by analyzing the incoming and outgoing traffic and blocking malicious requests. Unlike traditional firewalls that focus on network security, a WAF specifically targets the security of web applications and can be an important part of a layered defense strategy.&lt;/p&gt;
+
+
+
+&lt;h2 id=&#34;ngfw-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#ngfw-&#34;&gt;NGFW 🔥🧱🧠&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Next-Generation Firewall&lt;/strong&gt; is an advanced type of firewall that goes beyond traditional firewall features like packet filtering. It combines standard firewall capabilities with more advanced functionalities such as deep packet inspection (DPI), intrusion prevention systems (IPS), and application-level control. NGWs can inspect and control traffic at a more granular level, allowing administrators to set security rules based on specific applications, users, or behaviors.&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;lab-work-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#lab-work-&#34;&gt;Lab Work 🧪🥼&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;primary-commands--tools&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#primary-commands--tools&#34;&gt;Primary Commands / Tools&lt;/a&gt;
 &lt;/h3&gt;
+&lt;hr&gt;
+&lt;hr&gt;
 
 
 
-&lt;h4 id=&#34;setup&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#setup&#34;&gt;Setup&lt;/a&gt;
-&lt;/h4&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Install&lt;/strong&gt; Go and Cobra CLI (if not already installed).&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Initialize&lt;/strong&gt; a new Go project with Cobra CLI.&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-&lt;h4 id=&#34;cli-logic&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#cli-logic&#34;&gt;CLI Logic&lt;/a&gt;
-&lt;/h4&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Add commands and flags&lt;/strong&gt; to the Cobra application.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Implement utility functions&lt;/strong&gt;, such as disk usage checks or file listings.&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-&lt;h3 id=&#34;compilation-and-installation-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#compilation-and-installation-&#34;&gt;Compilation and Installation 🏗️&lt;/a&gt;
+&lt;h3 id=&#34;case-study-1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#case-study-1&#34;&gt;Case Study #1&lt;/a&gt;
 &lt;/h3&gt;
-
-
-
-&lt;h4 id=&#34;compile&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#compile&#34;&gt;Compile&lt;/a&gt;
-&lt;/h4&gt;
+&lt;p&gt;A ticket has come in from an application team. Some of the servers your team built for them last week have not been reporting up to enterprise monitoring and they need it to be able to troubleshoot a current issue, but they have no data. You jump on the new servers and find that your engineer built everything correctly and the agents for node_exporter, ceph_exporter and logstash exporter that your teams use. But, they also have adhered to the new company standard of firewalld must be running. No one has documented the ports that need to be open, so you’re stuck between the new standards and fixing this problem on live systems.&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Build&lt;/strong&gt; the Go project into a single x86 Linux binary.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Test&lt;/strong&gt; the binary locally to confirm functionality.&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-&lt;h4 id=&#34;install&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#install&#34;&gt;Install&lt;/a&gt;
-&lt;/h4&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Move&lt;/strong&gt; the binary to &lt;code&gt;/usr/local/bin&lt;/code&gt; for global access.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Set permissions&lt;/strong&gt; on the binary to allow execution.&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-&lt;h4 id=&#34;add-to-path&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#add-to-path&#34;&gt;Add to PATH&lt;/a&gt;
-&lt;/h4&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Check&lt;/strong&gt; if &lt;code&gt;/usr/local/bin&lt;/code&gt; is in your PATH.&lt;/li&gt;
-&lt;li&gt;If not, &lt;strong&gt;add it&lt;/strong&gt; to your &lt;code&gt;.bashrc&lt;/code&gt; or &lt;code&gt;.bash_profile&lt;/code&gt;.&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-&lt;h3 id=&#34;testing-portion-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#testing-portion-&#34;&gt;Testing Portion 🧪&lt;/a&gt;
-&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Run&lt;/strong&gt; the utility from any location to confirm it works.&lt;/li&gt;
-&lt;li&gt;Optionally, &lt;strong&gt;add help documentation&lt;/strong&gt; or more commands to the CLI.&lt;/li&gt;
-&lt;/ol&gt;
-
-
-
-&lt;h3 id=&#34;packaging-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#packaging-&#34;&gt;Packaging 📦&lt;/a&gt;
-&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Provide installation instructions&lt;/strong&gt; if you plan to share it.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Upload&lt;/strong&gt; the binary or source code to GitHub for distribution.&lt;/li&gt;
+&lt;li&gt;As you’re looking this up, what terms and concepts are new to you?&lt;/li&gt;
+&lt;li&gt;What are the ports that you need to expose? How did you find the answer?&lt;/li&gt;
+&lt;li&gt;What are you going to do to fix this on your firewall?&lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr&gt;
 
 
 
-&lt;h2 id=&#34;learning-resources&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#learning-resources&#34;&gt;Learning Resources&lt;/a&gt;
-&lt;/h2&gt;
-&lt;p&gt;Ok this was just a simple outline you say. Yes, I am trying to convey information simply for sanities sake, this is how I process things anyway.&lt;/p&gt;
-&lt;p&gt;In order to make your own utility you will have to go off on your own learning adventure. Below I am giving you some resources for getting started.&lt;/p&gt;
-
-
-
-&lt;h3 id=&#34;getting-up-and-running-with-go&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#getting-up-and-running-with-go&#34;&gt;Getting up and running with GO&lt;/a&gt;
+&lt;h3 id=&#34;case-study-2&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#case-study-2&#34;&gt;Case Study #2&lt;/a&gt;
 &lt;/h3&gt;
-
-
-
-&lt;h4 id=&#34;brief-intro-2&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#brief-intro-2&#34;&gt;Brief Intro &lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/a&gt;
-&lt;/h4&gt;
-
-
-
-&lt;h4 id=&#34;for-the-impatient-3&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#for-the-impatient-3&#34;&gt;For the impatient &lt;sup id=&#34;fnref:3&#34;&gt;&lt;a href=&#34;#fn:3&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/a&gt;
-&lt;/h4&gt;
-&lt;p&gt;There are many ways to get this done. For the clever and impatient, I suggest finding a pre-made CLI application that you can deconstruct. &lt;sup id=&#34;fnref1:3&#34;&gt;&lt;a href=&#34;#fn:3&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-
-
-&lt;h4 id=&#34;for-the-patient-4&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#for-the-patient-4&#34;&gt;For the Patient &lt;sup id=&#34;fnref:4&#34;&gt;&lt;a href=&#34;#fn:4&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/a&gt;
-&lt;/h4&gt;
-&lt;p&gt;For those who like to build a foundation of understanding, I suggest watching a lecture followed by a tutorial and finally doing the project. &lt;sup id=&#34;fnref1:4&#34;&gt;&lt;a href=&#34;#fn:4&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-
-
-&lt;h2 id=&#34;conclusion&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#conclusion&#34;&gt;Conclusion&lt;/a&gt;
-&lt;/h2&gt;
-&lt;p&gt;I try to keep things simple and succinct, so this is where I ride off into the sunset. Good luck and happy learning.&lt;/p&gt;
-&lt;hr&gt;
-
-
-
-&lt;h2 id=&#34;footnotes-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#footnotes-&#34;&gt;Footnotes ⛓️&lt;/a&gt;
-&lt;/h2&gt;
-&lt;div class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
-&lt;hr&gt;
+&lt;p&gt;A manager heard you were the one that saved the new application by fixing the firewall. They get your manager to approach you with a request to review some documentation from a vendor that is pushing them hard to run a WAF in front of their web application. You are “the firewall” guy now, and they’re asking you to give them a review of the differences between the firewalls you set up (which they think should be enough to protect them) and what a WAF is doing.&lt;/p&gt;
 &lt;ol&gt;
-&lt;li id=&#34;fn:1&#34;&gt;
-&lt;p&gt;Cobra CLI Source Code &lt;a href=&#34;https://github.com/spf13/cobra&#34;&gt;GitHub Repository&lt;/a&gt; User: spf13, Current.&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id=&#34;fn:2&#34;&gt;
-&lt;p&gt;GO in 100 Seconds &lt;a href=&#34;https://www.youtube.com/watch?v=446E-r0rXHI&#34;&gt;Youtube Video&lt;/a&gt; Channel: Fireship, 2021.&amp;#160;&lt;a href=&#34;#fnref:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id=&#34;fn:3&#34;&gt;
-&lt;p&gt;Cobra CLI Samples &lt;a href=&#34;https://github.com/Adron/cobra-cli-samples&#34;&gt;GitHub Repository&lt;/a&gt; User: Adron, 2022.&amp;#160;&lt;a href=&#34;#fnref:3&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&amp;#160;&lt;a href=&#34;#fnref1:3&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id=&#34;fn:4&#34;&gt;
-&lt;p&gt;Golang Tutorial Series Playlist &lt;a href=&#34;https://www.youtube.com/watch?v=etSN4X_fCnM&amp;amp;list=PL4cUxeGkcC9gC88BEo9czgyS72A3doDeM&#34;&gt;Youtube Channel&lt;/a&gt; Channel: Net Ninja, 2021.&amp;#160;&lt;a href=&#34;#fnref:4&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&amp;#160;&lt;a href=&#34;#fnref1:4&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;What do you know about the differences now?&lt;/li&gt;
+&lt;li&gt;What are you going to do to figure out more?
+Prepare a report for them comparing it to the firewall you did in the first discussion.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</description>
+&lt;hr&gt;
+
+
+
+&lt;h3 id=&#34;definitions&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#definitions&#34;&gt;Definitions&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Firewall
+Zone
+Service
+DMZ
+Proxy
+Stateful packet filtering
+Stateless packet filtering
+WAF
+NGFW&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h3 id=&#34;prolug-links-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#prolug-links-&#34;&gt;ProLUG Links ⛓️&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Discord: &lt;a href=&#34;https://discord.com/invite/m6VPPD9usw&#34;&gt;https://discord.com/invite/m6VPPD9usw&lt;/a&gt;
+Youtube: &lt;a href=&#34;https://www.youtube.com/@het_tanis8213&#34;&gt;https://www.youtube.com/@het_tanis8213&lt;/a&gt;
+Twitch: &lt;a href=&#34;https://www.twitch.tv/het_tanis&#34;&gt;https://www.twitch.tv/het_tanis&lt;/a&gt;
+ProLUG Book: &lt;a href=&#34;https://leanpub.com/theprolugbigbookoflabs&#34;&gt;https://leanpub.com/theprolugbigbookoflabs&lt;/a&gt;
+KillerCoda: &lt;a href=&#34;https://killercoda.com/het-tanis&#34;&gt;https://killercoda.com/het-tanis&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>ProLUG Admin Course Unit 5 🐧</title>
       <link>http://localhost:1313/techblog/post/pacu5/</link>
-      <pubDate>Sat, 12 Oct 2024 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 18 Oct 2024 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/techblog/post/pacu5/</guid>
       <description>&lt;h1 id=&#34;managing-users--groups&#34;&gt;
   &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu5/#managing-users--groups&#34;&gt;Managing Users &amp;amp; Groups&lt;/a&gt;
@@ -219,97 +142,124 @@
 
 
 
-&lt;h4 id=&#34;warmup&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu5/#warmup&#34;&gt;Warmup&lt;/a&gt;
-&lt;/h4&gt;
-&lt;p&gt;🗂️ Create a directory named &amp;rsquo;lab_users&#39;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;mkdir lab_users               
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;📂 Change to the &amp;rsquo;lab_users&amp;rsquo; directory&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;cd /lab_users  
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;📄 Display the contents of the &amp;lsquo;/etc/passwd&amp;rsquo; file (system user info)&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;cat /etc/passwd 
-
-cat /etc/passwd | tail -5     # 🔍 View the last 5 lines of the &#39;/etc/passwd&#39; file
-
-# ❓ What did this do to the output of the file?
-
-cat /etc/passwd | tail -5 | nl    
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Number the lines of the last 5 entries of &amp;lsquo;/etc/passwd&amp;rsquo;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;cat /etc/passwd | tail -5 | awk -F : ‘{print $1, $3, $7}’  # 🧾 Extract and print the username, UID, and shell for last 5 users
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;What did that do and what do each of the $# represent?&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;Each $ followed by a number represents the respective field in the record (line)    
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Can you give the 2nd, 5th, and 6th fields?&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;cat /etc/passwd | tail -5 | awk –F : ‘{print $NF}’  # 🧮 Print the last field (shell) of the last 5 users
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;What does this $NF mean? Why might this be useful to us as administrators?&lt;/p&gt;
-&lt;p&gt;Print the last field (shell) of the last 5 users&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;alias  # ⌨️ List or set command aliases
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;look at the things you have aliased. These come from defaults in your .bashrc file.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;    We’ll configure these later
-
-    cd /root
-
-    ls -l
-
-    ll
-
-    unalias ll
-
-    ll
-
-    you shouldn’t have this command available anymore
-
-    ls
-
-    unalias ls
-
-    How did ls change on your screen?
-
-    No worries, there are two ways to fix the mess you’ve made.
-    Nothing you’ve done is permanent, so logging out and reloading a shell (logging back in) would fix this
-
-    We just put the aliases back 
-
-    alias ll=&#39;ls -l --color=auto&#39;
-
-    alias ls=&#39;ls --color=auto&#39;
-
-    test with alias to see them added and also use ll and ls to see them work properly.
-
-    This lab is designed to help you get familiar with the basics of the systems you will be working on. Some of you will find that you know the basic material but the techniques here 
-    allow you to put it together in a more complex fashion.
-
-    It is recommended that you type these commands and do not copy and paste them. Word sometimes likes to format characters and they don’t always play nice with Linux.
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Go find some other interesting files or directories and see what you see there. Can you identify their characteristics and permissions?&lt;/p&gt;
+&lt;h3 id=&#34;primary-commands--tools&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu5/#primary-commands--tools&#34;&gt;Primary Commands / Tools&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;alias&lt;/strong&gt;: Creates a shortcut or alias for a command.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;unalias&lt;/strong&gt;: Removes an alias that was previously defined.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;awk&lt;/strong&gt;: A powerful text-processing tool used for pattern scanning and processing.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;useradd&lt;/strong&gt;: Adds a new user to the system.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;vi .bashrc&lt;/strong&gt;: Opens the &lt;code&gt;.bashrc&lt;/code&gt; file in the vi editor to customize shell settings.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;UID_MIN 1000&lt;/strong&gt;: The minimum user ID value for normal users (as defined in &lt;code&gt;/etc/login.defs&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;UID_MAX 60000&lt;/strong&gt;: The maximum user ID value for normal users (as defined in &lt;code&gt;/etc/login.defs&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;groupadd –g 60001 project&lt;/strong&gt;: Creates a new group named &amp;ldquo;project&amp;rdquo; with a GID of 60001.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;id user4&lt;/strong&gt;: Displays the user ID (UID), group ID (GID), and group memberships of user &amp;ldquo;user4.&amp;rdquo;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;hr&gt;
 
 
 
-&lt;h4 id=&#34;looking-at-essential-etc-directories&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu5/#looking-at-essential-etc-directories&#34;&gt;Looking at essential etc directories:&lt;/a&gt;
+&lt;h4 id=&#34;etc-directories&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu5/#etc-directories&#34;&gt;etc directories&lt;/a&gt;
 &lt;/h4&gt;
-&lt;pre&gt;&lt;code&gt;    /etc/passwd 
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Looking at etc directories relating to Users, Groups and Associated Security&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  /etc/passwd 
 &lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;contains essential information about users, including their username, user ID (UID), group ID (GID), home directory, and default shell, with each entry separated by a colon.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;    /etc/group
+&lt;pre&gt;&lt;code&gt;  /etc/group
 &lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;stores group information, listing each group’s name, group ID (GID), and its members, with each entry separated by a colon, allowing users to belong to one or more groups for access control purposes.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;    /etc/shadow
+&lt;pre&gt;&lt;code&gt;  /etc/shadow
 &lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;contains encrypted password information and related security details for user accounts, such as password aging and expiration&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;    /etc/gshadow
+&lt;pre&gt;&lt;code&gt;  /etc/gshadow
 &lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;stores encrypted passwords for group accounts, as well as information about group administrators and members, providing enhanced security for group access by restricting who can modify or access specific group data.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;    /etc/login.defs 
+&lt;pre&gt;&lt;code&gt;  /etc/login.defs 
 &lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;configuration settings for user account creation and login parameters, such as password aging policies, UID and GID ranges, and the default paths for user home directories, helping to control system-wide authentication behavior.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  /etc/skel/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;provides template files that are automatically copied to a new user’s home directory when the user is created, ensuring they have default configuration settings.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;other-interesting-directories&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu5/#other-interesting-directories&#34;&gt;Other interesting directories&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Brief Description&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Associated permissions&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  /etc/fstab
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;This file contains information about disk partitions and other block storage devices and how they should be automatically mounted during the boot process.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Permissions: Usually -rw-r&amp;ndash;r&amp;ndash; (readable by all users, writable only by the root).&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  /etc/hostname
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;This file stores the system’s hostname, which is a unique identifier for the machine in a network.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Permissions: Usually -rw-r&amp;ndash;r&amp;ndash; (readable by all users, writable only by the root).&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  /proc
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;This is a virtual filesystem that provides detailed information about processes and system resources. It does not contain actual files but rather system and process information in real-time.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Permissions: dr-xr-xr-x (readable and executable by all users, writable only by root).&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  /boot
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Contains the kernel, initial ramdisk, and bootloader files needed to start the system.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Permissions: drwxr-xr-x (readable and executable by all users, writable only by root).&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  /root
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;This is the home directory for the root user (the system administrator).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Permissions: drwx&amp;mdash;&amp;mdash; (only root has read, write, and execute permissions).&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  /usr/bin
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Contains binary executables for user programs.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Permissions: drwxr-xr-x (readable and executable by all users, writable by root).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;hr&gt;
 
 
@@ -643,34 +593,49 @@ Well is actually a form of &lt;strong&gt;Funny Bizniz&lt;/strong&gt; wherein SYN
   &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu5/#scanning-&#34;&gt;Scanning 🔍&lt;/a&gt;
 &lt;/h4&gt;
 &lt;p&gt;Scanning is a process of actively probing systems or networks to identify open ports, services, and vulnerabilities. It&amp;rsquo;s used by attackers to gather deeper insights for potential exploitation and by security professionals to assess weaknesses. Common tools include Nmap and Nessus, while defenses include firewalls and IDS/IPS systems.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Enumeration 💯&lt;/li&gt;
-&lt;/ul&gt;
+
+
+
+&lt;h4 id=&#34;enumeration-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu5/#enumeration-&#34;&gt;Enumeration 💯&lt;/a&gt;
+&lt;/h4&gt;
 &lt;p&gt;Enumeration is the process of extracting more detailed information about a target, such as usernames, network shares, and system services, after identifying open ports and active systems. It typically involves active engagement with the target to gain in-depth knowledge that can be used for exploitation.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;System Hacking 🪓&lt;/li&gt;
-&lt;/ul&gt;
+
+
+
+&lt;h4 id=&#34;system-hacking-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu5/#system-hacking-&#34;&gt;System Hacking 🪓&lt;/a&gt;
+&lt;/h4&gt;
 &lt;p&gt;System hacking is the process of gaining unauthorized access to individual systems or networks by exploiting vulnerabilities. It involves activities such as password cracking, privilege escalation, installing backdoors, and covering tracks. Ethical hackers use these techniques to assess system security and recommend protective measures.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Escalation of Privilege 🥉🥈🥇&lt;/li&gt;
-&lt;/ul&gt;
+
+
+
+&lt;h4 id=&#34;escalation-of-privilege-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu5/#escalation-of-privilege-&#34;&gt;Escalation of Privilege 🥉🥈🥇&lt;/a&gt;
+&lt;/h4&gt;
 &lt;p&gt;Privilege escalation is the process of gaining higher-level permissions or privileges than initially granted, allowing an attacker to execute commands with elevated authority. This can be achieved through exploiting vulnerabilities or misconfigurations, leading to unauthorized access to restricted resources or system control.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Rule of least privilege 🔐&lt;/li&gt;
-&lt;/ul&gt;
+
+
+
+&lt;h4 id=&#34;rule-of-least-privilege-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu5/#rule-of-least-privilege-&#34;&gt;Rule of least privilege 🔐&lt;/a&gt;
+&lt;/h4&gt;
 &lt;p&gt;The Rule of Least Privilege (LoP) is a security principle that states users, applications, and systems should only be granted the minimum level of access or permissions necessary to perform their tasks. This helps reduce the attack surface, limit potential damage from breaches, and mitigate insider threats.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Covering Tracks 🧹👣&lt;/li&gt;
-&lt;/ul&gt;
+
+
+
+&lt;h4 id=&#34;covering-tracks-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu5/#covering-tracks-&#34;&gt;Covering Tracks 🧹👣&lt;/a&gt;
+&lt;/h4&gt;
 &lt;p&gt;Covering tracks is the process attackers use to hide their unauthorized activities and avoid detection. This involves techniques such as deleting or modifying system logs, using rootkits, and clearing command histories to prevent system administrators or security teams from discovering their presence or actions.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Planting Backdoors 🪴🚪&lt;/li&gt;
-&lt;/ul&gt;
+
+
+
+&lt;h4 id=&#34;planting-backdoors-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu5/#planting-backdoors-&#34;&gt;Planting Backdoors 🪴🚪&lt;/a&gt;
+&lt;/h4&gt;
 &lt;p&gt;Planting backdoors involves installing hidden access points in a system, allowing attackers to bypass regular authentication and gain unauthorized access at a later time. Backdoors can be inserted through malicious code, vulnerabilities, or modifications to existing software, making them useful for maintaining persistent control over compromised systems.&lt;/p&gt;
-&lt;p&gt;Notes During Lecture/Class:
-Links:&lt;/p&gt;
-&lt;p&gt;Terms:&lt;/p&gt;
-&lt;p&gt;Useful tools:&lt;/p&gt;
+&lt;hr&gt;
 
 
 
@@ -687,6 +652,196 @@ KillerCoda: &lt;a href=&#34;https://killercoda.com/het-tanis&#34;&gt;https://kil
 &lt;ol&gt;
 &lt;li id=&#34;fn:1&#34;&gt;
 &lt;p&gt;MITRE | ATT&amp;amp;CK &lt;a href=&#34;https://attack.mitre.org/&#34;&gt;Site&lt;/a&gt; Knowledge Base.&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+    </item>
+    <item>
+      <title>GO CLI Utility</title>
+      <link>http://localhost:1313/techblog/post/goclisysutil/</link>
+      <pubDate>Tue, 15 Oct 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/techblog/post/goclisysutil/</guid>
+      <description>&lt;h1 id=&#34;making-a-utility-for-linux-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#making-a-utility-for-linux-&#34;&gt;Making a Utility for Linux 🚀&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Recently, I was chatting with fellow enthusiasts in the ProLUG group about creating system utilities with Go.&lt;/p&gt;
+&lt;p&gt;Between learning about it on my own time and getting input from others, I realized there are so many compelling reasons for using Go as a utility language. 🛠️&lt;/p&gt;
+&lt;p&gt;Currently, the idea isn&amp;rsquo;t as prevalent as Python or Bash, but it’s gaining traction. This makes sense since Go was designed with modern, interconnected systems in mind.&lt;/p&gt;
+
+
+
+&lt;h2 id=&#34;what-is-a-utility-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#what-is-a-utility-&#34;&gt;What is a Utility? 🤔&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;A system utility streamlines repetitive tasks by offering custom commands tailored to your workflow, boosting efficiency for system administrators and engineers. Work smarter, not harder. 💡&lt;/p&gt;
+
+
+
+&lt;h2 id=&#34;cli-tool-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#cli-tool-&#34;&gt;CLI Tool 🖥️&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Go offers a package called Cobra CLI &lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;, which enables the creation of command-line interfaces that take input from the terminal and execute predetermined logic. I’m putting this simply in case you’re unfamiliar with how programs work 😆.&lt;/p&gt;
+&lt;p&gt;The CLI is the simplest form of a computer program and is perfect for Linux system folks.&lt;/p&gt;
+
+
+
+&lt;h2 id=&#34;core-idea-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#core-idea-&#34;&gt;Core Idea 🎯&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;The core idea of this article is to explain how a Go program can act as a personalized utility that lives on your system or can be deployed across many. Go compiles code into a binary—native computer language. Once built, the binary runs reliably without failure, assuming the program logic is solid. This makes Go ideal for utilities that are called repeatedly to perform simple tasks.&lt;/p&gt;
+
+
+
+&lt;h2 id=&#34;automate-everything-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#automate-everything-&#34;&gt;Automate Everything 🤖&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Managing systems involves a lot of repetitive tasks, and the goal of any sysadmin or engineer is to automate them. Tools like Ansible, Python, and Bash are already well-known for automation. However, there are specific reasons to use Go, which I’ll explore further in a future article titled &lt;em&gt;&amp;ldquo;Why Go?&amp;rdquo;&lt;/em&gt; where I’ll break down why it belongs in your quiver of tools 🏹.&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h3 id=&#34;cli-programming-portion-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#cli-programming-portion-&#34;&gt;CLI Programming Portion ⚙️&lt;/a&gt;
+&lt;/h3&gt;
+
+
+
+&lt;h4 id=&#34;setup&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#setup&#34;&gt;Setup&lt;/a&gt;
+&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Install&lt;/strong&gt; Go and Cobra CLI (if not already installed).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Initialize&lt;/strong&gt; a new Go project with Cobra CLI.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;h4 id=&#34;cli-logic&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#cli-logic&#34;&gt;CLI Logic&lt;/a&gt;
+&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Add commands and flags&lt;/strong&gt; to the Cobra application.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Implement utility functions&lt;/strong&gt;, such as disk usage checks or file listings.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;h3 id=&#34;compilation-and-installation-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#compilation-and-installation-&#34;&gt;Compilation and Installation 🏗️&lt;/a&gt;
+&lt;/h3&gt;
+
+
+
+&lt;h4 id=&#34;compile&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#compile&#34;&gt;Compile&lt;/a&gt;
+&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Build&lt;/strong&gt; the Go project into a single x86 Linux binary.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Test&lt;/strong&gt; the binary locally to confirm functionality.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;h4 id=&#34;install&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#install&#34;&gt;Install&lt;/a&gt;
+&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Move&lt;/strong&gt; the binary to &lt;code&gt;/usr/local/bin&lt;/code&gt; for global access.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Set permissions&lt;/strong&gt; on the binary to allow execution.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;h4 id=&#34;add-to-path&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#add-to-path&#34;&gt;Add to PATH&lt;/a&gt;
+&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Check&lt;/strong&gt; if &lt;code&gt;/usr/local/bin&lt;/code&gt; is in your PATH.&lt;/li&gt;
+&lt;li&gt;If not, &lt;strong&gt;add it&lt;/strong&gt; to your &lt;code&gt;.bashrc&lt;/code&gt; or &lt;code&gt;.bash_profile&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;h3 id=&#34;testing-portion-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#testing-portion-&#34;&gt;Testing Portion 🧪&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Run&lt;/strong&gt; the utility from any location to confirm it works.&lt;/li&gt;
+&lt;li&gt;Optionally, &lt;strong&gt;add help documentation&lt;/strong&gt; or more commands to the CLI.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;h3 id=&#34;packaging-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#packaging-&#34;&gt;Packaging 📦&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Provide installation instructions&lt;/strong&gt; if you plan to share it.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Upload&lt;/strong&gt; the binary or source code to GitHub for distribution.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;learning-resources&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#learning-resources&#34;&gt;Learning Resources&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Ok this was just a simple outline you say. Yes, I am trying to convey information simply for sanities sake, this is how I process things anyway.&lt;/p&gt;
+&lt;p&gt;In order to make your own utility you will have to go off on your own learning adventure. Below I am giving you some resources for getting started.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;getting-up-and-running-with-go&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#getting-up-and-running-with-go&#34;&gt;Getting up and running with GO&lt;/a&gt;
+&lt;/h3&gt;
+
+
+
+&lt;h4 id=&#34;brief-intro-2&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#brief-intro-2&#34;&gt;Brief Intro &lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/a&gt;
+&lt;/h4&gt;
+
+
+
+&lt;h4 id=&#34;for-the-impatient-3&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#for-the-impatient-3&#34;&gt;For the impatient &lt;sup id=&#34;fnref:3&#34;&gt;&lt;a href=&#34;#fn:3&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;There are many ways to get this done. For the clever and impatient, I suggest finding a pre-made CLI application that you can deconstruct. &lt;sup id=&#34;fnref1:3&#34;&gt;&lt;a href=&#34;#fn:3&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+
+
+&lt;h4 id=&#34;for-the-patient-4&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#for-the-patient-4&#34;&gt;For the Patient &lt;sup id=&#34;fnref:4&#34;&gt;&lt;a href=&#34;#fn:4&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;For those who like to build a foundation of understanding, I suggest watching a lecture followed by a tutorial and finally doing the project. &lt;sup id=&#34;fnref1:4&#34;&gt;&lt;a href=&#34;#fn:4&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+
+
+&lt;h2 id=&#34;conclusion&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#conclusion&#34;&gt;Conclusion&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;I try to keep things simple and succinct, so this is where I ride off into the sunset. Good luck and happy learning.&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;footnotes-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/goclisysutil/#footnotes-&#34;&gt;Footnotes ⛓️&lt;/a&gt;
+&lt;/h2&gt;
+&lt;div class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;
+&lt;p&gt;Cobra CLI Source Code &lt;a href=&#34;https://github.com/spf13/cobra&#34;&gt;GitHub Repository&lt;/a&gt; User: spf13, Current.&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:2&#34;&gt;
+&lt;p&gt;GO in 100 Seconds &lt;a href=&#34;https://www.youtube.com/watch?v=446E-r0rXHI&#34;&gt;Youtube Video&lt;/a&gt; Channel: Fireship, 2021.&amp;#160;&lt;a href=&#34;#fnref:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:3&#34;&gt;
+&lt;p&gt;Cobra CLI Samples &lt;a href=&#34;https://github.com/Adron/cobra-cli-samples&#34;&gt;GitHub Repository&lt;/a&gt; User: Adron, 2022.&amp;#160;&lt;a href=&#34;#fnref:3&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&amp;#160;&lt;a href=&#34;#fnref1:3&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:4&#34;&gt;
+&lt;p&gt;Golang Tutorial Series Playlist &lt;a href=&#34;https://www.youtube.com/watch?v=etSN4X_fCnM&amp;amp;list=PL4cUxeGkcC9gC88BEo9czgyS72A3doDeM&#34;&gt;Youtube Channel&lt;/a&gt; Channel: Net Ninja, 2021.&amp;#160;&lt;a href=&#34;#fnref:4&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&amp;#160;&lt;a href=&#34;#fnref1:4&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
