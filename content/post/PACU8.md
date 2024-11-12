@@ -18,6 +18,8 @@ series = ["Learning"]
 
 # Scripting System Checks
 
+![Arnold](https://trevorsmale.github.io/techblog/images/PACU8/ibb.jpg)
+
 Once again beyond the Discussion Posts and Labbing. I spent a great deal of time scripting/programming System checks. After completing the labs which Bash Scripting and intro to 'C', I got really into GO as a system util. I have a particularly productive day with using the embed.fs feature of GO and packing unix system tools together in a single go program at compilation. I think there is a ton of potential here for my own uses. 👨‍🔧
 
 ## Discussion Post 1 
