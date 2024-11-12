@@ -38,6 +38,10 @@ Warewulf builds nodes from a centralized schema / database containing explicit i
 
 Unlike Kubernetes, warewulf builds stateless nodes on bare-metal. Warewulf nodes take full advanced of available hardware, something that is favorable for high performance computing
 
+### Secure
+
+
+
 ### Lets GO!
 
 Warewulf is almost entirely written in GO. So you best believe it is fast and lightweight.

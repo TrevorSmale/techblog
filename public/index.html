@@ -28,7 +28,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.135.0">
+<meta name="generator" content="Hugo 0.138.0">
   <title>Tech Blog</title>
   <link rel="canonical" href="http://localhost:1313/techblog/">
 
@@ -61,11 +61,8 @@
     
     
     
-    
-    
-  
-    
-    
+      
+      
     
     
     
@@ -73,11 +70,8 @@
     
     
     
-    
-    
-  
-    
-    
+      
+      
     
     
     
@@ -102,6 +96,27 @@
   
     
     
+    
+      
+      
+    
+    
+    
+  
+    
+    
+    
+      
+      
+    
+    
+    
+  
+    
+    
+    
+      
+      
     
     
     
@@ -190,7 +205,7 @@
     <a class="Heading-link u-clickable" href="/techblog/" rel="bookmark">Tech Blog</a>
   </h1>
   
-    <time datetime="2024-10-21T00:00:00Z">October 21, 2024</time>
+    <time datetime="2024-10-30T00:00:00Z">October 30, 2024</time>
   
 </header>
   
@@ -198,6 +213,435 @@
   
 
   
+  
+    <article>
+      <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/pacu8/" rel="bookmark">ProLUG Admin Course Unit 8 🐧</a>
+  </h1>
+  
+    <time datetime="2024-10-30T00:00:00Z">October 30, 2024</time>
+  
+</header>
+      
+        <h1 id="scripting-system-checks">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu8/#scripting-system-checks">Scripting System Checks</a>
+</h1>
+<p>Once again beyond the Discussion Posts and Labbing. I spent a great deal of time scripting/programming System checks. After completing the labs which Bash Scripting and intro to &lsquo;C&rsquo;, I got really into GO as a system util. I have a particularly productive day with using the embed.fs feature of GO and packing unix system tools together in a single go program at compilation. I think there is a ton of potential here for my own uses. 👨‍🔧</p>
+
+
+
+<h2 id="discussion-post-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu8/#discussion-post-1">Discussion Post 1</a>
+</h2>
+<p>Scenario</p>
+<p>It’s a 2-week holiday in your country, and most of the engineers and architects who designed the system are out of town. You’ve noticed a pattern of logs filling up on a set of web servers due to increased traffic. Research and verification show that the logs are being sent off in real time to Splunk. Your team has been deleting the logs every few days, but a 3rd-shift engineer missed this in the notes, causing downtime. How might you implement a simple fix to stop-gap the problem until all engineering resources return next week?</p>
+<ul>
+<li>
+<p><strong>Resources Used</strong>:</p>
+</li>
+<li>
+<p>TryHackMe (Splunk) Intro</p>
+</li>
+<li>
+<p>Study Group discussion</p>
+</li>
+<li>
+<p>ChatGPT</p>
+</li>
+<li>
+<p>Blogs:</p>
+</li>
+<li>
+<p><a href="https://www.nohl.eu/tech-resources/notes-to-linux/log-files-in-tmpfs-without-breaking-logging/">Nohl&rsquo;s Tech Resources: Log Files in tmpfs Without Breaking Logging</a></p>
+</li>
+<li>
+<p><a href="https://dietpi.com/docs/software/log_system/">DietPi Documentation: Log System</a></p>
+</li>
+</ul>
+
+
+
+<h4 id="why-cant-you-just-make-a-design-fix-and-add-space-in-varlog-on-all-these-systems">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu8/#why-cant-you-just-make-a-design-fix-and-add-space-in-varlog-on-all-these-systems">Why can’t you just make a design fix and add space in /var/log on all these systems?</a>
+</h4>
+<p>Adding more space to <code>/var/log</code> might be a design fix, but it isn’t feasible in the short term due to:</p>
+<ul>
+<li><strong>Operational Constraints</strong>: Extending storage may involve downtime, additional permissions, or architectural changes that can’t be approved without the primary engineers.</li>
+<li><strong>Temporary Nature of the Fix</strong>: Increasing space only delays the issue. If logs continue to grow, the problem will recur once space is exhausted again.</li>
+</ul>
+
+
+
+<h4 id="why-cant-you-just-make-a-design-change-and-use-logrotate-more-frequently">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu8/#why-cant-you-just-make-a-design-change-and-use-logrotate-more-frequently">Why can’t you just make a design change and use logrotate more frequently?</a>
+</h4>
+<ul>
+<li><strong>Possibility of Log Loss</strong>: Higher logrotate frequency could still miss high-frequency log spikes, especially during unusual traffic peaks, risking logs being deleted before Splunk ingestion is complete.</li>
+<li><strong>Configuration and Testing</strong>: Aggressive logrotate adjustments may interfere with processes expecting logs at specific retention periods. Testing changes in production without key team members isn’t ideal.</li>
+</ul>
+
+
+
+<h4 id="temporary-fix-options">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu8/#temporary-fix-options">Temporary Fix Options</a>
+</h4>
+<p>To address the issue, consider implementing a temporary fix by configuring a log retention policy that aggressively compresses or truncates logs without disrupting active processes. Here are some potential approaches:</p>
+
+
+
+<h3 id="implement-a-temporary-cron-job">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu8/#implement-a-temporary-cron-job">Implement a Temporary <strong>Cron Job</strong></a>
+</h3>
+<p>Schedule a cron job to truncate logs on a more aggressive schedule without deleting them. For example:</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">&gt; /var/log/access.log
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="sb">```</span>bash
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  &gt; /var/log/access.log</span></span></code></pre></div>
+<p>This would empty the log file without removing it or impacting the active file descriptors held by any running processes.</p>
+
+
+
+<h3 id="set-up-temporary-log-compression">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu8/#set-up-temporary-log-compression">Set Up Temporary Log Compression</a>
+</h3>
+<p>Compress the logs after truncation if additional space savings are needed. Tools like gzip can compress logs efficiently, reducing disk space usage and ensuring logs are still accessible if required for audits or incident investigations.</p>
+
+
+
+<h3 id="implement-a-ram-disk-for-temporary-logs">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu8/#implement-a-ram-disk-for-temporary-logs">Implement a RAM Disk for Temporary Logs</a>
+</h3>
+<p>As a short-term measure, you could set up a RAM disk for logs that don’t need long-term retention. This allows logs to be stored temporarily in memory, reducing disk space pressure. For instance</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  mount -t tmpfs -o <span class="nv">size</span><span class="o">=</span>512M tmpfs /var/log/temp</span></span></code></pre></div>
+<p>You could then configure lower-priority logs to write here temporarily, knowing they will be lost upon reboot, which may be acceptable in a crisis scenario.</p>
+
+
+
+<h3 id="adjust-splunk-forwarder-configuration">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu8/#adjust-splunk-forwarder-configuration">Adjust Splunk Forwarder Configuration:</a>
+</h3>
+<p>If possible, configure the Splunk forwarder to filter logs more aggressively, reducing the volume of logs that are retained on the system. The props.conf or inputs.conf files can be configured to forward logs without keeping local copies.</p>
+<p>Adding more space to /var/log might be a design fix, but it isn’t feasible in the short term due to the following:</p>
+<ul>
+<li>Operational Constraints: Extending storage could involve downtime, additional permissions, or changes that require architectural decisions that can’t be made without the primary engineers.</li>
+<li>Temporary Nature of the Fix: Increasing space only delays the issue rather than preventing it. If the logs keep growing, the problem will recur once space runs out again.</li>
+</ul>
+
+
+
+<h2 id="discussion-post-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu8/#discussion-post-2">Discussion Post 2</a>
+</h2>
+<p>You are the only Linux Administrator at a small healthcare company. The engineer/admin before you left you a lot of scripts to untangle. This is one of our many tasks as administrators, so you set out to accomplish it. You start to notice that he only ever uses nested if statements in bash. You also notice that every loop is a conditional <code>while true</code> and then he breaks the loop after a decision test each loop. You know his stuff works, but you think it could be more easily written for supportability, for you and future admins. You decide to write up some notes by reading some google, AI, and talking to your peers.</p>
+<p>Compare the use of nested if versus case statement in bash.</p>
+<ul>
+<li>Nested if statements are useful for situations where each condition depends on the result of the previous test, requiring a hierarchy or sequence.</li>
+<li>A case statement is ideal for handling multiple discrete values of a variable, especially if there are many possible branches. It’s typically cleaner and more readable than a nested if.</li>
+</ul>
+<p>Compare the use of conditional and counting loops. Under what circumstances</p>
+<ul>
+<li>Use conditional loops (while) when you don’t know the number of iterations in advance and need to loop based on conditions.</li>
+<li>Use counting loops (for) when you have a set number of iterations or are working with a list. This structure is clearer and prevents issues that may arise from unintentional infinite loops.</li>
+</ul>
+<p>would you use one or the other?</p>
+<p>optimizing or refactoring Bash scripts the Engineer had left me.</p>
+<ul>
+<li>I would replace nested if statements with case statements when possible to improve readability, especially when handling multiple discrete values.</li>
+<li>Of course, I would comment things for added communication/ maintainability.</li>
+<li>I would Limit while true loops to cases where no predictable count or list is available. Clearly define a break condition early to avoid infinite loops.</li>
+<li>I would Use for loops for counting or iterating over arrays or lists, as they provide a clean structure with known iteration limits.</li>
+</ul>
+<hr>
+
+
+
+<h3 id="prolug-links-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu8/#prolug-links-">ProLUG Links ⛓️</a>
+</h3>
+<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
+Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
+Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
+ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
+KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
+      
+      
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/operating-systems/" rel="tag">Operating Systems</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+    </article>
+    
+      <div class="Divider"></div>
+    
+  
+    <article>
+      <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/pacu7/" rel="bookmark">ProLUG Admin Course Unit 7 🐧</a>
+  </h1>
+  
+    <time datetime="2024-10-27T00:00:00Z">October 27, 2024</time>
+  
+</header>
+      
+        <h1 id="security">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#security">Security</a>
+</h1>
+
+
+
+<h2 id="patching-the-system-package-management">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#patching-the-system-package-management">Patching the system/ Package Management</a>
+</h2>
+
+
+
+<h3 id="yum-dnf-rpm">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#yum-dnf-rpm">yum, dnf, rpm</a>
+</h3>
+<p><img src="https://trevorsmale.github.io/techblog/images/PACU7/CatPackage.jpg" alt="Packaged Cat"></p>
+<p>As the course progresses, I am learning more deeply within a study group. Aside from the lab work and discussion posts. I have been putting a lot of hours satisfying curiosities regarding the linux system.
+For this unit we did a deep dive into packaging, going so far as to look at the history and reasoning before decision making. We had also looked at packages are managed within tightly controlled environments.
+I now feel that I have a robust understanding of the theory and practical elements of Redhat packaging and beyond.</p>
+
+
+
+<h2 id="discussion-post-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#discussion-post-1">Discussion Post 1:</a>
+</h2>
+<p>Why software versioning is important. 🤔</p>
+<ol>
+<li>Versioning enables you to monitor software updates systematically, making it easier to troubleshoot, roll back changes, and trace modifications for security or functionality purposes. 👍</li>
+<li>One can manage dependencies confidently, avoiding conflicts between system components, libraries, and tools. crucial for stable and consistent deployments. 👍</li>
+<li>We can verify package integrity, ensuring installed software hasn’t been altered or corrupted. Essential for maintaining a secure and stable system environment. 👍</li>
+</ol>
+
+
+
+<h2 id="discussion-post-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#discussion-post-2">Discussion Post 2:</a>
+</h2>
+
+
+
+<h3 id="scenario">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#scenario">Scenario:</a>
+</h3>
+<p>You are new to a Linux team. A ticket has come in from an application team and has already been escalated to your manager. They want software installed on one of their servers but you cannot find any documentation and your security team is out to lunch and not responding. You remember from some early documentation that you read that all the software in the internal repos you currently have are approved for deployment on servers. You want to also verify by checking other servers that this software exists. This is an urgent ask and your manager is hovering.
+How can you check all the repos on your system to see which are active? 🤔
+How would you check another server to see if the software was installed there? 🤔
+If you find the software, how might you figure out when it was installed? (Time/Date) 🤔</p>
+
+
+
+<h3 id="answer">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#answer">Answer:</a>
+</h3>
+<p>In an urgent situation like this, I’d first check which approved software repositories are active on my system,
+then verify if the software is already installed on similar servers to ensure it’s safe to proceed. Finally, I’d review the installation history to confirm when it was
+added. Working with Red Hat packaging and package management systems has many more options than I was expecting; through labbing in the study group,
+I’ve gained a much better understanding of packages, dependencies, and package management.</p>
+<p>Packing was a pretty deep rabbit hole for me.</p>
+<p>This is the process I&rsquo;d follow for this case:</p>
+<ol>
+<li>
+<p>Check Active Repositories
+dnf repolist</p>
+</li>
+<li>
+<p>Check if the Software is Installed on Your System
+rpm -qa | grep &lt;software_name&gt;
+or
+dnf list installed &lt;software_name&gt;</p>
+</li>
+<li>
+<p>Check Another Server for Software Installation with SSH and Step 2 commands.</p>
+</li>
+<li>
+<p>View Installation History (Time/Date)</p>
+<p>dnf history info &lt;transaction_id&gt;
+dnf history list &lt;software_name&gt;</p>
+</li>
+</ol>
+<hr>
+
+
+
+<h2 id="discussion-post-3">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#discussion-post-3">Discussion Post 3</a>
+</h2>
+<p>(After you have completed the lab) - Looking at the concept of group install from DNF or Yum. Why do you think an administrator may never want to use that in a running system? Why might an engineer want to or not want to use that? This is a thought exercise, so it’s not a “right or wrong” answer it’s for you to think about.</p>
+
+
+
+<h3 id="question">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#question">Question:</a>
+</h3>
+<p>What is the concept of software bloat, and how do you think it relates?</p>
+
+
+
+<h3 id="answer-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#answer-1">Answer:</a>
+</h3>
+<p>Software bloat is when essential tools/packages are larger than they need to be, effecting performance, reliability and security. By performance I am referring to the loss of potential performance from unessecary resource use. In regards to reliability, more complex systems inherently have more potential to fail. Security means many things, so I am specifically thinking about attack surface and potential for vulnerability due to the aforementioned complexity.</p>
+
+
+
+<h3 id="question-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#question-1">Question:</a>
+</h3>
+<p>What is the concept of a security baseline, and how do you think it relates?</p>
+
+
+
+<h3 id="answer-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#answer-2">Answer:</a>
+</h3>
+<p>A set of minimum security standards and controls that organizations implement to protect systems.</p>
+
+
+
+<h3 id="question-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#question-2">Question:</a>
+</h3>
+<p>How do you think something like this affects performance baselines?</p>
+
+
+
+<h3 id="answer-3">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#answer-3">Answer:</a>
+</h3>
+<p>By targeting specific packages, tracking changes, reducing unnessecary dependancies and bloat, we satisfy the tenants of a security baseline by establishing consistency, simplifying compliance, enhancing efficiency and reduce risk.</p>
+<hr>
+
+
+
+<h3 id="prolug-links-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#prolug-links-">ProLUG Links ⛓️</a>
+</h3>
+<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
+Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
+Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
+ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
+KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
+      
+      
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/operating-systems/" rel="tag">Operating Systems</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+    </article>
+    
+      <div class="Divider"></div>
+    
   
     <article>
       <header class="Heading">
@@ -712,6 +1156,11 @@ So this became a research and practice exercise that has shown me quite a lot of
 <h3 id="q-2-what-are-you-going-to-do-to-figure-out-more">
   <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#q-2-what-are-you-going-to-do-to-figure-out-more">Q: 2. What are you going to do to figure out more?</a>
 </h3>
+<ul>
+<li>Dedicate time to researching effective WAF solutions.</li>
+<li>Identifying suitable solutions at 3 budget scales.</li>
+<li>Try to understand the additional labour behind management additional tools.</li>
+</ul>
 
 
 
@@ -833,36 +1282,36 @@ So this became a research and practice exercise that has shown me quite a lot of
 <table>
   <thead>
       <tr>
-          <th style="text-align: left">Feature</th>
-          <th style="text-align: left">Traditional Firewall</th>
-          <th style="text-align: left">Web Application Firewall (WAF)</th>
+          <th>Feature</th>
+          <th>Traditional Firewall</th>
+          <th>Web Application Firewall (WAF)</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: left"><strong>Layer</strong></td>
-          <td style="text-align: left">Network (Layer 3/4)</td>
-          <td style="text-align: left">Application (Layer 7)</td>
+          <td><strong>Layer</strong></td>
+          <td>Network (Layer 3/4)</td>
+          <td>Application (Layer 7)</td>
       </tr>
       <tr>
-          <td style="text-align: left"><strong>Traffic Type</strong></td>
-          <td style="text-align: left">IP, ports, protocols</td>
-          <td style="text-align: left">HTTP/HTTPS, web requests</td>
+          <td><strong>Traffic Type</strong></td>
+          <td>IP, ports, protocols</td>
+          <td>HTTP/HTTPS, web requests</td>
       </tr>
       <tr>
-          <td style="text-align: left"><strong>Use Case</strong></td>
-          <td style="text-align: left">General network security</td>
-          <td style="text-align: left">Web application protection</td>
+          <td><strong>Use Case</strong></td>
+          <td>General network security</td>
+          <td>Web application protection</td>
       </tr>
       <tr>
-          <td style="text-align: left"><strong>Threat Coverage</strong></td>
-          <td style="text-align: left">Blocks IP-based threats</td>
-          <td style="text-align: left">Mitigates web vulnerabilities (SQLi, XSS)</td>
+          <td><strong>Threat Coverage</strong></td>
+          <td>Blocks IP-based threats</td>
+          <td>Mitigates web vulnerabilities (SQLi, XSS)</td>
       </tr>
       <tr>
-          <td style="text-align: left"><strong>Cost</strong></td>
-          <td style="text-align: left">Typically lower</td>
-          <td style="text-align: left">Generally higher due to specialized focus</td>
+          <td><strong>Cost</strong></td>
+          <td>Typically lower</td>
+          <td>Generally higher due to specialized focus</td>
       </tr>
   </tbody>
 </table>
@@ -1276,111 +1725,111 @@ Well is actually a form of <strong>Funny Bizniz</strong> wherein SYN is sent and
 <table>
   <thead>
       <tr>
-          <th style="text-align: left"><strong>#</strong></th>
-          <th style="text-align: left"><strong>Command</strong></th>
-          <th style="text-align: left"><strong>Description</strong></th>
+          <th><strong>#</strong></th>
+          <th><strong>Command</strong></th>
+          <th><strong>Description</strong></th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: left">1</td>
-          <td style="text-align: left"><code>nmap -sS &lt;target&gt;</code> 🥷</td>
-          <td style="text-align: left">TCP SYN scan (stealth mode)</td>
+          <td>1</td>
+          <td><code>nmap -sS &lt;target&gt;</code> 🥷</td>
+          <td>TCP SYN scan (stealth mode)</td>
       </tr>
       <tr>
-          <td style="text-align: left">2</td>
-          <td style="text-align: left"><code>nmap -sT &lt;target&gt;</code></td>
-          <td style="text-align: left">TCP connect scan (full connection)</td>
+          <td>2</td>
+          <td><code>nmap -sT &lt;target&gt;</code></td>
+          <td>TCP connect scan (full connection)</td>
       </tr>
       <tr>
-          <td style="text-align: left">3</td>
-          <td style="text-align: left"><code>nmap -sA &lt;target&gt;</code></td>
-          <td style="text-align: left">ACK scan to detect firewalls</td>
+          <td>3</td>
+          <td><code>nmap -sA &lt;target&gt;</code></td>
+          <td>ACK scan to detect firewalls</td>
       </tr>
       <tr>
-          <td style="text-align: left">4</td>
-          <td style="text-align: left"><code>nmap -sU &lt;target&gt;</code></td>
-          <td style="text-align: left">UDP scan</td>
+          <td>4</td>
+          <td><code>nmap -sU &lt;target&gt;</code></td>
+          <td>UDP scan</td>
       </tr>
       <tr>
-          <td style="text-align: left">5</td>
-          <td style="text-align: left"><code>nmap -sP &lt;target&gt;</code></td>
-          <td style="text-align: left">Ping scan to detect live hosts</td>
+          <td>5</td>
+          <td><code>nmap -sP &lt;target&gt;</code></td>
+          <td>Ping scan to detect live hosts</td>
       </tr>
       <tr>
-          <td style="text-align: left">6</td>
-          <td style="text-align: left"><code>nmap -sV &lt;target&gt;</code></td>
-          <td style="text-align: left">Detect service versions on open ports</td>
+          <td>6</td>
+          <td><code>nmap -sV &lt;target&gt;</code></td>
+          <td>Detect service versions on open ports</td>
       </tr>
       <tr>
-          <td style="text-align: left">7</td>
-          <td style="text-align: left"><code>nmap -O &lt;target&gt;</code></td>
-          <td style="text-align: left">OS detection</td>
+          <td>7</td>
+          <td><code>nmap -O &lt;target&gt;</code></td>
+          <td>OS detection</td>
       </tr>
       <tr>
-          <td style="text-align: left">8</td>
-          <td style="text-align: left"><code>nmap -A &lt;target&gt;</code></td>
-          <td style="text-align: left">Aggressive scan (OS, version, scripts)</td>
+          <td>8</td>
+          <td><code>nmap -A &lt;target&gt;</code></td>
+          <td>Aggressive scan (OS, version, scripts)</td>
       </tr>
       <tr>
-          <td style="text-align: left">9</td>
-          <td style="text-align: left"><code>nmap -Pn &lt;target&gt;</code> 🥷</td>
-          <td style="text-align: left">Disable ping (stealthy, avoid detection)</td>
+          <td>9</td>
+          <td><code>nmap -Pn &lt;target&gt;</code> 🥷</td>
+          <td>Disable ping (stealthy, avoid detection)</td>
       </tr>
       <tr>
-          <td style="text-align: left">10</td>
-          <td style="text-align: left"><code>nmap -p- &lt;target&gt;</code></td>
-          <td style="text-align: left">Scan all 65,535 TCP ports</td>
+          <td>10</td>
+          <td><code>nmap -p- &lt;target&gt;</code></td>
+          <td>Scan all 65,535 TCP ports</td>
       </tr>
       <tr>
-          <td style="text-align: left">11</td>
-          <td style="text-align: left"><code>nmap --top-ports 100 &lt;target&gt;</code></td>
-          <td style="text-align: left">Scan the top 100 most common ports</td>
+          <td>11</td>
+          <td><code>nmap --top-ports 100 &lt;target&gt;</code></td>
+          <td>Scan the top 100 most common ports</td>
       </tr>
       <tr>
-          <td style="text-align: left">12</td>
-          <td style="text-align: left"><code>nmap --script &lt;script&gt; &lt;target&gt;</code></td>
-          <td style="text-align: left">Use Nmap scripts for detailed scanning</td>
+          <td>12</td>
+          <td><code>nmap --script &lt;script&gt; &lt;target&gt;</code></td>
+          <td>Use Nmap scripts for detailed scanning</td>
       </tr>
       <tr>
-          <td style="text-align: left">13</td>
-          <td style="text-align: left"><code>nmap -sC &lt;target&gt;</code></td>
-          <td style="text-align: left">Run default NSE scripts</td>
+          <td>13</td>
+          <td><code>nmap -sC &lt;target&gt;</code></td>
+          <td>Run default NSE scripts</td>
       </tr>
       <tr>
-          <td style="text-align: left">14</td>
-          <td style="text-align: left"><code>nmap -sW &lt;target&gt;</code></td>
-          <td style="text-align: left">TCP window scan</td>
+          <td>14</td>
+          <td><code>nmap -sW &lt;target&gt;</code></td>
+          <td>TCP window scan</td>
       </tr>
       <tr>
-          <td style="text-align: left">15</td>
-          <td style="text-align: left"><code>nmap -T4 &lt;target&gt;</code></td>
-          <td style="text-align: left">Faster scan using timing template T4</td>
+          <td>15</td>
+          <td><code>nmap -T4 &lt;target&gt;</code></td>
+          <td>Faster scan using timing template T4</td>
       </tr>
       <tr>
-          <td style="text-align: left">16</td>
-          <td style="text-align: left"><code>nmap -v &lt;target&gt;</code></td>
-          <td style="text-align: left">Enable verbose output</td>
+          <td>16</td>
+          <td><code>nmap -v &lt;target&gt;</code></td>
+          <td>Enable verbose output</td>
       </tr>
       <tr>
-          <td style="text-align: left">17</td>
-          <td style="text-align: left"><code>nmap -oN scan.txt &lt;target&gt;</code></td>
-          <td style="text-align: left">Save output in normal format</td>
+          <td>17</td>
+          <td><code>nmap -oN scan.txt &lt;target&gt;</code></td>
+          <td>Save output in normal format</td>
       </tr>
       <tr>
-          <td style="text-align: left">18</td>
-          <td style="text-align: left"><code>nmap -oX scan.xml &lt;target&gt;</code></td>
-          <td style="text-align: left">Save output in XML format</td>
+          <td>18</td>
+          <td><code>nmap -oX scan.xml &lt;target&gt;</code></td>
+          <td>Save output in XML format</td>
       </tr>
       <tr>
-          <td style="text-align: left">19</td>
-          <td style="text-align: left"><code>nmap -6 &lt;target&gt;</code></td>
-          <td style="text-align: left">Scan IPv6 targets</td>
+          <td>19</td>
+          <td><code>nmap -6 &lt;target&gt;</code></td>
+          <td>Scan IPv6 targets</td>
       </tr>
       <tr>
-          <td style="text-align: left">20</td>
-          <td style="text-align: left"><code>nmap -D RND:10 &lt;target&gt;</code> 🥷</td>
-          <td style="text-align: left">Decoy scan to mask source of scan</td>
+          <td>20</td>
+          <td><code>nmap -D RND:10 &lt;target&gt;</code> 🥷</td>
+          <td>Decoy scan to mask source of scan</td>
       </tr>
   </tbody>
 </table>
@@ -2476,24 +2925,24 @@ whoami # Just lists your user name
 <table>
   <thead>
       <tr>
-          <th style="text-align: left">Command</th>
-          <th style="text-align: left">Information Provided</th>
-          <th style="text-align: left">Key Focus</th>
-          <th style="text-align: left">Use Case</th>
+          <th>Command</th>
+          <th>Information Provided</th>
+          <th>Key Focus</th>
+          <th>Use Case</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: left"><code>who</code></td>
-          <td style="text-align: left">Basic info about logged-in users (username, terminal, login time, remote host)</td>
-          <td style="text-align: left">Simple listing of users currently logged in</td>
-          <td style="text-align: left">Quick check on who is logged in</td>
+          <td><code>who</code></td>
+          <td>Basic info about logged-in users (username, terminal, login time, remote host)</td>
+          <td>Simple listing of users currently logged in</td>
+          <td>Quick check on who is logged in</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>w</code></td>
-          <td style="text-align: left">Detailed info about logged-in users, system load, idle time, and active processes</td>
-          <td style="text-align: left">Who is logged in and what they are doing, with system load info</td>
-          <td style="text-align: left">System monitoring and activity tracking</td>
+          <td><code>w</code></td>
+          <td>Detailed info about logged-in users, system load, idle time, and active processes</td>
+          <td>Who is logged in and what they are doing, with system load info</td>
+          <td>System monitoring and activity tracking</td>
       </tr>
   </tbody>
 </table>
@@ -4187,69 +4636,69 @@ Volume group &ldquo;examplegroup&rdquo; successfully created</p>
 <table>
   <thead>
       <tr>
-          <th style="text-align: left">VG</th>
-          <th style="text-align: left">LV</th>
-          <th style="text-align: left">FS</th>
-          <th style="text-align: left">Size</th>
-          <th style="text-align: left">UUID Short</th>
-          <th style="text-align: left">Snapshot</th>
-          <th style="text-align: left">Snapshot UUID Short</th>
+          <th>VG</th>
+          <th>LV</th>
+          <th>FS</th>
+          <th>Size</th>
+          <th>UUID Short</th>
+          <th>Snapshot</th>
+          <th>Snapshot UUID Short</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: left">vg_data</td>
-          <td style="text-align: left">lv_root</td>
-          <td style="text-align: left">XFS</td>
-          <td style="text-align: left">50 GB</td>
-          <td style="text-align: left">f4d1-91e5-bb37</td>
-          <td style="text-align: left">None</td>
-          <td style="text-align: left">N/A</td>
+          <td>vg_data</td>
+          <td>lv_root</td>
+          <td>XFS</td>
+          <td>50 GB</td>
+          <td>f4d1-91e5-bb37</td>
+          <td>None</td>
+          <td>N/A</td>
       </tr>
       <tr>
-          <td style="text-align: left">vg_data</td>
-          <td style="text-align: left">lv_home</td>
-          <td style="text-align: left">XFS</td>
-          <td style="text-align: left">100 GB</td>
-          <td style="text-align: left">a123-c567-8901</td>
-          <td style="text-align: left">snap_home</td>
-          <td style="text-align: left">abcd-ef56-7890</td>
+          <td>vg_data</td>
+          <td>lv_home</td>
+          <td>XFS</td>
+          <td>100 GB</td>
+          <td>a123-c567-8901</td>
+          <td>snap_home</td>
+          <td>abcd-ef56-7890</td>
       </tr>
       <tr>
-          <td style="text-align: left">vg_data</td>
-          <td style="text-align: left">lv_var</td>
-          <td style="text-align: left">ext4</td>
-          <td style="text-align: left">20 GB</td>
-          <td style="text-align: left">c9d8-89e0-f9a1</td>
-          <td style="text-align: left">None</td>
-          <td style="text-align: left">N/A</td>
+          <td>vg_data</td>
+          <td>lv_var</td>
+          <td>ext4</td>
+          <td>20 GB</td>
+          <td>c9d8-89e0-f9a1</td>
+          <td>None</td>
+          <td>N/A</td>
       </tr>
       <tr>
-          <td style="text-align: left">vg_data</td>
-          <td style="text-align: left">lv_backup</td>
-          <td style="text-align: left">ext4</td>
-          <td style="text-align: left">150 GB</td>
-          <td style="text-align: left">f129-bc97-f134</td>
-          <td style="text-align: left">snap_backup</td>
-          <td style="text-align: left">f7d8-a67e-f765</td>
+          <td>vg_data</td>
+          <td>lv_backup</td>
+          <td>ext4</td>
+          <td>150 GB</td>
+          <td>f129-bc97-f134</td>
+          <td>snap_backup</td>
+          <td>f7d8-a67e-f765</td>
       </tr>
       <tr>
-          <td style="text-align: left">vg_data</td>
-          <td style="text-align: left">lv_logs</td>
-          <td style="text-align: left">XFS</td>
-          <td style="text-align: left">10 GB</td>
-          <td style="text-align: left">e123-9abc-e1d4</td>
-          <td style="text-align: left">None</td>
-          <td style="text-align: left">N/A</td>
+          <td>vg_data</td>
+          <td>lv_logs</td>
+          <td>XFS</td>
+          <td>10 GB</td>
+          <td>e123-9abc-e1d4</td>
+          <td>None</td>
+          <td>N/A</td>
       </tr>
       <tr>
-          <td style="text-align: left">vg_storage</td>
-          <td style="text-align: left">lv_media</td>
-          <td style="text-align: left">ext4</td>
-          <td style="text-align: left">200 GB</td>
-          <td style="text-align: left">bc97-bc9e-5612</td>
-          <td style="text-align: left">snap_media</td>
-          <td style="text-align: left">d98f-9e67-1cd2</td>
+          <td>vg_storage</td>
+          <td>lv_media</td>
+          <td>ext4</td>
+          <td>200 GB</td>
+          <td>bc97-bc9e-5612</td>
+          <td>snap_media</td>
+          <td>d98f-9e67-1cd2</td>
       </tr>
   </tbody>
 </table>
@@ -4304,60 +4753,60 @@ Volume group &ldquo;examplegroup&rdquo; successfully created</p>
 <table>
   <thead>
       <tr>
-          <th style="text-align: left"><strong>RAID Level</strong></th>
-          <th style="text-align: left"><strong>Description</strong></th>
-          <th style="text-align: left"><strong>Performance</strong></th>
-          <th style="text-align: left"><strong>Redundancy</strong></th>
+          <th><strong>RAID Level</strong></th>
+          <th><strong>Description</strong></th>
+          <th><strong>Performance</strong></th>
+          <th><strong>Redundancy</strong></th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: left">RAID 0</td>
-          <td style="text-align: left">Data striping without parity or mirroring.</td>
-          <td style="text-align: left">High (fast read/write speeds)</td>
-          <td style="text-align: left">None (no redundancy)</td>
+          <td>RAID 0</td>
+          <td>Data striping without parity or mirroring.</td>
+          <td>High (fast read/write speeds)</td>
+          <td>None (no redundancy)</td>
       </tr>
       <tr>
-          <td style="text-align: left">RAID 1</td>
-          <td style="text-align: left">Mirroring of data across two or more disks.</td>
-          <td style="text-align: left">Moderate (read speed improves, write speed similar to single disk)</td>
-          <td style="text-align: left">High (data is mirrored)</td>
+          <td>RAID 1</td>
+          <td>Mirroring of data across two or more disks.</td>
+          <td>Moderate (read speed improves, write speed similar to single disk)</td>
+          <td>High (data is mirrored)</td>
       </tr>
       <tr>
-          <td style="text-align: left">RAID 5</td>
-          <td style="text-align: left">Block-level striping with distributed parity.</td>
-          <td style="text-align: left">Moderate (improved read speeds, slower writes due to parity calculation)</td>
-          <td style="text-align: left">Moderate (can tolerate 1 disk failure)</td>
+          <td>RAID 5</td>
+          <td>Block-level striping with distributed parity.</td>
+          <td>Moderate (improved read speeds, slower writes due to parity calculation)</td>
+          <td>Moderate (can tolerate 1 disk failure)</td>
       </tr>
       <tr>
-          <td style="text-align: left">RAID 6</td>
-          <td style="text-align: left">Block-level striping with dual parity.</td>
-          <td style="text-align: left">Moderate (similar to RAID 5, but slower writes)</td>
-          <td style="text-align: left">High (can tolerate 2 disk failures)</td>
+          <td>RAID 6</td>
+          <td>Block-level striping with dual parity.</td>
+          <td>Moderate (similar to RAID 5, but slower writes)</td>
+          <td>High (can tolerate 2 disk failures)</td>
       </tr>
       <tr>
-          <td style="text-align: left">RAID 10</td>
-          <td style="text-align: left">Striping across mirrored sets (combines RAID 1 and RAID 0).</td>
-          <td style="text-align: left">High (fast read/write due to striping and redundancy)</td>
-          <td style="text-align: left">High (can tolerate multiple disk failures depending on which disks fail)</td>
+          <td>RAID 10</td>
+          <td>Striping across mirrored sets (combines RAID 1 and RAID 0).</td>
+          <td>High (fast read/write due to striping and redundancy)</td>
+          <td>High (can tolerate multiple disk failures depending on which disks fail)</td>
       </tr>
       <tr>
-          <td style="text-align: left">RAID 50</td>
-          <td style="text-align: left">RAID 5 arrays striped (combines RAID 5 and RAID 0).</td>
-          <td style="text-align: left">High (fast read speeds, but slower writes)</td>
-          <td style="text-align: left">Moderate (can tolerate up to 1 disk failure in each RAID 5 array)</td>
+          <td>RAID 50</td>
+          <td>RAID 5 arrays striped (combines RAID 5 and RAID 0).</td>
+          <td>High (fast read speeds, but slower writes)</td>
+          <td>Moderate (can tolerate up to 1 disk failure in each RAID 5 array)</td>
       </tr>
       <tr>
-          <td style="text-align: left">RAID 60</td>
-          <td style="text-align: left">RAID 6 arrays striped (combines RAID 6 and RAID 0).</td>
-          <td style="text-align: left">High (fast reads, slower writes due to dual parity)</td>
-          <td style="text-align: left">Very High (can tolerate up to 2 disk failures in each RAID 6 array)</td>
+          <td>RAID 60</td>
+          <td>RAID 6 arrays striped (combines RAID 6 and RAID 0).</td>
+          <td>High (fast reads, slower writes due to dual parity)</td>
+          <td>Very High (can tolerate up to 2 disk failures in each RAID 6 array)</td>
       </tr>
       <tr>
-          <td style="text-align: left">RAID 1+0</td>
-          <td style="text-align: left">Nested RAID 1 over RAID 0 (mirroring across striped sets).</td>
-          <td style="text-align: left">High (similar to RAID 10)</td>
-          <td style="text-align: left">High (similar to RAID 10)</td>
+          <td>RAID 1+0</td>
+          <td>Nested RAID 1 over RAID 0 (mirroring across striped sets).</td>
+          <td>High (similar to RAID 10)</td>
+          <td>High (similar to RAID 10)</td>
       </tr>
   </tbody>
 </table>
@@ -4428,70 +4877,70 @@ Advantages:</p>
 <table>
   <thead>
       <tr>
-          <th style="text-align: left">Year</th>
-          <th style="text-align: left">Milestone</th>
+          <th>Year</th>
+          <th>Milestone</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: left">1993</td>
-          <td style="text-align: left"><strong>ext2</strong> filesystem development begins.</td>
+          <td>1993</td>
+          <td><strong>ext2</strong> filesystem development begins.</td>
       </tr>
       <tr>
-          <td style="text-align: left">1994</td>
-          <td style="text-align: left"><strong>ext2</strong> released with Linux Kernel 1.0.</td>
+          <td>1994</td>
+          <td><strong>ext2</strong> released with Linux Kernel 1.0.</td>
       </tr>
       <tr>
-          <td style="text-align: left">1994</td>
-          <td style="text-align: left"><strong>XFS</strong> first developed by SGI for IRIX.</td>
+          <td>1994</td>
+          <td><strong>XFS</strong> first developed by SGI for IRIX.</td>
       </tr>
       <tr>
-          <td style="text-align: left">2001</td>
-          <td style="text-align: left"><strong>ext3</strong> released, introducing journaling.</td>
+          <td>2001</td>
+          <td><strong>ext3</strong> released, introducing journaling.</td>
       </tr>
       <tr>
-          <td style="text-align: left">2001</td>
-          <td style="text-align: left"><strong>XFS</strong> ported to Linux.</td>
+          <td>2001</td>
+          <td><strong>XFS</strong> ported to Linux.</td>
       </tr>
       <tr>
-          <td style="text-align: left">2006</td>
-          <td style="text-align: left">Development of <strong>ext4</strong> begins to extend the capabilities of ext3.</td>
+          <td>2006</td>
+          <td>Development of <strong>ext4</strong> begins to extend the capabilities of ext3.</td>
       </tr>
       <tr>
-          <td style="text-align: left">2007</td>
-          <td style="text-align: left"><strong>BTRFs</strong> development announced by Oracle.</td>
+          <td>2007</td>
+          <td><strong>BTRFs</strong> development announced by Oracle.</td>
       </tr>
       <tr>
-          <td style="text-align: left">2008</td>
-          <td style="text-align: left"><strong>ext4</strong> marked as stable in Linux Kernel 2.6.28.</td>
+          <td>2008</td>
+          <td><strong>ext4</strong> marked as stable in Linux Kernel 2.6.28.</td>
       </tr>
       <tr>
-          <td style="text-align: left">2009</td>
-          <td style="text-align: left"><strong>BTRFs</strong> included in Linux Kernel 2.6.29 as an experimental filesystem.</td>
+          <td>2009</td>
+          <td><strong>BTRFs</strong> included in Linux Kernel 2.6.29 as an experimental filesystem.</td>
       </tr>
       <tr>
-          <td style="text-align: left">2009</td>
-          <td style="text-align: left"><strong>XFS</strong> officially included in Linux Kernel 2.6.36.</td>
+          <td>2009</td>
+          <td><strong>XFS</strong> officially included in Linux Kernel 2.6.36.</td>
       </tr>
       <tr>
-          <td style="text-align: left">2010</td>
-          <td style="text-align: left"><strong>ext4</strong> becomes the default filesystem for many Linux distributions, including Ubuntu and Fedora.</td>
+          <td>2010</td>
+          <td><strong>ext4</strong> becomes the default filesystem for many Linux distributions, including Ubuntu and Fedora.</td>
       </tr>
       <tr>
-          <td style="text-align: left">2012</td>
-          <td style="text-align: left"><strong>BTRFs</strong> adopted by SUSE Linux Enterprise Server.</td>
+          <td>2012</td>
+          <td><strong>BTRFs</strong> adopted by SUSE Linux Enterprise Server.</td>
       </tr>
       <tr>
-          <td style="text-align: left">2014</td>
-          <td style="text-align: left"><strong>XFS</strong> becomes the default filesystem in <strong>RHEL 7</strong>.</td>
+          <td>2014</td>
+          <td><strong>XFS</strong> becomes the default filesystem in <strong>RHEL 7</strong>.</td>
       </tr>
       <tr>
-          <td style="text-align: left">2014</td>
-          <td style="text-align: left">Fedora starts offering <strong>BTRFs</strong> as an option.</td>
+          <td>2014</td>
+          <td>Fedora starts offering <strong>BTRFs</strong> as an option.</td>
       </tr>
       <tr>
-          <td style="text-align: left">2020</td>
-          <td style="text-align: left">Fedora 33 makes <strong>BTRFs</strong> the default filesystem.</td>
+          <td>2020</td>
+          <td>Fedora 33 makes <strong>BTRFs</strong> the default filesystem.</td>
       </tr>
   </tbody>
 </table>
@@ -5171,1173 +5620,6 @@ Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.co
 Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
 ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
 KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
-      
-      
-
-  
-
-  
-
-
-
-
-
-  <footer>
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
-            </li>
-          
-        </ul>
-      
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
-            </li>
-          
-        </ul>
-      
-    
-  </footer>
-
-    </article>
-    
-      <div class="Divider"></div>
-    
-  
-    <article>
-      <header class="Heading">
-  <h1 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/techblog/post/paccp2/" rel="bookmark">ProLUG Admin Course Capstone Project Stage 2 🐧</a>
-  </h1>
-  
-    <time datetime="2024-09-27T00:00:00Z">September 27, 2024</time>
-  
-</header>
-      
-        <h1 id="intro-">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#intro-">Intro 👋</a>
-</h1>
-<p>I’ve made significant progress with the Capstone Project, the project has expanded to include building a full website.</p>
-<hr>
-
-
-
-<h2 id="planning">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#planning">Planning</a>
-</h2>
-
-
-
-<h3 id="integration">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#integration">Integration</a>
-</h3>
-<p>It seemed silly to develop such a complex mechanism that would later require integration into an unknown larger structure.</p>
-
-
-
-<h3 id="no-site-to-begin-with">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#no-site-to-begin-with">No site to begin with</a>
-</h3>
-<p>After asking Scott about it, I learned that there has never been a ProLUG website and that he has been meaning to get something up.</p>
-
-
-
-<h3 id="naturally">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#naturally">Naturally</a>
-</h3>
-<p>It seemed like taking on the entire website project was a good course of action. That way I would be able to decide the layout, functionality and logic all while learning new tools and techniques.</p>
-
-
-
-<h2 id="technology">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#technology">Technology</a>
-</h2>
-
-
-
-<h3 id="going-with-go">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#going-with-go">Going with GO</a>
-</h3>
-<p><img src="https://trevorsmale.github.io/techblog/images/PACCP2/godeal.png" alt="Go Logo x Deal with it"></p>
-<p>The website uses Go on the backend to serve templates and for back-end logic. While I’ve used Go for template servers before, incorporating templated components similar to Vue.js is new to me.</p>
-
-
-
-<h4 id="heres-why-go-excels-for-this-type-of-project">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#heres-why-go-excels-for-this-type-of-project">Here’s why Go excels for this type of project:</a>
-</h4>
-<ul>
-<li>The codebase remains clean, minimal, and easy to understand.</li>
-<li>The dependency system is simple, with no clutter of unnecessary packages.</li>
-<li>It ensures memory safety.</li>
-<li>Go’s HTTP server protects against injection, MITM, side-channel, and other common attacks.</li>
-<li>HTML templating allows for modularity similar to Vue.js.</li>
-<li>Garbage collection ensures long-term running without memory issues.</li>
-<li>The project can be easily containerized or built into a single binary.</li>
-<li>The Go module system (go.mod) ensures future stability through version control.</li>
-</ul>
-
-
-
-<h3 id="storing-data">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#storing-data">Storing Data</a>
-</h3>
-<p>Initially, I was looking at SQLite for storing key-value pairs. However, after considering usability, I switched to a simple CSV file.</p>
-
-
-
-<h3 id="why-csv">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#why-csv">Why CSV</a>
-</h3>
-<p>The stored data must be easily manipulated by the administrator in a human readable format. With CSV, Scott would be able to amend or edit certificate holders at a glance.</p>
-
-
-
-<h3 id="operationally">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#operationally">Operationally</a>
-</h3>
-<p>This method is both secure and integral</p>
-
-
-
-<h3 id="how-is-it-secure">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#how-is-it-secure">How is it secure?</a>
-</h3>
-<p>As stated before GO can securely transmit backend data without many common attacks. Additionally using GIT diff feature would ensure alterations are spotted should a compromise be made.</p>
-<hr>
-
-
-
-<h2 id="the-structure">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#the-structure">The Structure</a>
-</h2>
-
-
-
-<h3 id="certificate-verifier">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#certificate-verifier">Certificate Verifier</a>
-</h3>
-
-
-
-<h4 id="pulling-from-this-test-csv-file">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#pulling-from-this-test-csv-file">Pulling from this test CSV file:</a>
-</h4>
-
-  
-
-<pre tabindex="0"><code class="language-csv" data-lang="csv">Johny,Exampleseed,ProLUG Admin Course,2024-11-15,f078b6c4f26a2fae59d50fdb7c761a7f9523d240b2c18b332aac11e0
-Kate,Testinger,ProLUG Admin Course,2024-11-15,a523e6d1ece5bb2758f71993ba1a460024dcd10243fa17654af90257
-Het, Tanis, ProLUG Admin Course,2015-11-02,a523e6d1ece5bb2758f71993ba1a460024dcd10243fa17324af90257</code></pre>
-
-
-
-<h4 id="using-this-logic">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#using-this-logic">Using this logic:</a>
-</h4>
-
-  
-
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// Certificate verification handler
-</span></span></span><span class="line"><span class="cl"><span class="c1">// This function is the HTTP handler responsible for verifying certificates.
-</span></span></span><span class="line"><span class="cl"><span class="c1">// It is triggered when a user accesses the relevant URL and checks for a certificate based on a hash parameter.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="nf">certHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">// Extract hash value from the URL query parameters.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// The hash is used to identify the certificate to verify.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">hash</span> <span class="o">:=</span> <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nf">Query</span><span class="p">().</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;hash&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">// If no hash is provided in the query, return a &#34;Bad Request&#34; error.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="nx">hash</span> <span class="o">==</span> <span class="s">&#34;&#34;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">// Send an HTTP error response indicating that the hash is missing.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">http</span><span class="p">.</span><span class="nf">Error</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;Hash not provided&#34;</span><span class="p">,</span> <span class="nx">http</span><span class="p">.</span><span class="nx">StatusBadRequest</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="c1">// Exit the handler function since no hash is available.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">// Load certificates from a CSV file.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// This function attempts to retrieve all certificates stored in the &#34;certificates.csv&#34; file.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">certificates</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">LoadCertificates</span><span class="p">(</span><span class="s">&#34;certificates.csv&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="c1">// If there&#39;s an error loading the certificates (e.g., file not found or corrupted), log the error.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">// Log the error message to the server logs and return a &#34;Server Error&#34; to the client.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Error loading certificates: %v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">http</span><span class="p">.</span><span class="nf">Error</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;Server Error&#34;</span><span class="p">,</span> <span class="nx">http</span><span class="p">.</span><span class="nx">StatusInternalServerError</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="c1">// Exit the handler function due to the error.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">// Initialize a pointer to a Certificate struct.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// This will hold the matching certificate if a valid hash is found.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">var</span> <span class="nx">cert</span> <span class="o">*</span><span class="nx">Certificate</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">// Iterate over all loaded certificates.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// Check each certificate&#39;s hash to see if it matches the one provided in the query.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">c</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">certificates</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nx">c</span><span class="p">.</span><span class="nx">Hash</span> <span class="o">==</span> <span class="nx">hash</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="c1">// If a matching certificate is found, assign it to the &#39;cert&#39; pointer and break the loop.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="nx">cert</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">c</span>
-</span></span><span class="line"><span class="cl">            <span class="k">break</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">// Render the result page using the template engine.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// Pass the certificate (or nil if not found) to the template &#34;result.html&#34; for display.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">err</span> <span class="p">=</span> <span class="nx">templates</span><span class="p">.</span><span class="nf">ExecuteTemplate</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;result.html&#34;</span><span class="p">,</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}{</span>
-</span></span><span class="line"><span class="cl">        <span class="s">&#34;Certificate&#34;</span><span class="p">:</span> <span class="nx">cert</span><span class="p">,</span> <span class="c1">// Include the certificate as part of the template data.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">})</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">// If there&#39;s an error rendering the page (e.g., template not found or syntax error), log the issue.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">// Log the error message to the server logs and return an &#34;Internal Server Error&#34; to the client.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Error rendering verification page: %v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">http</span><span class="p">.</span><span class="nf">Error</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;Internal Server Error&#34;</span><span class="p">,</span> <span class="nx">http</span><span class="p">.</span><span class="nx">StatusInternalServerError</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
-
-  
-
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-GO" data-lang="GO"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// Certificate represents a learning certificate with associated data.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">type</span> <span class="nx">Certificate</span> <span class="kd">struct</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">FirstName</span>     <span class="kt">string</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">LastName</span>      <span class="kt">string</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">CertType</span>      <span class="kt">string</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">DateCompleted</span> <span class="kt">string</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">Hash</span>          <span class="kt">string</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
-
-
-
-<h4 id="the-prompt">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#the-prompt">The prompt</a>
-</h4>
-<p><img src="https://trevorsmale.github.io/techblog/images/Sep22site/shot5.png" alt="ProLUG Verify Step 1"></p>
-
-
-
-<h4 id="inputting-a-uid-hash-string">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#inputting-a-uid-hash-string">Inputting a UID hash string</a>
-</h4>
-<p><img src="https://trevorsmale.github.io/techblog/images/Sep22site/shot6.png" alt="ProLUG Verify Step 2"></p>
-
-
-
-<h4 id="matching-string-results-in-a-info-retrieval">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#matching-string-results-in-a-info-retrieval">Matching string results in a info retrieval</a>
-</h4>
-<p><img src="https://trevorsmale.github.io/techblog/images/Sep22site/shot7.png" alt="ProLUG Verify Step 3"></p>
-
-
-
-<h4 id="an-unrecognized-string-results-in-an-error-message">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#an-unrecognized-string-results-in-an-error-message">An unrecognized string results in an error message</a>
-</h4>
-<p><img src="https://trevorsmale.github.io/techblog/images/Sep22site/shot8.png" alt="ProLUG Verify Step 4"></p>
-
-
-
-<h3 id="current-site-">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#current-site-">Current Site 💄</a>
-</h3>
-<p>After getting a working verification system worked out, I moved on to creating a broader website.</p>
-
-
-
-<h4 id="styling">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#styling">Styling</a>
-</h4>
-<p>I like sites with a clean, easy to use and accessible appearance. I have a solid understanding of graphic design for accessibility and wanted to put that into practice here. So the design is stark, compact, clear and contrasting. This language carries throughout.</p>
-
-
-
-<h4 id="technique">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#technique">Technique</a>
-</h4>
-<p>So as mentioned previously, I am serving html templates with GO. This can be pretty simple, we can serve a single basic html page with no modular components. I wanted to try out some fancy tricks using modularized components in this project, cutting down on the size of each template. The way this works within this project is very similar to Vue.js templating. We must declare a template as a component by encapsulating the html with tags.</p>
-<p>for example the Navigation bar is coded similarly to any old navbar and saved in templates as navbar.html. The fancy bit is enclosing the code with the tag</p>
-
-
-
-<h4 id="defining-a-component">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#defining-a-component">Defining a component</a>
-</h4>
-
-  
-
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span> <span class="nx">define</span> <span class="s">&#34;navbar&#34;</span> <span class="p">}}</span> <span class="nx">Code</span> <span class="nx">goes</span> <span class="nx">here</span> <span class="p">{{</span> <span class="nx">end</span> <span class="p">}}</span></span></span></code></pre></div>
-
-
-
-<h4 id="using-a-template-component">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#using-a-template-component">Using a template component</a>
-</h4>
-
-  
-
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span> <span class="nx">template</span> <span class="s">&#34;navbar&#34;</span> <span class="p">.</span> <span class="p">}}</span></span></span></code></pre></div>
-
-
-
-<h4 id="current-home-page">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#current-home-page">Current Home Page</a>
-</h4>
-<p><img src="https://trevorsmale.github.io/techblog/images/Sep22site/shot1.png" alt="ProLUG Home Page"></p>
-
-
-
-<h4 id="current-about-page">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#current-about-page">Current About Page</a>
-</h4>
-<p><img src="https://trevorsmale.github.io/techblog/images/Sep22site/shot2.png" alt="ProLUG About Page"></p>
-
-
-
-<h4 id="current-join-page">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#current-join-page">Current Join Page</a>
-</h4>
-<p><img src="https://trevorsmale.github.io/techblog/images/Sep22site/shot3.png" alt="ProLUG Join Page"></p>
-
-
-
-<h4 id="current-certify-page">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#current-certify-page">Current Certify Page</a>
-</h4>
-<p><img src="https://trevorsmale.github.io/techblog/images/Sep22site/shot4.png" alt="ProLUG Certify Page"></p>
-
-
-
-<h4 id="current-verify-page">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#current-verify-page">Current Verify Page</a>
-</h4>
-<p><img src="https://trevorsmale.github.io/techblog/images/Sep22site/shot5.png" alt="ProLUG Verify Page"></p>
-
-
-
-<h3 id="next-steps-">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#next-steps-">Next Steps&hellip; 🥾</a>
-</h3>
-<ol>
-<li>I plan on discussing this in the Code Cove group in ProLUG</li>
-<li>I plan on creating a scoreboard as ideated in unit 2 by scott by reading from a CSV and writing to an order list</li>
-<li>I plan on spiffying up the appearance and useability of the site using tailwind and a bit more js logic</li>
-</ol>
-
-
-
-<h3 id="prolug-links-">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#prolug-links-">ProLUG Links ⛓️</a>
-</h3>
-<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
-Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
-Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
-ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
-KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
-      
-      
-
-  
-
-  
-
-
-
-
-
-  <footer>
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
-            </li>
-          
-        </ul>
-      
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/capstoneproject/" rel="tag">CapstoneProject</a>
-            </li>
-          
-        </ul>
-      
-    
-  </footer>
-
-    </article>
-    
-      <div class="Divider"></div>
-    
-  
-    <article>
-      <header class="Heading">
-  <h1 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/techblog/post/pacu2/" rel="bookmark">ProLUG Admin Course Unit 2 🐧</a>
-  </h1>
-  
-    <time datetime="2024-09-27T00:00:00Z">September 27, 2024</time>
-  
-</header>
-      
-        <h1 id="essential-tools-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#essential-tools-">Essential Tools 🛠️</a>
-</h1>
-
-
-
-<h2 id="intro">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#intro">Intro</a>
-</h2>
-<p>We have reached the second week of the PAC and things are getting more serious. Now that we are familiar with the flow of the course and expectations are set, the second lesson has started with some momentum. 💺</p>
-<hr>
-
-
-
-<h2 id="unit-2-lab-exercise-notes-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#unit-2-lab-exercise-notes-">Unit 2 lab exercise notes 🧪</a>
-</h2>
-<p>I am completing the labs locally carefully covering every command listed by running them and checking output, making sure to pay attention to details like options. It was fairly time consuming, yet I learned quite a bit.</p>
-
-
-
-<h4 id="-basic-cli-exercise">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#-basic-cli-exercise">🧭 Basic CLI exercise:</a>
-</h4>
-<ul>
-<li>cd ~ # Change Directory to Home</li>
-<li>ls ~ # List</li>
-<li>mkdir evaluation # Make Directory called &rsquo;evaluation'</li>
-<li>mkdir evaluation/test/round6 # This fails why? We need to use the Parent option &lsquo;-p&rsquo;</li>
-<li>mkdir -p evaluation/test/round6 # Make parent directory with subdirectories</li>
-<li>cd evaluation # change directory to evaluation</li>
-<li>pwd # present/print working directory = /home/ts/evaluation</li>
-<li>touch testfile1 # create file name &rsquo;testfile1&rsquo; in current directory</li>
-<li>ls # list = test testfile1</li>
-<li>touch testfile{2..10} # Creates a numbered range of testfile
-touch .hfile .hfile2 .hfile3 # this creates three dot files which are not visible to a normal listing method, we must use list all (ls -a)</li>
-</ul>
-
-
-
-<h4 id="-gathering-system-information">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#-gathering-system-information">🔍 Gathering System Information</a>
-</h4>
-<p>I am running Rocky Linux 9 on a local Proxmox container for this course.</p>
-<ul>
-<li>hostname = localhost.localdomain</li>
-<li>uname # system info command which stands for Unix Name</li>
-<li>uname -a # shows a comprehensive list of system info Kernal name# Hostname, Kernel release, Kernel version, Machine hardware name, Processor type, Hardware platform, Operating system.</li>
-<li>uname -r # the -r option stands for release and shows the kernel release version.</li>
-</ul>
-
-
-
-<h4 id="-checking-the-amount-of-rammemory">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#-checking-the-amount-of-rammemory">🧠 Checking the amount of RAM/Memory</a>
-</h4>
-<ul>
-<li><em>sudo</em> cat/proc/meminfo # concatenate process memory information</li>
-<li>free # displays total, used, free, shared, buffer, and available memory (RAM and SWAP)</li>
-<li>free -m # megabyte display option for the free command</li>
-</ul>
-
-
-
-<h4 id="-checking-the-number-of-processors-and-processor-info">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#-checking-the-number-of-processors-and-processor-info">👨🏻‍💻 Checking the number of processors and processor info</a>
-</h4>
-<ul>
-<li>cat/proc/cpuinfo # concatenate process central processor unit information = 4 processors on my lab.</li>
-<li>cat /proc/cpuinfo | grep proc | wc -l # what we are doing here is piping the output of the previous command to grep which is filtering lines starting with proc, then we pipe through to word count with line option to cleverly count the number of processors, the result is 4</li>
-</ul>
-
-
-
-<h4 id="-checking-storage-usage-and-mounted-filesystems">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#-checking-storage-usage-and-mounted-filesystems">💾 Checking storage usage and mounted filesystems</a>
-</h4>
-<ul>
-<li>df # the disk free command</li>
-<li>df -h # we are adding the human readable option to df in order to more easily ascertain what is going on.</li>
-<li>df -h | grep -i var #</li>
-</ul>
-
-
-
-<h4 id="-mounting-a-new-file-system">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#-mounting-a-new-file-system">💾 Mounting a new file system</a>
-</h4>
-
-
-
-<h5 id="common-mount-command-options">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#common-mount-command-options">Common <code>mount</code> Command Options</a>
-</h5>
-<ul>
-<li>
-<p><strong>-t</strong> # Specify the filesystem type (e.g., <code>ext4</code>, <code>xfs</code>, <code>vfat</code>).</p>
-</li>
-<li>
-<p><strong>-o</strong> # Specify options in a comma-separated list (e.g., <code>rw</code>, <code>ro</code>, <code>noexec</code>).</p>
-</li>
-<li>
-<p><strong>-a</strong> # Mount all filesystems defined in <code>/etc/fstab</code>.</p>
-</li>
-<li>
-<p><strong>-r</strong> # Mount the filesystem as read-only.</p>
-</li>
-<li>
-<p><strong>-w</strong> # Mount the filesystem as read-write.</p>
-</li>
-<li>
-<p><strong>-v</strong> # Verbose mode, provides more detailed output.</p>
-</li>
-<li>
-<p><strong>&ndash;bind</strong> # Bind mount, remount part of the filesystem elsewhere.</p>
-</li>
-<li>
-<p><strong>&ndash;make-shared</strong> # Make a mounted file system shared (for propagating mount events).</p>
-</li>
-<li>
-<p><strong>-L</strong> # Mount by filesystem label.</p>
-</li>
-<li>
-<p><strong>-U</strong> # Mount by UUID.</p>
-</li>
-<li>
-<p>mount | grep –i home# lists all mounts starting with the case sensitive phrase home (I was not getting any result 🤔)</p>
-</li>
-<li>
-<p>mount | grep -i sd# this lists all SCSK disks, normally named sda, sdb, sdc etc&hellip;</p>
-</li>
-</ul>
-
-
-
-<h5 id="trying-out-alternative-commands">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#trying-out-alternative-commands">Trying out alternative commands</a>
-</h5>
-<ul>
-<li><strong>findmt</strong># find mount</li>
-<li><strong>cat /proc/mounts</strong># concatenate in-process mounts</li>
-<li><strong>lsblk</strong># list block devices</li>
-</ul>
-
-
-
-<h5 id="i-was-unaware-that-commands-could-be-chained-together-with-a-semicolon">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#i-was-unaware-that-commands-could-be-chained-together-with-a-semicolon">I was unaware that commands could be chained together with a semicolon</a>
-</h5>
-<ul>
-<li><code>cd ~; pwd; df -h</code># change directory to home, then print working directory, then list disk usage in a human-readable format 🧐.</li>
-<li><code>du -sh</code># disk usage summary in a human-readable format.</li>
-</ul>
-
-
-
-<h5 id="du-command-options">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#du-command-options"><code>du</code> Command Options</a>
-</h5>
-<pre><code>  **`-a`**# Display disk usage for all files, not just directories.
-  **`-h`**# Show disk usage in human-readable format (e.g., KB, MB, GB).
-  **`-s`**# Show summary of total disk usage for a directory.
-  **`-c`**# Produce a grand total at the end.
-  **`-L`**# Follow symbolic links (default `du` doesn't follow symlinks).
-  **`-d N`** or **`--max-depth=N`**# Limit directory depth to N levels.
-  **`--time`**# Show modification time of directories.
-  **`-b`**# Show disk usage in bytes.
-  **`-k`**# Show disk usage in kilobytes.
-  **`-m`**# Show disk usage in megabytes.
-  **`--apparent-size`**# Show the apparent size instead of disk usage.
-  **`-x`**# Skip directories on different file systems.
-  **`--exclude=PATTERN`**# Exclude files matching a pattern.
-</code></pre>
-
-
-
-<h3 id="uptime">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#uptime">Uptime</a>
-</h3>
-<pre><code>  `uptime`# Shows time in HH:MM:SS Unix time format in local time. If the time is not set, like in my instance, I get UTC 0🧐. Next, it shows how long the system has been running, the number of logged-in users, and finally, the load average over the last 1, 5, and 15 minutes.
-</code></pre>
-
-
-
-<h3 id="last">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#last">Last</a>
-</h3>
-<pre><code>  **`last`**# Lists all users who have logged in from latest to oldest.
-  **`w`**# Lists current users and associated processes.
-  **`who`**# Shows who is currently logged on. The output `pts/0` stands for pseudo terminal, typically shown when logged in remotely. It will show either an IPv4 or IPv6 address and the login time. When I logged into my Ubuntu server via SSH, I was shown the IPv6 address. 🤯
-  **`whoami`**# Tells which user you are.
-</code></pre>
-
-
-
-<h3 id="checking-environment">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#checking-environment">Checking environment</a>
-</h3>
-<pre><code>  **`printenv`**# Shows a long list of environmental information.
-  **`printenv | grep -i home`**# Shows that I am in the home directory of `root`.
-  **`id`**# Shows a lot of info about UID, GID, and group memberships, including SELinux policies.
-  **`echo $SHELL`**# Displays the path of the shell environment variable, in my case, `/bin/bash`.
-</code></pre>
-
-
-
-<h3 id="check-running-processes-and-services">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#check-running-processes-and-services">Check running processes and services</a>
-</h3>
-<pre><code>  **`ps -aux | more`**
-  **`ps -ef | more`**
-  **`ps -ef | wc -l`**
-</code></pre>
-
-
-
-<h3 id="check-memory-usage">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#check-memory-usage">Check memory usage</a>
-</h3>
-<p>Run each of these commands individually for understanding:</p>
-<pre><code>  **`free -m`**
-  **`free -m | egrep &quot;Mem|Swap&quot;`**
-  **`free -m | egrep &quot;Mem|Swap&quot; | awk '{print $1, $2, $3}'`**: What are the first, second, and third columns? How would I know the variable names?
-  **`free -t | egrep &quot;Mem|Swap&quot; | awk '{print $1 &quot; Used Space = &quot; ($3 / $2) * 100&quot;%&quot;}'`**: Similar question for these variables.
-</code></pre>
-
-
-
-<h3 id="testing-out-scripts">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#testing-out-scripts">Testing out scripts</a>
-</h3>
-
-
-
-<h5 id="q-have-you-ever-written-a-basic-check-script-or-touched-on-conditional-statements-or-loops">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#q-have-you-ever-written-a-basic-check-script-or-touched-on-conditional-statements-or-loops">Q: Have you ever written a basic check script or touched on conditional statements or loops?</a>
-</h5>
-
-
-
-<h5 id="a-yes-very-basic-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#a-yes-very-basic-">A: Yes very basic 😅</a>
-</h5>
-<p>(Use ctrl + c to break out of these) 👍</p>
-<pre><code>  while true; do free -m; sleep 3; done
-  Watch this output for a few and then break with ctrl + c
-  Try to edit this to wait for 5 seconds
-  Try to add a check for uptime and date each loop with a blank line between each and 10 second wait:
-  while true; do date; uptime; free -m; echo “ “; sleep 10; done
-  Since we can wrap anything inside of our while statements, let’s try adding something from earlier:
-  While true; do free -t | egrep &quot;Mem|Swap&quot; | awk '{print $1 &quot; Used Space = &quot; ($3 / $2) * 100&quot;%&quot;}'; sleep 3; done 👍
-</code></pre>
-<p><strong>seq 1 10</strong></p>
-
-
-
-<h5 id="q-what-did-this-do">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#q-what-did-this-do">Q: What did this do?</a>
-</h5>
-
-
-
-<h5 id="a-it-counts-from-1-to-10-creating-a-new-line-for-each-char">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#a-it-counts-from-1-to-10-creating-a-new-line-for-each-char">A: it counts from 1 to 10, creating a new line for each char.</a>
-</h5>
-
-
-
-<h5 id="q-can-you-man-seq-to-modify-that-to-count-from-2-to-20-by-2s">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#q-can-you-man-seq-to-modify-that-to-count-from-2-to-20-by-2s">Q: Can you man seq to modify that to count from 2 to 20 by 2’s?</a>
-</h5>
-
-
-
-<h5 id="a-yes-by-using-first-increment-last-so-2-2-20">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#a-yes-by-using-first-increment-last-so-2-2-20">A: yes by using &lsquo;First Increment Last, so 2 2 20&rsquo;</a>
-</h5>
-<p>Let’s make a counting for loop from that sequence ✅
-for i in <code>seq 1 20</code>; do echo &ldquo;I am counting i and am on $i times through the loop&rdquo;; done 👍</p>
-
-
-
-<h5 id="q-can-you-tell-me-what-is-the-difference-or-significance-of-the--in-the-command-above-what-does-that-denote-to-the-system">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#q-can-you-tell-me-what-is-the-difference-or-significance-of-the--in-the-command-above-what-does-that-denote-to-the-system">Q: Can you tell me what is the difference or significance of the $ in the command above? What does that denote to the system?</a>
-</h5>
-
-
-
-<h5 id="a-we-are-using-the--to-access-a-variable">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#a-we-are-using-the--to-access-a-variable">A: we are using the $ to access a variable.</a>
-</h5>
-<p>Uptime – The time a system has been running for without interruption.
-Standard input - stdin &lsquo;0&rsquo; the default stream where a program receives data.
-Standard output - stdout &lsquo;1&rsquo; refers to default stream output of a program.
-Standard error – stderr &lsquo;2&rsquo; refers to a default stream wherein an error is sent.</p>
-<hr>
-
-
-
-<h3 id="reflecting-on-unit-1-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#reflecting-on-unit-1-">Reflecting on Unit 1 🤔</a>
-</h3>
-<p>Week 1 went well for me. I was very excited to start this course as it strongly aligns with my professional interests, and it came at a great time. I am incredibly grateful to have access to such a talented group of like-minded and enthusiastic professionals.</p>
-<p>I managed to complete everything for Week 1 by preparing in advance. For example, I created this blog and started some of the materials early. The night before the course began, I went through Vim Tutor and Vim Adventures to give myself a bit of a head start, as my time is currently divided between various responsibilities. I also dedicated a significant portion of my time to starting my capstone project and troubleshooting issues.</p>
-<p>I’ve set aside 8 hours per week, as suggested by Scott, for attending lectures, reading materials, practicing labs, and doing general research. During Week 1, I used roughly 6 hours, so I believe I’ve allocated enough time to complete the course work.</p>
-<p>My note-taking has been excellent for this course. Prior to starting, I learned how essential note-taking is to the administration and engineering process, so I began using LogSeq as my note-taking tool four months ago. This gave me time to familiarize myself with its features, allowing me to dive into the lectures fully prepared. I’m also a fast touch typist, so I can easily listen and type simultaneously. After each lecture, I review and organize my notes by nesting and tagging information to relate it to other topics. Additionally, I’ve been reflecting on everything by writing in this blog.</p>
-<hr>
-
-
-
-<h2 id="security-enhanced-linux">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#security-enhanced-linux">Security Enhanced Linux</a>
-</h2>
-
-
-
-<h3 id="brief-intro-to-selinux">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#brief-intro-to-selinux">Brief intro to SELinux</a>
-</h3>
-<p>SELinux (Security-Enhanced Linux) is a security module integrated into the Linux kernel that enforces mandatory access control policies to provide more granular control over how processes and users interact with files and resources. By defining strict rules on what actions each program or user can perform, SELinux significantly enhances the security posture of a Linux system, helping to prevent unauthorized access and exploits.</p>
-
-
-
-<h3 id="brief-intro-to-apparmor">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#brief-intro-to-apparmor">Brief intro to Apparmor</a>
-</h3>
-<p>AppArmor (Application Armor) is a Linux security module that enforces access control policies based on file paths, limiting what resources applications can access to enhance system security. It provides a simpler, profile-based alternative to SELinux, allowing administrators to create restrictive environments for individual applications without requiring deep changes to system configuration.</p>
-
-
-
-<h3 id="key-terminology">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#key-terminology">Key Terminology</a>
-</h3>
-<p>Mandatory Access Control –
-Discretionary Access Control –
-Security contexts (SELINUX) –
-SELINUX operating modes -</p>
-
-
-
-<h3 id="comparing-apparmor-and-selinux-for-container-separation-1">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#comparing-apparmor-and-selinux-for-container-separation-1">Comparing AppArmor and SELinux for Container Separation <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></a>
-</h3>
-<p>This article provides a brief comparison between <strong>SELinux</strong> and <strong>AppArmor</strong> regarding their effectiveness in securely separating containers.</p>
-<p>After reading, it became clear that <strong>AppArmor</strong> is not an ideal choice for <strong>DevSecOps</strong> when it comes to securely separating containers. This is due to <strong>AppArmor&rsquo;s lack of support for Multi-Category Security (MCS)</strong>. MCS allows for a hierarchy of controls, granting varying levels of access.</p>
-<p>Therefore, if you&rsquo;re looking to securely separate containers without relying on <strong>Virtual Machines</strong>—which can be costly—<strong>SELinux</strong> emerges as the better option for such tasks.</p>
-
-
-
-<h3 id="key-takeaways-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#key-takeaways-">Key Takeaways 📝</a>
-</h3>
-<ul>
-<li><strong>AppArmor</strong> is <strong>not label-based</strong>, unlike SELinux.</li>
-<li><strong>AppArmor</strong> is generally seen as more <strong>user-friendly</strong>.</li>
-<li><strong>AppArmor</strong> has fewer controls compared to SELinux.</li>
-<li><strong>AppArmor</strong> has <strong>fewer operations</strong> available.</li>
-<li>Both support the <strong>Type Enforcement</strong> security model (a form of <strong>mandatory access control</strong>).</li>
-<li>The security model is based on rules where subjects (like processes or users) are allowed to access objects (e.g., files, directories, sockets, etc.).</li>
-<li><strong>AppArmor</strong> lacks <strong>Multi-Level Security (MLS)</strong>.</li>
-<li><strong>AppArmor</strong> does not support <strong>Multi-Category Security (MCS)</strong>.</li>
-<li>🔄 Because <strong>MCS is unavailable</strong>, <strong>AppArmor</strong> cannot maintain proper separation between containers.</li>
-<li>⚠️ The default container policy in AppArmor is <strong>very loose</strong>, which could present security risks.</li>
-</ul>
-
-
-
-<h3 id="quick-comparison-table-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#quick-comparison-table-">Quick Comparison Table 🔍</a>
-</h3>
-<table>
-  <thead>
-      <tr>
-          <th style="text-align: left">Technology</th>
-          <th style="text-align: left">Type Enforcement</th>
-          <th style="text-align: left">MLS/MCS</th>
-          <th style="text-align: left">Policy Generator</th>
-          <th style="text-align: left">Generator for Containers</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left"><strong>AppArmor</strong></td>
-          <td style="text-align: left">Yes</td>
-          <td style="text-align: left">No</td>
-          <td style="text-align: left">Yes</td>
-          <td style="text-align: left">No</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>SELinux</strong></td>
-          <td style="text-align: left">Yes</td>
-          <td style="text-align: left">Yes</td>
-          <td style="text-align: left">No*</td>
-          <td style="text-align: left">Yes</td>
-      </tr>
-  </tbody>
-</table>
-<p>By understanding these differences, it’s clear that <strong>SELinux</strong> provides a more secure framework for container separation, making it a crucial tool for modern <strong>DevSecOps</strong> workflows.</p>
-
-
-
-<h3 id="enabling-selinux">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#enabling-selinux">Enabling SELinux</a>
-</h3>
-<p>Before enabling SELinux, you can verify its current status by running the <code>sestatus</code> command, which provides the <strong>Security Enhanced Status</strong> of the system. To activate or configure SELinux, you need to modify the configuration file located at <code>/etc/selinux/config</code>. SELinux can operate in two modes:</p>
-<ol>
-<li><strong>Enforcing</strong>: SELinux policies are actively enforced, and violations are blocked.</li>
-<li><strong>Permissive</strong>: Policies are not enforced, but violations are logged for review, allowing for troubleshooting without blocking actions.</li>
-</ol>
-
-
-
-<h3 id="selinux-contexts">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#selinux-contexts">SELinux Contexts</a>
-</h3>
-<p>A <strong>context</strong> in SELinux is a set of security labels used to manage access to files, processes, and other system resources. The context is composed of several fields:</p>
-
-  
-
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">system_u:object_r:httpd_sys_content_t:s0</span></span></code></pre></div>
-
-  
-
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">user:role:type:level</span></span></code></pre></div>
-
-
-
-<h4 id="breakdown-of-context-components">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#breakdown-of-context-components">Breakdown of Context Components:</a>
-</h4>
-<p><strong>User:</strong> Represents the SELinux identity of a subject (process) or object (file).
-<strong>Role:</strong> Groups privileges for processes and users, determining what they are allowed to do.
-<strong>Type:</strong> Defines how subjects (processes) can interact with objects (files or resources).
-<strong>Level:</strong> Used in Multi-Level Security (MLS) or Multi-Category Security (MCS) systems for additional granularity in access control.</p>
-
-
-
-<h3 id="taking-selinux-for-a-spin-on-a-rocky-9-vm-in-my-proxmox-homelab">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#taking-selinux-for-a-spin-on-a-rocky-9-vm-in-my-proxmox-homelab">Taking SELinux for a spin on a Rocky 9 VM in my Proxmox Homelab</a>
-</h3>
-<p>A few weeks ago, I learned how to create uninitialized templates with Proxmox, meaning the SSH keys are generated for each copy of the template. This is done with cloud init.</p>
-<p>So today I created a clone of my template specifically for getting hands on experience with SElinux</p>
-<p><img src="https://trevorsmale.github.io/techblog/images/PACU2/prox1.png" alt="ProLUG Homepage"></p>
-<p>I opened the <strong>/etc/selinux/config</strong> and set se to enforce. I then ran <strong>sestatus</strong> to confirm selinux had been activated.
-I created a new user policy for myself with <strong>semanage user -a -R &lsquo;staff_r webadm_r&rsquo; Treasure</strong> here is the result after running <strong>semanage user -l</strong></p>
-<p><img src="https://trevorsmale.github.io/techblog/images/PACU2/selinux1.png" alt="ProLUG Homepage"></p>
-
-
-
-<h3 id="selinux-scenario-contemplation">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#selinux-scenario-contemplation">SELinux scenario contemplation</a>
-</h3>
-<ul>
-<li>You follow your company instructions to add a new user to a set of 10 Linux servers.</li>
-<li>They cannot access just one (1) of the servers.</li>
-<li>When you review the differences in the servers you see that the server they cannot access is running SELINUX.</li>
-<li>On checking other users have no problem getting into the system.</li>
-<li>You find nothing in the documentation (typical) about this different system or how these users are accessing it.</li>
-<li>What do you do? Where do you check?</li>
-</ul>
-<p>From the given information, it seems likely that SELinux is denying access to the new user. To troubleshoot this, I would take the following steps:</p>
-<ol>
-<li>
-<p><strong>Check SELinux User Configuration</strong>:<br>
-I would run the command <code>semanage user -l</code> to list all SELinux users and confirm whether the new user exists within the SELinux policy.</p>
-</li>
-<li>
-<p><strong>Verify MLS/MCS Levels and Roles</strong>:<br>
-If the user is already registered, I would review the user&rsquo;s Multi-Level Security (MLS) or Multi-Category Security (MCS) level and verify the role assigned to the user. It&rsquo;s important that the user&rsquo;s role matches those that have the necessary access permissions.</p>
-</li>
-<li>
-<p><strong>Assign Appropriate Role</strong>:<br>
-If the current role restricts access, I would assign the user to an SELinux role that permits access to the system, ensuring that role-based access control (RBAC) is properly configured.</p>
-</li>
-</ol>
-<hr>
-
-
-
-<h3 id="interactive-killercoda-lab-2">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#interactive-killercoda-lab-2">Interactive Killercoda Lab <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></a>
-</h3>
-
-
-
-<h4 id="i-hope-this-was-designed-to-be-challenging-because-i-was-challenged-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#i-hope-this-was-designed-to-be-challenging-because-i-was-challenged-">I hope this was designed to be challenging, because I was challenged 😅</a>
-</h4>
-<p>Despite paying close attention, I somehow got confused by this challenge. I suppose the exercise was designed to force me to read through documentation, which was tough.
-But I am proud to say that through trial and error, I was able to get through.</p>
-
-
-
-<h4 id="commands-i-looked-up-in-the-documentation">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#commands-i-looked-up-in-the-documentation">Commands I looked up in the documentation:</a>
-</h4>
-<ul>
-<li>kubectl get deployment spacecow -n moon -o yaml &gt; spacecow-deployment.yaml</li>
-<li>vim spacecow-deployment.yaml</li>
-<li>kubectl apply -f spacecow-deployment.yaml</li>
-</ul>
-<hr>
-
-
-
-<h2 id="troubleshooting">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#troubleshooting">Troubleshooting</a>
-</h2>
-
-
-
-<h3 id="how-troubleshooting-differs-between-administrator-and-engineer">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#how-troubleshooting-differs-between-administrator-and-engineer">How Troubleshooting Differs Between Administrator and Engineer</a>
-</h3>
-<ul>
-<li><strong>Administrators</strong> focus on <strong>restoring functionality</strong> to existing systems, while <strong>Engineers</strong> work on <strong>building and implementing</strong> new systems or improvements.</li>
-<li><strong>Administrators</strong> have <strong>existing documentation</strong> to reference for troubleshooting, whereas <strong>Engineers</strong> are responsible for <strong>creating new documentation</strong>.</li>
-<li><strong>Administrators</strong> can compare similar systems for <strong>inconsistencies</strong>, but <strong>Engineers</strong> may be working with entirely new systems or solutions, making such comparisons difficult.</li>
-</ul>
-
-
-
-<h4 id="administrators">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#administrators">Administrators:</a>
-</h4>
-<ul>
-<li><strong>Fix</strong>: Restore systems to their previous, working state.</li>
-<li><strong>Optimize</strong>: Use tools like <strong>Ansible</strong> or custom scripts to streamline operations and automate repetitive tasks.</li>
-<li><strong>Operate</strong>: Handle daily tasks that <strong>cannot be automated</strong>, such as monitoring or handling unexpected issues.</li>
-</ul>
-
-
-
-<h4 id="engineers">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#engineers">Engineers:</a>
-</h4>
-<ul>
-<li><strong>Prepare</strong>: Configure pre-built tools for daily use and ensure they integrate smoothly with existing systems.</li>
-<li><strong>Plan</strong>: Anticipate and strategize operational changes, such as the introduction of new tools or system upgrades.</li>
-<li><strong>Design</strong>: Create new tools, systems, or measures that address organizational needs and future challenges.</li>
-<li><strong>Implement</strong>: Deploy new or upgraded systems and produce comprehensive documentation to support ongoing maintenance and troubleshooting.</li>
-</ul>
-
-
-
-<h3 id="key-differences-in-troubleshooting">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#key-differences-in-troubleshooting">Key Differences in Troubleshooting:</a>
-</h3>
-<ul>
-<li>Administrators typically deal with <strong>reactive troubleshooting</strong>, where the goal is to quickly restore functionality after an issue occurs. Engineers, on the other hand, often engage in <strong>proactive troubleshooting</strong> by identifying potential problems before they happen, ensuring that systems are scalable and sustainable.</li>
-<li>While administrators may focus on resolving immediate operational issues, engineers are responsible for the <strong>long-term stability</strong> of systems, often troubleshooting while keeping future requirements in mind.</li>
-</ul>
-
-
-
-<h3 id="troubleshooting-procedure">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#troubleshooting-procedure">Troubleshooting Procedure</a>
-</h3>
-
-
-
-<h4 id="1-identify-the-problem">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#1-identify-the-problem">1. <strong>Identify the Problem</strong></a>
-</h4>
-<ul>
-<li><strong>Gather Information</strong>: Ask questions, check logs, or run diagnostics to gather all necessary details.</li>
-<li><strong>Reproduce the Issue</strong>: Try to replicate the problem to confirm its existence and scope.</li>
-</ul>
-
-
-
-<h4 id="2-establish-a-theory-of-cause">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#2-establish-a-theory-of-cause">2. <strong>Establish a Theory of Cause</strong></a>
-</h4>
-<ul>
-<li><strong>Look for Patterns</strong>: Are there recurring errors or conditions?</li>
-<li><strong>Use Known Issues</strong>: Refer to documentation, previous cases, or online resources to match symptoms to potential causes.</li>
-<li><strong>Hypothesize</strong>: Develop potential explanations based on the data you&rsquo;ve collected.</li>
-</ul>
-
-
-
-<h4 id="3-test-the-theory">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#3-test-the-theory">3. <strong>Test the Theory</strong></a>
-</h4>
-<ul>
-<li><strong>Isolate Variables</strong>: Disable or eliminate components one by one to test your theory.</li>
-<li><strong>Try Quick Fixes</strong>: Implement minor changes to see if the problem is resolved, such as restarting services or clearing caches.</li>
-</ul>
-
-
-
-<h4 id="4-create-an-action-plan">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#4-create-an-action-plan">4. <strong>Create an Action Plan</strong></a>
-</h4>
-<ul>
-<li><strong>Plan for Resolution</strong>: Identify the steps needed to fix the problem if your theory is confirmed.</li>
-<li><strong>Consider Impact</strong>: Make sure to assess any risks or side effects of your solution.</li>
-</ul>
-
-
-
-<h4 id="5-implement-the-solution">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#5-implement-the-solution">5. <strong>Implement the Solution</strong></a>
-</h4>
-<ul>
-<li><strong>Execute the Fix</strong>: Apply the necessary changes, whether it&rsquo;s a configuration adjustment, software update, or hardware replacement.</li>
-<li><strong>Monitor</strong>: Observe the system closely to ensure the issue doesn&rsquo;t recur.</li>
-</ul>
-
-
-
-<h4 id="6-verify-full-system-functionality">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#6-verify-full-system-functionality">6. <strong>Verify Full System Functionality</strong></a>
-</h4>
-<ul>
-<li><strong>Test the Fix</strong>: Confirm the problem is fully resolved and that other services or systems haven’t been affected.</li>
-<li><strong>Ask Stakeholders</strong>: Ensure end-users or relevant parties can validate the fix.</li>
-</ul>
-
-
-
-<h4 id="7-document-the-findings">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#7-document-the-findings">7. <strong>Document the Findings</strong></a>
-</h4>
-<ul>
-<li><strong>Write It Down</strong>: Document the issue, the root cause, the solution, and any potential future prevention methods.</li>
-<li><strong>Share Knowledge</strong>: Ensure others on your team or organization can reference the solution.</li>
-</ul>
-
-
-
-<h4 id="8-prevent-future-issues">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#8-prevent-future-issues">8. <strong>Prevent Future Issues</strong></a>
-</h4>
-<ul>
-<li><strong>Review System</strong>: Investigate whether the root cause indicates a larger problem.</li>
-<li><strong>Proactive Monitoring</strong>: Set up alerts, automations, or optimizations to prevent recurrence.</li>
-</ul>
-<hr>
-
-
-
-<h2 id="notes">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#notes">Notes</a>
-</h2>
-
-
-
-<h3 id="dhcp">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#dhcp">DHCP</a>
-</h3>
-<ul>
-<li>DHCP Should only be assigned by one server</li>
-<li>What is a BootP?</li>
-<li>DHCP is a process that comes from BootP?</li>
-<li>Layer 2 based on Mac address</li>
-</ul>
-
-
-
-<h3 id="first-day-on-the-job-you-must-inventory-the-servers">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#first-day-on-the-job-you-must-inventory-the-servers">First day on the job, you must inventory the servers</a>
-</h3>
-<ul>
-<li>Nmap</li>
-<li>History on CommandLine (Find the IP&rsquo;s)</li>
-<li>Ping Sweep for OpenSSH</li>
-<li>Create a local Inventory File</li>
-</ul>
-
-
-
-<h3 id="questions-i-have-from-this-week">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#questions-i-have-from-this-week">Questions I have from this week:</a>
-</h3>
-<ul>
-<li>How often does a Jr. Admin implement SELinux?</li>
-<li>If apparmor is so much less functional than SELinux, why is it still a popular choice? is it due to ease of use?</li>
-<li>you mentioned Irata? I was unable to look it up.</li>
-<li><strong>free –m| egrep “Mem|Swap” | awk ‘{print $1, $2, $3}’</strong>: what is 1, 2 and 3. Is there an easy way to know which variables pertain to which data?</li>
-</ul>
-
-
-
-<h3 id="how-are-you-going-to-use-what-youve-learned-in-your-current-role">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#how-are-you-going-to-use-what-youve-learned-in-your-current-role">How are you going to use what you’ve learned in your current role?</a>
-</h3>
-<p>I have no direct application for most of this stuff at the moment. however I will definitely use scripting in my current position in order to automate tasks. Furthermore, I will def remember several commands from the labs that I will likely use daily.</p>
-<hr>
-
-
-
-<h3 id="prolug-links-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#prolug-links-">ProLUG Links ⛓️</a>
-</h3>
-<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
-Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
-Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
-ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
-KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
-<div class="footnotes" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn:1">
-<p>Comparing Apparmor to Se Linux Isolation <a href="https://www.redhat.com/sysadmin/apparmor-selinux-isolation">Article</a> Redhat.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:2">
-<p>Apparmor Interactive Lab <a href="https://killercoda.com/killer-shell-cks/scenario/apparmor">Site</a> Killercoda.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-</ol>
-</div>
       
       
 

@@ -326,6 +326,9 @@ A manager heard you were the one that saved the new application by fixing the fi
 - Protect against attacks like SQL injection, XSS, and other web vulnerabilities.
 
 ### Q: 2. What are you going to do to figure out more?
+- Dedicate time to researching effective WAF solutions.
+- Identifying suitable solutions at 3 budget scales.
+- Try to understand the additional labour behind management additional tools.
 
 ### Q: 3. Prepare a report for them comparing it to the firewall you did in the first discussion.
 

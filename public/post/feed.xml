@@ -5,10 +5,311 @@
     <title>Posts on Tech Blog</title>
     <link>http://localhost:1313/techblog/post/</link>
     <description>Recent content in Posts on Tech Blog</description>
-    <generator>Hugo 0.135.0</generator>
+    <generator>Hugo 0.138.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 21 Oct 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 30 Oct 2024 00:00:00 +0000</lastBuildDate>
     <atom:link rel="self" href="http://localhost:1313/techblog/post/feed.xml" type="application/rss+xml" />
+    <item>
+      <title>ProLUG Admin Course Unit 8 🐧</title>
+      <link>http://localhost:1313/techblog/post/pacu8/</link>
+      <pubDate>Wed, 30 Oct 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/techblog/post/pacu8/</guid>
+      <description>&lt;h1 id=&#34;scripting-system-checks&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu8/#scripting-system-checks&#34;&gt;Scripting System Checks&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Once again beyond the Discussion Posts and Labbing. I spent a great deal of time scripting/programming System checks. After completing the labs which Bash Scripting and intro to &amp;lsquo;C&amp;rsquo;, I got really into GO as a system util. I have a particularly productive day with using the embed.fs feature of GO and packing unix system tools together in a single go program at compilation. I think there is a ton of potential here for my own uses. 👨‍🔧&lt;/p&gt;
+
+
+
+&lt;h2 id=&#34;discussion-post-1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu8/#discussion-post-1&#34;&gt;Discussion Post 1&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Scenario&lt;/p&gt;
+&lt;p&gt;It’s a 2-week holiday in your country, and most of the engineers and architects who designed the system are out of town. You’ve noticed a pattern of logs filling up on a set of web servers due to increased traffic. Research and verification show that the logs are being sent off in real time to Splunk. Your team has been deleting the logs every few days, but a 3rd-shift engineer missed this in the notes, causing downtime. How might you implement a simple fix to stop-gap the problem until all engineering resources return next week?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Resources Used&lt;/strong&gt;:&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;TryHackMe (Splunk) Intro&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Study Group discussion&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;ChatGPT&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Blogs:&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.nohl.eu/tech-resources/notes-to-linux/log-files-in-tmpfs-without-breaking-logging/&#34;&gt;Nohl&amp;rsquo;s Tech Resources: Log Files in tmpfs Without Breaking Logging&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://dietpi.com/docs/software/log_system/&#34;&gt;DietPi Documentation: Log System&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h4 id=&#34;why-cant-you-just-make-a-design-fix-and-add-space-in-varlog-on-all-these-systems&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu8/#why-cant-you-just-make-a-design-fix-and-add-space-in-varlog-on-all-these-systems&#34;&gt;Why can’t you just make a design fix and add space in /var/log on all these systems?&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;Adding more space to &lt;code&gt;/var/log&lt;/code&gt; might be a design fix, but it isn’t feasible in the short term due to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Operational Constraints&lt;/strong&gt;: Extending storage may involve downtime, additional permissions, or architectural changes that can’t be approved without the primary engineers.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Temporary Nature of the Fix&lt;/strong&gt;: Increasing space only delays the issue. If logs continue to grow, the problem will recur once space is exhausted again.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h4 id=&#34;why-cant-you-just-make-a-design-change-and-use-logrotate-more-frequently&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu8/#why-cant-you-just-make-a-design-change-and-use-logrotate-more-frequently&#34;&gt;Why can’t you just make a design change and use logrotate more frequently?&lt;/a&gt;
+&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Possibility of Log Loss&lt;/strong&gt;: Higher logrotate frequency could still miss high-frequency log spikes, especially during unusual traffic peaks, risking logs being deleted before Splunk ingestion is complete.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Configuration and Testing&lt;/strong&gt;: Aggressive logrotate adjustments may interfere with processes expecting logs at specific retention periods. Testing changes in production without key team members isn’t ideal.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h4 id=&#34;temporary-fix-options&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu8/#temporary-fix-options&#34;&gt;Temporary Fix Options&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;To address the issue, consider implementing a temporary fix by configuring a log retention policy that aggressively compresses or truncates logs without disrupting active processes. Here are some potential approaches:&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;implement-a-temporary-cron-job&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu8/#implement-a-temporary-cron-job&#34;&gt;Implement a Temporary &lt;strong&gt;Cron Job&lt;/strong&gt;&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Schedule a cron job to truncate logs on a more aggressive schedule without deleting them. For example:&lt;/p&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt; /var/log/access.log
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;sb&#34;&gt;```&lt;/span&gt;bash
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &amp;gt; /var/log/access.log&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This would empty the log file without removing it or impacting the active file descriptors held by any running processes.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;set-up-temporary-log-compression&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu8/#set-up-temporary-log-compression&#34;&gt;Set Up Temporary Log Compression&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Compress the logs after truncation if additional space savings are needed. Tools like gzip can compress logs efficiently, reducing disk space usage and ensuring logs are still accessible if required for audits or incident investigations.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;implement-a-ram-disk-for-temporary-logs&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu8/#implement-a-ram-disk-for-temporary-logs&#34;&gt;Implement a RAM Disk for Temporary Logs&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;As a short-term measure, you could set up a RAM disk for logs that don’t need long-term retention. This allows logs to be stored temporarily in memory, reducing disk space pressure. For instance&lt;/p&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  mount -t tmpfs -o &lt;span class=&#34;nv&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;512M tmpfs /var/log/temp&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;You could then configure lower-priority logs to write here temporarily, knowing they will be lost upon reboot, which may be acceptable in a crisis scenario.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;adjust-splunk-forwarder-configuration&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu8/#adjust-splunk-forwarder-configuration&#34;&gt;Adjust Splunk Forwarder Configuration:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;If possible, configure the Splunk forwarder to filter logs more aggressively, reducing the volume of logs that are retained on the system. The props.conf or inputs.conf files can be configured to forward logs without keeping local copies.&lt;/p&gt;
+&lt;p&gt;Adding more space to /var/log might be a design fix, but it isn’t feasible in the short term due to the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Operational Constraints: Extending storage could involve downtime, additional permissions, or changes that require architectural decisions that can’t be made without the primary engineers.&lt;/li&gt;
+&lt;li&gt;Temporary Nature of the Fix: Increasing space only delays the issue rather than preventing it. If the logs keep growing, the problem will recur once space runs out again.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 id=&#34;discussion-post-2&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu8/#discussion-post-2&#34;&gt;Discussion Post 2&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;You are the only Linux Administrator at a small healthcare company. The engineer/admin before you left you a lot of scripts to untangle. This is one of our many tasks as administrators, so you set out to accomplish it. You start to notice that he only ever uses nested if statements in bash. You also notice that every loop is a conditional &lt;code&gt;while true&lt;/code&gt; and then he breaks the loop after a decision test each loop. You know his stuff works, but you think it could be more easily written for supportability, for you and future admins. You decide to write up some notes by reading some google, AI, and talking to your peers.&lt;/p&gt;
+&lt;p&gt;Compare the use of nested if versus case statement in bash.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Nested if statements are useful for situations where each condition depends on the result of the previous test, requiring a hierarchy or sequence.&lt;/li&gt;
+&lt;li&gt;A case statement is ideal for handling multiple discrete values of a variable, especially if there are many possible branches. It’s typically cleaner and more readable than a nested if.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Compare the use of conditional and counting loops. Under what circumstances&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Use conditional loops (while) when you don’t know the number of iterations in advance and need to loop based on conditions.&lt;/li&gt;
+&lt;li&gt;Use counting loops (for) when you have a set number of iterations or are working with a list. This structure is clearer and prevents issues that may arise from unintentional infinite loops.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;would you use one or the other?&lt;/p&gt;
+&lt;p&gt;optimizing or refactoring Bash scripts the Engineer had left me.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I would replace nested if statements with case statements when possible to improve readability, especially when handling multiple discrete values.&lt;/li&gt;
+&lt;li&gt;Of course, I would comment things for added communication/ maintainability.&lt;/li&gt;
+&lt;li&gt;I would Limit while true loops to cases where no predictable count or list is available. Clearly define a break condition early to avoid infinite loops.&lt;/li&gt;
+&lt;li&gt;I would Use for loops for counting or iterating over arrays or lists, as they provide a clean structure with known iteration limits.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+
+
+
+&lt;h3 id=&#34;prolug-links-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu8/#prolug-links-&#34;&gt;ProLUG Links ⛓️&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Discord: &lt;a href=&#34;https://discord.com/invite/m6VPPD9usw&#34;&gt;https://discord.com/invite/m6VPPD9usw&lt;/a&gt;
+Youtube: &lt;a href=&#34;https://www.youtube.com/@het_tanis8213&#34;&gt;https://www.youtube.com/@het_tanis8213&lt;/a&gt;
+Twitch: &lt;a href=&#34;https://www.twitch.tv/het_tanis&#34;&gt;https://www.twitch.tv/het_tanis&lt;/a&gt;
+ProLUG Book: &lt;a href=&#34;https://leanpub.com/theprolugbigbookoflabs&#34;&gt;https://leanpub.com/theprolugbigbookoflabs&lt;/a&gt;
+KillerCoda: &lt;a href=&#34;https://killercoda.com/het-tanis&#34;&gt;https://killercoda.com/het-tanis&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>ProLUG Admin Course Unit 7 🐧</title>
+      <link>http://localhost:1313/techblog/post/pacu7/</link>
+      <pubDate>Sun, 27 Oct 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/techblog/post/pacu7/</guid>
+      <description>&lt;h1 id=&#34;security&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu7/#security&#34;&gt;Security&lt;/a&gt;
+&lt;/h1&gt;
+
+
+
+&lt;h2 id=&#34;patching-the-system-package-management&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu7/#patching-the-system-package-management&#34;&gt;Patching the system/ Package Management&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;yum-dnf-rpm&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu7/#yum-dnf-rpm&#34;&gt;yum, dnf, rpm&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://trevorsmale.github.io/techblog/images/PACU7/CatPackage.jpg&#34; alt=&#34;Packaged Cat&#34;&gt;&lt;/p&gt;
+&lt;p&gt;As the course progresses, I am learning more deeply within a study group. Aside from the lab work and discussion posts. I have been putting a lot of hours satisfying curiosities regarding the linux system.
+For this unit we did a deep dive into packaging, going so far as to look at the history and reasoning before decision making. We had also looked at packages are managed within tightly controlled environments.
+I now feel that I have a robust understanding of the theory and practical elements of Redhat packaging and beyond.&lt;/p&gt;
+
+
+
+&lt;h2 id=&#34;discussion-post-1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu7/#discussion-post-1&#34;&gt;Discussion Post 1:&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Why software versioning is important. 🤔&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Versioning enables you to monitor software updates systematically, making it easier to troubleshoot, roll back changes, and trace modifications for security or functionality purposes. 👍&lt;/li&gt;
+&lt;li&gt;One can manage dependencies confidently, avoiding conflicts between system components, libraries, and tools. crucial for stable and consistent deployments. 👍&lt;/li&gt;
+&lt;li&gt;We can verify package integrity, ensuring installed software hasn’t been altered or corrupted. Essential for maintaining a secure and stable system environment. 👍&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;h2 id=&#34;discussion-post-2&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu7/#discussion-post-2&#34;&gt;Discussion Post 2:&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;scenario&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu7/#scenario&#34;&gt;Scenario:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;You are new to a Linux team. A ticket has come in from an application team and has already been escalated to your manager. They want software installed on one of their servers but you cannot find any documentation and your security team is out to lunch and not responding. You remember from some early documentation that you read that all the software in the internal repos you currently have are approved for deployment on servers. You want to also verify by checking other servers that this software exists. This is an urgent ask and your manager is hovering.
+How can you check all the repos on your system to see which are active? 🤔
+How would you check another server to see if the software was installed there? 🤔
+If you find the software, how might you figure out when it was installed? (Time/Date) 🤔&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;answer&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu7/#answer&#34;&gt;Answer:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;In an urgent situation like this, I’d first check which approved software repositories are active on my system,
+then verify if the software is already installed on similar servers to ensure it’s safe to proceed. Finally, I’d review the installation history to confirm when it was
+added. Working with Red Hat packaging and package management systems has many more options than I was expecting; through labbing in the study group,
+I’ve gained a much better understanding of packages, dependencies, and package management.&lt;/p&gt;
+&lt;p&gt;Packing was a pretty deep rabbit hole for me.&lt;/p&gt;
+&lt;p&gt;This is the process I&amp;rsquo;d follow for this case:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Check Active Repositories
+dnf repolist&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Check if the Software is Installed on Your System
+rpm -qa | grep &amp;lt;software_name&amp;gt;
+or
+dnf list installed &amp;lt;software_name&amp;gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Check Another Server for Software Installation with SSH and Step 2 commands.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;View Installation History (Time/Date)&lt;/p&gt;
+&lt;p&gt;dnf history info &amp;lt;transaction_id&amp;gt;
+dnf history list &amp;lt;software_name&amp;gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;discussion-post-3&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu7/#discussion-post-3&#34;&gt;Discussion Post 3&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;(After you have completed the lab) - Looking at the concept of group install from DNF or Yum. Why do you think an administrator may never want to use that in a running system? Why might an engineer want to or not want to use that? This is a thought exercise, so it’s not a “right or wrong” answer it’s for you to think about.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;question&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu7/#question&#34;&gt;Question:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;What is the concept of software bloat, and how do you think it relates?&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;answer-1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu7/#answer-1&#34;&gt;Answer:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Software bloat is when essential tools/packages are larger than they need to be, effecting performance, reliability and security. By performance I am referring to the loss of potential performance from unessecary resource use. In regards to reliability, more complex systems inherently have more potential to fail. Security means many things, so I am specifically thinking about attack surface and potential for vulnerability due to the aforementioned complexity.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;question-1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu7/#question-1&#34;&gt;Question:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;What is the concept of a security baseline, and how do you think it relates?&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;answer-2&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu7/#answer-2&#34;&gt;Answer:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;A set of minimum security standards and controls that organizations implement to protect systems.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;question-2&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu7/#question-2&#34;&gt;Question:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;How do you think something like this affects performance baselines?&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;answer-3&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu7/#answer-3&#34;&gt;Answer:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;By targeting specific packages, tracking changes, reducing unnessecary dependancies and bloat, we satisfy the tenants of a security baseline by establishing consistency, simplifying compliance, enhancing efficiency and reduce risk.&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h3 id=&#34;prolug-links-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu7/#prolug-links-&#34;&gt;ProLUG Links ⛓️&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Discord: &lt;a href=&#34;https://discord.com/invite/m6VPPD9usw&#34;&gt;https://discord.com/invite/m6VPPD9usw&lt;/a&gt;
+Youtube: &lt;a href=&#34;https://www.youtube.com/@het_tanis8213&#34;&gt;https://www.youtube.com/@het_tanis8213&lt;/a&gt;
+Twitch: &lt;a href=&#34;https://www.twitch.tv/het_tanis&#34;&gt;https://www.twitch.tv/het_tanis&lt;/a&gt;
+ProLUG Book: &lt;a href=&#34;https://leanpub.com/theprolugbigbookoflabs&#34;&gt;https://leanpub.com/theprolugbigbookoflabs&lt;/a&gt;
+KillerCoda: &lt;a href=&#34;https://killercoda.com/het-tanis&#34;&gt;https://killercoda.com/het-tanis&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>ProLUG Admin Course Unit 6 🐧</title>
       <link>http://localhost:1313/techblog/post/pacu6/</link>
@@ -517,6 +818,11 @@ So this became a research and practice exercise that has shown me quite a lot of
 &lt;h3 id=&#34;q-2-what-are-you-going-to-do-to-figure-out-more&#34;&gt;
   &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu6/#q-2-what-are-you-going-to-do-to-figure-out-more&#34;&gt;Q: 2. What are you going to do to figure out more?&lt;/a&gt;
 &lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Dedicate time to researching effective WAF solutions.&lt;/li&gt;
+&lt;li&gt;Identifying suitable solutions at 3 budget scales.&lt;/li&gt;
+&lt;li&gt;Try to understand the additional labour behind management additional tools.&lt;/li&gt;
+&lt;/ul&gt;
 
 
 
@@ -638,36 +944,36 @@ So this became a research and practice exercise that has shown me quite a lot of
 &lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;Feature&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;Traditional Firewall&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;Web Application Firewall (WAF)&lt;/th&gt;
+          &lt;th&gt;Feature&lt;/th&gt;
+          &lt;th&gt;Traditional Firewall&lt;/th&gt;
+          &lt;th&gt;Web Application Firewall (WAF)&lt;/th&gt;
       &lt;/tr&gt;
   &lt;/thead&gt;
   &lt;tbody&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Layer&lt;/strong&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Network (Layer 3/4)&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Application (Layer 7)&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;Layer&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Network (Layer 3/4)&lt;/td&gt;
+          &lt;td&gt;Application (Layer 7)&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Traffic Type&lt;/strong&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;IP, ports, protocols&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;HTTP/HTTPS, web requests&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;Traffic Type&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;IP, ports, protocols&lt;/td&gt;
+          &lt;td&gt;HTTP/HTTPS, web requests&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Use Case&lt;/strong&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;General network security&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Web application protection&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;Use Case&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;General network security&lt;/td&gt;
+          &lt;td&gt;Web application protection&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Threat Coverage&lt;/strong&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Blocks IP-based threats&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Mitigates web vulnerabilities (SQLi, XSS)&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;Threat Coverage&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Blocks IP-based threats&lt;/td&gt;
+          &lt;td&gt;Mitigates web vulnerabilities (SQLi, XSS)&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Cost&lt;/strong&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Typically lower&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Generally higher due to specialized focus&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;Cost&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Typically lower&lt;/td&gt;
+          &lt;td&gt;Generally higher due to specialized focus&lt;/td&gt;
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
@@ -1017,111 +1323,111 @@ Well is actually a form of &lt;strong&gt;Funny Bizniz&lt;/strong&gt; wherein SYN
 &lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;#&lt;/strong&gt;&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Command&lt;/strong&gt;&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;#&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;Command&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/th&gt;
       &lt;/tr&gt;
   &lt;/thead&gt;
   &lt;tbody&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;1&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap -sS &amp;lt;target&amp;gt;&lt;/code&gt; 🥷&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;TCP SYN scan (stealth mode)&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;nmap -sS &amp;lt;target&amp;gt;&lt;/code&gt; 🥷&lt;/td&gt;
+          &lt;td&gt;TCP SYN scan (stealth mode)&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;2&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap -sT &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;TCP connect scan (full connection)&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;nmap -sT &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;TCP connect scan (full connection)&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;3&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap -sA &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;ACK scan to detect firewalls&lt;/td&gt;
+          &lt;td&gt;3&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;nmap -sA &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;ACK scan to detect firewalls&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;4&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap -sU &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;UDP scan&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;nmap -sU &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;UDP scan&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;5&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap -sP &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Ping scan to detect live hosts&lt;/td&gt;
+          &lt;td&gt;5&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;nmap -sP &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Ping scan to detect live hosts&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;6&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap -sV &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Detect service versions on open ports&lt;/td&gt;
+          &lt;td&gt;6&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;nmap -sV &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Detect service versions on open ports&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;7&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap -O &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;OS detection&lt;/td&gt;
+          &lt;td&gt;7&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;nmap -O &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;OS detection&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;8&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap -A &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Aggressive scan (OS, version, scripts)&lt;/td&gt;
+          &lt;td&gt;8&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;nmap -A &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Aggressive scan (OS, version, scripts)&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;9&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap -Pn &amp;lt;target&amp;gt;&lt;/code&gt; 🥷&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Disable ping (stealthy, avoid detection)&lt;/td&gt;
+          &lt;td&gt;9&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;nmap -Pn &amp;lt;target&amp;gt;&lt;/code&gt; 🥷&lt;/td&gt;
+          &lt;td&gt;Disable ping (stealthy, avoid detection)&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;10&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap -p- &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Scan all 65,535 TCP ports&lt;/td&gt;
+          &lt;td&gt;10&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;nmap -p- &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Scan all 65,535 TCP ports&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;11&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap --top-ports 100 &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Scan the top 100 most common ports&lt;/td&gt;
+          &lt;td&gt;11&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;nmap --top-ports 100 &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Scan the top 100 most common ports&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;12&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap --script &amp;lt;script&amp;gt; &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Use Nmap scripts for detailed scanning&lt;/td&gt;
+          &lt;td&gt;12&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;nmap --script &amp;lt;script&amp;gt; &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Use Nmap scripts for detailed scanning&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;13&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap -sC &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Run default NSE scripts&lt;/td&gt;
+          &lt;td&gt;13&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;nmap -sC &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Run default NSE scripts&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;14&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap -sW &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;TCP window scan&lt;/td&gt;
+          &lt;td&gt;14&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;nmap -sW &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;TCP window scan&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;15&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap -T4 &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Faster scan using timing template T4&lt;/td&gt;
+          &lt;td&gt;15&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;nmap -T4 &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Faster scan using timing template T4&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;16&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap -v &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Enable verbose output&lt;/td&gt;
+          &lt;td&gt;16&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;nmap -v &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Enable verbose output&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;17&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap -oN scan.txt &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Save output in normal format&lt;/td&gt;
+          &lt;td&gt;17&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;nmap -oN scan.txt &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Save output in normal format&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;18&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap -oX scan.xml &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Save output in XML format&lt;/td&gt;
+          &lt;td&gt;18&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;nmap -oX scan.xml &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Save output in XML format&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;19&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap -6 &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Scan IPv6 targets&lt;/td&gt;
+          &lt;td&gt;19&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;nmap -6 &amp;lt;target&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Scan IPv6 targets&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;20&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;nmap -D RND:10 &amp;lt;target&amp;gt;&lt;/code&gt; 🥷&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Decoy scan to mask source of scan&lt;/td&gt;
+          &lt;td&gt;20&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;nmap -D RND:10 &amp;lt;target&amp;gt;&lt;/code&gt; 🥷&lt;/td&gt;
+          &lt;td&gt;Decoy scan to mask source of scan&lt;/td&gt;
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
@@ -2021,24 +2327,24 @@ whoami # Just lists your user name
 &lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;Command&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;Information Provided&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;Key Focus&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;Use Case&lt;/th&gt;
+          &lt;th&gt;Command&lt;/th&gt;
+          &lt;th&gt;Information Provided&lt;/th&gt;
+          &lt;th&gt;Key Focus&lt;/th&gt;
+          &lt;th&gt;Use Case&lt;/th&gt;
       &lt;/tr&gt;
   &lt;/thead&gt;
   &lt;tbody&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;who&lt;/code&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Basic info about logged-in users (username, terminal, login time, remote host)&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Simple listing of users currently logged in&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Quick check on who is logged in&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;who&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Basic info about logged-in users (username, terminal, login time, remote host)&lt;/td&gt;
+          &lt;td&gt;Simple listing of users currently logged in&lt;/td&gt;
+          &lt;td&gt;Quick check on who is logged in&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;w&lt;/code&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Detailed info about logged-in users, system load, idle time, and active processes&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Who is logged in and what they are doing, with system load info&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;System monitoring and activity tracking&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;w&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Detailed info about logged-in users, system load, idle time, and active processes&lt;/td&gt;
+          &lt;td&gt;Who is logged in and what they are doing, with system load info&lt;/td&gt;
+          &lt;td&gt;System monitoring and activity tracking&lt;/td&gt;
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
@@ -3536,69 +3842,69 @@ Volume group &amp;ldquo;examplegroup&amp;rdquo; successfully created&lt;/p&gt;
 &lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;VG&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;LV&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;FS&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;Size&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;UUID Short&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;Snapshot&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;Snapshot UUID Short&lt;/th&gt;
+          &lt;th&gt;VG&lt;/th&gt;
+          &lt;th&gt;LV&lt;/th&gt;
+          &lt;th&gt;FS&lt;/th&gt;
+          &lt;th&gt;Size&lt;/th&gt;
+          &lt;th&gt;UUID Short&lt;/th&gt;
+          &lt;th&gt;Snapshot&lt;/th&gt;
+          &lt;th&gt;Snapshot UUID Short&lt;/th&gt;
       &lt;/tr&gt;
   &lt;/thead&gt;
   &lt;tbody&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;vg_data&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;lv_root&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;XFS&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;50 GB&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;f4d1-91e5-bb37&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;None&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;N/A&lt;/td&gt;
+          &lt;td&gt;vg_data&lt;/td&gt;
+          &lt;td&gt;lv_root&lt;/td&gt;
+          &lt;td&gt;XFS&lt;/td&gt;
+          &lt;td&gt;50 GB&lt;/td&gt;
+          &lt;td&gt;f4d1-91e5-bb37&lt;/td&gt;
+          &lt;td&gt;None&lt;/td&gt;
+          &lt;td&gt;N/A&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;vg_data&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;lv_home&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;XFS&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;100 GB&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;a123-c567-8901&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;snap_home&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;abcd-ef56-7890&lt;/td&gt;
+          &lt;td&gt;vg_data&lt;/td&gt;
+          &lt;td&gt;lv_home&lt;/td&gt;
+          &lt;td&gt;XFS&lt;/td&gt;
+          &lt;td&gt;100 GB&lt;/td&gt;
+          &lt;td&gt;a123-c567-8901&lt;/td&gt;
+          &lt;td&gt;snap_home&lt;/td&gt;
+          &lt;td&gt;abcd-ef56-7890&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;vg_data&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;lv_var&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;ext4&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;20 GB&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;c9d8-89e0-f9a1&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;None&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;N/A&lt;/td&gt;
+          &lt;td&gt;vg_data&lt;/td&gt;
+          &lt;td&gt;lv_var&lt;/td&gt;
+          &lt;td&gt;ext4&lt;/td&gt;
+          &lt;td&gt;20 GB&lt;/td&gt;
+          &lt;td&gt;c9d8-89e0-f9a1&lt;/td&gt;
+          &lt;td&gt;None&lt;/td&gt;
+          &lt;td&gt;N/A&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;vg_data&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;lv_backup&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;ext4&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;150 GB&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;f129-bc97-f134&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;snap_backup&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;f7d8-a67e-f765&lt;/td&gt;
+          &lt;td&gt;vg_data&lt;/td&gt;
+          &lt;td&gt;lv_backup&lt;/td&gt;
+          &lt;td&gt;ext4&lt;/td&gt;
+          &lt;td&gt;150 GB&lt;/td&gt;
+          &lt;td&gt;f129-bc97-f134&lt;/td&gt;
+          &lt;td&gt;snap_backup&lt;/td&gt;
+          &lt;td&gt;f7d8-a67e-f765&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;vg_data&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;lv_logs&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;XFS&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;10 GB&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;e123-9abc-e1d4&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;None&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;N/A&lt;/td&gt;
+          &lt;td&gt;vg_data&lt;/td&gt;
+          &lt;td&gt;lv_logs&lt;/td&gt;
+          &lt;td&gt;XFS&lt;/td&gt;
+          &lt;td&gt;10 GB&lt;/td&gt;
+          &lt;td&gt;e123-9abc-e1d4&lt;/td&gt;
+          &lt;td&gt;None&lt;/td&gt;
+          &lt;td&gt;N/A&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;vg_storage&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;lv_media&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;ext4&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;200 GB&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;bc97-bc9e-5612&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;snap_media&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;d98f-9e67-1cd2&lt;/td&gt;
+          &lt;td&gt;vg_storage&lt;/td&gt;
+          &lt;td&gt;lv_media&lt;/td&gt;
+          &lt;td&gt;ext4&lt;/td&gt;
+          &lt;td&gt;200 GB&lt;/td&gt;
+          &lt;td&gt;bc97-bc9e-5612&lt;/td&gt;
+          &lt;td&gt;snap_media&lt;/td&gt;
+          &lt;td&gt;d98f-9e67-1cd2&lt;/td&gt;
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
@@ -3653,60 +3959,60 @@ Volume group &amp;ldquo;examplegroup&amp;rdquo; successfully created&lt;/p&gt;
 &lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;RAID Level&lt;/strong&gt;&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Performance&lt;/strong&gt;&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Redundancy&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;RAID Level&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;Performance&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;Redundancy&lt;/strong&gt;&lt;/th&gt;
       &lt;/tr&gt;
   &lt;/thead&gt;
   &lt;tbody&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;RAID 0&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Data striping without parity or mirroring.&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;High (fast read/write speeds)&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;None (no redundancy)&lt;/td&gt;
+          &lt;td&gt;RAID 0&lt;/td&gt;
+          &lt;td&gt;Data striping without parity or mirroring.&lt;/td&gt;
+          &lt;td&gt;High (fast read/write speeds)&lt;/td&gt;
+          &lt;td&gt;None (no redundancy)&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;RAID 1&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Mirroring of data across two or more disks.&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Moderate (read speed improves, write speed similar to single disk)&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;High (data is mirrored)&lt;/td&gt;
+          &lt;td&gt;RAID 1&lt;/td&gt;
+          &lt;td&gt;Mirroring of data across two or more disks.&lt;/td&gt;
+          &lt;td&gt;Moderate (read speed improves, write speed similar to single disk)&lt;/td&gt;
+          &lt;td&gt;High (data is mirrored)&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;RAID 5&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Block-level striping with distributed parity.&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Moderate (improved read speeds, slower writes due to parity calculation)&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Moderate (can tolerate 1 disk failure)&lt;/td&gt;
+          &lt;td&gt;RAID 5&lt;/td&gt;
+          &lt;td&gt;Block-level striping with distributed parity.&lt;/td&gt;
+          &lt;td&gt;Moderate (improved read speeds, slower writes due to parity calculation)&lt;/td&gt;
+          &lt;td&gt;Moderate (can tolerate 1 disk failure)&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;RAID 6&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Block-level striping with dual parity.&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Moderate (similar to RAID 5, but slower writes)&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;High (can tolerate 2 disk failures)&lt;/td&gt;
+          &lt;td&gt;RAID 6&lt;/td&gt;
+          &lt;td&gt;Block-level striping with dual parity.&lt;/td&gt;
+          &lt;td&gt;Moderate (similar to RAID 5, but slower writes)&lt;/td&gt;
+          &lt;td&gt;High (can tolerate 2 disk failures)&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;RAID 10&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Striping across mirrored sets (combines RAID 1 and RAID 0).&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;High (fast read/write due to striping and redundancy)&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;High (can tolerate multiple disk failures depending on which disks fail)&lt;/td&gt;
+          &lt;td&gt;RAID 10&lt;/td&gt;
+          &lt;td&gt;Striping across mirrored sets (combines RAID 1 and RAID 0).&lt;/td&gt;
+          &lt;td&gt;High (fast read/write due to striping and redundancy)&lt;/td&gt;
+          &lt;td&gt;High (can tolerate multiple disk failures depending on which disks fail)&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;RAID 50&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;RAID 5 arrays striped (combines RAID 5 and RAID 0).&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;High (fast read speeds, but slower writes)&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Moderate (can tolerate up to 1 disk failure in each RAID 5 array)&lt;/td&gt;
+          &lt;td&gt;RAID 50&lt;/td&gt;
+          &lt;td&gt;RAID 5 arrays striped (combines RAID 5 and RAID 0).&lt;/td&gt;
+          &lt;td&gt;High (fast read speeds, but slower writes)&lt;/td&gt;
+          &lt;td&gt;Moderate (can tolerate up to 1 disk failure in each RAID 5 array)&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;RAID 60&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;RAID 6 arrays striped (combines RAID 6 and RAID 0).&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;High (fast reads, slower writes due to dual parity)&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Very High (can tolerate up to 2 disk failures in each RAID 6 array)&lt;/td&gt;
+          &lt;td&gt;RAID 60&lt;/td&gt;
+          &lt;td&gt;RAID 6 arrays striped (combines RAID 6 and RAID 0).&lt;/td&gt;
+          &lt;td&gt;High (fast reads, slower writes due to dual parity)&lt;/td&gt;
+          &lt;td&gt;Very High (can tolerate up to 2 disk failures in each RAID 6 array)&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;RAID 1+0&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Nested RAID 1 over RAID 0 (mirroring across striped sets).&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;High (similar to RAID 10)&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;High (similar to RAID 10)&lt;/td&gt;
+          &lt;td&gt;RAID 1+0&lt;/td&gt;
+          &lt;td&gt;Nested RAID 1 over RAID 0 (mirroring across striped sets).&lt;/td&gt;
+          &lt;td&gt;High (similar to RAID 10)&lt;/td&gt;
+          &lt;td&gt;High (similar to RAID 10)&lt;/td&gt;
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
@@ -3777,70 +4083,70 @@ Advantages:&lt;/p&gt;
 &lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;Year&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;Milestone&lt;/th&gt;
+          &lt;th&gt;Year&lt;/th&gt;
+          &lt;th&gt;Milestone&lt;/th&gt;
       &lt;/tr&gt;
   &lt;/thead&gt;
   &lt;tbody&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;1993&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;ext2&lt;/strong&gt; filesystem development begins.&lt;/td&gt;
+          &lt;td&gt;1993&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;ext2&lt;/strong&gt; filesystem development begins.&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;1994&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;ext2&lt;/strong&gt; released with Linux Kernel 1.0.&lt;/td&gt;
+          &lt;td&gt;1994&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;ext2&lt;/strong&gt; released with Linux Kernel 1.0.&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;1994&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;XFS&lt;/strong&gt; first developed by SGI for IRIX.&lt;/td&gt;
+          &lt;td&gt;1994&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;XFS&lt;/strong&gt; first developed by SGI for IRIX.&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;2001&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;ext3&lt;/strong&gt; released, introducing journaling.&lt;/td&gt;
+          &lt;td&gt;2001&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;ext3&lt;/strong&gt; released, introducing journaling.&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;2001&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;XFS&lt;/strong&gt; ported to Linux.&lt;/td&gt;
+          &lt;td&gt;2001&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;XFS&lt;/strong&gt; ported to Linux.&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;2006&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Development of &lt;strong&gt;ext4&lt;/strong&gt; begins to extend the capabilities of ext3.&lt;/td&gt;
+          &lt;td&gt;2006&lt;/td&gt;
+          &lt;td&gt;Development of &lt;strong&gt;ext4&lt;/strong&gt; begins to extend the capabilities of ext3.&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;2007&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;BTRFs&lt;/strong&gt; development announced by Oracle.&lt;/td&gt;
+          &lt;td&gt;2007&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;BTRFs&lt;/strong&gt; development announced by Oracle.&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;2008&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;ext4&lt;/strong&gt; marked as stable in Linux Kernel 2.6.28.&lt;/td&gt;
+          &lt;td&gt;2008&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;ext4&lt;/strong&gt; marked as stable in Linux Kernel 2.6.28.&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;2009&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;BTRFs&lt;/strong&gt; included in Linux Kernel 2.6.29 as an experimental filesystem.&lt;/td&gt;
+          &lt;td&gt;2009&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;BTRFs&lt;/strong&gt; included in Linux Kernel 2.6.29 as an experimental filesystem.&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;2009&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;XFS&lt;/strong&gt; officially included in Linux Kernel 2.6.36.&lt;/td&gt;
+          &lt;td&gt;2009&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;XFS&lt;/strong&gt; officially included in Linux Kernel 2.6.36.&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;2010&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;ext4&lt;/strong&gt; becomes the default filesystem for many Linux distributions, including Ubuntu and Fedora.&lt;/td&gt;
+          &lt;td&gt;2010&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;ext4&lt;/strong&gt; becomes the default filesystem for many Linux distributions, including Ubuntu and Fedora.&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;2012&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;BTRFs&lt;/strong&gt; adopted by SUSE Linux Enterprise Server.&lt;/td&gt;
+          &lt;td&gt;2012&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;BTRFs&lt;/strong&gt; adopted by SUSE Linux Enterprise Server.&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;2014&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;XFS&lt;/strong&gt; becomes the default filesystem in &lt;strong&gt;RHEL 7&lt;/strong&gt;.&lt;/td&gt;
+          &lt;td&gt;2014&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;XFS&lt;/strong&gt; becomes the default filesystem in &lt;strong&gt;RHEL 7&lt;/strong&gt;.&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;2014&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Fedora starts offering &lt;strong&gt;BTRFs&lt;/strong&gt; as an option.&lt;/td&gt;
+          &lt;td&gt;2014&lt;/td&gt;
+          &lt;td&gt;Fedora starts offering &lt;strong&gt;BTRFs&lt;/strong&gt; as an option.&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;2020&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Fedora 33 makes &lt;strong&gt;BTRFs&lt;/strong&gt; the default filesystem.&lt;/td&gt;
+          &lt;td&gt;2020&lt;/td&gt;
+          &lt;td&gt;Fedora 33 makes &lt;strong&gt;BTRFs&lt;/strong&gt; the default filesystem.&lt;/td&gt;
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
@@ -5224,27 +5530,27 @@ SELINUX operating modes -&lt;/p&gt;
 &lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;Technology&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;Type Enforcement&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;MLS/MCS&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;Policy Generator&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;Generator for Containers&lt;/th&gt;
+          &lt;th&gt;Technology&lt;/th&gt;
+          &lt;th&gt;Type Enforcement&lt;/th&gt;
+          &lt;th&gt;MLS/MCS&lt;/th&gt;
+          &lt;th&gt;Policy Generator&lt;/th&gt;
+          &lt;th&gt;Generator for Containers&lt;/th&gt;
       &lt;/tr&gt;
   &lt;/thead&gt;
   &lt;tbody&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;AppArmor&lt;/strong&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Yes&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;No&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Yes&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;No&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;AppArmor&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Yes&lt;/td&gt;
+          &lt;td&gt;No&lt;/td&gt;
+          &lt;td&gt;Yes&lt;/td&gt;
+          &lt;td&gt;No&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;SELinux&lt;/strong&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Yes&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Yes&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;No*&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Yes&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;SELinux&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Yes&lt;/td&gt;
+          &lt;td&gt;Yes&lt;/td&gt;
+          &lt;td&gt;No*&lt;/td&gt;
+          &lt;td&gt;Yes&lt;/td&gt;
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
@@ -5686,90 +5992,90 @@ KillerCoda: &lt;a href=&#34;https://killercoda.com/het-tanis&#34;&gt;https://kil
 &lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Skill&lt;/strong&gt;&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;High (8-10)&lt;/strong&gt;&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Mid (4-7)&lt;/strong&gt;&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Low (0-3)&lt;/strong&gt;&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Total&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;Skill&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;High (8-10)&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;Mid (4-7)&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;Low (0-3)&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;Total&lt;/strong&gt;&lt;/th&gt;
       &lt;/tr&gt;
   &lt;/thead&gt;
   &lt;tbody&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Linux&lt;/strong&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;-&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;6&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;-&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;Linux&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;-&lt;/td&gt;
+          &lt;td&gt;6&lt;/td&gt;
+          &lt;td&gt;-&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Storage&lt;/strong&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;-&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;5&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;-&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;Storage&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;-&lt;/td&gt;
+          &lt;td&gt;5&lt;/td&gt;
+          &lt;td&gt;-&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Security&lt;/strong&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;-&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;6&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;-&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;Security&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;-&lt;/td&gt;
+          &lt;td&gt;6&lt;/td&gt;
+          &lt;td&gt;-&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Networking&lt;/strong&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;-&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;-&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;3&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;Networking&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;-&lt;/td&gt;
+          &lt;td&gt;-&lt;/td&gt;
+          &lt;td&gt;3&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Git&lt;/strong&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;-&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;7&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;-&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;Git&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;-&lt;/td&gt;
+          &lt;td&gt;7&lt;/td&gt;
+          &lt;td&gt;-&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Automation&lt;/strong&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;-&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;5&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;-&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;Automation&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;-&lt;/td&gt;
+          &lt;td&gt;5&lt;/td&gt;
+          &lt;td&gt;-&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Monitoring&lt;/strong&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;-&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;-&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;3&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;Monitoring&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;-&lt;/td&gt;
+          &lt;td&gt;-&lt;/td&gt;
+          &lt;td&gt;3&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Database&lt;/strong&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;-&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;4&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;-&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;Database&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;-&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+          &lt;td&gt;-&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Cloud&lt;/strong&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;-&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;6&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;-&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;Cloud&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;-&lt;/td&gt;
+          &lt;td&gt;6&lt;/td&gt;
+          &lt;td&gt;-&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Kubernetes&lt;/strong&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;-&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;-&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;3&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;Kubernetes&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;-&lt;/td&gt;
+          &lt;td&gt;-&lt;/td&gt;
+          &lt;td&gt;3&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Total&lt;/strong&gt;&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;-&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;-&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;-&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;48&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;Total&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;-&lt;/td&gt;
+          &lt;td&gt;-&lt;/td&gt;
+          &lt;td&gt;-&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;48&lt;/strong&gt;&lt;/td&gt;
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;

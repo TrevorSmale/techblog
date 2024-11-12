@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/techblog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=techblog/livereload" data-no-instant defer></script>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <meta name="description" content="ProLUG Admin Course Unit 8">
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.138.0">
+  <title>ProLUG Admin Course Unit 8 🐧 | Tech Blog</title>
+  <link rel="canonical" href="http://localhost:1313/techblog/post/pacu8/">
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+    <link rel="stylesheet" href="/techblog/css/base.css">
+
+    <link rel="stylesheet" href="/techblog/css/syntax.css">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <a class="Banner-link u-clickable" href="/techblog/">Tech Blog</a>
+      </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/about/">About</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/post/">Posts</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/tags/">Tags</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/categories/">Categories</a>
+        </li>
+      
+        
+        
+          
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/feed.xml">RSS</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/pacu8/" rel="bookmark">ProLUG Admin Course Unit 8 🐧</a>
+  </h1>
+  
+    <time datetime="2024-10-30T00:00:00Z">October 30, 2024</time>
+  
+</header>
+  <h1 id="scripting-system-checks">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu8/#scripting-system-checks">Scripting System Checks</a>
+</h1>
+<p>Once again beyond the Discussion Posts and Labbing. I spent a great deal of time scripting/programming System checks. After completing the labs which Bash Scripting and intro to &lsquo;C&rsquo;, I got really into GO as a system util. I have a particularly productive day with using the embed.fs feature of GO and packing unix system tools together in a single go program at compilation. I think there is a ton of potential here for my own uses. 👨‍🔧</p>
+
+
+
+<h2 id="discussion-post-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu8/#discussion-post-1">Discussion Post 1</a>
+</h2>
+<p>Scenario</p>
+<p>It’s a 2-week holiday in your country, and most of the engineers and architects who designed the system are out of town. You’ve noticed a pattern of logs filling up on a set of web servers due to increased traffic. Research and verification show that the logs are being sent off in real time to Splunk. Your team has been deleting the logs every few days, but a 3rd-shift engineer missed this in the notes, causing downtime. How might you implement a simple fix to stop-gap the problem until all engineering resources return next week?</p>
+<ul>
+<li>
+<p><strong>Resources Used</strong>:</p>
+</li>
+<li>
+<p>TryHackMe (Splunk) Intro</p>
+</li>
+<li>
+<p>Study Group discussion</p>
+</li>
+<li>
+<p>ChatGPT</p>
+</li>
+<li>
+<p>Blogs:</p>
+</li>
+<li>
+<p><a href="https://www.nohl.eu/tech-resources/notes-to-linux/log-files-in-tmpfs-without-breaking-logging/">Nohl&rsquo;s Tech Resources: Log Files in tmpfs Without Breaking Logging</a></p>
+</li>
+<li>
+<p><a href="https://dietpi.com/docs/software/log_system/">DietPi Documentation: Log System</a></p>
+</li>
+</ul>
+
+
+
+<h4 id="why-cant-you-just-make-a-design-fix-and-add-space-in-varlog-on-all-these-systems">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu8/#why-cant-you-just-make-a-design-fix-and-add-space-in-varlog-on-all-these-systems">Why can’t you just make a design fix and add space in /var/log on all these systems?</a>
+</h4>
+<p>Adding more space to <code>/var/log</code> might be a design fix, but it isn’t feasible in the short term due to:</p>
+<ul>
+<li><strong>Operational Constraints</strong>: Extending storage may involve downtime, additional permissions, or architectural changes that can’t be approved without the primary engineers.</li>
+<li><strong>Temporary Nature of the Fix</strong>: Increasing space only delays the issue. If logs continue to grow, the problem will recur once space is exhausted again.</li>
+</ul>
+
+
+
+<h4 id="why-cant-you-just-make-a-design-change-and-use-logrotate-more-frequently">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu8/#why-cant-you-just-make-a-design-change-and-use-logrotate-more-frequently">Why can’t you just make a design change and use logrotate more frequently?</a>
+</h4>
+<ul>
+<li><strong>Possibility of Log Loss</strong>: Higher logrotate frequency could still miss high-frequency log spikes, especially during unusual traffic peaks, risking logs being deleted before Splunk ingestion is complete.</li>
+<li><strong>Configuration and Testing</strong>: Aggressive logrotate adjustments may interfere with processes expecting logs at specific retention periods. Testing changes in production without key team members isn’t ideal.</li>
+</ul>
+
+
+
+<h4 id="temporary-fix-options">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu8/#temporary-fix-options">Temporary Fix Options</a>
+</h4>
+<p>To address the issue, consider implementing a temporary fix by configuring a log retention policy that aggressively compresses or truncates logs without disrupting active processes. Here are some potential approaches:</p>
+
+
+
+<h3 id="implement-a-temporary-cron-job">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu8/#implement-a-temporary-cron-job">Implement a Temporary <strong>Cron Job</strong></a>
+</h3>
+<p>Schedule a cron job to truncate logs on a more aggressive schedule without deleting them. For example:</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">&gt; /var/log/access.log
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="sb">```</span>bash
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  &gt; /var/log/access.log</span></span></code></pre></div>
+<p>This would empty the log file without removing it or impacting the active file descriptors held by any running processes.</p>
+
+
+
+<h3 id="set-up-temporary-log-compression">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu8/#set-up-temporary-log-compression">Set Up Temporary Log Compression</a>
+</h3>
+<p>Compress the logs after truncation if additional space savings are needed. Tools like gzip can compress logs efficiently, reducing disk space usage and ensuring logs are still accessible if required for audits or incident investigations.</p>
+
+
+
+<h3 id="implement-a-ram-disk-for-temporary-logs">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu8/#implement-a-ram-disk-for-temporary-logs">Implement a RAM Disk for Temporary Logs</a>
+</h3>
+<p>As a short-term measure, you could set up a RAM disk for logs that don’t need long-term retention. This allows logs to be stored temporarily in memory, reducing disk space pressure. For instance</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  mount -t tmpfs -o <span class="nv">size</span><span class="o">=</span>512M tmpfs /var/log/temp</span></span></code></pre></div>
+<p>You could then configure lower-priority logs to write here temporarily, knowing they will be lost upon reboot, which may be acceptable in a crisis scenario.</p>
+
+
+
+<h3 id="adjust-splunk-forwarder-configuration">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu8/#adjust-splunk-forwarder-configuration">Adjust Splunk Forwarder Configuration:</a>
+</h3>
+<p>If possible, configure the Splunk forwarder to filter logs more aggressively, reducing the volume of logs that are retained on the system. The props.conf or inputs.conf files can be configured to forward logs without keeping local copies.</p>
+<p>Adding more space to /var/log might be a design fix, but it isn’t feasible in the short term due to the following:</p>
+<ul>
+<li>Operational Constraints: Extending storage could involve downtime, additional permissions, or changes that require architectural decisions that can’t be made without the primary engineers.</li>
+<li>Temporary Nature of the Fix: Increasing space only delays the issue rather than preventing it. If the logs keep growing, the problem will recur once space runs out again.</li>
+</ul>
+
+
+
+<h2 id="discussion-post-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu8/#discussion-post-2">Discussion Post 2</a>
+</h2>
+<p>You are the only Linux Administrator at a small healthcare company. The engineer/admin before you left you a lot of scripts to untangle. This is one of our many tasks as administrators, so you set out to accomplish it. You start to notice that he only ever uses nested if statements in bash. You also notice that every loop is a conditional <code>while true</code> and then he breaks the loop after a decision test each loop. You know his stuff works, but you think it could be more easily written for supportability, for you and future admins. You decide to write up some notes by reading some google, AI, and talking to your peers.</p>
+<p>Compare the use of nested if versus case statement in bash.</p>
+<ul>
+<li>Nested if statements are useful for situations where each condition depends on the result of the previous test, requiring a hierarchy or sequence.</li>
+<li>A case statement is ideal for handling multiple discrete values of a variable, especially if there are many possible branches. It’s typically cleaner and more readable than a nested if.</li>
+</ul>
+<p>Compare the use of conditional and counting loops. Under what circumstances</p>
+<ul>
+<li>Use conditional loops (while) when you don’t know the number of iterations in advance and need to loop based on conditions.</li>
+<li>Use counting loops (for) when you have a set number of iterations or are working with a list. This structure is clearer and prevents issues that may arise from unintentional infinite loops.</li>
+</ul>
+<p>would you use one or the other?</p>
+<p>optimizing or refactoring Bash scripts the Engineer had left me.</p>
+<ul>
+<li>I would replace nested if statements with case statements when possible to improve readability, especially when handling multiple discrete values.</li>
+<li>Of course, I would comment things for added communication/ maintainability.</li>
+<li>I would Limit while true loops to cases where no predictable count or list is available. Clearly define a break condition early to avoid infinite loops.</li>
+<li>I would Use for loops for counting or iterating over arrays or lists, as they provide a clean structure with known iteration limits.</li>
+</ul>
+<hr>
+
+
+
+<h3 id="prolug-links-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu8/#prolug-links-">ProLUG Links ⛓️</a>
+</h3>
+<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
+Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
+Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
+ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
+KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
+  
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/operating-systems/" rel="tag">Operating Systems</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+  
+  
+
+
+
+      </div>
+    </div>
+  </main>
+  
+</body>
+
+</html>

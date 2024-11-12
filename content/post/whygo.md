@@ -60,6 +60,8 @@ Compilation means converting a program’s source code into a binary—a file th
 #### 3. **Resistance to Modification**  
 - Unlike scripts or interpretable code, binaries are difficult to alter directly. Any changes require updating the original source code and recompiling the program, making them more secure against unauthorized modifications.
 
+
+
 ---
 
 ## Making a CLI Utility for Linux

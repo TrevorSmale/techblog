@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/techblog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=techblog/livereload" data-no-instant defer></script>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <meta name="description" content="ProLUG Admin Course Unit 7">
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.138.0">
+  <title>ProLUG Admin Course Unit 7 🐧 | Tech Blog</title>
+  <link rel="canonical" href="http://localhost:1313/techblog/post/pacu7/">
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+    <link rel="stylesheet" href="/techblog/css/base.css">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <a class="Banner-link u-clickable" href="/techblog/">Tech Blog</a>
+      </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/about/">About</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/post/">Posts</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/tags/">Tags</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/categories/">Categories</a>
+        </li>
+      
+        
+        
+          
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/feed.xml">RSS</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/pacu7/" rel="bookmark">ProLUG Admin Course Unit 7 🐧</a>
+  </h1>
+  
+    <time datetime="2024-10-27T00:00:00Z">October 27, 2024</time>
+  
+</header>
+  <h1 id="security">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#security">Security</a>
+</h1>
+
+
+
+<h2 id="patching-the-system-package-management">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#patching-the-system-package-management">Patching the system/ Package Management</a>
+</h2>
+
+
+
+<h3 id="yum-dnf-rpm">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#yum-dnf-rpm">yum, dnf, rpm</a>
+</h3>
+<p><img src="https://trevorsmale.github.io/techblog/images/PACU7/CatPackage.jpg" alt="Packaged Cat"></p>
+<p>As the course progresses, I am learning more deeply within a study group. Aside from the lab work and discussion posts. I have been putting a lot of hours satisfying curiosities regarding the linux system.
+For this unit we did a deep dive into packaging, going so far as to look at the history and reasoning before decision making. We had also looked at packages are managed within tightly controlled environments.
+I now feel that I have a robust understanding of the theory and practical elements of Redhat packaging and beyond.</p>
+
+
+
+<h2 id="discussion-post-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#discussion-post-1">Discussion Post 1:</a>
+</h2>
+<p>Why software versioning is important. 🤔</p>
+<ol>
+<li>Versioning enables you to monitor software updates systematically, making it easier to troubleshoot, roll back changes, and trace modifications for security or functionality purposes. 👍</li>
+<li>One can manage dependencies confidently, avoiding conflicts between system components, libraries, and tools. crucial for stable and consistent deployments. 👍</li>
+<li>We can verify package integrity, ensuring installed software hasn’t been altered or corrupted. Essential for maintaining a secure and stable system environment. 👍</li>
+</ol>
+
+
+
+<h2 id="discussion-post-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#discussion-post-2">Discussion Post 2:</a>
+</h2>
+
+
+
+<h3 id="scenario">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#scenario">Scenario:</a>
+</h3>
+<p>You are new to a Linux team. A ticket has come in from an application team and has already been escalated to your manager. They want software installed on one of their servers but you cannot find any documentation and your security team is out to lunch and not responding. You remember from some early documentation that you read that all the software in the internal repos you currently have are approved for deployment on servers. You want to also verify by checking other servers that this software exists. This is an urgent ask and your manager is hovering.
+How can you check all the repos on your system to see which are active? 🤔
+How would you check another server to see if the software was installed there? 🤔
+If you find the software, how might you figure out when it was installed? (Time/Date) 🤔</p>
+
+
+
+<h3 id="answer">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#answer">Answer:</a>
+</h3>
+<p>In an urgent situation like this, I’d first check which approved software repositories are active on my system,
+then verify if the software is already installed on similar servers to ensure it’s safe to proceed. Finally, I’d review the installation history to confirm when it was
+added. Working with Red Hat packaging and package management systems has many more options than I was expecting; through labbing in the study group,
+I’ve gained a much better understanding of packages, dependencies, and package management.</p>
+<p>Packing was a pretty deep rabbit hole for me.</p>
+<p>This is the process I&rsquo;d follow for this case:</p>
+<ol>
+<li>
+<p>Check Active Repositories
+dnf repolist</p>
+</li>
+<li>
+<p>Check if the Software is Installed on Your System
+rpm -qa | grep &lt;software_name&gt;
+or
+dnf list installed &lt;software_name&gt;</p>
+</li>
+<li>
+<p>Check Another Server for Software Installation with SSH and Step 2 commands.</p>
+</li>
+<li>
+<p>View Installation History (Time/Date)</p>
+<p>dnf history info &lt;transaction_id&gt;
+dnf history list &lt;software_name&gt;</p>
+</li>
+</ol>
+<hr>
+
+
+
+<h2 id="discussion-post-3">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#discussion-post-3">Discussion Post 3</a>
+</h2>
+<p>(After you have completed the lab) - Looking at the concept of group install from DNF or Yum. Why do you think an administrator may never want to use that in a running system? Why might an engineer want to or not want to use that? This is a thought exercise, so it’s not a “right or wrong” answer it’s for you to think about.</p>
+
+
+
+<h3 id="question">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#question">Question:</a>
+</h3>
+<p>What is the concept of software bloat, and how do you think it relates?</p>
+
+
+
+<h3 id="answer-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#answer-1">Answer:</a>
+</h3>
+<p>Software bloat is when essential tools/packages are larger than they need to be, effecting performance, reliability and security. By performance I am referring to the loss of potential performance from unessecary resource use. In regards to reliability, more complex systems inherently have more potential to fail. Security means many things, so I am specifically thinking about attack surface and potential for vulnerability due to the aforementioned complexity.</p>
+
+
+
+<h3 id="question-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#question-1">Question:</a>
+</h3>
+<p>What is the concept of a security baseline, and how do you think it relates?</p>
+
+
+
+<h3 id="answer-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#answer-2">Answer:</a>
+</h3>
+<p>A set of minimum security standards and controls that organizations implement to protect systems.</p>
+
+
+
+<h3 id="question-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#question-2">Question:</a>
+</h3>
+<p>How do you think something like this affects performance baselines?</p>
+
+
+
+<h3 id="answer-3">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#answer-3">Answer:</a>
+</h3>
+<p>By targeting specific packages, tracking changes, reducing unnessecary dependancies and bloat, we satisfy the tenants of a security baseline by establishing consistency, simplifying compliance, enhancing efficiency and reduce risk.</p>
+<hr>
+
+
+
+<h3 id="prolug-links-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#prolug-links-">ProLUG Links ⛓️</a>
+</h3>
+<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
+Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
+Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
+ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
+KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
+  
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/operating-systems/" rel="tag">Operating Systems</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+  
+  
+
+
+
+      </div>
+    </div>
+  </main>
+  
+</body>
+
+</html>
