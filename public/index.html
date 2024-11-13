@@ -205,7 +205,7 @@
     <a class="Heading-link u-clickable" href="/techblog/" rel="bookmark">Tech Blog</a>
   </h1>
   
-    <time datetime="2024-10-30T00:00:00Z">October 30, 2024</time>
+    <time datetime="2024-11-12T00:00:00Z">November 12, 2024</time>
   
 </header>
   
@@ -213,6 +213,326 @@
   
 
   
+  
+    <article>
+      <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/pacu9/" rel="bookmark">ProLUG Admin Course Unit 9 🐧</a>
+  </h1>
+  
+    <time datetime="2024-11-12T00:00:00Z">November 12, 2024</time>
+  
+</header>
+      
+        <h1 id="containers--kubernetes-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#containers--kubernetes-">Containers &amp; Kubernetes 🦭</a>
+</h1>
+<p>One of the most exciting units for me has been exploring deployment and hosting infrastructure. I’ve already spent some time working with Docker and Podman, but I have had limited hands-on experience with Kubernetes. Before this unit, I completed a few interactive Kubernetes labs on Killercoda, covering basic commands, information gathering, and logging.</p>
+<p>This week, I followed an interactive K3s lab that guided me through the installation process—a perfect refresher. Afterward, I jumped onto one of my Proxmox VMs and installed K3s on my homeLab 👨‍🔧</p>
+<hr>
+
+
+
+<h2 id="discussion-post-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#discussion-post-1">Discussion Post 1</a>
+</h2>
+<p>It’s a slow day in the NOC and you have heard that a new system of container deployments are being used by your developers. Do some reading about containers, docker, and podman.</p>
+
+
+
+<h3 id="1what-resources-helped-me-answer-these-questions">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#1what-resources-helped-me-answer-these-questions">1.	What resources helped me answer these questions</a>
+</h3>
+<ul>
+<li><a href="https://www.redhat.com/en/topics/containers">https://www.redhat.com/en/topics/containers</a></li>
+<li>My RHCSA 9 Course on Udemy</li>
+<li>Notes I have composed in LogSeq from multiple sources</li>
+<li>Julia Evans Blog <a href="https://jvns.ca/">https://jvns.ca/</a></li>
+</ul>
+
+
+
+<h3 id="2what-did-you-learn-about-that-you-didnt-know-before">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#2what-did-you-learn-about-that-you-didnt-know-before">2.	What did you learn about that you didn’t know before?</a>
+</h3>
+<ul>
+<li>I did not know that Podman and Kubernetes can run WASM Applications alongside containers. I have some interest in WASM and Subsequent ByteCode, having read about it on occasion.</li>
+<li>I did not know that Podman containers can be converted to SystemD services.</li>
+<li>I learned a technique that I quite like using podman commit to create a custom compose file from a modified container and will likely use this alot.</li>
+</ul>
+<p><strong>Terminology that I wasn&rsquo;t familiar with:</strong></p>
+<ul>
+<li>Control Plane: Manages container orchestration, monitoring, and state across cluster nodes.</li>
+<li>The API server: Core interface for communication between users and container clusters.</li>
+<li>Scheduler: Assigns containers to nodes based on resource availability and policies.</li>
+</ul>
+
+
+
+<h3 id="3what-seems-to-be-the-major-benefit-of-containers">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#3what-seems-to-be-the-major-benefit-of-containers">3.	What seems to be the major benefit of containers?</a>
+</h3>
+<ul>
+<li>Can be declarative with compose. So infrastructure can be explicitly defined and easily rebuilt.</li>
+<li>Light weight / low resource. Containers are not complete systems and are stripped to the bare essentials, meaning they are very small files that run fast.</li>
+</ul>
+
+
+
+<h3 id="4what-seems-to-be-some-obstacles-to-container-deployment">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#4what-seems-to-be-some-obstacles-to-container-deployment">4.	What seems to be some obstacles to container deployment?</a>
+</h3>
+<ul>
+<li>From my own experience, mounting persistent volumes was a bit tricky.</li>
+<li>Container networking presents a challenge bot conceptually and practically.</li>
+<li>Packaging application to run harmoniously within a container environment presents some friction.</li>
+<li>Large infrastructure must be broken into microservices, introducing complexity.</li>
+</ul>
+<hr>
+
+
+
+<h2 id="discussion-post-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#discussion-post-2">Discussion Post 2</a>
+</h2>
+<p>You get your first ticket about a problem with containers. One of the engineers is trying to move his container up to the Dev environment shared server. He sends you over this information about the command he’s trying to run.</p>
+<pre><code>[developer1@devserver read]$ podman ps
+CONTAINER ID  IMAGE       COMMAND     CREATED     STATUS      PORTS       NAMES
+
+[developer1@devserver read]$ podman images
+
+REPOSITORY                TAG                IMAGE ID      CREATED      SIZE
+localhost/read_docker     latest             2c0728a1f483  5 days ago   68.2 MB
+docker.io/library/python  3.13.0-alpine3.19  9edd75ff93ac  3 weeks ago  47.5 MB
+[developer1@devserver read]$ podman run -dt -p 8080:80/tcp docker.io/library/httpd
+You decide to check out the server 
+[developer1@devserver read] ss -ntulp
+Netid   State    Recv-Q   Send-Q      Local Address:Port        Peer Address:Port         Process
+udp     UNCONN   0        0           127.0.0.53%lo:53               0.0.0.0:*             users:((&quot;systemd-resolve&quot;,pid=166693,fd=13))
+tcp     LISTEN   0        80              127.0.0.1:3306             0.0.0.0:*             users:((&quot;mariadbd&quot;,pid=234918,fd=20))
+tcp     LISTEN   0        128               0.0.0.0:22               0.0.0.0:*             users:((&quot;sshd&quot;,pid=166657,fd=3))
+tcp     LISTEN   0        4096        127.0.0.53%lo:53               0.0.0.0:*             users:((&quot;systemd-resolve&quot;,pid=166693,fd=14))
+tcp     LISTEN   0        4096                    *:8080                   *:*             users:((&quot;node_exporter&quot;,pid=662,fd=3))
+</code></pre>
+
+
+
+<h3 id="1-what-do-you-think-the-problem-might-be-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#1-what-do-you-think-the-problem-might-be-">1. What do you think the problem might be? 🔍</a>
+</h3>
+<p>There is a container call node exporter that is listening on port 8080, therefore the port is already in use. I think this is a pretty common issue as this port is normally used for public traffic. With many nodes running it is easy to double assign a port.</p>
+
+
+
+<h3 id="2-how-will-you-test-this-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#2-how-will-you-test-this-">2. How will you test this? 🤔</a>
+</h3>
+<p>I would run the conflicting container run command with a slight port change.
+podman run -dt -p 8081:80/tcp docker.io/library/httpd</p>
+
+
+
+<h3 id="3-the-developer-tells-you-that-hes-pulling-a-local-image-do-you-find-this-to-be-true-or-is-something-else-happening-in-their-run-command">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#3-the-developer-tells-you-that-hes-pulling-a-local-image-do-you-find-this-to-be-true-or-is-something-else-happening-in-their-run-command">3. The developer tells you that he’s pulling a local image, do you find this to be true, or is something else happening in their run command?</a>
+</h3>
+<p>It is true that once and image is pulled, it is stored locally. So the developer may have <strong>pulled</strong> the image. However in the command he is specifying a source for pulling a fresh container, so the dev is definitely sus. Typically if the image has been pulled it is given a container ID, which is then used to build with.</p>
+
+
+
+<h2 id="installing-k3s-in-my-homelab-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#installing-k3s-in-my-homelab-">Installing K3s in my HomeLab 👍</a>
+</h2>
+<p>After completing the suggested lab, I took note of installation process and replicated it on my HomeLab. I just wanted to share my process and bumps.</p>
+
+
+
+<h3 id="1-installation-from-curl-script">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#1-installation-from-curl-script">1. Installation from curl script</a>
+</h3>
+<pre><code>curl -sfL https://get.k3s.io | sh -
+</code></pre>
+
+
+
+<h3 id="2-making-sure-the-service-is-running-in-systemd">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#2-making-sure-the-service-is-running-in-systemd">2. Making sure the service is running in systemD</a>
+</h3>
+<pre><code>systemctl status k3s
+</code></pre>
+
+
+
+<h3 id="3-changing-config-permissions-problem-that-had-stumped-me">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#3-changing-config-permissions-problem-that-had-stumped-me">3. Changing config permissions (Problem that had stumped me)</a>
+</h3>
+<pre><code>sudo chmod 644 /etc/rancher/k3s/k3s.yaml
+</code></pre>
+
+
+
+<h3 id="4-deploying-a-pod">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#4-deploying-a-pod">4. Deploying a pod</a>
+</h3>
+<p>kubectl run nginx &ndash;image=nginx:alpine</p>
+
+
+
+<h3 id="5-making-an-alias-so-commands-are-less-annoying">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#5-making-an-alias-so-commands-are-less-annoying">5. Making an alias so commands are less annoying</a>
+</h3>
+<pre><code>alias k=kubectl
+</code></pre>
+
+
+
+<h3 id="6-checking-the-running-pod">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#6-checking-the-running-pod">6. Checking the running pod</a>
+</h3>
+<pre><code>k get pods
+</code></pre>
+
+
+
+<h2 id="digging-deeper-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#digging-deeper-">Digging Deeper ⛏️</a>
+</h2>
+
+
+
+<h3 id="1see-if-you-can-get-a-deployment-working-in-the-lab">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#1see-if-you-can-get-a-deployment-working-in-the-lab">1.	See if you can get a deployment working in the lab.</a>
+</h3>
+<p>Screen shots from this deployment</p>
+<p><img src="https://trevorsmale.github.io/techblog/images/PACU9/1.png" alt="Step 1"><br>
+<img src="https://trevorsmale.github.io/techblog/images/PACU9/volume.png" alt="Step 2"><br>
+<img src="https://trevorsmale.github.io/techblog/images/PACU9/build.png" alt="Step 3"><br>
+<img src="https://trevorsmale.github.io/techblog/images/PACU9/ps.png" alt="Step 4"><br>
+<img src="https://trevorsmale.github.io/techblog/images/PACU9/attach.png" alt="Step 5"><br>
+<img src="https://trevorsmale.github.io/techblog/images/PACU9/install1.png" alt="Step 6"><br>
+<img src="https://trevorsmale.github.io/techblog/images/PACU9/install2.png" alt="Step 7"><br>
+<img src="https://trevorsmale.github.io/techblog/images/PACU9/go.png" alt="Step 8"><br>
+<img src="https://trevorsmale.github.io/techblog/images/PACU9/rungo.png" alt="Step 9"><br>
+<img src="https://trevorsmale.github.io/techblog/images/PACU9/running.png" alt="Step 10"></p>
+
+
+
+<h3 id="what-worked-well">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#what-worked-well">What worked well?</a>
+</h3>
+<p>creating a persistent volume and attaching to the volume worked well.
+mkdir /root/TreasuresVolume
+Pulling and building an image worked well.
+Attaching to the container and interacting with it went well.
+podman run -dit &ndash;name TreasuresContainer -v /root/TreasuresVolume:/app docker.io/library/golang:alpine tail -f /dev/null
+apk add vim gcc bash</p>
+
+
+
+<h3 id="what-did-you-have-to-troubleshoot">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#what-did-you-have-to-troubleshoot">What did you have to troubleshoot?</a>
+</h3>
+<p>I ran into trouble when exiting the container. It will kill the container, forcing me to start it again, which was frustrating.
+Having done this in the past, I thought this would not be an issue. However, I just learned that containers without continually running services will die when exited.
+The fix for such an issue is to run something light and persistent on the container in order to keep it alive. This can be accomplished with a bash script or turning a go binary into a system binary to keep running.</p>
+
+
+
+<h3 id="what-documentation-can-you-make-to-be-able-to-do-this-faster-next-time">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#what-documentation-can-you-make-to-be-able-to-do-this-faster-next-time">What documentation can you make to be able to do this faster next time?</a>
+</h3>
+<p>Actually, this blog is used to partially keep track of this. I use LogSeq as a second brain, where I will definitely copy and paste this info into my Podman section.</p>
+<hr>
+
+
+
+<h2 id="reflection-questions">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#reflection-questions">Reflection Questions🤔</a>
+</h2>
+
+
+
+<h3 id="1what-questions-do-you-still-have-about-this-week">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#1what-questions-do-you-still-have-about-this-week">1.	What questions do you still have about this week?</a>
+</h3>
+<p>I would like to know more about small scale deployments of Kubernetes such as the one I deployed using Rancher and K3S. More specifically I would like to know what limitations a small scale deployment has versus a multi machine / multi node system.</p>
+
+
+
+<h3 id="2how-can-you-apply-this-now-in-your-current-role-in-it-if-youre-not-in-it-how-can-you-look-to-put-something-like-this-into-your-resume-or-portfolio">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#2how-can-you-apply-this-now-in-your-current-role-in-it-if-youre-not-in-it-how-can-you-look-to-put-something-like-this-into-your-resume-or-portfolio">2.	How can you apply this now in your current role in IT? If you’re not in IT, how can you look to put something like this into your resume or portfolio?</a>
+</h3>
+<p>This content is highly applicable to my intended work as deploying services is becoming increasingly important, as evidenced by the requirement for knowledge of Podman in the RHCSA 9. I already have some container deployment work to display to prospective employers atm. I plan to further my knowledge in this area, especially in regard to Kubernetes as this seems to be the operating system of the internet.</p>
+<hr>
+
+
+
+<h3 id="prolug-links-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#prolug-links-">ProLUG Links ⛓️</a>
+</h3>
+<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
+Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
+Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
+ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
+KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
+      
+      
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/operating-systems/" rel="tag">Operating Systems</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+    </article>
+    
+      <div class="Divider"></div>
+    
   
     <article>
       <header class="Heading">
@@ -227,6 +547,7 @@
         <h1 id="scripting-system-checks">
   <a class="Heading-link u-clickable" href="/techblog/post/pacu8/#scripting-system-checks">Scripting System Checks</a>
 </h1>
+<p><img src="https://trevorsmale.github.io/techblog/images/PACU8/ibb.jpg" alt="Arnold"></p>
 <p>Once again beyond the Discussion Posts and Labbing. I spent a great deal of time scripting/programming System checks. After completing the labs which Bash Scripting and intro to &lsquo;C&rsquo;, I got really into GO as a system util. I have a particularly productive day with using the embed.fs feature of GO and packing unix system tools together in a single go program at compilation. I think there is a ton of potential here for my own uses. 👨‍🔧</p>
 
 
@@ -342,17 +663,32 @@
   <a class="Heading-link u-clickable" href="/techblog/post/pacu8/#discussion-post-2">Discussion Post 2</a>
 </h2>
 <p>You are the only Linux Administrator at a small healthcare company. The engineer/admin before you left you a lot of scripts to untangle. This is one of our many tasks as administrators, so you set out to accomplish it. You start to notice that he only ever uses nested if statements in bash. You also notice that every loop is a conditional <code>while true</code> and then he breaks the loop after a decision test each loop. You know his stuff works, but you think it could be more easily written for supportability, for you and future admins. You decide to write up some notes by reading some google, AI, and talking to your peers.</p>
-<p>Compare the use of nested if versus case statement in bash.</p>
+
+
+
+<h3 id="compare-the-use-of-nested-if-versus-case-statement-in-bash">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu8/#compare-the-use-of-nested-if-versus-case-statement-in-bash">Compare the use of nested if versus case statement in bash.</a>
+</h3>
 <ul>
 <li>Nested if statements are useful for situations where each condition depends on the result of the previous test, requiring a hierarchy or sequence.</li>
 <li>A case statement is ideal for handling multiple discrete values of a variable, especially if there are many possible branches. It’s typically cleaner and more readable than a nested if.</li>
 </ul>
-<p>Compare the use of conditional and counting loops. Under what circumstances</p>
+
+
+
+<h3 id="compare-the-use-of-conditional-and-counting-loops-under-what-circumstances">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu8/#compare-the-use-of-conditional-and-counting-loops-under-what-circumstances">Compare the use of conditional and counting loops. Under what circumstances</a>
+</h3>
 <ul>
 <li>Use conditional loops (while) when you don’t know the number of iterations in advance and need to loop based on conditions.</li>
 <li>Use counting loops (for) when you have a set number of iterations or are working with a list. This structure is clearer and prevents issues that may arise from unintentional infinite loops.</li>
 </ul>
-<p>would you use one or the other?</p>
+
+
+
+<h3 id="would-you-use-one-or-the-other">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu8/#would-you-use-one-or-the-other">would you use one or the other?</a>
+</h3>
 <p>optimizing or refactoring Bash scripts the Engineer had left me.</p>
 <ul>
 <li>I would replace nested if statements with case statements when possible to improve readability, especially when handling multiple discrete values.</li>
@@ -4097,1573 +4433,6 @@ KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/he
           
             <li class="Tags-item u-background">
               <a class="Tags-link u-clickable" href="/techblog/tags/capstoneproject/" rel="tag">CapstoneProject</a>
-            </li>
-          
-        </ul>
-      
-    
-  </footer>
-
-    </article>
-    
-      <div class="Divider"></div>
-    
-  
-    <article>
-      <header class="Heading">
-  <h1 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/techblog/post/pacu3/" rel="bookmark">ProLUG Admin Course Unit 3 🐧</a>
-  </h1>
-  
-    <time datetime="2024-09-30T00:00:00Z">September 30, 2024</time>
-  
-</header>
-      
-        <h1 id="storage--logical-volume-management-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#storage--logical-volume-management-">Storage &amp; Logical Volume Management 🧠💾</a>
-</h1>
-
-
-
-<h2 id="intro">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#intro">Intro</a>
-</h2>
-<p>Ok, Week 3 / Unit 3. This week we are working on Logical Volume Management (LVM) and RAID. Fortunately I was able to listen to the entire lecture and read most of the chats which is always helpful.</p>
-<hr>
-
-
-
-<h1 id="lab-notes-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#lab-notes-">Lab Notes 🧪</a>
-</h1>
-
-
-
-<h2 id="warmup">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#warmup">Warmup</a>
-</h2>
-
-
-
-<h3 id="redirects-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#redirects-">Redirects ✉️</a>
-</h3>
-<pre><code>cd ~ # Change Directory to Home
-
-mkdir lvm_lab # Create a Directory called lvm_lab
-
-cd lvm_lab # Change location into the lvm_lab directory
-
-touch somefile # create an empty file called somefile
-
-echo &quot;this is a string of text&quot; &gt; somefile # This sends the output of echo into the file
-
-cat somefile # concatenates and displays what is in the file
-
-echo &quot;this is a sting of text&quot; &gt; somefile # Overwrites the line with the same text
-
-echo &quot;this is a sting of text&quot; &gt; somefile
-
-echo &quot;this is a sting of text&quot; &gt; somefile
-
-cat somefile # We are left with one line of text after repeating this action because this 
-action overwrites.
-
-echo &quot;This is a string of text&quot; &gt;&gt; somefile # The double arrow is redirect append
-
-echo &quot;This is a string of text&quot; &gt;&gt; somefile # this adds a second line
-
-echo &quot;This is a string of text&quot; &gt;&gt; somefile # this adds a third line
-
-cat somefile # The concatenated output would be 3 line of &quot;This is a string of text&quot;
-
-echo &quot;this is our other test text&quot; &gt;&gt; somefile
-
-echo &quot;this is our other test text&quot; &gt;&gt; somefile
-
-echo &quot;this is our other test text&quot; &gt;&gt; somefile
-
-cat somefile | nl # This adds numbering to each line in the file
-
-cat somefile | nl | grep test # This does nothing as there is no text within the file that 
-
-contains the string nothing
-
-cat somefile | grep test | nl # Also nothing
-
-cat somefile | nl | other # Gives us our last 3 lines and associated line number
-
-always | nl | before your grep
-</code></pre>
-
-
-
-<h2 id="lab-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#lab-">Lab 🥼🧪</a>
-</h2>
-
-
-
-<h3 id="disk-speed-tests-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#disk-speed-tests-">Disk Speed Tests ⏱️</a>
-</h3>
-<p>This is on my own virtual machine, so figuring out the unique commands took a bit of extra work.</p>
-<pre><code>lsblk /dev/sda2
-
-p  #print to see partitions
-d  #delete partitions or information
-w  #Write out the changes to the disk.
-</code></pre>
-
-
-
-<h3 id="write-tests-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#write-tests-">Write tests 💾</a>
-</h3>
-
-
-
-<h4 id="saving-off-write-data--rename-tmpfile-each-time">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#saving-off-write-data--rename-tmpfile-each-time">saving off write data – rename /tmp/file each time</a>
-</h4>
-<p>Checking /dev/sda2 for a filesystem</p>
-<pre><code>blkid /dev/sda2 👍
-</code></pre>
-<p>If no filesystem, make one</p>
-<pre><code>mkfs.ext4 /dev/sda2
-
-mkdir space
-
-mount /dev/xvda space ?
-</code></pre>
-
-
-
-<h3 id="write-speed-test-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#write-speed-test-">Write Speed Test 💾🏎️</a>
-</h3>
-<pre><code>for i in 'seq 1 10';do time dd if=/dev/zero of=/space/testfile$ bs=1024k count=1000 | tee -a /tmp/speedtest1basiclvm
-</code></pre>
-
-
-
-<h4 id="write-test-result">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#write-test-result">Write Test Result</a>
-</h4>
-<pre><code>real 0m0.003s
-user 0m0.000s
-sys 0m0.002s
-</code></pre>
-
-
-
-<h4 id="read-test-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#read-test-">Read Test 👓💾</a>
-</h4>
-<pre><code>for i in 'seq 1 10';do time dd if=/space/testfile$i of=/dev/null;done
-</code></pre>
-
-
-
-<h4 id="read-test-result">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#read-test-result">Read Test Result</a>
-</h4>
-<pre><code>real 0m0.001s
-user 0m0.001s
-sys 0m0.001s
-</code></pre>
-
-
-
-<h4 id="cleanup-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#cleanup-">Cleanup 🧹</a>
-</h4>
-<pre><code>for i in 'seq 1 10'; do rm -rf/space/testfile$i;done
-</code></pre>
-
-
-
-<h3 id="lvm-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#lvm-">LVM 🧠💾</a>
-</h3>
-<pre><code>start in root (#); cd /root
-</code></pre>
-<p>Check physical volumes on your server (my output may vary)</p>
-<pre><code>[root@rocky1 ~]#fdisk -l | grep -i sda
-</code></pre>
-<p>output:</p>
-<pre><code>Disk /dev/sda: 32 GiB, 34359738368 bytes, 67108864 sectors
-/dev/sda1           2048  2099199 2097152   1G 83 Linux
-/dev/sda2        2099200 67108863 65009664 31G 8e Linux LVM
-</code></pre>
-
-
-
-<h4 id="basic-lvm-listings">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#basic-lvm-listings">Basic LVM listings</a>
-</h4>
-
-
-
-<h5 id="pvs">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#pvs">pvs</a>
-</h5>
-<p>output:</p>
-<pre><code>PV              VG                  Fmt    Attr PSize    PFree
-/dev/sda2       rl_localhost-live   lvm2   a--  &lt;31.00g  0
-</code></pre>
-
-
-
-<h5 id="vgs">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#vgs">vgs</a>
-</h5>
-<p>output:</p>
-<pre><code>VG                   #PV    #LV     #SN   Attr      VSize   VFree
-rl_localhost-live      1      2       0   wz--n-    &lt;31.00g    0
-</code></pre>
-<p>output:</p>
-
-
-
-<h5 id="lvs">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#lvs">lvs</a>
-</h5>
-<pre><code>LV    VG     Attr   LSize   Pool   Origin   Data%  Meta%  Move  Log Cpy%Sync Convert
-root rL_localhost-live -wi-ao---- 27.79g
-swap rL_localhost-live -wi-ao----  3.20g
-</code></pre>
-
-
-
-<h5 id="pvdisplay-needs-sudo-or-root">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#pvdisplay-needs-sudo-or-root">pvdisplay (Needs SUDO or Root)</a>
-</h5>
-<p>output:</p>
-<pre><code>PV Name          /dev/sda2
-VG Name          rl_localhost-live
-PV Size          &lt;31.00 GiB / not usable 3.00 MiB
-Allocatable      yes (but full)
-PE               4.00 MiB
-Total PE         7935
-Free PE          0
-Allocated PE     7935
-PV UUID          gMVNd5-peB1-uUX6-Rw28-4Ncb-mi1b-rDJR38
-</code></pre>
-<ul>
-<li>
-<p><strong>PV Name</strong>: <code>/dev/sda2</code></p>
-<ul>
-<li>This is the physical volume (PV) name, which indicates the device or partition that has been initialized as a physical volume for use in LVM (Logical Volume Manager).</li>
-</ul>
-</li>
-<li>
-<p><strong>VG Name</strong>: <code>rl_localhost-live</code></p>
-<ul>
-<li>This is the volume group (VG) name to which this physical volume belongs. A volume group is a collection of physical volumes that create a pool of storage space from which logical volumes (LVs) are allocated.</li>
-</ul>
-</li>
-<li>
-<p><strong>PV Size</strong>: <code>&lt;31.00 GiB / not usable 3.00 MiB</code></p>
-<ul>
-<li>The size of the physical volume is 31.00 GiB, but 3.00 MiB is not usable, likely due to overhead or alignment issues within the physical volume.</li>
-</ul>
-</li>
-<li>
-<p><strong>Allocatable</strong>: <code>yes (but full)</code></p>
-<ul>
-<li>This indicates whether the physical volume is available for allocation into logical volumes. It is set to &ldquo;yes,&rdquo; but the &ldquo;full&rdquo; remark means that all available physical extents (PEs) are already allocated.</li>
-</ul>
-</li>
-<li>
-<p><strong>PE Size</strong>: <code>4.00 MiB</code></p>
-<ul>
-<li>This shows the size of a physical extent (PE), which is the smallest chunk of data that LVM manages. In this case, each PE is 4.00 MiB.</li>
-</ul>
-</li>
-<li>
-<p><strong>Total PE</strong>: <code>7935</code></p>
-<ul>
-<li>The total number of physical extents on this physical volume. This is calculated based on the size of the physical volume and the size of each PE.</li>
-</ul>
-</li>
-<li>
-<p><strong>Free PE</strong>: <code>0</code></p>
-<ul>
-<li>This shows the number of free physical extents on the physical volume. In this case, there are no free extents left, meaning all available space has been allocated.</li>
-</ul>
-</li>
-<li>
-<p><strong>Allocated PE</strong>: <code>7935</code></p>
-<ul>
-<li>The number of allocated physical extents, which are being used by logical volumes. Since all available extents are allocated, this number matches the total number of PEs.</li>
-</ul>
-</li>
-<li>
-<p><strong>PV UUID</strong>: <code>gMVNd5-peB1-uUX6-Rw28-4Ncb-mi1b-rDJR38</code></p>
-<ul>
-<li>The unique identifier for this physical volume, which is used internally by LVM to track physical volumes across different systems or reboots.</li>
-</ul>
-</li>
-</ul>
-
-
-
-<h5 id="vgdisplay-needs-sudo">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#vgdisplay-needs-sudo">vgdisplay: needs sudo</a>
-</h5>
-<p>example output:</p>
-<pre><code>  --- Volume group ---
-  VG Name               vg_data
-  System ID             
-  Format                lvm2
-  VG Status             resizable
-  MAX LV                0
-  Cur LV                2
-  Open LV               2
-  Max PV                0
-  Cur PV                2
-  Act PV                2
-  VG Size               99.99 GiB
-  PE Size               4.00 MiB
-  Total PE              25599
-  Alloc PE / Size       12800 / 50.00 GiB
-  Free  PE / Size       12799 / 49.99 GiB
-  VG UUID               hFwi0D-GTlv-NFjp-O2he-x8Yw-kfIa-c3QqX6
-</code></pre>
-
-
-
-<h5 id="lvdisplay-needs-sudo">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#lvdisplay-needs-sudo">lvdisplay: needs sudo</a>
-</h5>
-<p>example output:</p>
-<pre><code>  --- Logical volume ---
-LV Path                /dev/vg_data/lv_backup
-LV Name                lv_backup
-VG Name                vg_data
-LV UUID                B1q8Iq-0tWz-Fk0P-xwQ7-0T5T-QC3c-XcK5T1
-LV Write Access        read/write
-LV Creation host, time hostname, 2024-10-08 12:00:00 +0000
-LV Status              available
-# open                 1
-LV Size                50.00 GiB
-Current LE             12800
-Segments               1
-Allocation             inherit
-Read ahead sectors     auto
-- currently set to     256
-Block device           253:2
-</code></pre>
-
-
-
-<h3 id="creating--carving-lvm">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#creating--carving-lvm">Creating &amp; Carving LVM</a>
-</h3>
-
-
-
-<h4 id="a-little-struggle-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#a-little-struggle-">A little struggle 😣</a>
-</h4>
-<p>So I ran into several hurdles when putting this into practice with Proxmox.</p>
-<p>📍 Since I was using Proxmox the storage was already an LVM on account of it being a virtualized disk
-Solution: I created a second storage volume in addition to sda, sdb was emulated as an SSD and RAW storage. Once this was set up I was able to initialize the process.</p>
-<p>📍 The demonstration lab suggested using /dev/xvd$disk the &lsquo;x&rsquo; relates to xcp-ng, a virtualization technology that differs from mine. I am using KVM and VirtIO on Proxmox so the naming convention would differ. so vdb would be a naming convention akin to this system.</p>
-<p>Ultimately, once I created this RAW SSD emulated storage I was able to move on.</p>
-
-
-
-<h4 id="the-steps">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#the-steps">The steps</a>
-</h4>
-
-
-
-<h5 id="1-provisioning-the-physical-volume-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#1-provisioning-the-physical-volume-">1. Provisioning the Physical Volume ✅</a>
-</h5>
-<p>sudo pvcreate /dev/sdb</p>
-<p>Output:
-Physical volume &ldquo;/dev/sdb&rdquo; successfully created.</p>
-<p>Confirmed with: lsblk</p>
-
-
-
-<h5 id="2-provisioning-the-volume-group-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#2-provisioning-the-volume-group-">2. Provisioning the Volume Group ✅</a>
-</h5>
-<p>sudo vgcreate examplegroup /dev/sdb</p>
-<p>Output:
-Volume group &ldquo;examplegroup&rdquo; successfully created</p>
-<p>Confirmed with: vgdisplay</p>
-
-
-
-<h5 id="3-provisioning-the-actual-logical-volume-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#3-provisioning-the-actual-logical-volume-">3. Provisioning the actual Logical Volume ✅</a>
-</h5>
-<p>sudo lvcreate -L 1G -n lv1 examplegroup</p>
-<pre><code>  Logical volume &quot;lv1&quot; created.
-</code></pre>
-<p>Confirmed with: lvdisplay</p>
-
-
-
-<h6 id="4-formatting-a-logical-volume-with-a-fs--">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#4-formatting-a-logical-volume-with-a-fs--">4. Formatting a Logical Volume with a FS 💾 ✅</a>
-</h6>
-<p>mkfs.ext4 /dev/mapper/lv1</p>
-<pre><code>  mke2fs 1.45.6 (20-Mar-2020)
-  Creating filesystem with 262144 4k blocks and 65536 inodes
-  filesystem UUID: a1b2c3d4-e5f6-789a-bcde-123456789abc
-  Superblock backups stored on blocks:
-  32768, 98304
-
-  Allocating group tables: done
-  Writing inode tables: done
-  Creating journal (8192 blocks): done
-  Writing superblocks and filesystem accounting information: done
-</code></pre>
-
-
-
-<h3 id="checking-remaining-vg-space">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#checking-remaining-vg-space">Checking remaining VG Space</a>
-</h3>
-<p>Broadly:</p>
-<p>the <strong>VGS</strong> command provides a summary of all Volume Groups and includes information about the free space.</p>
-<p>Looks like this:</p>
-<pre><code>  VG        #PV #LV #SN Attr   VSize   VFree  
-  vg_data     2   3   0 wz--n- 199.99g  49.99g
-</code></pre>
-<p>More Specifically:</p>
-<p>The vgdisplay command will show this info as it pertains to a particular pv 👍</p>
-
-
-
-<h4 id="ultimately">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#ultimately">Ultimately</a>
-</h4>
-<p>Thanks to putting our heads together in a studygroup, I was able to get through the completed process several times. I ended carving of a Volume Group into Logical Volumes. Some of which were formatted in Ext4 and some were formatted to XFS using MKFS. 😁</p>
-<p>The process was a little bit long with many tangential learning, ultimately I think this experience has deeply ingrained the process in my psyche, pushing out childhood memories of finger painting.</p>
-
-
-
-<h3 id="fstab">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#fstab">Fstab</a>
-</h3>
-<p>I would like to return to Fstab and learn more about it. I ran into some issues mounting LVM&rsquo;s with Fstab</p>
-
-
-
-<h3 id="lvs-1">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#lvs-1">LVS</a>
-</h3>
-<p>Logical Volume Summary provides a summary as the name implies of all logical volumes present in the system. I wish I had known this command earlier as I was using the other commands listed above 😄</p>
-<p>Example output:</p>
-<pre><code>  LV       VG        Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
-  lv_backup vg_data  -wi-a----- 50.00g                                                    
-  lv_home   vg_data  -wi-ao---- 20.00g                                                    
-  lv_root   vg_system -wi-ao---- 30.00g
-</code></pre>
-
-
-
-<h3 id="raid-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#raid-">RAID 💾💾💾</a>
-</h3>
-<p>RAID stands for Redundant Array of Independent Disks, more on that below.</p>
-<p>Raw notes:</p>
-<p>Created a proxmox vm with rocky 9.4 minimal with 3 x raw ssd emulated disks</p>
-<p>MDADM</p>
-<hr>
-
-
-
-<h1 id="lecture-thoughts-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#lecture-thoughts-">Lecture thoughts 🪩</a>
-</h1>
-
-
-
-<h2 id="everything-is-a-file-after-all">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#everything-is-a-file-after-all">Everything &lsquo;is&rsquo; a file after all</a>
-</h2>
-<p><img src="https://trevorsmale.github.io/techblog/images/PACU3/ahb.png" alt="Always has been a file"></p>
-<p>this past Saturday. During that lecture I had a major awakening in regards to how unix works. I have heard the &rsquo;everything is a file&rsquo; mantra on several occasions. However, sometimes hearing is not fully understanding. My moment of understanding came when we checked running processes and opened one as a file. I knew that everything under the hood was a file, but ephemeral things like processes were not part of the picture. That truly blew my mind 🤯</p>
-
-
-
-<h2 id="uuids-go-beyond-a-block-storage-device">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#uuids-go-beyond-a-block-storage-device">UUID&rsquo;s go beyond a block storage device</a>
-</h2>
-<p>It turns out that logical volumes are assigned UUIDs. UUIDs are unique strings that can be used to reference or link reliably to storage device. So logical volumes attain the same respect as physical volume.</p>
-<p>if I were to run</p>
-<ul>
-<li><code>bash blkid</code></li>
-</ul>
-<p>or</p>
-<ul>
-<li><code>bash lvddisplay</code></li>
-</ul>
-<p>one would see a string like this:</p>
-<p>f4d12857-93c3-4d6f-91e5-bb379f02e1d1</p>
-<p>More on this later, I went down a rabbit hole. 🐇</p>
-<hr>
-
-
-
-<h1 id="logical-volumes-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#logical-volumes-">Logical Volumes 🧠💼</a>
-</h1>
-<p>Logical Volumes (LVs) offer a flexible way to manage disk storage in Linux. With LVs, users can create, resize, and move storage volumes without being limited by the physical layout of the disks. The Logical Volume Manager (LVM) abstracts the underlying physical storage, making it easier to manage disk space, support snapshots, and resize volumes as needed.</p>
-
-
-
-<h3 id="the-layered-structure-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#the-layered-structure-">The Layered Structure 🍰</a>
-</h3>
-<p>The structure of LVM involves multiple layers:</p>
-<ul>
-<li><strong>Physical Volumes (PV):</strong> These are the actual physical storage devices, like SSDs or HDDs. A Physical Volume can either be part of a Volume Group or encompass an entire Volume Group.</li>
-<li><strong>Volume Groups (VG):</strong> VGs are containers that hold one or more Logical Volumes. A Volume Group can span across multiple Physical Volumes, providing a flexible pool of storage.</li>
-<li><strong>Logical Volumes (LV):</strong> LVs are sections of a Volume Group that serve as the actual storage units. A Volume Group can contain many Logical Volumes of different sizes.</li>
-<li><strong>File Systems:</strong> Finally, file systems are placed on the Logical Volumes to store data.</li>
-</ul>
-<p>The table below illustrates how a Volume Group (VG) can host several Logical Volumes (LVs) of varying sizes. Each Logical Volume is assigned a unique identifier (UUID), and snapshots are also given their own UUIDs.</p>
-<table>
-  <thead>
-      <tr>
-          <th>VG</th>
-          <th>LV</th>
-          <th>FS</th>
-          <th>Size</th>
-          <th>UUID Short</th>
-          <th>Snapshot</th>
-          <th>Snapshot UUID Short</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>vg_data</td>
-          <td>lv_root</td>
-          <td>XFS</td>
-          <td>50 GB</td>
-          <td>f4d1-91e5-bb37</td>
-          <td>None</td>
-          <td>N/A</td>
-      </tr>
-      <tr>
-          <td>vg_data</td>
-          <td>lv_home</td>
-          <td>XFS</td>
-          <td>100 GB</td>
-          <td>a123-c567-8901</td>
-          <td>snap_home</td>
-          <td>abcd-ef56-7890</td>
-      </tr>
-      <tr>
-          <td>vg_data</td>
-          <td>lv_var</td>
-          <td>ext4</td>
-          <td>20 GB</td>
-          <td>c9d8-89e0-f9a1</td>
-          <td>None</td>
-          <td>N/A</td>
-      </tr>
-      <tr>
-          <td>vg_data</td>
-          <td>lv_backup</td>
-          <td>ext4</td>
-          <td>150 GB</td>
-          <td>f129-bc97-f134</td>
-          <td>snap_backup</td>
-          <td>f7d8-a67e-f765</td>
-      </tr>
-      <tr>
-          <td>vg_data</td>
-          <td>lv_logs</td>
-          <td>XFS</td>
-          <td>10 GB</td>
-          <td>e123-9abc-e1d4</td>
-          <td>None</td>
-          <td>N/A</td>
-      </tr>
-      <tr>
-          <td>vg_storage</td>
-          <td>lv_media</td>
-          <td>ext4</td>
-          <td>200 GB</td>
-          <td>bc97-bc9e-5612</td>
-          <td>snap_media</td>
-          <td>d98f-9e67-1cd2</td>
-      </tr>
-  </tbody>
-</table>
-<p>I understand that this course focuses on the two most popular and reliable file systems, as these are the ones most commonly encountered in enterprise environments. However, I&rsquo;ve noticed that BTRFs is starting to gain traction. I&rsquo;ve listened to several talks and read extensively about its features and potential.</p>
-
-
-
-<h3 id="some-limitations-apply-to-the-status-quo">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#some-limitations-apply-to-the-status-quo">Some limitations apply to the status quo</a>
-</h3>
-<p>Both ext4 and XFS subvolumes can handle a lot of scenarios. This includes online resizing. This is when the size of an LVM must be increased while actively in use (Online). However, for both of these filesystems, online resizing can only grow and LVM and not shrink. Additionally snapshots must be managed on a per LV basis, not a huge issue with the advent of automation tools.</p>
-
-
-
-<h1 id="raid">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#raid">RAID</a>
-</h1>
-
-
-
-<h3 id="intro-1">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#intro-1">Intro</a>
-</h3>
-<p>RAID stands for Redundant Array of Independent Disks (originally Redundant Array of Inexpensive Disks). It is a data storage technology that combines multiple physical disk drives into a single logical unit to improve performance, increase capacity, or provide redundancy to protect data against drive failures.</p>
-
-
-
-<h3 id="how-it-differs-from-lvm">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#how-it-differs-from-lvm">How it differs from LVM</a>
-</h3>
-<ul>
-<li>RAID is primarily for redundancy and performance.</li>
-<li>RAID works at a block level across discs.</li>
-<li>So it is sometimes used to create a high capacity pool.</li>
-</ul>
-
-
-
-<h3 id="multiple-configurations">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#multiple-configurations">Multiple configurations</a>
-</h3>
-<ul>
-<li>There are configurations for differing degrees of performance</li>
-<li>There are configurations for different levels of redundancy</li>
-</ul>
-
-
-
-<h3 id="comparison-table">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#comparison-table">Comparison Table</a>
-</h3>
-<table>
-  <thead>
-      <tr>
-          <th><strong>RAID Level</strong></th>
-          <th><strong>Description</strong></th>
-          <th><strong>Performance</strong></th>
-          <th><strong>Redundancy</strong></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>RAID 0</td>
-          <td>Data striping without parity or mirroring.</td>
-          <td>High (fast read/write speeds)</td>
-          <td>None (no redundancy)</td>
-      </tr>
-      <tr>
-          <td>RAID 1</td>
-          <td>Mirroring of data across two or more disks.</td>
-          <td>Moderate (read speed improves, write speed similar to single disk)</td>
-          <td>High (data is mirrored)</td>
-      </tr>
-      <tr>
-          <td>RAID 5</td>
-          <td>Block-level striping with distributed parity.</td>
-          <td>Moderate (improved read speeds, slower writes due to parity calculation)</td>
-          <td>Moderate (can tolerate 1 disk failure)</td>
-      </tr>
-      <tr>
-          <td>RAID 6</td>
-          <td>Block-level striping with dual parity.</td>
-          <td>Moderate (similar to RAID 5, but slower writes)</td>
-          <td>High (can tolerate 2 disk failures)</td>
-      </tr>
-      <tr>
-          <td>RAID 10</td>
-          <td>Striping across mirrored sets (combines RAID 1 and RAID 0).</td>
-          <td>High (fast read/write due to striping and redundancy)</td>
-          <td>High (can tolerate multiple disk failures depending on which disks fail)</td>
-      </tr>
-      <tr>
-          <td>RAID 50</td>
-          <td>RAID 5 arrays striped (combines RAID 5 and RAID 0).</td>
-          <td>High (fast read speeds, but slower writes)</td>
-          <td>Moderate (can tolerate up to 1 disk failure in each RAID 5 array)</td>
-      </tr>
-      <tr>
-          <td>RAID 60</td>
-          <td>RAID 6 arrays striped (combines RAID 6 and RAID 0).</td>
-          <td>High (fast reads, slower writes due to dual parity)</td>
-          <td>Very High (can tolerate up to 2 disk failures in each RAID 6 array)</td>
-      </tr>
-      <tr>
-          <td>RAID 1+0</td>
-          <td>Nested RAID 1 over RAID 0 (mirroring across striped sets).</td>
-          <td>High (similar to RAID 10)</td>
-          <td>High (similar to RAID 10)</td>
-      </tr>
-  </tbody>
-</table>
-
-
-
-<h3 id="software--hardware-raid">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#software--hardware-raid">Software &amp; Hardware Raid</a>
-</h3>
-<ul>
-<li>Software RAID is when the host Operating System maintains the linking and syncing.</li>
-<li>Hardware RAID is when a dedicated device does this. For example a PCI raid controller.
-<img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Compaq_SystemPro_Server_RAID_Controller_100_2425.jpg" alt="Older RAID Controller Card"></li>
-</ul>
-
-
-
-<h3 id="a-software-raid-is">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#a-software-raid-is">A software RAID is:</a>
-</h3>
-<p>is running as a general task through the CPU. With multi-core/thread processors and more robust process handling, software RAID is more reliable than in the past.
-Advantages:</p>
-<ul>
-<li>Portable 🦶</li>
-<li>Flexible 🧘</li>
-<li>Cost Effective 💰</li>
-</ul>
-
-
-
-<h3 id="hardware-raid-is">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#hardware-raid-is">Hardware RAID is:</a>
-</h3>
-<p>Application specific hardware like a RAID Controller always has the potential to be more performant and reliable. But this is mfg. dependent, the good ones tend to be expensive (such as life) 💸</p>
-<ul>
-<li>Performant* 🏎️</li>
-<li>Reliable* ⏳</li>
-</ul>
-<hr>
-
-
-
-<h1 id="other-filesystem-researchwriting">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#other-filesystem-researchwriting">Other Filesystem research/writing</a>
-</h1>
-
-
-
-<h3 id="btrfs">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#btrfs">Btrfs</a>
-</h3>
-<p>I wrote an entire separate article about B-Tree FileSystem as I find it interesting <a href="https://trevorsmale.github.io/techblog/post/btrfs/">Link to Btrfs article</a></p>
-
-
-
-<h3 id="linux-filesystem-comparison">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#linux-filesystem-comparison">Linux Filesystem Comparison</a>
-</h3>
-<p>I find file-systems really interesting. Recently I made a huge note comparing the major FileSystems.
-<a href="https://trevorsmale.github.io/techblog/post/fs/">Link to FileSystems note/article</a></p>
-
-
-
-<h3 id="linux-filesystem-timeline">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#linux-filesystem-timeline">Linux Filesystem Timeline</a>
-</h3>
-<p>This timeline may help illuminate how filesystems incrementally improve over time.</p>
-<table>
-  <thead>
-      <tr>
-          <th>Year</th>
-          <th>Milestone</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>1993</td>
-          <td><strong>ext2</strong> filesystem development begins.</td>
-      </tr>
-      <tr>
-          <td>1994</td>
-          <td><strong>ext2</strong> released with Linux Kernel 1.0.</td>
-      </tr>
-      <tr>
-          <td>1994</td>
-          <td><strong>XFS</strong> first developed by SGI for IRIX.</td>
-      </tr>
-      <tr>
-          <td>2001</td>
-          <td><strong>ext3</strong> released, introducing journaling.</td>
-      </tr>
-      <tr>
-          <td>2001</td>
-          <td><strong>XFS</strong> ported to Linux.</td>
-      </tr>
-      <tr>
-          <td>2006</td>
-          <td>Development of <strong>ext4</strong> begins to extend the capabilities of ext3.</td>
-      </tr>
-      <tr>
-          <td>2007</td>
-          <td><strong>BTRFs</strong> development announced by Oracle.</td>
-      </tr>
-      <tr>
-          <td>2008</td>
-          <td><strong>ext4</strong> marked as stable in Linux Kernel 2.6.28.</td>
-      </tr>
-      <tr>
-          <td>2009</td>
-          <td><strong>BTRFs</strong> included in Linux Kernel 2.6.29 as an experimental filesystem.</td>
-      </tr>
-      <tr>
-          <td>2009</td>
-          <td><strong>XFS</strong> officially included in Linux Kernel 2.6.36.</td>
-      </tr>
-      <tr>
-          <td>2010</td>
-          <td><strong>ext4</strong> becomes the default filesystem for many Linux distributions, including Ubuntu and Fedora.</td>
-      </tr>
-      <tr>
-          <td>2012</td>
-          <td><strong>BTRFs</strong> adopted by SUSE Linux Enterprise Server.</td>
-      </tr>
-      <tr>
-          <td>2014</td>
-          <td><strong>XFS</strong> becomes the default filesystem in <strong>RHEL 7</strong>.</td>
-      </tr>
-      <tr>
-          <td>2014</td>
-          <td>Fedora starts offering <strong>BTRFs</strong> as an option.</td>
-      </tr>
-      <tr>
-          <td>2020</td>
-          <td>Fedora 33 makes <strong>BTRFs</strong> the default filesystem.</td>
-      </tr>
-  </tbody>
-</table>
-<hr>
-
-
-
-<h1 id="crisis-management-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#crisis-management-">Crisis Management 🔥🧯</a>
-</h1>
-
-
-
-<h3 id="intro-2">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#intro-2">Intro</a>
-</h3>
-<p>I read a chapter from googles security handbook focused on responding to a security incident.
-This chapter covers a wide range of information including common mistakes, templates etcc&hellip; Scott has asked us to pull keywords that may help us better triage an incident. I decided to extend this to creating an incident response checklist for future reference. This order of the list slightly differs from that of the article, yet I think it summarizes the chapter well.</p>
-
-
-
-<h3 id="overview-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#overview-">Overview 🔍</a>
-</h3>
-<p>Effective crisis management requires taking command and maintaining control of an incident. The outcome of a security incident largely depends on how well your organization prepares and responds, a process referred to as <strong>incident response (IR) capability</strong>.</p>
-
-
-
-<h3 id="transparency-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#transparency-">Transparency 🔮</a>
-</h3>
-<p>Transparency is key in managing incidents, particularly in light of regulations such as GDPR and service contracts. Customers are continually pushing the boundaries for how quickly investigations must begin, progress, and be resolved. Organizations are often expected to respond to potential security problems within <strong>24 hours or less</strong>.</p>
-<p>As the saying goes: <em>&ldquo;There are only two types of companies: those that know they&rsquo;ve been compromised, and those that don&rsquo;t know.&rdquo;</em></p>
-
-
-
-<h3 id="steps-of-crisis-management-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#steps-of-crisis-management-">Steps of Crisis Management 🪜</a>
-</h3>
-
-
-
-<h4 id="1-triage-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#1-triage-">1. Triage 🥼</a>
-</h4>
-<ul>
-<li><strong>The First Step: Don’t Panic!</strong> Not every incident is a crisis.</li>
-<li>Differentiate between <strong>compromises</strong> and <strong>bugs</strong>.</li>
-<li>Make educated and informed assumptions about the severity and potential consequences of the incident.
-<ul>
-<li>What data might be accessible to someone on the compromised system?</li>
-<li>What trust relationships does the potentially compromised system have with other systems?</li>
-<li>Are there compensating controls that an attacker would also have to penetrate?</li>
-<li>Does the attack seem to be <strong>commodity opportunistic malware</strong>?</li>
-</ul>
-</li>
-</ul>
-
-
-
-<h4 id="2-manage-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#2-manage-">2. Manage 🧠</a>
-</h4>
-<ul>
-<li>
-<p><strong>Establish Your Incident Team:</strong></p>
-<ul>
-<li><strong>Management Liaison:</strong> Coordinate between the technical team and upper management.</li>
-<li><strong>Incident Commander (IC):</strong> Ultimately responsible for ensuring that rules around confidentiality are set, communicated, and followed.</li>
-<li><strong>Operations Coordinator (OC):</strong> Coordinate the technical side of the incident response.</li>
-<li><strong>Legal Lead:</strong> Ensure the response complies with legal obligations.</li>
-<li><strong>Communications Lead:</strong> Ensure internal and external communications are clear and effective.</li>
-</ul>
-<p><strong>Guidelines for Management:</strong></p>
-<ul>
-<li>Maintain a clear line of command.</li>
-<li>Designate clearly defined roles.</li>
-<li>Keep a working record of debugging and mitigation steps as you go.</li>
-<li>Declare incidents early and often.</li>
-</ul>
-</li>
-</ul>
-
-
-
-<h4 id="3-declare-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#3-declare-">3. Declare 📣</a>
-</h4>
-<ul>
-<li>Declare incidents as soon as they are recognized to ensure early containment and response.</li>
-</ul>
-
-
-
-<h4 id="4-communicate-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#4-communicate-">4. Communicate ☎️</a>
-</h4>
-<ul>
-<li><strong>Avoid Misunderstandings</strong>: Ensure that all parties are aligned on the severity and impact of the incident.</li>
-<li><strong>Avoid Hedging</strong>: Be clear and concise in communication, avoiding ambiguity.</li>
-<li><strong>Meetings</strong>: Hold regular update meetings to ensure that the team and stakeholders are aware of the incident&rsquo;s progress and next steps.</li>
-</ul>
-
-
-
-<h4 id="5-operational-security-opsec-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#5-operational-security-opsec-">5. Operational Security (OpSec) 🥷</a>
-</h4>
-<ul>
-<li><strong>OpSec</strong> refers to the practice of keeping your response activities confidential.
-<ul>
-<li>Use secure lines of communication.</li>
-<li>Avoid interacting directly with affected networks or components.</li>
-<li>Lock down affected accounts immediately.</li>
-<li>Shut down compromised systems to prevent further damage.</li>
-<li>Use different credentials when interacting with compromised systems.</li>
-<li>Ensure the right people are informed with the correct level of detail about the incident.</li>
-</ul>
-</li>
-</ul>
-
-
-
-<h4 id="6-investigate-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#6-investigate-">6. Investigate 🕵</a>
-</h4>
-<ul>
-<li>Follow the <strong>OODA Loop</strong>: Observe, Orient, Decide, and Act.
-<ul>
-<li><strong>Forensic Imaging</strong>: Capture system images for later analysis.</li>
-<li><strong>Memory Imaging</strong>: Capture the contents of system memory.</li>
-<li><strong>File Carving</strong>: Extract useful files from data storage.</li>
-<li><strong>Log Analysis</strong>: Analyze system logs to identify suspicious activity.</li>
-<li><strong>Malware Analysis</strong>: Dissect malware to understand its function.</li>
-<li><strong>Sharding the Investigation</strong>: Divide the investigation into manageable parts.</li>
-<li><strong>Parallelize the Incident</strong>: Have different teams working on different aspects of the investigation simultaneously.</li>
-</ul>
-</li>
-</ul>
-
-
-
-<h4 id="7-handover-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#7-handover-">7. Handover ⛓️</a>
-</h4>
-<ul>
-<li>Properly hand over any remaining tasks or investigations to ensure nothing is overlooked as the incident winds down.</li>
-</ul>
-
-
-
-<h4 id="8-remediate-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#8-remediate-">8. Remediate 🛠️</a>
-</h4>
-<ul>
-<li>Fix vulnerabilities and mitigate damage to prevent future incidents. Implement long-term security measures.</li>
-</ul>
-
-
-
-<h4 id="9-close-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#9-close-">9. Close 📒</a>
-</h4>
-<ul>
-<li>Close the incident formally. Review what went well, what could have been better, and document the lessons learned for future incidents.</li>
-</ul>
-<hr>
-
-
-
-<h1 id="high-availability-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#high-availability-">High Availability ⚓️</a>
-</h1>
-<p>refers to the design and implementation of systems, services, or applications to minimize downtime and ensure continuous operation.
-The goal of high availability is to ensure that a system is accessible and operational for the maximum possible amount of time.</p>
-<hr>
-
-
-
-<h2 id="key-terms-in-ha-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#key-terms-in-ha-">Key Terms in HA 🔑</a>
-</h2>
-
-
-
-<h3 id="1-uptime--downtime-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#1-uptime--downtime-">1. Uptime &amp; Downtime ↕️</a>
-</h3>
-<ul>
-<li><strong>Uptime</strong>: The period during which a system is fully operational and accessible to users.</li>
-<li><strong>Downtime</strong>: The period during which the system is unavailable or not functioning as expected. HA systems aim to minimize downtime as much as possible.</li>
-</ul>
-
-
-
-<h3 id="2-redundancy-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#2-redundancy-">2. Redundancy 👯</a>
-</h3>
-<p>Redundancy refers to duplicating critical components or functions of a system to increase reliability. In HA systems, components like servers, databases, or networks are replicated so that if one fails, another can take over seamlessly.</p>
-<ul>
-<li><strong>Active-Active Redundancy</strong>: Multiple systems work simultaneously, and if one fails, the others continue without interruption.</li>
-<li><strong>Active-Passive Redundancy</strong>: A primary system works actively, while a backup system remains idle until a failure occurs.</li>
-</ul>
-
-
-
-<h3 id="3-failover-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#3-failover-">3. Failover 🛤️🛤️🛤️</a>
-</h3>
-<p><strong>Failover</strong> is the process of switching to a standby or backup system when the primary system fails. In HA setups, failover is often automatic to minimize disruption. <strong>Failback</strong> refers to switching back to the primary system after recovery.</p>
-
-
-
-<h3 id="4-load-balancing-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#4-load-balancing-">4. Load Balancing ⚖️</a>
-</h3>
-<p><strong>Load balancing</strong> distributes network or application traffic across multiple servers to ensure that no single server becomes overwhelmed. It enhances both performance and availability by balancing the load and rerouting traffic in case of server failures.</p>
-
-
-
-<h3 id="5-elastic-scaling-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#5-elastic-scaling-">5. Elastic Scaling 🎋</a>
-</h3>
-<p><strong>Elastic scaling</strong> is the ability to automatically adjust resource capacity (compute, memory, etc.) based on workload demand. This is crucial for HA, as it prevents resource exhaustion during peak loads and reduces costs during low-demand periods.</p>
-<ul>
-<li><strong>Horizontal Scaling (Scaling Out)</strong>: Adding more instances/servers to distribute load.</li>
-<li><strong>Vertical Scaling (Scaling Up)</strong>: Increasing the resources of a single instance.</li>
-<li><strong>Auto-scaling</strong>: Automatic scaling based on real-time metrics.</li>
-</ul>
-<p><strong>In Kubernetes</strong>, elastic scaling is managed through <strong>Horizontal Pod Autoscalers (HPA)</strong>, which automatically scale the number of pods in a deployment based on observed CPU utilization or other metrics. In HA systems using Kubernetes, autoscaling ensures that the right amount of resources are always allocated based on demand, contributing to both high performance and availability.</p>
-
-
-
-<h3 id="6-fault-tolerance-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#6-fault-tolerance-">6. Fault Tolerance 🤦‍♂️😅</a>
-</h3>
-<p><strong>Fault tolerance</strong> refers to the system&rsquo;s ability to continue operating correctly even when one or more components fail. Fault-tolerant systems detect, isolate, and handle faults without causing downtime.</p>
-
-
-
-<h3 id="7-cluster-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#7-cluster-">7. Cluster 🧑‍🍳🧑‍🍳🧑‍🍳🧑‍🍳</a>
-</h3>
-<p>A <strong>cluster</strong> is a group of servers or nodes working together as a single system to provide HA. Clustering ensures that if one node in the cluster fails, another node takes over its tasks, maintaining service availability.</p>
-<p>In <strong>Kubernetes</strong>, a cluster consists of a set of worker machines, called <strong>nodes</strong>, that run containerized applications. Kubernetes ensures high availability by distributing workloads across multiple nodes and automatically replacing failed nodes or restarting containers.</p>
-<p>In <strong>Warewulf</strong>, a cluster provisioning tool, high availability is addressed by enabling systems to quickly re-deploy compute nodes. Warewulf helps manage HA in high-performance computing (HPC) environments by ensuring compute nodes are readily available for workloads in case of node failure or maintenance.</p>
-
-
-
-<h3 id="8-replication-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#8-replication-">8. Replication 💾💾💾</a>
-</h3>
-<p><strong>Replication</strong> is the process of duplicating data across multiple storage systems or servers. In HA, replication ensures that a copy of data exists on multiple systems, so if one system fails, another can continue providing access to the same data.</p>
-
-
-
-<h3 id="9-disaster-recovery-dr-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#9-disaster-recovery-dr-">9. Disaster Recovery (DR) 📉📈</a>
-</h3>
-<p><strong>Disaster recovery</strong> involves strategies to restore a system after a catastrophic failure (e.g., data center failure). DR usually includes off-site backups and failover to remote data centers.</p>
-
-
-
-<h3 id="10-mean-time-between-failures-mtbf-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#10-mean-time-between-failures-mtbf-">10. Mean Time Between Failures (MTBF) ⏱️</a>
-</h3>
-<p><strong>MTBF</strong> measures the average time between system failures. A higher MTBF indicates a more reliable system.</p>
-
-
-
-<h3 id="11-mean-time-to-repair-mttr-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#11-mean-time-to-repair-mttr-">11. Mean Time to Repair (MTTR) ⏱️🛠️</a>
-</h3>
-<p><strong>MTTR</strong> measures how long it takes to restore a system to full functionality after a failure. Minimizing MTTR is critical for reducing downtime in HA systems.</p>
-
-
-
-<h3 id="12-quorum-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#12-quorum-">12. Quorum 🐾</a>
-</h3>
-<p><strong>Quorum</strong> is the minimum number of nodes or components in a distributed system that must agree or function correctly to maintain availability. Quorum is often required in cluster setups to ensure consistent operation.</p>
-
-
-
-<h3 id="13-geographic-redundancy-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#13-geographic-redundancy-">13. Geographic Redundancy 🌎</a>
-</h3>
-<p><strong>Geographic redundancy</strong> involves deploying systems across multiple geographical locations or data centers. This ensures that services remain available even if a region experiences a failure (e.g., due to natural disasters or power outages).</p>
-
-
-
-<h2 id="relation-to-kubernetes-and-warewulf">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#relation-to-kubernetes-and-warewulf">Relation to Kubernetes and Warewulf</a>
-</h2>
-<p>I wanted to look at Kubernetes and Warewulf and how they relate to this topic as they are both systems written with GO and they are both well liked systems relating to HA.</p>
-<p>I will write a future article all about GO and why it is fantastic at a later date. So I will just leave this point for now.</p>
-<p>-A language built by the progenitors of UNIX and C for diverse connected systems.</p>
-<ul>
-<li>
-<p><strong>Kubernetes</strong> 🍀:
-automated failover
-container orchestration
-elastic scaling with Horizontal Pod Autoscalers
-and geographic redundancy through multi-region clusters.</p>
-</li>
-<li>
-<p><strong>Warewulf</strong> 🐺: In HPC environments, <strong>Warewulf</strong> aids in HA by managing node provisioning and monitoring the health of the compute nodes. In case of failures, Warewulf can quickly re-deploy nodes, ensuring that the overall HPC workload is minimally disrupted.</p>
-</li>
-</ul>
-<p>Kubernetes and Warewulf both play key roles in maintaining high availability in modern infrastructures, with Kubernetes focusing on containerized applications and Warewulf on HPC cluster management.</p>
-
-
-
-<h2 id="ha--incident-triage-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#ha--incident-triage-">HA &amp; Incident Triage 🚨</a>
-</h2>
-<p>High Availability (HA) systems improve operational security, allowing precise triage due to these factors:</p>
-
-
-
-<h3 id="1-continuous-monitoring">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#1-continuous-monitoring">1. Continuous Monitoring</a>
-</h3>
-<p>HA systems continuously monitor performance to detect security threats in real time.</p>
-
-
-
-<h3 id="2-continuous-comprehensive-logging">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#2-continuous-comprehensive-logging">2. Continuous Comprehensive Logging</a>
-</h3>
-<p>Logs are centralized, providing full visibility across the system for quick forensic analysis.</p>
-
-
-
-<h3 id="3-declarative-structure">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#3-declarative-structure">3. Declarative Structure</a>
-</h3>
-<p>Declarative configurations enable automated remediation scripts for rapid self-healing.</p>
-
-
-
-<h3 id="4-automated-alerting">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#4-automated-alerting">4. Automated Alerting</a>
-</h3>
-<p>Automated alerts prioritize and notify teams of security incidents as they happen.</p>
-<p>Beyond triage, HA systems offer several other security benefits:</p>
-
-
-
-<h3 id="5-containerized-components">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#5-containerized-components">5. Containerized Components</a>
-</h3>
-<p>Microservices are isolated, allowing affected components to be restarted without system-wide impact.</p>
-
-
-
-<h3 id="6-elastic-scaling">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#6-elastic-scaling">6. Elastic Scaling</a>
-</h3>
-<p>HA systems dynamically scale resources to handle traffic spikes or increased workloads securely.</p>
-
-
-
-<h3 id="7-automated-failover">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#7-automated-failover">7. Automated Failover</a>
-</h3>
-<p>Automated failover isolates compromised components, ensuring continuous uptime during incidents.</p>
-
-
-
-<h3 id="8-data-replication-by-design">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#8-data-replication-by-design">8. Data Replication by Design</a>
-</h3>
-<p>Multiple data copies prevent loss and aid in disaster recovery during security breaches.</p>
-
-
-
-<h3 id="9-event-replay">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#9-event-replay">9. Event Replay</a>
-</h3>
-<p>Event replay allows security teams to analyze incidents for better future defense.</p>
-<hr>
-
-
-
-<h2 id="lessons-learned-about-ha">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#lessons-learned-about-ha">Lessons Learned about HA</a>
-</h2>
-<p>What I have learned from reading articles, searching and compiling these notes.</p>
-
-
-
-<h3 id="the-why">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#the-why">The Why</a>
-</h3>
-<p>In today’s world, data is ingested, processed, and distributed at an unprecedented rate. To keep up, we must implement systems that operate with the same speed and frequency. The era of handling sequential tasks one at a time is over. High availability solutions such as Kubernetes, declarative infrastructure, cluster management, and stateless automation are now essential in modern IT environments.</p>
-<p>Although some developers, administrators, and engineers express concerns about the complexity of these deployments, preferring simpler solutions, the reality is that we need to adapt to the increasing demands of data availability and security. Setting up a robust infrastructure now may have a higher initial labor cost, but it will undoubtedly reduce the risk of costly security incidents and system downtime in the future.</p>
-
-
-
-<h3 id="the-what">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#the-what">The What</a>
-</h3>
-<p>The systems we must focus on include:</p>
-<ul>
-<li><strong>Kubernetes</strong> for orchestrating containerized applications across clusters</li>
-<li><strong>Declarative Infrastructure</strong> using Infrastructure-as-Code (IaC) for consistent and scalable deployments</li>
-<li><strong>Cluster Management</strong> to efficiently manage and scale distributed systems</li>
-<li><strong>Stateless Automation</strong> to ensure systems can self-heal and adapt quickly without human intervention</li>
-</ul>
-<p>These technologies form the backbone of high availability infrastructures, designed to handle vast amounts of data without compromising performance or uptime.</p>
-
-
-
-<h3 id="the-how">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#the-how">The How</a>
-</h3>
-<p>To implement these solutions, organizations should:</p>
-<ul>
-<li><strong>Automate deployment processes</strong> using tools like Terraform or Ansible to ensure repeatability and reliability.</li>
-<li><strong>Leverage Kubernetes clusters</strong> to manage microservices architectures, enabling fast scaling and robust fault tolerance.</li>
-<li><strong>Adopt a declarative approach</strong> by defining infrastructure states in code, allowing easier management and version control of systems.</li>
-<li><strong>Utilize stateless automation</strong> to reduce system reliance on individual components, making the system more resilient to failure and able to recover without manual intervention.</li>
-</ul>
-<p>By adopting these practices, companies can build resilient, secure, and scalable infrastructures that meet the demands of today’s fast-paced data environments.</p>
-
-
-
-<h2 id="ha-and-sir-synergy">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#ha-and-sir-synergy">HA and SIR Synergy</a>
-</h2>
-
-
-
-<h3 id="the-why-1">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#the-why-1">The Why</a>
-</h3>
-<p>As organizations become increasingly reliant on digital systems, security incidents are inevitable. Data breaches, malware attacks, and system vulnerabilities pose significant risks that can lead to costly downtime, reputational damage, and legal consequences. In this high-availability (HA) era, where uninterrupted service is critical, an effective <strong>Security Incident Response (SIR)</strong> plan is more important than ever.</p>
-
-
-
-<h3 id="the-what-1">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#the-what-1">The What</a>
-</h3>
-<p>At its core, <strong>Security Incident Response (SIR)</strong> involves:</p>
-<ul>
-<li><strong>Identifying</strong> and responding to potential security incidents in real time</li>
-<li><strong>Containing</strong> incidents to prevent further damage and preserve critical systems</li>
-<li><strong>Eradicating</strong> malicious activity from systems quickly and efficiently</li>
-<li><strong>Recovering</strong> compromised systems and restoring operations to normal</li>
-<li><strong>Reviewing and improving</strong> security protocols based on lessons learned from incidents</li>
-</ul>
-<p>In high-availability environments, this process works hand in hand with:</p>
-<ul>
-<li><strong>Failover mechanisms</strong> that redirect traffic or services away from compromised systems to maintain uptime</li>
-<li><strong>Resilient architectures</strong> where services are spread across clusters, reducing the impact of a security breach on overall operations</li>
-<li><strong>Automated remediation</strong> that helps detect and respond to threats before they cause major disruptions</li>
-</ul>
-<p>Together, SIR and HA form a dual-layer defense to keep systems running while actively dealing with security threats.</p>
-
-
-
-<h3 id="the-how-1">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#the-how-1">The How</a>
-</h3>
-<p>For Security Incident Response to effectively complement high availability, organizations should:</p>
-<ol>
-<li>
-<p><strong>Implement proactive monitoring and detection</strong>: Use tools like SIEM (Security Information and Event Management)</p>
-</li>
-<li>
-<p><strong>Prepare for containment and isolation</strong>: High availability systems should be designed with segmentation in mind</p>
-</li>
-<li>
-<p><strong>Automate incident response and failover</strong>: Automate responses to specific types of threats, such as deploying firewalls, initiating backups, or failing over to standby systems.</p>
-</li>
-<li>
-<p><strong>Maintain constant communication</strong>: SIR teams should work closely with HA engineers to ensure that any security measures (e.g., shutting down affected systems) do not inadvertently cause a service disruption.</p>
-</li>
-<li>
-<p><strong>Review and test regularly</strong>: Just as HA systems undergo regular testing for failovers, security incident response plans should be tested in simulated scenarios.</p>
-</li>
-</ol>
-<hr>
-
-
-
-<h3 id="why-study-failure">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#why-study-failure">Why study failure?</a>
-</h3>
-<ul>
-<li>
-<p><strong>Proactive Prevention</strong> 🛠️: Identifying potential failure points allows you to take preventive measures and avoid system outages.</p>
-</li>
-<li>
-<p><strong>Faster Recovery</strong> 🚑: Knowing how systems can fail enables quicker response and minimizes downtime with a tested failover plan.</p>
-</li>
-<li>
-<p><strong>Resilience Building</strong> 🛡️: Understanding failure mechanisms helps design architectures that automatically handle issues, ensuring better uptime.</p>
-</li>
-<li>
-<p><strong>Risk Management</strong> ⚖️: Acknowledging failure risks helps balance uptime goals with realistic risk management and avoids catastrophic downtime.</p>
-</li>
-</ul>
-<hr>
-
-
-
-<h1 id="service-level-objectives-slos-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#service-level-objectives-slos-">Service Level Objectives (SLOs) 🎯</a>
-</h1>
-
-
-
-<h2 id="intro-3">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#intro-3">Intro</a>
-</h2>
-<p>Service Level Objectives (SLOs) are specific, measurable targets 📊 that define the expected performance or quality level of a service, typically included in Service Level Agreements (SLAs). They help ensure services meet customer expectations by setting clear benchmarks for key metrics like reliability, availability, and response time.</p>
-<p>SLOs help teams prioritize work, manage resources, and drive decisions based on real performance data. 🔧</p>
-<p>Check out Google&rsquo;s guide to SLOs <a href="https://sre.google/workbook/implementing-slos/">here</a>.</p>
-
-
-
-<h3 id="bad-operations-badops-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#bad-operations-badops-">Bad Operations (BadOps) ⚠️</a>
-</h3>
-<ul>
-<li>The unspoken rule of 100% uptime is a myth ❌.</li>
-<li>100% uptime ≠ 100% reliability.</li>
-<li>Each extra “nine” of uptime comes at a significant cost 💸.</li>
-</ul>
-
-
-
-<h3 id="why-have-slos-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#why-have-slos-">Why Have SLOs? 🤔</a>
-</h3>
-<ul>
-<li>Engineers are scarce 🧑‍💻: Impossible standards require more resources.</li>
-<li>They inform decisions: The opportunity cost of reliability is clear with an objective.</li>
-<li>SREs aren&rsquo;t just automation experts; they&rsquo;re driven by SLOs 🚀.</li>
-<li>SLOs help prioritize tasks effectively 📋.</li>
-<li>They define <strong>error budgets</strong> to manage acceptable failure rates.</li>
-</ul>
-
-
-
-<h1 id="service-level-indicators-slis-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#service-level-indicators-slis-">Service Level Indicators (SLIs) 📏</a>
-</h1>
-
-
-
-<h2 id="intro-4">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#intro-4">Intro</a>
-</h2>
-<p>A Service Level Indicator (SLI) is a specific, quantifiable metric 🔢 used to measure the performance of a service, often forming the foundation of SLOs.</p>
-
-
-
-<h3 id="setting-a-solid-sli-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#setting-a-solid-sli-">Setting a Solid SLI ⚖️</a>
-</h3>
-<p>Two out of five of these factors can be used to form a ratio that serves as a target SLI:</p>
-<ul>
-<li>Number of successful HTTP requests / total HTTP requests (success rate) 🌐.</li>
-<li>Number of gRPC calls completed in under 100ms / total gRPC requests ⏱️.</li>
-<li>Number of search results using the entire data set / total search results, including gracefully degraded ones 🔍.</li>
-<li>Number of stock check requests with data fresher than 10 minutes / total stock check requests 🛒.</li>
-<li>Number of “good user minutes” based on defined criteria / total user minutes 📅.</li>
-</ul>
-<hr>
-
-
-
-<h2 id="glossary-of-terms-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#glossary-of-terms-">Glossary of Terms 🙊</a>
-</h2>
-<p>These are additional terms I have become familiar with that were not covered in this units notes but relayed by Scott.</p>
-
-
-
-<h3 id="five-9s">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#five-9s">Five 9’s</a>
-</h3>
-<p>Refers to 99.999% availability, meaning less than 5 minutes of downtime per year.</p>
-
-
-
-<h3 id="single-point-of-failure">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#single-point-of-failure">Single point of failure</a>
-</h3>
-<p>A component in a system whose failure will cause the entire system to fail.</p>
-
-
-
-<h3 id="key-performance-indicators">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#key-performance-indicators">Key Performance Indicators</a>
-</h3>
-<p>Metrics used to measure the performance and effectiveness of a system or service.</p>
-
-
-
-<h3 id="sli-service-level-indicator">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#sli-service-level-indicator">SLI (Service Level Indicator)</a>
-</h3>
-<p>A specific, quantifiable metric used to measure the performance of a service (e.g., latency, uptime).</p>
-
-
-
-<h3 id="slo-service-level-objective">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#slo-service-level-objective">SLO (Service Level Objective)</a>
-</h3>
-<p>A target or goal for an SLI, defining acceptable performance for a service.</p>
-
-
-
-<h3 id="sla-service-level-agreement">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#sla-service-level-agreement">SLA (Service Level Agreement)</a>
-</h3>
-<p>A formal contract that defines the level of service expected between a provider and a customer, including penalties for not meeting SLOs.</p>
-
-
-
-<h3 id="active-standby">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#active-standby">Active-Standby</a>
-</h3>
-<p>A redundancy setup where one component is active while another remains on standby to take over if the active one fails.</p>
-
-
-
-<h3 id="active-active">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#active-active">Active-Active</a>
-</h3>
-<p>A redundancy setup where multiple components work simultaneously to share the load, and failure in one component is covered by the others.</p>
-
-
-
-<h3 id="mttd-mean-time-to-detect">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#mttd-mean-time-to-detect">MTTD (Mean Time to Detect)</a>
-</h3>
-<p>The average time it takes to detect a failure or incident in a system.</p>
-
-
-
-<h3 id="mttr-mean-time-to-repair">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#mttr-mean-time-to-repair">MTTR (Mean Time to Repair)</a>
-</h3>
-<p>The average time it takes to recover from a failure or incident once it has been detected.</p>
-
-
-
-<h3 id="mtbf-mean-time-between-failures-mentioned-once">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#mtbf-mean-time-between-failures-mentioned-once">MTBF (Mean Time Between Failures) &lsquo;Mentioned Once&rsquo;</a>
-</h3>
-<p>The average time a system operates without failure, used to measure system reliability.</p>
-<hr>
-
-
-
-<h1 id="reflection">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#reflection">Reflection</a>
-</h1>
-<ul>
-<li>Remaining Qustions?</li>
-<li>How will I put this into practice?</li>
-</ul>
-<hr>
-
-
-
-<h3 id="prolug-links-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu3/#prolug-links-">ProLUG Links ⛓️</a>
-</h3>
-<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
-Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
-Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
-ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
-KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
-      
-      
-
-  
-
-  
-
-
-
-
-
-  <footer>
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
-            </li>
-          
-        </ul>
-      
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
             </li>
           
         </ul>

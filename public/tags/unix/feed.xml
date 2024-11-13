@@ -10,6 +10,495 @@
     <lastBuildDate>Sun, 29 Sep 2024 00:00:00 +0000</lastBuildDate>
     <atom:link rel="self" href="http://localhost:1313/techblog/tags/unix/feed.xml" type="application/rss+xml" />
     <item>
+      <title>ProLUG Admin Course Unit 9 🐧</title>
+      <link>http://localhost:1313/techblog/post/pacu9/</link>
+      <pubDate>Tue, 12 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/techblog/post/pacu9/</guid>
+      <description>&lt;h1 id=&#34;containers--kubernetes&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#containers--kubernetes&#34;&gt;Containers &amp;amp; Kubernetes&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;One of the most exciting units for me has been exploring deployment and hosting infrastructure. I’ve already spent some time working with Docker and Podman, but I have had limited hands-on experience with Kubernetes. Before this unit, I completed a few interactive Kubernetes labs on Killercoda, covering basic commands, information gathering, and logging.&lt;/p&gt;
+&lt;p&gt;This week, I followed an interactive K3s lab that guided me through the installation process—a perfect refresher. Afterward, I jumped onto one of my Proxmox VMs and installed K3s on my homelab 👨‍🔧&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;discussion-post-1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#discussion-post-1&#34;&gt;Discussion Post 1&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;It’s a slow day in the NOC and you have heard that a new system of container deployments are being used by your developers. Do some reading about containers, docker, and podman.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;What resources helped me answer these questions&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.redhat.com/en/topics/containers&#34;&gt;https://www.redhat.com/en/topics/containers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;My RHCSA 9 Course on Udemy&lt;/li&gt;
+&lt;li&gt;Notes I have composed in LogSeq from multiple sources&lt;/li&gt;
+&lt;li&gt;Julia Evans Blog &lt;a href=&#34;https://jvns.ca/&#34;&gt;https://jvns.ca/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;What did you learn about that you didn’t know before?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;I did not know that Podman and Kubernetes can run WASM Applications alongside containers. I have some interest in WASM and Subsequent ByteCode, having read about it on occasion.&lt;/li&gt;
+&lt;li&gt;I did not know that Podman containers can be converted to SystemD services.&lt;/li&gt;
+&lt;li&gt;I learned a technique that I quite like using podman commit to create a custom compose file from a modified container and will likely use this alot.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Terminology that I wasn&amp;rsquo;t familiar with:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Control Plane: Manages container orchestration, monitoring, and state across cluster nodes.&lt;/li&gt;
+&lt;li&gt;The API server: Core interface for communication between users and container clusters.&lt;/li&gt;
+&lt;li&gt;Scheduler: Assigns containers to nodes based on resource availability and policies.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;What seems to be the major benefit of containers?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Can be declarative with compose. So infrastructure can be explicitly defined and easily rebuilt.&lt;/li&gt;
+&lt;li&gt;Light weight / low resource. Containers are not complete systems and are stripped to the bare essentials, meaning they are very small files that run fast.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;What seems to be some obstacles to container deployment?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;From my own experience, mounting persistent volumes was a bit tricky.&lt;/li&gt;
+&lt;li&gt;Container networking presents a challenge bot conceptually and practically.&lt;/li&gt;
+&lt;li&gt;Packaging application to run harmoniously within a container environment presents some friction.&lt;/li&gt;
+&lt;li&gt;Large infrastructure must be broken into microservices, introducing complexity.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;discussion-post-2&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#discussion-post-2&#34;&gt;Discussion Post 2&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;You get your first ticket about a problem with containers. One of the engineers is trying to move his container up to the Dev environment shared server. He sends you over this information about the command he’s trying to run.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[developer1@devserver read]$ podman ps
+CONTAINER ID  IMAGE       COMMAND     CREATED     STATUS      PORTS       NAMES
+
+[developer1@devserver read]$ podman images
+
+REPOSITORY                TAG                IMAGE ID      CREATED      SIZE
+localhost/read_docker     latest             2c0728a1f483  5 days ago   68.2 MB
+docker.io/library/python  3.13.0-alpine3.19  9edd75ff93ac  3 weeks ago  47.5 MB
+[developer1@devserver read]$ podman run -dt -p 8080:80/tcp docker.io/library/httpd
+You decide to check out the server 
+[developer1@devserver read] ss -ntulp
+Netid   State    Recv-Q   Send-Q      Local Address:Port        Peer Address:Port         Process
+udp     UNCONN   0        0           127.0.0.53%lo:53               0.0.0.0:*             users:((&amp;quot;systemd-resolve&amp;quot;,pid=166693,fd=13))
+tcp     LISTEN   0        80              127.0.0.1:3306             0.0.0.0:*             users:((&amp;quot;mariadbd&amp;quot;,pid=234918,fd=20))
+tcp     LISTEN   0        128               0.0.0.0:22               0.0.0.0:*             users:((&amp;quot;sshd&amp;quot;,pid=166657,fd=3))
+tcp     LISTEN   0        4096        127.0.0.53%lo:53               0.0.0.0:*             users:((&amp;quot;systemd-resolve&amp;quot;,pid=166693,fd=14))
+tcp     LISTEN   0        4096                    *:8080                   *:*             users:((&amp;quot;node_exporter&amp;quot;,pid=662,fd=3))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol&gt;
+&lt;li&gt;What do you think the problem might be?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;There is a container call node exporter that is listening on port 8080, therefore the port is already in use. I think this is a pretty common issue as this port is normally used for public traffic. With many nodes running it is easy to double assign a port.&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;How will you test this?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I would run the conflicting container run command with a slight port change.
+podman run -dt -p 8081:80/tcp docker.io/library/httpd&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;The developer tells you that he’s pulling a local image, do you find this to be true, or is something else happening in their run command?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;It is true that once and image is pulled, it is stored locally. So the developer may have &lt;strong&gt;pulled&lt;/strong&gt; the image. However in the command he is specifying a source for pulling a fresh container, so the dev is definitely sus. Typically if the image has been pulled it is given a container ID, which is then used to build with.&lt;/p&gt;
+
+
+
+&lt;h2 id=&#34;installing-k3s-in-my-homelab&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#installing-k3s-in-my-homelab&#34;&gt;Installing K3s in my HomeLab&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;After completing the suggested lab, I took note of installation process and replicated it on my HomeLab. I just wanted to share my process and bumps.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Installation from curl script
+curl -sfL &lt;a href=&#34;https://get.k3s.io&#34;&gt;https://get.k3s.io&lt;/a&gt; | sh -&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Making sure the service is running in systemD
+systemctl status k3s&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Changing config permissions (Problem that had stumped me)
+sudo chmod 644 /etc/rancher/k3s/k3s.yaml&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Deploying a pod
+kubectl run nginx &amp;ndash;image=nginx:alpine&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Making an alias so commands are less annoying
+alias k=kubectl&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Checking the running pod
+k get pods&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;h2 id=&#34;digging-deeper-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#digging-deeper-&#34;&gt;Digging Deeper ⛏️&lt;/a&gt;
+&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;See if you can get a deployment working in the lab.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Screen shots from this deployment&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://trevorsmale.github.io/techblog/images/PACU8/ibb.jpg&#34; alt=&#34;Arnold&#34;&gt;
+&lt;img src=&#34;https://trevorsmale.github.io/techblog/images/PACU8/ibb.jpg&#34; alt=&#34;Arnold&#34;&gt;
+&lt;img src=&#34;https://trevorsmale.github.io/techblog/images/PACU8/ibb.jpg&#34; alt=&#34;Arnold&#34;&gt;
+&lt;img src=&#34;https://trevorsmale.github.io/techblog/images/PACU8/ibb.jpg&#34; alt=&#34;Arnold&#34;&gt;
+&lt;img src=&#34;https://trevorsmale.github.io/techblog/images/PACU8/ibb.jpg&#34; alt=&#34;Arnold&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What worked well?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;creating a persistent volume and attaching to the volume worked well.
+mkdir /root/TreasuresVolume
+Pulling and building an image worked well.
+Attaching to the container and interacting with it went well.
+podman run -dit &amp;ndash;name TreasuresContainer -v /root/TreasuresVolume:/app docker.io/library/golang:alpine tail -f /dev/null
+apk add vim gcc bash&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What did you have to troubleshoot?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I ran into trouble when exiting the container. It will kill the container, forcing me to start it again, which was frustrating.
+Having done this in the past, I thought this would not be an issue. However, I just learned that containers without continually running services will die when exited.
+The fix for such an issue is to run something light and persistent on the container in order to keep it alive. This can be accomplished with a bash script or turning a go binary into a system binary to keep running.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What documentation can you make to be able to do this faster next time?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Actually, this blog is used to partially keep track of this. I use LogSeq as a second brain, where I will definitely copy and paste this info into my Podman section.&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;reflection-questions&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#reflection-questions&#34;&gt;Reflection Questions🤔&lt;/a&gt;
+&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;What questions do you still have about this week?&lt;/li&gt;
+&lt;li&gt;How can you apply this now in your current role in IT? If you’re not in IT, how can you look to put something like this into your resume or portfolio?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+
+
+
+&lt;h3 id=&#34;prolug-links-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#prolug-links-&#34;&gt;ProLUG Links ⛓️&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Discord: &lt;a href=&#34;https://discord.com/invite/m6VPPD9usw&#34;&gt;https://discord.com/invite/m6VPPD9usw&lt;/a&gt;
+Youtube: &lt;a href=&#34;https://www.youtube.com/@het_tanis8213&#34;&gt;https://www.youtube.com/@het_tanis8213&lt;/a&gt;
+Twitch: &lt;a href=&#34;https://www.twitch.tv/het_tanis&#34;&gt;https://www.twitch.tv/het_tanis&lt;/a&gt;
+ProLUG Book: &lt;a href=&#34;https://leanpub.com/theprolugbigbookoflabs&#34;&gt;https://leanpub.com/theprolugbigbookoflabs&lt;/a&gt;
+KillerCoda: &lt;a href=&#34;https://killercoda.com/het-tanis&#34;&gt;https://killercoda.com/het-tanis&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>ProLUG Admin Course Unit 8 🐧</title>
+      <link>http://localhost:1313/techblog/post/pacu8/</link>
+      <pubDate>Wed, 30 Oct 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/techblog/post/pacu8/</guid>
+      <description>&lt;h1 id=&#34;scripting-system-checks&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu8/#scripting-system-checks&#34;&gt;Scripting System Checks&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;https://trevorsmale.github.io/techblog/images/PACU8/ibb.jpg&#34; alt=&#34;Arnold&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Once again beyond the Discussion Posts and Labbing. I spent a great deal of time scripting/programming System checks. After completing the labs which Bash Scripting and intro to &amp;lsquo;C&amp;rsquo;, I got really into GO as a system util. I have a particularly productive day with using the embed.fs feature of GO and packing unix system tools together in a single go program at compilation. I think there is a ton of potential here for my own uses. 👨‍🔧&lt;/p&gt;
+
+
+
+&lt;h2 id=&#34;discussion-post-1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu8/#discussion-post-1&#34;&gt;Discussion Post 1&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Scenario&lt;/p&gt;
+&lt;p&gt;It’s a 2-week holiday in your country, and most of the engineers and architects who designed the system are out of town. You’ve noticed a pattern of logs filling up on a set of web servers due to increased traffic. Research and verification show that the logs are being sent off in real time to Splunk. Your team has been deleting the logs every few days, but a 3rd-shift engineer missed this in the notes, causing downtime. How might you implement a simple fix to stop-gap the problem until all engineering resources return next week?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Resources Used&lt;/strong&gt;:&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;TryHackMe (Splunk) Intro&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Study Group discussion&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;ChatGPT&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Blogs:&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.nohl.eu/tech-resources/notes-to-linux/log-files-in-tmpfs-without-breaking-logging/&#34;&gt;Nohl&amp;rsquo;s Tech Resources: Log Files in tmpfs Without Breaking Logging&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://dietpi.com/docs/software/log_system/&#34;&gt;DietPi Documentation: Log System&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h4 id=&#34;why-cant-you-just-make-a-design-fix-and-add-space-in-varlog-on-all-these-systems&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu8/#why-cant-you-just-make-a-design-fix-and-add-space-in-varlog-on-all-these-systems&#34;&gt;Why can’t you just make a design fix and add space in /var/log on all these systems?&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;Adding more space to &lt;code&gt;/var/log&lt;/code&gt; might be a design fix, but it isn’t feasible in the short term due to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Operational Constraints&lt;/strong&gt;: Extending storage may involve downtime, additional permissions, or architectural changes that can’t be approved without the primary engineers.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Temporary Nature of the Fix&lt;/strong&gt;: Increasing space only delays the issue. If logs continue to grow, the problem will recur once space is exhausted again.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h4 id=&#34;why-cant-you-just-make-a-design-change-and-use-logrotate-more-frequently&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu8/#why-cant-you-just-make-a-design-change-and-use-logrotate-more-frequently&#34;&gt;Why can’t you just make a design change and use logrotate more frequently?&lt;/a&gt;
+&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Possibility of Log Loss&lt;/strong&gt;: Higher logrotate frequency could still miss high-frequency log spikes, especially during unusual traffic peaks, risking logs being deleted before Splunk ingestion is complete.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Configuration and Testing&lt;/strong&gt;: Aggressive logrotate adjustments may interfere with processes expecting logs at specific retention periods. Testing changes in production without key team members isn’t ideal.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h4 id=&#34;temporary-fix-options&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu8/#temporary-fix-options&#34;&gt;Temporary Fix Options&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;To address the issue, consider implementing a temporary fix by configuring a log retention policy that aggressively compresses or truncates logs without disrupting active processes. Here are some potential approaches:&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;implement-a-temporary-cron-job&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu8/#implement-a-temporary-cron-job&#34;&gt;Implement a Temporary &lt;strong&gt;Cron Job&lt;/strong&gt;&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Schedule a cron job to truncate logs on a more aggressive schedule without deleting them. For example:&lt;/p&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt; /var/log/access.log
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;sb&#34;&gt;```&lt;/span&gt;bash
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &amp;gt; /var/log/access.log&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This would empty the log file without removing it or impacting the active file descriptors held by any running processes.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;set-up-temporary-log-compression&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu8/#set-up-temporary-log-compression&#34;&gt;Set Up Temporary Log Compression&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Compress the logs after truncation if additional space savings are needed. Tools like gzip can compress logs efficiently, reducing disk space usage and ensuring logs are still accessible if required for audits or incident investigations.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;implement-a-ram-disk-for-temporary-logs&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu8/#implement-a-ram-disk-for-temporary-logs&#34;&gt;Implement a RAM Disk for Temporary Logs&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;As a short-term measure, you could set up a RAM disk for logs that don’t need long-term retention. This allows logs to be stored temporarily in memory, reducing disk space pressure. For instance&lt;/p&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  mount -t tmpfs -o &lt;span class=&#34;nv&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;512M tmpfs /var/log/temp&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;You could then configure lower-priority logs to write here temporarily, knowing they will be lost upon reboot, which may be acceptable in a crisis scenario.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;adjust-splunk-forwarder-configuration&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu8/#adjust-splunk-forwarder-configuration&#34;&gt;Adjust Splunk Forwarder Configuration:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;If possible, configure the Splunk forwarder to filter logs more aggressively, reducing the volume of logs that are retained on the system. The props.conf or inputs.conf files can be configured to forward logs without keeping local copies.&lt;/p&gt;
+&lt;p&gt;Adding more space to /var/log might be a design fix, but it isn’t feasible in the short term due to the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Operational Constraints: Extending storage could involve downtime, additional permissions, or changes that require architectural decisions that can’t be made without the primary engineers.&lt;/li&gt;
+&lt;li&gt;Temporary Nature of the Fix: Increasing space only delays the issue rather than preventing it. If the logs keep growing, the problem will recur once space runs out again.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 id=&#34;discussion-post-2&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu8/#discussion-post-2&#34;&gt;Discussion Post 2&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;You are the only Linux Administrator at a small healthcare company. The engineer/admin before you left you a lot of scripts to untangle. This is one of our many tasks as administrators, so you set out to accomplish it. You start to notice that he only ever uses nested if statements in bash. You also notice that every loop is a conditional &lt;code&gt;while true&lt;/code&gt; and then he breaks the loop after a decision test each loop. You know his stuff works, but you think it could be more easily written for supportability, for you and future admins. You decide to write up some notes by reading some google, AI, and talking to your peers.&lt;/p&gt;
+&lt;p&gt;Compare the use of nested if versus case statement in bash.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Nested if statements are useful for situations where each condition depends on the result of the previous test, requiring a hierarchy or sequence.&lt;/li&gt;
+&lt;li&gt;A case statement is ideal for handling multiple discrete values of a variable, especially if there are many possible branches. It’s typically cleaner and more readable than a nested if.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Compare the use of conditional and counting loops. Under what circumstances&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Use conditional loops (while) when you don’t know the number of iterations in advance and need to loop based on conditions.&lt;/li&gt;
+&lt;li&gt;Use counting loops (for) when you have a set number of iterations or are working with a list. This structure is clearer and prevents issues that may arise from unintentional infinite loops.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;would you use one or the other?&lt;/p&gt;
+&lt;p&gt;optimizing or refactoring Bash scripts the Engineer had left me.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I would replace nested if statements with case statements when possible to improve readability, especially when handling multiple discrete values.&lt;/li&gt;
+&lt;li&gt;Of course, I would comment things for added communication/ maintainability.&lt;/li&gt;
+&lt;li&gt;I would Limit while true loops to cases where no predictable count or list is available. Clearly define a break condition early to avoid infinite loops.&lt;/li&gt;
+&lt;li&gt;I would Use for loops for counting or iterating over arrays or lists, as they provide a clean structure with known iteration limits.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+
+
+
+&lt;h3 id=&#34;prolug-links-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu8/#prolug-links-&#34;&gt;ProLUG Links ⛓️&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Discord: &lt;a href=&#34;https://discord.com/invite/m6VPPD9usw&#34;&gt;https://discord.com/invite/m6VPPD9usw&lt;/a&gt;
+Youtube: &lt;a href=&#34;https://www.youtube.com/@het_tanis8213&#34;&gt;https://www.youtube.com/@het_tanis8213&lt;/a&gt;
+Twitch: &lt;a href=&#34;https://www.twitch.tv/het_tanis&#34;&gt;https://www.twitch.tv/het_tanis&lt;/a&gt;
+ProLUG Book: &lt;a href=&#34;https://leanpub.com/theprolugbigbookoflabs&#34;&gt;https://leanpub.com/theprolugbigbookoflabs&lt;/a&gt;
+KillerCoda: &lt;a href=&#34;https://killercoda.com/het-tanis&#34;&gt;https://killercoda.com/het-tanis&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>ProLUG Admin Course Unit 7 🐧</title>
+      <link>http://localhost:1313/techblog/post/pacu7/</link>
+      <pubDate>Sun, 27 Oct 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/techblog/post/pacu7/</guid>
+      <description>&lt;h1 id=&#34;security&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu7/#security&#34;&gt;Security&lt;/a&gt;
+&lt;/h1&gt;
+
+
+
+&lt;h2 id=&#34;patching-the-system-package-management&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu7/#patching-the-system-package-management&#34;&gt;Patching the system/ Package Management&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;yum-dnf-rpm&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu7/#yum-dnf-rpm&#34;&gt;yum, dnf, rpm&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://trevorsmale.github.io/techblog/images/PACU7/CatPackage.jpg&#34; alt=&#34;Packaged Cat&#34;&gt;&lt;/p&gt;
+&lt;p&gt;As the course progresses, I am learning more deeply within a study group. Aside from the lab work and discussion posts. I have been putting a lot of hours satisfying curiosities regarding the linux system.
+For this unit we did a deep dive into packaging, going so far as to look at the history and reasoning before decision making. We had also looked at packages are managed within tightly controlled environments.
+I now feel that I have a robust understanding of the theory and practical elements of Redhat packaging and beyond.&lt;/p&gt;
+
+
+
+&lt;h2 id=&#34;discussion-post-1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu7/#discussion-post-1&#34;&gt;Discussion Post 1:&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Why software versioning is important. 🤔&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Versioning enables you to monitor software updates systematically, making it easier to troubleshoot, roll back changes, and trace modifications for security or functionality purposes. 👍&lt;/li&gt;
+&lt;li&gt;One can manage dependencies confidently, avoiding conflicts between system components, libraries, and tools. crucial for stable and consistent deployments. 👍&lt;/li&gt;
+&lt;li&gt;We can verify package integrity, ensuring installed software hasn’t been altered or corrupted. Essential for maintaining a secure and stable system environment. 👍&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;h2 id=&#34;discussion-post-2&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu7/#discussion-post-2&#34;&gt;Discussion Post 2:&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;scenario&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu7/#scenario&#34;&gt;Scenario:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;You are new to a Linux team. A ticket has come in from an application team and has already been escalated to your manager. They want software installed on one of their servers but you cannot find any documentation and your security team is out to lunch and not responding. You remember from some early documentation that you read that all the software in the internal repos you currently have are approved for deployment on servers. You want to also verify by checking other servers that this software exists. This is an urgent ask and your manager is hovering.
+How can you check all the repos on your system to see which are active? 🤔
+How would you check another server to see if the software was installed there? 🤔
+If you find the software, how might you figure out when it was installed? (Time/Date) 🤔&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;answer&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu7/#answer&#34;&gt;Answer:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;In an urgent situation like this, I’d first check which approved software repositories are active on my system,
+then verify if the software is already installed on similar servers to ensure it’s safe to proceed. Finally, I’d review the installation history to confirm when it was
+added. Working with Red Hat packaging and package management systems has many more options than I was expecting; through labbing in the study group,
+I’ve gained a much better understanding of packages, dependencies, and package management.&lt;/p&gt;
+&lt;p&gt;Packing was a pretty deep rabbit hole for me.&lt;/p&gt;
+&lt;p&gt;This is the process I&amp;rsquo;d follow for this case:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Check Active Repositories
+dnf repolist&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Check if the Software is Installed on Your System
+rpm -qa | grep &amp;lt;software_name&amp;gt;
+or
+dnf list installed &amp;lt;software_name&amp;gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Check Another Server for Software Installation with SSH and Step 2 commands.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;View Installation History (Time/Date)&lt;/p&gt;
+&lt;p&gt;dnf history info &amp;lt;transaction_id&amp;gt;
+dnf history list &amp;lt;software_name&amp;gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;discussion-post-3&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu7/#discussion-post-3&#34;&gt;Discussion Post 3&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;(After you have completed the lab) - Looking at the concept of group install from DNF or Yum. Why do you think an administrator may never want to use that in a running system? Why might an engineer want to or not want to use that? This is a thought exercise, so it’s not a “right or wrong” answer it’s for you to think about.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;question&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu7/#question&#34;&gt;Question:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;What is the concept of software bloat, and how do you think it relates?&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;answer-1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu7/#answer-1&#34;&gt;Answer:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Software bloat is when essential tools/packages are larger than they need to be, effecting performance, reliability and security. By performance I am referring to the loss of potential performance from unessecary resource use. In regards to reliability, more complex systems inherently have more potential to fail. Security means many things, so I am specifically thinking about attack surface and potential for vulnerability due to the aforementioned complexity.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;question-1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu7/#question-1&#34;&gt;Question:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;What is the concept of a security baseline, and how do you think it relates?&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;answer-2&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu7/#answer-2&#34;&gt;Answer:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;A set of minimum security standards and controls that organizations implement to protect systems.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;question-2&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu7/#question-2&#34;&gt;Question:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;How do you think something like this affects performance baselines?&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;answer-3&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu7/#answer-3&#34;&gt;Answer:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;By targeting specific packages, tracking changes, reducing unnessecary dependancies and bloat, we satisfy the tenants of a security baseline by establishing consistency, simplifying compliance, enhancing efficiency and reduce risk.&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h3 id=&#34;prolug-links-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu7/#prolug-links-&#34;&gt;ProLUG Links ⛓️&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Discord: &lt;a href=&#34;https://discord.com/invite/m6VPPD9usw&#34;&gt;https://discord.com/invite/m6VPPD9usw&lt;/a&gt;
+Youtube: &lt;a href=&#34;https://www.youtube.com/@het_tanis8213&#34;&gt;https://www.youtube.com/@het_tanis8213&lt;/a&gt;
+Twitch: &lt;a href=&#34;https://www.twitch.tv/het_tanis&#34;&gt;https://www.twitch.tv/het_tanis&lt;/a&gt;
+ProLUG Book: &lt;a href=&#34;https://leanpub.com/theprolugbigbookoflabs&#34;&gt;https://leanpub.com/theprolugbigbookoflabs&lt;/a&gt;
+KillerCoda: &lt;a href=&#34;https://killercoda.com/het-tanis&#34;&gt;https://killercoda.com/het-tanis&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>ProLUG Admin Course Unit 6 🐧</title>
       <link>http://localhost:1313/techblog/post/pacu6/</link>
       <pubDate>Mon, 21 Oct 2024 00:00:00 +0000</pubDate>

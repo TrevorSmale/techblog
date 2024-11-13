@@ -97,17 +97,17 @@ Adding more space to /var/log might be a design fix, but it isn’t feasible in 
 
 You are the only Linux Administrator at a small healthcare company. The engineer/admin before you left you a lot of scripts to untangle. This is one of our many tasks as administrators, so you set out to accomplish it. You start to notice that he only ever uses nested if statements in bash. You also notice that every loop is a conditional `while true` and then he breaks the loop after a decision test each loop. You know his stuff works, but you think it could be more easily written for supportability, for you and future admins. You decide to write up some notes by reading some google, AI, and talking to your peers.
 
-Compare the use of nested if versus case statement in bash.
+### Compare the use of nested if versus case statement in bash.
 
 - Nested if statements are useful for situations where each condition depends on the result of the previous test, requiring a hierarchy or sequence.
 - A case statement is ideal for handling multiple discrete values of a variable, especially if there are many possible branches. It’s typically cleaner and more readable than a nested if.
 
-Compare the use of conditional and counting loops. Under what circumstances 
+### Compare the use of conditional and counting loops. Under what circumstances 
 
 - Use conditional loops (while) when you don’t know the number of iterations in advance and need to loop based on conditions.
 - Use counting loops (for) when you have a set number of iterations or are working with a list. This structure is clearer and prevents issues that may arise from unintentional infinite loops.
 
-would you use one or the other?
+### would you use one or the other?
 
 optimizing or refactoring Bash scripts the Engineer had left me.
 

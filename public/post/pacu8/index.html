@@ -109,6 +109,7 @@
   <h1 id="scripting-system-checks">
   <a class="Heading-link u-clickable" href="/techblog/post/pacu8/#scripting-system-checks">Scripting System Checks</a>
 </h1>
+<p><img src="https://trevorsmale.github.io/techblog/images/PACU8/ibb.jpg" alt="Arnold"></p>
 <p>Once again beyond the Discussion Posts and Labbing. I spent a great deal of time scripting/programming System checks. After completing the labs which Bash Scripting and intro to &lsquo;C&rsquo;, I got really into GO as a system util. I have a particularly productive day with using the embed.fs feature of GO and packing unix system tools together in a single go program at compilation. I think there is a ton of potential here for my own uses. 👨‍🔧</p>
 
 
@@ -224,17 +225,32 @@
   <a class="Heading-link u-clickable" href="/techblog/post/pacu8/#discussion-post-2">Discussion Post 2</a>
 </h2>
 <p>You are the only Linux Administrator at a small healthcare company. The engineer/admin before you left you a lot of scripts to untangle. This is one of our many tasks as administrators, so you set out to accomplish it. You start to notice that he only ever uses nested if statements in bash. You also notice that every loop is a conditional <code>while true</code> and then he breaks the loop after a decision test each loop. You know his stuff works, but you think it could be more easily written for supportability, for you and future admins. You decide to write up some notes by reading some google, AI, and talking to your peers.</p>
-<p>Compare the use of nested if versus case statement in bash.</p>
+
+
+
+<h3 id="compare-the-use-of-nested-if-versus-case-statement-in-bash">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu8/#compare-the-use-of-nested-if-versus-case-statement-in-bash">Compare the use of nested if versus case statement in bash.</a>
+</h3>
 <ul>
 <li>Nested if statements are useful for situations where each condition depends on the result of the previous test, requiring a hierarchy or sequence.</li>
 <li>A case statement is ideal for handling multiple discrete values of a variable, especially if there are many possible branches. It’s typically cleaner and more readable than a nested if.</li>
 </ul>
-<p>Compare the use of conditional and counting loops. Under what circumstances</p>
+
+
+
+<h3 id="compare-the-use-of-conditional-and-counting-loops-under-what-circumstances">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu8/#compare-the-use-of-conditional-and-counting-loops-under-what-circumstances">Compare the use of conditional and counting loops. Under what circumstances</a>
+</h3>
 <ul>
 <li>Use conditional loops (while) when you don’t know the number of iterations in advance and need to loop based on conditions.</li>
 <li>Use counting loops (for) when you have a set number of iterations or are working with a list. This structure is clearer and prevents issues that may arise from unintentional infinite loops.</li>
 </ul>
-<p>would you use one or the other?</p>
+
+
+
+<h3 id="would-you-use-one-or-the-other">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu8/#would-you-use-one-or-the-other">would you use one or the other?</a>
+</h3>
 <p>optimizing or refactoring Bash scripts the Engineer had left me.</p>
 <ul>
 <li>I would replace nested if statements with case statements when possible to improve readability, especially when handling multiple discrete values.</li>

@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/techblog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=techblog/livereload" data-no-instant defer></script>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <meta name="description" content="ProLUG Admin Course Unit 9">
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.138.0">
+  <title>ProLUG Admin Course Unit 9 🐧 | Tech Blog</title>
+  <link rel="canonical" href="http://localhost:1313/techblog/post/pacu9/">
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+    <link rel="stylesheet" href="/techblog/css/base.css">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <a class="Banner-link u-clickable" href="/techblog/">Tech Blog</a>
+      </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/about/">About</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/post/">Posts</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/tags/">Tags</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/categories/">Categories</a>
+        </li>
+      
+        
+        
+          
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/feed.xml">RSS</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/pacu9/" rel="bookmark">ProLUG Admin Course Unit 9 🐧</a>
+  </h1>
+  
+    <time datetime="2024-11-12T00:00:00Z">November 12, 2024</time>
+  
+</header>
+  <h1 id="containers--kubernetes-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#containers--kubernetes-">Containers &amp; Kubernetes 🦭</a>
+</h1>
+<p>One of the most exciting units for me has been exploring deployment and hosting infrastructure. I’ve already spent some time working with Docker and Podman, but I have had limited hands-on experience with Kubernetes. Before this unit, I completed a few interactive Kubernetes labs on Killercoda, covering basic commands, information gathering, and logging.</p>
+<p>This week, I followed an interactive K3s lab that guided me through the installation process—a perfect refresher. Afterward, I jumped onto one of my Proxmox VMs and installed K3s on my homeLab 👨‍🔧</p>
+<hr>
+
+
+
+<h2 id="discussion-post-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#discussion-post-1">Discussion Post 1</a>
+</h2>
+<p>It’s a slow day in the NOC and you have heard that a new system of container deployments are being used by your developers. Do some reading about containers, docker, and podman.</p>
+
+
+
+<h3 id="1what-resources-helped-me-answer-these-questions">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#1what-resources-helped-me-answer-these-questions">1.	What resources helped me answer these questions</a>
+</h3>
+<ul>
+<li><a href="https://www.redhat.com/en/topics/containers">https://www.redhat.com/en/topics/containers</a></li>
+<li>My RHCSA 9 Course on Udemy</li>
+<li>Notes I have composed in LogSeq from multiple sources</li>
+<li>Julia Evans Blog <a href="https://jvns.ca/">https://jvns.ca/</a></li>
+</ul>
+
+
+
+<h3 id="2what-did-you-learn-about-that-you-didnt-know-before">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#2what-did-you-learn-about-that-you-didnt-know-before">2.	What did you learn about that you didn’t know before?</a>
+</h3>
+<ul>
+<li>I did not know that Podman and Kubernetes can run WASM Applications alongside containers. I have some interest in WASM and Subsequent ByteCode, having read about it on occasion.</li>
+<li>I did not know that Podman containers can be converted to SystemD services.</li>
+<li>I learned a technique that I quite like using podman commit to create a custom compose file from a modified container and will likely use this alot.</li>
+</ul>
+<p><strong>Terminology that I wasn&rsquo;t familiar with:</strong></p>
+<ul>
+<li>Control Plane: Manages container orchestration, monitoring, and state across cluster nodes.</li>
+<li>The API server: Core interface for communication between users and container clusters.</li>
+<li>Scheduler: Assigns containers to nodes based on resource availability and policies.</li>
+</ul>
+
+
+
+<h3 id="3what-seems-to-be-the-major-benefit-of-containers">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#3what-seems-to-be-the-major-benefit-of-containers">3.	What seems to be the major benefit of containers?</a>
+</h3>
+<ul>
+<li>Can be declarative with compose. So infrastructure can be explicitly defined and easily rebuilt.</li>
+<li>Light weight / low resource. Containers are not complete systems and are stripped to the bare essentials, meaning they are very small files that run fast.</li>
+</ul>
+
+
+
+<h3 id="4what-seems-to-be-some-obstacles-to-container-deployment">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#4what-seems-to-be-some-obstacles-to-container-deployment">4.	What seems to be some obstacles to container deployment?</a>
+</h3>
+<ul>
+<li>From my own experience, mounting persistent volumes was a bit tricky.</li>
+<li>Container networking presents a challenge bot conceptually and practically.</li>
+<li>Packaging application to run harmoniously within a container environment presents some friction.</li>
+<li>Large infrastructure must be broken into microservices, introducing complexity.</li>
+</ul>
+<hr>
+
+
+
+<h2 id="discussion-post-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#discussion-post-2">Discussion Post 2</a>
+</h2>
+<p>You get your first ticket about a problem with containers. One of the engineers is trying to move his container up to the Dev environment shared server. He sends you over this information about the command he’s trying to run.</p>
+<pre><code>[developer1@devserver read]$ podman ps
+CONTAINER ID  IMAGE       COMMAND     CREATED     STATUS      PORTS       NAMES
+
+[developer1@devserver read]$ podman images
+
+REPOSITORY                TAG                IMAGE ID      CREATED      SIZE
+localhost/read_docker     latest             2c0728a1f483  5 days ago   68.2 MB
+docker.io/library/python  3.13.0-alpine3.19  9edd75ff93ac  3 weeks ago  47.5 MB
+[developer1@devserver read]$ podman run -dt -p 8080:80/tcp docker.io/library/httpd
+You decide to check out the server 
+[developer1@devserver read] ss -ntulp
+Netid   State    Recv-Q   Send-Q      Local Address:Port        Peer Address:Port         Process
+udp     UNCONN   0        0           127.0.0.53%lo:53               0.0.0.0:*             users:((&quot;systemd-resolve&quot;,pid=166693,fd=13))
+tcp     LISTEN   0        80              127.0.0.1:3306             0.0.0.0:*             users:((&quot;mariadbd&quot;,pid=234918,fd=20))
+tcp     LISTEN   0        128               0.0.0.0:22               0.0.0.0:*             users:((&quot;sshd&quot;,pid=166657,fd=3))
+tcp     LISTEN   0        4096        127.0.0.53%lo:53               0.0.0.0:*             users:((&quot;systemd-resolve&quot;,pid=166693,fd=14))
+tcp     LISTEN   0        4096                    *:8080                   *:*             users:((&quot;node_exporter&quot;,pid=662,fd=3))
+</code></pre>
+
+
+
+<h3 id="1-what-do-you-think-the-problem-might-be-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#1-what-do-you-think-the-problem-might-be-">1. What do you think the problem might be? 🔍</a>
+</h3>
+<p>There is a container call node exporter that is listening on port 8080, therefore the port is already in use. I think this is a pretty common issue as this port is normally used for public traffic. With many nodes running it is easy to double assign a port.</p>
+
+
+
+<h3 id="2-how-will-you-test-this-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#2-how-will-you-test-this-">2. How will you test this? 🤔</a>
+</h3>
+<p>I would run the conflicting container run command with a slight port change.
+podman run -dt -p 8081:80/tcp docker.io/library/httpd</p>
+
+
+
+<h3 id="3-the-developer-tells-you-that-hes-pulling-a-local-image-do-you-find-this-to-be-true-or-is-something-else-happening-in-their-run-command">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#3-the-developer-tells-you-that-hes-pulling-a-local-image-do-you-find-this-to-be-true-or-is-something-else-happening-in-their-run-command">3. The developer tells you that he’s pulling a local image, do you find this to be true, or is something else happening in their run command?</a>
+</h3>
+<p>It is true that once and image is pulled, it is stored locally. So the developer may have <strong>pulled</strong> the image. However in the command he is specifying a source for pulling a fresh container, so the dev is definitely sus. Typically if the image has been pulled it is given a container ID, which is then used to build with.</p>
+
+
+
+<h2 id="installing-k3s-in-my-homelab-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#installing-k3s-in-my-homelab-">Installing K3s in my HomeLab 👍</a>
+</h2>
+<p>After completing the suggested lab, I took note of installation process and replicated it on my HomeLab. I just wanted to share my process and bumps.</p>
+
+
+
+<h3 id="1-installation-from-curl-script">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#1-installation-from-curl-script">1. Installation from curl script</a>
+</h3>
+<pre><code>curl -sfL https://get.k3s.io | sh -
+</code></pre>
+
+
+
+<h3 id="2-making-sure-the-service-is-running-in-systemd">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#2-making-sure-the-service-is-running-in-systemd">2. Making sure the service is running in systemD</a>
+</h3>
+<pre><code>systemctl status k3s
+</code></pre>
+
+
+
+<h3 id="3-changing-config-permissions-problem-that-had-stumped-me">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#3-changing-config-permissions-problem-that-had-stumped-me">3. Changing config permissions (Problem that had stumped me)</a>
+</h3>
+<pre><code>sudo chmod 644 /etc/rancher/k3s/k3s.yaml
+</code></pre>
+
+
+
+<h3 id="4-deploying-a-pod">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#4-deploying-a-pod">4. Deploying a pod</a>
+</h3>
+<p>kubectl run nginx &ndash;image=nginx:alpine</p>
+
+
+
+<h3 id="5-making-an-alias-so-commands-are-less-annoying">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#5-making-an-alias-so-commands-are-less-annoying">5. Making an alias so commands are less annoying</a>
+</h3>
+<pre><code>alias k=kubectl
+</code></pre>
+
+
+
+<h3 id="6-checking-the-running-pod">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#6-checking-the-running-pod">6. Checking the running pod</a>
+</h3>
+<pre><code>k get pods
+</code></pre>
+
+
+
+<h2 id="digging-deeper-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#digging-deeper-">Digging Deeper ⛏️</a>
+</h2>
+
+
+
+<h3 id="1see-if-you-can-get-a-deployment-working-in-the-lab">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#1see-if-you-can-get-a-deployment-working-in-the-lab">1.	See if you can get a deployment working in the lab.</a>
+</h3>
+<p>Screen shots from this deployment</p>
+<p><img src="https://trevorsmale.github.io/techblog/images/PACU9/1.png" alt="Step 1"><br>
+<img src="https://trevorsmale.github.io/techblog/images/PACU9/volume.png" alt="Step 2"><br>
+<img src="https://trevorsmale.github.io/techblog/images/PACU9/build.png" alt="Step 3"><br>
+<img src="https://trevorsmale.github.io/techblog/images/PACU9/ps.png" alt="Step 4"><br>
+<img src="https://trevorsmale.github.io/techblog/images/PACU9/attach.png" alt="Step 5"><br>
+<img src="https://trevorsmale.github.io/techblog/images/PACU9/install1.png" alt="Step 6"><br>
+<img src="https://trevorsmale.github.io/techblog/images/PACU9/install2.png" alt="Step 7"><br>
+<img src="https://trevorsmale.github.io/techblog/images/PACU9/go.png" alt="Step 8"><br>
+<img src="https://trevorsmale.github.io/techblog/images/PACU9/rungo.png" alt="Step 9"><br>
+<img src="https://trevorsmale.github.io/techblog/images/PACU9/running.png" alt="Step 10"></p>
+
+
+
+<h3 id="what-worked-well">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#what-worked-well">What worked well?</a>
+</h3>
+<p>creating a persistent volume and attaching to the volume worked well.
+mkdir /root/TreasuresVolume
+Pulling and building an image worked well.
+Attaching to the container and interacting with it went well.
+podman run -dit &ndash;name TreasuresContainer -v /root/TreasuresVolume:/app docker.io/library/golang:alpine tail -f /dev/null
+apk add vim gcc bash</p>
+
+
+
+<h3 id="what-did-you-have-to-troubleshoot">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#what-did-you-have-to-troubleshoot">What did you have to troubleshoot?</a>
+</h3>
+<p>I ran into trouble when exiting the container. It will kill the container, forcing me to start it again, which was frustrating.
+Having done this in the past, I thought this would not be an issue. However, I just learned that containers without continually running services will die when exited.
+The fix for such an issue is to run something light and persistent on the container in order to keep it alive. This can be accomplished with a bash script or turning a go binary into a system binary to keep running.</p>
+
+
+
+<h3 id="what-documentation-can-you-make-to-be-able-to-do-this-faster-next-time">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#what-documentation-can-you-make-to-be-able-to-do-this-faster-next-time">What documentation can you make to be able to do this faster next time?</a>
+</h3>
+<p>Actually, this blog is used to partially keep track of this. I use LogSeq as a second brain, where I will definitely copy and paste this info into my Podman section.</p>
+<hr>
+
+
+
+<h2 id="reflection-questions">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#reflection-questions">Reflection Questions🤔</a>
+</h2>
+
+
+
+<h3 id="1what-questions-do-you-still-have-about-this-week">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#1what-questions-do-you-still-have-about-this-week">1.	What questions do you still have about this week?</a>
+</h3>
+<p>I would like to know more about small scale deployments of Kubernetes such as the one I deployed using Rancher and K3S. More specifically I would like to know what limitations a small scale deployment has versus a multi machine / multi node system.</p>
+
+
+
+<h3 id="2how-can-you-apply-this-now-in-your-current-role-in-it-if-youre-not-in-it-how-can-you-look-to-put-something-like-this-into-your-resume-or-portfolio">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#2how-can-you-apply-this-now-in-your-current-role-in-it-if-youre-not-in-it-how-can-you-look-to-put-something-like-this-into-your-resume-or-portfolio">2.	How can you apply this now in your current role in IT? If you’re not in IT, how can you look to put something like this into your resume or portfolio?</a>
+</h3>
+<p>This content is highly applicable to my intended work as deploying services is becoming increasingly important, as evidenced by the requirement for knowledge of Podman in the RHCSA 9. I already have some container deployment work to display to prospective employers atm. I plan to further my knowledge in this area, especially in regard to Kubernetes as this seems to be the operating system of the internet.</p>
+<hr>
+
+
+
+<h3 id="prolug-links-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu9/#prolug-links-">ProLUG Links ⛓️</a>
+</h3>
+<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
+Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
+Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
+ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
+KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
+  
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/operating-systems/" rel="tag">Operating Systems</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+  
+  
+
+
+
+      </div>
+    </div>
+  </main>
+  
+</body>
+
+</html>

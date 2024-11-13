@@ -2,40 +2,49 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/techblog/post/</loc>
-    <lastmod>2024-10-27T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/techblog/</loc>
-    <lastmod>2024-10-27T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/techblog/tags/administration/</loc>
-    <lastmod>2024-10-21T00:00:00+00:00</lastmod>
+    <lastmod>2024-11-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/techblog/categories/</loc>
-    <lastmod>2024-10-21T00:00:00+00:00</lastmod>
+    <lastmod>2024-11-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/techblog/tags/engineering/</loc>
-    <lastmod>2024-10-21T00:00:00+00:00</lastmod>
+    <lastmod>2024-11-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/techblog/categories/learning/</loc>
-    <lastmod>2024-10-21T00:00:00+00:00</lastmod>
+    <lastmod>2024-11-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/techblog/tags/linux/</loc>
-    <lastmod>2024-10-21T00:00:00+00:00</lastmod>
+    <lastmod>2024-11-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/techblog/tags/operating-systems/</loc>
-    <lastmod>2024-10-21T00:00:00+00:00</lastmod>
+    <lastmod>2024-11-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/post/pacu6/</loc>
-    <lastmod>2024-10-21T00:00:00+00:00</lastmod>
+    <loc>http://localhost:1313/techblog/post/</loc>
+    <lastmod>2024-11-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/techblog/post/pacu9/</loc>
+    <lastmod>2024-11-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/techblog/tags/prolug-course/</loc>
-    <lastmod>2024-10-21T00:00:00+00:00</lastmod>
+    <lastmod>2024-11-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/techblog/tags/</loc>
-    <lastmod>2024-10-21T00:00:00+00:00</lastmod>
+    <lastmod>2024-11-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/techblog/tags/tech/</loc>
+    <lastmod>2024-11-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/techblog/</loc>
+    <lastmod>2024-11-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/techblog/post/pacu8/</loc>
+    <lastmod>2024-10-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/techblog/post/pacu7/</loc>
+    <lastmod>2024-10-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/techblog/post/pacu6/</loc>
     <lastmod>2024-10-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/techblog/post/pacu5/</loc>

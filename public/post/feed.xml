@@ -7,8 +7,264 @@
     <description>Recent content in Posts on Tech Blog</description>
     <generator>Hugo 0.138.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 30 Oct 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 12 Nov 2024 00:00:00 +0000</lastBuildDate>
     <atom:link rel="self" href="http://localhost:1313/techblog/post/feed.xml" type="application/rss+xml" />
+    <item>
+      <title>ProLUG Admin Course Unit 9 🐧</title>
+      <link>http://localhost:1313/techblog/post/pacu9/</link>
+      <pubDate>Tue, 12 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/techblog/post/pacu9/</guid>
+      <description>&lt;h1 id=&#34;containers--kubernetes-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#containers--kubernetes-&#34;&gt;Containers &amp;amp; Kubernetes 🦭&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;One of the most exciting units for me has been exploring deployment and hosting infrastructure. I’ve already spent some time working with Docker and Podman, but I have had limited hands-on experience with Kubernetes. Before this unit, I completed a few interactive Kubernetes labs on Killercoda, covering basic commands, information gathering, and logging.&lt;/p&gt;
+&lt;p&gt;This week, I followed an interactive K3s lab that guided me through the installation process—a perfect refresher. Afterward, I jumped onto one of my Proxmox VMs and installed K3s on my homeLab 👨‍🔧&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;discussion-post-1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#discussion-post-1&#34;&gt;Discussion Post 1&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;It’s a slow day in the NOC and you have heard that a new system of container deployments are being used by your developers. Do some reading about containers, docker, and podman.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;1what-resources-helped-me-answer-these-questions&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#1what-resources-helped-me-answer-these-questions&#34;&gt;1.	What resources helped me answer these questions&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.redhat.com/en/topics/containers&#34;&gt;https://www.redhat.com/en/topics/containers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;My RHCSA 9 Course on Udemy&lt;/li&gt;
+&lt;li&gt;Notes I have composed in LogSeq from multiple sources&lt;/li&gt;
+&lt;li&gt;Julia Evans Blog &lt;a href=&#34;https://jvns.ca/&#34;&gt;https://jvns.ca/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;2what-did-you-learn-about-that-you-didnt-know-before&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#2what-did-you-learn-about-that-you-didnt-know-before&#34;&gt;2.	What did you learn about that you didn’t know before?&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;I did not know that Podman and Kubernetes can run WASM Applications alongside containers. I have some interest in WASM and Subsequent ByteCode, having read about it on occasion.&lt;/li&gt;
+&lt;li&gt;I did not know that Podman containers can be converted to SystemD services.&lt;/li&gt;
+&lt;li&gt;I learned a technique that I quite like using podman commit to create a custom compose file from a modified container and will likely use this alot.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Terminology that I wasn&amp;rsquo;t familiar with:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Control Plane: Manages container orchestration, monitoring, and state across cluster nodes.&lt;/li&gt;
+&lt;li&gt;The API server: Core interface for communication between users and container clusters.&lt;/li&gt;
+&lt;li&gt;Scheduler: Assigns containers to nodes based on resource availability and policies.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;3what-seems-to-be-the-major-benefit-of-containers&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#3what-seems-to-be-the-major-benefit-of-containers&#34;&gt;3.	What seems to be the major benefit of containers?&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Can be declarative with compose. So infrastructure can be explicitly defined and easily rebuilt.&lt;/li&gt;
+&lt;li&gt;Light weight / low resource. Containers are not complete systems and are stripped to the bare essentials, meaning they are very small files that run fast.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;4what-seems-to-be-some-obstacles-to-container-deployment&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#4what-seems-to-be-some-obstacles-to-container-deployment&#34;&gt;4.	What seems to be some obstacles to container deployment?&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;From my own experience, mounting persistent volumes was a bit tricky.&lt;/li&gt;
+&lt;li&gt;Container networking presents a challenge bot conceptually and practically.&lt;/li&gt;
+&lt;li&gt;Packaging application to run harmoniously within a container environment presents some friction.&lt;/li&gt;
+&lt;li&gt;Large infrastructure must be broken into microservices, introducing complexity.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;discussion-post-2&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#discussion-post-2&#34;&gt;Discussion Post 2&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;You get your first ticket about a problem with containers. One of the engineers is trying to move his container up to the Dev environment shared server. He sends you over this information about the command he’s trying to run.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[developer1@devserver read]$ podman ps
+CONTAINER ID  IMAGE       COMMAND     CREATED     STATUS      PORTS       NAMES
+
+[developer1@devserver read]$ podman images
+
+REPOSITORY                TAG                IMAGE ID      CREATED      SIZE
+localhost/read_docker     latest             2c0728a1f483  5 days ago   68.2 MB
+docker.io/library/python  3.13.0-alpine3.19  9edd75ff93ac  3 weeks ago  47.5 MB
+[developer1@devserver read]$ podman run -dt -p 8080:80/tcp docker.io/library/httpd
+You decide to check out the server 
+[developer1@devserver read] ss -ntulp
+Netid   State    Recv-Q   Send-Q      Local Address:Port        Peer Address:Port         Process
+udp     UNCONN   0        0           127.0.0.53%lo:53               0.0.0.0:*             users:((&amp;quot;systemd-resolve&amp;quot;,pid=166693,fd=13))
+tcp     LISTEN   0        80              127.0.0.1:3306             0.0.0.0:*             users:((&amp;quot;mariadbd&amp;quot;,pid=234918,fd=20))
+tcp     LISTEN   0        128               0.0.0.0:22               0.0.0.0:*             users:((&amp;quot;sshd&amp;quot;,pid=166657,fd=3))
+tcp     LISTEN   0        4096        127.0.0.53%lo:53               0.0.0.0:*             users:((&amp;quot;systemd-resolve&amp;quot;,pid=166693,fd=14))
+tcp     LISTEN   0        4096                    *:8080                   *:*             users:((&amp;quot;node_exporter&amp;quot;,pid=662,fd=3))
+&lt;/code&gt;&lt;/pre&gt;
+
+
+
+&lt;h3 id=&#34;1-what-do-you-think-the-problem-might-be-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#1-what-do-you-think-the-problem-might-be-&#34;&gt;1. What do you think the problem might be? 🔍&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;There is a container call node exporter that is listening on port 8080, therefore the port is already in use. I think this is a pretty common issue as this port is normally used for public traffic. With many nodes running it is easy to double assign a port.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;2-how-will-you-test-this-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#2-how-will-you-test-this-&#34;&gt;2. How will you test this? 🤔&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;I would run the conflicting container run command with a slight port change.
+podman run -dt -p 8081:80/tcp docker.io/library/httpd&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;3-the-developer-tells-you-that-hes-pulling-a-local-image-do-you-find-this-to-be-true-or-is-something-else-happening-in-their-run-command&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#3-the-developer-tells-you-that-hes-pulling-a-local-image-do-you-find-this-to-be-true-or-is-something-else-happening-in-their-run-command&#34;&gt;3. The developer tells you that he’s pulling a local image, do you find this to be true, or is something else happening in their run command?&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;It is true that once and image is pulled, it is stored locally. So the developer may have &lt;strong&gt;pulled&lt;/strong&gt; the image. However in the command he is specifying a source for pulling a fresh container, so the dev is definitely sus. Typically if the image has been pulled it is given a container ID, which is then used to build with.&lt;/p&gt;
+
+
+
+&lt;h2 id=&#34;installing-k3s-in-my-homelab-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#installing-k3s-in-my-homelab-&#34;&gt;Installing K3s in my HomeLab 👍&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;After completing the suggested lab, I took note of installation process and replicated it on my HomeLab. I just wanted to share my process and bumps.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;1-installation-from-curl-script&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#1-installation-from-curl-script&#34;&gt;1. Installation from curl script&lt;/a&gt;
+&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;curl -sfL https://get.k3s.io | sh -
+&lt;/code&gt;&lt;/pre&gt;
+
+
+
+&lt;h3 id=&#34;2-making-sure-the-service-is-running-in-systemd&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#2-making-sure-the-service-is-running-in-systemd&#34;&gt;2. Making sure the service is running in systemD&lt;/a&gt;
+&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;systemctl status k3s
+&lt;/code&gt;&lt;/pre&gt;
+
+
+
+&lt;h3 id=&#34;3-changing-config-permissions-problem-that-had-stumped-me&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#3-changing-config-permissions-problem-that-had-stumped-me&#34;&gt;3. Changing config permissions (Problem that had stumped me)&lt;/a&gt;
+&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;sudo chmod 644 /etc/rancher/k3s/k3s.yaml
+&lt;/code&gt;&lt;/pre&gt;
+
+
+
+&lt;h3 id=&#34;4-deploying-a-pod&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#4-deploying-a-pod&#34;&gt;4. Deploying a pod&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;kubectl run nginx &amp;ndash;image=nginx:alpine&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;5-making-an-alias-so-commands-are-less-annoying&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#5-making-an-alias-so-commands-are-less-annoying&#34;&gt;5. Making an alias so commands are less annoying&lt;/a&gt;
+&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;alias k=kubectl
+&lt;/code&gt;&lt;/pre&gt;
+
+
+
+&lt;h3 id=&#34;6-checking-the-running-pod&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#6-checking-the-running-pod&#34;&gt;6. Checking the running pod&lt;/a&gt;
+&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;k get pods
+&lt;/code&gt;&lt;/pre&gt;
+
+
+
+&lt;h2 id=&#34;digging-deeper-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#digging-deeper-&#34;&gt;Digging Deeper ⛏️&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;1see-if-you-can-get-a-deployment-working-in-the-lab&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#1see-if-you-can-get-a-deployment-working-in-the-lab&#34;&gt;1.	See if you can get a deployment working in the lab.&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Screen shots from this deployment&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://trevorsmale.github.io/techblog/images/PACU9/1.png&#34; alt=&#34;Step 1&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://trevorsmale.github.io/techblog/images/PACU9/volume.png&#34; alt=&#34;Step 2&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://trevorsmale.github.io/techblog/images/PACU9/build.png&#34; alt=&#34;Step 3&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://trevorsmale.github.io/techblog/images/PACU9/ps.png&#34; alt=&#34;Step 4&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://trevorsmale.github.io/techblog/images/PACU9/attach.png&#34; alt=&#34;Step 5&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://trevorsmale.github.io/techblog/images/PACU9/install1.png&#34; alt=&#34;Step 6&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://trevorsmale.github.io/techblog/images/PACU9/install2.png&#34; alt=&#34;Step 7&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://trevorsmale.github.io/techblog/images/PACU9/go.png&#34; alt=&#34;Step 8&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://trevorsmale.github.io/techblog/images/PACU9/rungo.png&#34; alt=&#34;Step 9&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://trevorsmale.github.io/techblog/images/PACU9/running.png&#34; alt=&#34;Step 10&#34;&gt;&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;what-worked-well&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#what-worked-well&#34;&gt;What worked well?&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;creating a persistent volume and attaching to the volume worked well.
+mkdir /root/TreasuresVolume
+Pulling and building an image worked well.
+Attaching to the container and interacting with it went well.
+podman run -dit &amp;ndash;name TreasuresContainer -v /root/TreasuresVolume:/app docker.io/library/golang:alpine tail -f /dev/null
+apk add vim gcc bash&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;what-did-you-have-to-troubleshoot&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#what-did-you-have-to-troubleshoot&#34;&gt;What did you have to troubleshoot?&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;I ran into trouble when exiting the container. It will kill the container, forcing me to start it again, which was frustrating.
+Having done this in the past, I thought this would not be an issue. However, I just learned that containers without continually running services will die when exited.
+The fix for such an issue is to run something light and persistent on the container in order to keep it alive. This can be accomplished with a bash script or turning a go binary into a system binary to keep running.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;what-documentation-can-you-make-to-be-able-to-do-this-faster-next-time&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#what-documentation-can-you-make-to-be-able-to-do-this-faster-next-time&#34;&gt;What documentation can you make to be able to do this faster next time?&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Actually, this blog is used to partially keep track of this. I use LogSeq as a second brain, where I will definitely copy and paste this info into my Podman section.&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;reflection-questions&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#reflection-questions&#34;&gt;Reflection Questions🤔&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;1what-questions-do-you-still-have-about-this-week&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#1what-questions-do-you-still-have-about-this-week&#34;&gt;1.	What questions do you still have about this week?&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;I would like to know more about small scale deployments of Kubernetes such as the one I deployed using Rancher and K3S. More specifically I would like to know what limitations a small scale deployment has versus a multi machine / multi node system.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;2how-can-you-apply-this-now-in-your-current-role-in-it-if-youre-not-in-it-how-can-you-look-to-put-something-like-this-into-your-resume-or-portfolio&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#2how-can-you-apply-this-now-in-your-current-role-in-it-if-youre-not-in-it-how-can-you-look-to-put-something-like-this-into-your-resume-or-portfolio&#34;&gt;2.	How can you apply this now in your current role in IT? If you’re not in IT, how can you look to put something like this into your resume or portfolio?&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;This content is highly applicable to my intended work as deploying services is becoming increasingly important, as evidenced by the requirement for knowledge of Podman in the RHCSA 9. I already have some container deployment work to display to prospective employers atm. I plan to further my knowledge in this area, especially in regard to Kubernetes as this seems to be the operating system of the internet.&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h3 id=&#34;prolug-links-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#prolug-links-&#34;&gt;ProLUG Links ⛓️&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Discord: &lt;a href=&#34;https://discord.com/invite/m6VPPD9usw&#34;&gt;https://discord.com/invite/m6VPPD9usw&lt;/a&gt;
+Youtube: &lt;a href=&#34;https://www.youtube.com/@het_tanis8213&#34;&gt;https://www.youtube.com/@het_tanis8213&lt;/a&gt;
+Twitch: &lt;a href=&#34;https://www.twitch.tv/het_tanis&#34;&gt;https://www.twitch.tv/het_tanis&lt;/a&gt;
+ProLUG Book: &lt;a href=&#34;https://leanpub.com/theprolugbigbookoflabs&#34;&gt;https://leanpub.com/theprolugbigbookoflabs&lt;/a&gt;
+KillerCoda: &lt;a href=&#34;https://killercoda.com/het-tanis&#34;&gt;https://killercoda.com/het-tanis&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>ProLUG Admin Course Unit 8 🐧</title>
       <link>http://localhost:1313/techblog/post/pacu8/</link>
@@ -17,6 +273,7 @@
       <description>&lt;h1 id=&#34;scripting-system-checks&#34;&gt;
   &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu8/#scripting-system-checks&#34;&gt;Scripting System Checks&lt;/a&gt;
 &lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;https://trevorsmale.github.io/techblog/images/PACU8/ibb.jpg&#34; alt=&#34;Arnold&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Once again beyond the Discussion Posts and Labbing. I spent a great deal of time scripting/programming System checks. After completing the labs which Bash Scripting and intro to &amp;lsquo;C&amp;rsquo;, I got really into GO as a system util. I have a particularly productive day with using the embed.fs feature of GO and packing unix system tools together in a single go program at compilation. I think there is a ton of potential here for my own uses. 👨‍🔧&lt;/p&gt;
 
 
@@ -132,17 +389,32 @@
   &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu8/#discussion-post-2&#34;&gt;Discussion Post 2&lt;/a&gt;
 &lt;/h2&gt;
 &lt;p&gt;You are the only Linux Administrator at a small healthcare company. The engineer/admin before you left you a lot of scripts to untangle. This is one of our many tasks as administrators, so you set out to accomplish it. You start to notice that he only ever uses nested if statements in bash. You also notice that every loop is a conditional &lt;code&gt;while true&lt;/code&gt; and then he breaks the loop after a decision test each loop. You know his stuff works, but you think it could be more easily written for supportability, for you and future admins. You decide to write up some notes by reading some google, AI, and talking to your peers.&lt;/p&gt;
-&lt;p&gt;Compare the use of nested if versus case statement in bash.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;compare-the-use-of-nested-if-versus-case-statement-in-bash&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu8/#compare-the-use-of-nested-if-versus-case-statement-in-bash&#34;&gt;Compare the use of nested if versus case statement in bash.&lt;/a&gt;
+&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Nested if statements are useful for situations where each condition depends on the result of the previous test, requiring a hierarchy or sequence.&lt;/li&gt;
 &lt;li&gt;A case statement is ideal for handling multiple discrete values of a variable, especially if there are many possible branches. It’s typically cleaner and more readable than a nested if.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Compare the use of conditional and counting loops. Under what circumstances&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;compare-the-use-of-conditional-and-counting-loops-under-what-circumstances&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu8/#compare-the-use-of-conditional-and-counting-loops-under-what-circumstances&#34;&gt;Compare the use of conditional and counting loops. Under what circumstances&lt;/a&gt;
+&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Use conditional loops (while) when you don’t know the number of iterations in advance and need to loop based on conditions.&lt;/li&gt;
 &lt;li&gt;Use counting loops (for) when you have a set number of iterations or are working with a list. This structure is clearer and prevents issues that may arise from unintentional infinite loops.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;would you use one or the other?&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;would-you-use-one-or-the-other&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu8/#would-you-use-one-or-the-other&#34;&gt;would you use one or the other?&lt;/a&gt;
+&lt;/h3&gt;
 &lt;p&gt;optimizing or refactoring Bash scripts the Engineer had left me.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;I would replace nested if statements with case statements when possible to improve readability, especially when handling multiple discrete values.&lt;/li&gt;
