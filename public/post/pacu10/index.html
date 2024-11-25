@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/techblog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=techblog/livereload" data-no-instant defer></script>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <meta name="description" content="ProLUG Admin Course Unit 10">
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.139.2">
+  <title>ProLUG Admin Course Unit 10 🐧 | Tech Blog</title>
+  <link rel="canonical" href="http://localhost:1313/techblog/post/pacu10/">
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+    <link rel="stylesheet" href="/techblog/css/base.css">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <a class="Banner-link u-clickable" href="/techblog/">Tech Blog</a>
+      </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/about/">About</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/post/">Posts</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/tags/">Tags</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/categories/">Categories</a>
+        </li>
+      
+        
+        
+          
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/feed.xml">RSS</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/pacu10/" rel="bookmark">ProLUG Admin Course Unit 10 🐧</a>
+  </h1>
+  
+    <time datetime="2024-11-17T00:00:00Z">November 17, 2024</time>
+  
+</header>
+  <h1 id="kubernetes">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#kubernetes">Kubernetes</a>
+</h1>
+<p>&ldquo;The OS of the Internet&rdquo;</p>
+<p>This week, we were privileged to host a special guest lecture by John Champine, Scott&rsquo;s brother. Over the course of an engaging two-hour session, John delivered an in-depth exploration of Kubernetes, thoroughly covering the five W&rsquo;s: Who, What, When, Where, and Why.</p>
+<p>John&rsquo;s passion and deep knowledge of Kubernetes were evident throughout the presentation. Having firsthand experience with the challenges of pre-Kubernetes infrastructure, he offered valuable insights into how this platform has revolutionized modern computing. Notably, John specializes in OpenShift, an IBM-owned management layer built atop Kubernetes. OpenShift adds additional functionality and ease of use to what is already a powerful but complex system.</p>
+<p>One concept that particularly caught my attention was the <strong>fractionalization of CPU and memory resources</strong> made possible by Kubernetes&rsquo; sophisticated resource management. John introduced the term <em>millicore</em>, a concept I was previously unfamiliar with. It refers to the fine-grained allocation of processing power, where fractions of a CPU core are shared across processes during compute cycles. This ability to manage resources at such a granular level is remarkable, showcasing the efficiency and precision of Kubernetes.</p>
+<p>Before this lecture, I never imagined that such details—down to the microsecond allocation of core usage—could not only be considered but also controlled and utilized to optimize workloads. This level of resource management truly solidifies Kubernetes&rsquo; position as the &ldquo;operating system of the internet,&rdquo; enabling applications to run more efficiently and reliably across diverse infrastructures.</p>
+<p>John’s insights not only deepened my understanding of Kubernetes but also sparked curiosity about the broader implications of containerized resource management in modern computing.</p>
+<p>One idea that has been dispelled by doing these exercises is that Kubernetes is overkill for most things. Yes, standing up multiple networked nodes and having them interoperate is no small task. However, there exist lightweight, single node variants like K3s that enable a simplified experience while maintaining the powerful advantages of an orchestration system.</p>
+
+
+
+<h2 id="furthermore-given-the-threat-landscape-desire-for-declarative-infrastructure-and-ever-fluctuating-demand-it-makes-sense-to-implement-a-tool-that-is-designed-for-these-modern-demands">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#furthermore-given-the-threat-landscape-desire-for-declarative-infrastructure-and-ever-fluctuating-demand-it-makes-sense-to-implement-a-tool-that-is-designed-for-these-modern-demands">Furthermore, given the threat landscape, desire for declarative infrastructure and ever fluctuating demand, it makes sense to implement a tool that is designed for these modern demands.</a>
+</h2>
+
+
+
+<h2 id="discussion-post-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#discussion-post-1">Discussion Post 1</a>
+</h2>
+<p>Reading: <a href="https://kubernetes.io/docs/concepts/overview/">https://kubernetes.io/docs/concepts/overview/</a> 📗</p>
+
+
+
+<h3 id="question-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#question-1">Question 1</a>
+</h3>
+<p><strong>What are the two most compelling reasons you see to implement Kubernetes in your organization?</strong></p>
+<ol>
+<li><strong>Efficient Usage of Resources</strong>: Kubernetes optimizes resource allocation and ensures workloads are distributed efficiently across your infrastructure.</li>
+<li><strong>Built-in Redundancy</strong>: Kubernetes provides automatic failover and self-healing capabilities, ensuring high availability for applications.</li>
+</ol>
+<p>Other notable reasons include:</p>
+<ul>
+<li><strong>Load Balancing</strong>: Automatically distributes traffic across pods to maintain application performance. ⚖️</li>
+<li><strong>Centralized Control</strong>: Manages deployments, updates, and scaling from a single interface. 🎯</li>
+<li><strong>Declarative in Nature</strong>: Uses declarative configurations, making it easier to maintain and reproduce states. 🔖</li>
+<li><strong>Customizable for Organizational Needs</strong>: Offers flexibility to adapt to specific requirements through pluggable components. 🔌</li>
+<li><strong>Open Source</strong>: Eliminates vendor lock-in while benefiting from a large and active community. ⚙️</li>
+<li><strong>Broadly Used</strong>: Extensive community adoption ensures a wealth of resources, tools, and discussions. 📜</li>
+<li><strong>Written in Go</strong>: Delivers a lightweight, high-performance foundation that I am irrationally a fan of 😉</li>
+</ul>
+<hr>
+
+
+
+<h3 id="question-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#question-2">Question 2</a>
+</h3>
+<p><strong>When the article says Kubernetes is not a PaaS, what do they mean by that? What is a PaaS in comparison?</strong></p>
+<p>Kubernetes is not a Platform-as-a-Service (PaaS) because it operates at the <strong>container level</strong> rather than the <strong>application or hardware level</strong>. While it provides some features similar to PaaS offerings, Kubernetes emphasizes flexibility, composability, and user choice rather than prescribing a monolithic solution.</p>
+
+
+
+<h4 id="key-characteristics-of-kubernetes-compared-to-paas">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#key-characteristics-of-kubernetes-compared-to-paas">Key Characteristics of Kubernetes Compared to PaaS:</a>
+</h4>
+<ol>
+<li>
+<p><strong>What Kubernetes Is</strong>:</p>
+<ul>
+<li>Provides foundational building blocks for deploying, scaling, and managing containerized applications.</li>
+<li>Is modular, with optional and pluggable solutions for logging, monitoring, alerting, and scaling.</li>
+<li>Focuses on maintaining desired state through independent, composable control processes.</li>
+<li>Preserves user choice by not dictating application or configuration specifics.</li>
+</ul>
+</li>
+<li>
+<p><strong>What Kubernetes Is Not</strong>:</p>
+<ul>
+<li>Does not limit the types of applications it supports.</li>
+<li>Does not deploy source code or build your application.</li>
+<li>Does not provide application-level services (e.g., middleware, databases).</li>
+<li>Does not enforce specific logging, monitoring, or alerting solutions.</li>
+<li>Does not include a proprietary configuration system or language (e.g., Jsonnet).</li>
+<li>Does not manage comprehensive machine-level configuration, maintenance, or self-healing.</li>
+</ul>
+</li>
+</ol>
+
+
+
+<h4 id="comparison-to-paas">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#comparison-to-paas">Comparison to PaaS:</a>
+</h4>
+<p>A Platform-as-a-Service (PaaS), such as Heroku or OpenShift, provides a more opinionated, all-encompassing solution by:</p>
+<ul>
+<li>Supporting application deployment directly from source code.</li>
+<li>Managing application-level services like databases or caching layers.</li>
+<li>Offering integrated logging, monitoring, and alerting.</li>
+<li>Providing a simplified developer experience but with less flexibility.</li>
+</ul>
+<p>In contrast, Kubernetes gives users the tools to build their own developer platforms while leaving critical choices in the user’s hands.</p>
+<hr>
+
+
+
+<h2 id="discussion-post-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#discussion-post-2">Discussion Post 2</a>
+</h2>
+
+
+
+<h3 id="scenario">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#scenario">Scenario</a>
+</h3>
+<p>You get a ticket about your new test cluster. The team is unable to deploy some of their applications. They suspect there is a problem and send you over this output:</p>
+
+
+
+<h3 id="kubernetes-cluster-information">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#kubernetes-cluster-information">Kubernetes Cluster Information</a>
+</h3>
+
+
+
+<h4 id="kubectl-version">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#kubectl-version">kubectl Version</a>
+</h4>
+<table>
+  <thead>
+      <tr>
+          <th>Component</th>
+          <th>Version</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Client Version</td>
+          <td>v1.31.6+k3s3</td>
+      </tr>
+      <tr>
+          <td>Kustomize Version</td>
+          <td>v5.0.4-0.20230601165947-6ce0bf390ce3</td>
+      </tr>
+      <tr>
+          <td>Server Version</td>
+          <td>v1.30.6+k3s1</td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+<h4 id="node-status">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#node-status">Node Status</a>
+</h4>
+<table>
+  <thead>
+      <tr>
+          <th>NAME</th>
+          <th>STATUS</th>
+          <th>ROLES</th>
+          <th>AGE</th>
+          <th>VERSION</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Test_Cluster1</td>
+          <td>Ready</td>
+          <td>control-plane,master</td>
+          <td>17h</td>
+          <td>v1.30.6+k3s1</td>
+      </tr>
+      <tr>
+          <td>Test_Cluster2</td>
+          <td>NotReady</td>
+          <td>worker</td>
+          <td>33m</td>
+          <td>v1.29.6+k3s1</td>
+      </tr>
+      <tr>
+          <td>Test_Cluster3</td>
+          <td>Ready</td>
+          <td>worker</td>
+          <td>17h</td>
+          <td>v1.28.6+k3s1</td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+<h3 id="question-1-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#question-1-1">Question 1</a>
+</h3>
+<p>What are you checking on the cluster to validate you see their error?</p>
+<p>To identify and validate the issue with the node <strong>Test_Cluster2</strong>:</p>
+<p>Check the overall cluster status</p>
+<ul>
+<li>Run <strong>kubectl get nodes</strong> to see the status of all nodes in the cluster.</li>
+<li>This confirms <strong>Test_Cluster2</strong> is <strong>NotReady</strong>.</li>
+</ul>
+<p>Inspect node details</p>
+<ul>
+<li>Run <strong>kubectl describe nodes Test_Cluster2</strong> to check for events, taints, and resource usage issues. Look for errors related to kubelet, network, or node conditions.</li>
+</ul>
+<p>Access the node**</p>
+<ul>
+<li>SSH into the node with <strong>ssh Test_Cluster2</strong> to perform further diagnostics.</li>
+</ul>
+<p>Verify kubelet status</p>
+<ul>
+<li>Run <strong>systemctl status kubelet</strong> to check if the kubelet service is running and healthy.</li>
+</ul>
+<p>Check container runtime</p>
+<ul>
+<li>Depending on your runtime, run either <strong>systemctl status docker</strong> or <strong>systemctl status podman</strong> to ensure the container runtime is operational.</li>
+</ul>
+<p>Reload and restart services</p>
+<ul>
+<li>If issues are detected, attempt to reload the systemd daemon (<strong>systemctl daemon-reload</strong>) and restart kubelet (<strong>systemctl restart kubelet</strong>).</li>
+</ul>
+<hr>
+
+
+
+<h3 id="question-2-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#question-2-1">Question 2</a>
+</h3>
+<p>What do you think the problem could be?</p>
+<p>Potential problems for <strong>Test_Cluster2</strong> being <strong>NotReady</strong> include:</p>
+<ul>
+<li>The <strong>Test_Cluster2</strong> node is running Kubernetes version <strong>v1.29.6+k3s1</strong>, which is older than the server and other nodes (<strong>v1.30.6+k3s1</strong>). This may cause compatibility issues.</li>
+<li>The kubelet service might have failed or not started.</li>
+<li>Networking problems could prevent the node from communicating with the control plane.</li>
+<li>The node may lack sufficient CPU, memory, or disk space for the kubelet to function.</li>
+<li>Taints, labels, or configuration errors might prevent the node from becoming <strong>Ready</strong>.</li>
+<li>Hardware issues or kernel module problems may impact the node&rsquo;s health.</li>
+</ul>
+
+
+
+<h3 id="question-3">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#question-3">Question 3</a>
+</h3>
+<p>Do you think someone else has tried anything to fix this problem before you? Why or why not?</p>
+<p>Yes, someone may have tried to fix it</p>
+<ul>
+<li>The node was added only <strong>33 minutes ago</strong>, indicating recent activity.</li>
+<li>It’s common for issues to be noticed and an initial attempt made before escalating.</li>
+<li><strong>systemctl status</strong> may show if services were restarted recently, suggesting prior troubleshooting.</li>
+</ul>
+<p>No, it may not have been addressed yet because:</p>
+<ul>
+<li>The node is still in the <strong>NotReady</strong> state, implying no successful resolution so far.</li>
+<li>Lack of detailed documentation or escalation might mean no one has investigated yet.</li>
+</ul>
+<p>To confirm, check the node&rsquo;s event logs (<strong>kubectl describe nodes Test_Cluster2</strong>) or system logs (<strong>journalctl -u kubelet</strong>) for evidence of recent actions.</p>
+<hr>
+
+
+
+<h2 id="discussion-post-3">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#discussion-post-3">Discussion Post 3</a>
+</h2>
+
+
+
+<h3 id="scenario-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#scenario-1">Scenario:</a>
+</h3>
+<p>You are the network operations center (NOC) lead. Your team has recently started supporting the dev, test, and QA environments for your company’s K8s cluster. Write up a basic checkout procedure for your new NOC personnel to verify operation of the cluster before escalating on critical alerts.</p>
+
+
+
+<h1 id="kubernetes-cluster-checkout-procedure-for-noc-personnel">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#kubernetes-cluster-checkout-procedure-for-noc-personnel">Kubernetes Cluster Checkout Procedure for NOC Personnel</a>
+</h1>
+<p>This document outlines the basic steps for verifying the operation of the Kubernetes (K8s) cluster before escalating on critical alerts.</p>
+<hr>
+
+
+
+<h2 id="1-verify-cluster-health">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#1-verify-cluster-health"><strong>1. Verify Cluster Health</strong></a>
+</h2>
+
+
+
+<h4 id="--login-to-the-cluster">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#--login-to-the-cluster">- <strong>Login to the Cluster</strong></a>
+</h4>
+<ul>
+<li>
+<p>Access the cluster using the <strong>kubectl</strong> command-line tool.</p>
+</li>
+<li>
+<p>Use the appropriate kubeconfig file for the environment (dev, test, QA).</p>
+<p>kubectl config use-context <!-- raw HTML omitted --></p>
+</li>
+</ul>
+
+
+
+<h4 id="--check-cluster-nodes">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#--check-cluster-nodes">- <strong>Check Cluster Nodes</strong></a>
+</h4>
+<pre><code>    kubectl get nodes
+</code></pre>
+<ul>
+<li>Look for any nodes in NotReady, Unknown, or SchedulingDisabled status. Investigate any anomalies.</li>
+</ul>
+
+
+
+<h4 id="--check-system-pods">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#--check-system-pods">- <strong>Check System Pods</strong></a>
+</h4>
+<ul>
+<li>
+<p>Verify critical system pods in the kube-system namespace are running</p>
+<pre><code>  kubectl get pods -n kube-system
+</code></pre>
+</li>
+</ul>
+
+
+
+<h4 id="pay-special-attention-to-core-components">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#pay-special-attention-to-core-components">Pay special attention to core components:</a>
+</h4>
+<ul>
+<li>kube-apiserver</li>
+<li>kube-scheduler</li>
+<li>kube-controller-manager</li>
+<li>etcd</li>
+</ul>
+<hr>
+
+
+
+<h2 id="2-verify-namespace-and-application-status">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#2-verify-namespace-and-application-status"><strong>2. Verify Namespace and Application Status</strong></a>
+</h2>
+
+
+
+<h4 id="--list-all-namespaces">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#--list-all-namespaces">- <strong>List All Namespaces</strong></a>
+</h4>
+<pre><code>    kubectl get namespaces
+</code></pre>
+
+
+
+<h4 id="--check-pod-status-in-active-namespaces">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#--check-pod-status-in-active-namespaces">- <strong>Check Pod Status in Active Namespaces</strong></a>
+</h4>
+<pre><code>    kubectl get pods -n &lt;namespace&gt;
+</code></pre>
+
+
+
+<h4 id="--inspect-deployments-and-replicasets">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#--inspect-deployments-and-replicasets">- <strong>Inspect Deployments and ReplicaSets</strong></a>
+</h4>
+<pre><code>    kubectl get deployments -n &lt;namespace&gt;
+    kubectl get rs -n &lt;namespace&gt;
+</code></pre>
+<hr>
+
+
+
+<h2 id="3-verify-cluster-networking">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#3-verify-cluster-networking"><strong>3. Verify Cluster Networking</strong></a>
+</h2>
+
+
+
+<h4 id="--service-connectivity">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#--service-connectivity">- <strong>Service Connectivity</strong></a>
+</h4>
+<pre><code>    kubectl get svc -n &lt;namespace&gt;
+</code></pre>
+
+
+
+<h4 id="--dns-resolution">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#--dns-resolution">- <strong>DNS Resolution</strong></a>
+</h4>
+<pre><code>    kubectl exec -n kube-system &lt;coredns-pod&gt; -- nslookup kubernetes.default
+</code></pre>
+
+
+
+<h4 id="--ingressload-balancer">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#--ingressload-balancer">- <strong>Ingress/Load Balancer</strong></a>
+</h4>
+<pre><code>    kubectl get ingress -n &lt;namespace&gt;
+</code></pre>
+<hr>
+
+
+
+<h2 id="4-monitor-resource-utilization">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#4-monitor-resource-utilization"><strong>4. Monitor Resource Utilization</strong></a>
+</h2>
+<p>Node Resource Usage</p>
+<pre><code>    kubectl top nodes
+</code></pre>
+<p>Pod Resource Usage</p>
+<pre><code>    kubectl top pods -n &lt;namespace&gt;
+</code></pre>
+<hr>
+
+
+
+<h2 id="5-check-cluster-events">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#5-check-cluster-events"><strong>5. Check Cluster Events</strong></a>
+</h2>
+<pre><code>    kubectl get events --sort-by='.metadata.creationTimestamp'
+</code></pre>
+<hr>
+
+
+
+<h2 id="6-validate-logging-and-monitoring">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#6-validate-logging-and-monitoring"><strong>6. Validate Logging and Monitoring</strong></a>
+</h2>
+<ul>
+<li>Ensure logging systems (e.g., EFK, Fluentd) are collecting logs as expected.</li>
+<li>Verify monitoring dashboards (e.g., Prometheus, Grafana) for anomalies or missing metrics.</li>
+</ul>
+<hr>
+
+
+
+<h2 id="7-escalation-criteria">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#7-escalation-criteria"><strong>7. Escalation Criteria</strong></a>
+</h2>
+<ul>
+<li>Core system pods (kube-apiserver, etcd) are not running.</li>
+<li>A node remains in NotReady for more than 10 minutes.</li>
+<li>Pods in critical application namespaces are in CrashLoopBackOff or Error state without resolution.</li>
+<li>Networking issues persist and cannot be resolved by basic checks.</li>
+<li>Cluster resource utilization is critically high (e.g., &gt;90% CPU or memory).</li>
+</ul>
+<hr>
+
+
+
+<h2 id="8-document-findings">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#8-document-findings"><strong>8. Document Findings</strong></a>
+</h2>
+<ul>
+<li>Record all findings in the incident management system, including:</li>
+<li>Steps taken during the checkout procedure.</li>
+<li>Observed errors or anomalies.</li>
+<li>Commands run and their output (if significant).</li>
+</ul>
+
+
+
+<h2 id="end-of-document">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#end-of-document">End of Document</a>
+</h2>
+<hr>
+
+
+
+<h3 id="what-information-online-helped-you-figure-this-out-what-blogs-or-tools-did-you-use">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#what-information-online-helped-you-figure-this-out-what-blogs-or-tools-did-you-use">What information online helped you figure this out? What blogs or tools did you use?</a>
+</h3>
+<ul>
+<li><a href="https://kubernetes.io/docs/tasks/debug/debug-cluster/">https://kubernetes.io/docs/tasks/debug/debug-cluster/</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/">https://kubernetes.io/docs/concepts/</a></li>
+<li>From conducting study-groups and working with K3s</li>
+</ul>
+
+
+
+<h3 id="what-did-you-learn-in-this-process-of-writing-this-up">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#what-did-you-learn-in-this-process-of-writing-this-up">What did you learn in this process of writing this up?</a>
+</h3>
+<ul>
+<li>Kubernetes is an Operating System with similar failure modes to that of Linux</li>
+<li>Kubernetes maintains helpful logs</li>
+<li>Kubernetes gives helpful errors</li>
+<li>KubeCTL is the tool I should internalize and master</li>
+<li>KubeCTL can manage multiple clusters remotely</li>
+</ul>
+<hr>
+
+
+
+<h2 id="digging-deeper-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#digging-deeper-">Digging Deeper ⛏️</a>
+</h2>
+<ol>
+<li>Work more in the lab to build a container of your choice and then find out how to
+deploy that into your cluster in a secure, scalable way. 👍</li>
+</ol>
+<p>I have actually experimented with building out custom containers using Podman and using:</p>
+<pre><code>    podman commit
+</code></pre>
+<p>to export the image as a custom local image. Then, I run that image and input the command:</p>
+<pre><code>    podman generate kube my-container &gt; my-container.yaml
+</code></pre>
+<p>This creates a manifest yaml that can then be spun up with Kubernetes.</p>
+<ol start="2">
+<li>Read this about securing containers: <a href="https://docs.docker.com/build/building/best-">https://docs.docker.com/build/building/best-</a>
+practices</li>
+</ol>
+<p>I do have prior experience with this having completed the DevSecOps certification from TryHackMe, it covers containers security with red-team exercises.
+However, it does not cover a ton of defensive measures. This best practices document is going to be really helpful when setting up future containers.</p>
+<ul>
+<li>Do this to practice securing those containers. <a href="https://killercoda.com/killer-">https://killercoda.com/killer-</a>
+shell-cks/scenario/static-manual-analysis-docker 👍</li>
+</ul>
+<ol start="3">
+<li>Read these about securing Kubernetes Deployments:</li>
+</ol>
+<p><a href="https://kubernetes.io/docs/concepts/security/">https://kubernetes.io/docs/concepts/security/</a> 👍 and
+<a href="https://kubernetes.io/docs/concepts/security/pod-security-standards/">https://kubernetes.io/docs/concepts/security/pod-security-standards/</a></p>
+<ul>
+<li>
+<p>TLS</p>
+</li>
+<li>
+<p>Secrets API</p>
+</li>
+<li>
+<p>Runtime Classes</p>
+</li>
+<li>
+<p>Network Policies</p>
+</li>
+<li>
+<p>Admission Policy</p>
+</li>
+<li>
+<p>Pod Security standards</p>
+</li>
+<li>
+<p>Open Policy, assumed safe privileged user.</p>
+</li>
+<li>
+<p>Baseline Policy</p>
+</li>
+<li>
+<p>SELinux enforce Policy</p>
+</li>
+<li>
+<p>Do this lab to practice securing Kubernetes: <a href="https://killercoda.com/killer-">https://killercoda.com/killer-</a>
+shell-cks/scenario/static-manual-analysis-k8s</p>
+</li>
+</ul>
+<p>So checking the privilege status indicates a container is privleged or not. If privleged, move to insecure directory.</p>
+<hr>
+
+
+
+<h1 id="labs-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#labs-">Labs 🥼🧪</a>
+</h1>
+
+
+
+<h3 id="warmup">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#warmup">Warmup</a>
+</h3>
+<pre><code>    curl -sfL https://get.k3s.io &gt; /tmp/k3_installer.sh 👍
+    
+    more /tmp/k3_installer.sh 👍
+</code></pre>
+<p>What do you notice in the installer?</p>
+<p>What checks are there?</p>
+<pre><code>    grep -i arch /tmp/k3_installer.sh
+</code></pre>
+<p>What is the name of the variable holding the architecture?</p>
+<p>How is the system finding that variable?</p>
+<pre><code>    uname -m
+</code></pre>
+<p>Verify your system architecture</p>
+<pre><code>    grep -iE “selinux|sestatus” /tmp/k3_installer.sh
+</code></pre>
+<p>Does K3s check if selinux is running, or no? Yes 👍</p>
+
+
+
+<h3 id="installing-k3s-and-looking-at-how-it-interacts-with-your-linux-system">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#installing-k3s-and-looking-at-how-it-interacts-with-your-linux-system">Installing k3s and looking at how it interacts with your Linux system</a>
+</h3>
+<p>Install k3s
+curl -sfL <a href="https://get.k3s.io">https://get.k3s.io</a> | sh -</p>
+<p>What was installed on your system?</p>
+<pre><code>    rpm -qa –last | tac
+</code></pre>
+<p>Your tasks in this lab are designed to get you thinking about how container deployments interact with</p>
+<ol start="3">
+<li>
+<p>Verify the service is running</p>
+<pre><code> systemctl status k3s
+</code></pre>
+</li>
+<li>
+<p>Check it systemd configuration</p>
+<pre><code> systemctl cat k3s
+</code></pre>
+</li>
+<li>
+<p>See what files and ports it is using</p>
+<pre><code> ss -ntulp | grep &lt;pid from 3&gt;
+
+ lsof -p &lt;pid from 3&gt;
+</code></pre>
+</li>
+</ol>
+<p>#Do you notice any ports that you did not expect?</p>
+<ol start="6">
+<li>
+<p>Verify simple kubectl call to API</p>
+<pre><code> kubectl get nodes
+</code></pre>
+</li>
+<li>
+<p>Verify K3s is set to start on boot and then cycle the service</p>
+<pre><code> systemctl is-enabled k3s
+
+ systemctl stop k3s
+</code></pre>
+</li>
+</ol>
+<p>Recheck your steps 3-6</p>
+<p>What error do you see, and is it expected?</p>
+<p>What is the API port that kubectl is failing on?</p>
+<pre><code>    systemctl start k3s
+</code></pre>
+<p>Verify your normal operations again.</p>
+<p>Looking at the K3 environment</p>
+<ol>
+<li>
+<p>Check out components</p>
+<pre><code> kubectl version
+
+ kubectl get nodes
+
+ kubectl get pods -A
+
+ kubectl get namespaces
+
+ kubectl get configmaps -A
+
+ kubectl get secrets -A
+</code></pre>
+</li>
+</ol>
+<p>#Which namespace seems to be the most used?</p>
+<p>Creating Pods, Deployments, and Services</p>
+<p>It’s possible that the lab will fail in this environment. Continue as you can and identify the problem using</p>
+<p>the steps at the end of this section.</p>
+<ol>
+<li>
+<p>Create a pod named webpage with the image nginx</p>
+<pre><code> kubectl run webpage --image=nginx
+</code></pre>
+</li>
+<li>
+<p>Create a pod named database with the image redis and labels set to tier=database</p>
+<pre><code> kubectl run database --image=redis --labels=tier=database
+</code></pre>
+</li>
+<li>
+<p>Create a service with the name redis-service to expose the database pod within the cluster on port</p>
+<pre><code> 6379 (default Redis port)
+ kubectl expose pod database --port=6379 --name=redis-service --
+ type=ClusterIP
+</code></pre>
+</li>
+<li>
+<p>Create a deployment called web-deployment using the image nginx that has 3 replicas</p>
+<pre><code> kubectl create deployment web-deployment --image=nginx --
+ replicas=3
+</code></pre>
+</li>
+<li>
+<p>Verify that the pods are created</p>
+<pre><code> kubectl get deployments
+ kubectl get pods
+</code></pre>
+</li>
+<li>
+<p>Create a new namespace called my-test</p>
+<pre><code> kubectl create namespace my-test
+</code></pre>
+</li>
+<li>
+<p>Create a new deployment called redis-deploy with the image redis in your my-test namespace with 2</p>
+<pre><code> replicas
+ kubectl create deployment redis-deploy -n my-test --image=redis -
+ -replicas=2
+</code></pre>
+</li>
+</ol>
+<p>Do some of your same checks from before. What do you notice about the pods you created? Did they all
+work?</p>
+<p>If this breaks in the lab, document the error. Check your disk space and RAM, the two tightest
+constraints in the lab. Using systemctl restart k3s and journalctl -xe can you figure out what is failing?
+(Rocky boxes may have limitations that cause this to not fully deploy, can you find out why?)</p>
+<hr>
+
+
+
+<h2 id="reflection-questions">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#reflection-questions">Reflection questions:</a>
+</h2>
+<ol>
+<li>What questions do you still have about this week?</li>
+<li>How can you apply this now in your current role in IT? If you’re not in IT, how can you
+look to put something like this into your resume or portfolio?</li>
+</ol>
+<hr>
+
+
+
+<h3 id="prolug-links-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu10/#prolug-links-">ProLUG Links ⛓️</a>
+</h3>
+<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
+Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
+Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
+ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
+KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
+  
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/operating-systems/" rel="tag">Operating Systems</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+  
+  
+
+
+
+      </div>
+    </div>
+  </main>
+  
+</body>
+
+</html>

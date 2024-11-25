@@ -5,20 +5,745 @@
     <title>Administration on Tech Blog</title>
     <link>http://localhost:1313/techblog/tags/administration/</link>
     <description>Recent content in Administration on Tech Blog</description>
-    <generator>Hugo 0.138.0</generator>
+    <generator>Hugo 0.139.2</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 12 Nov 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 17 Nov 2024 00:00:00 +0000</lastBuildDate>
     <atom:link rel="self" href="http://localhost:1313/techblog/tags/administration/feed.xml" type="application/rss+xml" />
+    <item>
+      <title>ProLUG Admin Course Unit 10 🐧</title>
+      <link>http://localhost:1313/techblog/post/pacu10/</link>
+      <pubDate>Sun, 17 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/techblog/post/pacu10/</guid>
+      <description>&lt;h1 id=&#34;kubernetes&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#kubernetes&#34;&gt;Kubernetes&lt;/a&gt;
+&lt;/h1&gt;
+
+
+
+&lt;h2 id=&#34;kubernetes-the-os-of-the-internet&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#kubernetes-the-os-of-the-internet&#34;&gt;Kubernetes: &amp;ldquo;The OS of the Internet&amp;rdquo;&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;This week, we were privileged to host a special guest lecture by John Champine, Scott&amp;rsquo;s brother. Over the course of an engaging two-hour session, John delivered an in-depth exploration of Kubernetes, thoroughly covering the five W&amp;rsquo;s: Who, What, When, Where, and Why.&lt;/p&gt;
+&lt;p&gt;John&amp;rsquo;s passion and deep knowledge of Kubernetes were evident throughout the presentation. Having firsthand experience with the challenges of pre-Kubernetes infrastructure, he offered valuable insights into how this platform has revolutionized modern computing. Notably, John specializes in OpenShift, an IBM-owned management layer built atop Kubernetes. OpenShift adds additional functionality and ease of use to what is already a powerful but complex system.&lt;/p&gt;
+&lt;p&gt;One concept that particularly caught my attention was the &lt;strong&gt;fractionalization of CPU and memory resources&lt;/strong&gt; made possible by Kubernetes&amp;rsquo; sophisticated resource management. John introduced the term &lt;em&gt;millicore&lt;/em&gt;, a concept I was previously unfamiliar with. It refers to the fine-grained allocation of processing power, where fractions of a CPU core are shared across processes during compute cycles. This ability to manage resources at such a granular level is remarkable, showcasing the efficiency and precision of Kubernetes.&lt;/p&gt;
+&lt;p&gt;Before this lecture, I never imagined that such details—down to the microsecond allocation of core usage—could not only be considered but also controlled and utilized to optimize workloads. This level of resource management truly solidifies Kubernetes&amp;rsquo; position as the &amp;ldquo;operating system of the internet,&amp;rdquo; enabling applications to run more efficiently and reliably across diverse infrastructures.&lt;/p&gt;
+&lt;p&gt;John’s insights not only deepened my understanding of Kubernetes but also sparked curiosity about the broader implications of containerized resource management in modern computing.&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;discussion-post-1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#discussion-post-1&#34;&gt;Discussion Post 1&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Reading: &lt;a href=&#34;https://kubernetes.io/docs/concepts/overview/&#34;&gt;https://kubernetes.io/docs/concepts/overview/&lt;/a&gt; 📗&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;question-1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#question-1&#34;&gt;Question 1&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;What are the two most compelling reasons you see to implement Kubernetes in your organization?&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Efficient Usage of Resources&lt;/strong&gt;: Kubernetes optimizes resource allocation and ensures workloads are distributed efficiently across your infrastructure.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Built-in Redundancy&lt;/strong&gt;: Kubernetes provides automatic failover and self-healing capabilities, ensuring high availability for applications.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Other notable reasons include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Load Balancing&lt;/strong&gt;: Automatically distributes traffic across pods to maintain application performance. ⚖️&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Centralized Control&lt;/strong&gt;: Manages deployments, updates, and scaling from a single interface. 🎯&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Declarative in Nature&lt;/strong&gt;: Uses declarative configurations, making it easier to maintain and reproduce states. 🔖&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Customizable for Organizational Needs&lt;/strong&gt;: Offers flexibility to adapt to specific requirements through pluggable components. 🔌&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Open Source&lt;/strong&gt;: Eliminates vendor lock-in while benefiting from a large and active community. ⚙️&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Broadly Used&lt;/strong&gt;: Extensive community adoption ensures a wealth of resources, tools, and discussions. 📜&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Written in Go&lt;/strong&gt;: Delivers a lightweight, high-performance foundation that I am irrationally a fan of 😉&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+
+
+
+&lt;h3 id=&#34;question-2&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#question-2&#34;&gt;Question 2&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;When the article says Kubernetes is not a PaaS, what do they mean by that? What is a PaaS in comparison?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Kubernetes is not a Platform-as-a-Service (PaaS) because it operates at the &lt;strong&gt;container level&lt;/strong&gt; rather than the &lt;strong&gt;application or hardware level&lt;/strong&gt;. While it provides some features similar to PaaS offerings, Kubernetes emphasizes flexibility, composability, and user choice rather than prescribing a monolithic solution.&lt;/p&gt;
+
+
+
+&lt;h4 id=&#34;key-characteristics-of-kubernetes-compared-to-paas&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#key-characteristics-of-kubernetes-compared-to-paas&#34;&gt;Key Characteristics of Kubernetes Compared to PaaS:&lt;/a&gt;
+&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;What Kubernetes Is&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Provides foundational building blocks for deploying, scaling, and managing containerized applications.&lt;/li&gt;
+&lt;li&gt;Is modular, with optional and pluggable solutions for logging, monitoring, alerting, and scaling.&lt;/li&gt;
+&lt;li&gt;Focuses on maintaining desired state through independent, composable control processes.&lt;/li&gt;
+&lt;li&gt;Preserves user choice by not dictating application or configuration specifics.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;What Kubernetes Is Not&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Does not limit the types of applications it supports.&lt;/li&gt;
+&lt;li&gt;Does not deploy source code or build your application.&lt;/li&gt;
+&lt;li&gt;Does not provide application-level services (e.g., middleware, databases).&lt;/li&gt;
+&lt;li&gt;Does not enforce specific logging, monitoring, or alerting solutions.&lt;/li&gt;
+&lt;li&gt;Does not include a proprietary configuration system or language (e.g., Jsonnet).&lt;/li&gt;
+&lt;li&gt;Does not manage comprehensive machine-level configuration, maintenance, or self-healing.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;h4 id=&#34;comparison-to-paas&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#comparison-to-paas&#34;&gt;Comparison to PaaS:&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;A Platform-as-a-Service (PaaS), such as Heroku or OpenShift, provides a more opinionated, all-encompassing solution by:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Supporting application deployment directly from source code.&lt;/li&gt;
+&lt;li&gt;Managing application-level services like databases or caching layers.&lt;/li&gt;
+&lt;li&gt;Offering integrated logging, monitoring, and alerting.&lt;/li&gt;
+&lt;li&gt;Providing a simplified developer experience but with less flexibility.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In contrast, Kubernetes gives users the tools to build their own developer platforms while leaving critical choices in the user’s hands.&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;discussion-post-2&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#discussion-post-2&#34;&gt;Discussion Post 2&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;scenario&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#scenario&#34;&gt;Scenario&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;You get a ticket about your new test cluster. The team is unable to deploy some of their applications. They suspect there is a problem and send you over this output:&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;kubernetes-cluster-information&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#kubernetes-cluster-information&#34;&gt;Kubernetes Cluster Information&lt;/a&gt;
+&lt;/h3&gt;
+
+
+
+&lt;h4 id=&#34;kubectl-version&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#kubectl-version&#34;&gt;kubectl Version&lt;/a&gt;
+&lt;/h4&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Component&lt;/th&gt;
+          &lt;th&gt;Version&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Client Version&lt;/td&gt;
+          &lt;td&gt;v1.31.6+k3s3&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Kustomize Version&lt;/td&gt;
+          &lt;td&gt;v5.0.4-0.20230601165947-6ce0bf390ce3&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Server Version&lt;/td&gt;
+          &lt;td&gt;v1.30.6+k3s1&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+
+
+&lt;h4 id=&#34;node-status&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#node-status&#34;&gt;Node Status&lt;/a&gt;
+&lt;/h4&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;NAME&lt;/th&gt;
+          &lt;th&gt;STATUS&lt;/th&gt;
+          &lt;th&gt;ROLES&lt;/th&gt;
+          &lt;th&gt;AGE&lt;/th&gt;
+          &lt;th&gt;VERSION&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Test_Cluster1&lt;/td&gt;
+          &lt;td&gt;Ready&lt;/td&gt;
+          &lt;td&gt;control-plane,master&lt;/td&gt;
+          &lt;td&gt;17h&lt;/td&gt;
+          &lt;td&gt;v1.30.6+k3s1&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Test_Cluster2&lt;/td&gt;
+          &lt;td&gt;NotReady&lt;/td&gt;
+          &lt;td&gt;worker&lt;/td&gt;
+          &lt;td&gt;33m&lt;/td&gt;
+          &lt;td&gt;v1.29.6+k3s1&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Test_Cluster3&lt;/td&gt;
+          &lt;td&gt;Ready&lt;/td&gt;
+          &lt;td&gt;worker&lt;/td&gt;
+          &lt;td&gt;17h&lt;/td&gt;
+          &lt;td&gt;v1.28.6+k3s1&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+
+
+&lt;h3 id=&#34;question-1-1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#question-1-1&#34;&gt;Question 1&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;What are you checking on the cluster to validate you see their error?&lt;/p&gt;
+&lt;p&gt;To identify and validate the issue with the node &lt;strong&gt;Test_Cluster2&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;Check the overall cluster status&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Run &lt;strong&gt;kubectl get nodes&lt;/strong&gt; to see the status of all nodes in the cluster.&lt;/li&gt;
+&lt;li&gt;This confirms &lt;strong&gt;Test_Cluster2&lt;/strong&gt; is &lt;strong&gt;NotReady&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Inspect node details&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Run &lt;strong&gt;kubectl describe nodes Test_Cluster2&lt;/strong&gt; to check for events, taints, and resource usage issues. Look for errors related to kubelet, network, or node conditions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Access the node**&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SSH into the node with &lt;strong&gt;ssh Test_Cluster2&lt;/strong&gt; to perform further diagnostics.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Verify kubelet status&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Run &lt;strong&gt;systemctl status kubelet&lt;/strong&gt; to check if the kubelet service is running and healthy.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Check container runtime&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Depending on your runtime, run either &lt;strong&gt;systemctl status docker&lt;/strong&gt; or &lt;strong&gt;systemctl status podman&lt;/strong&gt; to ensure the container runtime is operational.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Reload and restart services&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;If issues are detected, attempt to reload the systemd daemon (&lt;strong&gt;systemctl daemon-reload&lt;/strong&gt;) and restart kubelet (&lt;strong&gt;systemctl restart kubelet&lt;/strong&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+
+
+
+&lt;h3 id=&#34;question-2-1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#question-2-1&#34;&gt;Question 2&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;What do you think the problem could be?&lt;/p&gt;
+&lt;p&gt;Potential problems for &lt;strong&gt;Test_Cluster2&lt;/strong&gt; being &lt;strong&gt;NotReady&lt;/strong&gt; include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;strong&gt;Test_Cluster2&lt;/strong&gt; node is running Kubernetes version &lt;strong&gt;v1.29.6+k3s1&lt;/strong&gt;, which is older than the server and other nodes (&lt;strong&gt;v1.30.6+k3s1&lt;/strong&gt;). This may cause compatibility issues.&lt;/li&gt;
+&lt;li&gt;The kubelet service might have failed or not started.&lt;/li&gt;
+&lt;li&gt;Networking problems could prevent the node from communicating with the control plane.&lt;/li&gt;
+&lt;li&gt;The node may lack sufficient CPU, memory, or disk space for the kubelet to function.&lt;/li&gt;
+&lt;li&gt;Taints, labels, or configuration errors might prevent the node from becoming &lt;strong&gt;Ready&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Hardware issues or kernel module problems may impact the node&amp;rsquo;s health.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;question-3&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#question-3&#34;&gt;Question 3&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Do you think someone else has tried anything to fix this problem before you? Why or why not?&lt;/p&gt;
+&lt;p&gt;Yes, someone may have tried to fix it&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The node was added only &lt;strong&gt;33 minutes ago&lt;/strong&gt;, indicating recent activity.&lt;/li&gt;
+&lt;li&gt;It’s common for issues to be noticed and an initial attempt made before escalating.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;systemctl status&lt;/strong&gt; may show if services were restarted recently, suggesting prior troubleshooting.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;No, it may not have been addressed yet because:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The node is still in the &lt;strong&gt;NotReady&lt;/strong&gt; state, implying no successful resolution so far.&lt;/li&gt;
+&lt;li&gt;Lack of detailed documentation or escalation might mean no one has investigated yet.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To confirm, check the node&amp;rsquo;s event logs (&lt;strong&gt;kubectl describe nodes Test_Cluster2&lt;/strong&gt;) or system logs (&lt;strong&gt;journalctl -u kubelet&lt;/strong&gt;) for evidence of recent actions.&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;discussion-post-3&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#discussion-post-3&#34;&gt;Discussion Post 3&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;scenario-1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#scenario-1&#34;&gt;Scenario:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;You are the network operations center (NOC) lead. Your team has recently started supporting the dev, test, and QA environments for your company’s K8s cluster. Write up a basic checkout procedure for your new NOC personnel to verify operation of the cluster before escalating on critical alerts.&lt;/p&gt;
+
+
+
+&lt;h1 id=&#34;kubernetes-cluster-checkout-procedure-for-noc-personnel&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#kubernetes-cluster-checkout-procedure-for-noc-personnel&#34;&gt;Kubernetes Cluster Checkout Procedure for NOC Personnel&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;This document outlines the basic steps for verifying the operation of the Kubernetes (K8s) cluster before escalating on critical alerts.&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;1-verify-cluster-health&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#1-verify-cluster-health&#34;&gt;&lt;strong&gt;1. Verify Cluster Health&lt;/strong&gt;&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h4 id=&#34;--login-to-the-cluster&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#--login-to-the-cluster&#34;&gt;- &lt;strong&gt;Login to the Cluster&lt;/strong&gt;&lt;/a&gt;
+&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Access the cluster using the &lt;strong&gt;kubectl&lt;/strong&gt; command-line tool.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Use the appropriate kubeconfig file for the environment (dev, test, QA).&lt;/p&gt;
+&lt;p&gt;kubectl config use-context &lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h4 id=&#34;--check-cluster-nodes&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#--check-cluster-nodes&#34;&gt;- &lt;strong&gt;Check Cluster Nodes&lt;/strong&gt;&lt;/a&gt;
+&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;    kubectl get nodes
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;Look for any nodes in NotReady, Unknown, or SchedulingDisabled status. Investigate any anomalies.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h4 id=&#34;--check-system-pods&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#--check-system-pods&#34;&gt;- &lt;strong&gt;Check System Pods&lt;/strong&gt;&lt;/a&gt;
+&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Verify critical system pods in the kube-system namespace are running&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  kubectl get pods -n kube-system
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Pay special attention to core components:&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;kube-apiserver&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;kube-scheduler&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;kube-controller-manager&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;etcd&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;2-verify-namespace-and-application-status&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#2-verify-namespace-and-application-status&#34;&gt;&lt;strong&gt;2. Verify Namespace and Application Status&lt;/strong&gt;&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h4 id=&#34;--list-all-namespaces&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#--list-all-namespaces&#34;&gt;- &lt;strong&gt;List All Namespaces&lt;/strong&gt;&lt;/a&gt;
+&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;    kubectl get namespaces
+&lt;/code&gt;&lt;/pre&gt;
+
+
+
+&lt;h4 id=&#34;--check-pod-status-in-active-namespaces&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#--check-pod-status-in-active-namespaces&#34;&gt;- &lt;strong&gt;Check Pod Status in Active Namespaces&lt;/strong&gt;&lt;/a&gt;
+&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;    kubectl get pods -n &amp;lt;namespace&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+
+
+&lt;h4 id=&#34;--inspect-deployments-and-replicasets&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#--inspect-deployments-and-replicasets&#34;&gt;- &lt;strong&gt;Inspect Deployments and ReplicaSets&lt;/strong&gt;&lt;/a&gt;
+&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;    kubectl get deployments -n &amp;lt;namespace&amp;gt;
+    kubectl get rs -n &amp;lt;namespace&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;3-verify-cluster-networking&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#3-verify-cluster-networking&#34;&gt;&lt;strong&gt;3. Verify Cluster Networking&lt;/strong&gt;&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h4 id=&#34;--service-connectivity&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#--service-connectivity&#34;&gt;- &lt;strong&gt;Service Connectivity&lt;/strong&gt;&lt;/a&gt;
+&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;    kubectl get svc -n &amp;lt;namespace&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+
+
+&lt;h4 id=&#34;--dns-resolution&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#--dns-resolution&#34;&gt;- &lt;strong&gt;DNS Resolution&lt;/strong&gt;&lt;/a&gt;
+&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;    kubectl exec -n kube-system &amp;lt;coredns-pod&amp;gt; -- nslookup kubernetes.default
+&lt;/code&gt;&lt;/pre&gt;
+
+
+
+&lt;h4 id=&#34;--ingressload-balancer&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#--ingressload-balancer&#34;&gt;- &lt;strong&gt;Ingress/Load Balancer&lt;/strong&gt;&lt;/a&gt;
+&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;    kubectl get ingress -n &amp;lt;namespace&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;4-monitor-resource-utilization&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#4-monitor-resource-utilization&#34;&gt;&lt;strong&gt;4. Monitor Resource Utilization&lt;/strong&gt;&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Node Resource Usage&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    kubectl top nodes
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Pod Resource Usage&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    kubectl top pods -n &amp;lt;namespace&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;5-check-cluster-events&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#5-check-cluster-events&#34;&gt;&lt;strong&gt;5. Check Cluster Events&lt;/strong&gt;&lt;/a&gt;
+&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;    kubectl get events --sort-by=&#39;.metadata.creationTimestamp&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;6-validate-logging-and-monitoring&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#6-validate-logging-and-monitoring&#34;&gt;&lt;strong&gt;6. Validate Logging and Monitoring&lt;/strong&gt;&lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Ensure logging systems (e.g., EFK, Fluentd) are collecting logs as expected.&lt;/li&gt;
+&lt;li&gt;Verify monitoring dashboards (e.g., Prometheus, Grafana) for anomalies or missing metrics.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;7-escalation-criteria&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#7-escalation-criteria&#34;&gt;&lt;strong&gt;7. Escalation Criteria&lt;/strong&gt;&lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Core system pods (kube-apiserver, etcd) are not running.&lt;/li&gt;
+&lt;li&gt;A node remains in NotReady for more than 10 minutes.&lt;/li&gt;
+&lt;li&gt;Pods in critical application namespaces are in CrashLoopBackOff or Error state without resolution.&lt;/li&gt;
+&lt;li&gt;Networking issues persist and cannot be resolved by basic checks.&lt;/li&gt;
+&lt;li&gt;Cluster resource utilization is critically high (e.g., &amp;gt;90% CPU or memory).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;8-document-findings&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#8-document-findings&#34;&gt;&lt;strong&gt;8. Document Findings&lt;/strong&gt;&lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Record all findings in the incident management system, including:&lt;/li&gt;
+&lt;li&gt;Steps taken during the checkout procedure.&lt;/li&gt;
+&lt;li&gt;Observed errors or anomalies.&lt;/li&gt;
+&lt;li&gt;Commands run and their output (if significant).&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 id=&#34;end-of-document&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#end-of-document&#34;&gt;End of Document&lt;/a&gt;
+&lt;/h2&gt;
+&lt;hr&gt;
+
+
+
+&lt;h3 id=&#34;what-information-online-helped-you-figure-this-out-what-blogs-or-tools-did-you-use&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#what-information-online-helped-you-figure-this-out-what-blogs-or-tools-did-you-use&#34;&gt;What information online helped you figure this out? What blogs or tools did you use?&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://kubernetes.io/docs/tasks/debug/debug-cluster/&#34;&gt;https://kubernetes.io/docs/tasks/debug/debug-cluster/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://kubernetes.io/docs/concepts/&#34;&gt;https://kubernetes.io/docs/concepts/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;From conducting study-groups and working with K3s&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;what-did-you-learn-in-this-process-of-writing-this-up&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#what-did-you-learn-in-this-process-of-writing-this-up&#34;&gt;What did you learn in this process of writing this up?&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Kubernetes is an Operating System with similar failure modes to that of Linux&lt;/li&gt;
+&lt;li&gt;Kubernetes maintains helpful logs&lt;/li&gt;
+&lt;li&gt;Kubernetes gives helpful errors&lt;/li&gt;
+&lt;li&gt;KubeCTL is the tool I should internalize and master&lt;/li&gt;
+&lt;li&gt;KubeCTL can manage multiple clusters remotely&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;digging-deeper-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#digging-deeper-&#34;&gt;Digging Deeper ⛏️&lt;/a&gt;
+&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Work more in the lab to build a container of your choice and then find out how to
+deploy that into your cluster in a secure, scalable way. 👍&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I have actually experimented with building out custom containers using Podman and using:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    podman commit
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;to export the image as a custom local image. Then, I run that image and input the command:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    podman generate kube my-container &amp;gt; my-container.yaml
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This creates a manifest yaml that can then be spun up with Kubernetes.&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;Read this about securing containers: &lt;a href=&#34;https://docs.docker.com/build/building/best-&#34;&gt;https://docs.docker.com/build/building/best-&lt;/a&gt;
+practices&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I do have prior experience with this having completed the DevSecOps certification from TryHackMe, it covers containers security with red-team exercises.
+However, it does not cover a ton of defensive measures. This best practices document is going to be really helpful when setting up future containers.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Do this to practice securing those containers. &lt;a href=&#34;https://killercoda.com/killer-&#34;&gt;https://killercoda.com/killer-&lt;/a&gt;
+shell-cks/scenario/static-manual-analysis-docker 👍&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;Read these about securing Kubernetes Deployments:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;a href=&#34;https://kubernetes.io/docs/concepts/security/&#34;&gt;https://kubernetes.io/docs/concepts/security/&lt;/a&gt; 👍 and
+&lt;a href=&#34;https://kubernetes.io/docs/concepts/security/pod-security-standards/&#34;&gt;https://kubernetes.io/docs/concepts/security/pod-security-standards/&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;TLS&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Secrets API&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Runtime Classes&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Network Policies&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Admission Policy&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Pod Security standards&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Open Policy, assumed safe privileged user.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Baseline Policy&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;SELinux enforce Policy&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Do this lab to practice securing Kubernetes: &lt;a href=&#34;https://killercoda.com/killer-&#34;&gt;https://killercoda.com/killer-&lt;/a&gt;
+shell-cks/scenario/static-manual-analysis-k8s&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So checking the privilege status indicates a container is privleged or not. If privleged, move to insecure directory.&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h1 id=&#34;labs-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#labs-&#34;&gt;Labs 🥼🧪&lt;/a&gt;
+&lt;/h1&gt;
+&lt;pre&gt;&lt;code&gt;    curl -sfL https://get.k3s.io &amp;gt; /tmp/k3_installer.sh 👍
+    
+    more /tmp/k3_installer.sh 👍
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;What do you notice in the installer?&lt;/p&gt;
+&lt;p&gt;What checks are there?&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    grep -i arch /tmp/k3_installer.sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;What is the name of the variable holding the architecture?&lt;/p&gt;
+&lt;p&gt;How is the system finding that variable?&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    uname -m
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Verify your system architecture&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    grep -iE “selinux|sestatus” /tmp/k3_installer.sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Does K3s check if selinux is running, or no?&lt;/p&gt;
+&lt;p&gt;Installing k3s and looking at how it interacts with your Linux system&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Install k3s
+curl -sfL &lt;a href=&#34;https://get.k3s.io&#34;&gt;https://get.k3s.io&lt;/a&gt; | sh -&lt;/p&gt;
+&lt;p&gt;What was installed on your system?&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    rpm -qa –last | tac
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Your tasks in this lab are designed to get you thinking about how container deployments interact with&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Verify the service is running&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; systemctl status k3s
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Check it systemd configuration&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; systemctl cat k3s
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;See what files and ports it is using&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; ss -ntulp | grep &amp;lt;pid from 3&amp;gt;
+
+ lsof -p &amp;lt;pid from 3&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;#Do you notice any ports that you did not expect?&lt;/p&gt;
+&lt;ol start=&#34;6&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Verify simple kubectl call to API&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; kubectl get nodes
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Verify K3s is set to start on boot and then cycle the service&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; systemctl is-enabled k3s
+
+ systemctl stop k3s
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;#Recheck your steps 3-6&lt;/p&gt;
+&lt;p&gt;#What error do you see, and is it expected?&lt;/p&gt;
+&lt;p&gt;#What is the API port that kubectl is failing on?&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    systemctl start k3s
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;#Verify your normal operations again.&lt;/p&gt;
+&lt;p&gt;Looking at the K3 environment&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Check out components&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; kubectl version
+
+ kubectl get nodes
+
+ kubectl get pods -A
+
+ kubectl get namespaces
+
+ kubectl get configmaps -A
+
+ kubectl get secrets -A
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;#Which namespace seems to be the most used?&lt;/p&gt;
+&lt;p&gt;Creating Pods, Deployments, and Services&lt;/p&gt;
+&lt;p&gt;It’s possible that the lab will fail in this environment. Continue as you can and identify the problem using&lt;/p&gt;
+&lt;p&gt;the steps at the end of this section.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Create a pod named webpage with the image nginx&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; kubectl run webpage --image=nginx
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Create a pod named database with the image redis and labels set to tier=database&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; kubectl run database --image=redis --labels=tier=database
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Create a service with the name redis-service to expose the database pod within the cluster on port&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; 6379 (default Redis port)
+ kubectl expose pod database --port=6379 --name=redis-service --
+ type=ClusterIP
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Create a deployment called web-deployment using the image nginx that has 3 replicas&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; kubectl create deployment web-deployment --image=nginx --
+ replicas=3
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Verify that the pods are created&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; kubectl get deployments
+ kubectl get pods
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Create a new namespace called my-test&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; kubectl create namespace my-test
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Create a new deployment called redis-deploy with the image redis in your my-test namespace with 2&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; replicas
+ kubectl create deployment redis-deploy -n my-test --image=redis -
+ -replicas=2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Do some of your same checks from before. What do you notice about the pods you created? Did they all
+work?&lt;/p&gt;
+&lt;p&gt;If this breaks in the lab, document the error. Check your disk space and RAM, the two tightest
+constraints in the lab. Using systemctl restart k3s and journalctl -xe can you figure out what is failing?
+(Rocky boxes may have limitations that cause this to not fully deploy, can you find out why?)&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;reflection-questions&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#reflection-questions&#34;&gt;Reflection questions:&lt;/a&gt;
+&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;What questions do you still have about this week?&lt;/li&gt;
+&lt;li&gt;How can you apply this now in your current role in IT? If you’re not in IT, how can you
+look to put something like this into your resume or portfolio?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+
+
+
+&lt;h3 id=&#34;prolug-links-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu10/#prolug-links-&#34;&gt;ProLUG Links ⛓️&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Discord: &lt;a href=&#34;https://discord.com/invite/m6VPPD9usw&#34;&gt;https://discord.com/invite/m6VPPD9usw&lt;/a&gt;
+Youtube: &lt;a href=&#34;https://www.youtube.com/@het_tanis8213&#34;&gt;https://www.youtube.com/@het_tanis8213&lt;/a&gt;
+Twitch: &lt;a href=&#34;https://www.twitch.tv/het_tanis&#34;&gt;https://www.twitch.tv/het_tanis&lt;/a&gt;
+ProLUG Book: &lt;a href=&#34;https://leanpub.com/theprolugbigbookoflabs&#34;&gt;https://leanpub.com/theprolugbigbookoflabs&lt;/a&gt;
+KillerCoda: &lt;a href=&#34;https://killercoda.com/het-tanis&#34;&gt;https://killercoda.com/het-tanis&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>ProLUG Admin Course Unit 9 🐧</title>
       <link>http://localhost:1313/techblog/post/pacu9/</link>
       <pubDate>Tue, 12 Nov 2024 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/techblog/post/pacu9/</guid>
-      <description>&lt;h1 id=&#34;containers--kubernetes&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#containers--kubernetes&#34;&gt;Containers &amp;amp; Kubernetes&lt;/a&gt;
+      <description>&lt;h1 id=&#34;containers--kubernetes-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#containers--kubernetes-&#34;&gt;Containers &amp;amp; Kubernetes 🦭&lt;/a&gt;
 &lt;/h1&gt;
 &lt;p&gt;One of the most exciting units for me has been exploring deployment and hosting infrastructure. I’ve already spent some time working with Docker and Podman, but I have had limited hands-on experience with Kubernetes. Before this unit, I completed a few interactive Kubernetes labs on Killercoda, covering basic commands, information gathering, and logging.&lt;/p&gt;
-&lt;p&gt;This week, I followed an interactive K3s lab that guided me through the installation process—a perfect refresher. Afterward, I jumped onto one of my Proxmox VMs and installed K3s on my homelab 👨‍🔧&lt;/p&gt;
+&lt;p&gt;This week, I followed an interactive K3s lab that guided me through the installation process—a perfect refresher. Afterward, I jumped onto one of my Proxmox VMs and installed K3s on my homeLab 👨‍🔧&lt;/p&gt;
 &lt;hr&gt;
 
 
@@ -27,39 +752,51 @@
   &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#discussion-post-1&#34;&gt;Discussion Post 1&lt;/a&gt;
 &lt;/h2&gt;
 &lt;p&gt;It’s a slow day in the NOC and you have heard that a new system of container deployments are being used by your developers. Do some reading about containers, docker, and podman.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;What resources helped me answer these questions&lt;/li&gt;
-&lt;/ol&gt;
+
+
+
+&lt;h3 id=&#34;1what-resources-helped-me-answer-these-questions&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#1what-resources-helped-me-answer-these-questions&#34;&gt;1.	What resources helped me answer these questions&lt;/a&gt;
+&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.redhat.com/en/topics/containers&#34;&gt;https://www.redhat.com/en/topics/containers&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;My RHCSA 9 Course on Udemy&lt;/li&gt;
 &lt;li&gt;Notes I have composed in LogSeq from multiple sources&lt;/li&gt;
 &lt;li&gt;Julia Evans Blog &lt;a href=&#34;https://jvns.ca/&#34;&gt;https://jvns.ca/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;ol start=&#34;2&#34;&gt;
-&lt;li&gt;What did you learn about that you didn’t know before?&lt;/li&gt;
-&lt;/ol&gt;
+
+
+
+&lt;h3 id=&#34;2what-did-you-learn-about-that-you-didnt-know-before&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#2what-did-you-learn-about-that-you-didnt-know-before&#34;&gt;2.	What did you learn about that you didn’t know before?&lt;/a&gt;
+&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;I did not know that Podman and Kubernetes can run WASM Applications alongside containers. I have some interest in WASM and Subsequent ByteCode, having read about it on occasion.&lt;/li&gt;
 &lt;li&gt;I did not know that Podman containers can be converted to SystemD services.&lt;/li&gt;
 &lt;li&gt;I learned a technique that I quite like using podman commit to create a custom compose file from a modified container and will likely use this alot.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Terminology that I wasn&amp;rsquo;t familiar with:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Terminology that I wasn&amp;rsquo;t familiar with:&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Control Plane: Manages container orchestration, monitoring, and state across cluster nodes.&lt;/li&gt;
 &lt;li&gt;The API server: Core interface for communication between users and container clusters.&lt;/li&gt;
 &lt;li&gt;Scheduler: Assigns containers to nodes based on resource availability and policies.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;ol start=&#34;3&#34;&gt;
-&lt;li&gt;What seems to be the major benefit of containers?&lt;/li&gt;
-&lt;/ol&gt;
+
+
+
+&lt;h3 id=&#34;3what-seems-to-be-the-major-benefit-of-containers&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#3what-seems-to-be-the-major-benefit-of-containers&#34;&gt;3.	What seems to be the major benefit of containers?&lt;/a&gt;
+&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Can be declarative with compose. So infrastructure can be explicitly defined and easily rebuilt.&lt;/li&gt;
 &lt;li&gt;Light weight / low resource. Containers are not complete systems and are stripped to the bare essentials, meaning they are very small files that run fast.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;ol start=&#34;4&#34;&gt;
-&lt;li&gt;What seems to be some obstacles to container deployment?&lt;/li&gt;
-&lt;/ol&gt;
+
+
+
+&lt;h3 id=&#34;4what-seems-to-be-some-obstacles-to-container-deployment&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#4what-seems-to-be-some-obstacles-to-container-deployment&#34;&gt;4.	What seems to be some obstacles to container deployment?&lt;/a&gt;
+&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;From my own experience, mounting persistent volumes was a bit tricky.&lt;/li&gt;
 &lt;li&gt;Container networking presents a challenge bot conceptually and practically.&lt;/li&gt;
@@ -92,85 +829,132 @@ tcp     LISTEN   0        128               0.0.0.0:22               0.0.0.0:*  
 tcp     LISTEN   0        4096        127.0.0.53%lo:53               0.0.0.0:*             users:((&amp;quot;systemd-resolve&amp;quot;,pid=166693,fd=14))
 tcp     LISTEN   0        4096                    *:8080                   *:*             users:((&amp;quot;node_exporter&amp;quot;,pid=662,fd=3))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;ol&gt;
-&lt;li&gt;What do you think the problem might be?&lt;/li&gt;
-&lt;/ol&gt;
+
+
+
+&lt;h3 id=&#34;1-what-do-you-think-the-problem-might-be-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#1-what-do-you-think-the-problem-might-be-&#34;&gt;1. What do you think the problem might be? 🔍&lt;/a&gt;
+&lt;/h3&gt;
 &lt;p&gt;There is a container call node exporter that is listening on port 8080, therefore the port is already in use. I think this is a pretty common issue as this port is normally used for public traffic. With many nodes running it is easy to double assign a port.&lt;/p&gt;
-&lt;ol start=&#34;2&#34;&gt;
-&lt;li&gt;How will you test this?&lt;/li&gt;
-&lt;/ol&gt;
+
+
+
+&lt;h3 id=&#34;2-how-will-you-test-this-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#2-how-will-you-test-this-&#34;&gt;2. How will you test this? 🤔&lt;/a&gt;
+&lt;/h3&gt;
 &lt;p&gt;I would run the conflicting container run command with a slight port change.
 podman run -dt -p 8081:80/tcp docker.io/library/httpd&lt;/p&gt;
-&lt;ol start=&#34;3&#34;&gt;
-&lt;li&gt;The developer tells you that he’s pulling a local image, do you find this to be true, or is something else happening in their run command?&lt;/li&gt;
-&lt;/ol&gt;
+
+
+
+&lt;h3 id=&#34;3-the-developer-tells-you-that-hes-pulling-a-local-image-do-you-find-this-to-be-true-or-is-something-else-happening-in-their-run-command&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#3-the-developer-tells-you-that-hes-pulling-a-local-image-do-you-find-this-to-be-true-or-is-something-else-happening-in-their-run-command&#34;&gt;3. The developer tells you that he’s pulling a local image, do you find this to be true, or is something else happening in their run command?&lt;/a&gt;
+&lt;/h3&gt;
 &lt;p&gt;It is true that once and image is pulled, it is stored locally. So the developer may have &lt;strong&gt;pulled&lt;/strong&gt; the image. However in the command he is specifying a source for pulling a fresh container, so the dev is definitely sus. Typically if the image has been pulled it is given a container ID, which is then used to build with.&lt;/p&gt;
 
 
 
-&lt;h2 id=&#34;installing-k3s-in-my-homelab&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#installing-k3s-in-my-homelab&#34;&gt;Installing K3s in my HomeLab&lt;/a&gt;
+&lt;h2 id=&#34;installing-k3s-in-my-homelab-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#installing-k3s-in-my-homelab-&#34;&gt;Installing K3s in my HomeLab 👍&lt;/a&gt;
 &lt;/h2&gt;
 &lt;p&gt;After completing the suggested lab, I took note of installation process and replicated it on my HomeLab. I just wanted to share my process and bumps.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Installation from curl script
-curl -sfL &lt;a href=&#34;https://get.k3s.io&#34;&gt;https://get.k3s.io&lt;/a&gt; | sh -&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Making sure the service is running in systemD
-systemctl status k3s&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Changing config permissions (Problem that had stumped me)
-sudo chmod 644 /etc/rancher/k3s/k3s.yaml&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Deploying a pod
-kubectl run nginx &amp;ndash;image=nginx:alpine&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Making an alias so commands are less annoying
-alias k=kubectl&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Checking the running pod
-k get pods&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
+
+
+
+&lt;h3 id=&#34;1-installation-from-curl-script&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#1-installation-from-curl-script&#34;&gt;1. Installation from curl script&lt;/a&gt;
+&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;curl -sfL https://get.k3s.io | sh -
+&lt;/code&gt;&lt;/pre&gt;
+
+
+
+&lt;h3 id=&#34;2-making-sure-the-service-is-running-in-systemd&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#2-making-sure-the-service-is-running-in-systemd&#34;&gt;2. Making sure the service is running in systemD&lt;/a&gt;
+&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;systemctl status k3s
+&lt;/code&gt;&lt;/pre&gt;
+
+
+
+&lt;h3 id=&#34;3-changing-config-permissions-problem-that-had-stumped-me&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#3-changing-config-permissions-problem-that-had-stumped-me&#34;&gt;3. Changing config permissions (Problem that had stumped me)&lt;/a&gt;
+&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;sudo chmod 644 /etc/rancher/k3s/k3s.yaml
+&lt;/code&gt;&lt;/pre&gt;
+
+
+
+&lt;h3 id=&#34;4-deploying-a-pod&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#4-deploying-a-pod&#34;&gt;4. Deploying a pod&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;kubectl run nginx &amp;ndash;image=nginx:alpine&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;5-making-an-alias-so-commands-are-less-annoying&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#5-making-an-alias-so-commands-are-less-annoying&#34;&gt;5. Making an alias so commands are less annoying&lt;/a&gt;
+&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;alias k=kubectl
+&lt;/code&gt;&lt;/pre&gt;
+
+
+
+&lt;h3 id=&#34;6-checking-the-running-pod&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#6-checking-the-running-pod&#34;&gt;6. Checking the running pod&lt;/a&gt;
+&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;k get pods
+&lt;/code&gt;&lt;/pre&gt;
 
 
 
 &lt;h2 id=&#34;digging-deeper-&#34;&gt;
   &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#digging-deeper-&#34;&gt;Digging Deeper ⛏️&lt;/a&gt;
 &lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;See if you can get a deployment working in the lab.&lt;/li&gt;
-&lt;/ol&gt;
+
+
+
+&lt;h3 id=&#34;1see-if-you-can-get-a-deployment-working-in-the-lab&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#1see-if-you-can-get-a-deployment-working-in-the-lab&#34;&gt;1.	See if you can get a deployment working in the lab.&lt;/a&gt;
+&lt;/h3&gt;
 &lt;p&gt;Screen shots from this deployment&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://trevorsmale.github.io/techblog/images/PACU8/ibb.jpg&#34; alt=&#34;Arnold&#34;&gt;
-&lt;img src=&#34;https://trevorsmale.github.io/techblog/images/PACU8/ibb.jpg&#34; alt=&#34;Arnold&#34;&gt;
-&lt;img src=&#34;https://trevorsmale.github.io/techblog/images/PACU8/ibb.jpg&#34; alt=&#34;Arnold&#34;&gt;
-&lt;img src=&#34;https://trevorsmale.github.io/techblog/images/PACU8/ibb.jpg&#34; alt=&#34;Arnold&#34;&gt;
-&lt;img src=&#34;https://trevorsmale.github.io/techblog/images/PACU8/ibb.jpg&#34; alt=&#34;Arnold&#34;&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;What worked well?&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://trevorsmale.github.io/techblog/images/PACU9/1.png&#34; alt=&#34;Step 1&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://trevorsmale.github.io/techblog/images/PACU9/volume.png&#34; alt=&#34;Step 2&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://trevorsmale.github.io/techblog/images/PACU9/build.png&#34; alt=&#34;Step 3&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://trevorsmale.github.io/techblog/images/PACU9/ps.png&#34; alt=&#34;Step 4&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://trevorsmale.github.io/techblog/images/PACU9/attach.png&#34; alt=&#34;Step 5&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://trevorsmale.github.io/techblog/images/PACU9/install1.png&#34; alt=&#34;Step 6&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://trevorsmale.github.io/techblog/images/PACU9/install2.png&#34; alt=&#34;Step 7&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://trevorsmale.github.io/techblog/images/PACU9/go.png&#34; alt=&#34;Step 8&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://trevorsmale.github.io/techblog/images/PACU9/rungo.png&#34; alt=&#34;Step 9&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://trevorsmale.github.io/techblog/images/PACU9/running.png&#34; alt=&#34;Step 10&#34;&gt;&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;what-worked-well&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#what-worked-well&#34;&gt;What worked well?&lt;/a&gt;
+&lt;/h3&gt;
 &lt;p&gt;creating a persistent volume and attaching to the volume worked well.
 mkdir /root/TreasuresVolume
 Pulling and building an image worked well.
 Attaching to the container and interacting with it went well.
 podman run -dit &amp;ndash;name TreasuresContainer -v /root/TreasuresVolume:/app docker.io/library/golang:alpine tail -f /dev/null
 apk add vim gcc bash&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;What did you have to troubleshoot?&lt;/li&gt;
-&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;what-did-you-have-to-troubleshoot&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#what-did-you-have-to-troubleshoot&#34;&gt;What did you have to troubleshoot?&lt;/a&gt;
+&lt;/h3&gt;
 &lt;p&gt;I ran into trouble when exiting the container. It will kill the container, forcing me to start it again, which was frustrating.
 Having done this in the past, I thought this would not be an issue. However, I just learned that containers without continually running services will die when exited.
 The fix for such an issue is to run something light and persistent on the container in order to keep it alive. This can be accomplished with a bash script or turning a go binary into a system binary to keep running.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;What documentation can you make to be able to do this faster next time?&lt;/li&gt;
-&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;what-documentation-can-you-make-to-be-able-to-do-this-faster-next-time&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#what-documentation-can-you-make-to-be-able-to-do-this-faster-next-time&#34;&gt;What documentation can you make to be able to do this faster next time?&lt;/a&gt;
+&lt;/h3&gt;
 &lt;p&gt;Actually, this blog is used to partially keep track of this. I use LogSeq as a second brain, where I will definitely copy and paste this info into my Podman section.&lt;/p&gt;
 &lt;hr&gt;
 
@@ -179,10 +963,20 @@ The fix for such an issue is to run something light and persistent on the contai
 &lt;h2 id=&#34;reflection-questions&#34;&gt;
   &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#reflection-questions&#34;&gt;Reflection Questions🤔&lt;/a&gt;
 &lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;What questions do you still have about this week?&lt;/li&gt;
-&lt;li&gt;How can you apply this now in your current role in IT? If you’re not in IT, how can you look to put something like this into your resume or portfolio?&lt;/li&gt;
-&lt;/ol&gt;
+
+
+
+&lt;h3 id=&#34;1what-questions-do-you-still-have-about-this-week&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#1what-questions-do-you-still-have-about-this-week&#34;&gt;1.	What questions do you still have about this week?&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;I would like to know more about small scale deployments of Kubernetes such as the one I deployed using Rancher and K3S. More specifically I would like to know what limitations a small scale deployment has versus a multi machine / multi node system.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;2how-can-you-apply-this-now-in-your-current-role-in-it-if-youre-not-in-it-how-can-you-look-to-put-something-like-this-into-your-resume-or-portfolio&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu9/#2how-can-you-apply-this-now-in-your-current-role-in-it-if-youre-not-in-it-how-can-you-look-to-put-something-like-this-into-your-resume-or-portfolio&#34;&gt;2.	How can you apply this now in your current role in IT? If you’re not in IT, how can you look to put something like this into your resume or portfolio?&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;This content is highly applicable to my intended work as deploying services is becoming increasingly important, as evidenced by the requirement for knowledge of Podman in the RHCSA 9. I already have some container deployment work to display to prospective employers atm. I plan to further my knowledge in this area, especially in regard to Kubernetes as this seems to be the operating system of the internet.&lt;/p&gt;
 &lt;hr&gt;
 
 
@@ -320,17 +1114,32 @@ KillerCoda: &lt;a href=&#34;https://killercoda.com/het-tanis&#34;&gt;https://kil
   &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu8/#discussion-post-2&#34;&gt;Discussion Post 2&lt;/a&gt;
 &lt;/h2&gt;
 &lt;p&gt;You are the only Linux Administrator at a small healthcare company. The engineer/admin before you left you a lot of scripts to untangle. This is one of our many tasks as administrators, so you set out to accomplish it. You start to notice that he only ever uses nested if statements in bash. You also notice that every loop is a conditional &lt;code&gt;while true&lt;/code&gt; and then he breaks the loop after a decision test each loop. You know his stuff works, but you think it could be more easily written for supportability, for you and future admins. You decide to write up some notes by reading some google, AI, and talking to your peers.&lt;/p&gt;
-&lt;p&gt;Compare the use of nested if versus case statement in bash.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;compare-the-use-of-nested-if-versus-case-statement-in-bash&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu8/#compare-the-use-of-nested-if-versus-case-statement-in-bash&#34;&gt;Compare the use of nested if versus case statement in bash.&lt;/a&gt;
+&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Nested if statements are useful for situations where each condition depends on the result of the previous test, requiring a hierarchy or sequence.&lt;/li&gt;
 &lt;li&gt;A case statement is ideal for handling multiple discrete values of a variable, especially if there are many possible branches. It’s typically cleaner and more readable than a nested if.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Compare the use of conditional and counting loops. Under what circumstances&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;compare-the-use-of-conditional-and-counting-loops-under-what-circumstances&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu8/#compare-the-use-of-conditional-and-counting-loops-under-what-circumstances&#34;&gt;Compare the use of conditional and counting loops. Under what circumstances&lt;/a&gt;
+&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Use conditional loops (while) when you don’t know the number of iterations in advance and need to loop based on conditions.&lt;/li&gt;
 &lt;li&gt;Use counting loops (for) when you have a set number of iterations or are working with a list. This structure is clearer and prevents issues that may arise from unintentional infinite loops.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;would you use one or the other?&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;would-you-use-one-or-the-other&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu8/#would-you-use-one-or-the-other&#34;&gt;would you use one or the other?&lt;/a&gt;
+&lt;/h3&gt;
 &lt;p&gt;optimizing or refactoring Bash scripts the Engineer had left me.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;I would replace nested if statements with case statements when possible to improve readability, especially when handling multiple discrete values.&lt;/li&gt;
