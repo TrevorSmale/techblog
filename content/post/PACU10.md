@@ -1,7 +1,7 @@
 +++
 author = "Hugo Authors"
 title = "ProLUG Admin Course Unit 10 🐧"
-date = "2024-11-17"
+date = "2024-11-22"
 description = "ProLUG Admin Course Unit 10"
 draft = "false"
 tags = [
