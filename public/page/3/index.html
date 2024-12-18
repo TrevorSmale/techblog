@@ -30,7 +30,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.139.2">
+<meta name="generator" content="Hugo 0.139.5">
   <title>Tech Blog</title>
   <link rel="canonical" href="http://localhost:1313/techblog/">
 
@@ -50,6 +50,42 @@
 
   
 
+  
+    
+    
+    
+      
+      
+    
+    
+    
+  
+    
+    
+    
+      
+      
+    
+    
+    
+  
+    
+    
+    
+      
+      
+    
+    
+    
+  
+    
+    
+    
+      
+      
+    
+    
+    
   
     
     
@@ -153,7 +189,7 @@
     <a class="Heading-link u-clickable" href="/techblog/" rel="bookmark">Tech Blog</a>
   </h1>
   
-    <time datetime="2024-11-17T00:00:00Z">November 17, 2024</time>
+    <time datetime="2024-12-17T00:00:00Z">December 17, 2024</time>
   
 </header>
   
@@ -161,6 +197,458 @@
   
 
   
+  
+    <article>
+      <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/vt/" rel="bookmark">Actually completing VimTutor</a>
+  </h1>
+  
+    <time datetime="2024-09-10T00:00:00Z">September 10, 2024</time>
+  
+</header>
+      
+        <h3 id="intro">
+  <a class="Heading-link u-clickable" href="/techblog/post/vt/#intro">Intro</a>
+</h3>
+<p>Vim is a program created by the late Bram Moolenaar as an improvement to an older program called Vi. It is a modal text editor, meaning there are different modes of usage — I&rsquo;ll get into that later. While strongly associated with UNIX systems, Vim is available on other platforms as well. It is used to efficiently create and modify files from a simple terminal, requiring very limited system resources. Vim is a foundational tool for mastering Linux, allowing one to navigate the directory structure and edit configuration files like no other. Furthermore, Vi and/or Vim come bundled with most minimal Linux distributions.</p>
+
+
+
+<h3 id="vim-tutor">
+  <a class="Heading-link u-clickable" href="/techblog/post/vt/#vim-tutor">Vim Tutor</a>
+</h3>
+<p>Vim Tutor is an in-built interactive tutorial that comes pre-packaged with Vim, designed to bring novices up to speed with the various modes and functions of this nimble tool. I had hopped into Vim Tutor before but never felt the need to complete it, as it seemed long and complex. Recently, my teacher and mentor Scott C. mentioned that this would be one of the first lessons we would undertake as part of the ProLUG system administration course. Being a dedicated student, I decided to give it my full attention — and I’m glad I did.</p>
+
+
+
+<h3 id="the-halfway-point">
+  <a class="Heading-link u-clickable" href="/techblog/post/vt/#the-halfway-point">The Halfway Point</a>
+</h3>
+<p>In previous attempts, I had reached the halfway point and felt confident I had gained enough information to edit files. Some functions are unintuitive at first, like using the <code>hjkl</code> keys for navigation instead of arrow keys. There are many jokes about the overload people feel when they first encounter Vim&rsquo;s conventions. Jokes like never being able to exit the program or forgetting one&rsquo;s own name after memorizing commands are common. Mastering Vim requires memorizing commands until they become second nature, which simply takes time. This is why I hadn&rsquo;t completed Vim Tutor before — there’s only so much one can absorb before needing a break. However, this time, I was able to make it through to the end, pleasantly surprised by the new techniques I had learned.</p>
+
+
+
+<h3 id="understanding-the-modes">
+  <a class="Heading-link u-clickable" href="/techblog/post/vt/#understanding-the-modes">Understanding the Modes</a>
+</h3>
+<p>Modes are what make Vim a powerful tool. There are three modes in Vim: Normal, Insert, and Visual.</p>
+<ul>
+<li>
+<p><strong>Normal mode</strong> is the default mode, where you navigate a document using motions. It protects the document from accidental modifications and allows for a broader range of single-key commands.</p>
+</li>
+<li>
+<p><strong>Insert mode</strong> is where characters or strings are added — fairly self-explanatory.</p>
+</li>
+<li>
+<p><strong>Visual mode</strong> allows you to make selections, much like clicking and dragging with a mouse to highlight text.</p>
+</li>
+</ul>
+<p>Although I had known about these modes, it once seemed improbable that I would ever memorize them well enough to use them reflexively. However, with practice, I have done just that. Combining motions and commands can lead to huge efficiency gains. For example, you can navigate to a specific line, delete the first three letters, and paste something at the end of the line with just a few keystrokes.</p>
+
+
+
+<h3 id="what-i-recently-picked-up">
+  <a class="Heading-link u-clickable" href="/techblog/post/vt/#what-i-recently-picked-up">What I Recently Picked Up</a>
+</h3>
+
+
+
+<h4 id="stringing-commands">
+  <a class="Heading-link u-clickable" href="/techblog/post/vt/#stringing-commands">Stringing Commands</a>
+</h4>
+<p>What did I actually learn that I will immediately employ? Well, I now have a solid grasp of most single-key commands, so I’ll start stringing commands and motions together, such as deleting three words and appending text to the end of a line.</p>
+
+
+
+<h4 id="global-search-and-replace">
+  <a class="Heading-link u-clickable" href="/techblog/post/vt/#global-search-and-replace">Global Search and Replace</a>
+</h4>
+<p>Additionally, I had known about global search and replace, but I hadn’t really used it before since it’s only useful for certain file types.</p>
+
+
+
+<h4 id="buffers-and-deleted-lines">
+  <a class="Heading-link u-clickable" href="/techblog/post/vt/#buffers-and-deleted-lines">Buffers and Deleted Lines</a>
+</h4>
+<p>I also learned that Vim’s buffer, much like a clipboard, stores strings for later use — and deleted lines are stored there as well. I’ll be more mindful of using the buffer going forward.</p>
+
+
+
+<h4 id="running-shell-commands">
+  <a class="Heading-link u-clickable" href="/techblog/post/vt/#running-shell-commands">Running Shell Commands</a>
+</h4>
+<p>Lastly, running shell commands from within Vim seemed inefficient to me before, since I could easily jump in and out of files. However, I now understand that it can speed things up.</p>
+
+
+
+<h3 id="in-summary">
+  <a class="Heading-link u-clickable" href="/techblog/post/vt/#in-summary">In Summary</a>
+</h3>
+<p>Vim isn’t something you just pick up on a whim. It’s more like a martial art, where you practice movements until they become second nature. In a world dominated by graphical user interfaces, Vim can seem like a waste of time and effort. Yet, when you’re working under the hood of an operating system, especially on bare-bones UNIX servers, it becomes clear that if everything is a file and many configurations must be made, Vim is the right tool for the job.</p>
+      
+      
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/projects/" rel="tag">Projects</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/certification/" rel="tag">Certification</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/study-technique/" rel="tag">Study Technique</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/vim/" rel="tag">Vim</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/prolug/" rel="tag">ProLUG</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+    </article>
+    
+      <div class="Divider"></div>
+    
+  
+    <article>
+      <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/vue/" rel="bookmark">New WebDev framework</a>
+  </h1>
+  
+    <time datetime="2024-09-04T00:00:00Z">September 4, 2024</time>
+  
+</header>
+      
+        
+
+
+<h3 id="intro">
+  <a class="Heading-link u-clickable" href="/techblog/post/vue/#intro">Intro</a>
+</h3>
+<p>I frequent a Discord group called ProLUG (Professional Linux User Group). The group is organized around cooperative, project-based learning, led by experienced members. One of these groups, called Coding Cove, is led by Ryan Long (SaltyCatfish). Ryan is a very experienced and senior developer who introduces us to new concepts on a weekly basis.</p>
+
+
+
+<h3 id="vue">
+  <a class="Heading-link u-clickable" href="/techblog/post/vue/#vue">Vue</a>
+</h3>
+<p>This past weekend, Ryan introduced Vue.js and the ideas behind the framework. We spent over an hour discussing and interacting with Vue, and I came away from the meeting excited to learn more and start building projects.</p>
+
+
+
+<h3 id="why-vue-is-exciting">
+  <a class="Heading-link u-clickable" href="/techblog/post/vue/#why-vue-is-exciting">Why Vue is Exciting</a>
+</h3>
+<p>What I really liked about Vue is the concept of templates and components. These ideas seemed logical from the start. Templates can be created and reused on multiple pages, while components provide modularity. Together, these features result in a very clean and easy-to-read codebase, especially for larger projects.</p>
+
+
+
+<h3 id="what-i-was-using">
+  <a class="Heading-link u-clickable" href="/techblog/post/vue/#what-i-was-using">What I Was Using</a>
+</h3>
+<p>Prior to learning about Vue, I had completed a few projects using HTML, Tailwind CSS, and React. While I’m a big fan of Go (for reasons I won’t get into here), I found React to be cumbersome. React often creates messy code, especially when combined with Tailwind.</p>
+
+
+
+<h3 id="go--vue">
+  <a class="Heading-link u-clickable" href="/techblog/post/vue/#go--vue">Go + Vue?</a>
+</h3>
+<p>After the meeting, I felt inspired to explore combining the power of Go with Vue. I started searching for examples, and it’s definitely doable for simple or small projects. However, when I looked at more advanced projects, the situation became complicated. Gluing a Go backend to a Vue frontend felt relatively simple at first, but when you introduce middleware, SSR/CSR, OAuth2, and more, things quickly become complex.</p>
+
+
+
+<h3 id="then-i-found-nuxt">
+  <a class="Heading-link u-clickable" href="/techblog/post/vue/#then-i-found-nuxt">Then I Found Nuxt</a>
+</h3>
+<p>Nuxt is a &ldquo;batteries-included&rdquo; framework built on top of Vue. It comes with all the modern build tools and services needed for a professional project, and everything ties together elegantly.</p>
+
+
+
+<h3 id="where-i-am-now">
+  <a class="Heading-link u-clickable" href="/techblog/post/vue/#where-i-am-now">Where I Am Now</a>
+</h3>
+<p>I’ve done a deep dive into Nuxt, and it feels very comfortable to work with. After purchasing a course on Udemy, I’ve completed a few simple projects and intend to build a mid-level project soon. With Vue’s templating and components, along with Tailwind’s efficiency, I’m confident I can create a functional and aesthetically pleasing project that runs efficiently across different systems.</p>
+
+      
+      
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/tools/" rel="tag">Tools</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/stacks/" rel="tag">Stacks</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/webdev/" rel="tag">WebDev</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/webdev/" rel="tag">WebDev</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/design/" rel="tag">Design</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/techstack/" rel="tag">TechStack</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/vue/" rel="tag">Vue</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/nuxt/" rel="tag">Nuxt</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tailwind/" rel="tag">TailWind</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+    </article>
+    
+      <div class="Divider"></div>
+    
+  
+    <article>
+      <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/pac/" rel="bookmark">ProLUG Admin Course 🐧</a>
+  </h1>
+  
+    <time datetime="2024-09-01T00:00:00Z">September 1, 2024</time>
+  
+</header>
+      
+        <h3 id="intro-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pac/#intro-">Intro 👋</a>
+</h3>
+<p>I am a member of a fantastic group called the Professional Linux User Group lead by Scott Champine. The home base is on Discord where over 2000 people discuss Linux daily.
+Scott and other members teach via Live-Streaming and Interactive Labs with supporting documentation. Scott has created a 16 week deep dive course into linux adminstration starting September 14th that I have gladly enrolled in.
+This course will take place every Saturday via a livestream with interactive Q/A wherein participants leave with assignments. This blog is in part, related to the course as I will document my learning among other things.</p>
+
+
+
+<h3 id="links-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pac/#links-">Links ⛓️</a>
+</h3>
+<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
+Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
+Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
+ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
+KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
+      
+      
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+    </article>
+    
+      <div class="Divider"></div>
+    
+  
+    <article>
+      <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/nd/" rel="bookmark">That Unix file is not deleted 👺</a>
+  </h1>
+  
+    <time datetime="2024-09-01T00:00:00Z">September 1, 2024</time>
+  
+</header>
+      
+        <p>Removing a file in Unix does not actually remove it from memory. You are only reducing the number of Hard-Links pointing to the file to &lsquo;0&rsquo;.
+In order to actually delete the information is to overwrite it. This will happen over time as the disk fills, or if one would like to delete a file in a timely fashion should over write empty drive sectors.</p>
+
+      
+      
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/tidbits/" rel="tag">TidBits</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/unix/" rel="tag">Unix</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tidbits/" rel="tag">TidBits</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+    </article>
+    
+      <div class="Divider"></div>
+    
   
     <article>
       <header class="Heading">

@@ -28,7 +28,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.139.2">
+<meta name="generator" content="Hugo 0.139.5">
   <title>Tech Blog</title>
   <link rel="canonical" href="http://localhost:1313/techblog/">
 
@@ -205,7 +205,7 @@
     <a class="Heading-link u-clickable" href="/techblog/" rel="bookmark">Tech Blog</a>
   </h1>
   
-    <time datetime="2024-11-17T00:00:00Z">November 17, 2024</time>
+    <time datetime="2024-12-17T00:00:00Z">December 17, 2024</time>
   
 </header>
   
@@ -217,10 +217,1767 @@
     <article>
       <header class="Heading">
   <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/pacu14/" rel="bookmark">ProLUG Admin Course Unit 14 🐧</a>
+  </h1>
+  
+    <time datetime="2024-12-17T00:00:00Z">December 17, 2024</time>
+  
+</header>
+      
+        <h1 id="ansible-automation">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#ansible-automation">Ansible Automation</a>
+</h1>
+<p>Ansible is an open-source automation tool used for configuration management, application deployment, and IT orchestration, enabling tasks to be executed on multiple systems simultaneously without the need for agents. It uses simple YAML-based playbooks and SSH for communication, making it efficient and easy to learn for managing infrastructure.</p>
+<hr>
+
+
+
+<h2 id="discussion-post-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#discussion-post-1">Discussion Post 1:</a>
+</h2>
+<p>Refer to your Unit 5 scan of the systems. You know that Ansible
+is a tool that you want to maintain in the environment. Review this online documentation:
+<a href="https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html">https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html</a></p>
+
+
+
+<h3 id="make-an-inventory-of-the-servers-grouped-any-way-you-like">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#make-an-inventory-of-the-servers-grouped-any-way-you-like">Make an inventory of the servers, grouped any way you like.</a>
+</h3>
+
+
+
+<h3 id="what-format-did-you-choose-to-use-for-your-inventory">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#what-format-did-you-choose-to-use-for-your-inventory">What format did you choose to use for your inventory?</a>
+</h3>
+
+
+
+<h3 id="what-other-things-might-you-include-later-in-your-inventory-to-make-it-more-useful">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#what-other-things-might-you-include-later-in-your-inventory-to-make-it-more-useful">What other things might you include later in your inventory to make it more useful?</a>
+</h3>
+<hr>
+
+
+
+<h2 id="discussion-post-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#discussion-post-2">Discussion Post 2:</a>
+</h2>
+<p>You have been noticing drift on your server configurations, so
+you want a way to generate a report on them every day to validate the configurations are the
+same.</p>
+<ul>
+<li>Use any lab in here to find ideas: <a href="https://killercoda.com/het-tanis/course/Ansible-">https://killercoda.com/het-tanis/course/Ansible-</a>
+Labs Use this webhook to send your relevant data out to our sandbox.
+<a href="https://discord.com/api/webhooks/1317659221604433951/uyKpuq8fNNNSEyCra4n33PakI">https://discord.com/api/webhooks/1317659221604433951/uyKpuq8fNNNSEyCra4n33PakI</a>
+Bk-XtTn1WrwTpHs9BcgkIu7URPV_Gd5HJCRX0_EJVUT</li>
+</ul>
+<hr>
+
+
+
+<h2 id="discussion-post-3">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#discussion-post-3">Discussion Post 3:</a>
+</h2>
+<p>Using ansible module for git, pull down this repo:
+<a href="https://github.com/het-tanis/HPC_Deploy.git">https://github.com/het-tanis/HPC_Deploy.git</a></p>
+
+
+
+<h3 id="how-is-the-repo-setup">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#how-is-the-repo-setup">How is the repo setup?</a>
+</h3>
+
+
+
+<h3 id="what-is-in-the-roles-directory">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#what-is-in-the-roles-directory">What is in the roles directory?</a>
+</h3>
+
+
+
+<h3 id="how-are-these-playbooks-called-and-how-do-roles-differ-from-tasks">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#how-are-these-playbooks-called-and-how-do-roles-differ-from-tasks">How are these playbooks called, and how do roles differ from tasks?</a>
+</h3>
+<hr>
+
+
+
+<h2 id="digging-deeper">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#digging-deeper">Digging Deeper</a>
+</h2>
+
+
+
+<h3 id="i-have-a-large-amount-of-labs-to-get-you-started-on-your-ansible-journey-all-free">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#i-have-a-large-amount-of-labs-to-get-you-started-on-your-ansible-journey-all-free">I have a large amount of labs to get you started on your Ansible Journey (all free):</a>
+</h3>
+<p><a href="https://killercoda.com/het-tanis/course/Ansible-Labs">https://killercoda.com/het-tanis/course/Ansible-Labs</a></p>
+
+
+
+<h3 id="find-projects-from-our-channel-ansible-code-in-discord-and-find-something-that-is">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#find-projects-from-our-channel-ansible-code-in-discord-and-find-something-that-is">Find projects from our channel Ansible-Code, in Discord and find something that is</a>
+</h3>
+<p>interesting to you.</p>
+
+
+
+<h3 id="use-ansible-to-access-secrets-from-hashicorp-vault-httpskillercodacomhet-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#use-ansible-to-access-secrets-from-hashicorp-vault-httpskillercodacomhet-">Use Ansible to access secrets from Hashicorp Vault: <a href="https://killercoda.com/het-">https://killercoda.com/het-</a></a>
+</h3>
+<p>tanis/course/Hashicorp-Labs/004-vault-read-secrets-ansible</p>
+<hr>
+
+
+
+<h1 id="lab-work-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#lab-work-">Lab Work 🧪</a>
+</h1>
+
+
+
+<h3 id="create-an-inventory">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#create-an-inventory">Create an inventory:</a>
+</h3>
+<ol>
+<li>While still in the /root/ansible_madness directory, create a file hosts
+vi /root/ansible_madness/hosts
+Populate the file as follows</li>
+</ol>
+<p>[servers]</p>
+<ul>
+<li>192.168.200.101</li>
+<li>192.168.200.102</li>
+<li>192.168.200.103</li>
+</ul>
+<p>Run Ad Hoc commands against your servers
+This will test your connection into all the servers.</p>
+
+
+
+<h3 id="1-ansible-servers--i-hosts--u-inmate--k--m-shell--a-uptime">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#1-ansible-servers--i-hosts--u-inmate--k--m-shell--a-uptime">1. ansible servers -i hosts -u inmate -k -m shell -a uptime</a>
+</h3>
+<p>Use this password: LinuxR0cks1!</p>
+<p>Do the same thing, but this time be verbose</p>
+
+
+
+<h3 id="2-ansible--vvv-servers--i-hosts--u-inmate--k--m-shell--a-uptime">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#2-ansible--vvv-servers--i-hosts--u-inmate--k--m-shell--a-uptime">2. ansible -vvv servers -i hosts -u inmate -k -m shell -a uptime</a>
+</h3>
+<p>Create a playbook to push over files.</p>
+
+
+
+<h3 id="3-echo-this-is-my-file-yourname--somefile">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#3-echo-this-is-my-file-yourname--somefile">3. echo &ldquo;This is my file <!-- raw HTML omitted -->&rdquo; &gt; somefile</a>
+</h3>
+
+
+
+<h3 id="4-vi-deployyaml">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#4-vi-deployyaml">4. vi deploy.yaml</a>
+</h3>
+<p>Populate it as follows:</p>
+<pre><code>name: Start of push playbook
+
+hosts: servers
+vars:
+gather_facts: True
+become: False
+tasks:
+name: Copy somefile over at {{ ansible_date_time.iso8601_basic_short }}
+copy:
+src: /root/ansible_madness/somefile
+dest: /tmp/somefile.txt
+</code></pre>
+
+
+
+<h3 id="5-execute-your-playbook">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#5-execute-your-playbook">5. Execute your playbook</a>
+</h3>
+<p>ansible-playbook -i hosts -k deploy.yaml</p>
+
+
+
+<h3 id="6-verify-that-your-file-pushed-everywhere">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#6-verify-that-your-file-pushed-everywhere">6. Verify that your file pushed everywhere</a>
+</h3>
+<p>ansible servers -i hosts -u inmate -k -m shell -a “ls -l /tmp/somefile”
+Pull down a github repo</p>
+<ol>
+<li>git clone <a href="https://github.com/het-tanis/HPC_Deploy.git">https://github.com/het-tanis/HPC_Deploy.git</a>
+cd HPC_Deploy
+What do you see in here?
+What do you need to learn about more to deploy some of these tools?
+Can you execute some of these, why or why not?</li>
+</ol>
+<hr>
+
+
+
+<h2 id="reflection-questions">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#reflection-questions">Reflection Questions</a>
+</h2>
+<ol>
+<li>
+<p>What questions do you still have about this week?</p>
+</li>
+<li>
+<p>How can you apply this now in your current role in IT? If you’re not in IT, how can you
+look to put something like this into your resume or portfolio?</p>
+</li>
+</ol>
+<hr>
+
+
+
+<h3 id="prolug-links-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#prolug-links-">ProLUG Links ⛓️</a>
+</h3>
+<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
+Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
+Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
+ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
+KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
+      
+      
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/operating-systems/" rel="tag">Operating Systems</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/declaritive/" rel="tag">Declaritive</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/configuration/" rel="tag">Configuration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/ansible/" rel="tag">Ansible</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/iac/" rel="tag">IaC</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+    </article>
+    
+      <div class="Divider"></div>
+    
+  
+    <article>
+      <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/pacu13/" rel="bookmark">ProLUG Admin Course Unit 13 🐧</a>
+  </h1>
+  
+    <time datetime="2024-12-15T00:00:00Z">December 15, 2024</time>
+  
+</header>
+      
+        <h1 id="system-hardening">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#system-hardening">System Hardening</a>
+</h1>
+<p>Linux system hardening involves securing the system by reducing its attack surface through measures such as disabling unnecessary services, enforcing access controls, applying security patches, and using tools like OpenSCAP, STIG compliance frameworks, or the OSCAP Scanner. These tools help automate security audits, enforce compliance standards, and identify vulnerabilities to enhance system security.</p>
+<hr>
+
+
+
+<h2 id="discussion-post-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#discussion-post-1">Discussion Post 1:</a>
+</h2>
+<p>Your security team comes to you with a discrepancy between
+the production security baseline and something that is running on one of your servers in
+production. There are 5 servers in a web cluster and only one of them is showing this
+behavior. They want you to account for why something is different.</p>
+
+
+
+<h3 id="how-are-you-going-to-validate-that-the-difference-between-the-systems">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#how-are-you-going-to-validate-that-the-difference-between-the-systems">How are you going to validate that the difference between the systems?</a>
+</h3>
+
+
+
+<h3 id="what-are-you-going-to-look-at-to-explain-this">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#what-are-you-going-to-look-at-to-explain-this">What are you going to look at to explain this?</a>
+</h3>
+
+
+
+<h3 id="what-could-be-done-to-prevent-this-problem-in-the-future">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#what-could-be-done-to-prevent-this-problem-in-the-future">What could be done to prevent this problem in the future?</a>
+</h3>
+<hr>
+
+
+
+<h2 id="discussion-post-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#discussion-post-2">Discussion Post 2:</a>
+</h2>
+<p>Your team has been giving you more and more engineering
+responsibilities. You are being asked to build out the next set of servers to integrate into the
+development environment. Your team is going from RHEL 8 to Rocky 9.4.</p>
+
+
+
+<h3 id="how-might-you-start-to-plan-out-your-migration">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#how-might-you-start-to-plan-out-your-migration">How might you start to plan out your migration?</a>
+</h3>
+
+
+
+<h3 id="what-are-you-going-to-check-on-the-existing-systems-to-baseline-your-build">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#what-are-you-going-to-check-on-the-existing-systems-to-baseline-your-build">What are you going to check on the existing systems to baseline your build?</a>
+</h3>
+
+
+
+<h3 id="what-kind-of-validation-plan-might-you-use-for-your-new-rocky-94-systems">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#what-kind-of-validation-plan-might-you-use-for-your-new-rocky-94-systems">What kind of validation plan might you use for your new Rocky 9.4 systems?</a>
+</h3>
+<hr>
+
+
+
+<h2 id="digging-deeper">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#digging-deeper">Digging Deeper</a>
+</h2>
+<ol>
+<li>Run through this lab: <a href="https://killercoda.com/het-tanis/course/Linux-Labs/107-server-startup-process">https://killercoda.com/het-tanis/course/Linux-Labs/107-server-startup-process</a> 👍</li>
+</ol>
+
+
+
+<h3 id="how-does-this-help-you-better-understand-the-discussion-13-2-question">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#how-does-this-help-you-better-understand-the-discussion-13-2-question">How does this help you better understand the discussion 13-2 question?</a>
+</h3>
+<p>Well when I am gathering a picture of my current security baseline, I can use some of these tools like dmesg and ss to see what possible attack surface I may have.</p>
+<ol start="2">
+<li>Run through this lab: <a href="https://killercoda.com/het-tanis/course/Linux-Labs/203-updating-golden-image">https://killercoda.com/het-tanis/course/Linux-Labs/203-updating-golden-image</a> 👍</li>
+</ol>
+
+
+
+<h3 id="how-does-this-help-you-better-understand-the-process-of-hardening-systems">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#how-does-this-help-you-better-understand-the-process-of-hardening-systems">How does this help you better understand the process of hardening systems?</a>
+</h3>
+<hr>
+
+
+
+<h2 id="reflection-questions">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#reflection-questions">Reflection Questions</a>
+</h2>
+<ol>
+<li>
+<p>What questions do you still have about this week?</p>
+</li>
+<li>
+<p>How can you apply this now in your current role in IT? If you’re not in IT, how can you
+look to put something like this into your resume or portfolio?</p>
+</li>
+</ol>
+<hr>
+
+
+
+<h1 id="lab-work-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#lab-work-">Lab Work 🧪</a>
+</h1>
+
+
+
+<h3 id="1-you-will-scan-a-server-for-a-scc-report-and-get-a-stig-score">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#1-you-will-scan-a-server-for-a-scc-report-and-get-a-stig-score">1. You will scan a server for a SCC Report and get a STIG Score</a>
+</h3>
+
+
+
+<h3 id="2-you-will-remediate-some-of-the-items-from-the-scan">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#2-you-will-remediate-some-of-the-items-from-the-scan">2. You will remediate some of the items from the scan</a>
+</h3>
+
+
+
+<h3 id="3-you-will-rescan-and-verify-a-better-score">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#3-you-will-rescan-and-verify-a-better-score">3. You will rescan and verify a better score.</a>
+</h3>
+<hr>
+
+
+
+<h3 id="prolug-links-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#prolug-links-">ProLUG Links ⛓️</a>
+</h3>
+<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
+Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
+Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
+ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
+KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
+      
+      
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/operating-systems/" rel="tag">Operating Systems</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/stig/" rel="tag">STIG</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/system-hardening/" rel="tag">System Hardening</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+    </article>
+    
+      <div class="Divider"></div>
+    
+  
+    <article>
+      <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/pacu12/" rel="bookmark">ProLUG Admin Course Unit 12 🐧</a>
+  </h1>
+  
+    <time datetime="2024-11-30T00:00:00Z">November 30, 2024</time>
+  
+</header>
+      
+        <h1 id="baselining--benchmarking">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu12/#baselining--benchmarking">Baselining &amp; Benchmarking</a>
+</h1>
+<p>The purpose of a baseline is not to find fault, load, or to take corrective action. A baseline simply
+determines what is. You must know what is so that you can test against that when you make a change to
+be able to objectively say there was or wasn&rsquo;t an improvement. You must know where you are at to be
+able to properly plan where you are going. A poor baseline assessment, because of inflated numbers or
+inaccurate testing, does a disservice to the rest of your project. You must accurately draw the first line
+and understand your system&rsquo;s performance.</p>
+<hr>
+
+
+
+<h2 id="discussion-post-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu12/#discussion-post-1">Discussion Post 1:</a>
+</h2>
+<p>Your manager has come to you with another emergency. He has a meeting next week to discuss capacity planning and usage of the system with IT upper management. He doesn’t want to lose his budget, but he has to prove that the system utilization warrants spending more.</p>
+<ul>
+<li>What information can you show your manager from your systems?</li>
+</ul>
+<p>You could present your manager with a progressive trend graph showing time on the x-axis and several fields on the y-axis that represent changes from a baseline, assuming the necessary data has been collected. With this information, it would be possible to predict when various system resources will reach their maximum capacity.</p>
+<ul>
+<li>
+<p>What type of data would prove system utilization? (Remember the big 4: compute, memory, disk, networking)</p>
+<p>CPU load, process execution time, throughput.
+Disk Operations (IOPS).
+Networking Requests and Bandwidth.
+RAM utilization, memory paging/swapping rates.</p>
+</li>
+<li>
+<p>What would your report look like to your manager?</p>
+</li>
+</ul>
+
+
+
+<h1 id="capacity-planning-report">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu12/#capacity-planning-report">Capacity Planning Report</a>
+</h1>
+<p>Current and projected system utilization. By examining trends over time, we can predict when critical resources will reach their limits if no additional capacity is provisioned.</p>
+
+
+
+<h2 id="key-areas-of-focus">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu12/#key-areas-of-focus">Key Areas of Focus</a>
+</h2>
+<ol>
+<li><strong>Compute Usage</strong></li>
+<li><strong>Memory Load</strong></li>
+<li><strong>Disk Resources</strong></li>
+<li><strong>Networking Metrics</strong></li>
+</ol>
+
+
+
+<h2 id="historical-data-and-trends">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu12/#historical-data-and-trends">Historical Data and Trends</a>
+</h2>
+<p>Below is a sample progressive trend graph over the last 6 months. The x-axis represents time (in weeks), while the y-axis shows percentage utilization relative to an established baseline.</p>
+<p><strong>Example Metrics (relative to baseline):</strong></p>
+<ul>
+<li>
+<p><strong>CPU Utilization (% of baseline)</strong></p>
+</li>
+<li>
+<p><strong>Memory Load (% of baseline)</strong></p>
+</li>
+<li>
+<p><strong>Disk IOPS (% of baseline)</strong></p>
+</li>
+<li>
+<p><strong>Network Throughput (% of baseline)</strong></p>
+<p>Time (Weeks):    1   2   3   4   5   6   …   20   21   22
+CPU Util(%):    50  52  55  57  60  62   …   80   82   85
+Memory(%):      45  47  50  50  52  55   …   70   73   75
+Disk IOPS(%):   30  32  35  36  38  40   …   60   63   68
+Network(%):     40  42  45  47  49  51   …   75   78   80</p>
+</li>
+</ul>
+<p>As time progresses, each of the key metrics is trending upward, indicating increasing load and approaching capacity thresholds.</p>
+
+
+
+<h2 id="projections">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu12/#projections">Projections</a>
+</h2>
+<p>We can estimate the “time to ceiling” for critical resources. For instance, if CPU load is rising at an average rate of 2–3% per month, and we know that at 90% utilization the system will experience performance degradation.</p>
+<p><strong>Projected Time to CPU Ceiling:</strong> 3–5 months<br>
+<strong>Projected Time to Memory Ceiling:</strong> 6–8 months<br>
+<strong>Projected Time to Disk IOPS Ceiling:</strong> 8–10 months<br>
+<strong>Projected Time to Network Bandwidth Ceiling:</strong> 4–6 months</p>
+
+
+
+<h2 id="recommendations">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu12/#recommendations">Recommendations</a>
+</h2>
+<ul>
+<li><strong>Compute</strong>: Consider adding more CPU cores or upgrading processors before reaching the predicted 90% utilization mark.</li>
+<li><strong>Memory</strong>: Upgrade RAM or optimize applications to reduce memory footprint.</li>
+<li><strong>Disk</strong>: Enhance disk subsystems or switch to faster storage (e.g., SSDs) to handle projected IOPS.</li>
+<li><strong>Networking</strong>: Increase network capacity (e.g., from 1Gb to 10Gb links) or optimize network traffic.</li>
+</ul>
+
+
+
+<h2 id="conclusion">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu12/#conclusion">Conclusion</a>
+</h2>
+<p>Investment in scaling resources now will prevent future performance bottlenecks, ensuring the system can continue to meet business demands effectively.</p>
+<hr>
+
+
+
+<h2 id="discussion-post-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu12/#discussion-post-2">Discussion Post 2:</a>
+</h2>
+<p>You are in a capacity planning meeting with a few of the architects. They have decided to add 2 more agents to your Linux Sytems, Bacula Agent and an Avamar Agent . They expect these agents to run their work starting at 0400 every morning.</p>
+<ul>
+<li>What do these agents do? (May have to look them up)</li>
+</ul>
+<p>Bacula is an open-source suite of tools designed to automate backup tasks. It’s widely regarded for its flexibility and reliability. Dell Avamar, on the other hand, is a commercial backup automation solution. Both tools handle incremental backups using custom daemons that monitor changes over time, offering greater sophistication than simple scheduling systems like Cron. Additionally, they can manage backups across diverse, heterogeneous storage environments.</p>
+<ul>
+<li>Do you think there is a good reason not to use these agents at this timeframe?</li>
+</ul>
+<p>This approach is about balancing workload. If all processes start at a fixed time, they can consume valuable resources simultaneously. The best schedule depends on the environment. For example, if the environment experiences downtime—such as a traditional office setting—starting backups at 4 a.m. might be fine. However, if services run around the clock, it’s better to stagger the tasks so they use only a fraction of the available resources at any given time. This approach also reduces the impact of failures, since not all systems are involved at once.</p>
+<ul>
+<li>Is there anything else you might want to point out to these architects about these agents they are installing?</li>
+</ul>
+<p>There are several factors architects should consider. However, in the context of this discussion, performance overhead is particularly relevant. They need to ensure that the chosen backup solutions won’t overburden the system’s resources and that there’s enough “breathing room” to maintain smooth operations.</p>
+<hr>
+
+
+
+<h2 id="discussion-post-3-todo">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu12/#discussion-post-3-todo">Discussion Post 3: &lsquo;TODO&rsquo;</a>
+</h2>
+<p>Your team has recently tested at proof of concept of a new storage system. The vendor has published the blazing fast speeds that are capable of being run through this storage system. You have a set of systems connected to both the old storage system and the new storage system.</p>
+<ul>
+<li>Write up a test procedure of how you may test these two systems.</li>
+</ul>
+<p>I did a bit of research regarding tooling for such a task and found FIO &lsquo;Flexible Input / Output&rsquo;, a program written for the purpose of testing systems with various scenarios.
+Rather than using BASH, I can run more comprehensive testing with more data to analyze using FIO.</p>
+
+
+
+<h3 id="baseline-test">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu12/#baseline-test">Baseline Test</a>
+</h3>
+<pre><code> fio --filename=/dev/new_storage_lun --direct=1 --rw=read --bs=128k --size=10G --numjobs=1 --iodepth=32 --runtime=300 --time_based --name=new_storage_seq_read
+ fio --filename=/dev/old_storage_lun --direct=1 --rw=read --bs=128k --size=10G --numjobs=1 --iodepth=32 --runtime=300 --time_based --name=old_storage_seq_read
+</code></pre>
+
+
+
+<h3 id="running-mixed-workload-tests">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu12/#running-mixed-workload-tests">Running Mixed Workload Tests</a>
+</h3>
+<pre><code> fio --filename=/dev/new_storage_lun --direct=1 --rw=randrw --rwmixread=70 --bs=4k --size=10G --numjobs=4 --iodepth=16 --runtime=300 --time_based --name=new_storage_mixed
+</code></pre>
+
+
+
+<h3 id="increased-concurrency-and-scale">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu12/#increased-concurrency-and-scale">Increased Concurrency and Scale</a>
+</h3>
+<ul>
+<li>
+<p>Increase <code>numjobs</code> and <code>iodepth</code> in subsequent runs to measure how performance changes:</p>
+<p>fio &ndash;filename=/dev/new_storage_lun &ndash;direct=1 &ndash;rw=read &ndash;bs=128k &ndash;size=10G &ndash;numjobs=8 &ndash;iodepth=64 &ndash;runtime=300 &ndash;time_based &ndash;name=new_storage_high_concurrency</p>
+</li>
+<li>
+<p>Run the same tests on the old storage system and record all metrics.</p>
+</li>
+</ul>
+
+
+
+<h3 id="stresssoak-tests">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu12/#stresssoak-tests">Stress/Soak Tests</a>
+</h3>
+<ul>
+<li>
+<p>12-hour continuous I/O test on both storage systems.</p>
+<p>fio &ndash;filename=/dev/new_storage_lun &ndash;direct=1 &ndash;rw=randwrite &ndash;bs=4k &ndash;size=100G &ndash;numjobs=1 &ndash;iodepth=32 &ndash;runtime=43200 &ndash;time_based &ndash;name=new_storage_soak</p>
+</li>
+</ul>
+
+
+
+<h3 id="awk-line-parsing">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu12/#awk-line-parsing">AWK Line Parsing</a>
+</h3>
+<p>I would then pipe the output of these commands to <strong>AWK</strong> to seperate out specific datapoints to append to files for full analysis.</p>
+<ul>
+<li>How are you assuring these test are objective?</li>
+</ul>
+<p>By gathering multiple datasets with varying run parameters, I can reduce statistical noise and better isolate data of interest by comparing these datasets against one another.</p>
+<ul>
+<li>What is meant by the term Ceteris Paribus, in this context?</li>
+</ul>
+<p>in the context of system benchmarking means that when measuring the performance of one specific aspect of the system, all other variables and conditions are kept constant. This approach ensures that any observed changes in performance can be attributed directly to the variable under test, rather than being influenced by unrelated fluctuations in the environment or system load.</p>
+<hr>
+
+
+
+<h2 id="definitions--terminology">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu12/#definitions--terminology">Definitions &amp; Terminology</a>
+</h2>
+<p>Benchmark
+High watermark
+Scope
+Methodology
+Testing
+Control
+Experiment
+Analytics</p>
+<ul>
+<li>Descriptive</li>
+<li>Diagnostic</li>
+<li>Predictive</li>
+<li>Prescriptive</li>
+</ul>
+
+
+
+<h2 id="digging-deeper-optional">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu12/#digging-deeper-optional">Digging Deeper (optional)</a>
+</h2>
+<ol>
+<li>Analyzing data may open up a new field of interest to you. Go through some of the
+free lessons on Kaggle, here: <a href="https://www.kaggle.com/learn">https://www.kaggle.com/learn</a></li>
+</ol>
+<p>a. What did you learn?</p>
+<p>b. How will you apply these lessons to data and monitoring you have already
+collected as a system administrator?</p>
+<ol start="2">
+<li>Find a blog or article that discusses the 4 types of data analytics.</li>
+</ol>
+<p>a. What did you learn about past operations?
+b. What did you learn about predictive operations?</p>
+<ol start="3">
+<li>Download Spyder IDE (Open source)</li>
+</ol>
+<p>a. Find a blog post or otherwise try to evaluate some data.
+b. Perform some Linear regression. My block of code (but this requires some
+additional libraries to be added. I can help with that if you need it.)</p>
+<p>import matplotlib.pyplot as plt</p>
+<p>from sklearn.linear_model import LinearRegression</p>
+<p>size = [[5.0], [5.5], [5.9], [6.3], [6.9], [7.5]]
+price =[[165], [200], [223], [250], [278], [315]]
+plt.title(&lsquo;Pizza Price plotted against the size&rsquo;)</p>
+<p>plt.xlabel(&lsquo;Pizza Size in inches&rsquo;)</p>
+<p>plt.ylabel(&lsquo;Pizza Price in cents&rsquo;)</p>
+<p>plt.plot(size, price, &lsquo;k.&rsquo;)</p>
+<p>plt.axis([5.0, 9.0, 99, 355])</p>
+<p>plt.grid(True)</p>
+<p>model = LinearRegression()</p>
+<p>model.fit(X = size, y = price)</p>
+<p>#plot the regression line</p>
+<p>plt.plot(size, model.predict(size), color=&lsquo;r&rsquo;)</p>
+<p>Reflection Questions</p>
+<ol>
+<li>
+<p>What questions do you still have about this week?</p>
+</li>
+<li>
+<p>How can you apply this now in your current role in IT? If you’re not in IT, how can you
+look to put something like this into your resume or portfolio?</p>
+</li>
+</ol>
+<hr>
+
+
+
+<h2 id="digging-deeper">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu12/#digging-deeper">Digging Deeper</a>
+</h2>
+
+
+
+<h4 id="1-read-the-rest-of-the-chapter-httpssregoogleworkbookmonitoring-and-note-anything-else-of-interest-when-it-comes-to-monitoring-and-dashboarding">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu12/#1-read-the-rest-of-the-chapter-httpssregoogleworkbookmonitoring-and-note-anything-else-of-interest-when-it-comes-to-monitoring-and-dashboarding">1. Read the rest of the chapter <a href="https://sre.google/workbook/monitoring/">https://sre.google/workbook/monitoring/</a> and note anything else of interest when it comes to monitoring and dashboarding.</a>
+</h4>
+
+
+
+<h4 id="2-look-up-the-prolug-prometheus-certified-associate-prep-2024-in-resources---presentations-in-our-prolug-discord-study-that-for-a-deep-dive-into-prometheus">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu12/#2-look-up-the-prolug-prometheus-certified-associate-prep-2024-in-resources---presentations-in-our-prolug-discord-study-that-for-a-deep-dive-into-prometheus">2. Look up the “ProLUG Prometheus Certified Associate Prep 2024” in Resources -&gt; Presentations in our ProLUG Discord. Study that for a deep dive into Prometheus.</a>
+</h4>
+
+
+
+<h4 id="3-complete-the-project-section-of-monitoring-deep-dive-project-guide-from-the-prolug-projects-section-of-the-discord-we-have-a-youtube-video-on-that-project-as-well-httpswwwyoutubecomwatchv54vgghr99qg">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu12/#3-complete-the-project-section-of-monitoring-deep-dive-project-guide-from-the-prolug-projects-section-of-the-discord-we-have-a-youtube-video-on-that-project-as-well-httpswwwyoutubecomwatchv54vgghr99qg">3. Complete the project section of “Monitoring Deep Dive Project Guide” from the prolug-projects section of the Discord. We have a Youtube video on that project as well. <a href="https://www.youtube.com/watch?v=54VgGHr99Qg">https://www.youtube.com/watch?v=54VgGHr99Qg</a></a>
+</h4>
+
+
+
+<h2 id="labs">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu12/#labs">Labs</a>
+</h2>
+<p><a href="https://killercoda.com/het-tanis/course/Linux-Labs/102-monitoring-linux-logs">https://killercoda.com/het-tanis/course/Linux-Labs/102-monitoring-linux-logs</a></p>
+<p><a href="https://killercoda.com/het-tanis/course/Linux-Labs/103-monitoring-linux-telemetry">https://killercoda.com/het-tanis/course/Linux-Labs/103-monitoring-linux-telemetry</a></p>
+<p><a href="https://killercoda.com/het-tanis/course/Linux-Labs/104-monitoring-linux-Influx-Grafana">https://killercoda.com/het-tanis/course/Linux-Labs/104-monitoring-linux-Influx-Grafana</a></p>
+<ol start="2">
+<li>While completing each lab think about the following:</li>
+</ol>
+<p>a. How does it tie into the diagram below?</p>
+<p>b. What could you improve, or what would you change based on your previous administration
+experience.</p>
+<p>Install Grafana
+on the Rocky Linux system by adding the Grafana repo manually.
+Red = Inputs
+Blue = Outputs</p>
+<ol>
+<li>Create a new repository configuration
+sudo vim /etc/yum.repos.d/grafana.repo</li>
+</ol>
+<p>Paste:</p>
+<p>[grafana]
+name=grafana
+baseurl=https://packages.grafana.com/oss/rpm <br>
+repo_gpgcheck=1
+enabled=1
+gpgcheck=1
+gpgkey=https://packages.grafana.com/gpg.key
+sslverify=1</p>
+<ol start="2">
+<li>Verify using the DNF</li>
+</ol>
+<p>sudo dnf repolist</p>
+<p>sudo dnf clean - verifies whether files are working</p>
+<p>Should see:</p>
+<p>repo id                                      repo name
+appstream                               Rocky Linux 8 - AppStream
+baseos                                      Rocky Linux 8 - BaseOS
+extras                                       Rocky Linux 8 - Extras
+grafana                                    grafana/spl</p>
+<ol start="3">
+<li>Check the grafana package on the official repository</li>
+</ol>
+<p>sudo dnf info grafana</p>
+<p>Should see something similar 👀</p>
+<p>Importing GPG key 0x24098CB6:
+Userid     : &ldquo;Grafana &quot;
+Fingerprint: 4E40 DDF6 D76E 284A 4A67 80E4 8C8C 34C5 2409 8CB6
+From       : <a href="https://packages.grafana.com/gpg.key">https://packages.grafana.com/gpg.key</a>
+Is this ok [y/N]: y</p>
+<p>Should see 👀</p>
+<p>Name         : grafana
+Version      : 8.2.5
+Release      : 1
+rchitecture : x86_64
+Size         : 64 M
+Source       : grafana-8.2.5-1.src.rpm
+Repository   : grafana
+Summary      : Grafana
+URL          : <a href="https://grafana.com">https://grafana.com</a>
+License      : &ldquo;Apache 2.0&rdquo;
+Description  : Grafana</p>
+<ol start="4">
+<li>Install Grafana
+sudo dnf install grafana -y</li>
+</ol>
+<p>⏳ Takes a while&hellip;</p>
+<ol start="5">
+<li>Restart SystemD unit
+sudo systemctl enable &ndash;now grafana-server</li>
+</ol>
+<p>Verify
+sudo systemctl status grafana-server</p>
+<p>5.5. Firewall (Security)
+Firewall is Managed by files present in /etc/firedwalld</p>
+<p>cd /etc/firewalld/
+ls -l</p>
+<p>cp /usr/lib/firewalld/services/ssh.xml  /etc/firewalld/services/example.xml</p>
+<p>sudo  firewall-cmd &ndash;add-service=grafana &ndash;permanent</p>
+<p>sudo firewall-cmd &ndash;add-port=3000/tcp &ndash;permanent
+sudo firewall-cmd &ndash;reload</p>
+<ol start="6">
+<li>
+<p>Create config file
+sudo vim /etc/grafana/grafana.ini</p>
+</li>
+<li>
+<p>Change the default value of:</p>
+</li>
+</ol>
+<p>The option &lsquo;http_addr&rsquo; to &rsquo;localhost&rsquo;, the &lsquo;http_port&rsquo; to &lsquo;3000&rsquo;, and the &lsquo;domain&rsquo; option to your domain name as below. For this example, the domain name is &lsquo;grafana.example.io&rsquo;.</p>
+<p>For non-standard port, be sure to uncomment ;
+[server] 👍
+http_port = 4000 👍</p>
+<p>The public facing domain name used to access grafana from a browser
+domain = grafana.example.io</p>
+<p>7.1 Turn off the nasty default report of analytics 👺
+[analytics]
+reporting_enabled = false</p>
+<p>7.2. Restart the grafana service to apply a new configuration.</p>
+<p>sudo systemctl restart grafana-server</p>
+<p>Reverse Proxy Setup</p>
+<ol>
+<li>Install NGINX</li>
+</ol>
+<p>sudo dnf install nginx -y</p>
+<ol start="2">
+<li>Create a new server block for grafana</li>
+</ol>
+<p>/etc/nginx/conf.d/grafana.conf</p>
+<p>Required to proxy Grafana Live WebSocket connections</p>
+<p>map $http_upgrade $connection_upgrade {
+default upgrade;
+&rsquo;&rsquo; close;
+}
+server {
+listen      80;
+server_name grafana.example.io;
+rewrite     ^   https://$server_name$request_uri? permanent;
+}
+server {
+listen      443 ssl http2;
+server_name grafana.example.io;
+root /usr/share/nginx/html;
+index index.html index.htm;
+ssl_certificate /etc/letsencrypt/live/grafana.example.io/fullchain.pem;
+ssl_certificate_key /etc/letsencrypt/live/grafana.example.io/privkey.pem;
+access_log /var/log/nginx/grafana-access.log;
+error_log /var/log/nginx/grafana-error.log;
+location / {
+proxy_pass http://localhost:3000/;
+}</p>
+<p>Proxy Grafana Live WebSocket connections
+location /api/live {
+rewrite  ^/(.*)  /$1 break;
+proxy_http_version 1.1;
+proxy_set_header Upgrade $http_upgrade;
+proxy_set_header Connection $connection_upgrade;
+proxy_set_header Host $http_host;
+proxy_pass http://localhost:3000/;
+}
+}</p>
+<ol start="3">
+<li>Next, verify the Nginx configuration</li>
+</ol>
+<p>sudo nginx -t</p>
+<p>Should see 👀</p>
+<p>nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful 👍</p>
+<ol start="4">
+<li>Start and enable the Nginx service
+sudo systemctl enable &ndash;now nginx
+sudo systemctl status nginx</li>
+</ol>
+<p>Install Prometheus (Saturday)</p>
+
+
+
+<h2 id="rocky-prometheus-install">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu12/#rocky-prometheus-install">Rocky Prometheus Install</a>
+</h2>
+<ol>
+<li>Add New User and Directory &lsquo;prometheus&rsquo;</li>
+</ol>
+<p>create a new configuration directory and data directory for the Prometheus installation.</p>
+<p>sudo adduser -M -r -s /sbin/nologin prometheus</p>
+<ol start="2">
+<li>create a new configuration
+directory &lsquo;/etc/prometheus&rsquo; and the data directory &lsquo;/var/lib/prometheus&rsquo;</li>
+</ol>
+<p>(Only needed for running as service)</p>
+<p>sudo mkdir /etc/prometheus
+sudo mkdir /var/lib/prometheus</p>
+<p>Note:
+All Prometheus configuration at the &lsquo;/etc/prometheus&rsquo; directory, and all Prometheus data will automatically be saved to the directory &lsquo;/var/lib/prometheus&rsquo;.
+Installing Prometheus on Rocky Linux</p>
+<p>Install Prometheus monitoring system manually from the tarball or tar.gz file.</p>
+<ol>
+<li>Change the working directory
+to &lsquo;/usr/src&rsquo; and download the Prometheus binary</li>
+</ol>
+<p>cd /usr/src
+wget <a href="https://github.com/prometheus/prometheus/releases/download/v3.0.1/prometheus-3.0.1.linux-amd64.tar.gz">https://github.com/prometheus/prometheus/releases/download/v3.0.1/prometheus-3.0.1.linux-amd64.tar.gz</a></p>
+<p>Extract</p>
+<p>tar -xzf ***.tar.gz</p>
+<p>cd into folder</p>
+<p>Run bin:</p>
+<pre><code>./bin 👍
+
+If bin works, proceed
+</code></pre>
+<ol start="2">
+<li>Copy all Prometheus configurations
+to the directory &lsquo;/etc/prometheus&rsquo; and the binary file &lsquo;prometheus&rsquo; to the &lsquo;/usr/local/bin&rsquo; directory.</li>
+</ol>
+<ul>
+<li>Move prometheus configuration &lsquo;prometheus.yml&rsquo; to the directory &lsquo;/etc/prometheus.</li>
+</ul>
+<p>sudo mv $PROM_SRC/prometheus.yml /etc/prometheus/</p>
+<ul>
+<li>Move the binary file &lsquo;prometheus&rsquo; and &lsquo;promtool&rsquo; to the directory &lsquo;/usr/local/bin/&rsquo;.</li>
+</ul>
+<p>sudo mv $PROM_SRC/prometheus /usr/local/bin/
+sudo mv $PROM_SRC/promtool /usr/local/bin/</p>
+<ul>
+<li>Move Prometheus console templates and libraries to the &lsquo;/etc/prometheus&rsquo; directory.</li>
+</ul>
+<p>sudo mv -r $PROM_SRC/consoles /etc/prometheus
+sudo mv -r $PROM_SRC/console_libraries /etc/prometheus</p>
+<ol start="3">
+<li>Edit Prometheus configuration &lsquo;/etc/prometheus/prometheus.yml&rsquo;</li>
+</ol>
+<p>vim /etc/prometheus/prometheus.yml</p>
+<p>On the &lsquo;scrape_configs&rsquo; option, you may need to add monitoring jobs</p>
+<p>The default configuration comes with the default monitoring job name &lsquo;prometheus&rsquo; and the target server &rsquo;localhost&rsquo; through the &lsquo;static_configs&rsquo; option.</p>
+<p>Change the target from &rsquo;localhost:9090&rsquo; to the server IP address &lsquo;192.168.1.10:9090&rsquo; as below.</p>
+<p>Note:
+Scrape configuration containing exactly one endpoint to scrape:
+Here it&rsquo;s Prometheus itself.
+scrape_configs:
+The job name is added as a label <code>job=&lt;job_name&gt;</code> to any timeseries scraped from this config.
+job_name: &ldquo;prometheus&rdquo;</p>
+<p>metrics_path defaults to &lsquo;/metrics&rsquo;
+scheme defaults to &lsquo;http&rsquo;.</p>
+<p>static_configs:
+targets: [&ldquo;192.168.1.10:9090&rdquo;]</p>
+<ol start="4">
+<li>Change the configuration and data directories to the user &lsquo;promethues&rsquo;.</li>
+</ol>
+<p>sudo chown prometheus:prometheus /etc/prometheus
+sudo chown prometheus:prometheus /var/lib/prometheus</p>
+<p>Basic prometheus installation finished, Hopefully 👍 .</p>
+<p>Configure Prometheus</p>
+<ol>
+<li>Create a new systemd service
+sudo vim /etc/systemd/system/prometheus.service</li>
+</ol>
+<p>Copy and paste the following configuration.</p>
+<p>[Unit]
+Description=Prometheus
+Wants=network-online.target
+After=network-online.target</p>
+<p>[Service]
+User=prometheus
+Group=prometheus
+Type=simple
+ExecStart=/usr/local/bin/prometheus <br>
+&ndash;config.file /etc/prometheus/prometheus.yml <br>
+&ndash;storage.tsdb.path /var/lib/prometheus/ <br>
+&ndash;web.console.templates=/etc/prometheus/consoles <br>
+&ndash;web.console.libraries=/etc/prometheus/console_libraries</p>
+<p>[Install]
+WantedBy=multi-user.target</p>
+<ol start="2">
+<li>Reload the systemd manager to apply a new config.</li>
+</ol>
+<p>sudo systemctl daemon-reload</p>
+<ol start="3">
+<li>Start and enable the Prometheus service</li>
+</ol>
+<p>sudo systemctl enable &ndash;now prometheus
+sudo systemctl status prometheus</p>
+<p>Prometheus monitoring tool is now accessible on the TCP port &lsquo;9090.</p>
+<ol start="4">
+<li>Visit IP address with port &lsquo;9090&rsquo;</li>
+</ol>
+<p>http://192.168.1.10:9090/</p>
+<p>And you will see the prometheus dashboard query below.</p>
+<p>Prometheus query dashboard</p>
+<hr>
+
+
+
+<h2 id="reflection-questions">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu12/#reflection-questions">Reflection Questions</a>
+</h2>
+<ol>
+<li>
+<p>What questions do you still have about this week?</p>
+</li>
+<li>
+<p>How can you apply this now in your current role in IT? If you’re not in IT, how can you
+look to put something like this into your resume or portfolio?</p>
+</li>
+</ol>
+<hr>
+
+
+
+<h3 id="prolug-links-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu12/#prolug-links-">ProLUG Links ⛓️</a>
+</h3>
+<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
+Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
+Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
+ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
+KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
+      
+      
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/operating-systems/" rel="tag">Operating Systems</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/baselining/" rel="tag">Baselining</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/benchmarking/" rel="tag">Benchmarking</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+    </article>
+    
+      <div class="Divider"></div>
+    
+  
+    <article>
+      <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/pacu11/" rel="bookmark">ProLUG Admin Course Unit 11 🐧</a>
+  </h1>
+  
+    <time datetime="2024-11-28T00:00:00Z">November 28, 2024</time>
+  
+</header>
+      
+        <h1 id="monitoring-systems">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#monitoring-systems">Monitoring Systems</a>
+</h1>
+<p>In this unit, we explore monitoring systems, which often consist of multiple interconnected components. At its core, monitoring involves carefully exposing system data and transmitting it to tools for analysis and alerting. From my experience with Prometheus and Grafana—two widely used and versatile solutions—I’ve seen how effective these tools can be for various scenarios. However, many other tools are also available. One of my key takeaways from the unit’s readings and labs was the importance of careful data exposure. Much like setting permissions in a Linux system, it’s crucial to determine what data can be accessed and who is allowed to see it in the reporting chain. System information, if mishandled, can easily become a double-edged sword.</p>
+<hr>
+
+
+
+<h2 id="discussion-post-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#discussion-post-1">Discussion Post 1</a>
+</h2>
+
+
+
+<h3 id="scenario">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#scenario">Scenario</a>
+</h3>
+<p>You’ve heard the term “loose coupling” thrown around the
+office about a new monitoring solution coming down the pike. You find a good resource and
+read the section on “Prefer Loose Coupling” <a href="https://sre.google/workbook/monitoring/">https://sre.google/workbook/monitoring/</a></p>
+
+
+
+<h4 id="1-what-does-loose-coupling-mean-if-you-had-to-summarize-to-your-junior-team">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#1-what-does-loose-coupling-mean-if-you-had-to-summarize-to-your-junior-team">1. What does “loose coupling” mean, if you had to summarize to your junior team</a>
+</h4>
+<p>members?</p>
+<p>Loose coupling means the components of a system can operate independently, yet still work together when combined. This design allows individual components to be swapped or replaced with minimal disruption to the overall system. In contrast, a strongly coupled system binds its components so tightly that altering one would disrupt or even break the entire system’s functionality.</p>
+
+
+
+<h4 id="2-what-is-the-advantage-given-for-why-you-might-want-to-implement-this-type-of-tooling-in-your-monitoring-do-you-agree-why-or-why-not">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#2-what-is-the-advantage-given-for-why-you-might-want-to-implement-this-type-of-tooling-in-your-monitoring-do-you-agree-why-or-why-not">2. What is the advantage given for why you might want to implement this type of tooling in your monitoring? Do you agree? Why or why not?</a>
+</h4>
+<p>The advantage of a loosely coupled monitoring system lies in its flexibility to evolve over time. Systems change, requirements shift, and new tools emerge, making adaptability essential. A design that allows components to be replaced or upgraded with minimal disruption is highly valuable—not only for an organization aiming to maintain efficiency but also for the administrators and engineers responsible for ensuring stability and resolving issues.</p>
+
+
+
+<h4 id="3-they-mention-exposing-metrics-what-does-it-mean-to-expose-metrics-what-happens-to-metrics-that-are-exposed-but-never-collected">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#3-they-mention-exposing-metrics-what-does-it-mean-to-expose-metrics-what-happens-to-metrics-that-are-exposed-but-never-collected">3. They mention “exposing metrics” what does it mean to expose metrics? What happens to metrics that are exposed but never collected?</a>
+</h4>
+<p>Exposing metrics involves making system information accessible for monitoring and analysis. However, this must be approached with caution, as exposing such information can introduce vulnerabilities. Simply exposing data without actively collecting or utilizing it needlessly increases security risks without providing any benefit.</p>
+<hr>
+
+
+
+<h2 id="discussion-post-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#discussion-post-2">Discussion Post 2</a>
+</h2>
+
+
+
+<h3 id="scenario-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#scenario-1">Scenario</a>
+</h3>
+<p>Your HPC team is asking for more information about how CPU 0
+is behaving on a set of servers. Your team has node exporter writing data out to Prometheus
+(Use this to simulate <a href="https://promlabs.com/promql-cheat-sheet/)">https://promlabs.com/promql-cheat-sheet/)</a>.</p>
+
+
+
+<h4 id="1-can-you-see-the-usage-of-cpu0-and-what-is-the-query">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#1-can-you-see-the-usage-of-cpu0-and-what-is-the-query">1. Can you see the usage of CPU0 and what is the query?</a>
+</h4>
+<p>Yes one can use a query that focuses on the metrics provided by the Node Exporter. Specifically, filter for CPU 0 and its usage.</p>
+<pre><code>100 - (avg by (instance) (irate(node_cpu_seconds_total{cpu=&quot;0&quot;, mode=&quot;idle&quot;}
+</code></pre>
+
+
+
+<h4 id="2-can-you-see-the-usage-of-cpu0-for-just-the-last-5-minutes-and-what-is-the-query">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#2-can-you-see-the-usage-of-cpu0-for-just-the-last-5-minutes-and-what-is-the-query">2. Can you see the usage of CPU0 for just the last 5 minutes and what is the query?</a>
+</h4>
+<p>Yes</p>
+<pre><code>100 - (avg by (instance) (rate(node_cpu_seconds_total{cpu=&quot;0&quot;, mode=&quot;idle&quot;}[5m])) * 100)
+</code></pre>
+
+
+
+<h4 id="3-you-know-that-cpu0-is-excluded-from-slurm-can-you-exclude-that-and-only-pull-the-user-and-system-for-the-remaining-cpus-and-what-is-that-query">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#3-you-know-that-cpu0-is-excluded-from-slurm-can-you-exclude-that-and-only-pull-the-user-and-system-for-the-remaining-cpus-and-what-is-that-query">3. You know that CPU0 is excluded from Slurm, can you exclude that and only pull the user and system for the remaining CPUs and what is that query?</a>
+</h4>
+<p>Yes</p>
+<pre><code>sum by (instance) (rate(node_cpu_seconds_total{cpu!=&quot;0&quot;, mode=~&quot;user|system&quot;}[5m])) * 100
+</code></pre>
+<hr>
+
+
+
+<h2 id="digging-deeper">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#digging-deeper">Digging Deeper</a>
+</h2>
+
+
+
+<h4 id="1-read-the-rest-of-the-chapter-httpssregoogleworkbookmonitoring-and-note-anything-else-of-interest-when-it-comes-to-monitoring-and-dashboarding">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#1-read-the-rest-of-the-chapter-httpssregoogleworkbookmonitoring-and-note-anything-else-of-interest-when-it-comes-to-monitoring-and-dashboarding">1. Read the rest of the chapter <a href="https://sre.google/workbook/monitoring/">https://sre.google/workbook/monitoring/</a> and note anything else of interest when it comes to monitoring and dashboarding.</a>
+</h4>
+
+
+
+<h4 id="2-look-up-the-prolug-prometheus-certified-associate-prep-2024-in-resources---presentations-in-our-prolug-discord-study-that-for-a-deep-dive-into-prometheus">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#2-look-up-the-prolug-prometheus-certified-associate-prep-2024-in-resources---presentations-in-our-prolug-discord-study-that-for-a-deep-dive-into-prometheus">2. Look up the “ProLUG Prometheus Certified Associate Prep 2024” in Resources -&gt; Presentations in our ProLUG Discord. Study that for a deep dive into Prometheus.</a>
+</h4>
+
+
+
+<h4 id="3-complete-the-project-section-of-monitoring-deep-dive-project-guide-from-the-prolug-projects-section-of-the-discord-we-have-a-youtube-video-on-that-project-as-well-httpswwwyoutubecomwatchv54vgghr99qg">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#3-complete-the-project-section-of-monitoring-deep-dive-project-guide-from-the-prolug-projects-section-of-the-discord-we-have-a-youtube-video-on-that-project-as-well-httpswwwyoutubecomwatchv54vgghr99qg">3. Complete the project section of “Monitoring Deep Dive Project Guide” from the prolug-projects section of the Discord. We have a Youtube video on that project as well. <a href="https://www.youtube.com/watch?v=54VgGHr99Qg">https://www.youtube.com/watch?v=54VgGHr99Qg</a></a>
+</h4>
+
+
+
+<h2 id="labs">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#labs">Labs</a>
+</h2>
+<p><a href="https://killercoda.com/het-tanis/course/Linux-Labs/102-monitoring-linux-logs">https://killercoda.com/het-tanis/course/Linux-Labs/102-monitoring-linux-logs</a></p>
+<p><a href="https://killercoda.com/het-tanis/course/Linux-Labs/103-monitoring-linux-telemetry">https://killercoda.com/het-tanis/course/Linux-Labs/103-monitoring-linux-telemetry</a></p>
+<p><a href="https://killercoda.com/het-tanis/course/Linux-Labs/104-monitoring-linux-Influx-Grafana">https://killercoda.com/het-tanis/course/Linux-Labs/104-monitoring-linux-Influx-Grafana</a></p>
+<ol start="2">
+<li>While completing each lab think about the following:</li>
+</ol>
+<p>a. How does it tie into the diagram below?</p>
+<p>b. What could you improve, or what would you change based on your previous administration
+experience.</p>
+<hr>
+
+
+
+<h3 id="1-install-grafana">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#1-install-grafana">1. Install Grafana</a>
+</h3>
+
+
+
+<h4 id="11-create-a-new-repository-configuration">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#11-create-a-new-repository-configuration">1.1 Create a New Repository Configuration</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo vim /etc/yum.repos.d/grafana.repo</span></span></code></pre></div>
+<p>Paste the following:</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[grafana]</span>
+</span></span><span class="line"><span class="cl"><span class="na">name</span><span class="o">=</span><span class="s">grafana</span>
+</span></span><span class="line"><span class="cl"><span class="na">baseurl</span><span class="o">=</span><span class="s">https://packages.grafana.com/oss/rpm</span>
+</span></span><span class="line"><span class="cl"><span class="na">repo_gpgcheck</span><span class="o">=</span><span class="s">1</span>
+</span></span><span class="line"><span class="cl"><span class="na">enabled</span><span class="o">=</span><span class="s">1</span>
+</span></span><span class="line"><span class="cl"><span class="na">gpgcheck</span><span class="o">=</span><span class="s">1</span>
+</span></span><span class="line"><span class="cl"><span class="na">gpgkey</span><span class="o">=</span><span class="s">https://packages.grafana.com/gpg.key</span>
+</span></span><span class="line"><span class="cl"><span class="na">sslverify</span><span class="o">=</span><span class="s">1</span></span></span></code></pre></div>
+
+
+
+<h4 id="12-verify-the-repository">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#12-verify-the-repository">1.2 Verify the Repository</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo dnf repolist
+</span></span><span class="line"><span class="cl">sudo dnf clean all</span></span></code></pre></div>
+<p>Expected Output:</p>
+
+  
+
+<pre tabindex="0"><code>repo id                                      repo name
+appstream                                    Rocky Linux 8 - AppStream
+baseos                                       Rocky Linux 8 - BaseOS
+extras                                       Rocky Linux 8 - Extras
+grafana                                      grafana/spl</code></pre>
+
+
+
+<h4 id="13-check-the-grafana-package">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#13-check-the-grafana-package">1.3 Check the Grafana Package</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo dnf info grafana</span></span></code></pre></div>
+<p>Example Output:</p>
+
+  
+
+<pre tabindex="0"><code>Importing GPG key 0x24098CB6:
+Userid     : &#34;Grafana&#34;
+Fingerprint: 4E40 DDF6 D76E 284A 4A67 80E4 8C8C 34C5 2409 8CB6
+From       : https://packages.grafana.com/gpg.key
+Is this ok [y/N]: y</code></pre>
+
+
+
+<h4 id="14-install-grafana">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#14-install-grafana">1.4 Install Grafana</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo dnf install grafana -y</span></span></code></pre></div>
+
+
+
+<h4 id="15-enable-and-start-grafana-service">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#15-enable-and-start-grafana-service">1.5 Enable and Start Grafana Service</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo systemctl <span class="nb">enable</span> --now grafana-server
+</span></span><span class="line"><span class="cl">sudo systemctl status grafana-server</span></span></code></pre></div>
+
+
+
+<h4 id="16-configure-firewall">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#16-configure-firewall">1.6 Configure Firewall</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo firewall-cmd --add-service<span class="o">=</span>grafana --permanent
+</span></span><span class="line"><span class="cl">sudo firewall-cmd --add-port<span class="o">=</span>3000/tcp --permanent
+</span></span><span class="line"><span class="cl">sudo firewall-cmd --reload</span></span></code></pre></div>
+
+
+
+<h4 id="17-create-and-edit-configuration-file">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#17-create-and-edit-configuration-file">1.7 Create and Edit Configuration File</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo vim /etc/grafana/grafana.ini</span></span></code></pre></div>
+<p>Update the following settings:</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[server]</span>
+</span></span><span class="line"><span class="cl"><span class="na">http_port</span> <span class="o">=</span> <span class="s">4000</span>
+</span></span><span class="line"><span class="cl"><span class="na">domain</span> <span class="o">=</span> <span class="s">grafana.example.io</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[analytics]</span>
+</span></span><span class="line"><span class="cl"><span class="na">reporting_enabled</span> <span class="o">=</span> <span class="s">false</span></span></span></code></pre></div>
+<p>Restart the service:</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo systemctl restart grafana-server</span></span></code></pre></div>
+<hr>
+
+
+
+<h3 id="2-reverse-proxy-setup-with-nginx">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#2-reverse-proxy-setup-with-nginx">2. Reverse Proxy Setup with NGINX</a>
+</h3>
+
+
+
+<h4 id="21-install-nginx">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#21-install-nginx">2.1 Install NGINX</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo dnf install nginx -y</span></span></code></pre></div>
+
+
+
+<h4 id="22-create-a-server-block-for-grafana">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#22-create-a-server-block-for-grafana">2.2 Create a Server Block for Grafana</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo vim /etc/nginx/conf.d/grafana.conf</span></span></code></pre></div>
+<p>Paste the configuration:</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">map</span> <span class="nv">$http_upgrade</span> <span class="nv">$connection_upgrade</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kn">default</span> <span class="s">upgrade</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kn">&#39;&#39;</span> <span class="s">close</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">server</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kn">server_name</span> <span class="s">grafana.example.io</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kn">rewrite</span> <span class="s">^</span> <span class="s">https://</span><span class="nv">$server_name$request_uri?</span> <span class="s">permanent</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">server</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kn">listen</span> <span class="mi">443</span> <span class="s">ssl</span> <span class="s">http2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kn">server_name</span> <span class="s">grafana.example.io</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kn">ssl_certificate</span> <span class="s">/etc/letsencrypt/live/grafana.example.io/fullchain.pem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kn">ssl_certificate_key</span> <span class="s">/etc/letsencrypt/live/grafana.example.io/privkey.pem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kn">location</span> <span class="s">/</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">proxy_pass</span> <span class="s">http://localhost:3000/</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kn">location</span> <span class="s">/api/live</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">proxy_http_version</span> <span class="mi">1</span><span class="s">.1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">proxy_set_header</span> <span class="s">Upgrade</span> <span class="nv">$http_upgrade</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">proxy_set_header</span> <span class="s">Connection</span> <span class="nv">$connection_upgrade</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">proxy_pass</span> <span class="s">http://localhost:3000/</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+
+
+
+<h4 id="23-verify-nginx-configuration">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#23-verify-nginx-configuration">2.3 Verify NGINX Configuration</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo nginx -t</span></span></code></pre></div>
+<p>Expected Output:</p>
+
+  
+
+<pre tabindex="0"><code>nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful</code></pre>
+
+
+
+<h4 id="24-start-and-enable-nginx">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#24-start-and-enable-nginx">2.4 Start and Enable NGINX</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo systemctl <span class="nb">enable</span> --now nginx
+</span></span><span class="line"><span class="cl">sudo systemctl status nginx</span></span></code></pre></div>
+<hr>
+
+
+
+<h3 id="3-install-prometheus">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#3-install-prometheus">3. Install Prometheus</a>
+</h3>
+
+
+
+<h4 id="31-add-a-new-user-and-directories">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#31-add-a-new-user-and-directories">3.1 Add a New User and Directories</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo adduser -M -r -s /sbin/nologin prometheus
+</span></span><span class="line"><span class="cl">sudo mkdir /etc/prometheus
+</span></span><span class="line"><span class="cl">sudo mkdir /var/lib/prometheus</span></span></code></pre></div>
+
+
+
+<h4 id="32-download-and-extract-prometheus">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#32-download-and-extract-prometheus">3.2 Download and Extract Prometheus</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> /usr/src
+</span></span><span class="line"><span class="cl">wget https://github.com/prometheus/prometheus/releases/download/v3.0.1/prometheus-3.0.1.linux-amd64.tar.gz
+</span></span><span class="line"><span class="cl">tar -xzf prometheus-3.0.1.linux-amd64.tar.gz
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> prometheus-3.0.1.linux-amd64</span></span></code></pre></div>
+
+
+
+<h4 id="33-move-files-to-appropriate-locations">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#33-move-files-to-appropriate-locations">3.3 Move Files to Appropriate Locations</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo mv prometheus /usr/local/bin/
+</span></span><span class="line"><span class="cl">sudo mv promtool /usr/local/bin/
+</span></span><span class="line"><span class="cl">sudo mv consoles /etc/prometheus
+</span></span><span class="line"><span class="cl">sudo mv console_libraries /etc/prometheus
+</span></span><span class="line"><span class="cl">sudo mv prometheus.yml /etc/prometheus/</span></span></code></pre></div>
+
+
+
+<h4 id="34-change-ownership">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#34-change-ownership">3.4 Change Ownership</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo chown -R prometheus:prometheus /etc/prometheus /var/lib/prometheus</span></span></code></pre></div>
+
+
+
+<h4 id="35-configure-prometheus">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#35-configure-prometheus">3.5 Configure Prometheus</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo vim /etc/prometheus/prometheus.yml</span></span></code></pre></div>
+<p>Example scrape configuration:</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">scrape_configs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;prometheus&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">static_configs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;192.168.1.10:9090&#34;</span><span class="p">]</span></span></span></code></pre></div>
+
+
+
+<h4 id="36-create-a-systemd-service">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#36-create-a-systemd-service">3.6 Create a Systemd Service</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo vim /etc/systemd/system/prometheus.service</span></span></code></pre></div>
+<p>Paste the following:</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[Unit]</span>
+</span></span><span class="line"><span class="cl"><span class="na">Description</span><span class="o">=</span><span class="s">Prometheus</span>
+</span></span><span class="line"><span class="cl"><span class="na">Wants</span><span class="o">=</span><span class="s">network-online.target</span>
+</span></span><span class="line"><span class="cl"><span class="na">After</span><span class="o">=</span><span class="s">network-online.target</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[Service]</span>
+</span></span><span class="line"><span class="cl"><span class="na">User</span><span class="o">=</span><span class="s">prometheus</span>
+</span></span><span class="line"><span class="cl"><span class="na">Group</span><span class="o">=</span><span class="s">prometheus</span>
+</span></span><span class="line"><span class="cl"><span class="na">Type</span><span class="o">=</span><span class="s">simple</span>
+</span></span><span class="line"><span class="cl"><span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/local/bin/prometheus     --config.file /etc/prometheus/prometheus.yml     --storage.tsdb.path /var/lib/prometheus/     --web.console.templates=/etc/prometheus/consoles     --web.console.libraries=/etc/prometheus/console_libraries</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[Install]</span>
+</span></span><span class="line"><span class="cl"><span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span></span></span></code></pre></div>
+
+
+
+<h4 id="37-start-prometheus-service">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#37-start-prometheus-service">3.7 Start Prometheus Service</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo systemctl daemon-reload
+</span></span><span class="line"><span class="cl">sudo systemctl <span class="nb">enable</span> --now prometheus
+</span></span><span class="line"><span class="cl">sudo systemctl status prometheus</span></span></code></pre></div>
+
+
+
+<h4 id="38-access-prometheus">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#38-access-prometheus">3.8 Access Prometheus</a>
+</h4>
+<p>Visit <code>http://192.168.1.10:9090</code> in your browser to view the Prometheus dashboard.</p>
+<hr>
+
+
+
+<h2 id="reflection-questions">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#reflection-questions">Reflection Questions</a>
+</h2>
+<ol>
+<li>
+<p>What questions do you still have about this week?</p>
+</li>
+<li>
+<p>How can you apply this now in your current role in IT? If you’re not in IT, how can you
+look to put something like this into your resume or portfolio?</p>
+</li>
+</ol>
+<hr>
+
+
+
+<h3 id="prolug-links-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#prolug-links-">ProLUG Links ⛓️</a>
+</h3>
+<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
+Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
+Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
+ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
+KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
+      
+      
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/operating-systems/" rel="tag">Operating Systems</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/monitoring/" rel="tag">Monitoring</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+    </article>
+    
+      <div class="Divider"></div>
+    
+  
+    <article>
+      <header class="Heading">
+  <h1 class="Heading-title">
     <a class="Heading-link u-clickable" href="/techblog/post/pacu10/" rel="bookmark">ProLUG Admin Course Unit 10 🐧</a>
   </h1>
   
-    <time datetime="2024-11-17T00:00:00Z">November 17, 2024</time>
+    <time datetime="2024-11-22T00:00:00Z">November 22, 2024</time>
   
 </header>
       
@@ -936,9 +2693,13 @@ constraints in the lab. Using systemctl restart k3s and journalctl -xe can you f
 </h2>
 <ol>
 <li>What questions do you still have about this week?</li>
+</ol>
+<p>I would like to know more about Kubernetes and how it can be effectively managed, but this is just a matter of further study.</p>
+<ol start="2">
 <li>How can you apply this now in your current role in IT? If you’re not in IT, how can you
 look to put something like this into your resume or portfolio?</li>
 </ol>
+<p>I installed K3S on my personal lab and ran through two days of exercises with the study group, gaining some competency with installing, configuring and deploying a set of pods from manifests. So I could confidently state that I know how to do this and check on the health of the system.</p>
 <hr>
 
 
@@ -3214,1873 +4975,6 @@ KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/he
           
             <li class="Tags-item u-background">
               <a class="Tags-link u-clickable" href="/techblog/tags/operating-systems/" rel="tag">Operating Systems</a>
-            </li>
-          
-        </ul>
-      
-    
-  </footer>
-
-    </article>
-    
-      <div class="Divider"></div>
-    
-  
-    <article>
-      <header class="Heading">
-  <h1 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/" rel="bookmark">GO CLI Utility</a>
-  </h1>
-  
-    <time datetime="2024-10-15T00:00:00Z">October 15, 2024</time>
-  
-</header>
-      
-        <h1 id="making-a-utility-for-linux-">
-  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#making-a-utility-for-linux-">Making a Utility for Linux 🚀</a>
-</h1>
-<p>Recently, I was chatting with fellow enthusiasts in the ProLUG group about creating system utilities with Go.</p>
-<p>Between learning about it on my own time and getting input from others, I realized there are so many compelling reasons for using Go as a utility language. 🛠️</p>
-<p>Currently, the idea isn&rsquo;t as prevalent as Python or Bash, but it’s gaining traction. This makes sense since Go was designed with modern, interconnected systems in mind.</p>
-
-
-
-<h2 id="what-is-a-utility-">
-  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#what-is-a-utility-">What is a Utility? 🤔</a>
-</h2>
-<p>A system utility streamlines repetitive tasks by offering custom commands tailored to your workflow, boosting efficiency for system administrators and engineers. Work smarter, not harder. 💡</p>
-
-
-
-<h2 id="cli-tool-">
-  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#cli-tool-">CLI Tool 🖥️</a>
-</h2>
-<p>Go offers a package called Cobra CLI <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>, which enables the creation of command-line interfaces that take input from the terminal and execute predetermined logic. I’m putting this simply in case you’re unfamiliar with how programs work 😆.</p>
-<p>The CLI is the simplest form of a computer program and is perfect for Linux system folks.</p>
-
-
-
-<h2 id="core-idea-">
-  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#core-idea-">Core Idea 🎯</a>
-</h2>
-<p>The core idea of this article is to explain how a Go program can act as a personalized utility that lives on your system or can be deployed across many. Go compiles code into a binary—native computer language. Once built, the binary runs reliably without failure, assuming the program logic is solid. This makes Go ideal for utilities that are called repeatedly to perform simple tasks.</p>
-
-
-
-<h2 id="automate-everything-">
-  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#automate-everything-">Automate Everything 🤖</a>
-</h2>
-<p>Managing systems involves a lot of repetitive tasks, and the goal of any sysadmin or engineer is to automate them. Tools like Ansible, Python, and Bash are already well-known for automation. However, there are specific reasons to use Go, which I’ll explore further in a future article titled <em>&ldquo;Why Go?&rdquo;</em> where I’ll break down why it belongs in your quiver of tools 🏹.</p>
-<hr>
-
-
-
-<h3 id="cli-programming-portion-">
-  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#cli-programming-portion-">CLI Programming Portion ⚙️</a>
-</h3>
-
-
-
-<h4 id="setup">
-  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#setup">Setup</a>
-</h4>
-<ol>
-<li><strong>Install</strong> Go and Cobra CLI (if not already installed).</li>
-<li><strong>Initialize</strong> a new Go project with Cobra CLI.</li>
-</ol>
-
-
-
-<h4 id="cli-logic">
-  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#cli-logic">CLI Logic</a>
-</h4>
-<ol>
-<li><strong>Add commands and flags</strong> to the Cobra application.</li>
-<li><strong>Implement utility functions</strong>, such as disk usage checks or file listings.</li>
-</ol>
-
-
-
-<h3 id="compilation-and-installation-">
-  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#compilation-and-installation-">Compilation and Installation 🏗️</a>
-</h3>
-
-
-
-<h4 id="compile">
-  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#compile">Compile</a>
-</h4>
-<ol>
-<li><strong>Build</strong> the Go project into a single x86 Linux binary.</li>
-<li><strong>Test</strong> the binary locally to confirm functionality.</li>
-</ol>
-
-
-
-<h4 id="install">
-  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#install">Install</a>
-</h4>
-<ol>
-<li><strong>Move</strong> the binary to <code>/usr/local/bin</code> for global access.</li>
-<li><strong>Set permissions</strong> on the binary to allow execution.</li>
-</ol>
-
-
-
-<h4 id="add-to-path">
-  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#add-to-path">Add to PATH</a>
-</h4>
-<ol>
-<li><strong>Check</strong> if <code>/usr/local/bin</code> is in your PATH.</li>
-<li>If not, <strong>add it</strong> to your <code>.bashrc</code> or <code>.bash_profile</code>.</li>
-</ol>
-
-
-
-<h3 id="testing-portion-">
-  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#testing-portion-">Testing Portion 🧪</a>
-</h3>
-<ol>
-<li><strong>Run</strong> the utility from any location to confirm it works.</li>
-<li>Optionally, <strong>add help documentation</strong> or more commands to the CLI.</li>
-</ol>
-
-
-
-<h3 id="packaging-">
-  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#packaging-">Packaging 📦</a>
-</h3>
-<ol>
-<li><strong>Provide installation instructions</strong> if you plan to share it.</li>
-<li><strong>Upload</strong> the binary or source code to GitHub for distribution.</li>
-</ol>
-<hr>
-
-
-
-<h2 id="learning-resources">
-  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#learning-resources">Learning Resources</a>
-</h2>
-<p>Ok this was just a simple outline you say. Yes, I am trying to convey information simply for sanities sake, this is how I process things anyway.</p>
-<p>In order to make your own utility you will have to go off on your own learning adventure. Below I am giving you some resources for getting started.</p>
-
-
-
-<h3 id="getting-up-and-running-with-go">
-  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#getting-up-and-running-with-go">Getting up and running with GO</a>
-</h3>
-
-
-
-<h4 id="brief-intro-2">
-  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#brief-intro-2">Brief Intro <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></a>
-</h4>
-
-
-
-<h4 id="for-the-impatient-3">
-  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#for-the-impatient-3">For the impatient <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></a>
-</h4>
-<p>There are many ways to get this done. For the clever and impatient, I suggest finding a pre-made CLI application that you can deconstruct. <sup id="fnref1:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
-
-
-
-<h4 id="for-the-patient-4">
-  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#for-the-patient-4">For the Patient <sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup></a>
-</h4>
-<p>For those who like to build a foundation of understanding, I suggest watching a lecture followed by a tutorial and finally doing the project. <sup id="fnref1:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup></p>
-
-
-
-<h2 id="conclusion">
-  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#conclusion">Conclusion</a>
-</h2>
-<p>I try to keep things simple and succinct, so this is where I ride off into the sunset. Good luck and happy learning.</p>
-<hr>
-
-
-
-<h2 id="footnotes-">
-  <a class="Heading-link u-clickable" href="/techblog/post/goclisysutil/#footnotes-">Footnotes ⛓️</a>
-</h2>
-<div class="footnotes" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn:1">
-<p>Cobra CLI Source Code <a href="https://github.com/spf13/cobra">GitHub Repository</a> User: spf13, Current.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:2">
-<p>GO in 100 Seconds <a href="https://www.youtube.com/watch?v=446E-r0rXHI">Youtube Video</a> Channel: Fireship, 2021.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:3">
-<p>Cobra CLI Samples <a href="https://github.com/Adron/cobra-cli-samples">GitHub Repository</a> User: Adron, 2022.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a>&#160;<a href="#fnref1:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:4">
-<p>Golang Tutorial Series Playlist <a href="https://www.youtube.com/watch?v=etSN4X_fCnM&amp;list=PL4cUxeGkcC9gC88BEo9czgyS72A3doDeM">Youtube Channel</a> Channel: Net Ninja, 2021.&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a>&#160;<a href="#fnref1:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-</ol>
-</div>
-      
-      
-
-  
-
-  
-
-
-
-
-
-  <footer>
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/categories/knowledge-exchange/" rel="tag">Knowledge Exchange</a>
-            </li>
-          
-        </ul>
-      
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/go/" rel="tag">GO</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/notes/" rel="tag">Notes</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/research/" rel="tag">Research</a>
-            </li>
-          
-        </ul>
-      
-    
-  </footer>
-
-    </article>
-    
-      <div class="Divider"></div>
-    
-  
-    <article>
-      <header class="Heading">
-  <h1 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/techblog/post/paccp0/" rel="bookmark">ProLUG Admin Course Capstone Submission Requirements 🐧</a>
-  </h1>
-  
-    <time datetime="2024-10-06T00:00:00Z">October 6, 2024</time>
-  
-</header>
-      
-        <h1 id="intro-">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp0/#intro-">Intro 👋</a>
-</h1>
-<p>To complete the Professional Linux User Group (ProLUG) Professional Administrator Course (PAC), we are required to submit a final Capstone Project.</p>
-<p>This article is a bit out of order, as I proactively chose a project topic before it was formally introduced. The purpose of this article is to document the project requirements as set out by our instructor.</p>
-<p>Of course, I like to make slight modifications to ensure everything is neatly formatted and grouped—with plenty of emoji usage for extra flair! 😉</p>
-
-
-
-<h2 id="step-1select-a-topic-and-do-">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp0/#step-1select-a-topic-and-do-">Step 1.Select a topic and do 📌</a>
-</h2>
-
-
-
-<h4 id="a-write-a-brief-intro-to-the-project">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp0/#a-write-a-brief-intro-to-the-project">A) Write a brief intro to the project</a>
-</h4>
-
-
-
-<h4 id="b-outline-technologies">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp0/#b-outline-technologies">B) Outline Technologies</a>
-</h4>
-
-
-
-<h4 id="c-propose-idea-to-instructor">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp0/#c-propose-idea-to-instructor">C) Propose idea to Instructor</a>
-</h4>
-
-
-
-<h2 id="step-2research-">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp0/#step-2research-">Step 2.Research 🤓</a>
-</h2>
-
-
-
-<h4 id="a-confirm-this-is-doable">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp0/#a-confirm-this-is-doable">A) Confirm this is doable</a>
-</h4>
-
-
-
-<h4 id="b-estimate-time">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp0/#b-estimate-time">B) Estimate time</a>
-</h4>
-
-
-
-<h4 id="c-find-snippets-manuals">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp0/#c-find-snippets-manuals">C) Find snippets, manuals</a>
-</h4>
-
-
-
-<h2 id="step-3plan-project-">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp0/#step-3plan-project-">Step 3.Plan Project 📍</a>
-</h2>
-
-
-
-<h4 id="a-find-comparables">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp0/#a-find-comparables">A) Find Comparables</a>
-</h4>
-
-
-
-<h4 id="b-document-procedure">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp0/#b-document-procedure">B) Document Procedure</a>
-</h4>
-
-
-
-<h4 id="c-diagram-project">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp0/#c-diagram-project">C) Diagram Project</a>
-</h4>
-
-
-
-<h2 id="step-4diagram-">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp0/#step-4diagram-">Step 4.Diagram ⧄</a>
-</h2>
-
-
-
-<h4 id="a-create-a-system-diagram-excalidraw">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp0/#a-create-a-system-diagram-excalidraw">A) Create a System Diagram (ExcaliDraw)</a>
-</h4>
-
-
-
-<h4 id="b-combine-with-documentation">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp0/#b-combine-with-documentation">B) Combine with Documentation</a>
-</h4>
-
-
-
-<h4 id="c-export-for-use-in-keynote">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp0/#c-export-for-use-in-keynote">C) Export for use in Keynote</a>
-</h4>
-
-
-
-<h2 id="step-5build-">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp0/#step-5build-">Step 5.Build 🛠️</a>
-</h2>
-
-
-
-<h4 id="a-document-process">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp0/#a-document-process">A) Document Process</a>
-</h4>
-
-
-
-<h4 id="b-create-demo">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp0/#b-create-demo">B) Create Demo</a>
-</h4>
-
-
-
-<h4 id="c-essential-truth">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp0/#c-essential-truth">C) Essential Truth</a>
-</h4>
-
-
-
-<h2 id="step-6-documentation-">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp0/#step-6-documentation-">Step 6. Documentation 📕</a>
-</h2>
-
-
-
-<h4 id="a-create-redline-documentation">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp0/#a-create-redline-documentation">A) Create Redline Documentation</a>
-</h4>
-
-
-
-<h4 id="b-format-in-a-comprehensible-way">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp0/#b-format-in-a-comprehensible-way">B) Format in a comprehensible way</a>
-</h4>
-
-
-
-<h4 id="c-organize-logically">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp0/#c-organize-logically">C) Organize logically</a>
-</h4>
-
-
-
-<h2 id="step-7-prepare--present-">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp0/#step-7-prepare--present-">Step 7. Prepare &amp; Present 👨🏻‍🏫</a>
-</h2>
-
-
-
-<h4 id="a-volunteer-to-present">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp0/#a-volunteer-to-present">A) Volunteer to Present</a>
-</h4>
-
-
-
-<h4 id="b-create-keynote-15-20-slides">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp0/#b-create-keynote-15-20-slides">B) Create Keynote (15-20) Slides</a>
-</h4>
-
-
-
-<h4 id="i-project-purpose">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp0/#i-project-purpose">i. project Purpose</a>
-</h4>
-
-
-
-<h4 id="ii-diagram">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp0/#ii-diagram">ii. Diagram</a>
-</h4>
-
-
-
-<h4 id="iii-build-process">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp0/#iii-build-process">iii. Build Process</a>
-</h4>
-
-
-
-<h4 id="iv-what-did-you-learn">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp0/#iv-what-did-you-learn">iv. What did you learn?</a>
-</h4>
-
-
-
-<h4 id="v-what-transferable-skills-did-you-gain">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp0/#v-what-transferable-skills-did-you-gain">v. What transferable skills did you gain?</a>
-</h4>
-<hr>
-
-
-
-<h1 id="deliverables-">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp0/#deliverables-">Deliverables 🔑</a>
-</h1>
-
-
-
-<h3 id="-1-comprehensive-documentation-">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp0/#-1-comprehensive-documentation-">✔️ 1. Comprehensive Documentation 📕</a>
-</h3>
-
-
-
-<h3 id="-2-system-diagram-">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp0/#-2-system-diagram-">✔️ 2. System Diagram ⧄</a>
-</h3>
-
-
-
-<h3 id="-3-communicative-examples-">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp0/#-3-communicative-examples-">✔️ 3. Communicative Examples 📸</a>
-</h3>
-
-
-
-<h3 id="-4-keynote-">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp0/#-4-keynote-">✔️ 4. Keynote 👨🏻‍🏫</a>
-</h3>
-<hr>
-
-
-
-<h3 id="prolug-links-">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp0/#prolug-links-">ProLUG Links ⛓️</a>
-</h3>
-<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
-Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
-Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
-ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
-KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
-      
-      
-
-  
-
-  
-
-
-
-
-
-  <footer>
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
-            </li>
-          
-        </ul>
-      
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/capstoneproject/" rel="tag">CapstoneProject</a>
-            </li>
-          
-        </ul>
-      
-    
-  </footer>
-
-    </article>
-    
-      <div class="Divider"></div>
-    
-  
-    <article>
-      <header class="Heading">
-  <h1 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/techblog/post/pacu4/" rel="bookmark">ProLUG Admin Course Unit 4 🐧</a>
-  </h1>
-  
-    <time datetime="2024-10-05T00:00:00Z">October 5, 2024</time>
-  
-</header>
-      
-        <h1 id="operating-running-systems-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#operating-running-systems-">Operating Running Systems ♺</a>
-</h1>
-<p><img src="https://trevorsmale.github.io/techblog/images/PACU4/sudo.png" alt="Sodoer Power"></p>
-
-
-
-<h2 id="introduction">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#introduction">Introduction</a>
-</h2>
-<p>In this week&rsquo;s Brown Bag session, we discussed the operation of running systems. This refers to when systems are live and possibly being accessed by users. During this time, we inspect settings, configurations, logs, and monitor running processes.</p>
-
-
-
-<h3 id="purpose">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#purpose">Purpose</a>
-</h3>
-<ul>
-<li>Identify anomalies 🔍</li>
-<li>Monitor users for incorrect usage 👥</li>
-<li>Detect nefarious behavior ⚠️</li>
-<li>Ensure processes have adequate resources ⚙️</li>
-<li>Check logs for faults or failures 📝</li>
-</ul>
-<hr>
-
-
-
-<h1 id="class-notes">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#class-notes">Class Notes</a>
-</h1>
-<p>A project wherein a file name was not being recognized, but the uuid was. Once the uuid was placed in fstab, everything worked fine.</p>
-
-
-
-<h2 id="grey-beard-wisdom-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#grey-beard-wisdom-">Grey Beard Wisdom 🧙‍♂️</a>
-</h2>
-<ul>
-<li>Make sure ports are <strong>open</strong> &amp; server is <strong>on</strong></li>
-<li>Rebuild Backups in a Test Environment to ensure integrity</li>
-<li>Write Stuff that can be supported by your team</li>
-<li>Whats the AI policy for the company?</li>
-</ul>
-
-
-
-<h2 id="useful-toolsresourcescommands">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#useful-toolsresourcescommands">Useful Tools/Resources/Commands:</a>
-</h2>
-<p>Tripwire - <a href="https://www.tripwire.com/">Sourceforge</a>
-Grubby - <a href="https://software.opensuse.org/package/grubby">https://software.opensuse.org/package/grubby</a>
-SANS.org
-srq trigger</p>
-<hr>
-
-
-
-<h1 id="lab-notes-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#lab-notes-">Lab Notes 🧪</a>
-</h1>
-
-
-
-<h2 id="server-checks">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#server-checks">Server Checks</a>
-</h2>
-
-
-
-<h3 id="warm-up">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#warm-up">Warm Up</a>
-</h3>
-<pre><code>cd ~ # Change Directory to Home
-
-ls # list
-
-mkdir unit4 # Create a Directory named unit4
-
-mkdir unit4/test/round6 # This fails 🙅, because the -p option is not invoked 
-
-mkdir -p unit4/test/round6 # This works because the Parent option -p is enables allowing for sub directories ✅
-
-cd unit4 # Change to unit4 directory
-
-man ps # View the manual for the ps command 👀
-  
-ps -ef # -e Display information about other users processes, including those without controlling terminals. -f Display the uid, pid, parent pid, recent CPU
-
-ps -ef | grep -i root #PID 0, the process ID is zero
-  
-ps -ef | grep -i root | wc -L #this command could be helpful because within the root processes it finds the process with the longest line. This could help with finding resource heavy processes or identifying complex commands
-
-top
-</code></pre>
-
-
-
-<h3 id="pre-lab-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#pre-lab-">Pre-Lab 🥪</a>
-</h3>
-<pre><code>rpm -qa | grep -i iostat #should find nothing 👍
-
-dnf iostat #This automatically invoke an install response 🪄
-
-Install package 'sysstat' to provide command 'iostat'? [N/y] y
-</code></pre>
-
-
-
-<h4 id="confirming-that-sysstat-is-installed-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#confirming-that-sysstat-is-installed-">Confirming that Sysstat is installed 👍</a>
-</h4>
-<p><img src="https://trevorsmale.github.io/techblog/images/PACU4/sysstat.png" alt="iostat screenshot"></p>
-<pre><code>rpm –qa | grep –i sysstat  # sysstat-12.5.4-8.el9_4.x86_64
-
-dnf install sysstat  # Unnessecary 👎
-
-rpm –qa | grep –I sysstat  # Didn't work 😐
-
-rpm –qi sysstat&lt;version&gt;   # Didn't work 'unexpected token newline'
-</code></pre>
-
-
-
-<h4 id="confirming-that-vim-is-installed-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#confirming-that-vim-is-installed-">Confirming that Vim is installed 👍</a>
-</h4>
-<pre><code>rpm -qa | grep -i vim # vim-minimal-8.2.2637-20.el9_l.x86_64 ✅
-</code></pre>
-
-
-
-<h3 id="lab-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#lab-">Lab 🥼🧪</a>
-</h3>
-
-
-
-<h4 id="gathering-system-release-and-kernel-info-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#gathering-system-release-and-kernel-info-">Gathering System release and kernel info 🌽</a>
-</h4>
-<pre><code>cat/etc/*release
-</code></pre>
-<p><img src="https://trevorsmale.github.io/techblog/images/PACU4/etcrelease.png" alt="cat /etc/*release screenshot"></p>
-<pre><code>uname #Linux
-
-uname -a #Show all
-
-uname -r #release
-
-rpm -qa | grep -i kernel
-</code></pre>
-<p><img src="https://trevorsmale.github.io/techblog/images/PACU4/kernelinfo.png" alt="rpm -qa | grep -i kernel ouput"></p>
-
-
-
-<h4 id="check-the-number-of-disks-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#check-the-number-of-disks-">Check the number of <strong>Disks</strong> 💾</a>
-</h4>
-<pre><code>fdisk -l #list partition tables
-
-ls /dev/sd* #lists disks, with a wildcard at the end
-
-pvs #physical volumes, Volume group and format
-
-vgs #Volumes Groups
-
-lvs #Logical Volumes
-
-pvdisplay # More Comprehensive listing of Physical Volumes
-
-vgdisplay # More Comprehensive listing of Volume Groups
-
-lvdisplay # More Comprehensive listing of Logical Volumes
-</code></pre>
-
-
-
-<h4 id="check-disk-statistics-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#check-disk-statistics-">Check <strong>Disk</strong> Statistics 💾</a>
-</h4>
-<pre><code>iostat -d # Displays only device statistics
-
-iostat -d 2 # Displays only device statistics in 2 second increments
-
-iostat -d 2 5 # Displays only device statistics in 2 second increments for a total of 5 seconds
-</code></pre>
-
-
-
-<h4 id="check-the-amount-of-ram-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#check-the-amount-of-ram-">Check the amount of RAM 🍪</a>
-</h4>
-<pre><code>cat /proc/meminfo # a very comprehensive listing of memory info that spans multiple pages
-
-free # Displays **Memory** and **Swap** Space usage
-
-free -m # Diplays **Memory** usage in Mebibytes 1024 bytes MiB
-
-🍼 I was today years old when I learned what a Mebibyte is 😄
-</code></pre>
-
-
-
-<h4 id="checking--of-processors-and-processor-info">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#checking--of-processors-and-processor-info">Checking # of processors and processor info</a>
-</h4>
-<pre><code>cat /proc/cpuinfo
-
-cat /proc/cpuinfo | grep proc | wc –l
-
-iostat -c
-
-iostat -c 2 # Runs CPU options in 2 second intervals.
-
-iostat -c 2 5 # I had run this command before, in two second intervals for a total of 5 seconds
-</code></pre>
-
-
-
-<h4 id="check-system-uptime">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#check-system-uptime">Check system uptime</a>
-</h4>
-<pre><code>uptime # 16:40  up 2 days, 17:38, 2 users, load averages: 2.81 2.46 2.30
-
-man uptime # show how long system has been running for 1 min 2 min 15 mins
-</code></pre>
-
-
-
-<h4 id="check-recent-logins">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#check-recent-logins">Check Recent Logins</a>
-</h4>
-<pre><code>last # vertical list of users ttys 
-
-last | more # more allows me to scroll through
-
-w # Display detailed info about currently logged in users 
-
-who # Prints basic info about users currently logged in
-
-whoami # Just lists your user name
-</code></pre>
-
-
-
-<h5 id="difference-between-w--who-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#difference-between-w--who-">Difference between w / who 🧐</a>
-</h5>
-<table>
-  <thead>
-      <tr>
-          <th>Command</th>
-          <th>Information Provided</th>
-          <th>Key Focus</th>
-          <th>Use Case</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>who</code></td>
-          <td>Basic info about logged-in users (username, terminal, login time, remote host)</td>
-          <td>Simple listing of users currently logged in</td>
-          <td>Quick check on who is logged in</td>
-      </tr>
-      <tr>
-          <td><code>w</code></td>
-          <td>Detailed info about logged-in users, system load, idle time, and active processes</td>
-          <td>Who is logged in and what they are doing, with system load info</td>
-          <td>System monitoring and activity tracking</td>
-      </tr>
-  </tbody>
-</table>
-
-
-
-<h4 id="check-running-processes-and-services">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#check-running-processes-and-services">Check running processes and services</a>
-</h4>
-<pre><code>ps -aux | more # sending all listed processes to more
-
-ps -ef | more # list every process
-
-ps -ef | wc -l # counts the number of lines from a full format listing
-</code></pre>
-
-
-
-<h4 id="looking-at-historical-system-usage">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#looking-at-historical-system-usage">Looking at Historical System Usage</a>
-</h4>
-<p>sar - Collect, report, or save system activity information.</p>
-<pre><code>sar | more # check processing for the last day
-
-sar -r | more # check all processes
-</code></pre>
-
-
-
-<h4 id="sar-was-not-working-so-i-had-to-figure-it-out">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#sar-was-not-working-so-i-had-to-figure-it-out">Sar was not working, so I had to figure it out</a>
-</h4>
-<pre><code>sudo dnf install sysstat 👍
-
-sudo systemctl enable --now sysstat ✅
-
-sudo systemctl start sysstat ✅
-
-sudo systemctl status sysstat ✅
-
-sudo vim /etc/sysconfig/sysstat ✅
-
-ENABLED=&quot;true&quot; ✅
-
-sudo systemctl restart sysstat ♺
-
-sar # 👍 Works Now!
-</code></pre>
-
-
-
-<h4 id="ok-back-on-course-with-sar">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#ok-back-on-course-with-sar">Ok back on course with sar</a>
-</h4>
-<pre><code>sar 2 # runs sar every 2 seconds
-
-sar 2 5 # runs sar every 2 seconds for a total duration of 5 seconds
-</code></pre>
-
-
-
-<h4 id="check-sar-logs-for-previous-daily-usage">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#check-sar-logs-for-previous-daily-usage">Check sar logs for previous daily usage</a>
-</h4>
-<pre><code>cd var/log/sa/
-
-# ls
-</code></pre>
-
-
-
-<h4 id="interesting-sar-logs-are-store-in-varlog-whod-a-thunk-it">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#interesting-sar-logs-are-store-in-varlog-whod-a-thunk-it">Interesting, sar logs are store in var/log/ who&rsquo;d a thunk it</a>
-</h4>
-<pre><code>sar -f sa03 | head
-</code></pre>
-
-
-
-<h3 id="exploring-cron">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#exploring-cron">Exploring Cron</a>
-</h3>
-<p>Calm down snoop, this is job related 💩</p>
-
-
-
-<h4 id="there-is-a-daemon-running-my-cron-thank-god-i-can-check-in-on-it-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#there-is-a-daemon-running-my-cron-thank-god-i-can-check-in-on-it-">There is a daemon running my cron, thank god I can check in on it 😈</a>
-</h4>
-<pre><code>ps -ef | grep -i cron
-
-systemctl status crond
-
-/var/spool/cron 
-
-ls -ld /etc/cron*
-</code></pre>
-<hr>
-
-
-
-<h1 id="an-operations-bridge">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#an-operations-bridge">An Operations Bridge</a>
-</h1>
-<p><img src="https://trevorsmale.github.io/techblog/images/PACU4/opbridge.webp" alt="Abstract Operations Bridge Dashboard"></p>
-<blockquote>
-<p>A centralized platform that provides real-time visibility and control over an organization&rsquo;s IT infrastructure and services.<br>
-— CIO WIKI<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
-</blockquote>
-
-
-
-<h2 id="essentially-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#essentially-">Essentially 🧪</a>
-</h2>
-<p>A unified view of operations, consolidating and correlating data from various sources.</p>
-
-
-
-<h2 id="general-purpose">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#general-purpose">General Purpose</a>
-</h2>
-<ul>
-<li>Streamline IT operations ⚡</li>
-<li>Improve service availability 📈</li>
-<li>Enhance incident response and resolution 🔍</li>
-</ul>
-
-
-
-<h2 id="general-features">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#general-features">General Features</a>
-</h2>
-
-
-
-<h3 id="event-management-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#event-management-">Event Management 🔔</a>
-</h3>
-<p>Collects and consolidates events and alerts from network devices, servers, applications, and security systems. Applies correlation and filtering to identify meaningful incidents and prioritize them based on service impact.</p>
-
-
-
-<h3 id="performance-monitoring-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#performance-monitoring-">Performance Monitoring 🏎️</a>
-</h3>
-<p>Monitors key performance indicators (KPIs) for infrastructure, applications, and services. Identifies performance bottlenecks, trends, and anomalies, enabling proactive optimization.</p>
-
-
-
-<h3 id="incident-management-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#incident-management-">Incident Management 🚨</a>
-</h3>
-<p>Captures, tracks, and escalates incidents. Facilitates collaboration and prioritization, ensuring timely resolution with historical insights and knowledge base integration for faster fixes.</p>
-
-
-
-<h3 id="root-cause-analysis-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#root-cause-analysis-">Root Cause Analysis 🦷</a>
-</h3>
-<p>Analyzes events, performance data, and logs to uncover the root causes of incidents. Uses data analytics to correlate related events and identify underlying issues affecting service availability.</p>
-
-
-
-<h3 id="dashboards-and-reporting-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#dashboards-and-reporting-">Dashboards and Reporting 📊</a>
-</h3>
-<p>Provides customizable dashboards and reports to visualize the health, performance, and availability of IT systems. Allows stakeholders to monitor key metrics, track service-level agreements (SLAs), and gain insights into overall system performance.</p>
-
-
-
-<h3 id="automation-and-orchestration-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#automation-and-orchestration-">Automation and Orchestration ⚙️</a>
-</h3>
-<p>Includes automation capabilities for routine IT tasks like system restarts, service provisioning, and configuration changes. Reduces manual effort, increases efficiency, and minimizes human errors.</p>
-
-
-
-<h2 id="potential-challenges">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#potential-challenges">Potential Challenges</a>
-</h2>
-
-
-
-<h3 id="initial-setup-and-configuration-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#initial-setup-and-configuration-">Initial Setup and Configuration 🛠️</a>
-</h3>
-<p>Can be complex and may require specialized expertise and significant manpower.</p>
-
-
-
-<h3 id="integration-with-multiple-systems-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#integration-with-multiple-systems-">Integration with Multiple Systems 🧩</a>
-</h3>
-<p>As the system grows in complexity, there’s an increased chance of failure and maintenance challenges.</p>
-
-
-
-<h3 id="training-and-skill-development-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#training-and-skill-development-">Training and Skill Development 📚</a>
-</h3>
-<p>Users may need training to effectively manage and operate the platform. Integrating disparate systems requires time and expertise.</p>
-
-
-
-<h3 id="ongoing-maintenance-and-updates-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#ongoing-maintenance-and-updates-">Ongoing Maintenance and Updates 🔄</a>
-</h3>
-<p>Frequent updates to data sources can disrupt connections, making regular maintenance essential. It’s not a turnkey solution.</p>
-
-
-
-<h2 id="personal-take">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#personal-take">Personal Take</a>
-</h2>
-
-
-
-<h3 id="the-term">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#the-term">The Term</a>
-</h3>
-<p>The term <em>Operations Bridge</em> is relatively new to me. I would’ve called this a <em>Unified Dashboard</em>. The idea of bridging operations by consolidating and unifying data makes sense, but it’s a bit more complex than just a simple dashboard.</p>
-
-
-
-<h2 id="outstanding-feature">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#outstanding-feature">Outstanding Feature</a>
-</h2>
-<p>The dashboard and reporting capabilities are the most critical. Seeing everything at a glance is invaluable. Other features can often be achieved using smaller tools like Cron jobs, Ansible, Bash, or Prometheus.</p>
-
-
-
-<h2 id="complexity-as-a-weakness">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#complexity-as-a-weakness">Complexity as a Weakness</a>
-</h2>
-<p>The complexity is a major drawback. Constant tweaking seems inevitable in the ever-changing IT landscape. Large organizations with stable, long-term systems may benefit most, but the potential for cascading errors, like in Chernobyl, comes to mind when a single feedback loop causes widespread failures.</p>
-<hr>
-
-
-
-<h1 id="-incident-response-scenario-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#-incident-response-scenario-">🚨 Incident Response Scenario 🚨</a>
-</h1>
-<p><img src="https://trevorsmale.github.io/techblog/images/PACU4/ircheat.png" alt="Incident Response CheatSheet Screenshot"></p>
-<blockquote>
-<p>— Incident Response Cheatsheet<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
-</blockquote>
-
-
-
-<h2 id="scenario-outline">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#scenario-outline">Scenario Outline</a>
-</h2>
-<p>Your team lacks documentation on how to check out a server during an incident.<br>
-Develop a procedure detailing what an operations person should do when a system is suspected of malfunctioning.</p>
-
-
-
-<h3 id="key-points">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#key-points">Key Points</a>
-</h3>
-<ul>
-<li>Undocumented server 🛠️</li>
-<li>Server malfunctioning 🚫</li>
-<li>Need for procedural diagnosis 🧑‍💻</li>
-</ul>
-
-
-
-<h2 id="incident-response-cycle">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#incident-response-cycle">Incident Response Cycle</a>
-</h2>
-<ol>
-<li>Detect</li>
-<li>Respond</li>
-<li>Mitigate</li>
-<li>Report</li>
-<li>Recover</li>
-<li>Remediate</li>
-<li>Lessons</li>
-</ol>
-
-
-
-<h2 id="custom-incident-procedure">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#custom-incident-procedure">Custom Incident Procedure</a>
-</h2>
-
-
-
-<h3 id="1-detect--observe">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#1-detect--observe">1. Detect / Observe</a>
-</h3>
-<ul>
-<li>Check process logs</li>
-<li>Check security logs</li>
-<li>Check application logs</li>
-</ul>
-
-
-
-<h3 id="2-respond">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#2-respond">2. Respond</a>
-</h3>
-
-
-
-<h4 id="snapshot-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#snapshot-">Snapshot 📸</a>
-</h4>
-<p>If possible, take a snapshot of the current system. Treat it like a crime scene—nothing should be disturbed or altered. This snapshot is crucial for forensic analysis of the system&rsquo;s state.</p>
-
-
-
-<h4 id="triage-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#triage-">Triage 🩺</a>
-</h4>
-<p>Scan the system for symptoms. Determine if it&rsquo;s a <strong>security incident</strong> or a <strong>bug</strong>.</p>
-
-
-
-<h5 id="examine-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#examine-">Examine 🩻</a>
-</h5>
-<ul>
-<li>Network configuration</li>
-<li>DNS settings</li>
-<li>Hosts file</li>
-<li>Autostart processes</li>
-<li>Scheduled jobs</li>
-</ul>
-
-
-
-<h5 id="list-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#list-">List 📝</a>
-</h5>
-<ul>
-<li>Active network connections</li>
-<li>System users</li>
-<li>Running processes</li>
-<li>Recently modified files</li>
-</ul>
-
-
-
-<h5 id="verify-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#verify-">Verify ✔</a>
-</h5>
-<ul>
-<li>Integrity of installed packages</li>
-</ul>
-
-
-
-<h3 id="3-mitigate">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#3-mitigate">3. Mitigate</a>
-</h3>
-<p>After triaging, identify the nature of the issue. If it&rsquo;s a:</p>
-<ol>
-<li><strong>Security Incident</strong> 🚨 — Follow the [Crisis Management Procedure]<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></li>
-<li><strong>Bug</strong> 🪲 — Proceed with the steps below</li>
-</ol>
-
-
-
-<h3 id="4-report--declare-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#4-report--declare-">4. Report / Declare 📣</a>
-</h3>
-<p>Inform the team and supervisors that the incident has been triaged, diagnosed, documented, and mitigated.</p>
-
-
-
-<h3 id="5-recover-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#5-recover-">5. Recover 🛠️</a>
-</h3>
-<p>Develop or follow a recovery plan to restore the system to normal operation. Document the recovery steps for future reference.</p>
-
-
-
-<h3 id="6-remediate--repair-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#6-remediate--repair-">6. Remediate / Repair 🛠️</a>
-</h3>
-<p>Fix the issue based on its nature. This could involve:</p>
-<ul>
-<li>Reconfiguration</li>
-<li>Patching</li>
-<li>Blocking/Banning</li>
-<li>Restoration</li>
-<li>Allocating new resources</li>
-<li>Turning it off and on 😁</li>
-</ul>
-
-
-
-<h3 id="7-document--lessons-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#7-document--lessons-">7. Document / Lessons 📝</a>
-</h3>
-<p>Write a report detailing the problem, its cause, and the steps taken to resolve it. Include a <strong>lessons learned</strong> section to improve future responses.</p>
-
-
-
-<h3 id="8-bask-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#8-bask-">8. Bask ☕️</a>
-</h3>
-<p>Once resolved, lean back, nod in satisfaction, and enjoy your coffee. Every resolution deserves a small moment of celebration.</p>
-<hr>
-
-
-
-<h1 id="the-battle-drill---4">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#the-battle-drill---4">The Battle Drill ⚔️  <sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup></a>
-</h1>
-<p>A <strong>Battle Drill</strong> is a standard operating procedure used in infantry training. It’s based on common scenarios that require rapid, collective action. By practicing battle drills, a team can react quickly and efficiently to dangerous situations without the need for complex decision-making.</p>
-<p>Battle drills prepare infantry for swift, organized, and aggressive responses to high-stress situations such as explosions, direct fire, flashing lights, chemical exposure, or sudden assaults.</p>
-<blockquote>
-<p>Battle Drills are for those moments when everything is going wrong and you need a reactionary response.<!-- raw HTML omitted -->
-— <!-- raw HTML omitted -->Scott Champine<!-- raw HTML omitted --></p>
-</blockquote>
-<p>⏱️ <strong>Reaction time and mental readiness</strong> are key to success.</p>
-
-
-
-<h2 id="application-to-operational-incidents-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#application-to-operational-incidents-">Application to Operational Incidents 🛠️</a>
-</h2>
-<p>The principles behind battle drills can easily be applied to system operations, where rapid group responses to incidents are critical.</p>
-
-
-
-<h3 id="documentation-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#documentation-">Documentation 📝</a>
-</h3>
-<ul>
-<li>Procedures must be <strong>well-documented</strong> and easy to understand for all possible scenarios.</li>
-</ul>
-
-
-
-<h3 id="clear-objectives-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#clear-objectives-">Clear Objectives 🎯</a>
-</h3>
-<ul>
-<li>Leadership communicates <strong>simple and clear objectives</strong> to the team for each scenario.</li>
-</ul>
-
-
-
-<h3 id="drilling--testing-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#drilling--testing-">Drilling / Testing 🧑‍💻</a>
-</h3>
-<ul>
-<li>Teams <strong>practice scenarios together</strong>, following the documented procedure and maintaining effective communication.</li>
-</ul>
-
-
-
-<h3 id="known-procedure-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#known-procedure-">Known Procedure 👥</a>
-</h3>
-<ul>
-<li>Through <strong>review and practice</strong>, everyone knows their role and objectives in the group, ensuring a unified response in any scenario.</li>
-</ul>
-
-
-
-<h2 id="the-importance-of-drilling-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#the-importance-of-drilling-">The Importance of Drilling 🔄</a>
-</h2>
-<p>In real incidents, there’s often no time to plan a response. For regular operations, we have the luxury of preparation and research, but in high-stress, mission-critical situations, the pressure can become overwhelming, potentially leading to paralysis. <strong>Preparedness through practice</strong> is essential.</p>
-
-
-
-<h2 id="knowing-your-tools-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#knowing-your-tools-">Knowing Your Tools 🧰</a>
-</h2>
-<p>In the infantry, this means knowing how to load, reload, field-strip, and fire a weapon, or apply first aid using a trauma kit to save a fellow soldier.</p>
-<p>These concepts are equally valuable in system operations. Knowing how to run basic commands, troubleshoot issues, break down problems, and write scripts all fall under <strong>knowing your tools</strong>. Just as a soldier must be able to handle their equipment with their eyes closed, an operator must be fluent in the commands, tools, and procedures they rely on daily. This level of expertise comes from <strong>memorizing commands, knowing paths, and practicing scripting</strong>.</p>
-<hr>
-
-
-
-<h3 id="detection">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#detection">Detection</a>
-</h3>
-
-
-
-<h3 id="response">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#response">Response</a>
-</h3>
-
-
-
-<h3 id="mitigation">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#mitigation">Mitigation</a>
-</h3>
-
-
-
-<h3 id="reporting">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#reporting">Reporting</a>
-</h3>
-
-
-
-<h3 id="recovery">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#recovery">Recovery</a>
-</h3>
-
-
-
-<h3 id="remediation">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#remediation">Remediation</a>
-</h3>
-
-
-
-<h3 id="lessons-learned">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#lessons-learned">Lessons Learned</a>
-</h3>
-
-
-
-<h3 id="after-action-review">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#after-action-review">After action review</a>
-</h3>
-
-
-
-<h3 id="operations-bridge">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#operations-bridge">Operations Bridge</a>
-</h3>
-<hr>
-
-
-
-<h1 id="reflecting-upon-unit-4">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#reflecting-upon-unit-4">Reflecting upon Unit #4</a>
-</h1>
-<ol>
-<li>What questions do you still have about this week?</li>
-</ol>
-
-
-
-<h2 id="note-taking-improvements">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#note-taking-improvements">Note-Taking Improvements</a>
-</h2>
-<p>A few months before this course, I realized that to deepen my understanding of systems, I needed to take extensive notes I could easily refer back to. After doing thorough research on different note-taking systems, I concluded that LogSeq<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup> was the best fit for my needs.</p>
-<p>I chose LogSeq<sup id="fnref1:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup> because:</p>
-<ul>
-<li>It’s open source</li>
-<li>Local-first</li>
-<li>Supports tags</li>
-<li>Uses Markdown</li>
-<li>Works across all platforms</li>
-</ul>
-<p>Since adopting LogSeq, I’ve taken an immense amount of notes. I&rsquo;ve also created a lot of cheat sheets and references, thanks to LLMs and various GitHub repositories. Let’s just say my note-taking game has been strong.</p>
-<p>When this course started, I knew that note-taking would be a big component. Most of my notes are private since I prefer to write candidly, sometimes using strong language. To share more polished, public-friendly notes, I created this HUGO blog. I’m a stickler for clean layouts, typesetting, and readability, so filling out pre-formatted documents isn’t my style.</p>
-<hr>
-
-
-
-<h3 id="prolug-links-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu4/#prolug-links-">ProLUG Links ⛓️</a>
-</h3>
-<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
-Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
-Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
-ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
-KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
-<div class="footnotes" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn:1">
-<p>Operations Bridge <a href="https://cio-wiki.org/wiki/Operations_Bridge">Wiki</a> CIO-WIKI, 2024.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:2">
-<p>Incident Response Cheatsheet Version 1.8 <a href="https://zeltser.com/media/docs/security-incident-survey-cheat-sheet.pdf?msc=Cheat+Sheet+Blog">PDF Reference</a> Lenny Zeltser, 2024.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:3">
-<p>Detailed Crisis Management Procedure <a href="https://trevorsmale.github.io/techblog/PACU4">Blog</a> Trevor Smale, 2024.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:4">
-<p>Battle Drill <a href="https://en.wikipedia.org/wiki/Battle_drill">Wiki</a> Wikipedia.org, 2024.&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:5">
-<p>Note Taking <a href="https://logseq.com/">Software</a>&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a>&#160;<a href="#fnref1:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-</ol>
-</div>
-      
-      
-
-  
-
-  
-
-
-
-
-
-  <footer>
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
-            </li>
-          
-        </ul>
-      
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/operating-systems/" rel="tag">Operating Systems</a>
-            </li>
-          
-        </ul>
-      
-    
-  </footer>
-
-    </article>
-    
-      <div class="Divider"></div>
-    
-  
-    <article>
-      <header class="Heading">
-  <h1 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/techblog/post/btrfs/" rel="bookmark">Why Btrfs 🤔</a>
-  </h1>
-  
-    <time datetime="2024-10-03T00:00:00Z">October 3, 2024</time>
-  
-</header>
-      
-        <p><img src="https://trevorsmale.github.io/techblog/images/Btrfs/btrfslogo.png" alt="Custom Btrfs Banner"></p>
-
-
-
-<h1 id="btrfs-">
-  <a class="Heading-link u-clickable" href="/techblog/post/btrfs/#btrfs-">Btrfs 💾</a>
-</h1>
-<p>Btrfs stands for <strong>B-tree File System</strong>, not &ldquo;Better File System,&rdquo; though it’s easy to see why people might think that. I believe Btrfs is the future for both small and large-scale projects, as it reduces the need for manual and automated maintenance, while simplifying backup and restoration processes.</p>
-<p>This article aims to shed light on the history and motivation behind creating Btrfs, its core functionality, and the standout features that set it apart from the competition.</p>
-
-
-
-<h2 id="history">
-  <a class="Heading-link u-clickable" href="/techblog/post/btrfs/#history">History</a>
-</h2>
-
-
-
-<h3 id="motivation">
-  <a class="Heading-link u-clickable" href="/techblog/post/btrfs/#motivation">Motivation</a>
-</h3>
-<p>The idea for Btrfs was first proposed by IBM researcher and bioinformatician <strong>Ohad Rodeh</strong> at a USENIX conference in 2007. The goal was to develop a <strong>copy-on-write (COW)</strong>-friendly B-tree algorithm, which would allow for efficient data storage and retrieval without the overhead typical of other file systems.</p>
-<p>As Valerie Aurora explained:</p>
-<blockquote>
-<p>&ldquo;To start with, B-trees in their native form are wildly incompatible with COW. The leaves of the tree are linked together, so when the location of one leaf changes (via a write—which implies a copy to a new block), the link in the adjacent leaf changes, which triggers another copy-on-write and location change, which changes the link in the next leaf&hellip; The result is that the entire B-tree, from top to bottom, has to be rewritten every time one leaf is changed.&rdquo;<br>
-– Valerie Aurora<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
-</blockquote>
-<p><strong>Chris Mason</strong>, a core developer of the <strong>Reiser Filesystem</strong>, liked the idea and saw an opportunity to move beyond Reiser, which used B-trees but wasn’t optimized for COW. Mason brought the idea to his new job at Oracle, where development of Btrfs began in earnest.</p>
-<blockquote>
-<p>&ldquo;I started Btrfs soon after joining Oracle. I had a unique opportunity to take a detailed look at the features missing from Linux, and felt that Btrfs was the best way to solve them.&rdquo;<br>
-– Chris Mason<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
-</blockquote>
-<p>In collaboration with Oracle colleague <strong>Zach Brown</strong>, they drafted the initial version of Btrfs.</p>
-
-
-
-<h3 id="rapid-development-">
-  <a class="Heading-link u-clickable" href="/techblog/post/btrfs/#rapid-development-">Rapid Development ⏱️</a>
-</h3>
-<p>Thanks to corporate backing and a team of experienced developers, Btrfs moved through an aggressive development cycle. Within two years of the technical proposal, a working 1.0 version of Btrfs was released in late 2008.</p>
-<p>Shortly after its introduction, Btrfs was merged into the <strong>mainline Linux kernel</strong>. Despite the conservative nature of file system adoption—where admins, systems engineers, and software engineers prefer proven, stable systems—Btrfs quickly gained traction.</p>
-<p>In 2015, <strong>SUSE Linux Enterprise Server (SLES)</strong> became the first major Linux distribution to adopt Btrfs as its default file system, citing it as the future of Linux storage solutions.</p>
-
-
-
-<h3 id="enterprise-adoption-">
-  <a class="Heading-link u-clickable" href="/techblog/post/btrfs/#enterprise-adoption-">Enterprise Adoption 📊</a>
-</h3>
-<p>Today, Btrfs is the default file system for several major enterprise Linux distributions, including <strong>SUSE</strong>, <strong>Fujitsu Linux</strong>, <strong>Ubuntu</strong>, <strong>Oracle Linux</strong>, and popular user distributions like <strong>Fedora</strong>, <strong>Arch</strong>, and <strong>Gentoo</strong>.</p>
-<p>In fact, <strong>Meta</strong> (formerly Facebook) uses Btrfs to manage their large, dynamic data sets. According to core developer <strong>Josef Bacik</strong>, using Btrfs at Meta has significantly reduced access times and contributed to cost reductions in production environments.<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
-
-
-
-<h2 id="how-btrfs-works-">
-  <a class="Heading-link u-clickable" href="/techblog/post/btrfs/#how-btrfs-works-">How Btrfs Works ⚙️</a>
-</h2>
-
-
-
-<h3 id="the-b-tree-algorithm-">
-  <a class="Heading-link u-clickable" href="/techblog/post/btrfs/#the-b-tree-algorithm-">The B-Tree+ Algorithm 🌳</a>
-</h3>
-<p>At its core, Btrfs relies on a <strong>B-tree</strong>, a type of data structure designed to organize and store data efficiently.</p>
-<p>Here is a basic diagram of a B-tree, though in file systems, it gets more complex:</p>
-<p><img src="https://raw.github.com/alexeygrigorev/wiki-figures/master/ulb/dbsa/ind/btree-ex.png" alt="B-Tree Diagram"></p>
-<p>A B-tree consists of <strong>nodes</strong> and <strong>links</strong> (sometimes referred to as <strong>keys</strong> and <strong>pointers</strong> or <strong>leaves</strong> and <strong>branches</strong>), which drastically reduce seek time. This ensures that, no matter how much data you store, finding the right file is quick and doesn’t require searching through everything.</p>
-<p>The <strong>root node</strong> is a type of index stored in a fixed location on the disk. It serves as the starting point for a rapid search called <strong>fanning out</strong>.</p>
-<p>This structure reduces disk access time and, in turn, improves overall system efficiency. The relationship between the depth of nodes and the breadth of data is known as the <strong>fan-out factor</strong>. Tuning this ratio can either speed up searches (with a wider spread) or reduce write size for smaller segments.</p>
-
-
-
-<h3 id="copy-on-write-cow-">
-  <a class="Heading-link u-clickable" href="/techblog/post/btrfs/#copy-on-write-cow-">Copy-on-Write (COW) 🐄</a>
-</h3>
-<p><strong>Copy-on-Write (COW)</strong> is a method where data and metadata are not overwritten in place. Instead, they are copied to a new location before the update is finalized. Btrfs employs COW in conjunction with its B-tree algorithm to maintain data integrity.</p>
-<p>Btrfs also uses <strong>delayed allocation</strong>, where metadata is updated first, linking it to new data before the actual data is copied <strong>Persistant Pre Allocation</strong> to a new location. This delay allows the file system to organize sector placement called <strong>Extent Base Allocation</strong> and optimize metadata before the actual write <strong>Multi-Block Allocation</strong>, reducing unnecessary reads and writes.</p>
-<p>This delayed allocation process supports <strong>wear leveling</strong> (also known as <strong>TRIM</strong>) on SSDs, where data is written to new sectors to avoid repeatedly writing to the same location, thus extending the lifespan of the drive.</p>
-
-
-
-<h3 id="snapshots-">
-  <a class="Heading-link u-clickable" href="/techblog/post/btrfs/#snapshots-">Snapshots 📸</a>
-</h3>
-<p><strong>Snapshots</strong> are one of Btrfs&rsquo;s standout features. They use COW to create lightweight, efficient snapshots of data at any given time.</p>
-<p>Unlike traditional Linux filesystems, which only allow snapshots of <strong>logical volumes</strong>, Btrfs can snapshot both <strong>volumes</strong> and <strong>subvolumes</strong>. This means that the entire data set—down to the subvolume level—can be efficiently snapshotted. Snapshots in Btrfs do not require duplication of data, only tracking changes made after the snapshot was taken.</p>
-
-
-
-<h3 id="cloning-">
-  <a class="Heading-link u-clickable" href="/techblog/post/btrfs/#cloning-">Cloning 🐑🐑</a>
-</h3>
-<p><strong>Cloning</strong> in Btrfs allows you to create <strong>writeable copies</strong> of subvolumes or snapshots, which share the same data blocks until changes are made. Unlike traditional file copying, cloning doesn&rsquo;t duplicate the original data, making it fast and storage-efficient. When modifications are made, only the changed blocks are copied, leaving the rest shared between the clone and the original.</p>
-<p>This makes cloning in Btrfs ideal for use cases where multiple environments or datasets need to be derived from the same base system, without significant storage overhead.</p>
-
-
-
-<h3 id="dynamic-online-storage-">
-  <a class="Heading-link u-clickable" href="/techblog/post/btrfs/#dynamic-online-storage-">Dynamic Online Storage 📈📉</a>
-</h3>
-<p>Btrfs allows you to manage storage pools dynamically with <strong>online resizing</strong> and device management, meaning that you can expand and shrink file systems while they are mounted and in use. This flexibility helps reduce downtime and allows systems to scale easily with growing storage needs.</p>
-
-
-
-<h4 id="expanding-disk-pools-">
-  <a class="Heading-link u-clickable" href="/techblog/post/btrfs/#expanding-disk-pools-">Expanding Disk Pools 🏊‍♂️🏊‍♂️🏊‍♂️</a>
-</h4>
-<p>You can add new disks to a Btrfs file system without stopping the system. With a simple command, Btrfs integrates the new storage into the existing pool, redistributing data across devices if necessary. This feature makes Btrfs highly scalable, especially in environments where storage demands can grow unpredictably.</p>
-
-
-
-<h4 id="resizeable-">
-  <a class="Heading-link u-clickable" href="/techblog/post/btrfs/#resizeable-">Resizeable 📏</a>
-</h4>
-<p>Btrfs volumes can be <strong>expanded or shrunk</strong> online, without unmounting the file system. Expanding is as simple as adding more storage, while shrinking requires no special process apart from the resizing command. This dynamic resizing means you can adjust the size of your file system to suit your current storage needs.</p>
-
-
-
-<h4 id="self-healing-">
-  <a class="Heading-link u-clickable" href="/techblog/post/btrfs/#self-healing-">Self-Healing ❤️‍🩹</a>
-</h4>
-<p>Btrfs provides <strong>self-healing</strong> capabilities when used in a redundant RAID setup. Through <strong>data and metadata checksumming</strong>, Btrfs can detect corrupted blocks and automatically fix them using redundant copies of the data. This ensures data integrity without user intervention, particularly useful for critical data environments.</p>
-
-
-
-<h3 id="compression-">
-  <a class="Heading-link u-clickable" href="/techblog/post/btrfs/#compression-">Compression 🪗</a>
-</h3>
-<p>Btrfs supports <strong>transparent compression</strong>, which means files can be compressed as they are written to disk, saving space without requiring manual compression. It supports multiple algorithms like <strong>LZO</strong>, <strong>Zlib</strong>, and <strong>Zstandard (ZSTD)</strong>, each with different balances of speed and compression ratio. This feature helps save storage space and can improve performance, especially when working with large datasets.</p>
-
-
-
-<h3 id="technical-feature-list-">
-  <a class="Heading-link u-clickable" href="/techblog/post/btrfs/#technical-feature-list-">Technical Feature List: 🔍</a>
-</h3>
-<ul>
-<li><strong>Journaling</strong>: Keeps track of changes before they are committed, helping with data recovery in case of a crash.</li>
-<li><strong>Extent Base Allocation</strong>: Allocates large, contiguous blocks of storage to reduce fragmentation.</li>
-<li><strong>Persistent Pre-allocation</strong>: Reserves space for a file at creation to prevent fragmentation and improve performance.</li>
-<li><strong>Delayed Allocation</strong>: Delays the allocation of disk space until data is written, optimizing space management.</li>
-<li><strong>Multi-block Allocation</strong>: Allocates multiple blocks at once to increase efficiency, especially for large files.</li>
-<li><strong>Stripe-aware Allocation</strong>: Optimizes block allocation for RAID systems by aligning data with RAID stripes.</li>
-<li><strong>Resizeable with resize2fs</strong>: Can be resized (grown or shrunk) using the resize2fs tool.</li>
-<li><strong>B-tree Balancing Algorithm - Different from XFS (COW B Tree)</strong>: Uses a specific B-tree balancing algorithm for efficient file system organization and copy-on-write operations.</li>
-<li><strong>Copy-on-Write (COW)</strong>: Writes modified data to new locations rather than overwriting existing data, preventing data corruption.</li>
-<li><strong>Snapshots and Clones</strong>: Creates point-in-time copies of data (snapshots) and allows for duplication (clones) without full data replication.</li>
-<li><strong>Built-in RAID Support</strong>: Provides native support for RAID configurations, improving data redundancy and performance.</li>
-<li><strong>Data and Metadata Checksumming</strong>: Ensures data integrity by verifying both data and metadata through checksums.</li>
-<li><strong>Self-Healing</strong>: Automatically repairs corrupted data using mirrored or parity blocks in RAID configurations.</li>
-<li><strong>Dynamic Subvolumes</strong>: Supports the creation of isolated subvolumes within the same file system for better data management.</li>
-<li><strong>Online Resizing</strong>: Allows the file system to be resized while it&rsquo;s still mounted and in use.</li>
-<li><strong>Compression (LZO, ZLIB, ZSTD)</strong>: Offers various compression algorithms to reduce storage space usage.</li>
-<li><strong>Deduplication</strong>: Eliminates duplicate copies of repeating data to save space.</li>
-</ul>
-
-
-
-<h2 id="core-commands-">
-  <a class="Heading-link u-clickable" href="/techblog/post/btrfs/#core-commands-">Core Commands 🪨</a>
-</h2>
-
-  
-
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mkfs.btrfs</span></span></code></pre></div>
-<p>Creates a new Btrfs file system on a specified device or partition.</p>
-
-  
-
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">btrfs subvolume create</span></span></code></pre></div>
-<p>Creates a new subvolume within an existing Btrfs file system.</p>
-
-  
-
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">btrfs subvolume delete </span></span></code></pre></div>
-<p>Deletes a specified subvolume from the Btrfs file system.</p>
-
-  
-
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">btrfs subvolume list </span></span></code></pre></div>
-<p>Lists all subvolumes within a Btrfs file system.</p>
-
-  
-
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">btrfs filesystem show </span></span></code></pre></div>
-<p>Displays detailed information about the Btrfs file systems on all mounted devices.</p>
-
-  
-
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">btrfs filesystem df </span></span></code></pre></div>
-<p>Shows disk space usage, including metadata and data, for a Btrfs file system.</p>
-
-  
-
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">btrfs balance start </span></span></code></pre></div>
-<p>Begins a balancing operation to redistribute data and metadata across the Btrfs file system.</p>
-
-  
-
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">btrfs balance cancel </span></span></code></pre></div>
-<p>Cancels an ongoing balancing operation.</p>
-
-  
-
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">btrfs scrub start </span></span></code></pre></div>
-<p>Initiates a scrub operation to verify data integrity on a Btrfs file system.</p>
-
-  
-
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">btrfs scrub status </span></span></code></pre></div>
-<p>Shows the status of an ongoing scrub operation.</p>
-
-  
-
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">btrfs device add </span></span></code></pre></div>
-<p>Adds a new device to an existing Btrfs file system, allowing for dynamic storage expansion.</p>
-
-  
-
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">btrfs device delete</span></span></code></pre></div>
-<p>Removes a specified device from a Btrfs file system.</p>
-
-  
-
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">btrfs device stats </span></span></code></pre></div>
-<p>Displays statistics and error information about devices in a Btrfs file system.</p>
-
-  
-
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">btrfs check </span></span></code></pre></div>
-<p>Checks the integrity of a Btrfs file system, often used for troubleshooting.</p>
-
-  
-
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">btrfs rescue chunk-recover </span></span></code></pre></div>
-<p>Attempts to recover data chunks from a damaged Btrfs file system.</p>
-
-  
-
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">btrfs filesystem resize </span></span></code></pre></div>
-<p>Resizes a Btrfs file system, either expanding or shrinking it dynamically.</p>
-
-  
-
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">btrfs snapshot </span></span></code></pre></div>
-<p>Creates a read-only or read-write snapshot of a subvolume or file system.</p>
-
-  
-
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">btrfs property set</span></span></code></pre></div>
-<p>Modifies properties of a Btrfs file system or its subvolumes (e.g., enabling compression).</p>
-
-  
-
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">btrfs quota enable</span></span></code></pre></div>
-<p>Enables quota enforcement on a Btrfs file system to limit space usage.</p>
-
-  
-
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">btrfs quota rescan</span></span></code></pre></div>
-<p>Rescans the file system to enforce or update quota limits.</p>
-
-
-
-<h2 id="conclusion">
-  <a class="Heading-link u-clickable" href="/techblog/post/btrfs/#conclusion">Conclusion</a>
-</h2>
-<p>Well I hope that has opened your eyes to the benefits of Btrfs. Researching for this article has helped me to learn some more about the subject.
-If will definitely add to the article as I learn more about the subject, so consider this evergreen information 🌲</p>
-<hr>
-
-
-
-<h3 id="helpful-links-">
-  <a class="Heading-link u-clickable" href="/techblog/post/btrfs/#helpful-links-">Helpful Links ⛓️</a>
-</h3>
-<p><a href="https://en.wikipedia.org/wiki/Btrfs">https://en.wikipedia.org/wiki/Btrfs</a>
-<a href="https://docs.kernel.org/filesystems/btrfs.html">https://docs.kernel.org/filesystems/btrfs.html</a>
-Footnotes</p>
-<div class="footnotes" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn:1">
-<p>The above quote is excerpted from Valerie Aurora <a href="https://lwn.net/Articles/342892/">Article</a> lwn.net, 2009.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:2">
-<p>Chris Mason <a href="https://www.youtube.com/watch?v=oSgGVX2CGOQ">Interview</a> during LF Collaboration Summit, 2009.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:3">
-<p>The above reference is to the first proposal for the Btrfs file system <a href="https://www.youtube.com/watch?v=PAAkCSZUG1c">Technical Proposal</a> during Gopherfest, Tues, June 12th, 2017.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-</ol>
-</div>
-      
-      
-
-  
-
-  
-
-
-
-
-
-  <footer>
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
-            </li>
-          
-        </ul>
-      
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/filesystems/" rel="tag">FileSystems</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/notes/" rel="tag">Notes</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/research/" rel="tag">Research</a>
             </li>
           
         </ul>

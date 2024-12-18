@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/techblog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=techblog/livereload" data-no-instant defer></script>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <meta name="description" content="ProLUG Admin Course Unit 14">
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.139.5">
+  <title>ProLUG Admin Course Unit 14 🐧 | Tech Blog</title>
+  <link rel="canonical" href="http://localhost:1313/techblog/post/pacu14/">
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+    <link rel="stylesheet" href="/techblog/css/base.css">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <a class="Banner-link u-clickable" href="/techblog/">Tech Blog</a>
+      </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/about/">About</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/post/">Posts</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/tags/">Tags</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/categories/">Categories</a>
+        </li>
+      
+        
+        
+          
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/feed.xml">RSS</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/pacu14/" rel="bookmark">ProLUG Admin Course Unit 14 🐧</a>
+  </h1>
+  
+    <time datetime="2024-12-17T00:00:00Z">December 17, 2024</time>
+  
+</header>
+  <h1 id="ansible-automation">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#ansible-automation">Ansible Automation</a>
+</h1>
+<p>Ansible is an open-source automation tool used for configuration management, application deployment, and IT orchestration, enabling tasks to be executed on multiple systems simultaneously without the need for agents. It uses simple YAML-based playbooks and SSH for communication, making it efficient and easy to learn for managing infrastructure.</p>
+<hr>
+
+
+
+<h2 id="discussion-post-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#discussion-post-1">Discussion Post 1:</a>
+</h2>
+<p>Refer to your Unit 5 scan of the systems. You know that Ansible
+is a tool that you want to maintain in the environment. Review this online documentation:
+<a href="https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html">https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html</a></p>
+
+
+
+<h3 id="make-an-inventory-of-the-servers-grouped-any-way-you-like">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#make-an-inventory-of-the-servers-grouped-any-way-you-like">Make an inventory of the servers, grouped any way you like.</a>
+</h3>
+
+
+
+<h3 id="what-format-did-you-choose-to-use-for-your-inventory">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#what-format-did-you-choose-to-use-for-your-inventory">What format did you choose to use for your inventory?</a>
+</h3>
+
+
+
+<h3 id="what-other-things-might-you-include-later-in-your-inventory-to-make-it-more-useful">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#what-other-things-might-you-include-later-in-your-inventory-to-make-it-more-useful">What other things might you include later in your inventory to make it more useful?</a>
+</h3>
+<hr>
+
+
+
+<h2 id="discussion-post-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#discussion-post-2">Discussion Post 2:</a>
+</h2>
+<p>You have been noticing drift on your server configurations, so
+you want a way to generate a report on them every day to validate the configurations are the
+same.</p>
+<ul>
+<li>Use any lab in here to find ideas: <a href="https://killercoda.com/het-tanis/course/Ansible-">https://killercoda.com/het-tanis/course/Ansible-</a>
+Labs Use this webhook to send your relevant data out to our sandbox.
+<a href="https://discord.com/api/webhooks/1317659221604433951/uyKpuq8fNNNSEyCra4n33PakI">https://discord.com/api/webhooks/1317659221604433951/uyKpuq8fNNNSEyCra4n33PakI</a>
+Bk-XtTn1WrwTpHs9BcgkIu7URPV_Gd5HJCRX0_EJVUT</li>
+</ul>
+<hr>
+
+
+
+<h2 id="discussion-post-3">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#discussion-post-3">Discussion Post 3:</a>
+</h2>
+<p>Using ansible module for git, pull down this repo:
+<a href="https://github.com/het-tanis/HPC_Deploy.git">https://github.com/het-tanis/HPC_Deploy.git</a></p>
+
+
+
+<h3 id="how-is-the-repo-setup">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#how-is-the-repo-setup">How is the repo setup?</a>
+</h3>
+
+
+
+<h3 id="what-is-in-the-roles-directory">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#what-is-in-the-roles-directory">What is in the roles directory?</a>
+</h3>
+
+
+
+<h3 id="how-are-these-playbooks-called-and-how-do-roles-differ-from-tasks">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#how-are-these-playbooks-called-and-how-do-roles-differ-from-tasks">How are these playbooks called, and how do roles differ from tasks?</a>
+</h3>
+<hr>
+
+
+
+<h2 id="digging-deeper">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#digging-deeper">Digging Deeper</a>
+</h2>
+
+
+
+<h3 id="i-have-a-large-amount-of-labs-to-get-you-started-on-your-ansible-journey-all-free">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#i-have-a-large-amount-of-labs-to-get-you-started-on-your-ansible-journey-all-free">I have a large amount of labs to get you started on your Ansible Journey (all free):</a>
+</h3>
+<p><a href="https://killercoda.com/het-tanis/course/Ansible-Labs">https://killercoda.com/het-tanis/course/Ansible-Labs</a></p>
+
+
+
+<h3 id="find-projects-from-our-channel-ansible-code-in-discord-and-find-something-that-is">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#find-projects-from-our-channel-ansible-code-in-discord-and-find-something-that-is">Find projects from our channel Ansible-Code, in Discord and find something that is</a>
+</h3>
+<p>interesting to you.</p>
+
+
+
+<h3 id="use-ansible-to-access-secrets-from-hashicorp-vault-httpskillercodacomhet-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#use-ansible-to-access-secrets-from-hashicorp-vault-httpskillercodacomhet-">Use Ansible to access secrets from Hashicorp Vault: <a href="https://killercoda.com/het-">https://killercoda.com/het-</a></a>
+</h3>
+<p>tanis/course/Hashicorp-Labs/004-vault-read-secrets-ansible</p>
+<hr>
+
+
+
+<h1 id="lab-work-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#lab-work-">Lab Work 🧪</a>
+</h1>
+
+
+
+<h3 id="create-an-inventory">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#create-an-inventory">Create an inventory:</a>
+</h3>
+<ol>
+<li>While still in the /root/ansible_madness directory, create a file hosts
+vi /root/ansible_madness/hosts
+Populate the file as follows</li>
+</ol>
+<p>[servers]</p>
+<ul>
+<li>192.168.200.101</li>
+<li>192.168.200.102</li>
+<li>192.168.200.103</li>
+</ul>
+<p>Run Ad Hoc commands against your servers
+This will test your connection into all the servers.</p>
+
+
+
+<h3 id="1-ansible-servers--i-hosts--u-inmate--k--m-shell--a-uptime">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#1-ansible-servers--i-hosts--u-inmate--k--m-shell--a-uptime">1. ansible servers -i hosts -u inmate -k -m shell -a uptime</a>
+</h3>
+<p>Use this password: LinuxR0cks1!</p>
+<p>Do the same thing, but this time be verbose</p>
+
+
+
+<h3 id="2-ansible--vvv-servers--i-hosts--u-inmate--k--m-shell--a-uptime">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#2-ansible--vvv-servers--i-hosts--u-inmate--k--m-shell--a-uptime">2. ansible -vvv servers -i hosts -u inmate -k -m shell -a uptime</a>
+</h3>
+<p>Create a playbook to push over files.</p>
+
+
+
+<h3 id="3-echo-this-is-my-file-yourname--somefile">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#3-echo-this-is-my-file-yourname--somefile">3. echo &ldquo;This is my file <!-- raw HTML omitted -->&rdquo; &gt; somefile</a>
+</h3>
+
+
+
+<h3 id="4-vi-deployyaml">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#4-vi-deployyaml">4. vi deploy.yaml</a>
+</h3>
+<p>Populate it as follows:</p>
+<pre><code>name: Start of push playbook
+
+hosts: servers
+vars:
+gather_facts: True
+become: False
+tasks:
+name: Copy somefile over at {{ ansible_date_time.iso8601_basic_short }}
+copy:
+src: /root/ansible_madness/somefile
+dest: /tmp/somefile.txt
+</code></pre>
+
+
+
+<h3 id="5-execute-your-playbook">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#5-execute-your-playbook">5. Execute your playbook</a>
+</h3>
+<p>ansible-playbook -i hosts -k deploy.yaml</p>
+
+
+
+<h3 id="6-verify-that-your-file-pushed-everywhere">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#6-verify-that-your-file-pushed-everywhere">6. Verify that your file pushed everywhere</a>
+</h3>
+<p>ansible servers -i hosts -u inmate -k -m shell -a “ls -l /tmp/somefile”
+Pull down a github repo</p>
+<ol>
+<li>git clone <a href="https://github.com/het-tanis/HPC_Deploy.git">https://github.com/het-tanis/HPC_Deploy.git</a>
+cd HPC_Deploy
+What do you see in here?
+What do you need to learn about more to deploy some of these tools?
+Can you execute some of these, why or why not?</li>
+</ol>
+<hr>
+
+
+
+<h2 id="reflection-questions">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#reflection-questions">Reflection Questions</a>
+</h2>
+<ol>
+<li>
+<p>What questions do you still have about this week?</p>
+</li>
+<li>
+<p>How can you apply this now in your current role in IT? If you’re not in IT, how can you
+look to put something like this into your resume or portfolio?</p>
+</li>
+</ol>
+<hr>
+
+
+
+<h3 id="prolug-links-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#prolug-links-">ProLUG Links ⛓️</a>
+</h3>
+<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
+Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
+Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
+ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
+KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
+  
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/operating-systems/" rel="tag">Operating Systems</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/declaritive/" rel="tag">Declaritive</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/configuration/" rel="tag">Configuration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/ansible/" rel="tag">Ansible</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/iac/" rel="tag">IaC</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+  
+  
+
+
+
+      </div>
+    </div>
+  </main>
+  
+</body>
+
+</html>

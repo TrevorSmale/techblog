@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/techblog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=techblog/livereload" data-no-instant defer></script>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <meta name="description" content="ProLUG Admin Course Unit 13">
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.139.5">
+  <title>ProLUG Admin Course Unit 13 🐧 | Tech Blog</title>
+  <link rel="canonical" href="http://localhost:1313/techblog/post/pacu13/">
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+    <link rel="stylesheet" href="/techblog/css/base.css">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <a class="Banner-link u-clickable" href="/techblog/">Tech Blog</a>
+      </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/about/">About</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/post/">Posts</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/tags/">Tags</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/categories/">Categories</a>
+        </li>
+      
+        
+        
+          
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/feed.xml">RSS</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/pacu13/" rel="bookmark">ProLUG Admin Course Unit 13 🐧</a>
+  </h1>
+  
+    <time datetime="2024-12-15T00:00:00Z">December 15, 2024</time>
+  
+</header>
+  <h1 id="system-hardening">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#system-hardening">System Hardening</a>
+</h1>
+<p>Linux system hardening involves securing the system by reducing its attack surface through measures such as disabling unnecessary services, enforcing access controls, applying security patches, and using tools like OpenSCAP, STIG compliance frameworks, or the OSCAP Scanner. These tools help automate security audits, enforce compliance standards, and identify vulnerabilities to enhance system security.</p>
+<hr>
+
+
+
+<h2 id="discussion-post-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#discussion-post-1">Discussion Post 1:</a>
+</h2>
+<p>Your security team comes to you with a discrepancy between
+the production security baseline and something that is running on one of your servers in
+production. There are 5 servers in a web cluster and only one of them is showing this
+behavior. They want you to account for why something is different.</p>
+
+
+
+<h3 id="how-are-you-going-to-validate-that-the-difference-between-the-systems">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#how-are-you-going-to-validate-that-the-difference-between-the-systems">How are you going to validate that the difference between the systems?</a>
+</h3>
+
+
+
+<h3 id="what-are-you-going-to-look-at-to-explain-this">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#what-are-you-going-to-look-at-to-explain-this">What are you going to look at to explain this?</a>
+</h3>
+
+
+
+<h3 id="what-could-be-done-to-prevent-this-problem-in-the-future">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#what-could-be-done-to-prevent-this-problem-in-the-future">What could be done to prevent this problem in the future?</a>
+</h3>
+<hr>
+
+
+
+<h2 id="discussion-post-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#discussion-post-2">Discussion Post 2:</a>
+</h2>
+<p>Your team has been giving you more and more engineering
+responsibilities. You are being asked to build out the next set of servers to integrate into the
+development environment. Your team is going from RHEL 8 to Rocky 9.4.</p>
+
+
+
+<h3 id="how-might-you-start-to-plan-out-your-migration">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#how-might-you-start-to-plan-out-your-migration">How might you start to plan out your migration?</a>
+</h3>
+
+
+
+<h3 id="what-are-you-going-to-check-on-the-existing-systems-to-baseline-your-build">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#what-are-you-going-to-check-on-the-existing-systems-to-baseline-your-build">What are you going to check on the existing systems to baseline your build?</a>
+</h3>
+
+
+
+<h3 id="what-kind-of-validation-plan-might-you-use-for-your-new-rocky-94-systems">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#what-kind-of-validation-plan-might-you-use-for-your-new-rocky-94-systems">What kind of validation plan might you use for your new Rocky 9.4 systems?</a>
+</h3>
+<hr>
+
+
+
+<h2 id="digging-deeper">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#digging-deeper">Digging Deeper</a>
+</h2>
+<ol>
+<li>Run through this lab: <a href="https://killercoda.com/het-tanis/course/Linux-Labs/107-server-startup-process">https://killercoda.com/het-tanis/course/Linux-Labs/107-server-startup-process</a> 👍</li>
+</ol>
+
+
+
+<h3 id="how-does-this-help-you-better-understand-the-discussion-13-2-question">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#how-does-this-help-you-better-understand-the-discussion-13-2-question">How does this help you better understand the discussion 13-2 question?</a>
+</h3>
+<p>Well when I am gathering a picture of my current security baseline, I can use some of these tools like dmesg and ss to see what possible attack surface I may have.</p>
+<ol start="2">
+<li>Run through this lab: <a href="https://killercoda.com/het-tanis/course/Linux-Labs/203-updating-golden-image">https://killercoda.com/het-tanis/course/Linux-Labs/203-updating-golden-image</a> 👍</li>
+</ol>
+
+
+
+<h3 id="how-does-this-help-you-better-understand-the-process-of-hardening-systems">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#how-does-this-help-you-better-understand-the-process-of-hardening-systems">How does this help you better understand the process of hardening systems?</a>
+</h3>
+<hr>
+
+
+
+<h2 id="reflection-questions">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#reflection-questions">Reflection Questions</a>
+</h2>
+<ol>
+<li>
+<p>What questions do you still have about this week?</p>
+</li>
+<li>
+<p>How can you apply this now in your current role in IT? If you’re not in IT, how can you
+look to put something like this into your resume or portfolio?</p>
+</li>
+</ol>
+<hr>
+
+
+
+<h1 id="lab-work-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#lab-work-">Lab Work 🧪</a>
+</h1>
+
+
+
+<h3 id="1-you-will-scan-a-server-for-a-scc-report-and-get-a-stig-score">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#1-you-will-scan-a-server-for-a-scc-report-and-get-a-stig-score">1. You will scan a server for a SCC Report and get a STIG Score</a>
+</h3>
+
+
+
+<h3 id="2-you-will-remediate-some-of-the-items-from-the-scan">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#2-you-will-remediate-some-of-the-items-from-the-scan">2. You will remediate some of the items from the scan</a>
+</h3>
+
+
+
+<h3 id="3-you-will-rescan-and-verify-a-better-score">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#3-you-will-rescan-and-verify-a-better-score">3. You will rescan and verify a better score.</a>
+</h3>
+<hr>
+
+
+
+<h3 id="prolug-links-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#prolug-links-">ProLUG Links ⛓️</a>
+</h3>
+<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
+Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
+Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
+ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
+KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
+  
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/operating-systems/" rel="tag">Operating Systems</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/stig/" rel="tag">STIG</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/system-hardening/" rel="tag">System Hardening</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+  
+  
+
+
+
+      </div>
+    </div>
+  </main>
+  
+</body>
+
+</html>

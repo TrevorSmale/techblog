@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/techblog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=techblog/livereload" data-no-instant defer></script>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <meta name="description" content="ProLUG Admin Course Unit 11">
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.139.5">
+  <title>ProLUG Admin Course Unit 11 🐧 | Tech Blog</title>
+  <link rel="canonical" href="http://localhost:1313/techblog/post/pacu11/">
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+    <link rel="stylesheet" href="/techblog/css/base.css">
+
+    <link rel="stylesheet" href="/techblog/css/syntax.css">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <a class="Banner-link u-clickable" href="/techblog/">Tech Blog</a>
+      </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/about/">About</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/post/">Posts</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/tags/">Tags</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/categories/">Categories</a>
+        </li>
+      
+        
+        
+          
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/feed.xml">RSS</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/pacu11/" rel="bookmark">ProLUG Admin Course Unit 11 🐧</a>
+  </h1>
+  
+    <time datetime="2024-11-28T00:00:00Z">November 28, 2024</time>
+  
+</header>
+  <h1 id="monitoring-systems">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#monitoring-systems">Monitoring Systems</a>
+</h1>
+<p>In this unit, we explore monitoring systems, which often consist of multiple interconnected components. At its core, monitoring involves carefully exposing system data and transmitting it to tools for analysis and alerting. From my experience with Prometheus and Grafana—two widely used and versatile solutions—I’ve seen how effective these tools can be for various scenarios. However, many other tools are also available. One of my key takeaways from the unit’s readings and labs was the importance of careful data exposure. Much like setting permissions in a Linux system, it’s crucial to determine what data can be accessed and who is allowed to see it in the reporting chain. System information, if mishandled, can easily become a double-edged sword.</p>
+<hr>
+
+
+
+<h2 id="discussion-post-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#discussion-post-1">Discussion Post 1</a>
+</h2>
+
+
+
+<h3 id="scenario">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#scenario">Scenario</a>
+</h3>
+<p>You’ve heard the term “loose coupling” thrown around the
+office about a new monitoring solution coming down the pike. You find a good resource and
+read the section on “Prefer Loose Coupling” <a href="https://sre.google/workbook/monitoring/">https://sre.google/workbook/monitoring/</a></p>
+
+
+
+<h4 id="1-what-does-loose-coupling-mean-if-you-had-to-summarize-to-your-junior-team">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#1-what-does-loose-coupling-mean-if-you-had-to-summarize-to-your-junior-team">1. What does “loose coupling” mean, if you had to summarize to your junior team</a>
+</h4>
+<p>members?</p>
+<p>Loose coupling means the components of a system can operate independently, yet still work together when combined. This design allows individual components to be swapped or replaced with minimal disruption to the overall system. In contrast, a strongly coupled system binds its components so tightly that altering one would disrupt or even break the entire system’s functionality.</p>
+
+
+
+<h4 id="2-what-is-the-advantage-given-for-why-you-might-want-to-implement-this-type-of-tooling-in-your-monitoring-do-you-agree-why-or-why-not">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#2-what-is-the-advantage-given-for-why-you-might-want-to-implement-this-type-of-tooling-in-your-monitoring-do-you-agree-why-or-why-not">2. What is the advantage given for why you might want to implement this type of tooling in your monitoring? Do you agree? Why or why not?</a>
+</h4>
+<p>The advantage of a loosely coupled monitoring system lies in its flexibility to evolve over time. Systems change, requirements shift, and new tools emerge, making adaptability essential. A design that allows components to be replaced or upgraded with minimal disruption is highly valuable—not only for an organization aiming to maintain efficiency but also for the administrators and engineers responsible for ensuring stability and resolving issues.</p>
+
+
+
+<h4 id="3-they-mention-exposing-metrics-what-does-it-mean-to-expose-metrics-what-happens-to-metrics-that-are-exposed-but-never-collected">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#3-they-mention-exposing-metrics-what-does-it-mean-to-expose-metrics-what-happens-to-metrics-that-are-exposed-but-never-collected">3. They mention “exposing metrics” what does it mean to expose metrics? What happens to metrics that are exposed but never collected?</a>
+</h4>
+<p>Exposing metrics involves making system information accessible for monitoring and analysis. However, this must be approached with caution, as exposing such information can introduce vulnerabilities. Simply exposing data without actively collecting or utilizing it needlessly increases security risks without providing any benefit.</p>
+<hr>
+
+
+
+<h2 id="discussion-post-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#discussion-post-2">Discussion Post 2</a>
+</h2>
+
+
+
+<h3 id="scenario-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#scenario-1">Scenario</a>
+</h3>
+<p>Your HPC team is asking for more information about how CPU 0
+is behaving on a set of servers. Your team has node exporter writing data out to Prometheus
+(Use this to simulate <a href="https://promlabs.com/promql-cheat-sheet/)">https://promlabs.com/promql-cheat-sheet/)</a>.</p>
+
+
+
+<h4 id="1-can-you-see-the-usage-of-cpu0-and-what-is-the-query">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#1-can-you-see-the-usage-of-cpu0-and-what-is-the-query">1. Can you see the usage of CPU0 and what is the query?</a>
+</h4>
+<p>Yes one can use a query that focuses on the metrics provided by the Node Exporter. Specifically, filter for CPU 0 and its usage.</p>
+<pre><code>100 - (avg by (instance) (irate(node_cpu_seconds_total{cpu=&quot;0&quot;, mode=&quot;idle&quot;}
+</code></pre>
+
+
+
+<h4 id="2-can-you-see-the-usage-of-cpu0-for-just-the-last-5-minutes-and-what-is-the-query">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#2-can-you-see-the-usage-of-cpu0-for-just-the-last-5-minutes-and-what-is-the-query">2. Can you see the usage of CPU0 for just the last 5 minutes and what is the query?</a>
+</h4>
+<p>Yes</p>
+<pre><code>100 - (avg by (instance) (rate(node_cpu_seconds_total{cpu=&quot;0&quot;, mode=&quot;idle&quot;}[5m])) * 100)
+</code></pre>
+
+
+
+<h4 id="3-you-know-that-cpu0-is-excluded-from-slurm-can-you-exclude-that-and-only-pull-the-user-and-system-for-the-remaining-cpus-and-what-is-that-query">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#3-you-know-that-cpu0-is-excluded-from-slurm-can-you-exclude-that-and-only-pull-the-user-and-system-for-the-remaining-cpus-and-what-is-that-query">3. You know that CPU0 is excluded from Slurm, can you exclude that and only pull the user and system for the remaining CPUs and what is that query?</a>
+</h4>
+<p>Yes</p>
+<pre><code>sum by (instance) (rate(node_cpu_seconds_total{cpu!=&quot;0&quot;, mode=~&quot;user|system&quot;}[5m])) * 100
+</code></pre>
+<hr>
+
+
+
+<h2 id="digging-deeper">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#digging-deeper">Digging Deeper</a>
+</h2>
+
+
+
+<h4 id="1-read-the-rest-of-the-chapter-httpssregoogleworkbookmonitoring-and-note-anything-else-of-interest-when-it-comes-to-monitoring-and-dashboarding">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#1-read-the-rest-of-the-chapter-httpssregoogleworkbookmonitoring-and-note-anything-else-of-interest-when-it-comes-to-monitoring-and-dashboarding">1. Read the rest of the chapter <a href="https://sre.google/workbook/monitoring/">https://sre.google/workbook/monitoring/</a> and note anything else of interest when it comes to monitoring and dashboarding.</a>
+</h4>
+
+
+
+<h4 id="2-look-up-the-prolug-prometheus-certified-associate-prep-2024-in-resources---presentations-in-our-prolug-discord-study-that-for-a-deep-dive-into-prometheus">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#2-look-up-the-prolug-prometheus-certified-associate-prep-2024-in-resources---presentations-in-our-prolug-discord-study-that-for-a-deep-dive-into-prometheus">2. Look up the “ProLUG Prometheus Certified Associate Prep 2024” in Resources -&gt; Presentations in our ProLUG Discord. Study that for a deep dive into Prometheus.</a>
+</h4>
+
+
+
+<h4 id="3-complete-the-project-section-of-monitoring-deep-dive-project-guide-from-the-prolug-projects-section-of-the-discord-we-have-a-youtube-video-on-that-project-as-well-httpswwwyoutubecomwatchv54vgghr99qg">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#3-complete-the-project-section-of-monitoring-deep-dive-project-guide-from-the-prolug-projects-section-of-the-discord-we-have-a-youtube-video-on-that-project-as-well-httpswwwyoutubecomwatchv54vgghr99qg">3. Complete the project section of “Monitoring Deep Dive Project Guide” from the prolug-projects section of the Discord. We have a Youtube video on that project as well. <a href="https://www.youtube.com/watch?v=54VgGHr99Qg">https://www.youtube.com/watch?v=54VgGHr99Qg</a></a>
+</h4>
+
+
+
+<h2 id="labs">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#labs">Labs</a>
+</h2>
+<p><a href="https://killercoda.com/het-tanis/course/Linux-Labs/102-monitoring-linux-logs">https://killercoda.com/het-tanis/course/Linux-Labs/102-monitoring-linux-logs</a></p>
+<p><a href="https://killercoda.com/het-tanis/course/Linux-Labs/103-monitoring-linux-telemetry">https://killercoda.com/het-tanis/course/Linux-Labs/103-monitoring-linux-telemetry</a></p>
+<p><a href="https://killercoda.com/het-tanis/course/Linux-Labs/104-monitoring-linux-Influx-Grafana">https://killercoda.com/het-tanis/course/Linux-Labs/104-monitoring-linux-Influx-Grafana</a></p>
+<ol start="2">
+<li>While completing each lab think about the following:</li>
+</ol>
+<p>a. How does it tie into the diagram below?</p>
+<p>b. What could you improve, or what would you change based on your previous administration
+experience.</p>
+<hr>
+
+
+
+<h3 id="1-install-grafana">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#1-install-grafana">1. Install Grafana</a>
+</h3>
+
+
+
+<h4 id="11-create-a-new-repository-configuration">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#11-create-a-new-repository-configuration">1.1 Create a New Repository Configuration</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo vim /etc/yum.repos.d/grafana.repo</span></span></code></pre></div>
+<p>Paste the following:</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[grafana]</span>
+</span></span><span class="line"><span class="cl"><span class="na">name</span><span class="o">=</span><span class="s">grafana</span>
+</span></span><span class="line"><span class="cl"><span class="na">baseurl</span><span class="o">=</span><span class="s">https://packages.grafana.com/oss/rpm</span>
+</span></span><span class="line"><span class="cl"><span class="na">repo_gpgcheck</span><span class="o">=</span><span class="s">1</span>
+</span></span><span class="line"><span class="cl"><span class="na">enabled</span><span class="o">=</span><span class="s">1</span>
+</span></span><span class="line"><span class="cl"><span class="na">gpgcheck</span><span class="o">=</span><span class="s">1</span>
+</span></span><span class="line"><span class="cl"><span class="na">gpgkey</span><span class="o">=</span><span class="s">https://packages.grafana.com/gpg.key</span>
+</span></span><span class="line"><span class="cl"><span class="na">sslverify</span><span class="o">=</span><span class="s">1</span></span></span></code></pre></div>
+
+
+
+<h4 id="12-verify-the-repository">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#12-verify-the-repository">1.2 Verify the Repository</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo dnf repolist
+</span></span><span class="line"><span class="cl">sudo dnf clean all</span></span></code></pre></div>
+<p>Expected Output:</p>
+
+  
+
+<pre tabindex="0"><code>repo id                                      repo name
+appstream                                    Rocky Linux 8 - AppStream
+baseos                                       Rocky Linux 8 - BaseOS
+extras                                       Rocky Linux 8 - Extras
+grafana                                      grafana/spl</code></pre>
+
+
+
+<h4 id="13-check-the-grafana-package">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#13-check-the-grafana-package">1.3 Check the Grafana Package</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo dnf info grafana</span></span></code></pre></div>
+<p>Example Output:</p>
+
+  
+
+<pre tabindex="0"><code>Importing GPG key 0x24098CB6:
+Userid     : &#34;Grafana&#34;
+Fingerprint: 4E40 DDF6 D76E 284A 4A67 80E4 8C8C 34C5 2409 8CB6
+From       : https://packages.grafana.com/gpg.key
+Is this ok [y/N]: y</code></pre>
+
+
+
+<h4 id="14-install-grafana">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#14-install-grafana">1.4 Install Grafana</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo dnf install grafana -y</span></span></code></pre></div>
+
+
+
+<h4 id="15-enable-and-start-grafana-service">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#15-enable-and-start-grafana-service">1.5 Enable and Start Grafana Service</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo systemctl <span class="nb">enable</span> --now grafana-server
+</span></span><span class="line"><span class="cl">sudo systemctl status grafana-server</span></span></code></pre></div>
+
+
+
+<h4 id="16-configure-firewall">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#16-configure-firewall">1.6 Configure Firewall</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo firewall-cmd --add-service<span class="o">=</span>grafana --permanent
+</span></span><span class="line"><span class="cl">sudo firewall-cmd --add-port<span class="o">=</span>3000/tcp --permanent
+</span></span><span class="line"><span class="cl">sudo firewall-cmd --reload</span></span></code></pre></div>
+
+
+
+<h4 id="17-create-and-edit-configuration-file">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#17-create-and-edit-configuration-file">1.7 Create and Edit Configuration File</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo vim /etc/grafana/grafana.ini</span></span></code></pre></div>
+<p>Update the following settings:</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[server]</span>
+</span></span><span class="line"><span class="cl"><span class="na">http_port</span> <span class="o">=</span> <span class="s">4000</span>
+</span></span><span class="line"><span class="cl"><span class="na">domain</span> <span class="o">=</span> <span class="s">grafana.example.io</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[analytics]</span>
+</span></span><span class="line"><span class="cl"><span class="na">reporting_enabled</span> <span class="o">=</span> <span class="s">false</span></span></span></code></pre></div>
+<p>Restart the service:</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo systemctl restart grafana-server</span></span></code></pre></div>
+<hr>
+
+
+
+<h3 id="2-reverse-proxy-setup-with-nginx">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#2-reverse-proxy-setup-with-nginx">2. Reverse Proxy Setup with NGINX</a>
+</h3>
+
+
+
+<h4 id="21-install-nginx">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#21-install-nginx">2.1 Install NGINX</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo dnf install nginx -y</span></span></code></pre></div>
+
+
+
+<h4 id="22-create-a-server-block-for-grafana">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#22-create-a-server-block-for-grafana">2.2 Create a Server Block for Grafana</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo vim /etc/nginx/conf.d/grafana.conf</span></span></code></pre></div>
+<p>Paste the configuration:</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">map</span> <span class="nv">$http_upgrade</span> <span class="nv">$connection_upgrade</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kn">default</span> <span class="s">upgrade</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kn">&#39;&#39;</span> <span class="s">close</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">server</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kn">server_name</span> <span class="s">grafana.example.io</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kn">rewrite</span> <span class="s">^</span> <span class="s">https://</span><span class="nv">$server_name$request_uri?</span> <span class="s">permanent</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">server</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kn">listen</span> <span class="mi">443</span> <span class="s">ssl</span> <span class="s">http2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kn">server_name</span> <span class="s">grafana.example.io</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kn">ssl_certificate</span> <span class="s">/etc/letsencrypt/live/grafana.example.io/fullchain.pem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kn">ssl_certificate_key</span> <span class="s">/etc/letsencrypt/live/grafana.example.io/privkey.pem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kn">location</span> <span class="s">/</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">proxy_pass</span> <span class="s">http://localhost:3000/</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kn">location</span> <span class="s">/api/live</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">proxy_http_version</span> <span class="mi">1</span><span class="s">.1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">proxy_set_header</span> <span class="s">Upgrade</span> <span class="nv">$http_upgrade</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">proxy_set_header</span> <span class="s">Connection</span> <span class="nv">$connection_upgrade</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">proxy_pass</span> <span class="s">http://localhost:3000/</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+
+
+
+<h4 id="23-verify-nginx-configuration">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#23-verify-nginx-configuration">2.3 Verify NGINX Configuration</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo nginx -t</span></span></code></pre></div>
+<p>Expected Output:</p>
+
+  
+
+<pre tabindex="0"><code>nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful</code></pre>
+
+
+
+<h4 id="24-start-and-enable-nginx">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#24-start-and-enable-nginx">2.4 Start and Enable NGINX</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo systemctl <span class="nb">enable</span> --now nginx
+</span></span><span class="line"><span class="cl">sudo systemctl status nginx</span></span></code></pre></div>
+<hr>
+
+
+
+<h3 id="3-install-prometheus">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#3-install-prometheus">3. Install Prometheus</a>
+</h3>
+
+
+
+<h4 id="31-add-a-new-user-and-directories">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#31-add-a-new-user-and-directories">3.1 Add a New User and Directories</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo adduser -M -r -s /sbin/nologin prometheus
+</span></span><span class="line"><span class="cl">sudo mkdir /etc/prometheus
+</span></span><span class="line"><span class="cl">sudo mkdir /var/lib/prometheus</span></span></code></pre></div>
+
+
+
+<h4 id="32-download-and-extract-prometheus">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#32-download-and-extract-prometheus">3.2 Download and Extract Prometheus</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> /usr/src
+</span></span><span class="line"><span class="cl">wget https://github.com/prometheus/prometheus/releases/download/v3.0.1/prometheus-3.0.1.linux-amd64.tar.gz
+</span></span><span class="line"><span class="cl">tar -xzf prometheus-3.0.1.linux-amd64.tar.gz
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> prometheus-3.0.1.linux-amd64</span></span></code></pre></div>
+
+
+
+<h4 id="33-move-files-to-appropriate-locations">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#33-move-files-to-appropriate-locations">3.3 Move Files to Appropriate Locations</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo mv prometheus /usr/local/bin/
+</span></span><span class="line"><span class="cl">sudo mv promtool /usr/local/bin/
+</span></span><span class="line"><span class="cl">sudo mv consoles /etc/prometheus
+</span></span><span class="line"><span class="cl">sudo mv console_libraries /etc/prometheus
+</span></span><span class="line"><span class="cl">sudo mv prometheus.yml /etc/prometheus/</span></span></code></pre></div>
+
+
+
+<h4 id="34-change-ownership">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#34-change-ownership">3.4 Change Ownership</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo chown -R prometheus:prometheus /etc/prometheus /var/lib/prometheus</span></span></code></pre></div>
+
+
+
+<h4 id="35-configure-prometheus">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#35-configure-prometheus">3.5 Configure Prometheus</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo vim /etc/prometheus/prometheus.yml</span></span></code></pre></div>
+<p>Example scrape configuration:</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">scrape_configs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;prometheus&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">static_configs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;192.168.1.10:9090&#34;</span><span class="p">]</span></span></span></code></pre></div>
+
+
+
+<h4 id="36-create-a-systemd-service">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#36-create-a-systemd-service">3.6 Create a Systemd Service</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo vim /etc/systemd/system/prometheus.service</span></span></code></pre></div>
+<p>Paste the following:</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[Unit]</span>
+</span></span><span class="line"><span class="cl"><span class="na">Description</span><span class="o">=</span><span class="s">Prometheus</span>
+</span></span><span class="line"><span class="cl"><span class="na">Wants</span><span class="o">=</span><span class="s">network-online.target</span>
+</span></span><span class="line"><span class="cl"><span class="na">After</span><span class="o">=</span><span class="s">network-online.target</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[Service]</span>
+</span></span><span class="line"><span class="cl"><span class="na">User</span><span class="o">=</span><span class="s">prometheus</span>
+</span></span><span class="line"><span class="cl"><span class="na">Group</span><span class="o">=</span><span class="s">prometheus</span>
+</span></span><span class="line"><span class="cl"><span class="na">Type</span><span class="o">=</span><span class="s">simple</span>
+</span></span><span class="line"><span class="cl"><span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/local/bin/prometheus     --config.file /etc/prometheus/prometheus.yml     --storage.tsdb.path /var/lib/prometheus/     --web.console.templates=/etc/prometheus/consoles     --web.console.libraries=/etc/prometheus/console_libraries</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[Install]</span>
+</span></span><span class="line"><span class="cl"><span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span></span></span></code></pre></div>
+
+
+
+<h4 id="37-start-prometheus-service">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#37-start-prometheus-service">3.7 Start Prometheus Service</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo systemctl daemon-reload
+</span></span><span class="line"><span class="cl">sudo systemctl <span class="nb">enable</span> --now prometheus
+</span></span><span class="line"><span class="cl">sudo systemctl status prometheus</span></span></code></pre></div>
+
+
+
+<h4 id="38-access-prometheus">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#38-access-prometheus">3.8 Access Prometheus</a>
+</h4>
+<p>Visit <code>http://192.168.1.10:9090</code> in your browser to view the Prometheus dashboard.</p>
+<hr>
+
+
+
+<h2 id="reflection-questions">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#reflection-questions">Reflection Questions</a>
+</h2>
+<ol>
+<li>
+<p>What questions do you still have about this week?</p>
+</li>
+<li>
+<p>How can you apply this now in your current role in IT? If you’re not in IT, how can you
+look to put something like this into your resume or portfolio?</p>
+</li>
+</ol>
+<hr>
+
+
+
+<h3 id="prolug-links-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu11/#prolug-links-">ProLUG Links ⛓️</a>
+</h3>
+<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
+Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
+Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
+ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
+KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
+  
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/operating-systems/" rel="tag">Operating Systems</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/monitoring/" rel="tag">Monitoring</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+  
+  
+
+
+
+      </div>
+    </div>
+  </main>
+  
+</body>
+
+</html>

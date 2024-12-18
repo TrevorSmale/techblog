@@ -495,8 +495,13 @@ constraints in the lab. Using systemctl restart k3s and journalctl -xe can you f
 ## Reflection questions:
 
 1. What questions do you still have about this week?
+
+I would like to know more about Kubernetes and how it can be effectively managed, but this is just a matter of further study.
+
 2. How can you apply this now in your current role in IT? If you’re not in IT, how can you
 look to put something like this into your resume or portfolio?
+
+I installed K3S on my personal lab and ran through two days of exercises with the study group, gaining some competency with installing, configuring and deploying a set of pods from manifests. So I could confidently state that I know how to do this and check on the health of the system.
 
 ---
 
