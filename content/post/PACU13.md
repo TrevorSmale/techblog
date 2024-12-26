@@ -31,9 +31,44 @@ behavior. They want you to account for why something is different.
 
 ### How are you going to validate that the difference between the systems?
 
+I am going to assume that I am new to the system in general and have very surface knowledge from fellow staff. I am also assuming we are working with a redhat based system.
+
+#### Starting off simple
+
+Maybe the problem is an obvious one, so I would just start off with a glance.
+
+  - Quick cursory check (Kernel Version uname-a)
+  - Manually Checking Logs (Journalctl, dmesg, audit.log, syslog)
+  - Checking ports (Socket Statistics, ss -ntulp)
+  - Listing installed packages (DNF list, RPM -qa)
+  - Listing users and Logins (/etc/passwd, w, last)
+  - Seeing what System D services are running (systemctl list-units - -type=service)
+  - Digging for documentation and or commit history
+
+#### Deeper ⛏️
+
+If no low hanging fruit were there, then I would check configurations
+
+  - Grub.conf, FirewallD/Apparmour, SELinux,
+
+#### Sorting 🪰'ish from 🌶️
+If I do that see something distinctly different, I would employ a more sophisticated approach with difference checking.
+Given that everything is a structured file, I can append the output from a working system and the goose 🪿 to a new file and run diff against them.
+  - Diff'ing the Logs
+  - Diff'ing Socket Statistics
+  - Diff'ing Installed Packages
+
 ### What are you going to look at to explain this?
 
+I think I have answered this above.
+
 ### What could be done to prevent this problem in the future?
+
+- Introducing or Improving the change management policy and employing version control would be my first suggestion.
+- Ensuring that there is a build/test/deploy pipeline that integrates tightly with change management.
+- Using IaC and Automation to ensure consistency and repeatability with tools like Ansible, Packer, Podman or Kubernetes.
+- Hardening systems with either simple policies or through the guidance of STIG's.
+- Introducing stronger controls over user privileges like employing RBA policies.
 
 ---
 
@@ -45,9 +80,47 @@ development environment. Your team is going from RHEL 8 to Rocky 9.4.
 
 ### How might you start to plan out your migration?
 
+#### Observe 
+Firstly I would gather system information
+- Benchmark/baseline performance metrics and utilization (Disk, I/O, PS, Connections etc)
+- Configs (Scripts and configuration files)
+- Installed Packages.
+- users (Listing users and privileges)
+- Policies (Firewall, SELinux)
+- Purpose (Assessing the use of a particular system to see if may need changes/upgrades)
+
+#### Capture
+- I would snapshot the current system if possible
+- If a complete snapshot copy is not possible, I would gather files essential to rebuilding a replica
+
+#### Reconstruct
+- Build it in a test VM emulating the current environment
+- Template the VM for experimental changes (Adding additional tools or Configs)
+
+#### Analyze / Optimize
+- Gather business or operational requirements, perhaps the system needs enhancements
+- Experiment with performance tuning
+- Test new packages and/or configurations
+
+#### Build
+During the analysis and optimization phase, I would start a playbook with information gathered from previous phases.
+I would build and run the playbook against VM templates until satisfied.
+
+#### Deploy
+Given the prior phases, my Playbook would be robust and capable of the transition.
+However, I would ensure a robust backup and rollback plan in the case something fails.
+
 ### What are you going to check on the existing systems to baseline your build?
 
+1. **Compute Usage**
+2. **Memory Load**
+3. **Disk Resources**
+4. **Networking Metrics**
+
 ### What kind of validation plan might you use for your new Rocky 9.4 systems?
+
+I would have a seperate playbook built that would validate performance against what I was observing during my VM experimentation.
+Though the environment may differ from that of the VM, I would still be able to discern performance characteristics and notice any outlier differences.
 
 ---
 
@@ -76,11 +149,11 @@ look to put something like this into your resume or portfolio?
 
 # Lab Work 🧪
 
-### 1. You will scan a server for a SCC Report and get a STIG Score
+### 1. You will scan a server for a SCC Report and get a STIG Score 👍
 
-### 2. You will remediate some of the items from the scan
+### 2. You will remediate some of the items from the scan 👍
 
-### 3. You will rescan and verify a better score.
+### 3. You will rescan and verify a better score. 👍
 
 ---
 

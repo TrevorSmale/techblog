@@ -160,14 +160,14 @@ in the context of system benchmarking means that when measuring the performance 
 
 ## Definitions & Terminology
 
-Benchmark
-High watermark
-Scope
-Methodology
-Testing
-Control
-Experiment
-Analytics
+- Benchmark
+- High watermark
+- Scope
+- Methodology
+- Testing
+- Control
+- Experiment
+- Analytics
 - Descriptive
 - Diagnostic
 - Predictive
