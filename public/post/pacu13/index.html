@@ -21,7 +21,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.139.5">
+<meta name="generator" content="Hugo 0.140.1">
   <title>ProLUG Admin Course Unit 13 🐧 | Tech Blog</title>
   <link rel="canonical" href="http://localhost:1313/techblog/post/pacu13/">
 
@@ -125,18 +125,66 @@ behavior. They want you to account for why something is different.</p>
 <h3 id="how-are-you-going-to-validate-that-the-difference-between-the-systems">
   <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#how-are-you-going-to-validate-that-the-difference-between-the-systems">How are you going to validate that the difference between the systems?</a>
 </h3>
+<p>I am going to assume that I am new to the system in general and have very surface knowledge from fellow staff. I am also assuming we are working with a redhat based system.</p>
+
+
+
+<h4 id="starting-off-simple">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#starting-off-simple">Starting off simple</a>
+</h4>
+<p>Maybe the problem is an obvious one, so I would just start off with a glance.</p>
+<ul>
+<li>Quick cursory check (Kernel Version uname-a)</li>
+<li>Manually Checking Logs (Journalctl, dmesg, audit.log, syslog)</li>
+<li>Checking ports (Socket Statistics, ss -ntulp)</li>
+<li>Listing installed packages (DNF list, RPM -qa)</li>
+<li>Listing users and Logins (/etc/passwd, w, last)</li>
+<li>Seeing what System D services are running (systemctl list-units - -type=service)</li>
+<li>Digging for documentation and or commit history</li>
+</ul>
+
+
+
+<h4 id="deeper-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#deeper-">Deeper ⛏️</a>
+</h4>
+<p>If no low hanging fruit were there, then I would check configurations</p>
+<ul>
+<li>Grub.conf, FirewallD/Apparmour, SELinux,</li>
+</ul>
+
+
+
+<h4 id="sorting-ish-from-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#sorting-ish-from-">Sorting 🪰&lsquo;ish from 🌶️</a>
+</h4>
+<p>If I do that see something distinctly different, I would employ a more sophisticated approach with difference checking.
+Given that everything is a structured file, I can append the output from a working system and the goose 🪿 to a new file and run diff against them.</p>
+<ul>
+<li>Diff&rsquo;ing the Logs</li>
+<li>Diff&rsquo;ing Socket Statistics</li>
+<li>Diff&rsquo;ing Installed Packages</li>
+</ul>
 
 
 
 <h3 id="what-are-you-going-to-look-at-to-explain-this">
   <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#what-are-you-going-to-look-at-to-explain-this">What are you going to look at to explain this?</a>
 </h3>
+<p>I think I have answered this above.</p>
 
 
 
 <h3 id="what-could-be-done-to-prevent-this-problem-in-the-future">
   <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#what-could-be-done-to-prevent-this-problem-in-the-future">What could be done to prevent this problem in the future?</a>
 </h3>
+<ul>
+<li>Introducing or Improving the change management policy and employing version control would be my first suggestion.</li>
+<li>Ensuring that there is a build/test/deploy pipeline that integrates tightly with change management.</li>
+<li>Using IaC and Automation to ensure consistency and repeatability with tools like Ansible, Packer, Podman or Kubernetes.</li>
+<li>Hardening systems with either simple policies or through the guidance of STIG&rsquo;s.</li>
+<li>Introducing stronger controls over user privileges like employing RBA policies.</li>
+</ul>
 <hr>
 
 
@@ -156,15 +204,85 @@ development environment. Your team is going from RHEL 8 to Rocky 9.4.</p>
 
 
 
+<h4 id="observe">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#observe">Observe</a>
+</h4>
+<p>Firstly I would gather system information</p>
+<ul>
+<li>Benchmark/baseline performance metrics and utilization (Disk, I/O, PS, Connections etc)</li>
+<li>Configs (Scripts and configuration files)</li>
+<li>Installed Packages.</li>
+<li>users (Listing users and privileges)</li>
+<li>Policies (Firewall, SELinux)</li>
+<li>Purpose (Assessing the use of a particular system to see if may need changes/upgrades)</li>
+</ul>
+
+
+
+<h4 id="capture">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#capture">Capture</a>
+</h4>
+<ul>
+<li>I would snapshot the current system if possible</li>
+<li>If a complete snapshot copy is not possible, I would gather files essential to rebuilding a replica</li>
+</ul>
+
+
+
+<h4 id="reconstruct">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#reconstruct">Reconstruct</a>
+</h4>
+<ul>
+<li>Build it in a test VM emulating the current environment</li>
+<li>Template the VM for experimental changes (Adding additional tools or Configs)</li>
+</ul>
+
+
+
+<h4 id="analyze--optimize">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#analyze--optimize">Analyze / Optimize</a>
+</h4>
+<ul>
+<li>Gather business or operational requirements, perhaps the system needs enhancements</li>
+<li>Experiment with performance tuning</li>
+<li>Test new packages and/or configurations</li>
+</ul>
+
+
+
+<h4 id="build">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#build">Build</a>
+</h4>
+<p>During the analysis and optimization phase, I would start a playbook with information gathered from previous phases.
+I would build and run the playbook against VM templates until satisfied.</p>
+
+
+
+<h4 id="deploy">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#deploy">Deploy</a>
+</h4>
+<p>Given the prior phases, my Playbook would be robust and capable of the transition.
+However, I would ensure a robust backup and rollback plan in the case something fails.</p>
+
+
+
 <h3 id="what-are-you-going-to-check-on-the-existing-systems-to-baseline-your-build">
   <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#what-are-you-going-to-check-on-the-existing-systems-to-baseline-your-build">What are you going to check on the existing systems to baseline your build?</a>
 </h3>
+<ol>
+<li><strong>Compute Usage</strong></li>
+<li><strong>Memory Load</strong></li>
+<li><strong>Disk Resources</strong></li>
+<li><strong>Networking Metrics</strong></li>
+</ol>
 
 
 
 <h3 id="what-kind-of-validation-plan-might-you-use-for-your-new-rocky-94-systems">
   <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#what-kind-of-validation-plan-might-you-use-for-your-new-rocky-94-systems">What kind of validation plan might you use for your new Rocky 9.4 systems?</a>
 </h3>
+<p>I would have a seperate playbook built that would validate performance against what I was observing during my VM experimentation.
+Though the environment may differ from that of the VM, I would still be able to discern performance characteristics and notice any outlier differences.</p>
 <hr>
 
 
@@ -217,20 +335,20 @@ look to put something like this into your resume or portfolio?</p>
 
 
 
-<h3 id="1-you-will-scan-a-server-for-a-scc-report-and-get-a-stig-score">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#1-you-will-scan-a-server-for-a-scc-report-and-get-a-stig-score">1. You will scan a server for a SCC Report and get a STIG Score</a>
+<h3 id="1-you-will-scan-a-server-for-a-scc-report-and-get-a-stig-score-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#1-you-will-scan-a-server-for-a-scc-report-and-get-a-stig-score-">1. You will scan a server for a SCC Report and get a STIG Score 👍</a>
 </h3>
 
 
 
-<h3 id="2-you-will-remediate-some-of-the-items-from-the-scan">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#2-you-will-remediate-some-of-the-items-from-the-scan">2. You will remediate some of the items from the scan</a>
+<h3 id="2-you-will-remediate-some-of-the-items-from-the-scan-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#2-you-will-remediate-some-of-the-items-from-the-scan-">2. You will remediate some of the items from the scan 👍</a>
 </h3>
 
 
 
-<h3 id="3-you-will-rescan-and-verify-a-better-score">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#3-you-will-rescan-and-verify-a-better-score">3. You will rescan and verify a better score.</a>
+<h3 id="3-you-will-rescan-and-verify-a-better-score-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu13/#3-you-will-rescan-and-verify-a-better-score-">3. You will rescan and verify a better score. 👍</a>
 </h3>
 <hr>
 

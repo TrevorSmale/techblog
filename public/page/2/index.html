@@ -30,7 +30,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.139.5">
+<meta name="generator" content="Hugo 0.140.1">
   <title>Tech Blog</title>
   <link rel="canonical" href="http://localhost:1313/techblog/">
 
@@ -207,7 +207,7 @@
     <a class="Heading-link u-clickable" href="/techblog/" rel="bookmark">Tech Blog</a>
   </h1>
   
-    <time datetime="2024-12-17T00:00:00Z">December 17, 2024</time>
+    <time datetime="2024-12-28T00:00:00Z">December 28, 2024</time>
   
 </header>
   
@@ -215,6 +215,1667 @@
   
 
   
+  
+    <article>
+      <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/pacu7/" rel="bookmark">ProLUG Admin Course Unit 7 🐧</a>
+  </h1>
+  
+    <time datetime="2024-10-27T00:00:00Z">October 27, 2024</time>
+  
+</header>
+      
+        <h1 id="security">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#security">Security</a>
+</h1>
+
+
+
+<h2 id="patching-the-system-package-management">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#patching-the-system-package-management">Patching the system/ Package Management</a>
+</h2>
+
+
+
+<h3 id="yum-dnf-rpm">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#yum-dnf-rpm">yum, dnf, rpm</a>
+</h3>
+<p><img src="https://trevorsmale.github.io/techblog/images/PACU7/CatPackage.jpg" alt="Packaged Cat"></p>
+<p>As the course progresses, I am learning more deeply within a study group. Aside from the lab work and discussion posts. I have been putting a lot of hours satisfying curiosities regarding the linux system.
+For this unit we did a deep dive into packaging, going so far as to look at the history and reasoning before decision making. We had also looked at packages are managed within tightly controlled environments.
+I now feel that I have a robust understanding of the theory and practical elements of Redhat packaging and beyond.</p>
+
+
+
+<h2 id="discussion-post-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#discussion-post-1">Discussion Post 1:</a>
+</h2>
+<p>Why software versioning is important. 🤔</p>
+<ol>
+<li>Versioning enables you to monitor software updates systematically, making it easier to troubleshoot, roll back changes, and trace modifications for security or functionality purposes. 👍</li>
+<li>One can manage dependencies confidently, avoiding conflicts between system components, libraries, and tools. crucial for stable and consistent deployments. 👍</li>
+<li>We can verify package integrity, ensuring installed software hasn’t been altered or corrupted. Essential for maintaining a secure and stable system environment. 👍</li>
+</ol>
+
+
+
+<h2 id="discussion-post-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#discussion-post-2">Discussion Post 2:</a>
+</h2>
+
+
+
+<h3 id="scenario">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#scenario">Scenario:</a>
+</h3>
+<p>You are new to a Linux team. A ticket has come in from an application team and has already been escalated to your manager. They want software installed on one of their servers but you cannot find any documentation and your security team is out to lunch and not responding. You remember from some early documentation that you read that all the software in the internal repos you currently have are approved for deployment on servers. You want to also verify by checking other servers that this software exists. This is an urgent ask and your manager is hovering.
+How can you check all the repos on your system to see which are active? 🤔
+How would you check another server to see if the software was installed there? 🤔
+If you find the software, how might you figure out when it was installed? (Time/Date) 🤔</p>
+
+
+
+<h3 id="answer">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#answer">Answer:</a>
+</h3>
+<p>In an urgent situation like this, I’d first check which approved software repositories are active on my system,
+then verify if the software is already installed on similar servers to ensure it’s safe to proceed. Finally, I’d review the installation history to confirm when it was
+added. Working with Red Hat packaging and package management systems has many more options than I was expecting; through labbing in the study group,
+I’ve gained a much better understanding of packages, dependencies, and package management.</p>
+<p>Packing was a pretty deep rabbit hole for me.</p>
+<p>This is the process I&rsquo;d follow for this case:</p>
+<ol>
+<li>
+<p>Check Active Repositories
+dnf repolist</p>
+</li>
+<li>
+<p>Check if the Software is Installed on Your System
+rpm -qa | grep &lt;software_name&gt;
+or
+dnf list installed &lt;software_name&gt;</p>
+</li>
+<li>
+<p>Check Another Server for Software Installation with SSH and Step 2 commands.</p>
+</li>
+<li>
+<p>View Installation History (Time/Date)</p>
+<p>dnf history info &lt;transaction_id&gt;
+dnf history list &lt;software_name&gt;</p>
+</li>
+</ol>
+<hr>
+
+
+
+<h2 id="discussion-post-3">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#discussion-post-3">Discussion Post 3</a>
+</h2>
+<p>(After you have completed the lab) - Looking at the concept of group install from DNF or Yum. Why do you think an administrator may never want to use that in a running system? Why might an engineer want to or not want to use that? This is a thought exercise, so it’s not a “right or wrong” answer it’s for you to think about.</p>
+
+
+
+<h3 id="question">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#question">Question:</a>
+</h3>
+<p>What is the concept of software bloat, and how do you think it relates?</p>
+
+
+
+<h3 id="answer-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#answer-1">Answer:</a>
+</h3>
+<p>Software bloat is when essential tools/packages are larger than they need to be, effecting performance, reliability and security. By performance I am referring to the loss of potential performance from unessecary resource use. In regards to reliability, more complex systems inherently have more potential to fail. Security means many things, so I am specifically thinking about attack surface and potential for vulnerability due to the aforementioned complexity.</p>
+
+
+
+<h3 id="question-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#question-1">Question:</a>
+</h3>
+<p>What is the concept of a security baseline, and how do you think it relates?</p>
+
+
+
+<h3 id="answer-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#answer-2">Answer:</a>
+</h3>
+<p>A set of minimum security standards and controls that organizations implement to protect systems.</p>
+
+
+
+<h3 id="question-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#question-2">Question:</a>
+</h3>
+<p>How do you think something like this affects performance baselines?</p>
+
+
+
+<h3 id="answer-3">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#answer-3">Answer:</a>
+</h3>
+<p>By targeting specific packages, tracking changes, reducing unnessecary dependancies and bloat, we satisfy the tenants of a security baseline by establishing consistency, simplifying compliance, enhancing efficiency and reduce risk.</p>
+<hr>
+
+
+
+<h3 id="prolug-links-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu7/#prolug-links-">ProLUG Links ⛓️</a>
+</h3>
+<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
+Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
+Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
+ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
+KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
+      
+      
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/operating-systems/" rel="tag">Operating Systems</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+    </article>
+    
+      <div class="Divider"></div>
+    
+  
+    <article>
+      <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/pacu6/" rel="bookmark">ProLUG Admin Course Unit 6 🐧</a>
+  </h1>
+  
+    <time datetime="2024-10-21T00:00:00Z">October 21, 2024</time>
+  
+</header>
+      
+        <h1 id="security--firewalld--ufw-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#security--firewalld--ufw-">Security – Firewalld &amp; UFW 🔥🧱</a>
+</h1>
+<p>In this unit, we explore essential concepts in firewall management using Firewalld and UFW. A firewall acts as a security system, controlling the flow of traffic between networks by enforcing rules based on zones —logical areas with different security policies. Services are predefined sets of ports or protocols that firewalls allow or block, and zones like DMZ (Demilitarized Zone) provide added security layers by isolating public-facing systems. Stateful packet filtering tracks the state of connections, allowing more dynamic rules, while stateless packet filtering inspects individual packets without connection context. Proxies facilitate indirect network connections for security and privacy, while advanced security measures such as Web Application Firewalls (WAF) and Next-Generation Firewalls (NGFW) offer specialized protection against modern threats.</p>
+<hr>
+
+
+
+<h1 id="lab-work-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#lab-work-">Lab Work 🧪🥼</a>
+</h1>
+
+
+
+<h2 id="intro">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#intro">Intro</a>
+</h2>
+<p>This week, we dove deep into configuring and testing firewall settings in our Discord study group. I had several virtual machines set up in my ProxMox home lab, and we experimented while completing the lab work. As usual, we went on several tangents, verifying ideas. In total, we spent over 5 hours running commands, experimenting with different configurations, breaking things, and debating solutions. By the end of the session, I gained a practical understanding of Firewalld configuration, packet sending, and packet tracing with Wireshark. It was frustrating at times, but ultimately rewarding.</p>
+
+
+
+<h3 id="sending--receiving-test-packets-experiment">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#sending--receiving-test-packets-experiment">Sending &amp; Receiving test packets experiment</a>
+</h3>
+
+
+
+<h4 id="1-so-we-set-up-one-server-to-receive-a-packet">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#1-so-we-set-up-one-server-to-receive-a-packet">1. So we set up one server to receive a packet:</a>
+</h4>
+<pre><code>    nc -l -p -u 12345 &gt; received_file
+</code></pre>
+
+
+
+<h4 id="2-sending-from-another-server-and-noted-that-the-packet-was-recorded-in-received_file">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#2-sending-from-another-server-and-noted-that-the-packet-was-recorded-in-received_file">2. Sending from another server and noted that the packet was recorded in <strong>received_file</strong></a>
+</h4>
+<pre><code>    echo 'message1' | nc -u server_b_ip 12345
+</code></pre>
+
+
+
+<h4 id="3-we-set-firewalld-to-block-udp-port-12345">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#3-we-set-firewalld-to-block-udp-port-12345">3. We set Firewalld to block udp port 12345</a>
+</h4>
+<pre><code>    sudo firewall-cmd --zone=public --add-rich-rule='rule family=&quot;ipv4&quot; source address=&quot;192.168.2.166&quot; port protocol=&quot;udp&quot; port=&quot;12345&quot; accept' --permanent
+</code></pre>
+
+
+
+<h4 id="4-so-we-set-up-one-server-to-receive-a-packet">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#4-so-we-set-up-one-server-to-receive-a-packet">4. So we set up one server to receive a packet:</a>
+</h4>
+<pre><code>    nc -l -p -u 12345 &gt; received_file
+</code></pre>
+
+
+
+<h4 id="5-sending-from-another-server">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#5-sending-from-another-server">5. Sending from another server:</a>
+</h4>
+<pre><code>    echo 'Blocked' | nc -u server_b_ip 12345
+</code></pre>
+
+
+
+<h4 id="6-we-then-noted-that-this-packet-did-not-come-through">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#6-we-then-noted-that-this-packet-did-not-come-through">6. We then noted that this packet did not come through</a>
+</h4>
+
+
+
+<h4 id="7-we-then-set-up-netcat-to-listen-for-packets-on-udp-port-12346-slightly-different">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#7-we-then-set-up-netcat-to-listen-for-packets-on-udp-port-12346-slightly-different">7. We then set up netcat to listen for packets on udp port 12346 &lsquo;slightly different&rsquo;</a>
+</h4>
+<pre><code>    nc -l -p -u 12346 &gt; received_file
+</code></pre>
+
+
+
+<h4 id="8-sending-from-another-server-and-noted-that-the-packet-was-recorded-in-received_file">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#8-sending-from-another-server-and-noted-that-the-packet-was-recorded-in-received_file">8. Sending from another server and noted that the packet was recorded in <strong>received_file</strong></a>
+</h4>
+<pre><code>    echo 'message2' | nc -u server_b_ip 12346
+</code></pre>
+
+
+
+<h4 id="9-then-we-busted-open-wireshark-on-the-packet-receiving-vm-and-turned-on-general-packet-scanning">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#9-then-we-busted-open-wireshark-on-the-packet-receiving-vm-and-turned-on-general-packet-scanning">9. Then we busted open WireShark on the packet receiving VM and turned on general packet scanning</a>
+</h4>
+<pre><code>    echo 'mom' | nc -u server_b_ip 12346 
+</code></pre>
+
+
+
+<h4 id="10-we-then-looked-at-all-of-the-ways-we-could-inspect-the-packets-including-additional-data-bits-over-udp-for-no-apparent-reason">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#10-we-then-looked-at-all-of-the-ways-we-could-inspect-the-packets-including-additional-data-bits-over-udp-for-no-apparent-reason">10. We then looked at all of the ways we could inspect the packets including additional data bits over UDP for no apparent reason.</a>
+</h4>
+<p>Fin</p>
+<hr>
+
+
+
+<h1 id="types-of-firewalls-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#types-of-firewalls-">Types of Firewalls 🔍</a>
+</h1>
+
+
+
+<h2 id="firewalld-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#firewalld-">Firewalld 🔥🧱</a>
+</h2>
+<p>Uses <strong>zones</strong> to define the level of trust for network connections, making it easy to apply different security settings to various types of connections (like home, public, or work). It’s dynamic, meaning changes can be made without restarting the firewall, ensuring smooth operation.</p>
+
+
+
+<h3 id="zones-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#zones-">Zones 🍱</a>
+</h3>
+<p>The concept is specific to Firewalld. Zones are a predefined set of firewall rules that determine the level of trust assigned to a network connection. Zones allow you to apply different security policies to different network interfaces based on how much you trust the network.</p>
+
+
+
+<h3 id="common-commands">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#common-commands">Common Commands</a>
+</h3>
+<pre><code>    firewall-cmd --state
+</code></pre>
+<p>Checks if Firewalld is running.</p>
+<pre><code>    firewall-cmd --get-active-zones
+</code></pre>
+<p>Lists all active zones and the interfaces associated with them.</p>
+<pre><code>    firewall-cmd --get-default-zone
+</code></pre>
+<p>Displays the default zone for new interfaces or connections.</p>
+<pre><code>    firewall-cmd --set-default-zone=ZONE
+</code></pre>
+<p>Changes the default zone to the specified zone.</p>
+<pre><code>    firewall-cmd --zone=ZONE --add-service=SERVICE
+</code></pre>
+<p>Allows a service (e.g., SSH, HTTP) in the specified zone.</p>
+<pre><code>    firewall-cmd --zone=ZONE --remove-service=SERVICE
+</code></pre>
+<p>Removes a service from the specified zone.</p>
+<pre><code>    firewall-cmd --zone=ZONE --add-port=PORT/PROTOCOL
+</code></pre>
+<p>Opens a specific port (e.g., 80/tcp) in the specified zone.</p>
+<pre><code>    firewall-cmd --zone=ZONE --remove-port=PORT/PROTOCOL
+</code></pre>
+<p>Closes a specific port in the specified zone.</p>
+<pre><code>    firewall-cmd --reload
+</code></pre>
+<p>Reloads the Firewalld configuration without dropping active connections.</p>
+<pre><code>    firewall-cmd --list-all
+</code></pre>
+<p>Lists all the rules and settings in the active zone.</p>
+<pre><code>    firewall-cmd --permanent
+</code></pre>
+<p>Applies changes permanently (used with other commands to ensure changes persist after reboots).</p>
+<pre><code>    firewall-cmd --runtime-to-permanent
+</code></pre>
+<p>Converts the current runtime configuration to a permanent one.</p>
+
+
+
+<h3 id="zone-example">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#zone-example">Zone example</a>
+</h3>
+<ul>
+<li>A public zone might have stricter rules, blocking most traffic except for essential services like web browsing.</li>
+<li>A home zone could allow more open traffic, such as file sharing, because the network is more trusted.</li>
+</ul>
+
+
+
+<h2 id="ufw-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#ufw-">UFW 🔥🧱</a>
+</h2>
+<p><strong>Uncomplicated Firewall</strong> is a user-friendly firewall designed to simplify the process of controlling network traffic by allowing or blocking connections. UFW is commonly used on <strong>Ubuntu</strong> and provides easy commands for setting up firewall rules, making it ideal for beginners. Despite it is simplicity, it is powerful enough to handle complex configurations.</p>
+
+
+
+<h3 id="default-deny-policy-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#default-deny-policy-">Default Deny Policy 🔐</a>
+</h3>
+<ul>
+<li>By default, UFW denies all incoming connections while allowing outgoing ones. This enhances security by requiring users to explicitly allow any incoming traffic.</li>
+</ul>
+
+
+
+<h3 id="common-commands-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#common-commands-1">Common Commands</a>
+</h3>
+<pre><code>    sudo ufw status
+</code></pre>
+<p>Displays the current status of UFW and active rules.</p>
+<pre><code>    sudo ufw enable
+</code></pre>
+<p>Enables the UFW firewall.</p>
+<pre><code>    sudo ufw disable
+</code></pre>
+<p>Disables the UFW firewall.</p>
+<pre><code>    sudo ufw default deny incoming
+</code></pre>
+<p>Sets the default policy to deny all incoming connections.</p>
+<pre><code>    sudo ufw default allow outgoing
+</code></pre>
+<p>Sets the default policy to allow all outgoing connections.</p>
+<pre><code>    sudo ufw allow PORT
+</code></pre>
+<p>Allows traffic on a specific port (e.g., <code>sudo ufw allow 22</code> to allow SSH).</p>
+<pre><code>    sudo ufw deny PORT
+</code></pre>
+<p>Denies traffic on a specific port.</p>
+<pre><code>    sudo ufw delete allow PORT
+</code></pre>
+<p>Removes a previously allowed rule for a port.</p>
+<pre><code>    sudo ufw allow SERVICE
+</code></pre>
+<p>Allows traffic for a service by name (e.g., <code>sudo ufw allow ssh</code>).</p>
+<pre><code>    sudo ufw deny SERVICE
+</code></pre>
+<p>Denies traffic for a service by name.</p>
+<pre><code>    sudo ufw allow from IP
+</code></pre>
+<p>Allows traffic from a specific IP address.</p>
+<pre><code>    sudo ufw deny from IP
+</code></pre>
+<p>Denies traffic from a specific IP address.</p>
+<pre><code>    sudo ufw allow proto PROTOCOL from IP to any port PORT
+</code></pre>
+<p>Allows traffic for a specific protocol, source IP, and port (e.g., <code>sudo ufw allow proto tcp from 192.168.1.100 to any port 80</code>).</p>
+<pre><code>    sudo ufw reset
+</code></pre>
+<p>Resets all UFW rules to default.</p>
+<pre><code>    sudo ufw reload
+</code></pre>
+<p>Reloads UFW rules without disabling the firewall.</p>
+
+
+
+<h2 id="waf-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#waf-">WAF 🔥🧱</a>
+</h2>
+<p><strong>Web Application Firewall</strong> is a security system designed to protect web applications by filtering and monitoring HTTP traffic between a web application and the internet. It helps prevent common web-based attacks like SQL injection, cross-site scripting (XSS), and cross-site request forgery (CSRF) by analyzing the incoming and outgoing traffic and blocking malicious requests. Unlike traditional firewalls that focus on network security, a WAF specifically targets the security of web applications and can be an important part of a layered defense strategy.</p>
+
+
+
+<h3 id="more-sophisticated-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#more-sophisticated-">More Sophisticated 🍷</a>
+</h3>
+<p>are generally more sophisticated than Firewalld or UFW because they operate at the application layer (Layer 7) of the OSI model. Blocking traffic is one thing, but packet inspection is another.</p>
+
+
+
+<h3 id="quite-a-few-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#quite-a-few-">Quite a few ⚖️</a>
+</h3>
+<p>There are many Web Application Firewalls out there that cover specific cloud platforms or web services. Here is a list of some popular ones:</p>
+<ul>
+<li>AWS WAF</li>
+<li>Cloudflare WAF</li>
+<li>F5 Advanced WAF</li>
+<li>Imperva WAF</li>
+<li>ModSecurity</li>
+<li>Barracuda WAF</li>
+<li>Sucuri WAF</li>
+<li>Akamai Kona Site Defender</li>
+<li>Fortinet FortiWeb</li>
+</ul>
+
+
+
+<h2 id="ngfw-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#ngfw-">NGFW 🔥🧱🧠</a>
+</h2>
+<p><strong>Next-Generation Firewall</strong> is an advanced type of firewall that goes beyond traditional firewall features like packet filtering. It combines standard firewall capabilities with more advanced functionalities such as deep packet inspection (DPI), intrusion prevention systems (IPS), and application-level control. NGWs can inspect and control traffic at a more granular level, allowing administrators to set security rules based on specific applications, users, or behaviors.</p>
+
+
+
+<h3 id="features-of-a-typical-ngfw">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#features-of-a-typical-ngfw">Features of a typical NGFW</a>
+</h3>
+<ul>
+<li><strong>Deep Packet Inspection (DPI)</strong>: Examines the content of data packets, not just their headers, allowing the firewall to identify and block threats hidden in the traffic.</li>
+<li><strong>Intrusion Detection and Prevention System (IDS/IPS)</strong>: Monitors network traffic for suspicious activity and can take action (like blocking or alerting) to prevent attacks in real-time.</li>
+<li><strong>Application Awareness and Control</strong>: Recognizes and manages specific applications (e.g., Facebook, Skype) regardless of port or protocol, allowing for fine-grained traffic control.</li>
+<li><strong>Advanced Malware Protection (AMP)</strong>: Detects and blocks malware using both signature-based detection and behavioral analysis to prevent malware from entering the network.</li>
+<li><strong>SSL/TLS Decryption</strong>: Decrypts encrypted traffic (HTTPS) for inspection to detect threats hiding inside secure channels.</li>
+<li><strong>User Identity Integration</strong>: Applies firewall rules based on user identity or group membership rather than just IP addresses, providing more flexible access control.</li>
+<li><strong>Threat Intelligence Feeds</strong>: Uses real-time threat data from global databases to protect against emerging threats and malicious IP addresses or domains.</li>
+<li><strong>Cloud-Delivered Security</strong>: Provides scalable and flexible cloud-based protection services such as sandboxing, traffic analysis, and updates for zero-day attacks.</li>
+<li><strong>Virtual Private Network (VPN) Support</strong>: Allows secure, encrypted connections for remote users or between different networks (site-to-site or remote access VPNs).</li>
+<li><strong>URL Filtering</strong>: Controls access to websites based on categories (e.g., social media, gambling) or specific URLs, helping enforce acceptable use policies.</li>
+<li><strong>Quality of Service (QoS)</strong>: Prioritizes certain types of traffic, ensuring that critical applications receive the necessary bandwidth and reducing congestion.</li>
+<li><strong>Zero-Trust Network Segmentation</strong>: Implements policies based on strict access control, ensuring that users and devices only access the resources they are explicitly permitted.</li>
+<li><strong>Sandboxing</strong>: Isolates suspicious files or code in a secure environment to detect malicious behavior without affecting the rest of the network.</li>
+<li><strong>Logging and Reporting</strong>: Provides detailed logs and reports on network traffic, blocked threats, and firewall activity for auditing and troubleshooting.</li>
+</ul>
+
+
+
+<h3 id="ngfw-products">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#ngfw-products">NGFW Products</a>
+</h3>
+<ul>
+<li>Palo Alto Networks NGFW</li>
+<li>Cisco Firepower NGFW</li>
+<li>Fortinet FortiGate NGFW</li>
+<li>Check Point NGFW</li>
+<li>Sophos XG NGFW</li>
+<li>Juniper Networks SRX Series NGFW</li>
+<li>Barracuda CloudGen NGFW</li>
+<li>SonicWall NGFW</li>
+<li>WatchGuard Firebox NGFW</li>
+<li>Forcepoint NGFW</li>
+<li>PfSense NGFW</li>
+</ul>
+
+
+
+<h3 id="experience-with-pfsense">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#experience-with-pfsense">Experience with PFSense</a>
+</h3>
+<p>I am familiar with PfSense as it is <strong>Open Source</strong> and popular among the Homelab enthusiasts because it is offers expansive features built upon FreeBSD which has killer networking.</p>
+
+
+
+<h3 id="some-limitations">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#some-limitations">Some limitations</a>
+</h3>
+
+
+
+<h4 id="pre-packaged-features">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#pre-packaged-features">Pre-packaged Features</a>
+</h4>
+<p>Commercial NGFWs (e.g., Palo Alto Networks, Cisco Firepower) often come with built-in advanced features such as cloud-delivered threat intelligence, AI-powered threat detection, and sandboxing for zero-day threats. While pfSense can be extended with third-party packages, it doesn’t natively offer the same level of seamless integration or automation.</p>
+
+
+
+<h4 id="unified-management">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#unified-management">Unified Management</a>
+</h4>
+<p>Commercial NGFWs typically provide a centralized management console for handling multiple firewalls across large networks. While pfSense can handle multiple installations, managing them requires more manual effort and may not be as streamlined as the enterprise-grade management consoles of commercial NGFWs.</p>
+
+
+
+<h4 id="enterprise-support">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#enterprise-support">Enterprise Support</a>
+</h4>
+<p>pfSense relies on community and third-party support, whereas commercial NGFWs offer direct vendor support with service level agreements (SLAs), which can be crucial for large enterprises needing guaranteed response times and assistance.</p>
+
+
+
+<h4 id="threat-intelligence">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#threat-intelligence">Threat Intelligence</a>
+</h4>
+<p>NGFWs like those from Palo Alto or Cisco often integrate with real-time global threat intelligence networks, offering constant updates about emerging threats. While pfSense can be configured with tools like Snort for intrusion detection, it lacks the built-in, cloud-powered intelligence found in commercial NGFWs.</p>
+<hr>
+
+
+
+<h1 id="case-study-1-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#case-study-1-">Case Study #1 🤔</a>
+</h1>
+<p>A ticket has come in from an application team. Some of the servers your team built for them last week have not been reporting up to enterprise monitoring and they need it to be able to troubleshoot a current issue, but they have no data. You jump on the new servers and find that your engineer built everything correctly and the agents for node_exporter, ceph_exporter and logstash exporter that your teams use. But, they also have adhered to the new company standard of firewalld must be running. No one has documented the ports that need to be open, so you’re stuck between the new standards and fixing this problem on live systems.</p>
+
+
+
+<h3 id="1-initial-research">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#1-initial-research">1. Initial Research</a>
+</h3>
+<p>Findings:</p>
+<ul>
+<li>node_exporter typically uses port <strong>9100</strong></li>
+<li>ceph_exporter may use port <strong>9128</strong></li>
+<li>logstash commonly uses ports <strong>5044</strong></li>
+</ul>
+
+
+
+<h3 id="2-checking-configs">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#2-checking-configs">2. Checking Configs</a>
+</h3>
+
+
+
+<h4 id="a-logstash-config">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#a-logstash-config">A. LogStash Config</a>
+</h4>
+<pre><code>    cat /etc/logstash/conf.d/
+</code></pre>
+
+
+
+<h4 id="b-node-exporter-config">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#b-node-exporter-config">B. node exporter config</a>
+</h4>
+<pre><code>    cat /etc/systemd/system/node_exporter.service
+</code></pre>
+
+
+
+<h4 id="c-ceph-exporter-config">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#c-ceph-exporter-config">C. ceph exporter config</a>
+</h4>
+<pre><code>    cat /etc/systemd/system/ceph_exporter.service
+</code></pre>
+
+
+
+<h1 id="or">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#or">Or</a>
+</h1>
+
+
+
+<h3 id="3-gathering-socket-statistics">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#3-gathering-socket-statistics">3. Gathering Socket Statistics</a>
+</h3>
+<pre><code>    sudo ss -tuln | grep LISTEN
+</code></pre>
+
+
+
+<h4 id="options-breakdown">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#options-breakdown">Options Breakdown</a>
+</h4>
+<p>-t: Show TCP sockets.
+-u: Show UDP sockets.
+-l: Show listening sockets, i.e., those waiting for incoming connections.
+-n: Show the output numerically, without resolving service names (e.g., display IP addresses and port numbers instead of domain names or service names like “http”).</p>
+
+
+
+<h3 id="q-1-as-youre-looking-this-up-what-terms-and-concepts-are-new-to-you">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#q-1-as-youre-looking-this-up-what-terms-and-concepts-are-new-to-you">Q: 1. As you’re looking this up, what terms and concepts are new to you?</a>
+</h3>
+<p>Basically all of the concepts used are new to me. I am not very well versed in networking, network scanning or inspecting service configs.
+So this became a research and practice exercise that has shown me quite a lot of new tricks.</p>
+
+
+
+<h3 id="q-2-what-are-the-ports-that-you-need-to-expose-how-did-you-find-the-answer">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#q-2-what-are-the-ports-that-you-need-to-expose-how-did-you-find-the-answer">Q: 2. What are the ports that you need to expose? How did you find the answer?</a>
+</h3>
+<p>Theoretically I would expose port <strong>9100</strong>, <strong>9128</strong>, <strong>5044</strong> from research. Furthermore, I now know how to check configs and/or gathering sockets statistics</p>
+
+
+
+<h3 id="q-3-what-are-you-going-to-do-to-fix-this-on-your-firewall">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#q-3-what-are-you-going-to-do-to-fix-this-on-your-firewall">Q: 3. What are you going to do to fix this on your firewall?</a>
+</h3>
+<p>I would add these services to the internal zone:</p>
+<pre><code>    firewall-cmd --zone=ZONE --add-service=SERVICE
+</code></pre>
+<p>Allows a service (e.g., SSH, HTTP) in the specified zone.</p>
+<hr>
+
+
+
+<h1 id="case-study-2-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#case-study-2-">Case Study #2 🤔</a>
+</h1>
+<p>A manager heard you were the one that saved the new application by fixing the firewall. They get your manager to approach you with a request to review some documentation from a vendor that is pushing them hard to run a WAF in front of their web application. You are “the firewall” guy now, and they’re asking you to give them a review of the differences between the firewalls you set up (which they think should be enough to protect them) and what a WAF is doing.</p>
+
+
+
+<h3 id="q-1-what-do-you-know-about-the-differences-now">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#q-1-what-do-you-know-about-the-differences-now">Q: 1. What do you know about the differences now?</a>
+</h3>
+
+
+
+<h4 id="traditional-firewalls-firewalldufw">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#traditional-firewalls-firewalldufw">Traditional Firewalls (firewalld/ufw):</a>
+</h4>
+<ul>
+<li>Operate at network and transport layers (OSI Layer 3 &amp; 4).</li>
+<li>Control traffic based on IP addresses, ports, and protocols.</li>
+<li>Block or allow entire network connections.</li>
+</ul>
+
+
+
+<h4 id="web-application-firewalls-wafs">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#web-application-firewalls-wafs">Web Application Firewalls (WAFs):</a>
+</h4>
+<ul>
+<li>Operate at the application layer (OSI Layer 7).</li>
+<li>Inspect HTTP/HTTPS traffic, focusing on web application security.</li>
+<li>Protect against attacks like SQL injection, XSS, and other web vulnerabilities.</li>
+</ul>
+
+
+
+<h3 id="q-2-what-are-you-going-to-do-to-figure-out-more">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#q-2-what-are-you-going-to-do-to-figure-out-more">Q: 2. What are you going to do to figure out more?</a>
+</h3>
+<ul>
+<li>Dedicate time to researching effective WAF solutions.</li>
+<li>Identifying suitable solutions at 3 budget scales.</li>
+<li>Try to understand the additional labour behind management additional tools.</li>
+</ul>
+
+
+
+<h3 id="q-3-prepare-a-report-for-them-comparing-it-to-the-firewall-you-did-in-the-first-discussion">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#q-3-prepare-a-report-for-them-comparing-it-to-the-firewall-you-did-in-the-first-discussion">Q: 3. Prepare a report for them comparing it to the firewall you did in the first discussion.</a>
+</h3>
+
+
+
+<h1 id="report-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#report-">Report 🗒️</a>
+</h1>
+
+
+
+<h3 id="evaluation-of-implementing-a-web-application-firewall-waf">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#evaluation-of-implementing-a-web-application-firewall-waf">Evaluation of Implementing a Web Application Firewall <strong>WAF</strong></a>
+</h3>
+
+
+
+<h3 id="prepared-by-treasure">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#prepared-by-treasure"><strong>Prepared by:</strong> Treasure</a>
+</h3>
+
+
+
+<h3 id="date-oct-20th-2024">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#date-oct-20th-2024"><strong>Date:</strong> Oct 20th 2024</a>
+</h3>
+
+
+
+<h3 id="subject-evaluation-of-waf-implementation-suitability-and-comparison-with-traditional-firewalls">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#subject-evaluation-of-waf-implementation-suitability-and-comparison-with-traditional-firewalls"><strong>Subject:</strong> Evaluation of WAF Implementation Suitability and Comparison with Traditional Firewalls</a>
+</h3>
+<hr>
+
+
+
+<h2 id="1-introduction">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#1-introduction"><strong>1. Introduction</strong></a>
+</h2>
+<p>This report has been prepared in response to a request to evaluate the suitability of implementing a Web Application Firewall (WAF) within our infrastructure. The aim of this report is to:</p>
+<ul>
+<li>Compare WAF technology with traditional firewall solutions currently implemented.</li>
+<li>Assess the benefits and limitations of each.</li>
+<li>Provide recommendations based on the findings.</li>
+</ul>
+
+
+
+<h2 id="2-objectives">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#2-objectives"><strong>2. Objectives</strong></a>
+</h2>
+<p>The key objectives of this evaluation are:</p>
+<ul>
+<li>To determine the suitability of WAF in enhancing our web application security.</li>
+<li>To identify potential risks and benefits associated with the deployment of WAF.</li>
+<li>To compare traditional firewall solutions with WAF in terms of functionality, security, and cost.</li>
+<li>To make recommendations based on the current and future needs of our IT infrastructure.</li>
+</ul>
+
+
+
+<h2 id="3-comparison-of-technologies">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#3-comparison-of-technologies"><strong>3. Comparison of Technologies</strong></a>
+</h2>
+
+
+
+<h3 id="31-traditional-firewalls-firewalldufw">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#31-traditional-firewalls-firewalldufw"><strong>3.1 Traditional Firewalls (firewalld/ufw)</strong></a>
+</h3>
+<ul>
+<li><strong>Primary Function</strong>: Control and filter network traffic based on IP addresses, ports, and protocols.</li>
+<li><strong>Strengths</strong>:
+<ul>
+<li>Blocks unwanted connections at the network level.</li>
+<li>Suitable for general network protection.</li>
+<li>Easy to configure and manage.</li>
+</ul>
+</li>
+<li><strong>Limitations</strong>:
+<ul>
+<li>Does not inspect web traffic at the application level.</li>
+<li>Cannot protect against specific web application attacks (e.g., SQL injection, XSS).</li>
+</ul>
+</li>
+</ul>
+
+
+
+<h3 id="32-web-application-firewalls-waf">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#32-web-application-firewalls-waf"><strong>3.2 Web Application Firewalls (WAF)</strong></a>
+</h3>
+<ul>
+<li><strong>Primary Function</strong>: Protect web applications by filtering and monitoring HTTP/HTTPS traffic.</li>
+<li><strong>Strengths</strong>:
+<ul>
+<li>Protects against common web application vulnerabilities (e.g., SQL injection, XSS).</li>
+<li>Monitors web traffic to block malicious requests.</li>
+<li>Can provide real-time threat detection and logging.</li>
+</ul>
+</li>
+<li><strong>Limitations</strong>:
+<ul>
+<li>May require more resources and specialized configuration.</li>
+<li>Focused solely on web applications, not general network traffic.</li>
+</ul>
+</li>
+</ul>
+
+
+
+<h3 id="33-key-differences">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#33-key-differences"><strong>3.3 Key Differences</strong></a>
+</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Feature</th>
+          <th>Traditional Firewall</th>
+          <th>Web Application Firewall (WAF)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Layer</strong></td>
+          <td>Network (Layer 3/4)</td>
+          <td>Application (Layer 7)</td>
+      </tr>
+      <tr>
+          <td><strong>Traffic Type</strong></td>
+          <td>IP, ports, protocols</td>
+          <td>HTTP/HTTPS, web requests</td>
+      </tr>
+      <tr>
+          <td><strong>Use Case</strong></td>
+          <td>General network security</td>
+          <td>Web application protection</td>
+      </tr>
+      <tr>
+          <td><strong>Threat Coverage</strong></td>
+          <td>Blocks IP-based threats</td>
+          <td>Mitigates web vulnerabilities (SQLi, XSS)</td>
+      </tr>
+      <tr>
+          <td><strong>Cost</strong></td>
+          <td>Typically lower</td>
+          <td>Generally higher due to specialized focus</td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+<h2 id="4-key-considerations-for-waf-implementation">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#4-key-considerations-for-waf-implementation"><strong>4. Key Considerations for WAF Implementation</strong></a>
+</h2>
+
+
+
+<h3 id="41-security-benefits">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#41-security-benefits"><strong>4.1 Security Benefits</strong></a>
+</h3>
+<ul>
+<li>Enhanced protection against web-specific attacks.</li>
+<li>Ability to monitor and block suspicious activity in real-time.</li>
+<li>Added layer of security on top of traditional network firewalls.</li>
+</ul>
+
+
+
+<h3 id="42-cost-analysis">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#42-cost-analysis"><strong>4.2 Cost Analysis</strong></a>
+</h3>
+<ul>
+<li><strong>Initial Investment</strong>: The upfront cost of acquiring and configuring a WAF solution.</li>
+<li><strong>Ongoing Costs</strong>: Maintenance, updates, and potential personnel training.</li>
+</ul>
+
+
+
+<h3 id="43-operational-impact">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#43-operational-impact"><strong>4.3 Operational Impact</strong></a>
+</h3>
+<ul>
+<li>May require additional resources for setup, monitoring, and incident response.</li>
+<li>Potential need for collaboration between the security and development teams to ensure smooth integration.</li>
+</ul>
+
+
+
+<h2 id="5-risk-assessment">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#5-risk-assessment"><strong>5. Risk Assessment</strong></a>
+</h2>
+<ul>
+<li><strong>Without WAF</strong>: Increased vulnerability to web application-specific threats, such as cross-site scripting (XSS) and SQL injection, especially for critical applications.</li>
+<li><strong>With WAF</strong>: Increased security for web applications but requires ongoing monitoring and adjustment to ensure performance and efficacy.</li>
+</ul>
+
+
+
+<h2 id="6-recommendations">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#6-recommendations"><strong>6. Recommendations</strong></a>
+</h2>
+<p>Based on the evaluation, I recommend the following:</p>
+<ol>
+<li><strong>Implement a WAF</strong>: Due to the increasing reliance on web applications and the rise in web-based attacks, implementing a WAF would provide an essential layer of security.</li>
+<li><strong>Maintain Traditional Firewalls</strong>: Existing firewalls should continue to be used for network-level protection alongside the WAF.</li>
+<li><strong>Pilot Implementation</strong>: Begin with a limited deployment of WAF for high-risk applications to evaluate performance and cost before a full-scale rollout.</li>
+<li><strong>Staff Training</strong>: Ensure the security and IT teams are trained in WAF management to maximize its effectiveness.</li>
+</ol>
+
+
+
+<h2 id="7-conclusion">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#7-conclusion"><strong>7. Conclusion</strong></a>
+</h2>
+<p>The implementation of a Web Application Firewall is a strategic move to protect our web applications from evolving security threats. While traditional firewalls remain crucial for network security, they cannot defend against the types of attacks WAFs are designed to mitigate. By implementing both WAF and traditional firewall solutions, we can ensure comprehensive security coverage across both network and application layers.</p>
+
+
+
+<h2 id="8-next-steps">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#8-next-steps"><strong>8. Next Steps</strong></a>
+</h2>
+<ul>
+<li>Further evaluation of potential WAF solutions based on budget, compatibility, and scalability.</li>
+<li>Engage with the security team for a detailed implementation plan.</li>
+<li>Prepare a pilot program for critical applications and monitor its performance.</li>
+</ul>
+
+
+
+<h3 id="approved-by-bob-saggit">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#approved-by-bob-saggit"><strong>Approved by:</strong> Bob Saggit</a>
+</h3>
+
+
+
+<h3 id="date-october-25th-2024">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#date-october-25th-2024"><strong>Date:</strong> October 25th 2024</a>
+</h3>
+<hr>
+
+
+
+<h3 id="definitions">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#definitions">Definitions</a>
+</h3>
+<ul>
+<li><strong>Firewall</strong>: A security device that monitors and controls incoming and outgoing network traffic based on predetermined security rules.</li>
+<li><strong>Zone</strong>: A defined area within a network that contains systems with similar security requirements, separated by a firewall.</li>
+<li><strong>Service</strong>: A specific type of network functionality, like HTTP or DNS, that can be allowed or blocked by a firewall.</li>
+<li><strong>DMZ</strong>: A &ldquo;Demilitarized Zone&rdquo; is a network segment that serves as a buffer between a secure internal network and untrusted external networks.</li>
+<li><strong>Proxy</strong>: A server that acts as an intermediary for requests between clients and servers, often used for filtering, security, or caching.</li>
+<li><strong>Stateful packet filtering</strong>: A firewall feature that tracks the state of active connections and makes filtering decisions based on the connection&rsquo;s state.</li>
+<li><strong>Stateless packet filtering</strong>: A type of firewall filtering that analyzes each packet independently without considering the state of the connection.</li>
+<li><strong>WAF</strong>: A Web Application Firewall that protects web applications by filtering and monitoring HTTP/HTTPS traffic for threats like SQL injection and XSS.</li>
+<li><strong>NGFW</strong>: A Next-Generation Firewall that combines traditional firewall functions with additional features like application awareness, integrated intrusion prevention, and advanced threat detection.</li>
+</ul>
+<hr>
+
+
+
+<h3 id="prolug-links-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu6/#prolug-links-">ProLUG Links ⛓️</a>
+</h3>
+<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
+Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
+Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
+ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
+KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
+      
+      
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/operating-systems/" rel="tag">Operating Systems</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+    </article>
+    
+      <div class="Divider"></div>
+    
+  
+    <article>
+      <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/pacu5/" rel="bookmark">ProLUG Admin Course Unit 5 🐧</a>
+  </h1>
+  
+    <time datetime="2024-10-18T00:00:00Z">October 18, 2024</time>
+  
+</header>
+      
+        <h1 id="managing-users--groups">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#managing-users--groups">Managing Users &amp; Groups</a>
+</h1>
+<p>The overarching theme of this Unit is in the title, we are looking at Managing Users &amp; Groups. Managing users and groups in Linux within an enterprise involves creating, modifying, and organizing user accounts and permissions to enforce security and control over resources.</p>
+<p>Organizing permissions to enforce security is more important than it has ever been, as we live in a hyper connected world with many bad actors and large amounts of sensitive data.</p>
+<p>Linux is fundamentally well suited for Managing Users &amp; Groups because permissions permeate every aspect of a Linux environment. Everything is a file and every file has associated permissions, Therefore we have granular control over the comings and goings of users as administrators.</p>
+
+
+
+<h2 id="lab-work-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#lab-work-">Lab Work 🧪🥼</a>
+</h2>
+
+
+
+<h3 id="primary-commands--tools">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#primary-commands--tools">Primary Commands / Tools</a>
+</h3>
+<ul>
+<li><strong>alias</strong>: Creates a shortcut or alias for a command.</li>
+<li><strong>unalias</strong>: Removes an alias that was previously defined.</li>
+<li><strong>awk</strong>: A powerful text-processing tool used for pattern scanning and processing.</li>
+<li><strong>useradd</strong>: Adds a new user to the system.</li>
+<li><strong>vi .bashrc</strong>: Opens the <code>.bashrc</code> file in the vi editor to customize shell settings.</li>
+<li><strong>UID_MIN 1000</strong>: The minimum user ID value for normal users (as defined in <code>/etc/login.defs</code>).</li>
+<li><strong>UID_MAX 60000</strong>: The maximum user ID value for normal users (as defined in <code>/etc/login.defs</code>).</li>
+<li><strong>groupadd –g 60001 project</strong>: Creates a new group named &ldquo;project&rdquo; with a GID of 60001.</li>
+<li><strong>id user4</strong>: Displays the user ID (UID), group ID (GID), and group memberships of user &ldquo;user4.&rdquo;</li>
+</ul>
+<hr>
+
+
+
+<h4 id="etc-directories">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#etc-directories">etc directories</a>
+</h4>
+<ul>
+<li>
+<p>Looking at etc directories relating to Users, Groups and Associated Security</p>
+<pre><code>  /etc/passwd 
+</code></pre>
+</li>
+<li>
+<p>contains essential information about users, including their username, user ID (UID), group ID (GID), home directory, and default shell, with each entry separated by a colon.</p>
+<pre><code>  /etc/group
+</code></pre>
+</li>
+<li>
+<p>stores group information, listing each group’s name, group ID (GID), and its members, with each entry separated by a colon, allowing users to belong to one or more groups for access control purposes.</p>
+<pre><code>  /etc/shadow
+</code></pre>
+</li>
+<li>
+<p>contains encrypted password information and related security details for user accounts, such as password aging and expiration</p>
+<pre><code>  /etc/gshadow
+</code></pre>
+</li>
+<li>
+<p>stores encrypted passwords for group accounts, as well as information about group administrators and members, providing enhanced security for group access by restricting who can modify or access specific group data.</p>
+<pre><code>  /etc/login.defs 
+</code></pre>
+</li>
+<li>
+<p>configuration settings for user account creation and login parameters, such as password aging policies, UID and GID ranges, and the default paths for user home directories, helping to control system-wide authentication behavior.</p>
+<pre><code>  /etc/skel/
+</code></pre>
+</li>
+<li>
+<p>provides template files that are automatically copied to a new user’s home directory when the user is created, ensuring they have default configuration settings.</p>
+</li>
+</ul>
+
+
+
+<h3 id="other-interesting-directories">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#other-interesting-directories">Other interesting directories</a>
+</h3>
+<ul>
+<li>
+<p>Brief Description</p>
+</li>
+<li>
+<p>Associated permissions</p>
+<pre><code>  /etc/fstab
+</code></pre>
+</li>
+<li>
+<p>This file contains information about disk partitions and other block storage devices and how they should be automatically mounted during the boot process.</p>
+</li>
+<li>
+<p>Permissions: Usually -rw-r&ndash;r&ndash; (readable by all users, writable only by the root).</p>
+<pre><code>  /etc/hostname
+</code></pre>
+</li>
+<li>
+<p>This file stores the system’s hostname, which is a unique identifier for the machine in a network.</p>
+</li>
+<li>
+<p>Permissions: Usually -rw-r&ndash;r&ndash; (readable by all users, writable only by the root).</p>
+<pre><code>  /proc
+</code></pre>
+</li>
+<li>
+<p>This is a virtual filesystem that provides detailed information about processes and system resources. It does not contain actual files but rather system and process information in real-time.</p>
+</li>
+<li>
+<p>Permissions: dr-xr-xr-x (readable and executable by all users, writable only by root).</p>
+<pre><code>  /boot
+</code></pre>
+</li>
+<li>
+<p>Contains the kernel, initial ramdisk, and bootloader files needed to start the system.</p>
+</li>
+<li>
+<p>Permissions: drwxr-xr-x (readable and executable by all users, writable only by root).</p>
+<pre><code>  /root
+</code></pre>
+</li>
+<li>
+<p>This is the home directory for the root user (the system administrator).</p>
+</li>
+<li>
+<p>Permissions: drwx&mdash;&mdash; (only root has read, write, and execute permissions).</p>
+<pre><code>  /usr/bin
+</code></pre>
+</li>
+<li>
+<p>Contains binary executables for user programs.</p>
+</li>
+<li>
+<p>Permissions: drwxr-xr-x (readable and executable by all users, writable by root).</p>
+</li>
+</ul>
+<hr>
+
+
+
+<h2 id="mapping-unknown-infrastructure-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#mapping-unknown-infrastructure-">Mapping unknown infrastructure 🗺️🤔</a>
+</h2>
+<p><strong>Objectives:</strong></p>
+<ul>
+<li>Map the Internal ProLUG Network (192.168.200.0/24):</li>
+<li>Map the network from one of the rocky nodes.</li>
+<li>Using a template that you build or find from the internet</li>
+<li>Provide a 1 page summary of what you find in the network.</li>
+</ul>
+
+
+
+<h3 id="approach-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#approach-">Approach 🤔</a>
+</h3>
+
+
+
+<h4 id="a-briefing-on-the-infra-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#a-briefing-on-the-infra-">A briefing on the infra. 🔍🖥️</a>
+</h4>
+<p>Het&rsquo; server is unique to me. He uses an injest system that makes a jump to the actual server for security purposes. Within the main server we have a warewulf managed cluster running a series of Rocky Linux VM&rsquo;s. ⛰</p>
+<p>Since we will be doing this from one of the Rocky Nodes within the system, the jump server will not be an issue I recon. 🤔</p>
+
+
+
+<h4 id="mapping-strategy-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#mapping-strategy-">Mapping Strategy 📍🗺️</a>
+</h4>
+<p>So I shouldn&rsquo;t just pop into the server and go willy nilly with scanning commands. This sever is managed by someone who understands security. So it is best to do some <strong>Dead Reckoning</strong> beforehand.</p>
+
+
+
+<h4 id="the-basic-commands-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#the-basic-commands-">The Basic Commands ⌨️</a>
+</h4>
+<p>Mapping the remote servers open ports with nmap.
+nmap stands for Network Mapper. A quick perusal of the man page states it is an exploration tool and security / port scanner. It was designed to rapidly scan large networks. Nmap uses raw IP packets in novel ways to determine what hosts
+are available on the network, what services (application name and version) those hosts are offering, what operating systems (and OS versions) they are running, what type of packet filters/firewalls are in use, and dozens of other characteristics.</p>
+<p>In order to Map the network I am going to use the ip address for the argument/target of the nmap command.</p>
+<pre><code>nmap &lt;server-ip&gt;
+</code></pre>
+<p>Checking mounted filesystem&rsquo; with df. stands for <strong>Display Free</strong> disk space. It is a utility that displays statistics about the amount of free disk space on the specified mounted file system or on the file system of which file is a past.</p>
+<p>I will be using the -h flag for human readable format, which ads unit suffixes eg. Gibibyte (GiB) to the ends of values. There is more to it, but I am mentioning the bread and butter of the flag.</p>
+<pre><code>df -h
+</code></pre>
+
+
+
+<h3 id="digging-deeper-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#digging-deeper-">Digging Deeper ⛏️</a>
+</h3>
+
+
+
+<h4 id="getting-to-know-nmap-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#getting-to-know-nmap-">Getting to know nmap 🫶</a>
+</h4>
+<p><strong>nmap</strong> is actually a big command, by big I mean the number of options and capabilities are vast. It is quite popular with pen testers and is packaged with Kali Linux &ndash; a security analysis and exploitation focused distribution of Linux, so best believe it is something important. This essentially means I should take some time to get to know it more.</p>
+
+
+
+<h4 id="stealth-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#stealth-">Stealth 🥷</a>
+</h4>
+<p>Beware that <strong>nmap</strong> can and will trigger detection software like an active firewall, because <strong>nmap</strong> is conducting <strong>Funny Bizniz</strong> by way of packet <strong>trickery</strong> inside a network, both are technical terms. Luckily there is a <strong>stealth</strong> option ( -s ) that enables the mapping to take place un-detected &ndash;for the most part.</p>
+<p>Contrary to what I assumed, the lower case <strong>s</strong> does not even stand for stealth, though it still helps as a mnemonic. No, it actually stands for SYN and
+SYN stands for Synchronize. It is part of the TCP three-way handshake, which is a process used to establish a reliable connection between two devices on a network and has nothing to do with guys meeting at a bar.</p>
+<p>I thought we were trying to be stealthy, not synchronized 🤔
+Well is actually a form of <strong>Funny Bizniz</strong> wherein SYN is sent and never acknowledged, thustly not completing the handshake process and therefore hiding activity <strong>somehow</strong></p>
+<p>but <strong>how?</strong> Well&hellip; it reduces the chance of being logged by the target system’s monitoring tools, such as firewalls or intrusion detection systems. Now we both know.</p>
+<p>Keep in mind this is only one command option, just imagine how deep the rabbit hole goes.</p>
+
+
+
+<h4 id="important-mapping-command-list">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#important-mapping-command-list">Important Mapping Command List</a>
+</h4>
+<p>Ninjas mark stealthier techniques.</p>
+<table>
+  <thead>
+      <tr>
+          <th><strong>#</strong></th>
+          <th><strong>Command</strong></th>
+          <th><strong>Description</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td><code>nmap -sS &lt;target&gt;</code> 🥷</td>
+          <td>TCP SYN scan (stealth mode)</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td><code>nmap -sT &lt;target&gt;</code></td>
+          <td>TCP connect scan (full connection)</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td><code>nmap -sA &lt;target&gt;</code></td>
+          <td>ACK scan to detect firewalls</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td><code>nmap -sU &lt;target&gt;</code></td>
+          <td>UDP scan</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td><code>nmap -sP &lt;target&gt;</code></td>
+          <td>Ping scan to detect live hosts</td>
+      </tr>
+      <tr>
+          <td>6</td>
+          <td><code>nmap -sV &lt;target&gt;</code></td>
+          <td>Detect service versions on open ports</td>
+      </tr>
+      <tr>
+          <td>7</td>
+          <td><code>nmap -O &lt;target&gt;</code></td>
+          <td>OS detection</td>
+      </tr>
+      <tr>
+          <td>8</td>
+          <td><code>nmap -A &lt;target&gt;</code></td>
+          <td>Aggressive scan (OS, version, scripts)</td>
+      </tr>
+      <tr>
+          <td>9</td>
+          <td><code>nmap -Pn &lt;target&gt;</code> 🥷</td>
+          <td>Disable ping (stealthy, avoid detection)</td>
+      </tr>
+      <tr>
+          <td>10</td>
+          <td><code>nmap -p- &lt;target&gt;</code></td>
+          <td>Scan all 65,535 TCP ports</td>
+      </tr>
+      <tr>
+          <td>11</td>
+          <td><code>nmap --top-ports 100 &lt;target&gt;</code></td>
+          <td>Scan the top 100 most common ports</td>
+      </tr>
+      <tr>
+          <td>12</td>
+          <td><code>nmap --script &lt;script&gt; &lt;target&gt;</code></td>
+          <td>Use Nmap scripts for detailed scanning</td>
+      </tr>
+      <tr>
+          <td>13</td>
+          <td><code>nmap -sC &lt;target&gt;</code></td>
+          <td>Run default NSE scripts</td>
+      </tr>
+      <tr>
+          <td>14</td>
+          <td><code>nmap -sW &lt;target&gt;</code></td>
+          <td>TCP window scan</td>
+      </tr>
+      <tr>
+          <td>15</td>
+          <td><code>nmap -T4 &lt;target&gt;</code></td>
+          <td>Faster scan using timing template T4</td>
+      </tr>
+      <tr>
+          <td>16</td>
+          <td><code>nmap -v &lt;target&gt;</code></td>
+          <td>Enable verbose output</td>
+      </tr>
+      <tr>
+          <td>17</td>
+          <td><code>nmap -oN scan.txt &lt;target&gt;</code></td>
+          <td>Save output in normal format</td>
+      </tr>
+      <tr>
+          <td>18</td>
+          <td><code>nmap -oX scan.xml &lt;target&gt;</code></td>
+          <td>Save output in XML format</td>
+      </tr>
+      <tr>
+          <td>19</td>
+          <td><code>nmap -6 &lt;target&gt;</code></td>
+          <td>Scan IPv6 targets</td>
+      </tr>
+      <tr>
+          <td>20</td>
+          <td><code>nmap -D RND:10 &lt;target&gt;</code> 🥷</td>
+          <td>Decoy scan to mask source of scan</td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+<h2 id="the-actual-mapping">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#the-actual-mapping">The Actual Mapping</a>
+</h2>
+<p><img src="https://trevorsmale.github.io/techblog/images/PACU5/cnm.png" alt="Network Map"></p>
+
+
+
+<h3 id="-accessing-the-secure-jump-point">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#-accessing-the-secure-jump-point">🚀 Accessing the Secure Jump Point</a>
+</h3>
+<p>The network is safely tucked behind a Dynamic Domain Name System (DDNS) running on an Asus Router. This setup allows access from a WAN, in this case, <em>The Internet</em> (if you’ve heard of it 🌐). It securely gate-keeps the network via login credentials, because let’s be honest, the Internet can be a scary place with bots&hellip; and sometimes people 👀.</p>
+<p>So, what exactly does DDNS do? Well, I’m glad you asked! Most home internet connections don’t offer a static IP address, which makes hosting things tricky because the IP will randomly change. The IP is dynamic for a few reasons, including cost savings and the limited availability of IPv4 addresses. Anyway, I’m getting off track 🛤️. A DDNS monitors this dynamic IP and links it to a stable address that stays fixed.</p>
+<p><strong>TL;DR</strong>: DDNS bonds a dynamic IP with a fixed address, offering the added bonus of hiding the internal IP from bad actors, or as I like to call them, <em>the baddies</em> in London 🕵️‍♂️. So, this network has a DDNS gateway in place for that extra layer of security 🔒.</p>
+
+
+
+<h3 id="-jumping-into-a-node">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#-jumping-into-a-node">🎯 Jumping into a Node</a>
+</h3>
+<p>Once a credentialed fellow enters their login while hanging at the gateway, a list of servers appears, like a digital menu 🍽️. From this list, one can choose where to jump to. In my case, I leapt to <em>Rocky12</em>, a node within a managed cluster. I knew a little about this network thanks to earlier sessions, but most of this can also be discovered by doing some network scanning 🕵️.</p>
+
+
+
+<h3 id="-doing-a-broad-inventory-scan">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#-doing-a-broad-inventory-scan">🔍 Doing a Broad Inventory Scan</a>
+</h3>
+<p>This is where the magic of <code>nmap</code> comes into play! I used two stealthy commands: <strong>nmap -sS</strong> and <strong>nmap -sT</strong>. The <code>sT</code> option scanned a wide range of ports and connections, giving me a detailed list that I piped into <code>less</code> for easier viewing 📜.</p>
+
+
+
+<h3 id="-doing-targeted-scans">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#-doing-targeted-scans">🎯 Doing Targeted Scans</a>
+</h3>
+<p>I grepped all the IP addresses and ran an <strong>-sS SYN Scan</strong> to gather more details on each node. These scans revealed loads of information about open ports and, in some cases, the hostnames of devices 🎯.</p>
+
+
+
+<h3 id="-identifying-devices">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#-identifying-devices">🧩 Identifying Devices</a>
+</h3>
+<p>I quickly identified the <em>warewulf orchestration device</em> and all of the <em>Rocky nodes</em>. However, a few mysterious devices needed some detective work 🔎. I noticed <strong>glrpc</strong> listed as a service while scanning six addresses—three on one IP range and three on another. A quick Google search revealed that <strong>glrpc</strong> relates to <em>GlusterFS</em>, a filesystem specific to Red Hat systems. After watching a video explainer on GlusterFS, I figured out that these two IP ranges were likely a RAID or high availability configuration 💾.</p>
+
+
+
+<h3 id="-mapping-with-excalidraw">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#-mapping-with-excalidraw">🗺️ Mapping with Excalidraw</a>
+</h3>
+<p>I initially created a highly technical Engineer’s map filled with data and presented it to Het for feedback. He advised me to think about how management would interpret it 🤔. So, back to the drawing board! I focused on improving the visual presentation and labeling, keeping in mind that management doesn’t care about the nitty-gritty; they just need a clear, high-level understanding during briefings 📊.</p>
+
+
+
+<h3 id="-wrapping-up">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#-wrapping-up">🎉 Wrapping Up</a>
+</h3>
+<p>This concludes my exercise in mapping an unknown network! I learned a lot from this experience and am quite proud of the outcome 💪. It will undoubtedly come in handy when I find myself in future scenarios with many unknowns.</p>
+<hr>
+
+
+
+<h2 id="mitre-attck---1-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#mitre-attck---1-">MITRE ATT&amp;CK - <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> 🪚</a>
+</h2>
+<p>is a globally-accessible knowledge base of adversary tactics and techniques based on real-world observations.</p>
+<hr>
+
+
+
+<h3 id="somewhat-unfamiliar-terminology-for-me">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#somewhat-unfamiliar-terminology-for-me">Somewhat unfamiliar terminology for me</a>
+</h3>
+<ul>
+<li>Lateral Movement</li>
+</ul>
+<p>Lateral movement in the context of cyber exploitation refers to an attacker’s strategy of moving across a network to gain access to additional systems or sensitive data after initially infiltrating a single point. This involves leveraging compromised credentials, escalating privileges, or exploiting vulnerabilities to navigate between hosts and systems. The objective is often to broaden access within the environment while avoiding detection, eventually targeting critical infrastructure or data.</p>
+<ul>
+<li>Exfiltration 🧳🚀</li>
+</ul>
+<p>refers to the unauthorized transfer of data from a target system or network to an external location controlled by an attacker. This can involve methods such as encrypted tunnels, covert channels, or compromised accounts to avoid detection. Exfiltration is typically the final step in a cyberattack, allowing attackers to steal sensitive data, intellectual property, or credentials for further malicious activities.</p>
+
+
+
+<h3 id="security-is-everybodys-issue">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#security-is-everybodys-issue">Security is everybody&rsquo;s issue</a>
+</h3>
+<p>It is important to understand the data on your system regardless of specific responsibility in order to asses risk.</p>
+
+
+
+<h3 id="impact-of-exfiltration">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#impact-of-exfiltration">Impact of Exfiltration</a>
+</h3>
+<p>The impacts of data exfiltration can be massive. Given the level of severity an exfiltration incident can entirely destroy an organization or cause financial losses, reputational damage, labour force diversion, data loss and jeopardizing future security.</p>
+<hr>
+
+
+
+<h2 id="the-linux-user-environment">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#the-linux-user-environment">The Linux User Environment</a>
+</h2>
+<p>The Linux user environment is a customizable space that includes settings like environment variables, shell configurations, and startup scripts, typically defined in files such as .bashrc or .profile. These configurations allow users to tailor command line behavior, automate tasks, and create a personalized and efficient working environment.</p>
+
+
+
+<h3 id="customizations-to-the-user-environment">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#customizations-to-the-user-environment">Customizations to the User Environment</a>
+</h3>
+<p>Customizations for the user environment in Linux might include setting up aliases for frequently used commands, configuring environment variables, and adding functions to streamline workflows. These changes can make repetitive tasks faster, improve the command line interface&rsquo;s convenience, and adapt the environment to personal preferences.</p>
+
+
+
+<h4 id="problems-may-arise">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#problems-may-arise">Problems may arise</a>
+</h4>
+<p>Problems around helping users with their dot files often stem from the diverse and sometimes incompatible changes users make to suit their needs. This can lead to issues like conflicting configurations, inconsistent behavior across systems, or difficult debugging when unexpected behaviors arise from custom scripts.</p>
+<hr>
+
+
+
+<h2 id="definitionsterminology">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#definitionsterminology">Definitions/Terminology</a>
+</h2>
+
+
+
+<h4 id="footprinting-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#footprinting-">Footprinting 👣</a>
+</h4>
+<p>Footprinting is an essential phase in ethical hacking and system security. It involves gathering information about a computer system, network, or organization to understand its structure and identify potential vulnerabilities. Footprinting is often the first step of a cyberattack or penetration test, allowing attackers or security professionals to map out an environment before deciding how to approach the next steps.</p>
+
+
+
+<h4 id="scanning-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#scanning-">Scanning 🔍</a>
+</h4>
+<p>Scanning is a process of actively probing systems or networks to identify open ports, services, and vulnerabilities. It&rsquo;s used by attackers to gather deeper insights for potential exploitation and by security professionals to assess weaknesses. Common tools include Nmap and Nessus, while defenses include firewalls and IDS/IPS systems.</p>
+
+
+
+<h4 id="enumeration-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#enumeration-">Enumeration 💯</a>
+</h4>
+<p>Enumeration is the process of extracting more detailed information about a target, such as usernames, network shares, and system services, after identifying open ports and active systems. It typically involves active engagement with the target to gain in-depth knowledge that can be used for exploitation.</p>
+
+
+
+<h4 id="system-hacking-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#system-hacking-">System Hacking 🪓</a>
+</h4>
+<p>System hacking is the process of gaining unauthorized access to individual systems or networks by exploiting vulnerabilities. It involves activities such as password cracking, privilege escalation, installing backdoors, and covering tracks. Ethical hackers use these techniques to assess system security and recommend protective measures.</p>
+
+
+
+<h4 id="escalation-of-privilege-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#escalation-of-privilege-">Escalation of Privilege 🥉🥈🥇</a>
+</h4>
+<p>Privilege escalation is the process of gaining higher-level permissions or privileges than initially granted, allowing an attacker to execute commands with elevated authority. This can be achieved through exploiting vulnerabilities or misconfigurations, leading to unauthorized access to restricted resources or system control.</p>
+
+
+
+<h4 id="rule-of-least-privilege-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#rule-of-least-privilege-">Rule of least privilege 🔐</a>
+</h4>
+<p>The Rule of Least Privilege (LoP) is a security principle that states users, applications, and systems should only be granted the minimum level of access or permissions necessary to perform their tasks. This helps reduce the attack surface, limit potential damage from breaches, and mitigate insider threats.</p>
+
+
+
+<h4 id="covering-tracks-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#covering-tracks-">Covering Tracks 🧹👣</a>
+</h4>
+<p>Covering tracks is the process attackers use to hide their unauthorized activities and avoid detection. This involves techniques such as deleting or modifying system logs, using rootkits, and clearing command histories to prevent system administrators or security teams from discovering their presence or actions.</p>
+
+
+
+<h4 id="planting-backdoors-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#planting-backdoors-">Planting Backdoors 🪴🚪</a>
+</h4>
+<p>Planting backdoors involves installing hidden access points in a system, allowing attackers to bypass regular authentication and gain unauthorized access at a later time. Backdoors can be inserted through malicious code, vulnerabilities, or modifications to existing software, making them useful for maintaining persistent control over compromised systems.</p>
+<hr>
+
+
+
+<h3 id="prolug-links-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu5/#prolug-links-">ProLUG Links ⛓️</a>
+</h3>
+<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
+Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
+Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
+ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
+KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>MITRE | ATT&amp;CK <a href="https://attack.mitre.org/">Site</a> Knowledge Base.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+      
+      
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/operating-systems/" rel="tag">Operating Systems</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+    </article>
+    
+      <div class="Divider"></div>
+    
   
     <article>
       <header class="Heading">
@@ -4176,1236 +5837,6 @@ KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/he
           
             <li class="Tags-item u-background">
               <a class="Tags-link u-clickable" href="/techblog/tags/capstoneproject/" rel="tag">CapstoneProject</a>
-            </li>
-          
-        </ul>
-      
-    
-  </footer>
-
-    </article>
-    
-      <div class="Divider"></div>
-    
-  
-    <article>
-      <header class="Heading">
-  <h1 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/techblog/post/pacu2/" rel="bookmark">ProLUG Admin Course Unit 2 🐧</a>
-  </h1>
-  
-    <time datetime="2024-09-27T00:00:00Z">September 27, 2024</time>
-  
-</header>
-      
-        <h1 id="essential-tools-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#essential-tools-">Essential Tools 🛠️</a>
-</h1>
-
-
-
-<h2 id="intro">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#intro">Intro</a>
-</h2>
-<p>We have reached the second week of the PAC and things are getting more serious. Now that we are familiar with the flow of the course and expectations are set, the second lesson has started with some momentum. 💺</p>
-<hr>
-
-
-
-<h2 id="unit-2-lab-exercise-notes-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#unit-2-lab-exercise-notes-">Unit 2 lab exercise notes 🧪</a>
-</h2>
-<p>I am completing the labs locally carefully covering every command listed by running them and checking output, making sure to pay attention to details like options. It was fairly time consuming, yet I learned quite a bit.</p>
-
-
-
-<h4 id="-basic-cli-exercise">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#-basic-cli-exercise">🧭 Basic CLI exercise:</a>
-</h4>
-<ul>
-<li>cd ~ # Change Directory to Home</li>
-<li>ls ~ # List</li>
-<li>mkdir evaluation # Make Directory called &rsquo;evaluation'</li>
-<li>mkdir evaluation/test/round6 # This fails why? We need to use the Parent option &lsquo;-p&rsquo;</li>
-<li>mkdir -p evaluation/test/round6 # Make parent directory with subdirectories</li>
-<li>cd evaluation # change directory to evaluation</li>
-<li>pwd # present/print working directory = /home/ts/evaluation</li>
-<li>touch testfile1 # create file name &rsquo;testfile1&rsquo; in current directory</li>
-<li>ls # list = test testfile1</li>
-<li>touch testfile{2..10} # Creates a numbered range of testfile
-touch .hfile .hfile2 .hfile3 # this creates three dot files which are not visible to a normal listing method, we must use list all (ls -a)</li>
-</ul>
-
-
-
-<h4 id="-gathering-system-information">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#-gathering-system-information">🔍 Gathering System Information</a>
-</h4>
-<p>I am running Rocky Linux 9 on a local Proxmox container for this course.</p>
-<ul>
-<li>hostname = localhost.localdomain</li>
-<li>uname # system info command which stands for Unix Name</li>
-<li>uname -a # shows a comprehensive list of system info Kernal name# Hostname, Kernel release, Kernel version, Machine hardware name, Processor type, Hardware platform, Operating system.</li>
-<li>uname -r # the -r option stands for release and shows the kernel release version.</li>
-</ul>
-
-
-
-<h4 id="-checking-the-amount-of-rammemory">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#-checking-the-amount-of-rammemory">🧠 Checking the amount of RAM/Memory</a>
-</h4>
-<ul>
-<li><em>sudo</em> cat/proc/meminfo # concatenate process memory information</li>
-<li>free # displays total, used, free, shared, buffer, and available memory (RAM and SWAP)</li>
-<li>free -m # megabyte display option for the free command</li>
-</ul>
-
-
-
-<h4 id="-checking-the-number-of-processors-and-processor-info">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#-checking-the-number-of-processors-and-processor-info">👨🏻‍💻 Checking the number of processors and processor info</a>
-</h4>
-<ul>
-<li>cat/proc/cpuinfo # concatenate process central processor unit information = 4 processors on my lab.</li>
-<li>cat /proc/cpuinfo | grep proc | wc -l # what we are doing here is piping the output of the previous command to grep which is filtering lines starting with proc, then we pipe through to word count with line option to cleverly count the number of processors, the result is 4</li>
-</ul>
-
-
-
-<h4 id="-checking-storage-usage-and-mounted-filesystems">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#-checking-storage-usage-and-mounted-filesystems">💾 Checking storage usage and mounted filesystems</a>
-</h4>
-<ul>
-<li>df # the disk free command</li>
-<li>df -h # we are adding the human readable option to df in order to more easily ascertain what is going on.</li>
-<li>df -h | grep -i var #</li>
-</ul>
-
-
-
-<h4 id="-mounting-a-new-file-system">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#-mounting-a-new-file-system">💾 Mounting a new file system</a>
-</h4>
-
-
-
-<h5 id="common-mount-command-options">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#common-mount-command-options">Common <code>mount</code> Command Options</a>
-</h5>
-<ul>
-<li>
-<p><strong>-t</strong> # Specify the filesystem type (e.g., <code>ext4</code>, <code>xfs</code>, <code>vfat</code>).</p>
-</li>
-<li>
-<p><strong>-o</strong> # Specify options in a comma-separated list (e.g., <code>rw</code>, <code>ro</code>, <code>noexec</code>).</p>
-</li>
-<li>
-<p><strong>-a</strong> # Mount all filesystems defined in <code>/etc/fstab</code>.</p>
-</li>
-<li>
-<p><strong>-r</strong> # Mount the filesystem as read-only.</p>
-</li>
-<li>
-<p><strong>-w</strong> # Mount the filesystem as read-write.</p>
-</li>
-<li>
-<p><strong>-v</strong> # Verbose mode, provides more detailed output.</p>
-</li>
-<li>
-<p><strong>&ndash;bind</strong> # Bind mount, remount part of the filesystem elsewhere.</p>
-</li>
-<li>
-<p><strong>&ndash;make-shared</strong> # Make a mounted file system shared (for propagating mount events).</p>
-</li>
-<li>
-<p><strong>-L</strong> # Mount by filesystem label.</p>
-</li>
-<li>
-<p><strong>-U</strong> # Mount by UUID.</p>
-</li>
-<li>
-<p>mount | grep –i home# lists all mounts starting with the case sensitive phrase home (I was not getting any result 🤔)</p>
-</li>
-<li>
-<p>mount | grep -i sd# this lists all SCSK disks, normally named sda, sdb, sdc etc&hellip;</p>
-</li>
-</ul>
-
-
-
-<h5 id="trying-out-alternative-commands">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#trying-out-alternative-commands">Trying out alternative commands</a>
-</h5>
-<ul>
-<li><strong>findmt</strong># find mount</li>
-<li><strong>cat /proc/mounts</strong># concatenate in-process mounts</li>
-<li><strong>lsblk</strong># list block devices</li>
-</ul>
-
-
-
-<h5 id="i-was-unaware-that-commands-could-be-chained-together-with-a-semicolon">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#i-was-unaware-that-commands-could-be-chained-together-with-a-semicolon">I was unaware that commands could be chained together with a semicolon</a>
-</h5>
-<ul>
-<li><code>cd ~; pwd; df -h</code># change directory to home, then print working directory, then list disk usage in a human-readable format 🧐.</li>
-<li><code>du -sh</code># disk usage summary in a human-readable format.</li>
-</ul>
-
-
-
-<h5 id="du-command-options">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#du-command-options"><code>du</code> Command Options</a>
-</h5>
-<pre><code>  **`-a`**# Display disk usage for all files, not just directories.
-  **`-h`**# Show disk usage in human-readable format (e.g., KB, MB, GB).
-  **`-s`**# Show summary of total disk usage for a directory.
-  **`-c`**# Produce a grand total at the end.
-  **`-L`**# Follow symbolic links (default `du` doesn't follow symlinks).
-  **`-d N`** or **`--max-depth=N`**# Limit directory depth to N levels.
-  **`--time`**# Show modification time of directories.
-  **`-b`**# Show disk usage in bytes.
-  **`-k`**# Show disk usage in kilobytes.
-  **`-m`**# Show disk usage in megabytes.
-  **`--apparent-size`**# Show the apparent size instead of disk usage.
-  **`-x`**# Skip directories on different file systems.
-  **`--exclude=PATTERN`**# Exclude files matching a pattern.
-</code></pre>
-
-
-
-<h3 id="uptime">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#uptime">Uptime</a>
-</h3>
-<pre><code>  `uptime`# Shows time in HH:MM:SS Unix time format in local time. If the time is not set, like in my instance, I get UTC 0🧐. Next, it shows how long the system has been running, the number of logged-in users, and finally, the load average over the last 1, 5, and 15 minutes.
-</code></pre>
-
-
-
-<h3 id="last">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#last">Last</a>
-</h3>
-<pre><code>  **`last`**# Lists all users who have logged in from latest to oldest.
-  **`w`**# Lists current users and associated processes.
-  **`who`**# Shows who is currently logged on. The output `pts/0` stands for pseudo terminal, typically shown when logged in remotely. It will show either an IPv4 or IPv6 address and the login time. When I logged into my Ubuntu server via SSH, I was shown the IPv6 address. 🤯
-  **`whoami`**# Tells which user you are.
-</code></pre>
-
-
-
-<h3 id="checking-environment">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#checking-environment">Checking environment</a>
-</h3>
-<pre><code>  **`printenv`**# Shows a long list of environmental information.
-  **`printenv | grep -i home`**# Shows that I am in the home directory of `root`.
-  **`id`**# Shows a lot of info about UID, GID, and group memberships, including SELinux policies.
-  **`echo $SHELL`**# Displays the path of the shell environment variable, in my case, `/bin/bash`.
-</code></pre>
-
-
-
-<h3 id="check-running-processes-and-services">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#check-running-processes-and-services">Check running processes and services</a>
-</h3>
-<pre><code>  **`ps -aux | more`**
-  **`ps -ef | more`**
-  **`ps -ef | wc -l`**
-</code></pre>
-
-
-
-<h3 id="check-memory-usage">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#check-memory-usage">Check memory usage</a>
-</h3>
-<p>Run each of these commands individually for understanding:</p>
-<pre><code>  **`free -m`**
-  **`free -m | egrep &quot;Mem|Swap&quot;`**
-  **`free -m | egrep &quot;Mem|Swap&quot; | awk '{print $1, $2, $3}'`**: What are the first, second, and third columns? How would I know the variable names?
-  **`free -t | egrep &quot;Mem|Swap&quot; | awk '{print $1 &quot; Used Space = &quot; ($3 / $2) * 100&quot;%&quot;}'`**: Similar question for these variables.
-</code></pre>
-
-
-
-<h3 id="testing-out-scripts">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#testing-out-scripts">Testing out scripts</a>
-</h3>
-
-
-
-<h5 id="q-have-you-ever-written-a-basic-check-script-or-touched-on-conditional-statements-or-loops">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#q-have-you-ever-written-a-basic-check-script-or-touched-on-conditional-statements-or-loops">Q: Have you ever written a basic check script or touched on conditional statements or loops?</a>
-</h5>
-
-
-
-<h5 id="a-yes-very-basic-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#a-yes-very-basic-">A: Yes very basic 😅</a>
-</h5>
-<p>(Use ctrl + c to break out of these) 👍</p>
-<pre><code>  while true; do free -m; sleep 3; done
-  Watch this output for a few and then break with ctrl + c
-  Try to edit this to wait for 5 seconds
-  Try to add a check for uptime and date each loop with a blank line between each and 10 second wait:
-  while true; do date; uptime; free -m; echo “ “; sleep 10; done
-  Since we can wrap anything inside of our while statements, let’s try adding something from earlier:
-  While true; do free -t | egrep &quot;Mem|Swap&quot; | awk '{print $1 &quot; Used Space = &quot; ($3 / $2) * 100&quot;%&quot;}'; sleep 3; done 👍
-</code></pre>
-<p><strong>seq 1 10</strong></p>
-
-
-
-<h5 id="q-what-did-this-do">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#q-what-did-this-do">Q: What did this do?</a>
-</h5>
-
-
-
-<h5 id="a-it-counts-from-1-to-10-creating-a-new-line-for-each-char">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#a-it-counts-from-1-to-10-creating-a-new-line-for-each-char">A: it counts from 1 to 10, creating a new line for each char.</a>
-</h5>
-
-
-
-<h5 id="q-can-you-man-seq-to-modify-that-to-count-from-2-to-20-by-2s">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#q-can-you-man-seq-to-modify-that-to-count-from-2-to-20-by-2s">Q: Can you man seq to modify that to count from 2 to 20 by 2’s?</a>
-</h5>
-
-
-
-<h5 id="a-yes-by-using-first-increment-last-so-2-2-20">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#a-yes-by-using-first-increment-last-so-2-2-20">A: yes by using &lsquo;First Increment Last, so 2 2 20&rsquo;</a>
-</h5>
-<p>Let’s make a counting for loop from that sequence ✅
-for i in <code>seq 1 20</code>; do echo &ldquo;I am counting i and am on $i times through the loop&rdquo;; done 👍</p>
-
-
-
-<h5 id="q-can-you-tell-me-what-is-the-difference-or-significance-of-the--in-the-command-above-what-does-that-denote-to-the-system">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#q-can-you-tell-me-what-is-the-difference-or-significance-of-the--in-the-command-above-what-does-that-denote-to-the-system">Q: Can you tell me what is the difference or significance of the $ in the command above? What does that denote to the system?</a>
-</h5>
-
-
-
-<h5 id="a-we-are-using-the--to-access-a-variable">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#a-we-are-using-the--to-access-a-variable">A: we are using the $ to access a variable.</a>
-</h5>
-<p>Uptime – The time a system has been running for without interruption.
-Standard input - stdin &lsquo;0&rsquo; the default stream where a program receives data.
-Standard output - stdout &lsquo;1&rsquo; refers to default stream output of a program.
-Standard error – stderr &lsquo;2&rsquo; refers to a default stream wherein an error is sent.</p>
-<hr>
-
-
-
-<h3 id="reflecting-on-unit-1-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#reflecting-on-unit-1-">Reflecting on Unit 1 🤔</a>
-</h3>
-<p>Week 1 went well for me. I was very excited to start this course as it strongly aligns with my professional interests, and it came at a great time. I am incredibly grateful to have access to such a talented group of like-minded and enthusiastic professionals.</p>
-<p>I managed to complete everything for Week 1 by preparing in advance. For example, I created this blog and started some of the materials early. The night before the course began, I went through Vim Tutor and Vim Adventures to give myself a bit of a head start, as my time is currently divided between various responsibilities. I also dedicated a significant portion of my time to starting my capstone project and troubleshooting issues.</p>
-<p>I’ve set aside 8 hours per week, as suggested by Scott, for attending lectures, reading materials, practicing labs, and doing general research. During Week 1, I used roughly 6 hours, so I believe I’ve allocated enough time to complete the course work.</p>
-<p>My note-taking has been excellent for this course. Prior to starting, I learned how essential note-taking is to the administration and engineering process, so I began using LogSeq as my note-taking tool four months ago. This gave me time to familiarize myself with its features, allowing me to dive into the lectures fully prepared. I’m also a fast touch typist, so I can easily listen and type simultaneously. After each lecture, I review and organize my notes by nesting and tagging information to relate it to other topics. Additionally, I’ve been reflecting on everything by writing in this blog.</p>
-<hr>
-
-
-
-<h2 id="security-enhanced-linux">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#security-enhanced-linux">Security Enhanced Linux</a>
-</h2>
-
-
-
-<h3 id="brief-intro-to-selinux">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#brief-intro-to-selinux">Brief intro to SELinux</a>
-</h3>
-<p>SELinux (Security-Enhanced Linux) is a security module integrated into the Linux kernel that enforces mandatory access control policies to provide more granular control over how processes and users interact with files and resources. By defining strict rules on what actions each program or user can perform, SELinux significantly enhances the security posture of a Linux system, helping to prevent unauthorized access and exploits.</p>
-
-
-
-<h3 id="brief-intro-to-apparmor">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#brief-intro-to-apparmor">Brief intro to Apparmor</a>
-</h3>
-<p>AppArmor (Application Armor) is a Linux security module that enforces access control policies based on file paths, limiting what resources applications can access to enhance system security. It provides a simpler, profile-based alternative to SELinux, allowing administrators to create restrictive environments for individual applications without requiring deep changes to system configuration.</p>
-
-
-
-<h3 id="key-terminology">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#key-terminology">Key Terminology</a>
-</h3>
-<p>Mandatory Access Control –
-Discretionary Access Control –
-Security contexts (SELINUX) –
-SELINUX operating modes -</p>
-
-
-
-<h3 id="comparing-apparmor-and-selinux-for-container-separation-1">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#comparing-apparmor-and-selinux-for-container-separation-1">Comparing AppArmor and SELinux for Container Separation <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></a>
-</h3>
-<p>This article provides a brief comparison between <strong>SELinux</strong> and <strong>AppArmor</strong> regarding their effectiveness in securely separating containers.</p>
-<p>After reading, it became clear that <strong>AppArmor</strong> is not an ideal choice for <strong>DevSecOps</strong> when it comes to securely separating containers. This is due to <strong>AppArmor&rsquo;s lack of support for Multi-Category Security (MCS)</strong>. MCS allows for a hierarchy of controls, granting varying levels of access.</p>
-<p>Therefore, if you&rsquo;re looking to securely separate containers without relying on <strong>Virtual Machines</strong>—which can be costly—<strong>SELinux</strong> emerges as the better option for such tasks.</p>
-
-
-
-<h3 id="key-takeaways-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#key-takeaways-">Key Takeaways 📝</a>
-</h3>
-<ul>
-<li><strong>AppArmor</strong> is <strong>not label-based</strong>, unlike SELinux.</li>
-<li><strong>AppArmor</strong> is generally seen as more <strong>user-friendly</strong>.</li>
-<li><strong>AppArmor</strong> has fewer controls compared to SELinux.</li>
-<li><strong>AppArmor</strong> has <strong>fewer operations</strong> available.</li>
-<li>Both support the <strong>Type Enforcement</strong> security model (a form of <strong>mandatory access control</strong>).</li>
-<li>The security model is based on rules where subjects (like processes or users) are allowed to access objects (e.g., files, directories, sockets, etc.).</li>
-<li><strong>AppArmor</strong> lacks <strong>Multi-Level Security (MLS)</strong>.</li>
-<li><strong>AppArmor</strong> does not support <strong>Multi-Category Security (MCS)</strong>.</li>
-<li>🔄 Because <strong>MCS is unavailable</strong>, <strong>AppArmor</strong> cannot maintain proper separation between containers.</li>
-<li>⚠️ The default container policy in AppArmor is <strong>very loose</strong>, which could present security risks.</li>
-</ul>
-
-
-
-<h3 id="quick-comparison-table-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#quick-comparison-table-">Quick Comparison Table 🔍</a>
-</h3>
-<table>
-  <thead>
-      <tr>
-          <th>Technology</th>
-          <th>Type Enforcement</th>
-          <th>MLS/MCS</th>
-          <th>Policy Generator</th>
-          <th>Generator for Containers</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>AppArmor</strong></td>
-          <td>Yes</td>
-          <td>No</td>
-          <td>Yes</td>
-          <td>No</td>
-      </tr>
-      <tr>
-          <td><strong>SELinux</strong></td>
-          <td>Yes</td>
-          <td>Yes</td>
-          <td>No*</td>
-          <td>Yes</td>
-      </tr>
-  </tbody>
-</table>
-<p>By understanding these differences, it’s clear that <strong>SELinux</strong> provides a more secure framework for container separation, making it a crucial tool for modern <strong>DevSecOps</strong> workflows.</p>
-
-
-
-<h3 id="enabling-selinux">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#enabling-selinux">Enabling SELinux</a>
-</h3>
-<p>Before enabling SELinux, you can verify its current status by running the <code>sestatus</code> command, which provides the <strong>Security Enhanced Status</strong> of the system. To activate or configure SELinux, you need to modify the configuration file located at <code>/etc/selinux/config</code>. SELinux can operate in two modes:</p>
-<ol>
-<li><strong>Enforcing</strong>: SELinux policies are actively enforced, and violations are blocked.</li>
-<li><strong>Permissive</strong>: Policies are not enforced, but violations are logged for review, allowing for troubleshooting without blocking actions.</li>
-</ol>
-
-
-
-<h3 id="selinux-contexts">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#selinux-contexts">SELinux Contexts</a>
-</h3>
-<p>A <strong>context</strong> in SELinux is a set of security labels used to manage access to files, processes, and other system resources. The context is composed of several fields:</p>
-
-  
-
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">system_u:object_r:httpd_sys_content_t:s0</span></span></code></pre></div>
-
-  
-
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">user:role:type:level</span></span></code></pre></div>
-
-
-
-<h4 id="breakdown-of-context-components">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#breakdown-of-context-components">Breakdown of Context Components:</a>
-</h4>
-<p><strong>User:</strong> Represents the SELinux identity of a subject (process) or object (file).
-<strong>Role:</strong> Groups privileges for processes and users, determining what they are allowed to do.
-<strong>Type:</strong> Defines how subjects (processes) can interact with objects (files or resources).
-<strong>Level:</strong> Used in Multi-Level Security (MLS) or Multi-Category Security (MCS) systems for additional granularity in access control.</p>
-
-
-
-<h3 id="taking-selinux-for-a-spin-on-a-rocky-9-vm-in-my-proxmox-homelab">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#taking-selinux-for-a-spin-on-a-rocky-9-vm-in-my-proxmox-homelab">Taking SELinux for a spin on a Rocky 9 VM in my Proxmox Homelab</a>
-</h3>
-<p>A few weeks ago, I learned how to create uninitialized templates with Proxmox, meaning the SSH keys are generated for each copy of the template. This is done with cloud init.</p>
-<p>So today I created a clone of my template specifically for getting hands on experience with SElinux</p>
-<p><img src="https://trevorsmale.github.io/techblog/images/PACU2/prox1.png" alt="ProLUG Homepage"></p>
-<p>I opened the <strong>/etc/selinux/config</strong> and set se to enforce. I then ran <strong>sestatus</strong> to confirm selinux had been activated.
-I created a new user policy for myself with <strong>semanage user -a -R &lsquo;staff_r webadm_r&rsquo; Treasure</strong> here is the result after running <strong>semanage user -l</strong></p>
-<p><img src="https://trevorsmale.github.io/techblog/images/PACU2/selinux1.png" alt="ProLUG Homepage"></p>
-
-
-
-<h3 id="selinux-scenario-contemplation">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#selinux-scenario-contemplation">SELinux scenario contemplation</a>
-</h3>
-<ul>
-<li>You follow your company instructions to add a new user to a set of 10 Linux servers.</li>
-<li>They cannot access just one (1) of the servers.</li>
-<li>When you review the differences in the servers you see that the server they cannot access is running SELINUX.</li>
-<li>On checking other users have no problem getting into the system.</li>
-<li>You find nothing in the documentation (typical) about this different system or how these users are accessing it.</li>
-<li>What do you do? Where do you check?</li>
-</ul>
-<p>From the given information, it seems likely that SELinux is denying access to the new user. To troubleshoot this, I would take the following steps:</p>
-<ol>
-<li>
-<p><strong>Check SELinux User Configuration</strong>:<br>
-I would run the command <code>semanage user -l</code> to list all SELinux users and confirm whether the new user exists within the SELinux policy.</p>
-</li>
-<li>
-<p><strong>Verify MLS/MCS Levels and Roles</strong>:<br>
-If the user is already registered, I would review the user&rsquo;s Multi-Level Security (MLS) or Multi-Category Security (MCS) level and verify the role assigned to the user. It&rsquo;s important that the user&rsquo;s role matches those that have the necessary access permissions.</p>
-</li>
-<li>
-<p><strong>Assign Appropriate Role</strong>:<br>
-If the current role restricts access, I would assign the user to an SELinux role that permits access to the system, ensuring that role-based access control (RBAC) is properly configured.</p>
-</li>
-</ol>
-<hr>
-
-
-
-<h3 id="interactive-killercoda-lab-2">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#interactive-killercoda-lab-2">Interactive Killercoda Lab <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></a>
-</h3>
-
-
-
-<h4 id="i-hope-this-was-designed-to-be-challenging-because-i-was-challenged-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#i-hope-this-was-designed-to-be-challenging-because-i-was-challenged-">I hope this was designed to be challenging, because I was challenged 😅</a>
-</h4>
-<p>Despite paying close attention, I somehow got confused by this challenge. I suppose the exercise was designed to force me to read through documentation, which was tough.
-But I am proud to say that through trial and error, I was able to get through.</p>
-
-
-
-<h4 id="commands-i-looked-up-in-the-documentation">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#commands-i-looked-up-in-the-documentation">Commands I looked up in the documentation:</a>
-</h4>
-<ul>
-<li>kubectl get deployment spacecow -n moon -o yaml &gt; spacecow-deployment.yaml</li>
-<li>vim spacecow-deployment.yaml</li>
-<li>kubectl apply -f spacecow-deployment.yaml</li>
-</ul>
-<hr>
-
-
-
-<h2 id="troubleshooting">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#troubleshooting">Troubleshooting</a>
-</h2>
-
-
-
-<h3 id="how-troubleshooting-differs-between-administrator-and-engineer">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#how-troubleshooting-differs-between-administrator-and-engineer">How Troubleshooting Differs Between Administrator and Engineer</a>
-</h3>
-<ul>
-<li><strong>Administrators</strong> focus on <strong>restoring functionality</strong> to existing systems, while <strong>Engineers</strong> work on <strong>building and implementing</strong> new systems or improvements.</li>
-<li><strong>Administrators</strong> have <strong>existing documentation</strong> to reference for troubleshooting, whereas <strong>Engineers</strong> are responsible for <strong>creating new documentation</strong>.</li>
-<li><strong>Administrators</strong> can compare similar systems for <strong>inconsistencies</strong>, but <strong>Engineers</strong> may be working with entirely new systems or solutions, making such comparisons difficult.</li>
-</ul>
-
-
-
-<h4 id="administrators">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#administrators">Administrators:</a>
-</h4>
-<ul>
-<li><strong>Fix</strong>: Restore systems to their previous, working state.</li>
-<li><strong>Optimize</strong>: Use tools like <strong>Ansible</strong> or custom scripts to streamline operations and automate repetitive tasks.</li>
-<li><strong>Operate</strong>: Handle daily tasks that <strong>cannot be automated</strong>, such as monitoring or handling unexpected issues.</li>
-</ul>
-
-
-
-<h4 id="engineers">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#engineers">Engineers:</a>
-</h4>
-<ul>
-<li><strong>Prepare</strong>: Configure pre-built tools for daily use and ensure they integrate smoothly with existing systems.</li>
-<li><strong>Plan</strong>: Anticipate and strategize operational changes, such as the introduction of new tools or system upgrades.</li>
-<li><strong>Design</strong>: Create new tools, systems, or measures that address organizational needs and future challenges.</li>
-<li><strong>Implement</strong>: Deploy new or upgraded systems and produce comprehensive documentation to support ongoing maintenance and troubleshooting.</li>
-</ul>
-
-
-
-<h3 id="key-differences-in-troubleshooting">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#key-differences-in-troubleshooting">Key Differences in Troubleshooting:</a>
-</h3>
-<ul>
-<li>Administrators typically deal with <strong>reactive troubleshooting</strong>, where the goal is to quickly restore functionality after an issue occurs. Engineers, on the other hand, often engage in <strong>proactive troubleshooting</strong> by identifying potential problems before they happen, ensuring that systems are scalable and sustainable.</li>
-<li>While administrators may focus on resolving immediate operational issues, engineers are responsible for the <strong>long-term stability</strong> of systems, often troubleshooting while keeping future requirements in mind.</li>
-</ul>
-
-
-
-<h3 id="troubleshooting-procedure">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#troubleshooting-procedure">Troubleshooting Procedure</a>
-</h3>
-
-
-
-<h4 id="1-identify-the-problem">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#1-identify-the-problem">1. <strong>Identify the Problem</strong></a>
-</h4>
-<ul>
-<li><strong>Gather Information</strong>: Ask questions, check logs, or run diagnostics to gather all necessary details.</li>
-<li><strong>Reproduce the Issue</strong>: Try to replicate the problem to confirm its existence and scope.</li>
-</ul>
-
-
-
-<h4 id="2-establish-a-theory-of-cause">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#2-establish-a-theory-of-cause">2. <strong>Establish a Theory of Cause</strong></a>
-</h4>
-<ul>
-<li><strong>Look for Patterns</strong>: Are there recurring errors or conditions?</li>
-<li><strong>Use Known Issues</strong>: Refer to documentation, previous cases, or online resources to match symptoms to potential causes.</li>
-<li><strong>Hypothesize</strong>: Develop potential explanations based on the data you&rsquo;ve collected.</li>
-</ul>
-
-
-
-<h4 id="3-test-the-theory">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#3-test-the-theory">3. <strong>Test the Theory</strong></a>
-</h4>
-<ul>
-<li><strong>Isolate Variables</strong>: Disable or eliminate components one by one to test your theory.</li>
-<li><strong>Try Quick Fixes</strong>: Implement minor changes to see if the problem is resolved, such as restarting services or clearing caches.</li>
-</ul>
-
-
-
-<h4 id="4-create-an-action-plan">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#4-create-an-action-plan">4. <strong>Create an Action Plan</strong></a>
-</h4>
-<ul>
-<li><strong>Plan for Resolution</strong>: Identify the steps needed to fix the problem if your theory is confirmed.</li>
-<li><strong>Consider Impact</strong>: Make sure to assess any risks or side effects of your solution.</li>
-</ul>
-
-
-
-<h4 id="5-implement-the-solution">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#5-implement-the-solution">5. <strong>Implement the Solution</strong></a>
-</h4>
-<ul>
-<li><strong>Execute the Fix</strong>: Apply the necessary changes, whether it&rsquo;s a configuration adjustment, software update, or hardware replacement.</li>
-<li><strong>Monitor</strong>: Observe the system closely to ensure the issue doesn&rsquo;t recur.</li>
-</ul>
-
-
-
-<h4 id="6-verify-full-system-functionality">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#6-verify-full-system-functionality">6. <strong>Verify Full System Functionality</strong></a>
-</h4>
-<ul>
-<li><strong>Test the Fix</strong>: Confirm the problem is fully resolved and that other services or systems haven’t been affected.</li>
-<li><strong>Ask Stakeholders</strong>: Ensure end-users or relevant parties can validate the fix.</li>
-</ul>
-
-
-
-<h4 id="7-document-the-findings">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#7-document-the-findings">7. <strong>Document the Findings</strong></a>
-</h4>
-<ul>
-<li><strong>Write It Down</strong>: Document the issue, the root cause, the solution, and any potential future prevention methods.</li>
-<li><strong>Share Knowledge</strong>: Ensure others on your team or organization can reference the solution.</li>
-</ul>
-
-
-
-<h4 id="8-prevent-future-issues">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#8-prevent-future-issues">8. <strong>Prevent Future Issues</strong></a>
-</h4>
-<ul>
-<li><strong>Review System</strong>: Investigate whether the root cause indicates a larger problem.</li>
-<li><strong>Proactive Monitoring</strong>: Set up alerts, automations, or optimizations to prevent recurrence.</li>
-</ul>
-<hr>
-
-
-
-<h2 id="notes">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#notes">Notes</a>
-</h2>
-
-
-
-<h3 id="dhcp">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#dhcp">DHCP</a>
-</h3>
-<ul>
-<li>DHCP Should only be assigned by one server</li>
-<li>What is a BootP?</li>
-<li>DHCP is a process that comes from BootP?</li>
-<li>Layer 2 based on Mac address</li>
-</ul>
-
-
-
-<h3 id="first-day-on-the-job-you-must-inventory-the-servers">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#first-day-on-the-job-you-must-inventory-the-servers">First day on the job, you must inventory the servers</a>
-</h3>
-<ul>
-<li>Nmap</li>
-<li>History on CommandLine (Find the IP&rsquo;s)</li>
-<li>Ping Sweep for OpenSSH</li>
-<li>Create a local Inventory File</li>
-</ul>
-
-
-
-<h3 id="questions-i-have-from-this-week">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#questions-i-have-from-this-week">Questions I have from this week:</a>
-</h3>
-<ul>
-<li>How often does a Jr. Admin implement SELinux?</li>
-<li>If apparmor is so much less functional than SELinux, why is it still a popular choice? is it due to ease of use?</li>
-<li>you mentioned Irata? I was unable to look it up.</li>
-<li><strong>free –m| egrep “Mem|Swap” | awk ‘{print $1, $2, $3}’</strong>: what is 1, 2 and 3. Is there an easy way to know which variables pertain to which data?</li>
-</ul>
-
-
-
-<h3 id="how-are-you-going-to-use-what-youve-learned-in-your-current-role">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#how-are-you-going-to-use-what-youve-learned-in-your-current-role">How are you going to use what you’ve learned in your current role?</a>
-</h3>
-<p>I have no direct application for most of this stuff at the moment. however I will definitely use scripting in my current position in order to automate tasks. Furthermore, I will def remember several commands from the labs that I will likely use daily.</p>
-<hr>
-
-
-
-<h3 id="prolug-links-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#prolug-links-">ProLUG Links ⛓️</a>
-</h3>
-<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
-Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
-Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
-ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
-KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
-<div class="footnotes" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn:1">
-<p>Comparing Apparmor to Se Linux Isolation <a href="https://www.redhat.com/sysadmin/apparmor-selinux-isolation">Article</a> Redhat.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:2">
-<p>Apparmor Interactive Lab <a href="https://killercoda.com/killer-shell-cks/scenario/apparmor">Site</a> Killercoda.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-</ol>
-</div>
-      
-      
-
-  
-
-  
-
-
-
-
-
-  <footer>
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
-            </li>
-          
-        </ul>
-      
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
-            </li>
-          
-        </ul>
-      
-    
-  </footer>
-
-    </article>
-    
-      <div class="Divider"></div>
-    
-  
-    <article>
-      <header class="Heading">
-  <h1 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/techblog/post/paccp1/" rel="bookmark">ProLUG Admin Course Capstone Project Stage 1 🐧</a>
-  </h1>
-  
-    <time datetime="2024-09-15T00:00:00Z">September 15, 2024</time>
-  
-</header>
-      
-        <h3 id="intro-">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp1/#intro-">Intro 👋</a>
-</h3>
-<p>To complete this course, we are required to undertake a capstone project. Before the course began, I created a graphic design and branding package for ProLUG, as I felt the group was gaining critical mass but lacked visual cohesion. As part of that package, I designed a certificate template for use in this course, which included the suggestion of a verification link. I have received several certifications from the Linux Professional Institute, all of which include a verification link to a server hosted by the organization. I believe this feature is crucial in a world of diploma mills and AI-generated credentials, as it ensures that those who put in real work are properly accredited.</p>
-
-
-
-<h3 id="locking-in-a-project-">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp1/#locking-in-a-project-">Locking in a project 🔒</a>
-</h3>
-<p>The night before the course started, I reached out to Scott to ensure he had everything he needed in terms of graphics and to let him know that I was available for further support if required. During our conversation, I mentioned the idea of a verification link and server, which led to my proposing it as a project. His response was, &ldquo;possibly.&rdquo; The next day, while teaching, Scott announced that a student would be creating a verification server for the certificates, so I guess the project is green-lit! 🤣</p>
-
-
-
-<h3 id="preface-">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp1/#preface-">Preface 🤨</a>
-</h3>
-<p>I’d like to preface this by stating that I have limited programming experience. This project is beyond my current understanding, and I’ll need to break everything down into bite-sized pieces to fully grasp it. So, follow me on my journey to creating a verification server.</p>
-
-
-
-<h3 id="outline-of-the-project-">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp1/#outline-of-the-project-">Outline of the Project 🧭</a>
-</h3>
-<p>The project involves creating a system that, when given a unique ID, returns information matching what is written on the certificate. For each certificate issued, we need to generate a unique ID and link that directs to the corresponding credentials.</p>
-
-
-
-<h3 id="my-initial-simple-planoutline">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp1/#my-initial-simple-planoutline">My initial simple plan/outline</a>
-</h3>
-
-
-
-<h3 id="1-creating-the-data">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp1/#1-creating-the-data">1. Creating the data</a>
-</h3>
-<p>Intake the first name, last name and date to create a unique hash.</p>
-
-
-
-<h3 id="2-storing-the-data">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp1/#2-storing-the-data">2. Storing the data</a>
-</h3>
-<p>this info is then added to columns in a database.</p>
-
-
-
-<h3 id="3-retrieving-the-data">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp1/#3-retrieving-the-data">3. Retrieving the data</a>
-</h3>
-<p>With the use of an API and Web Interface, we can use the hash to prompt for more data.</p>
-
-
-
-<h3 id="initial-tech-stack-">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp1/#initial-tech-stack-">Initial Tech Stack 🤔</a>
-</h3>
-<p>Data Generation: GO
-Database: SQLight
-Interface: HTML, CSS, JS</p>
-
-
-
-<h3 id="next-steps-">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp1/#next-steps-">Next Steps&hellip; 🥾</a>
-</h3>
-<ol>
-<li>I plan on discussing this in the Code Cove group in ProLUG</li>
-<li>I plan on researching how LPI has created their verification server</li>
-<li>I plan on creating comprehensive build notes in LogSeq/here</li>
-</ol>
-
-
-
-<h3 id="prolug-links-">
-  <a class="Heading-link u-clickable" href="/techblog/post/paccp1/#prolug-links-">ProLUG Links ⛓️</a>
-</h3>
-<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
-Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
-Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
-ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
-KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
-      
-      
-
-  
-
-  
-
-
-
-
-
-  <footer>
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
-            </li>
-          
-        </ul>
-      
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/capstoneproject/" rel="tag">CapstoneProject</a>
-            </li>
-          
-        </ul>
-      
-    
-  </footer>
-
-    </article>
-    
-      <div class="Divider"></div>
-    
-  
-    <article>
-      <header class="Heading">
-  <h1 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/techblog/post/pacu1/" rel="bookmark">ProLUG Admin Course Unit 1 🐧</a>
-  </h1>
-  
-    <time datetime="2024-09-15T00:00:00Z">September 15, 2024</time>
-  
-</header>
-      
-        <h1 id="command-line-interface-primer-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#command-line-interface-primer-">Command Line Interface Primer 👨🏻‍🏫</a>
-</h1>
-
-
-
-<h2 id="intro-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#intro-">Intro 👋</a>
-</h2>
-<p>Well the ProLUG course is a go. We had a great meeting yesterday with a group of over 80 people. There was a slight snafu regarding thread size limits, so mid lesson we jumped into a presenter room. The session ran for a solid two hours wherein Scott went over command line interface essentials, networking essentials, VIM, pathing, redirects, Xargs, man pages and more. Although I have decent foundational knowledge of Linux, I know that there is always something to learn or better understand. I came away from this first class with a handful of things to review and practice for sure.</p>
-
-
-
-<h3 id="prompts-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#prompts-">prompts 🦮</a>
-</h3>
-<p>Group discussions have kicked off early in #ProLUG-Projects. Scott has prompted us with a few questions for Unit 1 that we are to post and discuss. I thought it would be good to post these answers in a longer form on my blog. This acts as a review of yesterdays work and gives me a chance to further reflect.</p>
-
-
-
-<h3 id="discussion-post-1-technical-skill-assessment-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#discussion-post-1-technical-skill-assessment-">Discussion Post 1: Technical Skill Assessment 🔍</a>
-</h3>
-<p>Using this rubric, we are to self-assess our skills in various areas with a score from 1-10, giving us a total score at the end. My score was 48 out of a potential 110. I would never rate myself above a 7, as that feels like Demi-God territory!</p>
-<p>Given the pace we started at in the first class, I’m confident that my skills will improve throughout this course. I plan to really go for it and challenge myself along the way.</p>
-<table>
-  <thead>
-      <tr>
-          <th><strong>Skill</strong></th>
-          <th><strong>High (8-10)</strong></th>
-          <th><strong>Mid (4-7)</strong></th>
-          <th><strong>Low (0-3)</strong></th>
-          <th><strong>Total</strong></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>Linux</strong></td>
-          <td>-</td>
-          <td>6</td>
-          <td>-</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td><strong>Storage</strong></td>
-          <td>-</td>
-          <td>5</td>
-          <td>-</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td><strong>Security</strong></td>
-          <td>-</td>
-          <td>6</td>
-          <td>-</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td><strong>Networking</strong></td>
-          <td>-</td>
-          <td>-</td>
-          <td>3</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td><strong>Git</strong></td>
-          <td>-</td>
-          <td>7</td>
-          <td>-</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td><strong>Automation</strong></td>
-          <td>-</td>
-          <td>5</td>
-          <td>-</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td><strong>Monitoring</strong></td>
-          <td>-</td>
-          <td>-</td>
-          <td>3</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td><strong>Database</strong></td>
-          <td>-</td>
-          <td>4</td>
-          <td>-</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td><strong>Cloud</strong></td>
-          <td>-</td>
-          <td>6</td>
-          <td>-</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td><strong>Kubernetes</strong></td>
-          <td>-</td>
-          <td>-</td>
-          <td>3</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td><strong>Total</strong></td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td><strong>48</strong></td>
-      </tr>
-  </tbody>
-</table>
-
-
-
-<h3 id="what-do-i-hope-to-learn-in-this-course-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#what-do-i-hope-to-learn-in-this-course-">What do I hope to learn in this course? 🤔</a>
-</h3>
-<p>I aim to gain hands-on experience in all aspects of system administration. While I have studied Linux and system administration, I understand that skill levels in this field can vary widely. As I work toward becoming a Systems Engineer, I recognize the importance of consistently challenging myself. Through this journey, I hope to build confidence in managing existing systems, configuring services, securing environments, and automating tasks.</p>
-
-
-
-<h3 id="what-type-of-career-are-you-looking-for-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#what-type-of-career-are-you-looking-for-">What type of career are you looking for? 🥕</a>
-</h3>
-<p>I am looking to become a full time Linux System Engineer. I am currently in an administrative support role wherein I am tasked with setting up new systems on a small scale. I would like to be able to manage a large number of servers with automation.</p>
-
-
-
-<h3 id="discussion-post-2-target-job-and-skills-gap-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#discussion-post-2-target-job-and-skills-gap-">Discussion Post 2: Target Job and Skills Gap 🎯</a>
-</h3>
-<p>Our second task is to look for a job we would like to target and list the requirements posted for that given job.<br>
-I found this job posted by <strong>OERP Canada</strong>, located in Toronto, Ontario, with the following information.</p>
-<hr>
-
-
-
-<h3 id="job-overview">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#job-overview">Job Overview</a>
-</h3>
-<p>The role will be 100% remote for now (#socialdistancing). Eventually, it will convert into an onsite role in Toronto, ON. We are only accepting applications from residents of Canada.</p>
-<p><strong>OERP Canada</strong> is looking for a full-time, experienced <strong>LINUX System Administrator</strong> to help maintain our operations and support our Odoo application deployment team, which deploys the Odoo Business Application suite for our clients. The successful candidate will have a technical background in <strong>LINUX</strong>, experience with hosting, web and proxy servers, database administration, mail routing, network security, strong communication skills, and the willingness and ability to think creatively and flexibly. A desire to learn is an important requirement of being part of our team.</p>
-<p>This position is both creative and rigorous by nature—you need to think outside the box. We expect the candidate to be proactive and have a &ldquo;get it done&rdquo; spirit.</p>
-
-
-
-<h3 id="responsibilities">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#responsibilities">Responsibilities</a>
-</h3>
-<ul>
-<li>Manage cloud and on-premise hosting environments</li>
-<li>Endless security improvements</li>
-<li>Improve automation tools</li>
-<li>Improve scripting</li>
-<li>Provide technical support as needed</li>
-</ul>
-
-
-
-<h3 id="must-have-skills">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#must-have-skills">Must-Have Skills</a>
-</h3>
-<ul>
-<li>Ubuntu / Debian server</li>
-<li>NGINX</li>
-<li>Security best practices: Firewalls &amp; WAF</li>
-<li>Automation tools and server scripting</li>
-<li>Functional knowledge of networking: VPNs, DNS, mail routing and delivery, etc.</li>
-<li>University degree or 3-5 years of work experience</li>
-</ul>
-
-
-
-<h3 id="nice-to-have-skills">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#nice-to-have-skills">Nice-to-Have Skills</a>
-</h3>
-<ul>
-<li>PostgreSQL high availability, load balancing, and replication</li>
-<li>Virtualization: VMware, vSphere, KVM</li>
-<li>VCS/Git working knowledge</li>
-<li>FreeBSD</li>
-</ul>
-<hr>
-
-
-
-<h3 id="what-i-am-currently-able-to-do-in-this-position-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#what-i-am-currently-able-to-do-in-this-position-">What I am currently able to do in this position 💪🏻</a>
-</h3>
-<ul>
-<li>Solid experience with Debian/Ubuntu</li>
-<li>Confident in managing both cloud and on-premise hosting environments</li>
-<li>Skilled in improving automation through the use of Ansible, Terraform, and Bash scripting</li>
-<li>While I may not have 3-5 years of continuous working experience, I have been involved in IT work on and off</li>
-<li>Experienced in setting up and managing PostgreSQL</li>
-<li>Proficient with Oracle VirtualBox and Proxmox, which I believe translates well to VMware, vSphere, and KVM</li>
-<li>Knowledgeable in Git, including branch management and command-line usage</li>
-<li>Familiar with FreeBSD and BSD-specific commands</li>
-</ul>
-
-
-
-<h3 id="what-i-am-currently-incapable-of-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#what-i-am-currently-incapable-of-">What I am currently incapable of 😓</a>
-</h3>
-<ul>
-<li>Lack confidence in managing firewalls</li>
-<li>Limited experience with VPNs, DNS, and mail handling</li>
-<li>Basic hands-on experience with NGINX, but skills are limited</li>
-<li>Minimal technical support experience</li>
-</ul>
-
-
-
-<h3 id="how-i-plan-to-close-the-gap-on-these-missing-skills-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#how-i-plan-to-close-the-gap-on-these-missing-skills-">How I plan to close the gap on these missing skills 🎯</a>
-</h3>
-<p>I plan to close this gap by learning more about general Linux security and networking principles from this course. Additionally, I&rsquo;ve already purchased a recently published book by Michael Lucas on running and maintaining mail servers, which I intend to skim through. Additionally, I am studying ITIL to improve my understanding of technical support and service management.</p>
-
-
-
-<h3 id="prolug-links-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#prolug-links-">ProLUG Links ⛓️</a>
-</h3>
-<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
-Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
-Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
-ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
-KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
-      
-      
-
-  
-
-  
-
-
-
-
-
-  <footer>
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
-            </li>
-          
-        </ul>
-      
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
             </li>
           
         </ul>

@@ -5,10 +5,642 @@
     <title>Unix on Tech Blog</title>
     <link>http://localhost:1313/techblog/tags/unix/</link>
     <description>Recent content in Unix on Tech Blog</description>
-    <generator>Hugo 0.139.5</generator>
+    <generator>Hugo 0.140.1</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 29 Sep 2024 00:00:00 +0000</lastBuildDate>
     <atom:link rel="self" href="http://localhost:1313/techblog/tags/unix/feed.xml" type="application/rss+xml" />
+    <item>
+      <title>ProLUG Admin Course Unit 16 🐧</title>
+      <link>http://localhost:1313/techblog/post/pacu16/</link>
+      <pubDate>Sat, 28 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/techblog/post/pacu16/</guid>
+      <description>&lt;h1 id=&#34;incident-response&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu16/#incident-response&#34;&gt;Incident Response&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Incident response is a structured approach to identifying, managing, and resolving unexpected events such as security breaches, system failures, or misconfigurations. It aims to minimize disruption, mitigate damage, and restore normal operations while implementing lessons learned to prevent future incidents.&lt;/p&gt;
+&lt;p&gt;Responding to incidents is a stressful event because it can involve many stakeholders and little time. This week we exercised our skills by live debugging in front of our peers on a remote host. The problems all related to failure modes and misconfiguration and the exercise was rewarding in that I learned a lot as always, and built some confidence.&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h1 id=&#34;incident-response--troubleshooting-scenarios&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu16/#incident-response--troubleshooting-scenarios&#34;&gt;Incident Response / Troubleshooting Scenarios&lt;/a&gt;
+&lt;/h1&gt;
+
+
+
+&lt;h2 id=&#34;scenario-1-web-server-not-running&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu16/#scenario-1-web-server-not-running&#34;&gt;Scenario #1: Web Server Not Running&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Objective&lt;/strong&gt;: Ensure the web server is running and responding on port 80.&lt;br&gt;
+&lt;strong&gt;Steps&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Verify web server service&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;Run: &lt;code&gt;systemctl enable --now httpd&lt;/code&gt; (or similar command).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Check open ports&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;Run: &lt;code&gt;ss -ntulp&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Identify if the server is running on port 8087 instead of 80.&lt;/li&gt;
+&lt;li&gt;Edit the configuration:
+&lt;ul&gt;
+&lt;li&gt;File: &lt;code&gt;/etc/httpd/conf/httpd.conf&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Change &lt;code&gt;Listen 8087&lt;/code&gt; to &lt;code&gt;Listen 80&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Restart the service: &lt;code&gt;systemctl restart httpd&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ensure external connectivity&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;Check the firewall status: &lt;code&gt;systemctl status firewalld&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Options:
+&lt;ul&gt;
+&lt;li&gt;Disable the firewall: &lt;code&gt;systemctl stop firewalld&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Open port 80 if needed.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Final step&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;REBOOT the lab machine.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;scenario-2-mount-point-space-not-working&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu16/#scenario-2-mount-point-space-not-working&#34;&gt;Scenario #2: Mount Point /space Not Working&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Objective&lt;/strong&gt;: Set up a 9GB partition on the &lt;code&gt;/space&lt;/code&gt; mount point using LVM.&lt;br&gt;
+&lt;strong&gt;Steps&lt;/strong&gt;:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Verify &lt;code&gt;/space&lt;/code&gt; setup&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;Confirm the partition is not properly set up.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Create LVM setup&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;Identify disks: &lt;code&gt;fdisk -l | grep -i xvd&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Create physical volumes: &lt;code&gt;pvcreate /dev/xvd&amp;lt;disk&amp;gt;&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Create a volume group:
+&lt;ul&gt;
+&lt;li&gt;Run: &lt;code&gt;vgcreate space /dev/xvd&amp;lt;disk1&amp;gt; /dev/xvd&amp;lt;disk2&amp;gt; /dev/xvd&amp;lt;disk3&amp;gt;&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Create a logical volume:
+&lt;ul&gt;
+&lt;li&gt;Run: &lt;code&gt;lvcreate -n space -l +100%FREE space&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Format the logical volume&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;Create a filesystem: &lt;code&gt;mkfs.ext4 /dev/mapper/&amp;lt;logical_volume_name&amp;gt;&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Mount the filesystem&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;Create the mount point: &lt;code&gt;mkdir /space&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Add an entry in &lt;code&gt;/etc/fstab&lt;/code&gt;:
+
+  
+
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-fstab&#34; data-lang=&#34;fstab&#34;&gt;/dev/mapper/&amp;lt;logical_volume_name&amp;gt; /space &amp;lt;ext4 or xfs&amp;gt; defaults 1 2&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;Mount the filesystem: &lt;code&gt;mount -a&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Final step&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;REBOOT the lab machine.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;scenario-3-system-not-updating&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu16/#scenario-3-system-not-updating&#34;&gt;Scenario #3: System Not Updating&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Objective&lt;/strong&gt;: Fix the system to allow updates via &lt;code&gt;dnf&lt;/code&gt; and ensure kernel updates.&lt;br&gt;
+&lt;strong&gt;Steps&lt;/strong&gt;:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Fix DNF repository configuration&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;Edit &lt;code&gt;/etc/yum.repos.d/rocky.repo&lt;/code&gt;:
+&lt;ul&gt;
+&lt;li&gt;Set &lt;code&gt;enabled=1&lt;/code&gt; for all necessary repositories.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Check &lt;code&gt;/etc/yum.repos.d/rocky.repo.orig&lt;/code&gt; for reference.&lt;/li&gt;
+&lt;li&gt;Fix the EPEL repository the same way.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Verify kernel updates&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;Edit &lt;code&gt;/etc/yum.conf&lt;/code&gt;:
+&lt;ul&gt;
+&lt;li&gt;Comment out the line: &lt;code&gt;exclude=kernel*&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Final step&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;REBOOT the lab machine if necessary.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+
+
+
+&lt;h3 id=&#34;prolug-links-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu16/#prolug-links-&#34;&gt;ProLUG Links ⛓️&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Discord: &lt;a href=&#34;https://discord.com/invite/m6VPPD9usw&#34;&gt;https://discord.com/invite/m6VPPD9usw&lt;/a&gt;
+Youtube: &lt;a href=&#34;https://www.youtube.com/@het_tanis8213&#34;&gt;https://www.youtube.com/@het_tanis8213&lt;/a&gt;
+Twitch: &lt;a href=&#34;https://www.twitch.tv/het_tanis&#34;&gt;https://www.twitch.tv/het_tanis&lt;/a&gt;
+ProLUG Book: &lt;a href=&#34;https://leanpub.com/theprolugbigbookoflabs&#34;&gt;https://leanpub.com/theprolugbigbookoflabs&lt;/a&gt;
+KillerCoda: &lt;a href=&#34;https://killercoda.com/het-tanis&#34;&gt;https://killercoda.com/het-tanis&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>ProLUG Admin Course Unit 15 🐧</title>
+      <link>http://localhost:1313/techblog/post/pacu15/</link>
+      <pubDate>Wed, 25 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/techblog/post/pacu15/</guid>
+      <description>&lt;h1 id=&#34;engineering-troubleshooting&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu15/#engineering-troubleshooting&#34;&gt;Engineering Troubleshooting&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Systems engineering troubleshooting involves diagnosing and resolving complex issues within interconnected systems to ensure seamless operation and optimal performance. It requires a methodical approach to identify root causes, integrate solutions, and maintain system functionality while addressing both technical and process-related challenges.&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;discussion-post-1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu15/#discussion-post-1&#34;&gt;Discussion Post 1:&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Your management is all fired up about implementing some Six Sigma processes around the company. You decide to familiarize yourself and get some basic understanding to pass along to your team.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;quoted-from-the-book&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu15/#quoted-from-the-book&#34;&gt;Quoted from the book&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;5S is a Japanese Lean approach to organizing a workspace, so that by making a process more effective and efficient, it will become easier to identify and expunge muda. 5S relies on visual cues and a clean work area to enhance efficiencies, reduce accidents, and standardize workflows to reduce defects. The method is based on five steps:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Sort (Seiri)&lt;/li&gt;
+&lt;li&gt;Straighten (Seiton)&lt;/li&gt;
+&lt;li&gt;Shine (Seiso)&lt;/li&gt;
+&lt;li&gt;Standardize (Seiketsu)&lt;/li&gt;
+&lt;li&gt;Sustain (Shitsuke)&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;what-about-the-5s-methodology-might-help-us-as-a-team-of-system-administrators&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu15/#what-about-the-5s-methodology-might-help-us-as-a-team-of-system-administrators&#34;&gt;What about the “5S” methodology might help us as a team of system administrators?&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Identify and categorize common troubleshooting problems such as typos, illogical configurations, or vulnerabilities to establish clarity and prioritize issues. (Seiri)&lt;/li&gt;
+&lt;li&gt;Organize and catalog processes and procedures for addressing both routine and uncommon problem scenarios for quick access and consistency. (Seiton)&lt;/li&gt;
+&lt;li&gt;Validate and test all processes and procedures to ensure they function effectively and reliably. (Seiso)&lt;/li&gt;
+&lt;li&gt;Promote team familiarity by regularly practicing and drilling procedures, similar to incident response training, to build confidence and efficiency. (Seiketsu)&lt;/li&gt;
+&lt;li&gt;Apply the processes and procedures in real-world scenarios, evaluate their effectiveness, make necessary adjustments, and document improvements for future use. (Shitsuke)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;By applying the 5S methodology to troubleshooting, the team can develop a shared understanding of how to consistently address issues, identify system failure points, and create opportunities for incremental improvement, fostering a sense of flow and efficiency.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;what-are-the-four-layers-of-process-definition-how-would-you-explain-them-to-your-junior-engineers&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu15/#what-are-the-four-layers-of-process-definition-how-would-you-explain-them-to-your-junior-engineers&#34;&gt;What are the four layers of process definition? How would you explain them to your junior engineers?&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;input - anything entering the process or is required to enter the process to drive the creation of an output
+outputs - service or product that is created by this process
+events - predefined criteria or actions that cause a process to begin working.
+tasks - activities are the heart. a unit of action within the process.
+4.1 - Decisions are possible made during or for tasks.&lt;/p&gt;
+&lt;p&gt;The four layers of a process—inputs, outputs, events, and tasks—function similarly to how a computer program uses functions to process variables and produce results. However, in a Six Sigma process, these elements are more dynamic, encompassing both virtual and physical components, as well as steps that may be driven by either human actions or automated systems. This flexibility allows Six Sigma to address complex workflows that combine diverse inputs and tasks to achieve consistent and efficient outputs.&lt;/p&gt;
+&lt;p&gt;Looking at our operation as a series of processes with layers like this can help us to identify, refine and standardize processes into Standard Operating Procedures (SOP&amp;rsquo;s).&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;discussion-post-2-your-team-looks-at-a-lot-of-visual-data-you-decide-to-write-up-an-explanation-for-them-to-explain-what-they-look-at&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu15/#discussion-post-2-your-team-looks-at-a-lot-of-visual-data-you-decide-to-write-up-an-explanation-for-them-to-explain-what-they-look-at&#34;&gt;Discussion Post 2: Your team looks at a lot of visual data. You decide to write up an explanation for them to explain what they look at.&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;what-is-a-high-water-mark-why-might-it-be-good-to-know-in-utilization-of-systems&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu15/#what-is-a-high-water-mark-why-might-it-be-good-to-know-in-utilization-of-systems&#34;&gt;What is a high water mark? Why might it be good to know in utilization of systems?&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;The phrase “high water mark” originates from marking a riverbank to indicate the highest water level reached during a season. This mark serves as a warning, signaling potential danger if the water rises beyond it in the future.
+In the context of systems, the high water mark represents historically safe operational loads. If metrics indicate that this threshold has been exceeded, it should alert administrators to a potential issue.
+For example, if the high water mark for daily memory usage was 14/18 GiB of RAM, and we observe the system suddenly using 16/16 GiB, this warrants attention as a potential problem requiring further investigation.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;what-is-an-upper-and-lower-control-limit-in-a-system-output-while-this-isnt-exactly-what-were-looking-at-why-might-it-be-good-to-explain-to-your-junior-engineers&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu15/#what-is-an-upper-and-lower-control-limit-in-a-system-output-while-this-isnt-exactly-what-were-looking-at-why-might-it-be-good-to-explain-to-your-junior-engineers&#34;&gt;What is an upper and lower control limit in a system output? While this isn’t exactly what we’re looking at, why might it be good to explain to your junior engineers?&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Control limits are essential tools for monitoring the stability of a process over time. The upper and lower control limits define the normal range within which a process output should remain when the process is operating correctly. If the output exceeds these boundaries, it signals a potential issue, indicating that the process may be out of control and requiring investigation or troubleshooting.&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;definitionsterminology&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu15/#definitionsterminology&#34;&gt;Definitions/Terminology&lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Incident&lt;/strong&gt; An unplanned event that disrupts normal operations.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Problem&lt;/strong&gt; The underlying cause of one or more incidents.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;FMEA&lt;/strong&gt; (Failure Mode and Effects Analysis): A method for identifying and prioritizing potential failure points in a process.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Six Sigma&lt;/strong&gt; A data-driven methodology focused on improving processes by reducing defects and variability.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;TQM&lt;/strong&gt; (Total Quality Management): A management approach emphasizing continuous improvement and customer satisfaction across all organizational processes.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Post Mortem&lt;/strong&gt; A retrospective analysis of an event to identify successes and areas for improvement.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Scientific Method&lt;/strong&gt; A systematic process of forming hypotheses, testing them, and analyzing results to draw conclusions.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Iterative&lt;/strong&gt; A repetitive approach to refining a process or solution through successive cycles.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Discrete Data&lt;/strong&gt; Data that can only take specific, distinct values.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ordinal&lt;/strong&gt; Data with a meaningful order but no consistent interval (e.g., satisfaction ratings).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Nominal&lt;/strong&gt; (Binary/Attribute): Categorical data without order, such as “yes/no” or “male/female.”&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Continuous Data&lt;/strong&gt; Data that can take any value within a range, such as temperature or time.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Risk Priority Number (RPN)&lt;/strong&gt; A score in FMEA used to prioritize risks, calculated as Severity × Occurrence × Detection.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;5 Whys&lt;/strong&gt; A technique to identify the root cause of a problem by repeatedly asking “why” until the root cause is found.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fishbone Diagram (Ishikawa)&lt;/strong&gt; A visual tool used to identify and categorize potential causes of a problem.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fault Tree Analysis (FTA)&lt;/strong&gt; A deductive analysis method used to identify the root causes of system failures.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PDCA (Plan-Do-Check-Act)&lt;/strong&gt; A cyclical process for continuous improvement in workflows or systems.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SIPOC&lt;/strong&gt; A high-level process map identifying Suppliers, Inputs, Processes, Outputs, and Customers.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+
+
+
+&lt;h3 id=&#34;prolug-links-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu15/#prolug-links-&#34;&gt;ProLUG Links ⛓️&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Discord: &lt;a href=&#34;https://discord.com/invite/m6VPPD9usw&#34;&gt;https://discord.com/invite/m6VPPD9usw&lt;/a&gt;
+Youtube: &lt;a href=&#34;https://www.youtube.com/@het_tanis8213&#34;&gt;https://www.youtube.com/@het_tanis8213&lt;/a&gt;
+Twitch: &lt;a href=&#34;https://www.twitch.tv/het_tanis&#34;&gt;https://www.twitch.tv/het_tanis&lt;/a&gt;
+ProLUG Book: &lt;a href=&#34;https://leanpub.com/theprolugbigbookoflabs&#34;&gt;https://leanpub.com/theprolugbigbookoflabs&lt;/a&gt;
+KillerCoda: &lt;a href=&#34;https://killercoda.com/het-tanis&#34;&gt;https://killercoda.com/het-tanis&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>ProLUG Admin Course Unit 14 🐧</title>
+      <link>http://localhost:1313/techblog/post/pacu14/</link>
+      <pubDate>Sun, 22 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/techblog/post/pacu14/</guid>
+      <description>&lt;h1 id=&#34;ansible-automation&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#ansible-automation&#34;&gt;Ansible Automation&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Ansible is an open-source automation tool used for configuration management, application deployment, and IT orchestration, enabling tasks to be executed on multiple systems simultaneously without the need for agents. It uses simple YAML-based playbooks and SSH for communication, making it efficient and easy to learn for managing infrastructure.&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;discussion-post-1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#discussion-post-1&#34;&gt;Discussion Post 1:&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Refer to your Unit 5 scan of the systems. You know that Ansible
+is a tool that you want to maintain in the environment. Review this online documentation:
+&lt;a href=&#34;https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html&#34;&gt;https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html&lt;/a&gt;&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;make-an-inventory-of-the-servers-grouped-any-way-you-like&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#make-an-inventory-of-the-servers-grouped-any-way-you-like&#34;&gt;Make an inventory of the servers, grouped any way you like.&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;[warewulf]
+192.168.200.25&lt;/p&gt;
+&lt;p&gt;[ubuntu]
+192.168.200.[101:103]
+192.168.200.[201:203]&lt;/p&gt;
+&lt;p&gt;[rockynodes]
+192.168.200.[51:69]&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;what-format-did-you-choose-to-use-for-your-inventory&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#what-format-did-you-choose-to-use-for-your-inventory&#34;&gt;What format did you choose to use for your inventory?&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;INI. YAML seems to be the clear choice as it allows for a more declarative inventory. However, while working in the study group it was easier to edit INI without making indentation errors.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;what-other-things-might-you-include-later-in-your-inventory-to-make-it-more-useful&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#what-other-things-might-you-include-later-in-your-inventory-to-make-it-more-useful&#34;&gt;What other things might you include later in your inventory to make it more useful?&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;I can add quite a few interesting things to an inventory file to make it more useful. Once the file reaches a certain size, it is better to break it out into separate unit files that are nested for things like Hosts, Host Variables, Production, Staging etc&amp;hellip;&lt;/p&gt;
+&lt;p&gt;Some notable things I think make things pretty powerful are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Dynamic Inventorying&lt;/li&gt;
+&lt;li&gt;Vault encrypted secrets&lt;/li&gt;
+&lt;li&gt;Jinja2 Dynamic variables&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;discussion-post-2&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#discussion-post-2&#34;&gt;Discussion Post 2:&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;You have been noticing drift on your server configurations, so
+you want a way to generate a report on them every day to validate the configurations are the
+same.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Use any lab in here to find ideas: &lt;a href=&#34;https://killercoda.com/het-tanis/course/Ansible-&#34;&gt;https://killercoda.com/het-tanis/course/Ansible-&lt;/a&gt;
+Labs Use this webhook to send your relevant data out to our sandbox.
+&lt;a href=&#34;https://discord.com/api/webhooks/1317659221604433951/uyKpuq8fNNNSEyCra4n33PakI&#34;&gt;https://discord.com/api/webhooks/1317659221604433951/uyKpuq8fNNNSEyCra4n33PakI&lt;/a&gt;
+Bk-XtTn1WrwTpHs9BcgkIu7URPV_Gd5HJCRX0_EJVUT&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;name: System Information Check
+hosts: all
+become: yes
+tasks:
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;name: Check kernel version
+command: uname -r
+register: kernel_version&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;name: Display kernel version
+debug:
+msg: &amp;ldquo;Kernel Version: {{ kernel_version.stdout }}&amp;rdquo;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;name: Display kernel command line
+command: cat /proc/cmdline
+register: kernel_cmdline&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;name: Debug kernel command line
+debug:
+msg: &amp;ldquo;Kernel Command Line: {{ kernel_cmdline.stdout }}&amp;rdquo;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;name: Check hardware information
+command: lshw
+register: hardware_info&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;name: Debug hardware information
+debug:
+msg: &amp;ldquo;Hardware Information: {{ hardware_info.stdout }}&amp;rdquo;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;name: List installed RPM packages
+command: rpm -qa
+register: installed_rpms&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;name: Debug installed RPM packages
+debug:
+msg: &amp;ldquo;Installed RPMs: {{ installed_rpms.stdout }}&amp;rdquo;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;name: Check active services
+command: systemctl list-units &amp;ndash;type=service &amp;ndash;state=running
+register: active_services&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;name: Debug active services
+debug:
+msg: &amp;ldquo;Active Services: {{ active_services.stdout }}&amp;rdquo;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;name: List system users
+command: cat /etc/passwd
+register: system_users&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;name: Debug system users
+debug:
+msg: &amp;ldquo;System Users: {{ system_users.stdout }}&amp;rdquo;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;name: Check last login information
+command: last
+register: last_login&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;name: Debug last login information
+debug:
+msg: &amp;ldquo;Last Login Information: {{ last_login.stdout }}&amp;rdquo;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;name: Display currently logged-in users
+command: w
+register: logged_in_users&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;name: Debug currently logged-in users
+debug:
+msg: &amp;ldquo;Logged-in Users: {{ logged_in_users.stdout }}&amp;rdquo;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;name: Display ISO time
+command: date &amp;ndash;iso-8601=seconds
+register: iso_time&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;name: Debug ISO time
+debug:
+msg: &amp;ldquo;ISO Time: {{ iso_time.stdout }}&amp;rdquo;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;discussion-post-3&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#discussion-post-3&#34;&gt;Discussion Post 3:&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Using ansible module for git, pull down this repo: 👍
+&lt;a href=&#34;https://github.com/het-tanis/HPC_Deploy.git&#34;&gt;https://github.com/het-tanis/HPC_Deploy.git&lt;/a&gt;&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;how-is-the-repo-setup&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#how-is-the-repo-setup&#34;&gt;How is the repo setup?&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;We have 3 playbooks in the root of the directory. These playbooks utilize roles defined in the roles subdirectory.
+Playbook 01 gathers facts about nfs using roles defined in a subdirectory called roles.
+Playbook 02 gathers data from a target system using roles defined in a subdirectory called data-gather.
+Playbook 03 updates and installs using roles defined in a subdirectory called packages_update/tasks &amp;amp; packages_install/tasks.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;what-is-in-the-roles-directory&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#what-is-in-the-roles-directory&#34;&gt;What is in the roles directory?&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Partially answered for the previous question.
+Roles are structured with dedicated directories for tasks, handlers, and templates.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;how-are-these-playbooks-called-and-how-do-roles-differ-from-tasks&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#how-are-these-playbooks-called-and-how-do-roles-differ-from-tasks&#34;&gt;How are these playbooks called, and how do roles differ from tasks?&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;These playbooks incorporate roles based on specific conditions, executing the tasks defined within each role. When a role is included, the playbook inherits all its contents.&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;digging-deeper&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#digging-deeper&#34;&gt;Digging Deeper&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;i-have-a-large-amount-of-labs-to-get-you-started-on-your-ansible-journey-all-free&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#i-have-a-large-amount-of-labs-to-get-you-started-on-your-ansible-journey-all-free&#34;&gt;I have a large amount of labs to get you started on your Ansible Journey (all free):&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://killercoda.com/het-tanis/course/Ansible-Labs&#34;&gt;https://killercoda.com/het-tanis/course/Ansible-Labs&lt;/a&gt; 👍&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;find-projects-from-our-channel-ansible-code-in-discord-and-find-something-that-is&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#find-projects-from-our-channel-ansible-code-in-discord-and-find-something-that-is&#34;&gt;Find projects from our channel Ansible-Code, in Discord and find something that is&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;interesting to you. 👍&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;use-ansible-to-access-secrets-from-hashicorp-vault-httpskillercodacomhet-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#use-ansible-to-access-secrets-from-hashicorp-vault-httpskillercodacomhet-&#34;&gt;Use Ansible to access secrets from Hashicorp Vault: &lt;a href=&#34;https://killercoda.com/het-&#34;&gt;https://killercoda.com/het-&lt;/a&gt;&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;tanis/course/Hashicorp-Labs/004-vault-read-secrets-ansible 👍&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h1 id=&#34;lab-work---&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#lab-work---&#34;&gt;Lab Work 🧪  👍&lt;/a&gt;
+&lt;/h1&gt;
+
+
+
+&lt;h3 id=&#34;create-an-inventory&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#create-an-inventory&#34;&gt;Create an inventory:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;While still in the /root/ansible_madness directory, create a file hosts
+vi /root/ansible_madness/hosts
+Populate the file as follows&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;[servers]&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;192.168.200.101&lt;/li&gt;
+&lt;li&gt;192.168.200.102&lt;/li&gt;
+&lt;li&gt;192.168.200.103&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Run Ad Hoc commands against your servers
+This will test your connection into all the servers.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;1-ansible-servers--i-hosts--u-inmate--k--m-shell--a-uptime&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#1-ansible-servers--i-hosts--u-inmate--k--m-shell--a-uptime&#34;&gt;1. ansible servers -i hosts -u inmate -k -m shell -a uptime&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Use this password: LinuxR0cks1!&lt;/p&gt;
+&lt;p&gt;Do the same thing, but this time be verbose&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;2-ansible--vvv-servers--i-hosts--u-inmate--k--m-shell--a-uptime&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#2-ansible--vvv-servers--i-hosts--u-inmate--k--m-shell--a-uptime&#34;&gt;2. ansible -vvv servers -i hosts -u inmate -k -m shell -a uptime&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Create a playbook to push over files.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;3-echo-this-is-my-file-yourname--somefile&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#3-echo-this-is-my-file-yourname--somefile&#34;&gt;3. echo &amp;ldquo;This is my file &lt;!-- raw HTML omitted --&gt;&amp;rdquo; &amp;gt; somefile&lt;/a&gt;
+&lt;/h3&gt;
+
+
+
+&lt;h3 id=&#34;4-vi-deployyaml&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#4-vi-deployyaml&#34;&gt;4. vi deploy.yaml&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Populate it as follows:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;name: Start of push playbook
+
+hosts: servers
+vars:
+gather_facts: True
+become: False
+tasks:
+name: Copy somefile over at {{ ansible_date_time.iso8601_basic_short }}
+copy:
+src: /root/ansible_madness/somefile
+dest: /tmp/somefile.txt
+&lt;/code&gt;&lt;/pre&gt;
+
+
+
+&lt;h3 id=&#34;5-execute-your-playbook&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#5-execute-your-playbook&#34;&gt;5. Execute your playbook&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;ansible-playbook -i hosts -k deploy.yaml&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;6-verify-that-your-file-pushed-everywhere&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#6-verify-that-your-file-pushed-everywhere&#34;&gt;6. Verify that your file pushed everywhere&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;ansible servers -i hosts -u inmate -k -m shell -a “ls -l /tmp/somefile”
+Pull down a github repo&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;git clone &lt;a href=&#34;https://github.com/het-tanis/HPC_Deploy.git&#34;&gt;https://github.com/het-tanis/HPC_Deploy.git&lt;/a&gt;
+cd HPC_Deploy
+What do you see in here?
+What do you need to learn about more to deploy some of these tools?
+Can you execute some of these, why or why not?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;reflection-questions&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#reflection-questions&#34;&gt;Reflection Questions&lt;/a&gt;
+&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;What questions do you still have about this week?&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;How can you apply this now in your current role in IT? If you’re not in IT, how can you
+look to put something like this into your resume or portfolio?&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+
+
+
+&lt;h3 id=&#34;prolug-links-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#prolug-links-&#34;&gt;ProLUG Links ⛓️&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Discord: &lt;a href=&#34;https://discord.com/invite/m6VPPD9usw&#34;&gt;https://discord.com/invite/m6VPPD9usw&lt;/a&gt;
+Youtube: &lt;a href=&#34;https://www.youtube.com/@het_tanis8213&#34;&gt;https://www.youtube.com/@het_tanis8213&lt;/a&gt;
+Twitch: &lt;a href=&#34;https://www.twitch.tv/het_tanis&#34;&gt;https://www.twitch.tv/het_tanis&lt;/a&gt;
+ProLUG Book: &lt;a href=&#34;https://leanpub.com/theprolugbigbookoflabs&#34;&gt;https://leanpub.com/theprolugbigbookoflabs&lt;/a&gt;
+KillerCoda: &lt;a href=&#34;https://killercoda.com/het-tanis&#34;&gt;https://killercoda.com/het-tanis&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>ProLUG Admin Course Unit 13 🐧</title>
       <link>http://localhost:1313/techblog/post/pacu13/</link>
@@ -35,18 +667,66 @@ behavior. They want you to account for why something is different.&lt;/p&gt;
 &lt;h3 id=&#34;how-are-you-going-to-validate-that-the-difference-between-the-systems&#34;&gt;
   &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu13/#how-are-you-going-to-validate-that-the-difference-between-the-systems&#34;&gt;How are you going to validate that the difference between the systems?&lt;/a&gt;
 &lt;/h3&gt;
+&lt;p&gt;I am going to assume that I am new to the system in general and have very surface knowledge from fellow staff. I am also assuming we are working with a redhat based system.&lt;/p&gt;
+
+
+
+&lt;h4 id=&#34;starting-off-simple&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu13/#starting-off-simple&#34;&gt;Starting off simple&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;Maybe the problem is an obvious one, so I would just start off with a glance.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Quick cursory check (Kernel Version uname-a)&lt;/li&gt;
+&lt;li&gt;Manually Checking Logs (Journalctl, dmesg, audit.log, syslog)&lt;/li&gt;
+&lt;li&gt;Checking ports (Socket Statistics, ss -ntulp)&lt;/li&gt;
+&lt;li&gt;Listing installed packages (DNF list, RPM -qa)&lt;/li&gt;
+&lt;li&gt;Listing users and Logins (/etc/passwd, w, last)&lt;/li&gt;
+&lt;li&gt;Seeing what System D services are running (systemctl list-units - -type=service)&lt;/li&gt;
+&lt;li&gt;Digging for documentation and or commit history&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h4 id=&#34;deeper-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu13/#deeper-&#34;&gt;Deeper ⛏️&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;If no low hanging fruit were there, then I would check configurations&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Grub.conf, FirewallD/Apparmour, SELinux,&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h4 id=&#34;sorting-ish-from-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu13/#sorting-ish-from-&#34;&gt;Sorting 🪰&amp;lsquo;ish from 🌶️&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;If I do that see something distinctly different, I would employ a more sophisticated approach with difference checking.
+Given that everything is a structured file, I can append the output from a working system and the goose 🪿 to a new file and run diff against them.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Diff&amp;rsquo;ing the Logs&lt;/li&gt;
+&lt;li&gt;Diff&amp;rsquo;ing Socket Statistics&lt;/li&gt;
+&lt;li&gt;Diff&amp;rsquo;ing Installed Packages&lt;/li&gt;
+&lt;/ul&gt;
 
 
 
 &lt;h3 id=&#34;what-are-you-going-to-look-at-to-explain-this&#34;&gt;
   &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu13/#what-are-you-going-to-look-at-to-explain-this&#34;&gt;What are you going to look at to explain this?&lt;/a&gt;
 &lt;/h3&gt;
+&lt;p&gt;I think I have answered this above.&lt;/p&gt;
 
 
 
 &lt;h3 id=&#34;what-could-be-done-to-prevent-this-problem-in-the-future&#34;&gt;
   &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu13/#what-could-be-done-to-prevent-this-problem-in-the-future&#34;&gt;What could be done to prevent this problem in the future?&lt;/a&gt;
 &lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Introducing or Improving the change management policy and employing version control would be my first suggestion.&lt;/li&gt;
+&lt;li&gt;Ensuring that there is a build/test/deploy pipeline that integrates tightly with change management.&lt;/li&gt;
+&lt;li&gt;Using IaC and Automation to ensure consistency and repeatability with tools like Ansible, Packer, Podman or Kubernetes.&lt;/li&gt;
+&lt;li&gt;Hardening systems with either simple policies or through the guidance of STIG&amp;rsquo;s.&lt;/li&gt;
+&lt;li&gt;Introducing stronger controls over user privileges like employing RBA policies.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;hr&gt;
 
 
@@ -66,15 +746,85 @@ development environment. Your team is going from RHEL 8 to Rocky 9.4.&lt;/p&gt;
 
 
 
+&lt;h4 id=&#34;observe&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu13/#observe&#34;&gt;Observe&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;Firstly I would gather system information&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Benchmark/baseline performance metrics and utilization (Disk, I/O, PS, Connections etc)&lt;/li&gt;
+&lt;li&gt;Configs (Scripts and configuration files)&lt;/li&gt;
+&lt;li&gt;Installed Packages.&lt;/li&gt;
+&lt;li&gt;users (Listing users and privileges)&lt;/li&gt;
+&lt;li&gt;Policies (Firewall, SELinux)&lt;/li&gt;
+&lt;li&gt;Purpose (Assessing the use of a particular system to see if may need changes/upgrades)&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h4 id=&#34;capture&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu13/#capture&#34;&gt;Capture&lt;/a&gt;
+&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;I would snapshot the current system if possible&lt;/li&gt;
+&lt;li&gt;If a complete snapshot copy is not possible, I would gather files essential to rebuilding a replica&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h4 id=&#34;reconstruct&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu13/#reconstruct&#34;&gt;Reconstruct&lt;/a&gt;
+&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Build it in a test VM emulating the current environment&lt;/li&gt;
+&lt;li&gt;Template the VM for experimental changes (Adding additional tools or Configs)&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h4 id=&#34;analyze--optimize&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu13/#analyze--optimize&#34;&gt;Analyze / Optimize&lt;/a&gt;
+&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Gather business or operational requirements, perhaps the system needs enhancements&lt;/li&gt;
+&lt;li&gt;Experiment with performance tuning&lt;/li&gt;
+&lt;li&gt;Test new packages and/or configurations&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h4 id=&#34;build&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu13/#build&#34;&gt;Build&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;During the analysis and optimization phase, I would start a playbook with information gathered from previous phases.
+I would build and run the playbook against VM templates until satisfied.&lt;/p&gt;
+
+
+
+&lt;h4 id=&#34;deploy&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu13/#deploy&#34;&gt;Deploy&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;Given the prior phases, my Playbook would be robust and capable of the transition.
+However, I would ensure a robust backup and rollback plan in the case something fails.&lt;/p&gt;
+
+
+
 &lt;h3 id=&#34;what-are-you-going-to-check-on-the-existing-systems-to-baseline-your-build&#34;&gt;
   &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu13/#what-are-you-going-to-check-on-the-existing-systems-to-baseline-your-build&#34;&gt;What are you going to check on the existing systems to baseline your build?&lt;/a&gt;
 &lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Compute Usage&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Memory Load&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Disk Resources&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Networking Metrics&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
 
 
 
 &lt;h3 id=&#34;what-kind-of-validation-plan-might-you-use-for-your-new-rocky-94-systems&#34;&gt;
   &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu13/#what-kind-of-validation-plan-might-you-use-for-your-new-rocky-94-systems&#34;&gt;What kind of validation plan might you use for your new Rocky 9.4 systems?&lt;/a&gt;
 &lt;/h3&gt;
+&lt;p&gt;I would have a seperate playbook built that would validate performance against what I was observing during my VM experimentation.
+Though the environment may differ from that of the VM, I would still be able to discern performance characteristics and notice any outlier differences.&lt;/p&gt;
 &lt;hr&gt;
 
 
@@ -124,212 +874,30 @@ look to put something like this into your resume or portfolio?&lt;/p&gt;
 &lt;h1 id=&#34;lab-work-&#34;&gt;
   &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu13/#lab-work-&#34;&gt;Lab Work 🧪&lt;/a&gt;
 &lt;/h1&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;You will scan a server for a SCC Report and get a STIG Score&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;You will remediate some of the items from the scan&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;You will rescan and verify a better score.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
+
+
+
+&lt;h3 id=&#34;1-you-will-scan-a-server-for-a-scc-report-and-get-a-stig-score-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu13/#1-you-will-scan-a-server-for-a-scc-report-and-get-a-stig-score-&#34;&gt;1. You will scan a server for a SCC Report and get a STIG Score 👍&lt;/a&gt;
+&lt;/h3&gt;
+
+
+
+&lt;h3 id=&#34;2-you-will-remediate-some-of-the-items-from-the-scan-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu13/#2-you-will-remediate-some-of-the-items-from-the-scan-&#34;&gt;2. You will remediate some of the items from the scan 👍&lt;/a&gt;
+&lt;/h3&gt;
+
+
+
+&lt;h3 id=&#34;3-you-will-rescan-and-verify-a-better-score-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu13/#3-you-will-rescan-and-verify-a-better-score-&#34;&gt;3. You will rescan and verify a better score. 👍&lt;/a&gt;
+&lt;/h3&gt;
 &lt;hr&gt;
 
 
 
 &lt;h3 id=&#34;prolug-links-&#34;&gt;
   &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu13/#prolug-links-&#34;&gt;ProLUG Links ⛓️&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;Discord: &lt;a href=&#34;https://discord.com/invite/m6VPPD9usw&#34;&gt;https://discord.com/invite/m6VPPD9usw&lt;/a&gt;
-Youtube: &lt;a href=&#34;https://www.youtube.com/@het_tanis8213&#34;&gt;https://www.youtube.com/@het_tanis8213&lt;/a&gt;
-Twitch: &lt;a href=&#34;https://www.twitch.tv/het_tanis&#34;&gt;https://www.twitch.tv/het_tanis&lt;/a&gt;
-ProLUG Book: &lt;a href=&#34;https://leanpub.com/theprolugbigbookoflabs&#34;&gt;https://leanpub.com/theprolugbigbookoflabs&lt;/a&gt;
-KillerCoda: &lt;a href=&#34;https://killercoda.com/het-tanis&#34;&gt;https://killercoda.com/het-tanis&lt;/a&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>ProLUG Admin Course Unit 13 🐧</title>
-      <link>http://localhost:1313/techblog/post/pacu14/</link>
-      <pubDate>Sun, 15 Dec 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/techblog/post/pacu14/</guid>
-      <description>&lt;h1 id=&#34;ansible-automation&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#ansible-automation&#34;&gt;Ansible Automation&lt;/a&gt;
-&lt;/h1&gt;
-&lt;p&gt;Ansible is an open-source automation tool used for configuration management, application deployment, and IT orchestration, enabling tasks to be executed on multiple systems simultaneously without the need for agents. It uses simple YAML-based playbooks and SSH for communication, making it efficient and easy to learn for managing infrastructure.&lt;/p&gt;
-&lt;hr&gt;
-
-
-
-&lt;h2 id=&#34;discussion-post-1&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#discussion-post-1&#34;&gt;Discussion Post 1:&lt;/a&gt;
-&lt;/h2&gt;
-&lt;p&gt;Refer to your Unit 5 scan of the systems. You know that Ansible
-is a tool that you want to maintain in the environment. Review this online documentation:
-&lt;a href=&#34;https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html&#34;&gt;https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html&lt;/a&gt;&lt;/p&gt;
-
-
-
-&lt;h3 id=&#34;make-an-inventory-of-the-servers-grouped-any-way-you-like&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#make-an-inventory-of-the-servers-grouped-any-way-you-like&#34;&gt;Make an inventory of the servers, grouped any way you like.&lt;/a&gt;
-&lt;/h3&gt;
-
-
-
-&lt;h3 id=&#34;what-format-did-you-choose-to-use-for-your-inventory&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#what-format-did-you-choose-to-use-for-your-inventory&#34;&gt;What format did you choose to use for your inventory?&lt;/a&gt;
-&lt;/h3&gt;
-
-
-
-&lt;h3 id=&#34;what-other-things-might-you-include-later-in-your-inventory-to-make-it-more-useful&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#what-other-things-might-you-include-later-in-your-inventory-to-make-it-more-useful&#34;&gt;What other things might you include later in your inventory to make it more useful?&lt;/a&gt;
-&lt;/h3&gt;
-&lt;hr&gt;
-
-
-
-&lt;h2 id=&#34;discussion-post-2&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#discussion-post-2&#34;&gt;Discussion Post 2:&lt;/a&gt;
-&lt;/h2&gt;
-&lt;p&gt;You have been noticing drift on your server configurations, so
-you want a way to generate a report on them every day to validate the configurations are the
-same.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Use any lab in here to find ideas: &lt;a href=&#34;https://killercoda.com/het-tanis/course/Ansible-&#34;&gt;https://killercoda.com/het-tanis/course/Ansible-&lt;/a&gt;
-Labs Use this webhook to send your relevant data out to our sandbox.
-&lt;a href=&#34;https://discord.com/api/webhooks/1317659221604433951/uyKpuq8fNNNSEyCra4n33PakI&#34;&gt;https://discord.com/api/webhooks/1317659221604433951/uyKpuq8fNNNSEyCra4n33PakI&lt;/a&gt;
-Bk-XtTn1WrwTpHs9BcgkIu7URPV_Gd5HJCRX0_EJVUT&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-
-
-
-&lt;h2 id=&#34;discussion-post-3&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#discussion-post-3&#34;&gt;Discussion Post 3:&lt;/a&gt;
-&lt;/h2&gt;
-&lt;p&gt;Using ansible module for git, pull down this repo:
-&lt;a href=&#34;https://github.com/het-tanis/HPC_Deploy.git&#34;&gt;https://github.com/het-tanis/HPC_Deploy.git&lt;/a&gt;&lt;/p&gt;
-
-
-
-&lt;h3 id=&#34;how-is-the-repo-setup&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#how-is-the-repo-setup&#34;&gt;How is the repo setup?&lt;/a&gt;
-&lt;/h3&gt;
-
-
-
-&lt;h3 id=&#34;what-is-in-the-roles-directory&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#what-is-in-the-roles-directory&#34;&gt;What is in the roles directory?&lt;/a&gt;
-&lt;/h3&gt;
-
-
-
-&lt;h3 id=&#34;how-are-these-playbooks-called-and-how-do-roles-differ-from-tasks&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#how-are-these-playbooks-called-and-how-do-roles-differ-from-tasks&#34;&gt;How are these playbooks called, and how do roles differ from tasks?&lt;/a&gt;
-&lt;/h3&gt;
-&lt;hr&gt;
-
-
-
-&lt;h2 id=&#34;digging-deeper&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#digging-deeper&#34;&gt;Digging Deeper&lt;/a&gt;
-&lt;/h2&gt;
-
-
-
-&lt;h3 id=&#34;i-have-a-large-amount-of-labs-to-get-you-started-on-your-ansible-journey-all-free&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#i-have-a-large-amount-of-labs-to-get-you-started-on-your-ansible-journey-all-free&#34;&gt;I have a large amount of labs to get you started on your Ansible Journey (all free):&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;https://killercoda.com/het-tanis/course/Ansible-Labs&#34;&gt;https://killercoda.com/het-tanis/course/Ansible-Labs&lt;/a&gt;&lt;/p&gt;
-
-
-
-&lt;h3 id=&#34;find-projects-from-our-channel-ansible-code-in-discord-and-find-something-that-is&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#find-projects-from-our-channel-ansible-code-in-discord-and-find-something-that-is&#34;&gt;Find projects from our channel Ansible-Code, in Discord and find something that is&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;interesting to you.&lt;/p&gt;
-
-
-
-&lt;h3 id=&#34;use-ansible-to-access-secrets-from-hashicorp-vault-httpskillercodacomhet-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#use-ansible-to-access-secrets-from-hashicorp-vault-httpskillercodacomhet-&#34;&gt;Use Ansible to access secrets from Hashicorp Vault: &lt;a href=&#34;https://killercoda.com/het-&#34;&gt;https://killercoda.com/het-&lt;/a&gt;&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;tanis/course/Hashicorp-Labs/004-vault-read-secrets-ansible&lt;/p&gt;
-&lt;hr&gt;
-
-
-
-&lt;h1 id=&#34;lab-work-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#lab-work-&#34;&gt;Lab Work 🧪&lt;/a&gt;
-&lt;/h1&gt;
-&lt;p&gt;Create an inventory:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;While still in the /root/ansible_madness directory, create a file hosts
-vi /root/ansible_madness/hosts
-Populate the file as follows
-[servers]
-192.168.200.101
-192.168.200.102
-192.168.200.103
-Run Ad Hoc commands against your servers
-This will test your connection into all the servers.&lt;/li&gt;
-&lt;li&gt;ansible servers -i hosts -u inmate -k -m shell -a uptime
-Use this password: LinuxR0cks1!
-Do the same thing, but this time be verbose&lt;/li&gt;
-&lt;li&gt;ansible -vvv servers -i hosts -u inmate -k -m shell -a uptime
-Create a playbook to push over files.&lt;/li&gt;
-&lt;li&gt;echo &amp;ldquo;This is my file &lt;!-- raw HTML omitted --&gt;&amp;rdquo; &amp;gt; somefile&lt;/li&gt;
-&lt;li&gt;vi deploy.yaml
-Populate it as follows&lt;/li&gt;
-&lt;/ol&gt;
-&lt;hr&gt;
-&lt;ul&gt;
-&lt;li&gt;name: Start of push playbook
-hosts: servers
-vars:
-gather_facts: True
-become: False
-tasks:&lt;/li&gt;
-&lt;li&gt;name: Copy somefile over at {{ ansible_date_time.iso8601_basic_short }}
-copy:
-src: /root/ansible_madness/somefile
-dest: /tmp/somefile.txt&lt;/li&gt;
-&lt;/ul&gt;
-&lt;ol start=&#34;3&#34;&gt;
-&lt;li&gt;Execute your playbook
-ansible-playbook -i hosts -k deploy.yaml&lt;/li&gt;
-&lt;li&gt;Verify that your file pushed everywhere
-ansible servers -i hosts -u inmate -k -m shell -a “ls -l /tmp/somefile”
-Pull down a github repo&lt;/li&gt;
-&lt;li&gt;git clone &lt;a href=&#34;https://github.com/het-tanis/HPC_Deploy.git&#34;&gt;https://github.com/het-tanis/HPC_Deploy.git&lt;/a&gt;
-cd HPC_Deploy
-What do you see in here?
-What do you need to learn about more to deploy some of these tools?
-Can you execute some of these, why or why not?&lt;/li&gt;
-&lt;/ol&gt;
-&lt;hr&gt;
-
-
-
-&lt;h2 id=&#34;reflection-questions&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#reflection-questions&#34;&gt;Reflection Questions&lt;/a&gt;
-&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;What questions do you still have about this week?&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;How can you apply this now in your current role in IT? If you’re not in IT, how can you
-look to put something like this into your resume or portfolio?&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;hr&gt;
-
-
-
-&lt;h3 id=&#34;prolug-links-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu14/#prolug-links-&#34;&gt;ProLUG Links ⛓️&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;Discord: &lt;a href=&#34;https://discord.com/invite/m6VPPD9usw&#34;&gt;https://discord.com/invite/m6VPPD9usw&lt;/a&gt;
 Youtube: &lt;a href=&#34;https://www.youtube.com/@het_tanis8213&#34;&gt;https://www.youtube.com/@het_tanis8213&lt;/a&gt;
@@ -551,15 +1119,15 @@ Rather than using BASH, I can run more comprehensive testing with more data to a
 &lt;h2 id=&#34;definitions--terminology&#34;&gt;
   &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu12/#definitions--terminology&#34;&gt;Definitions &amp;amp; Terminology&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;Benchmark
-High watermark
-Scope
-Methodology
-Testing
-Control
-Experiment
-Analytics&lt;/p&gt;
 &lt;ul&gt;
+&lt;li&gt;Benchmark&lt;/li&gt;
+&lt;li&gt;High watermark&lt;/li&gt;
+&lt;li&gt;Scope&lt;/li&gt;
+&lt;li&gt;Methodology&lt;/li&gt;
+&lt;li&gt;Testing&lt;/li&gt;
+&lt;li&gt;Control&lt;/li&gt;
+&lt;li&gt;Experiment&lt;/li&gt;
+&lt;li&gt;Analytics&lt;/li&gt;
 &lt;li&gt;Descriptive&lt;/li&gt;
 &lt;li&gt;Diagnostic&lt;/li&gt;
 &lt;li&gt;Predictive&lt;/li&gt;

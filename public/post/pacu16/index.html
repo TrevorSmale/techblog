@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/techblog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=techblog/livereload" data-no-instant defer></script>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <meta name="description" content="ProLUG Admin Course Unit 16">
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.140.1">
+  <title>ProLUG Admin Course Unit 16 🐧 | Tech Blog</title>
+  <link rel="canonical" href="http://localhost:1313/techblog/post/pacu16/">
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+    <link rel="stylesheet" href="/techblog/css/base.css">
+
+    <link rel="stylesheet" href="/techblog/css/syntax.css">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <a class="Banner-link u-clickable" href="/techblog/">Tech Blog</a>
+      </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/about/">About</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/post/">Posts</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/tags/">Tags</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/categories/">Categories</a>
+        </li>
+      
+        
+        
+          
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/feed.xml">RSS</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/pacu16/" rel="bookmark">ProLUG Admin Course Unit 16 🐧</a>
+  </h1>
+  
+    <time datetime="2024-12-28T00:00:00Z">December 28, 2024</time>
+  
+</header>
+  <h1 id="incident-response">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu16/#incident-response">Incident Response</a>
+</h1>
+<p>Incident response is a structured approach to identifying, managing, and resolving unexpected events such as security breaches, system failures, or misconfigurations. It aims to minimize disruption, mitigate damage, and restore normal operations while implementing lessons learned to prevent future incidents.</p>
+<p>Responding to incidents is a stressful event because it can involve many stakeholders and little time. This week we exercised our skills by live debugging in front of our peers on a remote host. The problems all related to failure modes and misconfiguration and the exercise was rewarding in that I learned a lot as always, and built some confidence.</p>
+<hr>
+
+
+
+<h1 id="incident-response--troubleshooting-scenarios-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu16/#incident-response--troubleshooting-scenarios-">Incident Response / Troubleshooting Scenarios 🧑‍💻</a>
+</h1>
+
+
+
+<h2 id="scenario-1-web-server-not-running-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu16/#scenario-1-web-server-not-running-">Scenario #1: Web Server Not Running 🕸️</a>
+</h2>
+<p><strong>Objective</strong>: Ensure the web server is running and responding on port 80.<br>
+<strong>Steps</strong>:</p>
+<ul>
+<li><strong>Verify web server service</strong>:
+<ul>
+<li>Run: <code>systemctl enable --now httpd</code> (or similar command).</li>
+</ul>
+</li>
+<li><strong>Check open ports</strong>:
+<ul>
+<li>Run: <code>ss -ntulp</code>.</li>
+<li>Identify if the server is running on port 8087 instead of 80.</li>
+<li>Edit the configuration:
+<ul>
+<li>File: <code>/etc/httpd/conf/httpd.conf</code>.</li>
+<li>Change <code>Listen 8087</code> to <code>Listen 80</code>.</li>
+</ul>
+</li>
+<li>Restart the service: <code>systemctl restart httpd</code>.</li>
+</ul>
+</li>
+<li><strong>Ensure external connectivity</strong>:
+<ul>
+<li>Check the firewall status: <code>systemctl status firewalld</code>.</li>
+<li>Options:
+<ul>
+<li>Disable the firewall: <code>systemctl stop firewalld</code>.</li>
+<li>Open port 80 if needed.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Final step</strong>:
+<ul>
+<li>REBOOT the lab machine.</li>
+</ul>
+</li>
+</ul>
+<hr>
+
+
+
+<h2 id="scenario-2-mount-point-space-not-working-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu16/#scenario-2-mount-point-space-not-working-">Scenario #2: Mount Point /space Not Working 💾</a>
+</h2>
+<p><strong>Objective</strong>: Set up a 9GB partition on the <code>/space</code> mount point using LVM.<br>
+<strong>Steps</strong>:</p>
+<ol>
+<li><strong>Verify <code>/space</code> setup</strong>:
+<ul>
+<li>Confirm the partition is not properly set up.</li>
+</ul>
+</li>
+<li><strong>Create LVM setup</strong>:
+<ul>
+<li>Identify disks: <code>fdisk -l | grep -i xvd</code>.</li>
+<li>Create physical volumes: <code>pvcreate /dev/xvd&lt;disk&gt;</code>.</li>
+<li>Create a volume group:
+<ul>
+<li>Run: <code>vgcreate space /dev/xvd&lt;disk1&gt; /dev/xvd&lt;disk2&gt; /dev/xvd&lt;disk3&gt;</code>.</li>
+</ul>
+</li>
+<li>Create a logical volume:
+<ul>
+<li>Run: <code>lvcreate -n space -l +100%FREE space</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Format the logical volume</strong>:
+<ul>
+<li>Create a filesystem: <code>mkfs.ext4 /dev/mapper/&lt;logical_volume_name&gt;</code>.</li>
+</ul>
+</li>
+<li><strong>Mount the filesystem</strong>:
+<ul>
+<li>Create the mount point: <code>mkdir /space</code>.</li>
+<li>Add an entry in <code>/etc/fstab</code>:
+
+  
+
+<pre tabindex="0"><code class="language-fstab" data-lang="fstab">/dev/mapper/&lt;logical_volume_name&gt; /space &lt;ext4 or xfs&gt; defaults 1 2</code></pre>
+</li>
+<li>Mount the filesystem: <code>mount -a</code>.</li>
+</ul>
+</li>
+<li><strong>Final step</strong>:
+<ul>
+<li>REBOOT the lab machine.</li>
+</ul>
+</li>
+</ol>
+<hr>
+
+
+
+<h2 id="scenario-3-system-not-updating-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu16/#scenario-3-system-not-updating-">Scenario #3: System Not Updating 📦</a>
+</h2>
+<p><strong>Objective</strong>: Fix the system to allow updates via <code>dnf</code> and ensure kernel updates.<br>
+<strong>Steps</strong>:</p>
+<ol>
+<li><strong>Fix DNF repository configuration</strong>:
+<ul>
+<li>Edit <code>/etc/yum.repos.d/rocky.repo</code>:
+<ul>
+<li>Set <code>enabled=1</code> for all necessary repositories.</li>
+</ul>
+</li>
+<li>Check <code>/etc/yum.repos.d/rocky.repo.orig</code> for reference.</li>
+<li>Fix the EPEL repository the same way.</li>
+</ul>
+</li>
+<li><strong>Verify kernel updates</strong>:
+<ul>
+<li>Edit <code>/etc/yum.conf</code>:
+<ul>
+<li>Comment out the line: <code>exclude=kernel*</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Final step</strong>:
+<ul>
+<li>REBOOT the lab machine if necessary.</li>
+</ul>
+</li>
+</ol>
+<hr>
+
+
+
+<h3 id="prolug-links-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu16/#prolug-links-">ProLUG Links ⛓️</a>
+</h3>
+<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
+Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
+Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
+ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
+KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
+  
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/operating-systems/" rel="tag">Operating Systems</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/trouble-shooting/" rel="tag">Trouble Shooting</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/incident-response/" rel="tag">Incident Response</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+  
+  
+
+
+
+      </div>
+    </div>
+  </main>
+  
+</body>
+
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/techblog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=techblog/livereload" data-no-instant defer></script>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <meta name="description" content="ProLUG Admin Course Unit 15">
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.140.1">
+  <title>ProLUG Admin Course Unit 15 🐧 | Tech Blog</title>
+  <link rel="canonical" href="http://localhost:1313/techblog/post/pacu15/">
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+    <link rel="stylesheet" href="/techblog/css/base.css">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <a class="Banner-link u-clickable" href="/techblog/">Tech Blog</a>
+      </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/about/">About</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/post/">Posts</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/tags/">Tags</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/categories/">Categories</a>
+        </li>
+      
+        
+        
+          
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/feed.xml">RSS</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/pacu15/" rel="bookmark">ProLUG Admin Course Unit 15 🐧</a>
+  </h1>
+  
+    <time datetime="2024-12-25T00:00:00Z">December 25, 2024</time>
+  
+</header>
+  <h1 id="engineering-troubleshooting">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu15/#engineering-troubleshooting">Engineering Troubleshooting</a>
+</h1>
+<p>Systems engineering troubleshooting involves diagnosing and resolving complex issues within interconnected systems to ensure seamless operation and optimal performance. It requires a methodical approach to identify root causes, integrate solutions, and maintain system functionality while addressing both technical and process-related challenges.</p>
+<hr>
+
+
+
+<h2 id="discussion-post-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu15/#discussion-post-1">Discussion Post 1:</a>
+</h2>
+<p>Your management is all fired up about implementing some Six Sigma processes around the company. You decide to familiarize yourself and get some basic understanding to pass along to your team.</p>
+
+
+
+<h3 id="quoted-from-the-book">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu15/#quoted-from-the-book">Quoted from the book</a>
+</h3>
+<p>5S is a Japanese Lean approach to organizing a workspace, so that by making a process more effective and efficient, it will become easier to identify and expunge muda. 5S relies on visual cues and a clean work area to enhance efficiencies, reduce accidents, and standardize workflows to reduce defects. The method is based on five steps:</p>
+<ul>
+<li>Sort (Seiri)</li>
+<li>Straighten (Seiton)</li>
+<li>Shine (Seiso)</li>
+<li>Standardize (Seiketsu)</li>
+<li>Sustain (Shitsuke)</li>
+</ul>
+
+
+
+<h3 id="what-about-the-5s-methodology-might-help-us-as-a-team-of-system-administrators">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu15/#what-about-the-5s-methodology-might-help-us-as-a-team-of-system-administrators">What about the “5S” methodology might help us as a team of system administrators?</a>
+</h3>
+<ul>
+<li>Identify and categorize common troubleshooting problems such as typos, illogical configurations, or vulnerabilities to establish clarity and prioritize issues. (Seiri)</li>
+<li>Organize and catalog processes and procedures for addressing both routine and uncommon problem scenarios for quick access and consistency. (Seiton)</li>
+<li>Validate and test all processes and procedures to ensure they function effectively and reliably. (Seiso)</li>
+<li>Promote team familiarity by regularly practicing and drilling procedures, similar to incident response training, to build confidence and efficiency. (Seiketsu)</li>
+<li>Apply the processes and procedures in real-world scenarios, evaluate their effectiveness, make necessary adjustments, and document improvements for future use. (Shitsuke)</li>
+</ul>
+<p>By applying the 5S methodology to troubleshooting, the team can develop a shared understanding of how to consistently address issues, identify system failure points, and create opportunities for incremental improvement, fostering a sense of flow and efficiency.</p>
+
+
+
+<h3 id="what-are-the-four-layers-of-process-definition-how-would-you-explain-them-to-your-junior-engineers">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu15/#what-are-the-four-layers-of-process-definition-how-would-you-explain-them-to-your-junior-engineers">What are the four layers of process definition? How would you explain them to your junior engineers?</a>
+</h3>
+<p>input - anything entering the process or is required to enter the process to drive the creation of an output
+outputs - service or product that is created by this process
+events - predefined criteria or actions that cause a process to begin working.
+tasks - activities are the heart. a unit of action within the process.
+4.1 - Decisions are possible made during or for tasks.</p>
+<p>The four layers of a process—inputs, outputs, events, and tasks—function similarly to how a computer program uses functions to process variables and produce results. However, in a Six Sigma process, these elements are more dynamic, encompassing both virtual and physical components, as well as steps that may be driven by either human actions or automated systems. This flexibility allows Six Sigma to address complex workflows that combine diverse inputs and tasks to achieve consistent and efficient outputs.</p>
+<p>Looking at our operation as a series of processes with layers like this can help us to identify, refine and standardize processes into Standard Operating Procedures (SOP&rsquo;s).</p>
+<hr>
+
+
+
+<h2 id="discussion-post-2-your-team-looks-at-a-lot-of-visual-data-you-decide-to-write-up-an-explanation-for-them-to-explain-what-they-look-at">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu15/#discussion-post-2-your-team-looks-at-a-lot-of-visual-data-you-decide-to-write-up-an-explanation-for-them-to-explain-what-they-look-at">Discussion Post 2: Your team looks at a lot of visual data. You decide to write up an explanation for them to explain what they look at.</a>
+</h2>
+
+
+
+<h3 id="what-is-a-high-water-mark-why-might-it-be-good-to-know-in-utilization-of-systems">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu15/#what-is-a-high-water-mark-why-might-it-be-good-to-know-in-utilization-of-systems">What is a high water mark? Why might it be good to know in utilization of systems?</a>
+</h3>
+<p>The phrase “high water mark” originates from marking a riverbank to indicate the highest water level reached during a season. This mark serves as a warning, signaling potential danger if the water rises beyond it in the future.
+In the context of systems, the high water mark represents historically safe operational loads. If metrics indicate that this threshold has been exceeded, it should alert administrators to a potential issue.
+For example, if the high water mark for daily memory usage was 14/18 GiB of RAM, and we observe the system suddenly using 16/16 GiB, this warrants attention as a potential problem requiring further investigation.</p>
+
+
+
+<h3 id="what-is-an-upper-and-lower-control-limit-in-a-system-output-while-this-isnt-exactly-what-were-looking-at-why-might-it-be-good-to-explain-to-your-junior-engineers">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu15/#what-is-an-upper-and-lower-control-limit-in-a-system-output-while-this-isnt-exactly-what-were-looking-at-why-might-it-be-good-to-explain-to-your-junior-engineers">What is an upper and lower control limit in a system output? While this isn’t exactly what we’re looking at, why might it be good to explain to your junior engineers?</a>
+</h3>
+<p>Control limits are essential tools for monitoring the stability of a process over time. The upper and lower control limits define the normal range within which a process output should remain when the process is operating correctly. If the output exceeds these boundaries, it signals a potential issue, indicating that the process may be out of control and requiring investigation or troubleshooting.</p>
+<hr>
+
+
+
+<h2 id="definitionsterminology">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu15/#definitionsterminology">Definitions/Terminology</a>
+</h2>
+<ul>
+<li><strong>Incident</strong> An unplanned event that disrupts normal operations.</li>
+<li><strong>Problem</strong> The underlying cause of one or more incidents.</li>
+<li><strong>FMEA</strong> (Failure Mode and Effects Analysis): A method for identifying and prioritizing potential failure points in a process.</li>
+<li><strong>Six Sigma</strong> A data-driven methodology focused on improving processes by reducing defects and variability.</li>
+<li><strong>TQM</strong> (Total Quality Management): A management approach emphasizing continuous improvement and customer satisfaction across all organizational processes.</li>
+<li><strong>Post Mortem</strong> A retrospective analysis of an event to identify successes and areas for improvement.</li>
+<li><strong>Scientific Method</strong> A systematic process of forming hypotheses, testing them, and analyzing results to draw conclusions.</li>
+<li><strong>Iterative</strong> A repetitive approach to refining a process or solution through successive cycles.</li>
+<li><strong>Discrete Data</strong> Data that can only take specific, distinct values.</li>
+<li><strong>Ordinal</strong> Data with a meaningful order but no consistent interval (e.g., satisfaction ratings).</li>
+<li><strong>Nominal</strong> (Binary/Attribute): Categorical data without order, such as “yes/no” or “male/female.”</li>
+<li><strong>Continuous Data</strong> Data that can take any value within a range, such as temperature or time.</li>
+<li><strong>Risk Priority Number (RPN)</strong> A score in FMEA used to prioritize risks, calculated as Severity × Occurrence × Detection.</li>
+<li><strong>5 Whys</strong> A technique to identify the root cause of a problem by repeatedly asking “why” until the root cause is found.</li>
+<li><strong>Fishbone Diagram (Ishikawa)</strong> A visual tool used to identify and categorize potential causes of a problem.</li>
+<li><strong>Fault Tree Analysis (FTA)</strong> A deductive analysis method used to identify the root causes of system failures.</li>
+<li><strong>PDCA (Plan-Do-Check-Act)</strong> A cyclical process for continuous improvement in workflows or systems.</li>
+<li><strong>SIPOC</strong> A high-level process map identifying Suppliers, Inputs, Processes, Outputs, and Customers.</li>
+</ul>
+<hr>
+
+
+
+<h3 id="prolug-links-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu15/#prolug-links-">ProLUG Links ⛓️</a>
+</h3>
+<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
+Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
+Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
+ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
+KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
+  
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/operating-systems/" rel="tag">Operating Systems</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/trouble-shooting/" rel="tag">Trouble Shooting</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+  
+  
+
+
+
+      </div>
+    </div>
+  </main>
+  
+</body>
+
+</html>

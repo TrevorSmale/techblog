@@ -21,7 +21,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.139.5">
+<meta name="generator" content="Hugo 0.140.1">
   <title>ProLUG Admin Course Unit 14 🐧 | Tech Blog</title>
   <link rel="canonical" href="http://localhost:1313/techblog/post/pacu14/">
 
@@ -101,7 +101,7 @@
     <a class="Heading-link u-clickable" href="/techblog/post/pacu14/" rel="bookmark">ProLUG Admin Course Unit 14 🐧</a>
   </h1>
   
-    <time datetime="2024-12-17T00:00:00Z">December 17, 2024</time>
+    <time datetime="2024-12-22T00:00:00Z">December 22, 2024</time>
   
 </header>
   <h1 id="ansible-automation">
@@ -124,18 +124,33 @@ is a tool that you want to maintain in the environment. Review this online docum
 <h3 id="make-an-inventory-of-the-servers-grouped-any-way-you-like">
   <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#make-an-inventory-of-the-servers-grouped-any-way-you-like">Make an inventory of the servers, grouped any way you like.</a>
 </h3>
+<p>[warewulf]
+192.168.200.25</p>
+<p>[ubuntu]
+192.168.200.[101:103]
+192.168.200.[201:203]</p>
+<p>[rockynodes]
+192.168.200.[51:69]</p>
 
 
 
 <h3 id="what-format-did-you-choose-to-use-for-your-inventory">
   <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#what-format-did-you-choose-to-use-for-your-inventory">What format did you choose to use for your inventory?</a>
 </h3>
+<p>INI. YAML seems to be the clear choice as it allows for a more declarative inventory. However, while working in the study group it was easier to edit INI without making indentation errors.</p>
 
 
 
 <h3 id="what-other-things-might-you-include-later-in-your-inventory-to-make-it-more-useful">
   <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#what-other-things-might-you-include-later-in-your-inventory-to-make-it-more-useful">What other things might you include later in your inventory to make it more useful?</a>
 </h3>
+<p>I can add quite a few interesting things to an inventory file to make it more useful. Once the file reaches a certain size, it is better to break it out into separate unit files that are nested for things like Hosts, Host Variables, Production, Staging etc&hellip;</p>
+<p>Some notable things I think make things pretty powerful are:</p>
+<ul>
+<li>Dynamic Inventorying</li>
+<li>Vault encrypted secrets</li>
+<li>Jinja2 Dynamic variables</li>
+</ul>
 <hr>
 
 
@@ -153,13 +168,113 @@ Labs Use this webhook to send your relevant data out to our sandbox.
 Bk-XtTn1WrwTpHs9BcgkIu7URPV_Gd5HJCRX0_EJVUT</li>
 </ul>
 <hr>
+<ul>
+<li>name: System Information Check
+hosts: all
+become: yes
+tasks:
+<ul>
+<li>
+<p>name: Check kernel version
+command: uname -r
+register: kernel_version</p>
+</li>
+<li>
+<p>name: Display kernel version
+debug:
+msg: &ldquo;Kernel Version: {{ kernel_version.stdout }}&rdquo;</p>
+</li>
+<li>
+<p>name: Display kernel command line
+command: cat /proc/cmdline
+register: kernel_cmdline</p>
+</li>
+<li>
+<p>name: Debug kernel command line
+debug:
+msg: &ldquo;Kernel Command Line: {{ kernel_cmdline.stdout }}&rdquo;</p>
+</li>
+<li>
+<p>name: Check hardware information
+command: lshw
+register: hardware_info</p>
+</li>
+<li>
+<p>name: Debug hardware information
+debug:
+msg: &ldquo;Hardware Information: {{ hardware_info.stdout }}&rdquo;</p>
+</li>
+<li>
+<p>name: List installed RPM packages
+command: rpm -qa
+register: installed_rpms</p>
+</li>
+<li>
+<p>name: Debug installed RPM packages
+debug:
+msg: &ldquo;Installed RPMs: {{ installed_rpms.stdout }}&rdquo;</p>
+</li>
+<li>
+<p>name: Check active services
+command: systemctl list-units &ndash;type=service &ndash;state=running
+register: active_services</p>
+</li>
+<li>
+<p>name: Debug active services
+debug:
+msg: &ldquo;Active Services: {{ active_services.stdout }}&rdquo;</p>
+</li>
+<li>
+<p>name: List system users
+command: cat /etc/passwd
+register: system_users</p>
+</li>
+<li>
+<p>name: Debug system users
+debug:
+msg: &ldquo;System Users: {{ system_users.stdout }}&rdquo;</p>
+</li>
+<li>
+<p>name: Check last login information
+command: last
+register: last_login</p>
+</li>
+<li>
+<p>name: Debug last login information
+debug:
+msg: &ldquo;Last Login Information: {{ last_login.stdout }}&rdquo;</p>
+</li>
+<li>
+<p>name: Display currently logged-in users
+command: w
+register: logged_in_users</p>
+</li>
+<li>
+<p>name: Debug currently logged-in users
+debug:
+msg: &ldquo;Logged-in Users: {{ logged_in_users.stdout }}&rdquo;</p>
+</li>
+<li>
+<p>name: Display ISO time
+command: date &ndash;iso-8601=seconds
+register: iso_time</p>
+</li>
+<li>
+<p>name: Debug ISO time
+debug:
+msg: &ldquo;ISO Time: {{ iso_time.stdout }}&rdquo;</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
 
 
 
 <h2 id="discussion-post-3">
   <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#discussion-post-3">Discussion Post 3:</a>
 </h2>
-<p>Using ansible module for git, pull down this repo:
+<p>Using ansible module for git, pull down this repo: 👍
 <a href="https://github.com/het-tanis/HPC_Deploy.git">https://github.com/het-tanis/HPC_Deploy.git</a></p>
 
 
@@ -167,18 +282,25 @@ Bk-XtTn1WrwTpHs9BcgkIu7URPV_Gd5HJCRX0_EJVUT</li>
 <h3 id="how-is-the-repo-setup">
   <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#how-is-the-repo-setup">How is the repo setup?</a>
 </h3>
+<p>We have 3 playbooks in the root of the directory. These playbooks utilize roles defined in the roles subdirectory.
+Playbook 01 gathers facts about nfs using roles defined in a subdirectory called roles.
+Playbook 02 gathers data from a target system using roles defined in a subdirectory called data-gather.
+Playbook 03 updates and installs using roles defined in a subdirectory called packages_update/tasks &amp; packages_install/tasks.</p>
 
 
 
 <h3 id="what-is-in-the-roles-directory">
   <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#what-is-in-the-roles-directory">What is in the roles directory?</a>
 </h3>
+<p>Partially answered for the previous question.
+Roles are structured with dedicated directories for tasks, handlers, and templates.</p>
 
 
 
 <h3 id="how-are-these-playbooks-called-and-how-do-roles-differ-from-tasks">
   <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#how-are-these-playbooks-called-and-how-do-roles-differ-from-tasks">How are these playbooks called, and how do roles differ from tasks?</a>
 </h3>
+<p>These playbooks incorporate roles based on specific conditions, executing the tasks defined within each role. When a role is included, the playbook inherits all its contents.</p>
 <hr>
 
 
@@ -192,27 +314,27 @@ Bk-XtTn1WrwTpHs9BcgkIu7URPV_Gd5HJCRX0_EJVUT</li>
 <h3 id="i-have-a-large-amount-of-labs-to-get-you-started-on-your-ansible-journey-all-free">
   <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#i-have-a-large-amount-of-labs-to-get-you-started-on-your-ansible-journey-all-free">I have a large amount of labs to get you started on your Ansible Journey (all free):</a>
 </h3>
-<p><a href="https://killercoda.com/het-tanis/course/Ansible-Labs">https://killercoda.com/het-tanis/course/Ansible-Labs</a></p>
+<p><a href="https://killercoda.com/het-tanis/course/Ansible-Labs">https://killercoda.com/het-tanis/course/Ansible-Labs</a> 👍</p>
 
 
 
 <h3 id="find-projects-from-our-channel-ansible-code-in-discord-and-find-something-that-is">
   <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#find-projects-from-our-channel-ansible-code-in-discord-and-find-something-that-is">Find projects from our channel Ansible-Code, in Discord and find something that is</a>
 </h3>
-<p>interesting to you.</p>
+<p>interesting to you. 👍</p>
 
 
 
 <h3 id="use-ansible-to-access-secrets-from-hashicorp-vault-httpskillercodacomhet-">
   <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#use-ansible-to-access-secrets-from-hashicorp-vault-httpskillercodacomhet-">Use Ansible to access secrets from Hashicorp Vault: <a href="https://killercoda.com/het-">https://killercoda.com/het-</a></a>
 </h3>
-<p>tanis/course/Hashicorp-Labs/004-vault-read-secrets-ansible</p>
+<p>tanis/course/Hashicorp-Labs/004-vault-read-secrets-ansible 👍</p>
 <hr>
 
 
 
-<h1 id="lab-work-">
-  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#lab-work-">Lab Work 🧪</a>
+<h1 id="lab-work---">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu14/#lab-work---">Lab Work 🧪  👍</a>
 </h1>
 
 

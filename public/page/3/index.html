@@ -30,7 +30,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.139.5">
+<meta name="generator" content="Hugo 0.140.1">
   <title>Tech Blog</title>
   <link rel="canonical" href="http://localhost:1313/techblog/">
 
@@ -50,6 +50,24 @@
 
   
 
+  
+    
+    
+    
+      
+      
+    
+    
+    
+  
+    
+    
+    
+      
+      
+    
+    
+    
   
     
     
@@ -189,7 +207,7 @@
     <a class="Heading-link u-clickable" href="/techblog/" rel="bookmark">Tech Blog</a>
   </h1>
   
-    <time datetime="2024-12-17T00:00:00Z">December 17, 2024</time>
+    <time datetime="2024-12-28T00:00:00Z">December 28, 2024</time>
   
 </header>
   
@@ -197,6 +215,1236 @@
   
 
   
+  
+    <article>
+      <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/pacu2/" rel="bookmark">ProLUG Admin Course Unit 2 🐧</a>
+  </h1>
+  
+    <time datetime="2024-09-27T00:00:00Z">September 27, 2024</time>
+  
+</header>
+      
+        <h1 id="essential-tools-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#essential-tools-">Essential Tools 🛠️</a>
+</h1>
+
+
+
+<h2 id="intro">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#intro">Intro</a>
+</h2>
+<p>We have reached the second week of the PAC and things are getting more serious. Now that we are familiar with the flow of the course and expectations are set, the second lesson has started with some momentum. 💺</p>
+<hr>
+
+
+
+<h2 id="unit-2-lab-exercise-notes-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#unit-2-lab-exercise-notes-">Unit 2 lab exercise notes 🧪</a>
+</h2>
+<p>I am completing the labs locally carefully covering every command listed by running them and checking output, making sure to pay attention to details like options. It was fairly time consuming, yet I learned quite a bit.</p>
+
+
+
+<h4 id="-basic-cli-exercise">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#-basic-cli-exercise">🧭 Basic CLI exercise:</a>
+</h4>
+<ul>
+<li>cd ~ # Change Directory to Home</li>
+<li>ls ~ # List</li>
+<li>mkdir evaluation # Make Directory called &rsquo;evaluation'</li>
+<li>mkdir evaluation/test/round6 # This fails why? We need to use the Parent option &lsquo;-p&rsquo;</li>
+<li>mkdir -p evaluation/test/round6 # Make parent directory with subdirectories</li>
+<li>cd evaluation # change directory to evaluation</li>
+<li>pwd # present/print working directory = /home/ts/evaluation</li>
+<li>touch testfile1 # create file name &rsquo;testfile1&rsquo; in current directory</li>
+<li>ls # list = test testfile1</li>
+<li>touch testfile{2..10} # Creates a numbered range of testfile
+touch .hfile .hfile2 .hfile3 # this creates three dot files which are not visible to a normal listing method, we must use list all (ls -a)</li>
+</ul>
+
+
+
+<h4 id="-gathering-system-information">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#-gathering-system-information">🔍 Gathering System Information</a>
+</h4>
+<p>I am running Rocky Linux 9 on a local Proxmox container for this course.</p>
+<ul>
+<li>hostname = localhost.localdomain</li>
+<li>uname # system info command which stands for Unix Name</li>
+<li>uname -a # shows a comprehensive list of system info Kernal name# Hostname, Kernel release, Kernel version, Machine hardware name, Processor type, Hardware platform, Operating system.</li>
+<li>uname -r # the -r option stands for release and shows the kernel release version.</li>
+</ul>
+
+
+
+<h4 id="-checking-the-amount-of-rammemory">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#-checking-the-amount-of-rammemory">🧠 Checking the amount of RAM/Memory</a>
+</h4>
+<ul>
+<li><em>sudo</em> cat/proc/meminfo # concatenate process memory information</li>
+<li>free # displays total, used, free, shared, buffer, and available memory (RAM and SWAP)</li>
+<li>free -m # megabyte display option for the free command</li>
+</ul>
+
+
+
+<h4 id="-checking-the-number-of-processors-and-processor-info">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#-checking-the-number-of-processors-and-processor-info">👨🏻‍💻 Checking the number of processors and processor info</a>
+</h4>
+<ul>
+<li>cat/proc/cpuinfo # concatenate process central processor unit information = 4 processors on my lab.</li>
+<li>cat /proc/cpuinfo | grep proc | wc -l # what we are doing here is piping the output of the previous command to grep which is filtering lines starting with proc, then we pipe through to word count with line option to cleverly count the number of processors, the result is 4</li>
+</ul>
+
+
+
+<h4 id="-checking-storage-usage-and-mounted-filesystems">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#-checking-storage-usage-and-mounted-filesystems">💾 Checking storage usage and mounted filesystems</a>
+</h4>
+<ul>
+<li>df # the disk free command</li>
+<li>df -h # we are adding the human readable option to df in order to more easily ascertain what is going on.</li>
+<li>df -h | grep -i var #</li>
+</ul>
+
+
+
+<h4 id="-mounting-a-new-file-system">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#-mounting-a-new-file-system">💾 Mounting a new file system</a>
+</h4>
+
+
+
+<h5 id="common-mount-command-options">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#common-mount-command-options">Common <code>mount</code> Command Options</a>
+</h5>
+<ul>
+<li>
+<p><strong>-t</strong> # Specify the filesystem type (e.g., <code>ext4</code>, <code>xfs</code>, <code>vfat</code>).</p>
+</li>
+<li>
+<p><strong>-o</strong> # Specify options in a comma-separated list (e.g., <code>rw</code>, <code>ro</code>, <code>noexec</code>).</p>
+</li>
+<li>
+<p><strong>-a</strong> # Mount all filesystems defined in <code>/etc/fstab</code>.</p>
+</li>
+<li>
+<p><strong>-r</strong> # Mount the filesystem as read-only.</p>
+</li>
+<li>
+<p><strong>-w</strong> # Mount the filesystem as read-write.</p>
+</li>
+<li>
+<p><strong>-v</strong> # Verbose mode, provides more detailed output.</p>
+</li>
+<li>
+<p><strong>&ndash;bind</strong> # Bind mount, remount part of the filesystem elsewhere.</p>
+</li>
+<li>
+<p><strong>&ndash;make-shared</strong> # Make a mounted file system shared (for propagating mount events).</p>
+</li>
+<li>
+<p><strong>-L</strong> # Mount by filesystem label.</p>
+</li>
+<li>
+<p><strong>-U</strong> # Mount by UUID.</p>
+</li>
+<li>
+<p>mount | grep –i home# lists all mounts starting with the case sensitive phrase home (I was not getting any result 🤔)</p>
+</li>
+<li>
+<p>mount | grep -i sd# this lists all SCSK disks, normally named sda, sdb, sdc etc&hellip;</p>
+</li>
+</ul>
+
+
+
+<h5 id="trying-out-alternative-commands">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#trying-out-alternative-commands">Trying out alternative commands</a>
+</h5>
+<ul>
+<li><strong>findmt</strong># find mount</li>
+<li><strong>cat /proc/mounts</strong># concatenate in-process mounts</li>
+<li><strong>lsblk</strong># list block devices</li>
+</ul>
+
+
+
+<h5 id="i-was-unaware-that-commands-could-be-chained-together-with-a-semicolon">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#i-was-unaware-that-commands-could-be-chained-together-with-a-semicolon">I was unaware that commands could be chained together with a semicolon</a>
+</h5>
+<ul>
+<li><code>cd ~; pwd; df -h</code># change directory to home, then print working directory, then list disk usage in a human-readable format 🧐.</li>
+<li><code>du -sh</code># disk usage summary in a human-readable format.</li>
+</ul>
+
+
+
+<h5 id="du-command-options">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#du-command-options"><code>du</code> Command Options</a>
+</h5>
+<pre><code>  **`-a`**# Display disk usage for all files, not just directories.
+  **`-h`**# Show disk usage in human-readable format (e.g., KB, MB, GB).
+  **`-s`**# Show summary of total disk usage for a directory.
+  **`-c`**# Produce a grand total at the end.
+  **`-L`**# Follow symbolic links (default `du` doesn't follow symlinks).
+  **`-d N`** or **`--max-depth=N`**# Limit directory depth to N levels.
+  **`--time`**# Show modification time of directories.
+  **`-b`**# Show disk usage in bytes.
+  **`-k`**# Show disk usage in kilobytes.
+  **`-m`**# Show disk usage in megabytes.
+  **`--apparent-size`**# Show the apparent size instead of disk usage.
+  **`-x`**# Skip directories on different file systems.
+  **`--exclude=PATTERN`**# Exclude files matching a pattern.
+</code></pre>
+
+
+
+<h3 id="uptime">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#uptime">Uptime</a>
+</h3>
+<pre><code>  `uptime`# Shows time in HH:MM:SS Unix time format in local time. If the time is not set, like in my instance, I get UTC 0🧐. Next, it shows how long the system has been running, the number of logged-in users, and finally, the load average over the last 1, 5, and 15 minutes.
+</code></pre>
+
+
+
+<h3 id="last">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#last">Last</a>
+</h3>
+<pre><code>  **`last`**# Lists all users who have logged in from latest to oldest.
+  **`w`**# Lists current users and associated processes.
+  **`who`**# Shows who is currently logged on. The output `pts/0` stands for pseudo terminal, typically shown when logged in remotely. It will show either an IPv4 or IPv6 address and the login time. When I logged into my Ubuntu server via SSH, I was shown the IPv6 address. 🤯
+  **`whoami`**# Tells which user you are.
+</code></pre>
+
+
+
+<h3 id="checking-environment">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#checking-environment">Checking environment</a>
+</h3>
+<pre><code>  **`printenv`**# Shows a long list of environmental information.
+  **`printenv | grep -i home`**# Shows that I am in the home directory of `root`.
+  **`id`**# Shows a lot of info about UID, GID, and group memberships, including SELinux policies.
+  **`echo $SHELL`**# Displays the path of the shell environment variable, in my case, `/bin/bash`.
+</code></pre>
+
+
+
+<h3 id="check-running-processes-and-services">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#check-running-processes-and-services">Check running processes and services</a>
+</h3>
+<pre><code>  **`ps -aux | more`**
+  **`ps -ef | more`**
+  **`ps -ef | wc -l`**
+</code></pre>
+
+
+
+<h3 id="check-memory-usage">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#check-memory-usage">Check memory usage</a>
+</h3>
+<p>Run each of these commands individually for understanding:</p>
+<pre><code>  **`free -m`**
+  **`free -m | egrep &quot;Mem|Swap&quot;`**
+  **`free -m | egrep &quot;Mem|Swap&quot; | awk '{print $1, $2, $3}'`**: What are the first, second, and third columns? How would I know the variable names?
+  **`free -t | egrep &quot;Mem|Swap&quot; | awk '{print $1 &quot; Used Space = &quot; ($3 / $2) * 100&quot;%&quot;}'`**: Similar question for these variables.
+</code></pre>
+
+
+
+<h3 id="testing-out-scripts">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#testing-out-scripts">Testing out scripts</a>
+</h3>
+
+
+
+<h5 id="q-have-you-ever-written-a-basic-check-script-or-touched-on-conditional-statements-or-loops">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#q-have-you-ever-written-a-basic-check-script-or-touched-on-conditional-statements-or-loops">Q: Have you ever written a basic check script or touched on conditional statements or loops?</a>
+</h5>
+
+
+
+<h5 id="a-yes-very-basic-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#a-yes-very-basic-">A: Yes very basic 😅</a>
+</h5>
+<p>(Use ctrl + c to break out of these) 👍</p>
+<pre><code>  while true; do free -m; sleep 3; done
+  Watch this output for a few and then break with ctrl + c
+  Try to edit this to wait for 5 seconds
+  Try to add a check for uptime and date each loop with a blank line between each and 10 second wait:
+  while true; do date; uptime; free -m; echo “ “; sleep 10; done
+  Since we can wrap anything inside of our while statements, let’s try adding something from earlier:
+  While true; do free -t | egrep &quot;Mem|Swap&quot; | awk '{print $1 &quot; Used Space = &quot; ($3 / $2) * 100&quot;%&quot;}'; sleep 3; done 👍
+</code></pre>
+<p><strong>seq 1 10</strong></p>
+
+
+
+<h5 id="q-what-did-this-do">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#q-what-did-this-do">Q: What did this do?</a>
+</h5>
+
+
+
+<h5 id="a-it-counts-from-1-to-10-creating-a-new-line-for-each-char">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#a-it-counts-from-1-to-10-creating-a-new-line-for-each-char">A: it counts from 1 to 10, creating a new line for each char.</a>
+</h5>
+
+
+
+<h5 id="q-can-you-man-seq-to-modify-that-to-count-from-2-to-20-by-2s">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#q-can-you-man-seq-to-modify-that-to-count-from-2-to-20-by-2s">Q: Can you man seq to modify that to count from 2 to 20 by 2’s?</a>
+</h5>
+
+
+
+<h5 id="a-yes-by-using-first-increment-last-so-2-2-20">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#a-yes-by-using-first-increment-last-so-2-2-20">A: yes by using &lsquo;First Increment Last, so 2 2 20&rsquo;</a>
+</h5>
+<p>Let’s make a counting for loop from that sequence ✅
+for i in <code>seq 1 20</code>; do echo &ldquo;I am counting i and am on $i times through the loop&rdquo;; done 👍</p>
+
+
+
+<h5 id="q-can-you-tell-me-what-is-the-difference-or-significance-of-the--in-the-command-above-what-does-that-denote-to-the-system">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#q-can-you-tell-me-what-is-the-difference-or-significance-of-the--in-the-command-above-what-does-that-denote-to-the-system">Q: Can you tell me what is the difference or significance of the $ in the command above? What does that denote to the system?</a>
+</h5>
+
+
+
+<h5 id="a-we-are-using-the--to-access-a-variable">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#a-we-are-using-the--to-access-a-variable">A: we are using the $ to access a variable.</a>
+</h5>
+<p>Uptime – The time a system has been running for without interruption.
+Standard input - stdin &lsquo;0&rsquo; the default stream where a program receives data.
+Standard output - stdout &lsquo;1&rsquo; refers to default stream output of a program.
+Standard error – stderr &lsquo;2&rsquo; refers to a default stream wherein an error is sent.</p>
+<hr>
+
+
+
+<h3 id="reflecting-on-unit-1-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#reflecting-on-unit-1-">Reflecting on Unit 1 🤔</a>
+</h3>
+<p>Week 1 went well for me. I was very excited to start this course as it strongly aligns with my professional interests, and it came at a great time. I am incredibly grateful to have access to such a talented group of like-minded and enthusiastic professionals.</p>
+<p>I managed to complete everything for Week 1 by preparing in advance. For example, I created this blog and started some of the materials early. The night before the course began, I went through Vim Tutor and Vim Adventures to give myself a bit of a head start, as my time is currently divided between various responsibilities. I also dedicated a significant portion of my time to starting my capstone project and troubleshooting issues.</p>
+<p>I’ve set aside 8 hours per week, as suggested by Scott, for attending lectures, reading materials, practicing labs, and doing general research. During Week 1, I used roughly 6 hours, so I believe I’ve allocated enough time to complete the course work.</p>
+<p>My note-taking has been excellent for this course. Prior to starting, I learned how essential note-taking is to the administration and engineering process, so I began using LogSeq as my note-taking tool four months ago. This gave me time to familiarize myself with its features, allowing me to dive into the lectures fully prepared. I’m also a fast touch typist, so I can easily listen and type simultaneously. After each lecture, I review and organize my notes by nesting and tagging information to relate it to other topics. Additionally, I’ve been reflecting on everything by writing in this blog.</p>
+<hr>
+
+
+
+<h2 id="security-enhanced-linux">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#security-enhanced-linux">Security Enhanced Linux</a>
+</h2>
+
+
+
+<h3 id="brief-intro-to-selinux">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#brief-intro-to-selinux">Brief intro to SELinux</a>
+</h3>
+<p>SELinux (Security-Enhanced Linux) is a security module integrated into the Linux kernel that enforces mandatory access control policies to provide more granular control over how processes and users interact with files and resources. By defining strict rules on what actions each program or user can perform, SELinux significantly enhances the security posture of a Linux system, helping to prevent unauthorized access and exploits.</p>
+
+
+
+<h3 id="brief-intro-to-apparmor">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#brief-intro-to-apparmor">Brief intro to Apparmor</a>
+</h3>
+<p>AppArmor (Application Armor) is a Linux security module that enforces access control policies based on file paths, limiting what resources applications can access to enhance system security. It provides a simpler, profile-based alternative to SELinux, allowing administrators to create restrictive environments for individual applications without requiring deep changes to system configuration.</p>
+
+
+
+<h3 id="key-terminology">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#key-terminology">Key Terminology</a>
+</h3>
+<p>Mandatory Access Control –
+Discretionary Access Control –
+Security contexts (SELINUX) –
+SELINUX operating modes -</p>
+
+
+
+<h3 id="comparing-apparmor-and-selinux-for-container-separation-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#comparing-apparmor-and-selinux-for-container-separation-1">Comparing AppArmor and SELinux for Container Separation <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></a>
+</h3>
+<p>This article provides a brief comparison between <strong>SELinux</strong> and <strong>AppArmor</strong> regarding their effectiveness in securely separating containers.</p>
+<p>After reading, it became clear that <strong>AppArmor</strong> is not an ideal choice for <strong>DevSecOps</strong> when it comes to securely separating containers. This is due to <strong>AppArmor&rsquo;s lack of support for Multi-Category Security (MCS)</strong>. MCS allows for a hierarchy of controls, granting varying levels of access.</p>
+<p>Therefore, if you&rsquo;re looking to securely separate containers without relying on <strong>Virtual Machines</strong>—which can be costly—<strong>SELinux</strong> emerges as the better option for such tasks.</p>
+
+
+
+<h3 id="key-takeaways-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#key-takeaways-">Key Takeaways 📝</a>
+</h3>
+<ul>
+<li><strong>AppArmor</strong> is <strong>not label-based</strong>, unlike SELinux.</li>
+<li><strong>AppArmor</strong> is generally seen as more <strong>user-friendly</strong>.</li>
+<li><strong>AppArmor</strong> has fewer controls compared to SELinux.</li>
+<li><strong>AppArmor</strong> has <strong>fewer operations</strong> available.</li>
+<li>Both support the <strong>Type Enforcement</strong> security model (a form of <strong>mandatory access control</strong>).</li>
+<li>The security model is based on rules where subjects (like processes or users) are allowed to access objects (e.g., files, directories, sockets, etc.).</li>
+<li><strong>AppArmor</strong> lacks <strong>Multi-Level Security (MLS)</strong>.</li>
+<li><strong>AppArmor</strong> does not support <strong>Multi-Category Security (MCS)</strong>.</li>
+<li>🔄 Because <strong>MCS is unavailable</strong>, <strong>AppArmor</strong> cannot maintain proper separation between containers.</li>
+<li>⚠️ The default container policy in AppArmor is <strong>very loose</strong>, which could present security risks.</li>
+</ul>
+
+
+
+<h3 id="quick-comparison-table-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#quick-comparison-table-">Quick Comparison Table 🔍</a>
+</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Technology</th>
+          <th>Type Enforcement</th>
+          <th>MLS/MCS</th>
+          <th>Policy Generator</th>
+          <th>Generator for Containers</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>AppArmor</strong></td>
+          <td>Yes</td>
+          <td>No</td>
+          <td>Yes</td>
+          <td>No</td>
+      </tr>
+      <tr>
+          <td><strong>SELinux</strong></td>
+          <td>Yes</td>
+          <td>Yes</td>
+          <td>No*</td>
+          <td>Yes</td>
+      </tr>
+  </tbody>
+</table>
+<p>By understanding these differences, it’s clear that <strong>SELinux</strong> provides a more secure framework for container separation, making it a crucial tool for modern <strong>DevSecOps</strong> workflows.</p>
+
+
+
+<h3 id="enabling-selinux">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#enabling-selinux">Enabling SELinux</a>
+</h3>
+<p>Before enabling SELinux, you can verify its current status by running the <code>sestatus</code> command, which provides the <strong>Security Enhanced Status</strong> of the system. To activate or configure SELinux, you need to modify the configuration file located at <code>/etc/selinux/config</code>. SELinux can operate in two modes:</p>
+<ol>
+<li><strong>Enforcing</strong>: SELinux policies are actively enforced, and violations are blocked.</li>
+<li><strong>Permissive</strong>: Policies are not enforced, but violations are logged for review, allowing for troubleshooting without blocking actions.</li>
+</ol>
+
+
+
+<h3 id="selinux-contexts">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#selinux-contexts">SELinux Contexts</a>
+</h3>
+<p>A <strong>context</strong> in SELinux is a set of security labels used to manage access to files, processes, and other system resources. The context is composed of several fields:</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">system_u:object_r:httpd_sys_content_t:s0</span></span></code></pre></div>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">user:role:type:level</span></span></code></pre></div>
+
+
+
+<h4 id="breakdown-of-context-components">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#breakdown-of-context-components">Breakdown of Context Components:</a>
+</h4>
+<p><strong>User:</strong> Represents the SELinux identity of a subject (process) or object (file).
+<strong>Role:</strong> Groups privileges for processes and users, determining what they are allowed to do.
+<strong>Type:</strong> Defines how subjects (processes) can interact with objects (files or resources).
+<strong>Level:</strong> Used in Multi-Level Security (MLS) or Multi-Category Security (MCS) systems for additional granularity in access control.</p>
+
+
+
+<h3 id="taking-selinux-for-a-spin-on-a-rocky-9-vm-in-my-proxmox-homelab">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#taking-selinux-for-a-spin-on-a-rocky-9-vm-in-my-proxmox-homelab">Taking SELinux for a spin on a Rocky 9 VM in my Proxmox Homelab</a>
+</h3>
+<p>A few weeks ago, I learned how to create uninitialized templates with Proxmox, meaning the SSH keys are generated for each copy of the template. This is done with cloud init.</p>
+<p>So today I created a clone of my template specifically for getting hands on experience with SElinux</p>
+<p><img src="https://trevorsmale.github.io/techblog/images/PACU2/prox1.png" alt="ProLUG Homepage"></p>
+<p>I opened the <strong>/etc/selinux/config</strong> and set se to enforce. I then ran <strong>sestatus</strong> to confirm selinux had been activated.
+I created a new user policy for myself with <strong>semanage user -a -R &lsquo;staff_r webadm_r&rsquo; Treasure</strong> here is the result after running <strong>semanage user -l</strong></p>
+<p><img src="https://trevorsmale.github.io/techblog/images/PACU2/selinux1.png" alt="ProLUG Homepage"></p>
+
+
+
+<h3 id="selinux-scenario-contemplation">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#selinux-scenario-contemplation">SELinux scenario contemplation</a>
+</h3>
+<ul>
+<li>You follow your company instructions to add a new user to a set of 10 Linux servers.</li>
+<li>They cannot access just one (1) of the servers.</li>
+<li>When you review the differences in the servers you see that the server they cannot access is running SELINUX.</li>
+<li>On checking other users have no problem getting into the system.</li>
+<li>You find nothing in the documentation (typical) about this different system or how these users are accessing it.</li>
+<li>What do you do? Where do you check?</li>
+</ul>
+<p>From the given information, it seems likely that SELinux is denying access to the new user. To troubleshoot this, I would take the following steps:</p>
+<ol>
+<li>
+<p><strong>Check SELinux User Configuration</strong>:<br>
+I would run the command <code>semanage user -l</code> to list all SELinux users and confirm whether the new user exists within the SELinux policy.</p>
+</li>
+<li>
+<p><strong>Verify MLS/MCS Levels and Roles</strong>:<br>
+If the user is already registered, I would review the user&rsquo;s Multi-Level Security (MLS) or Multi-Category Security (MCS) level and verify the role assigned to the user. It&rsquo;s important that the user&rsquo;s role matches those that have the necessary access permissions.</p>
+</li>
+<li>
+<p><strong>Assign Appropriate Role</strong>:<br>
+If the current role restricts access, I would assign the user to an SELinux role that permits access to the system, ensuring that role-based access control (RBAC) is properly configured.</p>
+</li>
+</ol>
+<hr>
+
+
+
+<h3 id="interactive-killercoda-lab-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#interactive-killercoda-lab-2">Interactive Killercoda Lab <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></a>
+</h3>
+
+
+
+<h4 id="i-hope-this-was-designed-to-be-challenging-because-i-was-challenged-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#i-hope-this-was-designed-to-be-challenging-because-i-was-challenged-">I hope this was designed to be challenging, because I was challenged 😅</a>
+</h4>
+<p>Despite paying close attention, I somehow got confused by this challenge. I suppose the exercise was designed to force me to read through documentation, which was tough.
+But I am proud to say that through trial and error, I was able to get through.</p>
+
+
+
+<h4 id="commands-i-looked-up-in-the-documentation">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#commands-i-looked-up-in-the-documentation">Commands I looked up in the documentation:</a>
+</h4>
+<ul>
+<li>kubectl get deployment spacecow -n moon -o yaml &gt; spacecow-deployment.yaml</li>
+<li>vim spacecow-deployment.yaml</li>
+<li>kubectl apply -f spacecow-deployment.yaml</li>
+</ul>
+<hr>
+
+
+
+<h2 id="troubleshooting">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#troubleshooting">Troubleshooting</a>
+</h2>
+
+
+
+<h3 id="how-troubleshooting-differs-between-administrator-and-engineer">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#how-troubleshooting-differs-between-administrator-and-engineer">How Troubleshooting Differs Between Administrator and Engineer</a>
+</h3>
+<ul>
+<li><strong>Administrators</strong> focus on <strong>restoring functionality</strong> to existing systems, while <strong>Engineers</strong> work on <strong>building and implementing</strong> new systems or improvements.</li>
+<li><strong>Administrators</strong> have <strong>existing documentation</strong> to reference for troubleshooting, whereas <strong>Engineers</strong> are responsible for <strong>creating new documentation</strong>.</li>
+<li><strong>Administrators</strong> can compare similar systems for <strong>inconsistencies</strong>, but <strong>Engineers</strong> may be working with entirely new systems or solutions, making such comparisons difficult.</li>
+</ul>
+
+
+
+<h4 id="administrators">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#administrators">Administrators:</a>
+</h4>
+<ul>
+<li><strong>Fix</strong>: Restore systems to their previous, working state.</li>
+<li><strong>Optimize</strong>: Use tools like <strong>Ansible</strong> or custom scripts to streamline operations and automate repetitive tasks.</li>
+<li><strong>Operate</strong>: Handle daily tasks that <strong>cannot be automated</strong>, such as monitoring or handling unexpected issues.</li>
+</ul>
+
+
+
+<h4 id="engineers">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#engineers">Engineers:</a>
+</h4>
+<ul>
+<li><strong>Prepare</strong>: Configure pre-built tools for daily use and ensure they integrate smoothly with existing systems.</li>
+<li><strong>Plan</strong>: Anticipate and strategize operational changes, such as the introduction of new tools or system upgrades.</li>
+<li><strong>Design</strong>: Create new tools, systems, or measures that address organizational needs and future challenges.</li>
+<li><strong>Implement</strong>: Deploy new or upgraded systems and produce comprehensive documentation to support ongoing maintenance and troubleshooting.</li>
+</ul>
+
+
+
+<h3 id="key-differences-in-troubleshooting">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#key-differences-in-troubleshooting">Key Differences in Troubleshooting:</a>
+</h3>
+<ul>
+<li>Administrators typically deal with <strong>reactive troubleshooting</strong>, where the goal is to quickly restore functionality after an issue occurs. Engineers, on the other hand, often engage in <strong>proactive troubleshooting</strong> by identifying potential problems before they happen, ensuring that systems are scalable and sustainable.</li>
+<li>While administrators may focus on resolving immediate operational issues, engineers are responsible for the <strong>long-term stability</strong> of systems, often troubleshooting while keeping future requirements in mind.</li>
+</ul>
+
+
+
+<h3 id="troubleshooting-procedure">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#troubleshooting-procedure">Troubleshooting Procedure</a>
+</h3>
+
+
+
+<h4 id="1-identify-the-problem">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#1-identify-the-problem">1. <strong>Identify the Problem</strong></a>
+</h4>
+<ul>
+<li><strong>Gather Information</strong>: Ask questions, check logs, or run diagnostics to gather all necessary details.</li>
+<li><strong>Reproduce the Issue</strong>: Try to replicate the problem to confirm its existence and scope.</li>
+</ul>
+
+
+
+<h4 id="2-establish-a-theory-of-cause">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#2-establish-a-theory-of-cause">2. <strong>Establish a Theory of Cause</strong></a>
+</h4>
+<ul>
+<li><strong>Look for Patterns</strong>: Are there recurring errors or conditions?</li>
+<li><strong>Use Known Issues</strong>: Refer to documentation, previous cases, or online resources to match symptoms to potential causes.</li>
+<li><strong>Hypothesize</strong>: Develop potential explanations based on the data you&rsquo;ve collected.</li>
+</ul>
+
+
+
+<h4 id="3-test-the-theory">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#3-test-the-theory">3. <strong>Test the Theory</strong></a>
+</h4>
+<ul>
+<li><strong>Isolate Variables</strong>: Disable or eliminate components one by one to test your theory.</li>
+<li><strong>Try Quick Fixes</strong>: Implement minor changes to see if the problem is resolved, such as restarting services or clearing caches.</li>
+</ul>
+
+
+
+<h4 id="4-create-an-action-plan">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#4-create-an-action-plan">4. <strong>Create an Action Plan</strong></a>
+</h4>
+<ul>
+<li><strong>Plan for Resolution</strong>: Identify the steps needed to fix the problem if your theory is confirmed.</li>
+<li><strong>Consider Impact</strong>: Make sure to assess any risks or side effects of your solution.</li>
+</ul>
+
+
+
+<h4 id="5-implement-the-solution">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#5-implement-the-solution">5. <strong>Implement the Solution</strong></a>
+</h4>
+<ul>
+<li><strong>Execute the Fix</strong>: Apply the necessary changes, whether it&rsquo;s a configuration adjustment, software update, or hardware replacement.</li>
+<li><strong>Monitor</strong>: Observe the system closely to ensure the issue doesn&rsquo;t recur.</li>
+</ul>
+
+
+
+<h4 id="6-verify-full-system-functionality">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#6-verify-full-system-functionality">6. <strong>Verify Full System Functionality</strong></a>
+</h4>
+<ul>
+<li><strong>Test the Fix</strong>: Confirm the problem is fully resolved and that other services or systems haven’t been affected.</li>
+<li><strong>Ask Stakeholders</strong>: Ensure end-users or relevant parties can validate the fix.</li>
+</ul>
+
+
+
+<h4 id="7-document-the-findings">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#7-document-the-findings">7. <strong>Document the Findings</strong></a>
+</h4>
+<ul>
+<li><strong>Write It Down</strong>: Document the issue, the root cause, the solution, and any potential future prevention methods.</li>
+<li><strong>Share Knowledge</strong>: Ensure others on your team or organization can reference the solution.</li>
+</ul>
+
+
+
+<h4 id="8-prevent-future-issues">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#8-prevent-future-issues">8. <strong>Prevent Future Issues</strong></a>
+</h4>
+<ul>
+<li><strong>Review System</strong>: Investigate whether the root cause indicates a larger problem.</li>
+<li><strong>Proactive Monitoring</strong>: Set up alerts, automations, or optimizations to prevent recurrence.</li>
+</ul>
+<hr>
+
+
+
+<h2 id="notes">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#notes">Notes</a>
+</h2>
+
+
+
+<h3 id="dhcp">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#dhcp">DHCP</a>
+</h3>
+<ul>
+<li>DHCP Should only be assigned by one server</li>
+<li>What is a BootP?</li>
+<li>DHCP is a process that comes from BootP?</li>
+<li>Layer 2 based on Mac address</li>
+</ul>
+
+
+
+<h3 id="first-day-on-the-job-you-must-inventory-the-servers">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#first-day-on-the-job-you-must-inventory-the-servers">First day on the job, you must inventory the servers</a>
+</h3>
+<ul>
+<li>Nmap</li>
+<li>History on CommandLine (Find the IP&rsquo;s)</li>
+<li>Ping Sweep for OpenSSH</li>
+<li>Create a local Inventory File</li>
+</ul>
+
+
+
+<h3 id="questions-i-have-from-this-week">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#questions-i-have-from-this-week">Questions I have from this week:</a>
+</h3>
+<ul>
+<li>How often does a Jr. Admin implement SELinux?</li>
+<li>If apparmor is so much less functional than SELinux, why is it still a popular choice? is it due to ease of use?</li>
+<li>you mentioned Irata? I was unable to look it up.</li>
+<li><strong>free –m| egrep “Mem|Swap” | awk ‘{print $1, $2, $3}’</strong>: what is 1, 2 and 3. Is there an easy way to know which variables pertain to which data?</li>
+</ul>
+
+
+
+<h3 id="how-are-you-going-to-use-what-youve-learned-in-your-current-role">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#how-are-you-going-to-use-what-youve-learned-in-your-current-role">How are you going to use what you’ve learned in your current role?</a>
+</h3>
+<p>I have no direct application for most of this stuff at the moment. however I will definitely use scripting in my current position in order to automate tasks. Furthermore, I will def remember several commands from the labs that I will likely use daily.</p>
+<hr>
+
+
+
+<h3 id="prolug-links-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu2/#prolug-links-">ProLUG Links ⛓️</a>
+</h3>
+<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
+Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
+Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
+ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
+KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Comparing Apparmor to Se Linux Isolation <a href="https://www.redhat.com/sysadmin/apparmor-selinux-isolation">Article</a> Redhat.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>Apparmor Interactive Lab <a href="https://killercoda.com/killer-shell-cks/scenario/apparmor">Site</a> Killercoda.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+      
+      
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+    </article>
+    
+      <div class="Divider"></div>
+    
+  
+    <article>
+      <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/paccp1/" rel="bookmark">ProLUG Admin Course Capstone Project Stage 1 🐧</a>
+  </h1>
+  
+    <time datetime="2024-09-15T00:00:00Z">September 15, 2024</time>
+  
+</header>
+      
+        <h3 id="intro-">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp1/#intro-">Intro 👋</a>
+</h3>
+<p>To complete this course, we are required to undertake a capstone project. Before the course began, I created a graphic design and branding package for ProLUG, as I felt the group was gaining critical mass but lacked visual cohesion. As part of that package, I designed a certificate template for use in this course, which included the suggestion of a verification link. I have received several certifications from the Linux Professional Institute, all of which include a verification link to a server hosted by the organization. I believe this feature is crucial in a world of diploma mills and AI-generated credentials, as it ensures that those who put in real work are properly accredited.</p>
+
+
+
+<h3 id="locking-in-a-project-">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp1/#locking-in-a-project-">Locking in a project 🔒</a>
+</h3>
+<p>The night before the course started, I reached out to Scott to ensure he had everything he needed in terms of graphics and to let him know that I was available for further support if required. During our conversation, I mentioned the idea of a verification link and server, which led to my proposing it as a project. His response was, &ldquo;possibly.&rdquo; The next day, while teaching, Scott announced that a student would be creating a verification server for the certificates, so I guess the project is green-lit! 🤣</p>
+
+
+
+<h3 id="preface-">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp1/#preface-">Preface 🤨</a>
+</h3>
+<p>I’d like to preface this by stating that I have limited programming experience. This project is beyond my current understanding, and I’ll need to break everything down into bite-sized pieces to fully grasp it. So, follow me on my journey to creating a verification server.</p>
+
+
+
+<h3 id="outline-of-the-project-">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp1/#outline-of-the-project-">Outline of the Project 🧭</a>
+</h3>
+<p>The project involves creating a system that, when given a unique ID, returns information matching what is written on the certificate. For each certificate issued, we need to generate a unique ID and link that directs to the corresponding credentials.</p>
+
+
+
+<h3 id="my-initial-simple-planoutline">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp1/#my-initial-simple-planoutline">My initial simple plan/outline</a>
+</h3>
+
+
+
+<h3 id="1-creating-the-data">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp1/#1-creating-the-data">1. Creating the data</a>
+</h3>
+<p>Intake the first name, last name and date to create a unique hash.</p>
+
+
+
+<h3 id="2-storing-the-data">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp1/#2-storing-the-data">2. Storing the data</a>
+</h3>
+<p>this info is then added to columns in a database.</p>
+
+
+
+<h3 id="3-retrieving-the-data">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp1/#3-retrieving-the-data">3. Retrieving the data</a>
+</h3>
+<p>With the use of an API and Web Interface, we can use the hash to prompt for more data.</p>
+
+
+
+<h3 id="initial-tech-stack-">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp1/#initial-tech-stack-">Initial Tech Stack 🤔</a>
+</h3>
+<p>Data Generation: GO
+Database: SQLight
+Interface: HTML, CSS, JS</p>
+
+
+
+<h3 id="next-steps-">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp1/#next-steps-">Next Steps&hellip; 🥾</a>
+</h3>
+<ol>
+<li>I plan on discussing this in the Code Cove group in ProLUG</li>
+<li>I plan on researching how LPI has created their verification server</li>
+<li>I plan on creating comprehensive build notes in LogSeq/here</li>
+</ol>
+
+
+
+<h3 id="prolug-links-">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp1/#prolug-links-">ProLUG Links ⛓️</a>
+</h3>
+<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
+Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
+Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
+ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
+KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
+      
+      
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/capstoneproject/" rel="tag">CapstoneProject</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+    </article>
+    
+      <div class="Divider"></div>
+    
+  
+    <article>
+      <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/pacu1/" rel="bookmark">ProLUG Admin Course Unit 1 🐧</a>
+  </h1>
+  
+    <time datetime="2024-09-15T00:00:00Z">September 15, 2024</time>
+  
+</header>
+      
+        <h1 id="command-line-interface-primer-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#command-line-interface-primer-">Command Line Interface Primer 👨🏻‍🏫</a>
+</h1>
+
+
+
+<h2 id="intro-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#intro-">Intro 👋</a>
+</h2>
+<p>Well the ProLUG course is a go. We had a great meeting yesterday with a group of over 80 people. There was a slight snafu regarding thread size limits, so mid lesson we jumped into a presenter room. The session ran for a solid two hours wherein Scott went over command line interface essentials, networking essentials, VIM, pathing, redirects, Xargs, man pages and more. Although I have decent foundational knowledge of Linux, I know that there is always something to learn or better understand. I came away from this first class with a handful of things to review and practice for sure.</p>
+
+
+
+<h3 id="prompts-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#prompts-">prompts 🦮</a>
+</h3>
+<p>Group discussions have kicked off early in #ProLUG-Projects. Scott has prompted us with a few questions for Unit 1 that we are to post and discuss. I thought it would be good to post these answers in a longer form on my blog. This acts as a review of yesterdays work and gives me a chance to further reflect.</p>
+
+
+
+<h3 id="discussion-post-1-technical-skill-assessment-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#discussion-post-1-technical-skill-assessment-">Discussion Post 1: Technical Skill Assessment 🔍</a>
+</h3>
+<p>Using this rubric, we are to self-assess our skills in various areas with a score from 1-10, giving us a total score at the end. My score was 48 out of a potential 110. I would never rate myself above a 7, as that feels like Demi-God territory!</p>
+<p>Given the pace we started at in the first class, I’m confident that my skills will improve throughout this course. I plan to really go for it and challenge myself along the way.</p>
+<table>
+  <thead>
+      <tr>
+          <th><strong>Skill</strong></th>
+          <th><strong>High (8-10)</strong></th>
+          <th><strong>Mid (4-7)</strong></th>
+          <th><strong>Low (0-3)</strong></th>
+          <th><strong>Total</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Linux</strong></td>
+          <td>-</td>
+          <td>6</td>
+          <td>-</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td><strong>Storage</strong></td>
+          <td>-</td>
+          <td>5</td>
+          <td>-</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td><strong>Security</strong></td>
+          <td>-</td>
+          <td>6</td>
+          <td>-</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td><strong>Networking</strong></td>
+          <td>-</td>
+          <td>-</td>
+          <td>3</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td><strong>Git</strong></td>
+          <td>-</td>
+          <td>7</td>
+          <td>-</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td><strong>Automation</strong></td>
+          <td>-</td>
+          <td>5</td>
+          <td>-</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td><strong>Monitoring</strong></td>
+          <td>-</td>
+          <td>-</td>
+          <td>3</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td><strong>Database</strong></td>
+          <td>-</td>
+          <td>4</td>
+          <td>-</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td><strong>Cloud</strong></td>
+          <td>-</td>
+          <td>6</td>
+          <td>-</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td><strong>Kubernetes</strong></td>
+          <td>-</td>
+          <td>-</td>
+          <td>3</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td><strong>Total</strong></td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td><strong>48</strong></td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+<h3 id="what-do-i-hope-to-learn-in-this-course-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#what-do-i-hope-to-learn-in-this-course-">What do I hope to learn in this course? 🤔</a>
+</h3>
+<p>I aim to gain hands-on experience in all aspects of system administration. While I have studied Linux and system administration, I understand that skill levels in this field can vary widely. As I work toward becoming a Systems Engineer, I recognize the importance of consistently challenging myself. Through this journey, I hope to build confidence in managing existing systems, configuring services, securing environments, and automating tasks.</p>
+
+
+
+<h3 id="what-type-of-career-are-you-looking-for-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#what-type-of-career-are-you-looking-for-">What type of career are you looking for? 🥕</a>
+</h3>
+<p>I am looking to become a full time Linux System Engineer. I am currently in an administrative support role wherein I am tasked with setting up new systems on a small scale. I would like to be able to manage a large number of servers with automation.</p>
+
+
+
+<h3 id="discussion-post-2-target-job-and-skills-gap-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#discussion-post-2-target-job-and-skills-gap-">Discussion Post 2: Target Job and Skills Gap 🎯</a>
+</h3>
+<p>Our second task is to look for a job we would like to target and list the requirements posted for that given job.<br>
+I found this job posted by <strong>OERP Canada</strong>, located in Toronto, Ontario, with the following information.</p>
+<hr>
+
+
+
+<h3 id="job-overview">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#job-overview">Job Overview</a>
+</h3>
+<p>The role will be 100% remote for now (#socialdistancing). Eventually, it will convert into an onsite role in Toronto, ON. We are only accepting applications from residents of Canada.</p>
+<p><strong>OERP Canada</strong> is looking for a full-time, experienced <strong>LINUX System Administrator</strong> to help maintain our operations and support our Odoo application deployment team, which deploys the Odoo Business Application suite for our clients. The successful candidate will have a technical background in <strong>LINUX</strong>, experience with hosting, web and proxy servers, database administration, mail routing, network security, strong communication skills, and the willingness and ability to think creatively and flexibly. A desire to learn is an important requirement of being part of our team.</p>
+<p>This position is both creative and rigorous by nature—you need to think outside the box. We expect the candidate to be proactive and have a &ldquo;get it done&rdquo; spirit.</p>
+
+
+
+<h3 id="responsibilities">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#responsibilities">Responsibilities</a>
+</h3>
+<ul>
+<li>Manage cloud and on-premise hosting environments</li>
+<li>Endless security improvements</li>
+<li>Improve automation tools</li>
+<li>Improve scripting</li>
+<li>Provide technical support as needed</li>
+</ul>
+
+
+
+<h3 id="must-have-skills">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#must-have-skills">Must-Have Skills</a>
+</h3>
+<ul>
+<li>Ubuntu / Debian server</li>
+<li>NGINX</li>
+<li>Security best practices: Firewalls &amp; WAF</li>
+<li>Automation tools and server scripting</li>
+<li>Functional knowledge of networking: VPNs, DNS, mail routing and delivery, etc.</li>
+<li>University degree or 3-5 years of work experience</li>
+</ul>
+
+
+
+<h3 id="nice-to-have-skills">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#nice-to-have-skills">Nice-to-Have Skills</a>
+</h3>
+<ul>
+<li>PostgreSQL high availability, load balancing, and replication</li>
+<li>Virtualization: VMware, vSphere, KVM</li>
+<li>VCS/Git working knowledge</li>
+<li>FreeBSD</li>
+</ul>
+<hr>
+
+
+
+<h3 id="what-i-am-currently-able-to-do-in-this-position-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#what-i-am-currently-able-to-do-in-this-position-">What I am currently able to do in this position 💪🏻</a>
+</h3>
+<ul>
+<li>Solid experience with Debian/Ubuntu</li>
+<li>Confident in managing both cloud and on-premise hosting environments</li>
+<li>Skilled in improving automation through the use of Ansible, Terraform, and Bash scripting</li>
+<li>While I may not have 3-5 years of continuous working experience, I have been involved in IT work on and off</li>
+<li>Experienced in setting up and managing PostgreSQL</li>
+<li>Proficient with Oracle VirtualBox and Proxmox, which I believe translates well to VMware, vSphere, and KVM</li>
+<li>Knowledgeable in Git, including branch management and command-line usage</li>
+<li>Familiar with FreeBSD and BSD-specific commands</li>
+</ul>
+
+
+
+<h3 id="what-i-am-currently-incapable-of-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#what-i-am-currently-incapable-of-">What I am currently incapable of 😓</a>
+</h3>
+<ul>
+<li>Lack confidence in managing firewalls</li>
+<li>Limited experience with VPNs, DNS, and mail handling</li>
+<li>Basic hands-on experience with NGINX, but skills are limited</li>
+<li>Minimal technical support experience</li>
+</ul>
+
+
+
+<h3 id="how-i-plan-to-close-the-gap-on-these-missing-skills-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#how-i-plan-to-close-the-gap-on-these-missing-skills-">How I plan to close the gap on these missing skills 🎯</a>
+</h3>
+<p>I plan to close this gap by learning more about general Linux security and networking principles from this course. Additionally, I&rsquo;ve already purchased a recently published book by Michael Lucas on running and maintaining mail servers, which I intend to skim through. Additionally, I am studying ITIL to improve my understanding of technical support and service management.</p>
+
+
+
+<h3 id="prolug-links-">
+  <a class="Heading-link u-clickable" href="/techblog/post/pacu1/#prolug-links-">ProLUG Links ⛓️</a>
+</h3>
+<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
+Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
+Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
+ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
+KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
+      
+      
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+    </article>
+    
+      <div class="Divider"></div>
+    
   
     <article>
       <header class="Heading">
@@ -1566,127 +2814,12 @@ Works on Linux, BSD, and Mac</p>
 
     </article>
     
-      <div class="Divider"></div>
-    
-  
-    <article>
-      <header class="Heading">
-  <h1 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/techblog/post/ws/" rel="bookmark">My WebDev Preferences 👍</a>
-  </h1>
-  
-    <time datetime="2024-08-24T00:00:00Z">August 24, 2024</time>
-  
-</header>
-      
-        
-
-
-<h3 id="intro">
-  <a class="Heading-link u-clickable" href="/techblog/post/ws/#intro">Intro</a>
-</h3>
-<p>This blog will likely be dominated by Linux talk as that is what I spend most of my time with. However, I do full-stack web development on occlusion.
-In fact, I have worked as a professional web Designer/Developer on and off, doing simple full stack projects in a range of languages. Recently, I have been stepping up my game with the intention of creating web applications with great GUIs, not only information pages. I think that with mature Javascript frameworks like NextJS or React and WASM (Web Assembly), we are going to see high performance desktop applications transition to being web-apps. This potential has me excited about learning more sophisticated tools.</p>
-
-
-
-<h3 id="go">
-  <a class="Heading-link u-clickable" href="/techblog/post/ws/#go">GO</a>
-</h3>
-<p>Golang is a dead simple systems focused language created by GOATED Unix contributors. When I started picking up Go a few years back, it was not really popular. Web development was dominated by NodeJS on the backend and there were no job posting for the skill. However, I tend to have good instincts and decided to eschew Node in favor of GO. I am very happy with this decision as it is clear, strongly typed, easy to set up and fast as hell.
-You can classify me as a GO enjoyer and back-ned deployer. GO now has a built-in HTTPs service and muxer, so it is my go-to for serving static and dynamic content.</p>
-
-
-
-<h3 id="tailwind">
-  <a class="Heading-link u-clickable" href="/techblog/post/ws/#tailwind">TailWind</a>
-</h3>
-<p>I really regret not checking out TailWind CSS earlier, it is so nice. I totally had the wrong idea and thought that it was just another annoying framework that over complicates and I was sorely wrong. It really helps in combination with GO templates to create beautiful responsive layouts. There is not much too a simple TW setup, just a simple call-out in the header. When things needs to be more expansive, one can use a config file to specify rules.
-I think I will be using a lot more TW in the future.</p>
-
-
-
-<h3 id="react">
-  <a class="Heading-link u-clickable" href="/techblog/post/ws/#react">React</a>
-</h3>
-<p>I am not a major fan of JS because I am a fan of simplicity, alas it is the language of the Web, so I must tango with wild syntax. Most web experiences  require reactive interaction and content delivery. I am not locked into react as there are so many similar frameworks, but I am saying it is a must in ones stack.</p>
-
-
-
-<h3 id="vscode">
-  <a class="Heading-link u-clickable" href="/techblog/post/ws/#vscode">VSCode</a>
-</h3>
-<p>Having a customizable proper IDE is important for getting things done. As much as I like learning Vim, Helix, or even Sublime, I know that no-matter the level of configuration it wont even come close to a proper IDE that lints, detects bugs, has a large ecosystem of plug-ins and comfy features like workspaces and built in problem console. If you just want to make stuff, then reduce your cognitive overhead and utilize a user friendly IDE.</p>
-
-      
-      
-
-  
-
-  
-
-
-
-
-
-  <footer>
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/categories/tools/" rel="tag">Tools</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/categories/stacks/" rel="tag">Stacks</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/categories/webdev/" rel="tag">WebDev</a>
-            </li>
-          
-        </ul>
-      
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/webdev/" rel="tag">WebDev</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/design/" rel="tag">Design</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/techstack/" rel="tag">TechStack</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/go/" rel="tag">GO</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/tailwind/" rel="tag">TailWind</a>
-            </li>
-          
-        </ul>
-      
-    
-  </footer>
-
-    </article>
-    
   
 
   
   <nav>
+    
+      <a class="Pagination u-clickable" href="/techblog/page/4/" rel="prev">« Previous</a>
     
     
       <a class="Pagination Pagination--right u-clickable" href="/techblog/page/2/" rel="next">Next »</a>
