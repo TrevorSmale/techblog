@@ -74,7 +74,7 @@ Given this perspective, I think Kubernetes will remain relevant for a long time,
 
 ## Footnotes
 
-[^1]: The above quote is excerpted from an earlier BlogPost [Post](trevorsmale.github.io/techblog/post/pacu10/) techblog, 2024.
+[^1]: The above quote is excerpted from an earlier BlogPost [Post](https://trevorsmale.github.io/techblog/post/pacu10/) techblog, 2024.
 [^2]: John Champine [Profile](https://www.linkedin.com/in/john-champine-2ba878114?trk=people-guest_people_search-card) LinkedIn, 2024.
 [^3]: Podman Export [Docs](https://docs.podman.io/en/v3.4.1/markdown/podman-play-kube.1.html) Podman Docs, 2019.
 [^4]: K3S Website [Site](https://k3s.io/) Site, 2025.
