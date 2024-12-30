@@ -11,6 +11,12 @@
     <loc>http://localhost:1313/techblog/tags/engineering/</loc>
     <lastmod>2024-12-28T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/techblog/tags/graduation/</loc>
+    <lastmod>2024-12-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/techblog/tags/gratitude/</loc>
+    <lastmod>2024-12-28T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/techblog/tags/incident-response/</loc>
     <lastmod>2024-12-28T00:00:00+00:00</lastmod>
   </url><url>
@@ -42,6 +48,9 @@
     <lastmod>2024-12-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/techblog/tags/trouble-shooting/</loc>
+    <lastmod>2024-12-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/techblog/post/pacurecap/</loc>
     <lastmod>2024-12-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/techblog/post/pacu15/</loc>
@@ -131,7 +140,16 @@
     <loc>http://localhost:1313/techblog/tags/filesystems/</loc>
     <lastmod>2024-10-03T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/techblog/tags/k3s/</loc>
+    <lastmod>2024-10-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/techblog/tags/kubernetes/</loc>
+    <lastmod>2024-10-03T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/techblog/post/btrfs/</loc>
+    <lastmod>2024-10-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/techblog/post/k3s/</loc>
     <lastmod>2024-10-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/techblog/post/paccp3/</loc>

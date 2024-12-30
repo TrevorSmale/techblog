@@ -6301,6 +6301,75 @@ Footnotes&lt;/p&gt;
 &lt;/div&gt;</description>
     </item>
     <item>
+      <title>Why K8S matters</title>
+      <link>http://localhost:1313/techblog/post/k3s/</link>
+      <pubDate>Thu, 03 Oct 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/techblog/post/k3s/</guid>
+      <description>&lt;h1 id=&#34;kubernetes-is-important&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#kubernetes-is-important&#34;&gt;Kubernetes is Important&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Despite the jokes or criticisms you may have heard, Kubernetes matters a lot. Once I understood the &amp;ldquo;Why,&amp;rdquo; I became much more motivated to learn the &amp;ldquo;How.&amp;rdquo; This is how I got started with Kubernetes using my Proxmox homelab and K3S. Firstly, I would like to illuminate the &amp;ldquo;Why,&amp;rdquo; as it’s an important philosophy to grasp before diving in. I firmly believe in understanding the &amp;ldquo;Why&amp;rdquo; before the &amp;ldquo;How.&amp;rdquo;&lt;/p&gt;
+
+
+
+&lt;h2 id=&#34;a-brief-history-of-infrastructure&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#a-brief-history-of-infrastructure&#34;&gt;A Brief History of Infrastructure&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;the-evolution-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#the-evolution-&#34;&gt;The Evolution 💾&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Many moons ago 🌛, internet infrastructure relied on operating systems to run services. Unix and Linux were preferred because they are multi-user environments suitable for serving files to requesters. In fact, the first implementation of TCP was written on a UNIX system running on a NextSTEP computer. This model worked for decades: more users meant more machines. However, issues arose. Machines would go down, causing cascading effects. Misconfigurations wreaked havoc, and machines often ran inefficiently, either wasting resources or straining hardware.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;in-comes-virtualization&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#in-comes-virtualization&#34;&gt;In Comes Virtualization&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Virtualization revolutionized infrastructure by allowing computers to be divided into independent virtual machines (VMs). A VM is a fully self-contained operating system. This innovation enabled more efficient utilization of hardware, increased flexibility, and reduced downtime caused by hardware failures.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;containers-changed-the-game&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#containers-changed-the-game&#34;&gt;Containers Changed the Game&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Containers brought another layer of efficiency and standardization. Unlike VMs, containers share the host operating system’s kernel but encapsulate applications and their dependencies. This reduces overhead and enables applications to run consistently across different environments. Developers could now &amp;ldquo;build once, run anywhere,&amp;rdquo; making containers a key tool in modern infrastructure.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;orchestration-was-needed&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#orchestration-was-needed&#34;&gt;Orchestration Was Needed&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;As the use of containers exploded, managing them became increasingly complex. Deploying, scaling, monitoring, and maintaining hundreds or thousands of containers manually was impractical. This is where orchestration tools like Kubernetes stepped in, automating these tasks and ensuring applications are always running, balanced, and recoverable in case of failures.&lt;/p&gt;
+
+
+
+&lt;h2 id=&#34;the-why&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#the-why&#34;&gt;The Why&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Understanding the &amp;ldquo;Why&amp;rdquo; is key to appreciating Kubernetes&amp;rsquo; value. Here are some of the core reasons:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Monitoring&lt;/strong&gt;: Kubernetes provides tools and integrations to monitor your workloads, ensuring you can observe application health and performance in real time.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Logging&lt;/strong&gt;: Centralized logging in Kubernetes makes it easy to trace and debug issues across distributed systems.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Security&lt;/strong&gt;: Kubernetes enhances security through role-based access control (RBAC), network policies, and automatic updates, reducing vulnerabilities in production systems.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ephemerality&lt;/strong&gt;: Kubernetes embraces the concept of ephemeral workloads, where containers can be replaced automatically if they fail, ensuring high availability.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Reproducibility&lt;/strong&gt;: Kubernetes enables reproducible deployments by using declarative configurations, allowing you to deploy the same infrastructure consistently across environments.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;By addressing these challenges, Kubernetes transforms the way infrastructure is managed and applications are deployed, making it a cornerstone of modern cloud-native computing.&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h3 id=&#34;helpful-links-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#helpful-links-&#34;&gt;Helpful Links ⛓️&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Btrfs&#34;&gt;https://en.wikipedia.org/wiki/Btrfs&lt;/a&gt;
+&lt;a href=&#34;https://docs.kernel.org/filesystems/btrfs.html&#34;&gt;https://docs.kernel.org/filesystems/btrfs.html&lt;/a&gt;
+Footnotes&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>ProLUG Admin Course Capstone Project Stage 3 🐧</title>
       <link>http://localhost:1313/techblog/post/paccp3/</link>
       <pubDate>Mon, 30 Sep 2024 00:00:00 +0000</pubDate>

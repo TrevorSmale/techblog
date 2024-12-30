@@ -207,7 +207,7 @@
     <a class="Heading-link u-clickable" href="/techblog/" rel="bookmark">Tech Blog</a>
   </h1>
   
-    <time datetime="2024-12-28T00:00:00Z">December 28, 2024</time>
+    <time datetime="2024-12-29T00:00:00Z">December 29, 2024</time>
   
 </header>
   
@@ -215,6 +215,395 @@
   
 
   
+  
+    <article>
+      <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/paccp2/" rel="bookmark">ProLUG Admin Course Capstone Project Stage 2 🐧</a>
+  </h1>
+  
+    <time datetime="2024-09-27T00:00:00Z">September 27, 2024</time>
+  
+</header>
+      
+        <h1 id="intro-">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#intro-">Intro 👋</a>
+</h1>
+<p>I’ve made significant progress with the Capstone Project, the project has expanded to include building a full website.</p>
+<hr>
+
+
+
+<h2 id="planning">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#planning">Planning</a>
+</h2>
+
+
+
+<h3 id="integration">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#integration">Integration</a>
+</h3>
+<p>It seemed silly to develop such a complex mechanism that would later require integration into an unknown larger structure.</p>
+
+
+
+<h3 id="no-site-to-begin-with">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#no-site-to-begin-with">No site to begin with</a>
+</h3>
+<p>After asking Scott about it, I learned that there has never been a ProLUG website and that he has been meaning to get something up.</p>
+
+
+
+<h3 id="naturally">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#naturally">Naturally</a>
+</h3>
+<p>It seemed like taking on the entire website project was a good course of action. That way I would be able to decide the layout, functionality and logic all while learning new tools and techniques.</p>
+
+
+
+<h2 id="technology">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#technology">Technology</a>
+</h2>
+
+
+
+<h3 id="going-with-go">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#going-with-go">Going with GO</a>
+</h3>
+<p><img src="https://trevorsmale.github.io/techblog/images/PACCP2/godeal.png" alt="Go Logo x Deal with it"></p>
+<p>The website uses Go on the backend to serve templates and for back-end logic. While I’ve used Go for template servers before, incorporating templated components similar to Vue.js is new to me.</p>
+
+
+
+<h4 id="heres-why-go-excels-for-this-type-of-project">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#heres-why-go-excels-for-this-type-of-project">Here’s why Go excels for this type of project:</a>
+</h4>
+<ul>
+<li>The codebase remains clean, minimal, and easy to understand.</li>
+<li>The dependency system is simple, with no clutter of unnecessary packages.</li>
+<li>It ensures memory safety.</li>
+<li>Go’s HTTP server protects against injection, MITM, side-channel, and other common attacks.</li>
+<li>HTML templating allows for modularity similar to Vue.js.</li>
+<li>Garbage collection ensures long-term running without memory issues.</li>
+<li>The project can be easily containerized or built into a single binary.</li>
+<li>The Go module system (go.mod) ensures future stability through version control.</li>
+</ul>
+
+
+
+<h3 id="storing-data">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#storing-data">Storing Data</a>
+</h3>
+<p>Initially, I was looking at SQLite for storing key-value pairs. However, after considering usability, I switched to a simple CSV file.</p>
+
+
+
+<h3 id="why-csv">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#why-csv">Why CSV</a>
+</h3>
+<p>The stored data must be easily manipulated by the administrator in a human readable format. With CSV, Scott would be able to amend or edit certificate holders at a glance.</p>
+
+
+
+<h3 id="operationally">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#operationally">Operationally</a>
+</h3>
+<p>This method is both secure and integral</p>
+
+
+
+<h3 id="how-is-it-secure">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#how-is-it-secure">How is it secure?</a>
+</h3>
+<p>As stated before GO can securely transmit backend data without many common attacks. Additionally using GIT diff feature would ensure alterations are spotted should a compromise be made.</p>
+<hr>
+
+
+
+<h2 id="the-structure">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#the-structure">The Structure</a>
+</h2>
+
+
+
+<h3 id="certificate-verifier">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#certificate-verifier">Certificate Verifier</a>
+</h3>
+
+
+
+<h4 id="pulling-from-this-test-csv-file">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#pulling-from-this-test-csv-file">Pulling from this test CSV file:</a>
+</h4>
+
+  
+
+<pre tabindex="0"><code class="language-csv" data-lang="csv">Johny,Exampleseed,ProLUG Admin Course,2024-11-15,f078b6c4f26a2fae59d50fdb7c761a7f9523d240b2c18b332aac11e0
+Kate,Testinger,ProLUG Admin Course,2024-11-15,a523e6d1ece5bb2758f71993ba1a460024dcd10243fa17654af90257
+Het, Tanis, ProLUG Admin Course,2015-11-02,a523e6d1ece5bb2758f71993ba1a460024dcd10243fa17324af90257</code></pre>
+
+
+
+<h4 id="using-this-logic">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#using-this-logic">Using this logic:</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// Certificate verification handler
+</span></span></span><span class="line"><span class="cl"><span class="c1">// This function is the HTTP handler responsible for verifying certificates.
+</span></span></span><span class="line"><span class="cl"><span class="c1">// It is triggered when a user accesses the relevant URL and checks for a certificate based on a hash parameter.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="nf">certHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Extract hash value from the URL query parameters.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// The hash is used to identify the certificate to verify.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">hash</span> <span class="o">:=</span> <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nf">Query</span><span class="p">().</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;hash&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// If no hash is provided in the query, return a &#34;Bad Request&#34; error.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="nx">hash</span> <span class="o">==</span> <span class="s">&#34;&#34;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Send an HTTP error response indicating that the hash is missing.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">http</span><span class="p">.</span><span class="nf">Error</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;Hash not provided&#34;</span><span class="p">,</span> <span class="nx">http</span><span class="p">.</span><span class="nx">StatusBadRequest</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="c1">// Exit the handler function since no hash is available.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Load certificates from a CSV file.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// This function attempts to retrieve all certificates stored in the &#34;certificates.csv&#34; file.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">certificates</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">LoadCertificates</span><span class="p">(</span><span class="s">&#34;certificates.csv&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">// If there&#39;s an error loading the certificates (e.g., file not found or corrupted), log the error.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Log the error message to the server logs and return a &#34;Server Error&#34; to the client.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Error loading certificates: %v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">http</span><span class="p">.</span><span class="nf">Error</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;Server Error&#34;</span><span class="p">,</span> <span class="nx">http</span><span class="p">.</span><span class="nx">StatusInternalServerError</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="c1">// Exit the handler function due to the error.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Initialize a pointer to a Certificate struct.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// This will hold the matching certificate if a valid hash is found.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">var</span> <span class="nx">cert</span> <span class="o">*</span><span class="nx">Certificate</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Iterate over all loaded certificates.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// Check each certificate&#39;s hash to see if it matches the one provided in the query.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">c</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">certificates</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nx">c</span><span class="p">.</span><span class="nx">Hash</span> <span class="o">==</span> <span class="nx">hash</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// If a matching certificate is found, assign it to the &#39;cert&#39; pointer and break the loop.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="nx">cert</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">c</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Render the result page using the template engine.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// Pass the certificate (or nil if not found) to the template &#34;result.html&#34; for display.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">err</span> <span class="p">=</span> <span class="nx">templates</span><span class="p">.</span><span class="nf">ExecuteTemplate</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;result.html&#34;</span><span class="p">,</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}{</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;Certificate&#34;</span><span class="p">:</span> <span class="nx">cert</span><span class="p">,</span> <span class="c1">// Include the certificate as part of the template data.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// If there&#39;s an error rendering the page (e.g., template not found or syntax error), log the issue.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Log the error message to the server logs and return an &#34;Internal Server Error&#34; to the client.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Error rendering verification page: %v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">http</span><span class="p">.</span><span class="nf">Error</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;Internal Server Error&#34;</span><span class="p">,</span> <span class="nx">http</span><span class="p">.</span><span class="nx">StatusInternalServerError</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-GO" data-lang="GO"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Certificate represents a learning certificate with associated data.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">type</span> <span class="nx">Certificate</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">FirstName</span>     <span class="kt">string</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">LastName</span>      <span class="kt">string</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">CertType</span>      <span class="kt">string</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">DateCompleted</span> <span class="kt">string</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">Hash</span>          <span class="kt">string</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+
+
+
+<h4 id="the-prompt">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#the-prompt">The prompt</a>
+</h4>
+<p><img src="https://trevorsmale.github.io/techblog/images/Sep22site/shot5.png" alt="ProLUG Verify Step 1"></p>
+
+
+
+<h4 id="inputting-a-uid-hash-string">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#inputting-a-uid-hash-string">Inputting a UID hash string</a>
+</h4>
+<p><img src="https://trevorsmale.github.io/techblog/images/Sep22site/shot6.png" alt="ProLUG Verify Step 2"></p>
+
+
+
+<h4 id="matching-string-results-in-a-info-retrieval">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#matching-string-results-in-a-info-retrieval">Matching string results in a info retrieval</a>
+</h4>
+<p><img src="https://trevorsmale.github.io/techblog/images/Sep22site/shot7.png" alt="ProLUG Verify Step 3"></p>
+
+
+
+<h4 id="an-unrecognized-string-results-in-an-error-message">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#an-unrecognized-string-results-in-an-error-message">An unrecognized string results in an error message</a>
+</h4>
+<p><img src="https://trevorsmale.github.io/techblog/images/Sep22site/shot8.png" alt="ProLUG Verify Step 4"></p>
+
+
+
+<h3 id="current-site-">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#current-site-">Current Site 💄</a>
+</h3>
+<p>After getting a working verification system worked out, I moved on to creating a broader website.</p>
+
+
+
+<h4 id="styling">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#styling">Styling</a>
+</h4>
+<p>I like sites with a clean, easy to use and accessible appearance. I have a solid understanding of graphic design for accessibility and wanted to put that into practice here. So the design is stark, compact, clear and contrasting. This language carries throughout.</p>
+
+
+
+<h4 id="technique">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#technique">Technique</a>
+</h4>
+<p>So as mentioned previously, I am serving html templates with GO. This can be pretty simple, we can serve a single basic html page with no modular components. I wanted to try out some fancy tricks using modularized components in this project, cutting down on the size of each template. The way this works within this project is very similar to Vue.js templating. We must declare a template as a component by encapsulating the html with tags.</p>
+<p>for example the Navigation bar is coded similarly to any old navbar and saved in templates as navbar.html. The fancy bit is enclosing the code with the tag</p>
+
+
+
+<h4 id="defining-a-component">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#defining-a-component">Defining a component</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span> <span class="nx">define</span> <span class="s">&#34;navbar&#34;</span> <span class="p">}}</span> <span class="nx">Code</span> <span class="nx">goes</span> <span class="nx">here</span> <span class="p">{{</span> <span class="nx">end</span> <span class="p">}}</span></span></span></code></pre></div>
+
+
+
+<h4 id="using-a-template-component">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#using-a-template-component">Using a template component</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="p">{{</span> <span class="nx">template</span> <span class="s">&#34;navbar&#34;</span> <span class="p">.</span> <span class="p">}}</span></span></span></code></pre></div>
+
+
+
+<h4 id="current-home-page">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#current-home-page">Current Home Page</a>
+</h4>
+<p><img src="https://trevorsmale.github.io/techblog/images/Sep22site/shot1.png" alt="ProLUG Home Page"></p>
+
+
+
+<h4 id="current-about-page">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#current-about-page">Current About Page</a>
+</h4>
+<p><img src="https://trevorsmale.github.io/techblog/images/Sep22site/shot2.png" alt="ProLUG About Page"></p>
+
+
+
+<h4 id="current-join-page">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#current-join-page">Current Join Page</a>
+</h4>
+<p><img src="https://trevorsmale.github.io/techblog/images/Sep22site/shot3.png" alt="ProLUG Join Page"></p>
+
+
+
+<h4 id="current-certify-page">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#current-certify-page">Current Certify Page</a>
+</h4>
+<p><img src="https://trevorsmale.github.io/techblog/images/Sep22site/shot4.png" alt="ProLUG Certify Page"></p>
+
+
+
+<h4 id="current-verify-page">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#current-verify-page">Current Verify Page</a>
+</h4>
+<p><img src="https://trevorsmale.github.io/techblog/images/Sep22site/shot5.png" alt="ProLUG Verify Page"></p>
+
+
+
+<h3 id="next-steps-">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#next-steps-">Next Steps&hellip; 🥾</a>
+</h3>
+<ol>
+<li>I plan on discussing this in the Code Cove group in ProLUG</li>
+<li>I plan on creating a scoreboard as ideated in unit 2 by scott by reading from a CSV and writing to an order list</li>
+<li>I plan on spiffying up the appearance and useability of the site using tailwind and a bit more js logic</li>
+</ol>
+
+
+
+<h3 id="prolug-links-">
+  <a class="Heading-link u-clickable" href="/techblog/post/paccp2/#prolug-links-">ProLUG Links ⛓️</a>
+</h3>
+<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
+Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
+Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
+ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
+KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
+      
+      
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/capstoneproject/" rel="tag">CapstoneProject</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+    </article>
+    
+      <div class="Divider"></div>
+    
   
     <article>
       <header class="Heading">
@@ -2140,671 +2529,6 @@ In order to actually delete the information is to overwrite it. This will happen
           
             <li class="Tags-item u-background">
               <a class="Tags-link u-clickable" href="/techblog/tags/proxmox/" rel="tag">ProxMox</a>
-            </li>
-          
-        </ul>
-      
-    
-  </footer>
-
-    </article>
-    
-      <div class="Divider"></div>
-    
-  
-    <article>
-      <header class="Heading">
-  <h1 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/techblog/post/fs/" rel="bookmark">Linux File Systems Overview 💾</a>
-  </h1>
-  
-    <time datetime="2024-08-25T00:00:00Z">August 25, 2024</time>
-  
-</header>
-      
-        
-
-
-<h2 id="1-ext4--linux-bsd">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#1-ext4--linux-bsd">1. ext4 💾 (Linux, BSD)</a>
-</h2>
-
-
-
-<h3 id="intro">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#intro">Intro</a>
-</h3>
-<p><strong>ext4</strong> (Extended File System version 4) is the default file system for many Linux distributions.</p>
-
-
-
-<h3 id="links">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#links">Links</a>
-</h3>
-<p><a href="https://en.wikipedia.org/wiki/Ext4">https://en.wikipedia.org/wiki/Ext4</a>
-<a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/6/html/storage_administration_guide/ch-ext4#ch-ext4">https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/6/html/storage_administration_guide/ch-ext4#ch-ext4</a></p>
-
-
-
-<h3 id="technical-features-">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#technical-features-">Technical Features: 🔍</a>
-</h3>
-<ul>
-<li>Journaling</li>
-<li>Extent-Based Allocation</li>
-<li>Delayed Allocation</li>
-<li>Persistent Pre-allocation</li>
-<li>Multi-block Allocation</li>
-<li>Online Resizing</li>
-<li>64-bit File System Support</li>
-<li>Directory Indexing with HTree</li>
-<li>Defragmentation</li>
-<li>Backward Compatibility with ext2/ext3</li>
-<li>Barriers for Data Integrity</li>
-<li>Large File Support (up to 16 TiB)</li>
-<li>Metadata Checksumming (optional)</li>
-<li>Quotas</li>
-</ul>
-
-
-
-<h3 id="advantages-">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#advantages-">Advantages 👍</a>
-</h3>
-<ul>
-<li><strong>Mature and Stable</strong>: ext4 is a well-tested and widely-used file system with a long history of stability.</li>
-<li><strong>Performance</strong>: It offers good performance for most workloads, especially for general-purpose usage.</li>
-<li><strong>Backward Compatibility</strong>: Supports ext3 and ext2 file systems, making it easy to upgrade.</li>
-<li><strong>Journaling</strong>: Provides a journaling feature that helps to prevent data corruption in case of a crash.</li>
-<li><strong>Wide Support</strong>: Supported by almost all Linux distributions and has a large community.</li>
-</ul>
-
-
-
-<h3 id="downsides-">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#downsides-">Downsides 👎</a>
-</h3>
-<ul>
-<li><strong>Limited Scalability</strong>: While adequate for most users, ext4 doesn&rsquo;t scale as well as newer file systems for very large volumes and large numbers of files.</li>
-<li><strong>Lack of Advanced Features</strong>: ext4 lacks features like snapshotting and built-in data integrity checks (e.g., checksums).</li>
-</ul>
-
-
-
-<h3 id="scale">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#scale">Scale</a>
-</h3>
-<ul>
-<li><strong>Maximum File Size</strong>: 16 TiB</li>
-<li><strong>Maximum Volume Size</strong>: 1 EiB</li>
-</ul>
-
-
-
-<h3 id="distro-usage">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#distro-usage">Distro Usage</a>
-</h3>
-<ul>
-<li>ext4 is the most widely used format spanning Linux and BSD.</li>
-</ul>
-
-
-
-<h2 id="2-xfs--linux-bsd">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#2-xfs--linux-bsd">2. XFS 💾 (Linux, BSD)</a>
-</h2>
-
-
-
-<h3 id="intro-1">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#intro-1">Intro</a>
-</h3>
-<p><strong>XFS</strong> is a high-performance file system designed for parallel I/O operations, often used in enterprise environments.</p>
-
-
-
-<h3 id="links-1">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#links-1">Links</a>
-</h3>
-<p><a href="https://en.wikipedia.org/wiki/XFS">https://en.wikipedia.org/wiki/XFS</a>
-<a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/storage_administration_guide/ch-xfs">https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/storage_administration_guide/ch-xfs</a></p>
-
-
-
-<h3 id="technical-features--1">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#technical-features--1">Technical Features: 🔍</a>
-</h3>
-<ul>
-<li>Extent-Based Allocation</li>
-<li>Journaling (Metadata Journaling)</li>
-<li>Delayed Allocation</li>
-<li>Persistent Pre-allocation</li>
-<li>Online Resizing (grow only)</li>
-<li>Dynamic Inode Allocation</li>
-<li>B+ Tree Directory Structure - (Quick Access B Tree)</li>
-<li>Direct I/O Support</li>
-<li>Data Striping for Performance</li>
-<li>Advanced Metadata Management</li>
-<li>Large File and Volume Support (up to 8 EiB)</li>
-<li>Online Defragmentation</li>
-<li>Quotas and Project Quotas</li>
-<li>Realtime Subvolume for Real-Time I/O</li>
-</ul>
-
-
-
-<h3 id="advantages--1">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#advantages--1">Advantages 👍</a>
-</h3>
-<ul>
-<li><strong>High Performance</strong>: Optimized for large files and supports high-performance parallel I/O, making it ideal for environments with large data sets.</li>
-<li><strong>Scalability</strong>: Scales well with large volumes and large numbers of files, supporting file systems up to 500 TB.</li>
-<li><strong>Journaling</strong>: Uses journaling to help prevent data corruption.</li>
-<li><strong>Online Resizing</strong>: Supports online resizing of file systems (only grow).</li>
-</ul>
-
-
-
-<h3 id="downsides--1">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#downsides--1">Downsides 👎</a>
-</h3>
-<ul>
-<li><strong>Complexity</strong>: XFS is more complex to manage compared to ext4.</li>
-<li><strong>Limited Snapshot Support</strong>: Has limited support for snapshots compared to Btrfs and OpenZFS.</li>
-<li><strong>Potential Data Loss on Power Failure</strong>: In certain configurations, XFS may be more susceptible to data loss in the event of a sudden power loss.</li>
-</ul>
-
-
-
-<h3 id="technical-details-">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#technical-details-">Technical Details 🔍</a>
-</h3>
-<ul>
-<li><strong>Maximum File Size</strong>: 8 EiB</li>
-<li><strong>Maximum Volume Size</strong>: 8 EiB</li>
-</ul>
-
-
-
-<h3 id="distro-usage-1">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#distro-usage-1">Distro Usage</a>
-</h3>
-<p>XFS has been in the Linux Kernel since 2001
-It is the default file system for RHEL</p>
-
-
-
-<h2 id="3-btrfs--linux">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#3-btrfs--linux">3. Btrfs 💾 (Linux)</a>
-</h2>
-
-
-
-<h3 id="intro-2">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#intro-2">Intro</a>
-</h3>
-<p>Btrfs (B-tree File System) is a modern, copy-on-write file system designed for Linux that offers advanced features like snapshots, RAID support, self-healing, and efficient storage management, making it suitable for scalable and reliable data storage.</p>
-
-
-
-<h3 id="links-2">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#links-2">Links</a>
-</h3>
-<p><a href="https://en.wikipedia.org/wiki/Btrfs">https://en.wikipedia.org/wiki/Btrfs</a>
-<a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/6/html/storage_administration_guide/ch-btrfs">https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/6/html/storage_administration_guide/ch-btrfs</a>
-<a href="https://docs.kernel.org/filesystems/btrfs.html">https://docs.kernel.org/filesystems/btrfs.html</a></p>
-
-
-
-<h3 id="technical-features--2">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#technical-features--2">Technical Features: 🔍</a>
-</h3>
-<ul>
-<li>Journaling</li>
-<li>Extent Base Allocation</li>
-<li>Persistent Pre-allocation</li>
-<li>Delayed Allocation</li>
-<li>Multi-block Allocation</li>
-<li>Stripe-aware Allocation</li>
-<li>Resizeable with resize2fs</li>
-<li>*B-tree Balancing Algorithm - Different from XFS (COW B Tee)</li>
-<li>Copy-on-Write (COW)</li>
-<li>Snapshots and Clones</li>
-<li>Built-in RAID Support</li>
-<li>Data and Metadata Checksumming</li>
-<li>Self-Healing</li>
-<li>Dynamic Subvolumes</li>
-<li>Online Resizing</li>
-<li>Compression (LZO. ZLIB. ZSTD)</li>
-<li>Deduplication</li>
-</ul>
-
-
-
-<h3 id="advantages--2">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#advantages--2">Advantages 👍</a>
-</h3>
-<ul>
-<li><strong>Snapshot Support</strong>: Provides built-in support for snapshots, allowing for quick backups and rollbacks.</li>
-<li><strong>Data Integrity</strong>: Includes checksumming of data and metadata, which helps to ensure data integrity.</li>
-<li><strong>Self-Healing</strong>: With RAID support, Btrfs can automatically repair corrupted data.</li>
-<li><strong>Dynamic Storage</strong>: Allows for the dynamic addition and removal of storage devices.</li>
-</ul>
-
-
-
-<h3 id="downsides--2">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#downsides--2">Downsides 👎</a>
-</h3>
-<ul>
-<li><strong>Stability</strong>: Btrfs is considered less mature than ext4 or XFS, particularly for certain features like RAID 5/6.</li>
-<li><strong>Performance</strong>: May not perform as well as XFS or ext4 in certain high-performance scenarios, particularly with heavy random writes.</li>
-<li><strong>Complexity</strong>: The advanced features of Btrfs come with increased complexity.</li>
-</ul>
-
-
-
-<h3 id="technical-details--1">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#technical-details--1">Technical Details 🔍</a>
-</h3>
-<ul>
-<li><strong>Maximum File Size</strong>: 16 EiB</li>
-<li><strong>Maximum Volume Size</strong>: 16 EiB</li>
-<li><strong>Better on SSDs</strong>: Btrfs is well-suited for flash/solid-state storage because of TRIM support and CoW, which reduces write amplification.</li>
-</ul>
-
-
-
-<h3 id="distro-usage-2">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#distro-usage-2">Distro Usage</a>
-</h3>
-<p>Btrfs has been in the mainline linux Kernel since 2008
-it is the default file system for SUSE and Fedora</p>
-
-
-
-<h2 id="4-openzfs--unix">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#4-openzfs--unix">4. OpenZFS 💾 (Unix)</a>
-</h2>
-
-
-
-<h3 id="intro-3">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#intro-3">Intro</a>
-</h3>
-<p><strong>OpenZFS</strong> is an advanced file system and volume manager that originated from Sun Microsystems&rsquo; ZFS and is now maintained by the OpenZFS project.</p>
-
-
-
-<h3 id="links-3">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#links-3">Links</a>
-</h3>
-<p><a href="https://en.wikipedia.org/wiki/OpenZFS">https://en.wikipedia.org/wiki/OpenZFS</a>
-<a href="https://openzfs.org/wiki/Main_Page">https://openzfs.org/wiki/Main_Page</a></p>
-
-
-
-<h3 id="technical-features--3">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#technical-features--3">Technical Features: 🔍</a>
-</h3>
-<ul>
-<li>Copy-on-Write (COW)</li>
-<li>Snapshots and Clones</li>
-<li>Pooled Storage (ZFS Storage Pools)</li>
-<li>Dynamic Striping</li>
-<li>Built-in RAID Support (RAID-Z1, RAID-Z2, RAID-Z3)</li>
-<li>Data and Metadata Checksumming</li>
-<li>Self-Healing</li>
-<li>Deduplication</li>
-<li>Compression (LZ4, GZIP, ZLE, etc.)</li>
-<li>Online Resizing</li>
-<li>Dynamic Block Size</li>
-<li>End-to-End Data Integrity</li>
-<li>ZFS Datasets (File Systems and Volumes)</li>
-<li>Adaptive Replacement Cache (ARC)</li>
-<li>Transparent Data Encryption</li>
-<li>ZFS Send/Receive for Backup and Replication</li>
-</ul>
-
-
-
-<h3 id="advantages--3">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#advantages--3">Advantages 👍</a>
-</h3>
-<ul>
-<li><strong>Data Integrity</strong>: Uses end-to-end checksums for all data, ensuring high data integrity.</li>
-<li><strong>Snapshots and Clones</strong>: Supports efficient, low-overhead snapshots and clones, useful for backups and development.</li>
-<li><strong>RAID-Z Support</strong>: Offers advanced RAID options (RAID-Z1, RAID-Z2, RAID-Z3), providing redundancy and fault tolerance.</li>
-<li><strong>Compression</strong>: Built-in compression can save space and improve performance in certain workloads.</li>
-<li><strong>Scalability</strong>: Designed to handle very large data sets and scales well with both size and number of files.</li>
-</ul>
-
-
-
-<h3 id="downsides--3">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#downsides--3">Downsides 👎</a>
-</h3>
-<ul>
-<li><strong>Resource Intensive</strong>: Can be resource-intensive, particularly in terms of memory usage.</li>
-<li><strong>Complexity</strong>: The advanced features and flexibility of OpenZFS come with a steep learning curve.</li>
-<li><strong>Portability</strong>: While available on many platforms, it is not as natively supported in Linux as ext4 or XFS.</li>
-<li><strong>Licensing</strong>: OpenZFS is licensed under CDDL, which is incompatible with the GPL.</li>
-</ul>
-
-
-
-<h3 id="technical-details--2">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#technical-details--2">Technical Details 🔍</a>
-</h3>
-<ul>
-<li><strong>Maximum File Size</strong>: 16 EiB</li>
-<li><strong>Maximum Volume Size</strong>: 256 ZiB (theoretical)</li>
-</ul>
-
-
-
-<h3 id="distro-usage-3">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#distro-usage-3">Distro Usage</a>
-</h3>
-<p>Open ZFS is <strong>Not</strong> available in the mainline Linux Kernel. Rather, it is available through a 3rd party module.
-Works on Linux, BSD, and Mac</p>
-
-
-
-<h2 id="hammer2--dragonflybsd">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#hammer2--dragonflybsd">HAMMER2 💾 (DragonflyBSD)</a>
-</h2>
-
-
-
-<h3 id="intro-4">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#intro-4">Intro</a>
-</h3>
-<p><strong>Hammer2</strong> is a modern, advanced file system designed for high-performance and scalable storage solutions, particularly in clustered environments. It features robust capabilities such as copy-on-write, data deduplication, and built-in snapshots, providing high data integrity, efficient storage management, and instant crash recovery.</p>
-
-
-
-<h3 id="links-4">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#links-4">Links</a>
-</h3>
-<p><a href="https://en.wikipedia.org/wiki/HAMMER2">Wikipedia: HAMMER2</a>
-<a href="https://www.dragonflybsd.org/hammer/">DragonFly BSD Hammer2</a></p>
-
-
-
-<h3 id="technical-features--4">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#technical-features--4">Technical Features: 🔍</a>
-</h3>
-<ul>
-<li>Clustered File System Support</li>
-<li>Snapshot and Cloning Support</li>
-<li>Copy-on-Write (COW)</li>
-<li>Data Deduplication</li>
-<li>Data Compression (LZ4, ZLIB)</li>
-<li>Data and Metadata Checksumming</li>
-<li>Multi-Volume Support</li>
-<li>Instant Crash Recovery</li>
-<li>Fine-Grained Locking (for SMP scalability)</li>
-<li>RAID Support (1, 1+0)</li>
-<li>Thin Provisioning</li>
-<li>Asynchronous Bulk-Freeing</li>
-<li>Large Directory Support</li>
-<li>Built-in Data Integrity and Self-Healing</li>
-</ul>
-
-
-
-<h3 id="advantages--4">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#advantages--4">Advantages 👍</a>
-</h3>
-<ul>
-<li><strong>High Performance</strong>: Optimized for high-performance and scalable storage solutions.</li>
-<li><strong>Data Integrity</strong>: Incorporates checksumming and self-healing features to maintain data integrity.</li>
-<li><strong>Efficient Storage Management</strong>: Offers advanced features like data deduplication and compression to manage storage efficiently.</li>
-<li><strong>Scalability</strong>: Designed to handle large volumes of data and support clustered environments.</li>
-</ul>
-
-
-
-<h3 id="downsides--4">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#downsides--4">Downsides 👎</a>
-</h3>
-<ul>
-<li><strong>Complexity</strong>: The advanced features and configuration options can introduce complexity.</li>
-<li><strong>Maturity</strong>: As a newer file system, it may have fewer tools and less mature support compared to more established file systems.</li>
-<li><strong>Limited Adoption</strong>: Less commonly used than other file systems, which may affect community support and documentation.</li>
-</ul>
-
-
-
-<h3 id="technical-details--3">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#technical-details--3">Technical Details 🔍</a>
-</h3>
-<ul>
-<li><strong>Maximum File Size</strong>: Not explicitly defined, but supports very large files.</li>
-<li><strong>Maximum Volume Size</strong>: Not explicitly defined, but designed for large-scale storage.</li>
-</ul>
-
-
-
-<h3 id="distro-usage-4">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#distro-usage-4">Distro Usage</a>
-</h3>
-<ul>
-<li><strong>DragonFly BSD</strong>: The primary platform where Hammer2 is used and supported.</li>
-<li><strong>Limited Availability</strong>: Not available in mainstream Linux distributions; primarily associated with DragonFly BSD.</li>
-</ul>
-
-
-
-<h2 id="key-concepts--glossary-">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#key-concepts--glossary-">Key Concepts / Glossary 🔑</a>
-</h2>
-
-
-
-<h3 id="snapshots-">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#snapshots-">Snapshots 📸</a>
-</h3>
-<ul>
-<li><strong>Snapshots</strong> are read-only copies of a file system at a specific point in time, allowing users to save the state of the file system for backup and recovery purposes. They are efficient and consume minimal space, as only the differences between the current state and the snapshot are stored.</li>
-</ul>
-
-
-
-<h3 id="clones-vs-snapshots-">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#clones-vs-snapshots-">Clones vs. Snapshots 📸🧬</a>
-</h3>
-<ul>
-<li><strong>Snapshots</strong>: Read-only copies of the file system at a specific time.</li>
-<li><strong>Clones</strong>: Writable copies of snapshots that can be modified independently.</li>
-</ul>
-
-
-
-<h3 id="raid-z-levels-">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#raid-z-levels-">RAID-Z Levels ⛓️</a>
-</h3>
-<ul>
-<li><strong>RAID-Z1</strong>: Single parity; can tolerate the loss of one disk.</li>
-<li><strong>RAID-Z2</strong>: Double parity; can tolerate the loss of two disks.</li>
-<li><strong>RAID-Z3</strong>: Triple parity; can tolerate the loss of three disks.</li>
-</ul>
-
-
-
-<h3 id="raid-5-and-raid-6-">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#raid-5-and-raid-6-">RAID 5 and RAID 6 ⛓️</a>
-</h3>
-<ul>
-<li><strong>RAID 5</strong>: Stripes data across disks with single parity; can tolerate the loss of one disk.</li>
-<li><strong>RAID 6</strong>: Stripes data across disks with double parity; can tolerate the loss of two disks.</li>
-</ul>
-
-
-
-<h3 id="issues-with-raid-56-in-btrfs">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#issues-with-raid-56-in-btrfs">Issues with RAID 5/6 in Btrfs</a>
-</h3>
-<p>Btrfs&rsquo;s implementation of RAID 5/6 is considered unstable due to issues like the write hole problem, making it less reliable for production use. Data integrity may be compromised, leading to potential data loss.</p>
-
-
-
-<h3 id="cddl-license-">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#cddl-license-">CDDL License 🪪</a>
-</h3>
-<p>The <strong>Common Development and Distribution License (CDDL)</strong> is an open-source license created by Sun Microsystems. It is incompatible with the GPL, which can complicate integration with Linux.</p>
-
-
-
-<h3 id="btrfs-self-healing-">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#btrfs-self-healing-">Btrfs Self-Healing ❤️‍🩹</a>
-</h3>
-<p><strong>Self-Healing</strong> in Btrfs works by verifying data against checksums and repairing any detected corruption using redundant data stored on other disks in a RAID configuration.</p>
-
-
-
-<h3 id="dynamic-storage-">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#dynamic-storage-">Dynamic Storage 🧱</a>
-</h3>
-<p><strong>Dynamic Storage</strong> refers to the ability to manage multiple storage devices within a single file system, allowing for on-the-fly addition and removal of devices, with the file system automatically balancing data across them.</p>
-
-
-
-<h3 id="online-resizing-">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#online-resizing-">Online Resizing 🗺️</a>
-</h3>
-<p><strong>Online Resizing</strong> allows the resizing of a file system while it is mounted and in use. XFS supports growing the file system online, while Btrfs supports both growing and shrinking.</p>
-
-
-
-<h3 id="b-trees-">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#b-trees-">B-Trees ⚖️</a>
-</h3>
-<p>A <strong>B-tree</strong> is a self-balancing tree data structure that maintains sorted data and allows efficient insertion, deletion, and search operations. B-trees are used in file systems like Btrfs to manage metadata and data blocks.</p>
-
-
-
-<h3 id="extent-base-allocation-">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#extent-base-allocation-">Extent Base Allocation 👠</a>
-</h3>
-<p>is a method used by modern file systems to manage data storage efficiently. Instead of tracking individual fixed-size blocks, the file system groups contiguous blocks into larger units called extents.</p>
-
-
-
-<h3 id="persistent-pre-allocation-">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#persistent-pre-allocation-">Persistent Pre-allocation 🎟️</a>
-</h3>
-<p>This technique reserves a specific amount of disk space for a file in advance, ensuring that the allocated space remains available, which helps in reducing fragmentation and guaranteeing storage for large files.</p>
-
-
-
-<h3 id="delayed-allocation-">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#delayed-allocation-">Delayed Allocation ⏱️</a>
-</h3>
-<p>Delayed allocation defers the assignment of specific disk blocks to file data until the data is flushed to disk, optimizing the allocation process and reducing fragmentation by allowing the file system to make better decisions about where to place data.</p>
-
-
-
-<h3 id="multi-block-allocation-">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#multi-block-allocation-">Multi-block Allocation ⋔</a>
-</h3>
-<p>Multi-block allocation allows a file system to allocate multiple contiguous blocks at once, rather than individually, improving performance and reducing fragmentation, especially for large files.</p>
-
-
-
-<h3 id="stripe-aware-allocation-">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#stripe-aware-allocation-">Stripe-aware Allocation 🧠</a>
-</h3>
-<p>Stripe-aware allocation is used in RAID configurations to ensure that data is distributed evenly across all disks in the array, optimizing performance by aligning data placement with the underlying stripe size of the RAID setup.</p>
-
-
-
-<h3 id="fine-grained-locking-for-smp-scalability-">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#fine-grained-locking-for-smp-scalability-">Fine-Grained Locking (for SMP Scalability) 🚀</a>
-</h3>
-<p>Fine-grained locking applies locks at a granular level, allowing multiple processors to concurrently access different parts of the file system, enhancing performance and scalability in multi-core environments.</p>
-
-
-
-<h3 id="raid-10-">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#raid-10-">RAID 1+0 🖇️</a>
-</h3>
-<p>RAID support includes configurations such as RAID 1 for data mirroring and RAID 1+0 for combining mirroring with striping to provide both redundancy and improved performance.</p>
-
-
-
-<h3 id="thin-provisioning-">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#thin-provisioning-">Thin Provisioning 🔮</a>
-</h3>
-<p>Thin provisioning allocates disk space on-demand rather than reserving it all upfront, optimizing storage utilization by only using the space actually required by data.</p>
-
-
-
-<h3 id="asynchronous-bulk-freeing-">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#asynchronous-bulk-freeing-">Asynchronous Bulk-Freeing 🗑️</a>
-</h3>
-<p>Asynchronous bulk-freeing performs large-scale space reclamation in the background, allowing the file system to manage deletions efficiently without impacting overall performance.</p>
-
-
-
-<h3 id="large-directory-support-">
-  <a class="Heading-link u-clickable" href="/techblog/post/fs/#large-directory-support-">Large Directory Support 🏢</a>
-</h3>
-<p>Large directory support enables efficient management of directories with a vast number of entries, using optimized data structures to ensure fast performance for directory operations.</p>
-
-      
-      
-
-  
-
-  
-
-
-
-
-
-  <footer>
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
-            </li>
-          
-        </ul>
-      
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/unix/" rel="tag">Unix</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/filesystems/" rel="tag">FileSystems</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/techblog/tags/notes/" rel="tag">Notes</a>
             </li>
           
         </ul>

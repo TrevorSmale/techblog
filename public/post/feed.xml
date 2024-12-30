@@ -7,8 +7,119 @@
     <description>Recent content in Posts on Tech Blog</description>
     <generator>Hugo 0.140.1</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 28 Dec 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 29 Dec 2024 00:00:00 +0000</lastBuildDate>
     <atom:link rel="self" href="http://localhost:1313/techblog/post/feed.xml" type="application/rss+xml" />
+    <item>
+      <title>Why K8S matters</title>
+      <link>http://localhost:1313/techblog/post/k3s/</link>
+      <pubDate>Sun, 29 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/techblog/post/k3s/</guid>
+      <description>&lt;h1 id=&#34;kubernetes-is-important-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#kubernetes-is-important-&#34;&gt;Kubernetes is Important 🌐🐳&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Despite the jokes or criticisms you may have heard, Kubernetes matters a lot. Once I understood the &amp;ldquo;Why,&amp;rdquo; I became much more motivated to learn the &amp;ldquo;How.&amp;rdquo; This is how I got started with Kubernetes using my Proxmox Home-Lab and K3S.&lt;/p&gt;
+&lt;p&gt;Firstly, I would like to illuminate the &amp;ldquo;Why,&amp;rdquo; as it’s an important philosophy to grasp before diving in. I firmly believe in understanding the &amp;ldquo;Why&amp;rdquo; before the &amp;ldquo;How.&amp;rdquo; 🧠&lt;/p&gt;
+
+
+
+&lt;h2 id=&#34;a-brief-history-of-infrastructure-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#a-brief-history-of-infrastructure-&#34;&gt;A Brief History of Infrastructure 🕰️&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;the-evolution-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#the-evolution-&#34;&gt;The Evolution 💾&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Many moons ago 🌛, internet infrastructure relied on operating systems to run services. Unix and Linux were preferred because they are multi-user environments suitable for serving files to requesters. In fact, the first implementation of TCP was written on a UNIX system running on a NextSTEP computer. 🖥️ This model worked for decades: more users meant more machines. However, issues arose. Machines would go down, causing cascading effects. ⚠️ Misconfigurations wreaked havoc, and machines often ran inefficiently, either wasting resources or straining hardware. 🔧&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;in-comes-virtualization-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#in-comes-virtualization-&#34;&gt;In Comes Virtualization 💻✨&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Virtualization revolutionized infrastructure by allowing computers to be divided into independent virtual machines (VMs). A VM is a fully self-contained operating system. This innovation enabled more efficient utilization of hardware, increased flexibility, and reduced downtime caused by hardware failures. 🚀&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;containers-changed-the-game-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#containers-changed-the-game-&#34;&gt;Containers Changed the Game 🐳📦&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Containers brought another layer of efficiency and standardization. Unlike VMs, containers share the host operating system’s kernel but encapsulate applications and their dependencies. This reduces overhead and enables applications to run consistently across different environments. 🌍 Developers could now &amp;ldquo;build once, run anywhere,&amp;rdquo; making containers a key tool in modern infrastructure. 🛠️&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;orchestration-was-needed-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#orchestration-was-needed-&#34;&gt;Orchestration Was Needed 🤖🎛️&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;As the use of containers exploded, managing them became increasingly complex. Deploying, scaling, monitoring, and maintaining hundreds or thousands of containers manually was impractical. This is where orchestration tools like Kubernetes stepped in, automating these tasks and ensuring applications are always running, balanced, and recoverable in case of failures. ✅&lt;/p&gt;
+
+
+
+&lt;h2 id=&#34;the-why-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#the-why-&#34;&gt;The Why 🤔&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Understanding the &amp;ldquo;Why&amp;rdquo; is key to appreciating Kubernetes&amp;rsquo; value. Here are some of the core reasons:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Monitoring&lt;/strong&gt; 📊: Kubernetes provides tools and integrations to monitor your workloads, ensuring you can observe application health and performance in real time.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Logging&lt;/strong&gt; 📝: Centralized logging in Kubernetes makes it easy to trace and debug issues across distributed systems.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Security&lt;/strong&gt; 🔒: Kubernetes enhances security through role-based access control (RBAC), network policies, and automatic updates, reducing vulnerabilities in production systems.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ephemerality&lt;/strong&gt; 🌀: Kubernetes embraces the concept of ephemeral workloads, where containers can be replaced automatically if they fail, ensuring high availability.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Reproducibility&lt;/strong&gt; 🔄: Kubernetes enables reproducible deployments by using declarative configurations, allowing you to deploy the same infrastructure consistently across environments.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;By addressing these challenges, Kubernetes transforms the way infrastructure is managed and applications are deployed, making it a cornerstone of modern cloud-native computing. ☁️&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;during-week-10-of-the-prolug-course-1-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#during-week-10-of-the-prolug-course-1-&#34;&gt;During Week 10 of the ProLUG Course &lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; 🛠️📚&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;John Champine&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;, an OpenShift Engineer, delivered a compelling two-hour presentation on Kubernetes and OpenShift. His anecdotes and technical insights were especially engaging, offering both rich historical context drawn from his personal experience and intricate details about shared resource management. 🖥️⚙️&lt;/p&gt;
+
+
+
+&lt;h2 id=&#34;my-experience-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#my-experience-&#34;&gt;My Experience 💻🔧&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;I heavily utilize Proxmox VE to build out simulated production environments where I can practice various administrative and engineering tasks. In my homelab, I installed K3S and Talos to create a typical dev/testing/production environment. 🌐 One particularly unique workflow I used involved building custom Podman containers—yes, Podman! 🐋&lt;/p&gt;
+&lt;p&gt;It’s not widely known that &lt;code&gt;podman play kube&lt;/code&gt; &lt;sup id=&#34;fnref:3&#34;&gt;&lt;a href=&#34;#fn:3&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;3&lt;/a&gt;&lt;/sup&gt; can create a manifest for use in Kubernetes pods. With this method, I could prototype and build out containers, functionally test them, and then publish them for declarative deployment. This approach felt incredibly slick to me, as bugs were ironed out during the process, and the final deployment was straightforward. ✅🛠️&lt;/p&gt;
+&lt;p&gt;Most of my work was done with K3S&lt;sup id=&#34;fnref:4&#34;&gt;&lt;a href=&#34;#fn:4&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;4&lt;/a&gt;&lt;/sup&gt;, a Rancher&lt;sup id=&#34;fnref:5&#34;&gt;&lt;a href=&#34;#fn:5&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;5&lt;/a&gt;&lt;/sup&gt;-based distro designed for low-resource environments. However, I also experimented with Talos OS, setting up multiple virtual machines in a configuration resembling a multi-machine/node environment—with a sprinkle of jank to keep things interesting. 🤖✨&lt;/p&gt;
+&lt;p&gt;This hands-on approach allowed me to deepen my understanding of Kubernetes while also refining workflows that integrate containerization and orchestration. 🚀&lt;/p&gt;
+
+
+
+&lt;h2 id=&#34;respect-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#respect-&#34;&gt;Respect 🙌&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;From these experiences, I have developed a deep respect for Kubernetes. I see it as the operating system of the internet—an innovation that will inspire other similar systems. 🌐 While newer technologies like MicroVMs and hybrid container/VM architectures are emerging, I believe they can be easily incorporated into orchestration schemes like Kubernetes. 🤖🛠️&lt;/p&gt;
+&lt;p&gt;Given this perspective, I think Kubernetes will remain relevant for a long time, much like Unix/Linux. 🐧 It simply makes sense given the strenuous demands of the modern internet and the ever-growing number of attacks and incidents. Such a resilient system enables greater efficiency, enhanced security, and improved situational awareness for everyone. 🔒🚀&lt;/p&gt;
+
+
+
+&lt;h2 id=&#34;footnotes&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#footnotes&#34;&gt;Footnotes&lt;/a&gt;
+&lt;/h2&gt;
+&lt;div class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;
+&lt;p&gt;The above quote is excerpted from an earlier BlogPost &lt;a href=&#34;trevorsmale.github.io/techblog/post/pacu10/&#34;&gt;Post&lt;/a&gt; techblog, 2024.&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:2&#34;&gt;
+&lt;p&gt;John Champine &lt;a href=&#34;https://www.linkedin.com/in/john-champine-2ba878114?trk=people-guest_people_search-card&#34;&gt;Profile&lt;/a&gt; LinkedIn, 2024.&amp;#160;&lt;a href=&#34;#fnref:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:3&#34;&gt;
+&lt;p&gt;Podman Export &lt;a href=&#34;https://docs.podman.io/en/v3.4.1/markdown/podman-play-kube.1.html&#34;&gt;Docs&lt;/a&gt; Podman Docs, 2019.&amp;#160;&lt;a href=&#34;#fnref:3&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:4&#34;&gt;
+&lt;p&gt;K3S Website &lt;a href=&#34;https://k3s.io/&#34;&gt;Site&lt;/a&gt; Site, 2025.&amp;#160;&lt;a href=&#34;#fnref:4&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:5&#34;&gt;
+&lt;p&gt;Rancher Website &lt;a href=&#34;https://www.rancher.com/&#34;&gt;Site&lt;/a&gt; Site, 2025.&amp;#160;&lt;a href=&#34;#fnref:5&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+    </item>
     <item>
       <title>ProLUG Admin Course Unit 16 🐧</title>
       <link>http://localhost:1313/techblog/post/pacu16/</link>

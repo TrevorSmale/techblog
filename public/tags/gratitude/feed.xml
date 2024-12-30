@@ -23,14 +23,14 @@
 
 
 
-&lt;h1 id=&#34;incident-response--troubleshooting-scenarios&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu16/#incident-response--troubleshooting-scenarios&#34;&gt;Incident Response / Troubleshooting Scenarios&lt;/a&gt;
+&lt;h1 id=&#34;incident-response--troubleshooting-scenarios-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu16/#incident-response--troubleshooting-scenarios-&#34;&gt;Incident Response / Troubleshooting Scenarios 🧑‍💻&lt;/a&gt;
 &lt;/h1&gt;
 
 
 
-&lt;h2 id=&#34;scenario-1-web-server-not-running&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu16/#scenario-1-web-server-not-running&#34;&gt;Scenario #1: Web Server Not Running&lt;/a&gt;
+&lt;h2 id=&#34;scenario-1-web-server-not-running-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu16/#scenario-1-web-server-not-running-&#34;&gt;Scenario #1: Web Server Not Running 🕸️&lt;/a&gt;
 &lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;Objective&lt;/strong&gt;: Ensure the web server is running and responding on port 80.&lt;br&gt;
 &lt;strong&gt;Steps&lt;/strong&gt;:&lt;/p&gt;
@@ -74,8 +74,8 @@
 
 
 
-&lt;h2 id=&#34;scenario-2-mount-point-space-not-working&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu16/#scenario-2-mount-point-space-not-working&#34;&gt;Scenario #2: Mount Point /space Not Working&lt;/a&gt;
+&lt;h2 id=&#34;scenario-2-mount-point-space-not-working-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu16/#scenario-2-mount-point-space-not-working-&#34;&gt;Scenario #2: Mount Point /space Not Working 💾&lt;/a&gt;
 &lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;Objective&lt;/strong&gt;: Set up a 9GB partition on the &lt;code&gt;/space&lt;/code&gt; mount point using LVM.&lt;br&gt;
 &lt;strong&gt;Steps&lt;/strong&gt;:&lt;/p&gt;
@@ -128,8 +128,8 @@
 
 
 
-&lt;h2 id=&#34;scenario-3-system-not-updating&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu16/#scenario-3-system-not-updating&#34;&gt;Scenario #3: System Not Updating&lt;/a&gt;
+&lt;h2 id=&#34;scenario-3-system-not-updating-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacu16/#scenario-3-system-not-updating-&#34;&gt;Scenario #3: System Not Updating 📦&lt;/a&gt;
 &lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;Objective&lt;/strong&gt;: Fix the system to allow updates via &lt;code&gt;dnf&lt;/code&gt; and ensure kernel updates.&lt;br&gt;
 &lt;strong&gt;Steps&lt;/strong&gt;:&lt;/p&gt;
@@ -178,152 +178,54 @@ KillerCoda: &lt;a href=&#34;https://killercoda.com/het-tanis&#34;&gt;https://kil
       <link>http://localhost:1313/techblog/post/pacurecap/</link>
       <pubDate>Sat, 28 Dec 2024 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/techblog/post/pacurecap/</guid>
-      <description>&lt;h1 id=&#34;incident-response&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacurecap/#incident-response&#34;&gt;Incident Response&lt;/a&gt;
+      <description>&lt;h1 id=&#34;the-wrap-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacurecap/#the-wrap-&#34;&gt;The Wrap 📦&lt;/a&gt;
 &lt;/h1&gt;
-&lt;p&gt;Incident response is a structured approach to identifying, managing, and resolving unexpected events such as security breaches, system failures, or misconfigurations. It aims to minimize disruption, mitigate damage, and restore normal operations while implementing lessons learned to prevent future incidents.&lt;/p&gt;
-&lt;p&gt;Responding to incidents is a stressful event because it can involve many stakeholders and little time. This week we exercised our skills by live debugging in front of our peers on a remote host. The problems all related to failure modes and misconfiguration and the exercise was rewarding in that I learned a lot as always, and built some confidence.&lt;/p&gt;
-&lt;hr&gt;
+&lt;p&gt;Yesterday, our close-knit group completed an intensive 16-week hands-on course in Enterprise Linux Administration, culminating in a live incident response session.&lt;/p&gt;
+&lt;p&gt;Over the course of hundreds of hours, I pushed myself to go above and beyond in my studies and responsibilities. Along the way, I formed strong connections with like-minded peers, navigating the modern educational landscape of YouTube, Discord, and KillerCoda.&lt;/p&gt;
+&lt;p&gt;I am truly grateful to have stumbled upon this seemingly random community and to have experienced the structured, effective teaching methods of Scott Champine (Het Tanis), an experienced and traditional educator.&lt;/p&gt;
 
 
 
-&lt;h1 id=&#34;incident-response--troubleshooting-scenarios&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacurecap/#incident-response--troubleshooting-scenarios&#34;&gt;Incident Response / Troubleshooting Scenarios&lt;/a&gt;
-&lt;/h1&gt;
-
-
-
-&lt;h2 id=&#34;scenario-1-web-server-not-running&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacurecap/#scenario-1-web-server-not-running&#34;&gt;Scenario #1: Web Server Not Running&lt;/a&gt;
+&lt;h2 id=&#34;discord-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacurecap/#discord-&#34;&gt;Discord 💬&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Objective&lt;/strong&gt;: Ensure the web server is running and responding on port 80.&lt;br&gt;
-&lt;strong&gt;Steps&lt;/strong&gt;:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Verify web server service&lt;/strong&gt;:
-&lt;ul&gt;
-&lt;li&gt;Run: &lt;code&gt;systemctl enable --now httpd&lt;/code&gt; (or similar command).&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Check open ports&lt;/strong&gt;:
-&lt;ul&gt;
-&lt;li&gt;Run: &lt;code&gt;ss -ntulp&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Identify if the server is running on port 8087 instead of 80.&lt;/li&gt;
-&lt;li&gt;Edit the configuration:
-&lt;ul&gt;
-&lt;li&gt;File: &lt;code&gt;/etc/httpd/conf/httpd.conf&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Change &lt;code&gt;Listen 8087&lt;/code&gt; to &lt;code&gt;Listen 80&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Restart the service: &lt;code&gt;systemctl restart httpd&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Ensure external connectivity&lt;/strong&gt;:
-&lt;ul&gt;
-&lt;li&gt;Check the firewall status: &lt;code&gt;systemctl status firewalld&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Options:
-&lt;ul&gt;
-&lt;li&gt;Disable the firewall: &lt;code&gt;systemctl stop firewalld&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Open port 80 if needed.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Final step&lt;/strong&gt;:
-&lt;ul&gt;
-&lt;li&gt;REBOOT the lab machine.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
+&lt;p&gt;To understand the environment, we must first understand the platform. Discord is a communication platform that combines text, voice, and video chat, designed to create communities where people can interact in real-time. What makes it unique is its seamless integration of customizable servers, topic-specific channels, and robust tools for both casual conversation and collaborative work.&lt;/p&gt;
+&lt;p&gt;Working on discord harbored a comfortable sense of passive interaction. Unlike say Zoom, Skype or any other similar video communication platform, Discord allows for people to come and go as they please, have multiple presenters and open voice chat, replicating a real world meeting more closely.&lt;/p&gt;
+&lt;p&gt;This allowed for impromptu discussions / presentation, greatly improving the learning experience.&lt;/p&gt;
 
 
 
-&lt;h2 id=&#34;scenario-2-mount-point-space-not-working&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacurecap/#scenario-2-mount-point-space-not-working&#34;&gt;Scenario #2: Mount Point /space Not Working&lt;/a&gt;
+&lt;h2 id=&#34;study-group-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacurecap/#study-group-&#34;&gt;Study group 🏘️&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Objective&lt;/strong&gt;: Set up a 9GB partition on the &lt;code&gt;/space&lt;/code&gt; mount point using LVM.&lt;br&gt;
-&lt;strong&gt;Steps&lt;/strong&gt;:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Verify &lt;code&gt;/space&lt;/code&gt; setup&lt;/strong&gt;:
-&lt;ul&gt;
-&lt;li&gt;Confirm the partition is not properly set up.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Create LVM setup&lt;/strong&gt;:
-&lt;ul&gt;
-&lt;li&gt;Identify disks: &lt;code&gt;fdisk -l | grep -i xvd&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Create physical volumes: &lt;code&gt;pvcreate /dev/xvd&amp;lt;disk&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Create a volume group:
-&lt;ul&gt;
-&lt;li&gt;Run: &lt;code&gt;vgcreate space /dev/xvd&amp;lt;disk1&amp;gt; /dev/xvd&amp;lt;disk2&amp;gt; /dev/xvd&amp;lt;disk3&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Create a logical volume:
-&lt;ul&gt;
-&lt;li&gt;Run: &lt;code&gt;lvcreate -n space -l +100%FREE space&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Format the logical volume&lt;/strong&gt;:
-&lt;ul&gt;
-&lt;li&gt;Create a filesystem: &lt;code&gt;mkfs.ext4 /dev/mapper/&amp;lt;logical_volume_name&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Mount the filesystem&lt;/strong&gt;:
-&lt;ul&gt;
-&lt;li&gt;Create the mount point: &lt;code&gt;mkdir /space&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Add an entry in &lt;code&gt;/etc/fstab&lt;/code&gt;:
-
-  
-
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-fstab&#34; data-lang=&#34;fstab&#34;&gt;/dev/mapper/&amp;lt;logical_volume_name&amp;gt; /space &amp;lt;ext4 or xfs&amp;gt; defaults 1 2&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;Mount the filesystem: &lt;code&gt;mount -a&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Final step&lt;/strong&gt;:
-&lt;ul&gt;
-&lt;li&gt;REBOOT the lab machine.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;hr&gt;
+&lt;p&gt;Early in the course, I applied my leadership skills by organizing a formal schedule for our study group meetings. These sessions covered course assignments in detail while also exploring related topics through collaborative, interactive projects.&lt;/p&gt;
+&lt;p&gt;The format was casual and engaging. I would share my screen to walk through scenarios while the group discussed the subject matter. Others also shared their screens, demonstrating tips and tricks in unison.&lt;/p&gt;
+&lt;p&gt;One of the most effective tools I introduced was a shared note using Etherpad. Similar to Google Docs, Etherpad allows multiple people to edit a document simultaneously. However, it stands out by enabling access without requiring sign-in credentials, making it easy to share with anyone.&lt;/p&gt;
+&lt;p&gt;These activities relied heavily on trust, as it would have been easy for someone to disrupt the sessions. My leadership skills were frequently tested by off-topic individuals or disruptive participants, but such issues were usually short-lived.&lt;/p&gt;
 
 
 
-&lt;h2 id=&#34;scenario-3-system-not-updating&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacurecap/#scenario-3-system-not-updating&#34;&gt;Scenario #3: System Not Updating&lt;/a&gt;
+&lt;h2 id=&#34;gains-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacurecap/#gains-&#34;&gt;Gains 💪🏻&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Objective&lt;/strong&gt;: Fix the system to allow updates via &lt;code&gt;dnf&lt;/code&gt; and ensure kernel updates.&lt;br&gt;
-&lt;strong&gt;Steps&lt;/strong&gt;:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Fix DNF repository configuration&lt;/strong&gt;:
-&lt;ul&gt;
-&lt;li&gt;Edit &lt;code&gt;/etc/yum.repos.d/rocky.repo&lt;/code&gt;:
-&lt;ul&gt;
-&lt;li&gt;Set &lt;code&gt;enabled=1&lt;/code&gt; for all necessary repositories.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Check &lt;code&gt;/etc/yum.repos.d/rocky.repo.orig&lt;/code&gt; for reference.&lt;/li&gt;
-&lt;li&gt;Fix the EPEL repository the same way.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Verify kernel updates&lt;/strong&gt;:
-&lt;ul&gt;
-&lt;li&gt;Edit &lt;code&gt;/etc/yum.conf&lt;/code&gt;:
-&lt;ul&gt;
-&lt;li&gt;Comment out the line: &lt;code&gt;exclude=kernel*&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Final step&lt;/strong&gt;:
-&lt;ul&gt;
-&lt;li&gt;REBOOT the lab machine if necessary.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;Coming into the course, I already had a solid understanding of Linux, backed by a few years of experience. Additionally, I had completed RWXRob’s (Rob Muhlestein’s) Beginner Boost DevOps course a year prior.&lt;/p&gt;
+&lt;p&gt;What set this course apart was its group-learning dynamic. During Rob’s course, I worked alone, building projects and debugging through hard-fought, self-directed methods like reading documentation, brute-forcing solutions, and referencing forums. In contrast, group work brought added motivation, inspiration, and a collaborative approach to problem-solving. It helped eliminate mundane, off-topic roadblocks, allowing us to focus on core learning and progress more efficiently.&lt;/p&gt;
+
+
+
+&lt;h2 id=&#34;connections-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacurecap/#connections-&#34;&gt;Connections ⛓️&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Through the study group and community discussions, I’ve developed a strong connection with the ProLUG community and feel confident that I can rely on the server for discussions, questions, and troubleshooting. In the near future, I plan to give back by supporting future coursework and helping new learners navigate their journey.&lt;/p&gt;
+
+
+
+&lt;h2 id=&#34;thankful-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/pacurecap/#thankful-&#34;&gt;Thankful 🙏&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;I’m deeply grateful to Scott Champine (Het Tanis) for offering this free course and dedicating so much of his time to it. I’m equally thankful to the server members who joined the study group and dove headfirst into the intricacies of systems.&lt;/p&gt;
+&lt;p&gt;Until next time! ✌️&lt;/p&gt;
 &lt;hr&gt;
 
 
@@ -6397,6 +6299,75 @@ Footnotes&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
+    </item>
+    <item>
+      <title>Why K8S matters</title>
+      <link>http://localhost:1313/techblog/post/k3s/</link>
+      <pubDate>Thu, 03 Oct 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/techblog/post/k3s/</guid>
+      <description>&lt;h1 id=&#34;kubernetes-is-important&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#kubernetes-is-important&#34;&gt;Kubernetes is Important&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Despite the jokes or criticisms you may have heard, Kubernetes matters a lot. Once I understood the &amp;ldquo;Why,&amp;rdquo; I became much more motivated to learn the &amp;ldquo;How.&amp;rdquo; This is how I got started with Kubernetes using my Proxmox homelab and K3S. Firstly, I would like to illuminate the &amp;ldquo;Why,&amp;rdquo; as it’s an important philosophy to grasp before diving in. I firmly believe in understanding the &amp;ldquo;Why&amp;rdquo; before the &amp;ldquo;How.&amp;rdquo;&lt;/p&gt;
+
+
+
+&lt;h2 id=&#34;a-brief-history-of-infrastructure&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#a-brief-history-of-infrastructure&#34;&gt;A Brief History of Infrastructure&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;the-evolution-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#the-evolution-&#34;&gt;The Evolution 💾&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Many moons ago 🌛, internet infrastructure relied on operating systems to run services. Unix and Linux were preferred because they are multi-user environments suitable for serving files to requesters. In fact, the first implementation of TCP was written on a UNIX system running on a NextSTEP computer. This model worked for decades: more users meant more machines. However, issues arose. Machines would go down, causing cascading effects. Misconfigurations wreaked havoc, and machines often ran inefficiently, either wasting resources or straining hardware.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;in-comes-virtualization&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#in-comes-virtualization&#34;&gt;In Comes Virtualization&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Virtualization revolutionized infrastructure by allowing computers to be divided into independent virtual machines (VMs). A VM is a fully self-contained operating system. This innovation enabled more efficient utilization of hardware, increased flexibility, and reduced downtime caused by hardware failures.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;containers-changed-the-game&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#containers-changed-the-game&#34;&gt;Containers Changed the Game&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Containers brought another layer of efficiency and standardization. Unlike VMs, containers share the host operating system’s kernel but encapsulate applications and their dependencies. This reduces overhead and enables applications to run consistently across different environments. Developers could now &amp;ldquo;build once, run anywhere,&amp;rdquo; making containers a key tool in modern infrastructure.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;orchestration-was-needed&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#orchestration-was-needed&#34;&gt;Orchestration Was Needed&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;As the use of containers exploded, managing them became increasingly complex. Deploying, scaling, monitoring, and maintaining hundreds or thousands of containers manually was impractical. This is where orchestration tools like Kubernetes stepped in, automating these tasks and ensuring applications are always running, balanced, and recoverable in case of failures.&lt;/p&gt;
+
+
+
+&lt;h2 id=&#34;the-why&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#the-why&#34;&gt;The Why&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Understanding the &amp;ldquo;Why&amp;rdquo; is key to appreciating Kubernetes&amp;rsquo; value. Here are some of the core reasons:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Monitoring&lt;/strong&gt;: Kubernetes provides tools and integrations to monitor your workloads, ensuring you can observe application health and performance in real time.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Logging&lt;/strong&gt;: Centralized logging in Kubernetes makes it easy to trace and debug issues across distributed systems.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Security&lt;/strong&gt;: Kubernetes enhances security through role-based access control (RBAC), network policies, and automatic updates, reducing vulnerabilities in production systems.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ephemerality&lt;/strong&gt;: Kubernetes embraces the concept of ephemeral workloads, where containers can be replaced automatically if they fail, ensuring high availability.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Reproducibility&lt;/strong&gt;: Kubernetes enables reproducible deployments by using declarative configurations, allowing you to deploy the same infrastructure consistently across environments.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;By addressing these challenges, Kubernetes transforms the way infrastructure is managed and applications are deployed, making it a cornerstone of modern cloud-native computing.&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h3 id=&#34;helpful-links-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#helpful-links-&#34;&gt;Helpful Links ⛓️&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Btrfs&#34;&gt;https://en.wikipedia.org/wiki/Btrfs&lt;/a&gt;
+&lt;a href=&#34;https://docs.kernel.org/filesystems/btrfs.html&#34;&gt;https://docs.kernel.org/filesystems/btrfs.html&lt;/a&gt;
+Footnotes&lt;/p&gt;</description>
     </item>
     <item>
       <title>ProLUG Admin Course Capstone Project Stage 3 🐧</title>

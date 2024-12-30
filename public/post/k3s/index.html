@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/techblog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=techblog/livereload" data-no-instant defer></script>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <meta name="description" content="Despite some of the jokes or criticisms you have heard, Kubernetes matters, here is how I got started">
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.140.1">
+  <title>Why K8S matters | Tech Blog</title>
+  <link rel="canonical" href="http://localhost:1313/techblog/post/k3s/">
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+    <link rel="stylesheet" href="/techblog/css/base.css">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <a class="Banner-link u-clickable" href="/techblog/">Tech Blog</a>
+      </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/about/">About</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/post/">Posts</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/tags/">Tags</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/categories/">Categories</a>
+        </li>
+      
+        
+        
+          
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/feed.xml">RSS</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/k3s/" rel="bookmark">Why K8S matters</a>
+  </h1>
+  
+    <time datetime="2024-12-29T00:00:00Z">December 29, 2024</time>
+  
+</header>
+  <h1 id="kubernetes-is-important-">
+  <a class="Heading-link u-clickable" href="/techblog/post/k3s/#kubernetes-is-important-">Kubernetes is Important 🌐🐳</a>
+</h1>
+<p>Despite the jokes or criticisms you may have heard, Kubernetes matters a lot. Once I understood the &ldquo;Why,&rdquo; I became much more motivated to learn the &ldquo;How.&rdquo; This is how I got started with Kubernetes using my Proxmox Home-Lab and K3S.</p>
+<p>Firstly, I would like to illuminate the &ldquo;Why,&rdquo; as it’s an important philosophy to grasp before diving in. I firmly believe in understanding the &ldquo;Why&rdquo; before the &ldquo;How.&rdquo; 🧠</p>
+
+
+
+<h2 id="a-brief-history-of-infrastructure-">
+  <a class="Heading-link u-clickable" href="/techblog/post/k3s/#a-brief-history-of-infrastructure-">A Brief History of Infrastructure 🕰️</a>
+</h2>
+
+
+
+<h3 id="the-evolution-">
+  <a class="Heading-link u-clickable" href="/techblog/post/k3s/#the-evolution-">The Evolution 💾</a>
+</h3>
+<p>Many moons ago 🌛, internet infrastructure relied on operating systems to run services. Unix and Linux were preferred because they are multi-user environments suitable for serving files to requesters. In fact, the first implementation of TCP was written on a UNIX system running on a NextSTEP computer. 🖥️ This model worked for decades: more users meant more machines. However, issues arose. Machines would go down, causing cascading effects. ⚠️ Misconfigurations wreaked havoc, and machines often ran inefficiently, either wasting resources or straining hardware. 🔧</p>
+
+
+
+<h3 id="in-comes-virtualization-">
+  <a class="Heading-link u-clickable" href="/techblog/post/k3s/#in-comes-virtualization-">In Comes Virtualization 💻✨</a>
+</h3>
+<p>Virtualization revolutionized infrastructure by allowing computers to be divided into independent virtual machines (VMs). A VM is a fully self-contained operating system. This innovation enabled more efficient utilization of hardware, increased flexibility, and reduced downtime caused by hardware failures. 🚀</p>
+
+
+
+<h3 id="containers-changed-the-game-">
+  <a class="Heading-link u-clickable" href="/techblog/post/k3s/#containers-changed-the-game-">Containers Changed the Game 🐳📦</a>
+</h3>
+<p>Containers brought another layer of efficiency and standardization. Unlike VMs, containers share the host operating system’s kernel but encapsulate applications and their dependencies. This reduces overhead and enables applications to run consistently across different environments. 🌍 Developers could now &ldquo;build once, run anywhere,&rdquo; making containers a key tool in modern infrastructure. 🛠️</p>
+
+
+
+<h3 id="orchestration-was-needed-">
+  <a class="Heading-link u-clickable" href="/techblog/post/k3s/#orchestration-was-needed-">Orchestration Was Needed 🤖🎛️</a>
+</h3>
+<p>As the use of containers exploded, managing them became increasingly complex. Deploying, scaling, monitoring, and maintaining hundreds or thousands of containers manually was impractical. This is where orchestration tools like Kubernetes stepped in, automating these tasks and ensuring applications are always running, balanced, and recoverable in case of failures. ✅</p>
+
+
+
+<h2 id="the-why-">
+  <a class="Heading-link u-clickable" href="/techblog/post/k3s/#the-why-">The Why 🤔</a>
+</h2>
+<p>Understanding the &ldquo;Why&rdquo; is key to appreciating Kubernetes&rsquo; value. Here are some of the core reasons:</p>
+<ul>
+<li><strong>Monitoring</strong> 📊: Kubernetes provides tools and integrations to monitor your workloads, ensuring you can observe application health and performance in real time.</li>
+<li><strong>Logging</strong> 📝: Centralized logging in Kubernetes makes it easy to trace and debug issues across distributed systems.</li>
+<li><strong>Security</strong> 🔒: Kubernetes enhances security through role-based access control (RBAC), network policies, and automatic updates, reducing vulnerabilities in production systems.</li>
+<li><strong>Ephemerality</strong> 🌀: Kubernetes embraces the concept of ephemeral workloads, where containers can be replaced automatically if they fail, ensuring high availability.</li>
+<li><strong>Reproducibility</strong> 🔄: Kubernetes enables reproducible deployments by using declarative configurations, allowing you to deploy the same infrastructure consistently across environments.</li>
+</ul>
+<p>By addressing these challenges, Kubernetes transforms the way infrastructure is managed and applications are deployed, making it a cornerstone of modern cloud-native computing. ☁️</p>
+
+
+
+<h3 id="during-week-10-of-the-prolug-course-1-">
+  <a class="Heading-link u-clickable" href="/techblog/post/k3s/#during-week-10-of-the-prolug-course-1-">During Week 10 of the ProLUG Course <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> 🛠️📚</a>
+</h3>
+<p>John Champine<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>, an OpenShift Engineer, delivered a compelling two-hour presentation on Kubernetes and OpenShift. His anecdotes and technical insights were especially engaging, offering both rich historical context drawn from his personal experience and intricate details about shared resource management. 🖥️⚙️</p>
+
+
+
+<h2 id="my-experience-">
+  <a class="Heading-link u-clickable" href="/techblog/post/k3s/#my-experience-">My Experience 💻🔧</a>
+</h2>
+<p>I heavily utilize Proxmox VE to build out simulated production environments where I can practice various administrative and engineering tasks. In my homelab, I installed K3S and Talos to create a typical dev/testing/production environment. 🌐 One particularly unique workflow I used involved building custom Podman containers—yes, Podman! 🐋</p>
+<p>It’s not widely known that <code>podman play kube</code> <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup> can create a manifest for use in Kubernetes pods. With this method, I could prototype and build out containers, functionally test them, and then publish them for declarative deployment. This approach felt incredibly slick to me, as bugs were ironed out during the process, and the final deployment was straightforward. ✅🛠️</p>
+<p>Most of my work was done with K3S<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>, a Rancher<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup>-based distro designed for low-resource environments. However, I also experimented with Talos OS, setting up multiple virtual machines in a configuration resembling a multi-machine/node environment—with a sprinkle of jank to keep things interesting. 🤖✨</p>
+<p>This hands-on approach allowed me to deepen my understanding of Kubernetes while also refining workflows that integrate containerization and orchestration. 🚀</p>
+
+
+
+<h2 id="respect-">
+  <a class="Heading-link u-clickable" href="/techblog/post/k3s/#respect-">Respect 🙌</a>
+</h2>
+<p>From these experiences, I have developed a deep respect for Kubernetes. I see it as the operating system of the internet—an innovation that will inspire other similar systems. 🌐 While newer technologies like MicroVMs and hybrid container/VM architectures are emerging, I believe they can be easily incorporated into orchestration schemes like Kubernetes. 🤖🛠️</p>
+<p>Given this perspective, I think Kubernetes will remain relevant for a long time, much like Unix/Linux. 🐧 It simply makes sense given the strenuous demands of the modern internet and the ever-growing number of attacks and incidents. Such a resilient system enables greater efficiency, enhanced security, and improved situational awareness for everyone. 🔒🚀</p>
+
+
+
+<h2 id="footnotes">
+  <a class="Heading-link u-clickable" href="/techblog/post/k3s/#footnotes">Footnotes</a>
+</h2>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>The above quote is excerpted from an earlier BlogPost <a href="trevorsmale.github.io/techblog/post/pacu10/">Post</a> techblog, 2024.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>John Champine <a href="https://www.linkedin.com/in/john-champine-2ba878114?trk=people-guest_people_search-card">Profile</a> LinkedIn, 2024.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>Podman Export <a href="https://docs.podman.io/en/v3.4.1/markdown/podman-play-kube.1.html">Docs</a> Podman Docs, 2019.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4">
+<p>K3S Website <a href="https://k3s.io/">Site</a> Site, 2025.&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:5">
+<p>Rancher Website <a href="https://www.rancher.com/">Site</a> Site, 2025.&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+  
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/experience/" rel="tag">Experience</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/kubernetes/" rel="tag">Kubernetes</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/k3s/" rel="tag">K3S</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/infrastructure/" rel="tag">Infrastructure</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/dev-ops/" rel="tag">Dev Ops</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/platform-engineering/" rel="tag">Platform Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/rancher/" rel="tag">Rancher</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+  
+  
+
+
+
+      </div>
+    </div>
+  </main>
+  
+</body>
+
+</html>
