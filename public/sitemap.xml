@@ -2,14 +2,83 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://localhost:1313/techblog/post/</loc>
+    <lastmod>2025-01-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/techblog/</loc>
+    <lastmod>2025-01-14T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/techblog/tags/administration/</loc>
-    <lastmod>2024-12-28T00:00:00+00:00</lastmod>
+    <lastmod>2025-01-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/techblog/categories/</loc>
-    <lastmod>2024-12-28T00:00:00+00:00</lastmod>
+    <lastmod>2025-01-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/techblog/tags/devops/</loc>
+    <lastmod>2025-01-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/techblog/tags/engineering/</loc>
-    <lastmod>2024-12-28T00:00:00+00:00</lastmod>
+    <lastmod>2025-01-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/techblog/tags/gitops/</loc>
+    <lastmod>2025-01-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/techblog/tags/homelab/</loc>
+    <lastmod>2025-01-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/techblog/tags/iac/</loc>
+    <lastmod>2025-01-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/techblog/tags/immutable-infrastructure/</loc>
+    <lastmod>2025-01-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/techblog/tags/kubernetes/</loc>
+    <lastmod>2025-01-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/techblog/categories/learning/</loc>
+    <lastmod>2025-01-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/techblog/tags/linux/</loc>
+    <lastmod>2025-01-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/techblog/tags/operating-systems/</loc>
+    <lastmod>2025-01-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/techblog/tags/prolug/</loc>
+    <lastmod>2025-01-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/techblog/post/k8sent/</loc>
+    <lastmod>2025-01-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/techblog/tags/</loc>
+    <lastmod>2025-01-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/techblog/tags/talos/</loc>
+    <lastmod>2025-01-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/techblog/tags/tech/</loc>
+    <lastmod>2025-01-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/techblog/tags/dev-ops/</loc>
+    <lastmod>2024-12-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/techblog/categories/experience/</loc>
+    <lastmod>2024-12-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/techblog/tags/infrastructure/</loc>
+    <lastmod>2024-12-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/techblog/tags/k3s/</loc>
+    <lastmod>2024-12-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/techblog/tags/platform-engineering/</loc>
+    <lastmod>2024-12-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/techblog/tags/rancher/</loc>
+    <lastmod>2024-12-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/techblog/post/k3s/</loc>
+    <lastmod>2024-12-29T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/techblog/tags/graduation/</loc>
     <lastmod>2024-12-28T00:00:00+00:00</lastmod>
@@ -20,31 +89,10 @@
     <loc>http://localhost:1313/techblog/tags/incident-response/</loc>
     <lastmod>2024-12-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/categories/learning/</loc>
-    <lastmod>2024-12-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/techblog/tags/linux/</loc>
-    <lastmod>2024-12-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/techblog/tags/operating-systems/</loc>
-    <lastmod>2024-12-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/techblog/post/</loc>
-    <lastmod>2024-12-28T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/techblog/post/pacu16/</loc>
     <lastmod>2024-12-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/techblog/tags/prolug-course/</loc>
-    <lastmod>2024-12-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/techblog/tags/</loc>
-    <lastmod>2024-12-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/techblog/tags/tech/</loc>
-    <lastmod>2024-12-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/techblog/</loc>
     <lastmod>2024-12-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/techblog/tags/trouble-shooting/</loc>
@@ -63,9 +111,6 @@
     <lastmod>2024-12-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/techblog/tags/declaritive/</loc>
-    <lastmod>2024-12-22T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/techblog/tags/iac/</loc>
     <lastmod>2024-12-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/techblog/post/pacu14/</loc>
@@ -140,16 +185,7 @@
     <loc>http://localhost:1313/techblog/tags/filesystems/</loc>
     <lastmod>2024-10-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/techblog/tags/k3s/</loc>
-    <lastmod>2024-10-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/techblog/tags/kubernetes/</loc>
-    <lastmod>2024-10-03T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/techblog/post/btrfs/</loc>
-    <lastmod>2024-10-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/techblog/post/k3s/</loc>
     <lastmod>2024-10-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/techblog/post/paccp3/</loc>
@@ -201,9 +237,6 @@
     <lastmod>2024-09-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/techblog/categories/projects/</loc>
-    <lastmod>2024-09-10T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/techblog/tags/prolug/</loc>
     <lastmod>2024-09-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/techblog/tags/study-technique/</loc>

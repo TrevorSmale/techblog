@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/techblog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=techblog/livereload" data-no-instant defer></script>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <meta name="description" content="What I learned about Rust on Embedded Hardware and why some features greatly improve the development experience.">
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.140.2">
+  <title>Embedded Rust? 🦀 | Tech Blog</title>
+  <link rel="canonical" href="http://localhost:1313/techblog/post/rsembedd1/">
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+    <link rel="stylesheet" href="/techblog/css/base.css">
+
+    <link rel="stylesheet" href="/techblog/css/syntax.css">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <a class="Banner-link u-clickable" href="/techblog/">Tech Blog</a>
+      </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/about/">About</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/post/">Posts</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/tags/">Tags</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/categories/">Categories</a>
+        </li>
+      
+        
+        
+          
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/feed.xml">RSS</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/rsembedd1/" rel="bookmark">Embedded Rust? 🦀</a>
+  </h1>
+  
+    <time datetime="2025-01-12T00:00:00Z">January 12, 2025</time>
+  
+</header>
+  <h1 id="yes">
+  <a class="Heading-link u-clickable" href="/techblog/post/rsembedd1/#yes">Yes</a>
+</h1>
+<p>Firstly Rust on Embedded is a different beast as the standard library is not used and memory safety is not on by default. However, there are still some advantages over a popular language like C or C++. <strong>HAL</strong> or Hardware Abstraction Layer separates the hardware from the code enabling more portable software that can compile to multiple architectures. Cargo improves development ergonomic by creating and managing the project and its dependancies. Thirdly, the build system is unified across platforms, so code will compile on Windows, Mac and Linux in the same way.
+Rust on embedded systems is a different challenge, as it does not use the standard library, and memory safety is not enabled by default. However, it still offers several advantages over popular languages like C or C++.
+One key benefit is the Hardware Abstraction Layer (HAL), which separates hardware-specific details from the code, enabling more portable software that can compile across multiple architectures. Additionally, Cargo enhances development ergonomics by simplifying project and dependency management.
+Lastly, Rust’s unified build system ensures consistent behavior across platforms, allowing code to compile seamlessly on Windows, macOS, and Linux.</p>
+
+
+
+<h2 id="hal-">
+  <a class="Heading-link u-clickable" href="/techblog/post/rsembedd1/#hal-">HAL 🪢</a>
+</h2>
+<p>Is really interesting, it is the concept of mapping hardware and storing the map for API access.
+HAL leverages Peripheral Access Crates (PACs), which are auto-generated Rust crates representing the registers and bitfields of a microcontroller. PACs allow safe and direct access to hardware registers while ensuring Rust’s strict type-checking and ownership rules are followed. HAL sits on top of PACs, abstracting these low-level details.
+Rust embedded HALs adhere to the embedded-hal traits—a collection of interfaces defining common operations like GPIO pin control, SPI/I2C communication, timers, and ADC usage. By implementing these traits, HAL provides a uniform way to interact with hardware, regardless of the underlying platform.
+HAL abstracts device-specific features into a user-friendly API. For example:</p>
+<ul>
+<li>Configuring a GPIO pin involves selecting its mode (input, output, pull-up, etc.) without directly modifying hardware registers.</li>
+<li>Communication protocols like SPI or I2C are exposed through easy-to-use Rust methods (read, write, transfer, etc.).</li>
+</ul>
+
+
+
+<h2 id="cargo-">
+  <a class="Heading-link u-clickable" href="/techblog/post/rsembedd1/#cargo-">Cargo 📦</a>
+</h2>
+<p>Cargo handles dependencies seamlessly using Cargo.toml. Developers specify libraries (called “crates”) with version constraints, and Cargo fetches and builds them automatically.
+Cargo:</p>
+<ul>
+<li>Ensures reproducible builds by generating a Cargo.lock file that locks dependency versions.</li>
+<li>Community-driven ecosystem (e.g., crates.io) simplifies finding and using high-quality, maintained libraries.</li>
+</ul>
+
+
+
+<h3 id="managing-dependancies--with-cargotoml">
+  <a class="Heading-link u-clickable" href="/techblog/post/rsembedd1/#managing-dependancies--with-cargotoml">Managing Dependancies ⚙️ with Cargo.toml</a>
+</h3>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">dependencies</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">embedded-hal</span> <span class="p">=</span> <span class="s2">&#34;0.2.6&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">stm32f4xx-hal</span> <span class="p">=</span> <span class="s2">&#34;0.14&#34;</span></span></span></code></pre></div>
+
+
+
+<h3 id="cross-compilation-support-is-integrated-via-targets-">
+  <a class="Heading-link u-clickable" href="/techblog/post/rsembedd1/#cross-compilation-support-is-integrated-via-targets-">Cross-compilation support is integrated via targets 🎯</a>
+</h3>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cargo build --target thumbv7em-none-eabihf</span></span></code></pre></div>
+
+
+
+<h3 id="enforced-project-structure-">
+  <a class="Heading-link u-clickable" href="/techblog/post/rsembedd1/#enforced-project-structure-">Enforced project Structure 👮‍♂️</a>
+</h3>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">my_project/
+</span></span><span class="line"><span class="cl">├── Cargo.toml       <span class="c1"># Dependencies &amp; configuration</span>
+</span></span><span class="line"><span class="cl">└── src/
+</span></span><span class="line"><span class="cl">    └── main.rs      <span class="c1"># Application entry point</span></span></span></code></pre></div>
+
+
+
+<h2 id="cross-platform--">
+  <a class="Heading-link u-clickable" href="/techblog/post/rsembedd1/#cross-platform--">Cross Platform 💻 💼</a>
+</h2>
+<ul>
+<li>Tools like probe-rs allow seamless debugging and flashing of embedded devices on multiple platforms (Linux, macOS, Windows).</li>
+<li>The cargo ecosystem integrates testing, building, and dependency management across platforms without additional tools.</li>
+</ul>
+
+
+
+<h2 id="experienced-embedded-devs-are-switching">
+  <a class="Heading-link u-clickable" href="/techblog/post/rsembedd1/#experienced-embedded-devs-are-switching">Experienced Embedded Devs are switching</a>
+</h2>
+<p>I was first made aware of Rust for embedded by experienced devs on Youtube who proclaimed their love of rust over C for professional projects. Channels like:
+<a href="https://www.youtube.com/@therustybits">https://www.youtube.com/@therustybits</a>
+<a href="https://www.youtube.com/@JaJakubYT">https://www.youtube.com/@JaJakubYT</a>
+<a href="https://www.youtube.com/@floodplainnl">https://www.youtube.com/@floodplainnl</a>
+<a href="https://www.youtube.com/@embedded-rust">https://www.youtube.com/@embedded-rust</a></p>
+<p>are all claiming that they have switched over and are not looking back.</p>
+
+
+
+<h2 id="personal-development">
+  <a class="Heading-link u-clickable" href="/techblog/post/rsembedd1/#personal-development">Personal Development</a>
+</h2>
+<p>I’m writing this post as I plan to develop hardware projects using Rust for embedded systems. The combination of Rust and RISC-V microcontrollers is a particularly exciting intersection. In my sights are the ESP32-C3 and Raspberry Pi Pico 2, both of which I’m considering for upcoming projects. Instead of dealing with messy C, slow MicroPython, or the limitations of TinyGo, Rust allows me to create clean and performant projects—something I always strive for. Stay tuned for more updates!</p>
+  
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/rust/" rel="tag">Rust</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/embedded/" rel="tag">Embedded</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/development/" rel="tag">Development</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+  
+  
+
+
+
+      </div>
+    </div>
+  </main>
+  
+</body>
+
+</html>

@@ -5,10 +5,503 @@
     <title>Kubernetes on Tech Blog</title>
     <link>http://localhost:1313/techblog/tags/kubernetes/</link>
     <description>Recent content in Kubernetes on Tech Blog</description>
-    <generator>Hugo 0.140.1</generator>
+    <generator>Hugo 0.140.2</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 03 Oct 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 11 Jan 2025 00:00:00 +0000</lastBuildDate>
     <atom:link rel="self" href="http://localhost:1313/techblog/tags/kubernetes/feed.xml" type="application/rss+xml" />
+    <item>
+      <title>ProLUG Talk: Kubernetes in the Enterprise</title>
+      <link>http://localhost:1313/techblog/post/k8sent/</link>
+      <pubDate>Sat, 11 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/techblog/post/k8sent/</guid>
+      <description>&lt;h1 id=&#34;kubernetes-in-enterprise&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#kubernetes-in-enterprise&#34;&gt;Kubernetes in Enterprise&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;As a dedicated member of the Professional Linux User Group, I gain valuable insights into essential industry tools, processes, and procedures from professional engineers who work hands-on with major infrastructure.&lt;/p&gt;
+&lt;p&gt;This evening, Michael Pesa of Lambda Labs delivered an excellent talk on best practices with Kubernetes and GitOps, shedding light on the challenges faced by traditional orchestration approaches. What intrigued me most was the discussion on Talos OS and Chainguard, particularly their use of Software Bill of Materials (SBOM). The concept centers around stripping systems down to their bare essentials, which not only reduces vulnerabilities but also improves performance.&lt;/p&gt;
+&lt;p&gt;Talos OS is particularly fascinating because it eliminates many traditional system components like SSH, systemd, glibc, package managers, or a shell. Essentially, Talos is just the Linux kernel with several Go binaries. This streamlined approach significantly reduces vulnerabilities and minimizes the attack surface. As Michael mentioned in his presentation, many vulnerabilities stem from privilege escalation, container escapes, and memory hacking. Talos mitigates most of these threats by enforcing API-driven controls instead of relying on a shell and by utilizing private key-based authentication throughout.&lt;/p&gt;
+&lt;p&gt;I am excited to experiment with these tools in my homelab, where I aim to create a modern, declarative infrastructure with ephemerality at its core.&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h1 id=&#34;-notes-from-the-presentation&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#-notes-from-the-presentation&#34;&gt;📝 Notes from the Presentation:&lt;/a&gt;
+&lt;/h1&gt;
+
+
+
+&lt;h2 id=&#34;topic-covered&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#topic-covered&#34;&gt;Topic Covered&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;immutable-operating-systems&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#immutable-operating-systems&#34;&gt;Immutable operating systems&lt;/a&gt;
+&lt;/h3&gt;
+
+
+
+&lt;h3 id=&#34;minimalist-container-images&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#minimalist-container-images&#34;&gt;Minimalist container images&lt;/a&gt;
+&lt;/h3&gt;
+
+
+
+&lt;h3 id=&#34;gitops-strategies&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#gitops-strategies&#34;&gt;GitOps strategies&lt;/a&gt;
+&lt;/h3&gt;
+
+
+
+&lt;h3 id=&#34;reproducible-builds&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#reproducible-builds&#34;&gt;Reproducible builds&lt;/a&gt;
+&lt;/h3&gt;
+
+
+
+&lt;h2 id=&#34;suse-microos-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#suse-microos-&#34;&gt;SUSE MicroOS 🦎&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Purpose:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Designed as a container host OS.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Features:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Read-only root filesystem for enhanced security.&lt;/li&gt;
+&lt;li&gt;Transactional updates managed via Btrfs snapshots.&lt;/li&gt;
+&lt;li&gt;Cloud environment integration with cloud-init; uses ignition elsewhere.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Usage:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ideal for minimal, secure containerized workloads.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 id=&#34;talos-linux-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#talos-linux-&#34;&gt;Talos Linux 🦅&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;overview&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#overview&#34;&gt;Overview:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Minimalist design focusing on immutability.&lt;/li&gt;
+&lt;li&gt;Linux kernel paired with five Go binaries.&lt;/li&gt;
+&lt;li&gt;Lacks traditional components: no SSH, systemd, glibc, package manager, or shell.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;security&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#security&#34;&gt;Security:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Secure by default with a micro TLS stack and key-based authentication.&lt;/li&gt;
+&lt;li&gt;API-driven operations using YAML, akin to Kubernetes manifests.&lt;/li&gt;
+&lt;li&gt;Uses its own PKI infrastructure, creating a small attack surface.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;tools&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#tools&#34;&gt;Tools:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;talosctl CLI for management.&lt;/li&gt;
+&lt;li&gt;Debugging occurs via ephemeral tools and remote APIs.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;considerations&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#considerations&#34;&gt;Considerations:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Best suited for Kubernetes clusters.&lt;/li&gt;
+&lt;li&gt;For bare-metal installations, use Matchbox or a PXE boot system.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;alternatives&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#alternatives&#34;&gt;Alternatives:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Flatcar and CoreOS are earlier container-focused OS derivatives.&lt;/p&gt;
+
+
+
+&lt;h2 id=&#34;minimal-container-images-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#minimal-container-images-&#34;&gt;Minimal Container Images 👝&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;philosophy&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#philosophy&#34;&gt;Philosophy:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Containers are inherently immutable; minimal images reduce attack surfaces and improve performance.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;best-practices&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#best-practices&#34;&gt;Best Practices:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Use the smallest possible image, minimizing unnecessary dependencies.&lt;/li&gt;
+&lt;li&gt;Employ multi-stage builds for languages with heavy dependencies, separating build and runtime environments.&lt;/li&gt;
+&lt;li&gt;For statically compiled languages like Go, containers can often be reduced to a single binary.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;security-1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#security-1&#34;&gt;Security:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Avoid including shells to reduce exploit vectors.&lt;/li&gt;
+&lt;li&gt;Favor minimal base images like Alpine or tools like Google’s Distroless and Chainguard’s SBOM-integrated containers.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 id=&#34;supply-chain-security-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#supply-chain-security-&#34;&gt;Supply Chain Security 🔗🔐&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;sbom-software-bill-of-materials&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#sbom-software-bill-of-materials&#34;&gt;SBOM (Software Bill of Materials):&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;A detailed list of libraries, packages, versions, and licenses within a container image.&lt;/li&gt;
+&lt;li&gt;Machine-readable format for automated security checks.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;software-attestation&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#software-attestation&#34;&gt;Software Attestation:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Authenticated metadata about an artifact (e.g., a container image).&lt;/li&gt;
+&lt;li&gt;Enables verification of the artifact’s integrity.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;chainguard&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#chainguard&#34;&gt;Chainguard:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Offers streamlined, dependency-minimized packages.&lt;/li&gt;
+&lt;li&gt;Main drawback: constant updates unless on a paid plan.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 id=&#34;challenges-in-immutable-environments-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#challenges-in-immutable-environments-&#34;&gt;Challenges in Immutable Environments ♻️&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;limitations&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#limitations&#34;&gt;Limitations:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Lack of SSH access and debugging tools on nodes and pods.&lt;/li&gt;
+&lt;li&gt;Ephemeral, short-lived infrastructure and read-only filesystems.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;risks&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#risks&#34;&gt;Risks:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;IaC misconfigurations can cause widespread outages.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;mitigation&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#mitigation&#34;&gt;Mitigation:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Implement proper GitOps workflows.&lt;/li&gt;
+&lt;li&gt;Ensure consistency between development, staging, and production environments.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 id=&#34;observability-strategies-in-immutable-environments-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#observability-strategies-in-immutable-environments-&#34;&gt;Observability Strategies in Immutable Environments 👀&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;approaches&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#approaches&#34;&gt;Approaches:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Centralized logging for better insights.&lt;/li&gt;
+&lt;li&gt;Monitor clusters and services rather than individual pods or nodes.&lt;/li&gt;
+&lt;li&gt;Use ephemeral debugging pods or sidecars with shared access.&lt;/li&gt;
+&lt;li&gt;Declarative observability configurations (e.g., using Kubernetes CRDs).&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;principle&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#principle&#34;&gt;Principle:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Treat nodes and pods as “cattle, not pets” to maintain scalability and consistency.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 id=&#34;key-principles-of-gitops-and-declarative-infrastructure-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#key-principles-of-gitops-and-declarative-infrastructure-&#34;&gt;Key Principles of GitOps and Declarative Infrastructure 😰&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;gitops-core-tenets&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#gitops-core-tenets&#34;&gt;GitOps Core Tenets:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Git as the single source of truth.&lt;/li&gt;
+&lt;li&gt;Automated reconciliation with tools like ArgoCD or Flux.&lt;/li&gt;
+&lt;li&gt;Infrastructure changes are auditable and reversible.&lt;/li&gt;
+&lt;li&gt;Prevents unauthorized and ad-hoc changes.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;homelab-use&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#homelab-use&#34;&gt;Homelab Use:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Start with a Talos system in Docker/Podman for experimentation.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 id=&#34;gitops-challenges-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#gitops-challenges-&#34;&gt;GitOps Challenges 😰&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;common-issues&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#common-issues&#34;&gt;Common Issues:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Subtle configuration drift across environments.&lt;/li&gt;
+&lt;li&gt;Risk of manual changes not being committed back to Git.&lt;/li&gt;
+&lt;li&gt;Managing rollouts from dev to staging to production.&lt;/li&gt;
+&lt;li&gt;Scaling to hundreds of clusters.&lt;/li&gt;
+&lt;li&gt;Variations in deployment strategies across teams.&lt;/li&gt;
+&lt;li&gt;Securely managing secrets outside Git (e.g., Kubernetes Secrets, HashiCorp Vault).&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 id=&#34;the-gitflow-workflow-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#the-gitflow-workflow-&#34;&gt;The GitFlow Workflow 💨&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;workflow-overview&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#workflow-overview&#34;&gt;Workflow Overview:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Developers create long-lived feature branches.&lt;/li&gt;
+&lt;li&gt;Separate primary branches for development, hotfixes, and releases.&lt;/li&gt;
+&lt;li&gt;The trunk (dev) branch isn’t always stable or deployable.&lt;/li&gt;
+&lt;li&gt;Multi-environment deployments often use separate release branches.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;complexity&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#complexity&#34;&gt;Complexity:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Complex merging strategies, especially for hotfixes.&lt;/li&gt;
+&lt;li&gt;Tools like ArgoCD or Flux can automate deployments.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 id=&#34;trunk-based-development-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#trunk-based-development-&#34;&gt;Trunk-Based Development 🐘&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;overview-1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#overview-1&#34;&gt;Overview:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Continuous integration with short-lived feature branches.&lt;/li&gt;
+&lt;li&gt;Frequent commits directly to the main branch.&lt;/li&gt;
+&lt;li&gt;Emphasizes small, incremental changes to reduce merge conflicts.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;advantages&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#advantages&#34;&gt;Advantages:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Simplifies CI/CD pipelines.&lt;/li&gt;
+&lt;li&gt;Encourages fast feedback and rapid delivery.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;tools-1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#tools-1&#34;&gt;Tools:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Works seamlessly with automated systems like Kubernetes or Terraform.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+
+
+
+&lt;h3 id=&#34;prolug-links-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#prolug-links-&#34;&gt;ProLUG Links ⛓️&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Discord: &lt;a href=&#34;https://discord.com/invite/m6VPPD9usw&#34;&gt;https://discord.com/invite/m6VPPD9usw&lt;/a&gt;
+Youtube: &lt;a href=&#34;https://www.youtube.com/@het_tanis8213&#34;&gt;https://www.youtube.com/@het_tanis8213&lt;/a&gt;
+Twitch: &lt;a href=&#34;https://www.twitch.tv/het_tanis&#34;&gt;https://www.twitch.tv/het_tanis&lt;/a&gt;
+ProLUG Book: &lt;a href=&#34;https://leanpub.com/theprolugbigbookoflabs&#34;&gt;https://leanpub.com/theprolugbigbookoflabs&lt;/a&gt;
+KillerCoda: &lt;a href=&#34;https://killercoda.com/het-tanis&#34;&gt;https://killercoda.com/het-tanis&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Why K8S matters</title>
+      <link>http://localhost:1313/techblog/post/k3s/</link>
+      <pubDate>Sun, 29 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/techblog/post/k3s/</guid>
+      <description>&lt;h1 id=&#34;kubernetes-is-important-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#kubernetes-is-important-&#34;&gt;Kubernetes is Important 🌐🐳&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Despite the jokes or criticisms you may have heard, Kubernetes matters a lot. Once I understood the &amp;ldquo;Why,&amp;rdquo; I became much more motivated to learn the &amp;ldquo;How.&amp;rdquo; This is how I got started with Kubernetes using my Proxmox Home-Lab and K3S.&lt;/p&gt;
+&lt;p&gt;Firstly, I would like to illuminate the &amp;ldquo;Why,&amp;rdquo; as it’s an important philosophy to grasp before diving in. I firmly believe in understanding the &amp;ldquo;Why&amp;rdquo; before the &amp;ldquo;How.&amp;rdquo; 🧠&lt;/p&gt;
+
+
+
+&lt;h2 id=&#34;a-brief-history-of-infrastructure-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#a-brief-history-of-infrastructure-&#34;&gt;A Brief History of Infrastructure 🕰️&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;the-evolution-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#the-evolution-&#34;&gt;The Evolution 💾&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Many moons ago 🌛, internet infrastructure relied on operating systems to run services. Unix and Linux were preferred because they are multi-user environments suitable for serving files to requesters. In fact, the first implementation of TCP was written on a UNIX system running on a NextSTEP computer. 🖥️ This model worked for decades: more users meant more machines. However, issues arose. Machines would go down, causing cascading effects. ⚠️ Misconfigurations wreaked havoc, and machines often ran inefficiently, either wasting resources or straining hardware. 🔧&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;in-comes-virtualization-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#in-comes-virtualization-&#34;&gt;In Comes Virtualization 💻✨&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Virtualization revolutionized infrastructure by allowing computers to be divided into independent virtual machines (VMs). A VM is a fully self-contained operating system. This innovation enabled more efficient utilization of hardware, increased flexibility, and reduced downtime caused by hardware failures. 🚀&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;containers-changed-the-game-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#containers-changed-the-game-&#34;&gt;Containers Changed the Game 🐳📦&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Containers brought another layer of efficiency and standardization. Unlike VMs, containers share the host operating system’s kernel but encapsulate applications and their dependencies. This reduces overhead and enables applications to run consistently across different environments. 🌍 Developers could now &amp;ldquo;build once, run anywhere,&amp;rdquo; making containers a key tool in modern infrastructure. 🛠️&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;orchestration-was-needed-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#orchestration-was-needed-&#34;&gt;Orchestration Was Needed 🤖🎛️&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;As the use of containers exploded, managing them became increasingly complex. Deploying, scaling, monitoring, and maintaining hundreds or thousands of containers manually was impractical. This is where orchestration tools like Kubernetes stepped in, automating these tasks and ensuring applications are always running, balanced, and recoverable in case of failures. ✅&lt;/p&gt;
+
+
+
+&lt;h2 id=&#34;the-why-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#the-why-&#34;&gt;The Why 🤔&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Understanding the &amp;ldquo;Why&amp;rdquo; is key to appreciating Kubernetes&amp;rsquo; value. Here are some of the core reasons:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Monitoring&lt;/strong&gt; 📊: Kubernetes provides tools and integrations to monitor your workloads, ensuring you can observe application health and performance in real time.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Logging&lt;/strong&gt; 📝: Centralized logging in Kubernetes makes it easy to trace and debug issues across distributed systems.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Security&lt;/strong&gt; 🔒: Kubernetes enhances security through role-based access control (RBAC), network policies, and automatic updates, reducing vulnerabilities in production systems.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ephemerality&lt;/strong&gt; 🌀: Kubernetes embraces the concept of ephemeral workloads, where containers can be replaced automatically if they fail, ensuring high availability.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Reproducibility&lt;/strong&gt; 🔄: Kubernetes enables reproducible deployments by using declarative configurations, allowing you to deploy the same infrastructure consistently across environments.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;By addressing these challenges, Kubernetes transforms the way infrastructure is managed and applications are deployed, making it a cornerstone of modern cloud-native computing. ☁️&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;during-week-10-of-the-prolug-course-1-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#during-week-10-of-the-prolug-course-1-&#34;&gt;During Week 10 of the ProLUG Course &lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; 🛠️📚&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;John Champine&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;, an OpenShift Engineer, delivered a compelling two-hour presentation on Kubernetes and OpenShift. His anecdotes and technical insights were especially engaging, offering both rich historical context drawn from his personal experience and intricate details about shared resource management. 🖥️⚙️&lt;/p&gt;
+
+
+
+&lt;h2 id=&#34;my-experience-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#my-experience-&#34;&gt;My Experience 💻🔧&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;I heavily utilize Proxmox VE to build out simulated production environments where I can practice various administrative and engineering tasks. In my homelab, I installed K3S and Talos to create a typical dev/testing/production environment. 🌐 One particularly unique workflow I used involved building custom Podman containers—yes, Podman! 🐋&lt;/p&gt;
+&lt;p&gt;It’s not widely known that &lt;code&gt;podman play kube&lt;/code&gt; &lt;sup id=&#34;fnref:3&#34;&gt;&lt;a href=&#34;#fn:3&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;3&lt;/a&gt;&lt;/sup&gt; can create a manifest for use in Kubernetes pods. With this method, I could prototype and build out containers, functionally test them, and then publish them for declarative deployment. This approach felt incredibly slick to me, as bugs were ironed out during the process, and the final deployment was straightforward. ✅🛠️&lt;/p&gt;
+&lt;p&gt;Most of my work was done with K3S&lt;sup id=&#34;fnref:4&#34;&gt;&lt;a href=&#34;#fn:4&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;4&lt;/a&gt;&lt;/sup&gt;, a Rancher&lt;sup id=&#34;fnref:5&#34;&gt;&lt;a href=&#34;#fn:5&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;5&lt;/a&gt;&lt;/sup&gt;-based distro designed for low-resource environments. However, I also experimented with Talos OS, setting up multiple virtual machines in a configuration resembling a multi-machine/node environment—with a sprinkle of jank to keep things interesting. 🤖✨&lt;/p&gt;
+&lt;p&gt;This hands-on approach allowed me to deepen my understanding of Kubernetes while also refining workflows that integrate containerization and orchestration. 🚀&lt;/p&gt;
+
+
+
+&lt;h2 id=&#34;respect-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#respect-&#34;&gt;Respect 🙌&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;From these experiences, I have developed a deep respect for Kubernetes. I see it as the operating system of the internet—an innovation that will inspire other similar systems. 🌐 While newer technologies like MicroVMs and hybrid container/VM architectures are emerging, I believe they can be easily incorporated into orchestration schemes like Kubernetes. 🤖🛠️&lt;/p&gt;
+&lt;p&gt;Given this perspective, I think Kubernetes will remain relevant for a long time, much like Unix/Linux. 🐧 It simply makes sense given the strenuous demands of the modern internet and the ever-growing number of attacks and incidents. Such a resilient system enables greater efficiency, enhanced security, and improved situational awareness for everyone. 🔒🚀&lt;/p&gt;
+
+
+
+&lt;h2 id=&#34;footnotes&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#footnotes&#34;&gt;Footnotes&lt;/a&gt;
+&lt;/h2&gt;
+&lt;div class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;
+&lt;p&gt;The above quote is excerpted from an earlier BlogPost &lt;a href=&#34;https://trevorsmale.github.io/techblog/post/pacu10/&#34;&gt;Post&lt;/a&gt; techblog, 2024.&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:2&#34;&gt;
+&lt;p&gt;John Champine &lt;a href=&#34;https://www.linkedin.com/in/john-champine-2ba878114?trk=people-guest_people_search-card&#34;&gt;Profile&lt;/a&gt; LinkedIn, 2024.&amp;#160;&lt;a href=&#34;#fnref:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:3&#34;&gt;
+&lt;p&gt;Podman Export &lt;a href=&#34;https://docs.podman.io/en/v3.4.1/markdown/podman-play-kube.1.html&#34;&gt;Docs&lt;/a&gt; Podman Docs, 2019.&amp;#160;&lt;a href=&#34;#fnref:3&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:4&#34;&gt;
+&lt;p&gt;K3S Website &lt;a href=&#34;https://k3s.io/&#34;&gt;Site&lt;/a&gt; Site, 2025.&amp;#160;&lt;a href=&#34;#fnref:4&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:5&#34;&gt;
+&lt;p&gt;Rancher Website &lt;a href=&#34;https://www.rancher.com/&#34;&gt;Site&lt;/a&gt; Site, 2025.&amp;#160;&lt;a href=&#34;#fnref:5&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+    </item>
     <item>
       <title>ProLUG Admin Course Unit 16 🐧</title>
       <link>http://localhost:1313/techblog/post/pacu16/</link>
@@ -6299,75 +6792,6 @@ Footnotes&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
-    </item>
-    <item>
-      <title>Why K8S matters</title>
-      <link>http://localhost:1313/techblog/post/k3s/</link>
-      <pubDate>Thu, 03 Oct 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/techblog/post/k3s/</guid>
-      <description>&lt;h1 id=&#34;kubernetes-is-important&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#kubernetes-is-important&#34;&gt;Kubernetes is Important&lt;/a&gt;
-&lt;/h1&gt;
-&lt;p&gt;Despite the jokes or criticisms you may have heard, Kubernetes matters a lot. Once I understood the &amp;ldquo;Why,&amp;rdquo; I became much more motivated to learn the &amp;ldquo;How.&amp;rdquo; This is how I got started with Kubernetes using my Proxmox homelab and K3S. Firstly, I would like to illuminate the &amp;ldquo;Why,&amp;rdquo; as it’s an important philosophy to grasp before diving in. I firmly believe in understanding the &amp;ldquo;Why&amp;rdquo; before the &amp;ldquo;How.&amp;rdquo;&lt;/p&gt;
-
-
-
-&lt;h2 id=&#34;a-brief-history-of-infrastructure&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#a-brief-history-of-infrastructure&#34;&gt;A Brief History of Infrastructure&lt;/a&gt;
-&lt;/h2&gt;
-
-
-
-&lt;h3 id=&#34;the-evolution-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#the-evolution-&#34;&gt;The Evolution 💾&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;Many moons ago 🌛, internet infrastructure relied on operating systems to run services. Unix and Linux were preferred because they are multi-user environments suitable for serving files to requesters. In fact, the first implementation of TCP was written on a UNIX system running on a NextSTEP computer. This model worked for decades: more users meant more machines. However, issues arose. Machines would go down, causing cascading effects. Misconfigurations wreaked havoc, and machines often ran inefficiently, either wasting resources or straining hardware.&lt;/p&gt;
-
-
-
-&lt;h3 id=&#34;in-comes-virtualization&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#in-comes-virtualization&#34;&gt;In Comes Virtualization&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;Virtualization revolutionized infrastructure by allowing computers to be divided into independent virtual machines (VMs). A VM is a fully self-contained operating system. This innovation enabled more efficient utilization of hardware, increased flexibility, and reduced downtime caused by hardware failures.&lt;/p&gt;
-
-
-
-&lt;h3 id=&#34;containers-changed-the-game&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#containers-changed-the-game&#34;&gt;Containers Changed the Game&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;Containers brought another layer of efficiency and standardization. Unlike VMs, containers share the host operating system’s kernel but encapsulate applications and their dependencies. This reduces overhead and enables applications to run consistently across different environments. Developers could now &amp;ldquo;build once, run anywhere,&amp;rdquo; making containers a key tool in modern infrastructure.&lt;/p&gt;
-
-
-
-&lt;h3 id=&#34;orchestration-was-needed&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#orchestration-was-needed&#34;&gt;Orchestration Was Needed&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;As the use of containers exploded, managing them became increasingly complex. Deploying, scaling, monitoring, and maintaining hundreds or thousands of containers manually was impractical. This is where orchestration tools like Kubernetes stepped in, automating these tasks and ensuring applications are always running, balanced, and recoverable in case of failures.&lt;/p&gt;
-
-
-
-&lt;h2 id=&#34;the-why&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#the-why&#34;&gt;The Why&lt;/a&gt;
-&lt;/h2&gt;
-&lt;p&gt;Understanding the &amp;ldquo;Why&amp;rdquo; is key to appreciating Kubernetes&amp;rsquo; value. Here are some of the core reasons:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Monitoring&lt;/strong&gt;: Kubernetes provides tools and integrations to monitor your workloads, ensuring you can observe application health and performance in real time.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Logging&lt;/strong&gt;: Centralized logging in Kubernetes makes it easy to trace and debug issues across distributed systems.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Security&lt;/strong&gt;: Kubernetes enhances security through role-based access control (RBAC), network policies, and automatic updates, reducing vulnerabilities in production systems.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Ephemerality&lt;/strong&gt;: Kubernetes embraces the concept of ephemeral workloads, where containers can be replaced automatically if they fail, ensuring high availability.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Reproducibility&lt;/strong&gt;: Kubernetes enables reproducible deployments by using declarative configurations, allowing you to deploy the same infrastructure consistently across environments.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;By addressing these challenges, Kubernetes transforms the way infrastructure is managed and applications are deployed, making it a cornerstone of modern cloud-native computing.&lt;/p&gt;
-&lt;hr&gt;
-
-
-
-&lt;h3 id=&#34;helpful-links-&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k3s/#helpful-links-&#34;&gt;Helpful Links ⛓️&lt;/a&gt;
-&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Btrfs&#34;&gt;https://en.wikipedia.org/wiki/Btrfs&lt;/a&gt;
-&lt;a href=&#34;https://docs.kernel.org/filesystems/btrfs.html&#34;&gt;https://docs.kernel.org/filesystems/btrfs.html&lt;/a&gt;
-Footnotes&lt;/p&gt;</description>
     </item>
     <item>
       <title>ProLUG Admin Course Capstone Project Stage 3 🐧</title>

@@ -208,8 +208,3 @@ ProLUG Book: https://leanpub.com/theprolugbigbookoflabs
 KillerCoda: https://killercoda.com/het-tanis
 
 
-[^1]: Operations Bridge [Wiki](https://cio-wiki.org/wiki/Operations_Bridge) CIO-WIKI, 2024.
-[^2]: Incident Response Cheatsheet Version 1.8 [PDF Reference](https://zeltser.com/media/docs/security-incident-survey-cheat-sheet.pdf?msc=Cheat+Sheet+Blog) Lenny Zeltser, 2024.
-[^3]: Detailed Crisis Management Procedure [Blog](https://trevorsmale.github.io/techblog/PACU4) Trevor Smale, 2024.
-[^4]: Battle Drill [Wiki](https://en.wikipedia.org/wiki/Battle_drill) Wikipedia.org, 2024.
-[^5]: Note Taking [Software](https://logseq.com/)

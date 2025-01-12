@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/techblog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=techblog/livereload" data-no-instant defer></script>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <meta name="description" content="Notes and pontification regarding a talk by Michael Pesa of Lambda Labs held in ProLUG">
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.140.2">
+  <title>ProLUG Talk: Kubernetes in the Enterprise | Tech Blog</title>
+  <link rel="canonical" href="http://localhost:1313/techblog/post/k8sent/">
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+    <link rel="stylesheet" href="/techblog/css/base.css">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <a class="Banner-link u-clickable" href="/techblog/">Tech Blog</a>
+      </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/about/">About</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/post/">Posts</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/tags/">Tags</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/categories/">Categories</a>
+        </li>
+      
+        
+        
+          
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/feed.xml">RSS</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/k8sent/" rel="bookmark">ProLUG Talk: Kubernetes in the Enterprise</a>
+  </h1>
+  
+    <time datetime="2025-01-11T00:00:00Z">January 11, 2025</time>
+  
+</header>
+  <h1 id="kubernetes-in-enterprise">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#kubernetes-in-enterprise">Kubernetes in Enterprise</a>
+</h1>
+<p>As a dedicated member of the Professional Linux User Group, I gain valuable insights into essential industry tools, processes, and procedures from professional engineers who work hands-on with major infrastructure.</p>
+<p>This evening, Michael Pesa of Lambda Labs delivered an excellent talk on best practices with Kubernetes and GitOps, shedding light on the challenges faced by traditional orchestration approaches. What intrigued me most was the discussion on Talos OS and Chainguard, particularly their use of Software Bill of Materials (SBOM). The concept centers around stripping systems down to their bare essentials, which not only reduces vulnerabilities but also improves performance.</p>
+<p>Talos OS is particularly fascinating because it eliminates many traditional system components like SSH, systemd, glibc, package managers, or a shell. Essentially, Talos is just the Linux kernel with several Go binaries. This streamlined approach significantly reduces vulnerabilities and minimizes the attack surface. As Michael mentioned in his presentation, many vulnerabilities stem from privilege escalation, container escapes, and memory hacking. Talos mitigates most of these threats by enforcing API-driven controls instead of relying on a shell and by utilizing private key-based authentication throughout.</p>
+<p>I am excited to experiment with these tools in my homelab, where I aim to create a modern, declarative infrastructure with ephemerality at its core.</p>
+<hr>
+
+
+
+<h1 id="-notes-from-the-presentation">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#-notes-from-the-presentation">📝 Notes from the Presentation:</a>
+</h1>
+
+
+
+<h2 id="topic-covered">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#topic-covered">Topic Covered</a>
+</h2>
+
+
+
+<h3 id="immutable-operating-systems">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#immutable-operating-systems">Immutable operating systems</a>
+</h3>
+
+
+
+<h3 id="minimalist-container-images">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#minimalist-container-images">Minimalist container images</a>
+</h3>
+
+
+
+<h3 id="gitops-strategies">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#gitops-strategies">GitOps strategies</a>
+</h3>
+
+
+
+<h3 id="reproducible-builds">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#reproducible-builds">Reproducible builds</a>
+</h3>
+
+
+
+<h2 id="suse-microos-">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#suse-microos-">SUSE MicroOS 🦎</a>
+</h2>
+<p><strong>Purpose:</strong></p>
+<ul>
+<li>Designed as a container host OS.</li>
+</ul>
+<p><strong>Features:</strong></p>
+<ul>
+<li>Read-only root filesystem for enhanced security.</li>
+<li>Transactional updates managed via Btrfs snapshots.</li>
+<li>Cloud environment integration with cloud-init; uses ignition elsewhere.</li>
+</ul>
+<p><strong>Usage:</strong></p>
+<ul>
+<li>Ideal for minimal, secure containerized workloads.</li>
+</ul>
+
+
+
+<h2 id="talos-linux-">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#talos-linux-">Talos Linux 🦅</a>
+</h2>
+
+
+
+<h3 id="overview">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#overview">Overview:</a>
+</h3>
+<ul>
+<li>Minimalist design focusing on immutability.</li>
+<li>Linux kernel paired with five Go binaries.</li>
+<li>Lacks traditional components: no SSH, systemd, glibc, package manager, or shell.</li>
+</ul>
+
+
+
+<h3 id="security">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#security">Security:</a>
+</h3>
+<ul>
+<li>Secure by default with a micro TLS stack and key-based authentication.</li>
+<li>API-driven operations using YAML, akin to Kubernetes manifests.</li>
+<li>Uses its own PKI infrastructure, creating a small attack surface.</li>
+</ul>
+
+
+
+<h3 id="tools">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#tools">Tools:</a>
+</h3>
+<ul>
+<li>talosctl CLI for management.</li>
+<li>Debugging occurs via ephemeral tools and remote APIs.</li>
+</ul>
+
+
+
+<h3 id="considerations">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#considerations">Considerations:</a>
+</h3>
+<ul>
+<li>Best suited for Kubernetes clusters.</li>
+<li>For bare-metal installations, use Matchbox or a PXE boot system.</li>
+</ul>
+
+
+
+<h3 id="alternatives">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#alternatives">Alternatives:</a>
+</h3>
+<p>Flatcar and CoreOS are earlier container-focused OS derivatives.</p>
+
+
+
+<h2 id="minimal-container-images-">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#minimal-container-images-">Minimal Container Images 👝</a>
+</h2>
+
+
+
+<h3 id="philosophy">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#philosophy">Philosophy:</a>
+</h3>
+<ul>
+<li>Containers are inherently immutable; minimal images reduce attack surfaces and improve performance.</li>
+</ul>
+
+
+
+<h3 id="best-practices">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#best-practices">Best Practices:</a>
+</h3>
+<ul>
+<li>Use the smallest possible image, minimizing unnecessary dependencies.</li>
+<li>Employ multi-stage builds for languages with heavy dependencies, separating build and runtime environments.</li>
+<li>For statically compiled languages like Go, containers can often be reduced to a single binary.</li>
+</ul>
+
+
+
+<h3 id="security-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#security-1">Security:</a>
+</h3>
+<ul>
+<li>Avoid including shells to reduce exploit vectors.</li>
+<li>Favor minimal base images like Alpine or tools like Google’s Distroless and Chainguard’s SBOM-integrated containers.</li>
+</ul>
+
+
+
+<h2 id="supply-chain-security-">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#supply-chain-security-">Supply Chain Security 🔗🔐</a>
+</h2>
+
+
+
+<h3 id="sbom-software-bill-of-materials">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#sbom-software-bill-of-materials">SBOM (Software Bill of Materials):</a>
+</h3>
+<ul>
+<li>A detailed list of libraries, packages, versions, and licenses within a container image.</li>
+<li>Machine-readable format for automated security checks.</li>
+</ul>
+
+
+
+<h3 id="software-attestation">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#software-attestation">Software Attestation:</a>
+</h3>
+<ul>
+<li>Authenticated metadata about an artifact (e.g., a container image).</li>
+<li>Enables verification of the artifact’s integrity.</li>
+</ul>
+
+
+
+<h3 id="chainguard">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#chainguard">Chainguard:</a>
+</h3>
+<ul>
+<li>Offers streamlined, dependency-minimized packages.</li>
+<li>Main drawback: constant updates unless on a paid plan.</li>
+</ul>
+
+
+
+<h2 id="challenges-in-immutable-environments-">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#challenges-in-immutable-environments-">Challenges in Immutable Environments ♻️</a>
+</h2>
+
+
+
+<h3 id="limitations">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#limitations">Limitations:</a>
+</h3>
+<ul>
+<li>Lack of SSH access and debugging tools on nodes and pods.</li>
+<li>Ephemeral, short-lived infrastructure and read-only filesystems.</li>
+</ul>
+
+
+
+<h3 id="risks">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#risks">Risks:</a>
+</h3>
+<ul>
+<li>IaC misconfigurations can cause widespread outages.</li>
+</ul>
+
+
+
+<h3 id="mitigation">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#mitigation">Mitigation:</a>
+</h3>
+<ul>
+<li>Implement proper GitOps workflows.</li>
+<li>Ensure consistency between development, staging, and production environments.</li>
+</ul>
+
+
+
+<h2 id="observability-strategies-in-immutable-environments-">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#observability-strategies-in-immutable-environments-">Observability Strategies in Immutable Environments 👀</a>
+</h2>
+
+
+
+<h3 id="approaches">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#approaches">Approaches:</a>
+</h3>
+<ul>
+<li>Centralized logging for better insights.</li>
+<li>Monitor clusters and services rather than individual pods or nodes.</li>
+<li>Use ephemeral debugging pods or sidecars with shared access.</li>
+<li>Declarative observability configurations (e.g., using Kubernetes CRDs).</li>
+</ul>
+
+
+
+<h3 id="principle">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#principle">Principle:</a>
+</h3>
+<ul>
+<li>Treat nodes and pods as “cattle, not pets” to maintain scalability and consistency.</li>
+</ul>
+
+
+
+<h2 id="key-principles-of-gitops-and-declarative-infrastructure-">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#key-principles-of-gitops-and-declarative-infrastructure-">Key Principles of GitOps and Declarative Infrastructure 😰</a>
+</h2>
+
+
+
+<h3 id="gitops-core-tenets">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#gitops-core-tenets">GitOps Core Tenets:</a>
+</h3>
+<ul>
+<li>Git as the single source of truth.</li>
+<li>Automated reconciliation with tools like ArgoCD or Flux.</li>
+<li>Infrastructure changes are auditable and reversible.</li>
+<li>Prevents unauthorized and ad-hoc changes.</li>
+</ul>
+
+
+
+<h3 id="homelab-use">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#homelab-use">Homelab Use:</a>
+</h3>
+<ul>
+<li>Start with a Talos system in Docker/Podman for experimentation.</li>
+</ul>
+
+
+
+<h2 id="gitops-challenges-">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#gitops-challenges-">GitOps Challenges 😰</a>
+</h2>
+
+
+
+<h3 id="common-issues">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#common-issues">Common Issues:</a>
+</h3>
+<ul>
+<li>Subtle configuration drift across environments.</li>
+<li>Risk of manual changes not being committed back to Git.</li>
+<li>Managing rollouts from dev to staging to production.</li>
+<li>Scaling to hundreds of clusters.</li>
+<li>Variations in deployment strategies across teams.</li>
+<li>Securely managing secrets outside Git (e.g., Kubernetes Secrets, HashiCorp Vault).</li>
+</ul>
+
+
+
+<h2 id="the-gitflow-workflow-">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#the-gitflow-workflow-">The GitFlow Workflow 💨</a>
+</h2>
+
+
+
+<h3 id="workflow-overview">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#workflow-overview">Workflow Overview:</a>
+</h3>
+<ul>
+<li>Developers create long-lived feature branches.</li>
+<li>Separate primary branches for development, hotfixes, and releases.</li>
+<li>The trunk (dev) branch isn’t always stable or deployable.</li>
+<li>Multi-environment deployments often use separate release branches.</li>
+</ul>
+
+
+
+<h3 id="complexity">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#complexity">Complexity:</a>
+</h3>
+<ul>
+<li>Complex merging strategies, especially for hotfixes.</li>
+<li>Tools like ArgoCD or Flux can automate deployments.</li>
+</ul>
+
+
+
+<h2 id="trunk-based-development-">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#trunk-based-development-">Trunk-Based Development 🐘</a>
+</h2>
+
+
+
+<h3 id="overview-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#overview-1">Overview:</a>
+</h3>
+<ul>
+<li>Continuous integration with short-lived feature branches.</li>
+<li>Frequent commits directly to the main branch.</li>
+<li>Emphasizes small, incremental changes to reduce merge conflicts.</li>
+</ul>
+
+
+
+<h3 id="advantages">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#advantages">Advantages:</a>
+</h3>
+<ul>
+<li>Simplifies CI/CD pipelines.</li>
+<li>Encourages fast feedback and rapid delivery.</li>
+</ul>
+
+
+
+<h3 id="tools-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#tools-1">Tools:</a>
+</h3>
+<ul>
+<li>Works seamlessly with automated systems like Kubernetes or Terraform.</li>
+</ul>
+<hr>
+
+
+
+<h3 id="prolug-links-">
+  <a class="Heading-link u-clickable" href="/techblog/post/k8sent/#prolug-links-">ProLUG Links ⛓️</a>
+</h3>
+<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
+Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
+Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
+ProLUG Book: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
+KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
+  
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/prolug/" rel="tag">ProLUG</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/operating-systems/" rel="tag">Operating Systems</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/kubernetes/" rel="tag">Kubernetes</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/talos/" rel="tag">Talos</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/iac/" rel="tag">IaC</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/gitops/" rel="tag">GitOps</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/devops/" rel="tag">DevOps</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/homelab/" rel="tag">HomeLab</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/immutable-infrastructure/" rel="tag">Immutable Infrastructure</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+  
+  
+
+
+
+      </div>
+    </div>
+  </main>
+  
+</body>
+
+</html>

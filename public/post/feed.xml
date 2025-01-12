@@ -5,10 +5,392 @@
     <title>Posts on Tech Blog</title>
     <link>http://localhost:1313/techblog/post/</link>
     <description>Recent content in Posts on Tech Blog</description>
-    <generator>Hugo 0.140.1</generator>
+    <generator>Hugo 0.140.2</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 29 Dec 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 14 Jan 2025 00:00:00 +0000</lastBuildDate>
     <atom:link rel="self" href="http://localhost:1313/techblog/post/feed.xml" type="application/rss+xml" />
+    <item>
+      <title>ProLUG Talk: Kubernetes in the Enterprise</title>
+      <link>http://localhost:1313/techblog/post/k8sent/</link>
+      <pubDate>Sat, 11 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/techblog/post/k8sent/</guid>
+      <description>&lt;h1 id=&#34;kubernetes-in-enterprise&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#kubernetes-in-enterprise&#34;&gt;Kubernetes in Enterprise&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;As a dedicated member of the Professional Linux User Group, I gain valuable insights into essential industry tools, processes, and procedures from professional engineers who work hands-on with major infrastructure.&lt;/p&gt;
+&lt;p&gt;This evening, Michael Pesa of Lambda Labs delivered an excellent talk on best practices with Kubernetes and GitOps, shedding light on the challenges faced by traditional orchestration approaches. What intrigued me most was the discussion on Talos OS and Chainguard, particularly their use of Software Bill of Materials (SBOM). The concept centers around stripping systems down to their bare essentials, which not only reduces vulnerabilities but also improves performance.&lt;/p&gt;
+&lt;p&gt;Talos OS is particularly fascinating because it eliminates many traditional system components like SSH, systemd, glibc, package managers, or a shell. Essentially, Talos is just the Linux kernel with several Go binaries. This streamlined approach significantly reduces vulnerabilities and minimizes the attack surface. As Michael mentioned in his presentation, many vulnerabilities stem from privilege escalation, container escapes, and memory hacking. Talos mitigates most of these threats by enforcing API-driven controls instead of relying on a shell and by utilizing private key-based authentication throughout.&lt;/p&gt;
+&lt;p&gt;I am excited to experiment with these tools in my homelab, where I aim to create a modern, declarative infrastructure with ephemerality at its core.&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h1 id=&#34;-notes-from-the-presentation&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#-notes-from-the-presentation&#34;&gt;📝 Notes from the Presentation:&lt;/a&gt;
+&lt;/h1&gt;
+
+
+
+&lt;h2 id=&#34;topic-covered&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#topic-covered&#34;&gt;Topic Covered&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;immutable-operating-systems&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#immutable-operating-systems&#34;&gt;Immutable operating systems&lt;/a&gt;
+&lt;/h3&gt;
+
+
+
+&lt;h3 id=&#34;minimalist-container-images&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#minimalist-container-images&#34;&gt;Minimalist container images&lt;/a&gt;
+&lt;/h3&gt;
+
+
+
+&lt;h3 id=&#34;gitops-strategies&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#gitops-strategies&#34;&gt;GitOps strategies&lt;/a&gt;
+&lt;/h3&gt;
+
+
+
+&lt;h3 id=&#34;reproducible-builds&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#reproducible-builds&#34;&gt;Reproducible builds&lt;/a&gt;
+&lt;/h3&gt;
+
+
+
+&lt;h2 id=&#34;suse-microos-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#suse-microos-&#34;&gt;SUSE MicroOS 🦎&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Purpose:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Designed as a container host OS.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Features:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Read-only root filesystem for enhanced security.&lt;/li&gt;
+&lt;li&gt;Transactional updates managed via Btrfs snapshots.&lt;/li&gt;
+&lt;li&gt;Cloud environment integration with cloud-init; uses ignition elsewhere.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Usage:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ideal for minimal, secure containerized workloads.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 id=&#34;talos-linux-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#talos-linux-&#34;&gt;Talos Linux 🦅&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;overview&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#overview&#34;&gt;Overview:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Minimalist design focusing on immutability.&lt;/li&gt;
+&lt;li&gt;Linux kernel paired with five Go binaries.&lt;/li&gt;
+&lt;li&gt;Lacks traditional components: no SSH, systemd, glibc, package manager, or shell.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;security&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#security&#34;&gt;Security:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Secure by default with a micro TLS stack and key-based authentication.&lt;/li&gt;
+&lt;li&gt;API-driven operations using YAML, akin to Kubernetes manifests.&lt;/li&gt;
+&lt;li&gt;Uses its own PKI infrastructure, creating a small attack surface.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;tools&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#tools&#34;&gt;Tools:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;talosctl CLI for management.&lt;/li&gt;
+&lt;li&gt;Debugging occurs via ephemeral tools and remote APIs.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;considerations&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#considerations&#34;&gt;Considerations:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Best suited for Kubernetes clusters.&lt;/li&gt;
+&lt;li&gt;For bare-metal installations, use Matchbox or a PXE boot system.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;alternatives&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#alternatives&#34;&gt;Alternatives:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Flatcar and CoreOS are earlier container-focused OS derivatives.&lt;/p&gt;
+
+
+
+&lt;h2 id=&#34;minimal-container-images-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#minimal-container-images-&#34;&gt;Minimal Container Images 👝&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;philosophy&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#philosophy&#34;&gt;Philosophy:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Containers are inherently immutable; minimal images reduce attack surfaces and improve performance.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;best-practices&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#best-practices&#34;&gt;Best Practices:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Use the smallest possible image, minimizing unnecessary dependencies.&lt;/li&gt;
+&lt;li&gt;Employ multi-stage builds for languages with heavy dependencies, separating build and runtime environments.&lt;/li&gt;
+&lt;li&gt;For statically compiled languages like Go, containers can often be reduced to a single binary.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;security-1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#security-1&#34;&gt;Security:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Avoid including shells to reduce exploit vectors.&lt;/li&gt;
+&lt;li&gt;Favor minimal base images like Alpine or tools like Google’s Distroless and Chainguard’s SBOM-integrated containers.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 id=&#34;supply-chain-security-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#supply-chain-security-&#34;&gt;Supply Chain Security 🔗🔐&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;sbom-software-bill-of-materials&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#sbom-software-bill-of-materials&#34;&gt;SBOM (Software Bill of Materials):&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;A detailed list of libraries, packages, versions, and licenses within a container image.&lt;/li&gt;
+&lt;li&gt;Machine-readable format for automated security checks.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;software-attestation&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#software-attestation&#34;&gt;Software Attestation:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Authenticated metadata about an artifact (e.g., a container image).&lt;/li&gt;
+&lt;li&gt;Enables verification of the artifact’s integrity.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;chainguard&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#chainguard&#34;&gt;Chainguard:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Offers streamlined, dependency-minimized packages.&lt;/li&gt;
+&lt;li&gt;Main drawback: constant updates unless on a paid plan.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 id=&#34;challenges-in-immutable-environments-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#challenges-in-immutable-environments-&#34;&gt;Challenges in Immutable Environments ♻️&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;limitations&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#limitations&#34;&gt;Limitations:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Lack of SSH access and debugging tools on nodes and pods.&lt;/li&gt;
+&lt;li&gt;Ephemeral, short-lived infrastructure and read-only filesystems.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;risks&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#risks&#34;&gt;Risks:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;IaC misconfigurations can cause widespread outages.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;mitigation&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#mitigation&#34;&gt;Mitigation:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Implement proper GitOps workflows.&lt;/li&gt;
+&lt;li&gt;Ensure consistency between development, staging, and production environments.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 id=&#34;observability-strategies-in-immutable-environments-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#observability-strategies-in-immutable-environments-&#34;&gt;Observability Strategies in Immutable Environments 👀&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;approaches&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#approaches&#34;&gt;Approaches:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Centralized logging for better insights.&lt;/li&gt;
+&lt;li&gt;Monitor clusters and services rather than individual pods or nodes.&lt;/li&gt;
+&lt;li&gt;Use ephemeral debugging pods or sidecars with shared access.&lt;/li&gt;
+&lt;li&gt;Declarative observability configurations (e.g., using Kubernetes CRDs).&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;principle&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#principle&#34;&gt;Principle:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Treat nodes and pods as “cattle, not pets” to maintain scalability and consistency.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 id=&#34;key-principles-of-gitops-and-declarative-infrastructure-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#key-principles-of-gitops-and-declarative-infrastructure-&#34;&gt;Key Principles of GitOps and Declarative Infrastructure 😰&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;gitops-core-tenets&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#gitops-core-tenets&#34;&gt;GitOps Core Tenets:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Git as the single source of truth.&lt;/li&gt;
+&lt;li&gt;Automated reconciliation with tools like ArgoCD or Flux.&lt;/li&gt;
+&lt;li&gt;Infrastructure changes are auditable and reversible.&lt;/li&gt;
+&lt;li&gt;Prevents unauthorized and ad-hoc changes.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;homelab-use&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#homelab-use&#34;&gt;Homelab Use:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Start with a Talos system in Docker/Podman for experimentation.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 id=&#34;gitops-challenges-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#gitops-challenges-&#34;&gt;GitOps Challenges 😰&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;common-issues&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#common-issues&#34;&gt;Common Issues:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Subtle configuration drift across environments.&lt;/li&gt;
+&lt;li&gt;Risk of manual changes not being committed back to Git.&lt;/li&gt;
+&lt;li&gt;Managing rollouts from dev to staging to production.&lt;/li&gt;
+&lt;li&gt;Scaling to hundreds of clusters.&lt;/li&gt;
+&lt;li&gt;Variations in deployment strategies across teams.&lt;/li&gt;
+&lt;li&gt;Securely managing secrets outside Git (e.g., Kubernetes Secrets, HashiCorp Vault).&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 id=&#34;the-gitflow-workflow-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#the-gitflow-workflow-&#34;&gt;The GitFlow Workflow 💨&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;workflow-overview&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#workflow-overview&#34;&gt;Workflow Overview:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Developers create long-lived feature branches.&lt;/li&gt;
+&lt;li&gt;Separate primary branches for development, hotfixes, and releases.&lt;/li&gt;
+&lt;li&gt;The trunk (dev) branch isn’t always stable or deployable.&lt;/li&gt;
+&lt;li&gt;Multi-environment deployments often use separate release branches.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;complexity&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#complexity&#34;&gt;Complexity:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Complex merging strategies, especially for hotfixes.&lt;/li&gt;
+&lt;li&gt;Tools like ArgoCD or Flux can automate deployments.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 id=&#34;trunk-based-development-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#trunk-based-development-&#34;&gt;Trunk-Based Development 🐘&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;overview-1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#overview-1&#34;&gt;Overview:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Continuous integration with short-lived feature branches.&lt;/li&gt;
+&lt;li&gt;Frequent commits directly to the main branch.&lt;/li&gt;
+&lt;li&gt;Emphasizes small, incremental changes to reduce merge conflicts.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;advantages&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#advantages&#34;&gt;Advantages:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Simplifies CI/CD pipelines.&lt;/li&gt;
+&lt;li&gt;Encourages fast feedback and rapid delivery.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;tools-1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#tools-1&#34;&gt;Tools:&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Works seamlessly with automated systems like Kubernetes or Terraform.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+
+
+
+&lt;h3 id=&#34;prolug-links-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/techblog/post/k8sent/#prolug-links-&#34;&gt;ProLUG Links ⛓️&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Discord: &lt;a href=&#34;https://discord.com/invite/m6VPPD9usw&#34;&gt;https://discord.com/invite/m6VPPD9usw&lt;/a&gt;
+Youtube: &lt;a href=&#34;https://www.youtube.com/@het_tanis8213&#34;&gt;https://www.youtube.com/@het_tanis8213&lt;/a&gt;
+Twitch: &lt;a href=&#34;https://www.twitch.tv/het_tanis&#34;&gt;https://www.twitch.tv/het_tanis&lt;/a&gt;
+ProLUG Book: &lt;a href=&#34;https://leanpub.com/theprolugbigbookoflabs&#34;&gt;https://leanpub.com/theprolugbigbookoflabs&lt;/a&gt;
+KillerCoda: &lt;a href=&#34;https://killercoda.com/het-tanis&#34;&gt;https://killercoda.com/het-tanis&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Why K8S matters</title>
       <link>http://localhost:1313/techblog/post/k3s/</link>
@@ -103,7 +485,7 @@
 &lt;hr&gt;
 &lt;ol&gt;
 &lt;li id=&#34;fn:1&#34;&gt;
-&lt;p&gt;The above quote is excerpted from an earlier BlogPost &lt;a href=&#34;trevorsmale.github.io/techblog/post/pacu10/&#34;&gt;Post&lt;/a&gt; techblog, 2024.&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The above quote is excerpted from an earlier BlogPost &lt;a href=&#34;https://trevorsmale.github.io/techblog/post/pacu10/&#34;&gt;Post&lt;/a&gt; techblog, 2024.&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li id=&#34;fn:2&#34;&gt;
 &lt;p&gt;John Champine &lt;a href=&#34;https://www.linkedin.com/in/john-champine-2ba878114?trk=people-guest_people_search-card&#34;&gt;Profile&lt;/a&gt; LinkedIn, 2024.&amp;#160;&lt;a href=&#34;#fnref:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
