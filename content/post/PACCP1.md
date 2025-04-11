@@ -3,6 +3,7 @@ author = "Hugo Authors"
 title = "ProLUG Admin Course Capstone Project Stage 1 🐧"
 date = "2024-09-15"
 description = "ProLUG Admin Course Capstone Project Part 1"
+draft = "true"
 tags = [
   "Tech", "Linux", "Administration", "Engineering", "ProLUG Course", "CapstoneProject"
 ]

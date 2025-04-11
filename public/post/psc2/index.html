@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/techblog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=techblog/livereload" data-no-instant defer></script>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <meta name="description" content="Second week of the PSC we get deeper into STIGs">
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.145.0">
+  <title>ProLUG Security Engineering Course Unit 2 | Tech Blog</title>
+  <link rel="canonical" href="http://localhost:1313/techblog/post/psc2/">
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+    <link rel="stylesheet" href="/techblog/css/base.css">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <a class="Banner-link u-clickable" href="/techblog/">Tech Blog</a>
+      </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/about/">About</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/post/">Posts</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/tags/">Tags</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/categories/">Categories</a>
+        </li>
+      
+        
+        
+          
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/feed.xml">RSS</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/psc2/" rel="bookmark">ProLUG Security Engineering Course Unit 2</a>
+  </h1>
+  
+    <time datetime="2025-04-05T00:00:00Z">April 5, 2025</time>
+  
+</header>
+  <h1 id="intro-">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc2/#intro-">Intro 👋</a>
+</h1>
+<hr>
+
+
+
+<h3 id="discussion-post-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc2/#discussion-post-1"><code>Discussion Post 1</code></a>
+</h3>
+<p><code>Preface</code></p>
+<p>There are 401 stigs for RHEL 9. If you filter in your stig viewer for sysctl there are 33 (mostly network focused), ssh - 39, and network - 58. Now there are some overlaps between those, but review them and answer these questions</p>
+<p><code>Question</code> 1. As systems engineers why are we focused on protecting the network portion of our
+server builds?</p>
+<p><code>Answer</code></p>
+<ul>
+<li>Most attacks come through the network</li>
+<li>Misconfigured services can expose critical ports.</li>
+<li>Data in transit is vulnerable without proper encryption and access control.</li>
+<li>External exposure often increases the attack surface for things like brute-force attempts, malware injection, or unauthorized access.</li>
+</ul>
+<p><code>Question</code> 2. Why is it important to understand all the possible ingress points to our servers that
+exist?</p>
+<p><code>Answer</code></p>
+<ul>
+<li>Ingress points = potential paths of attack. Unexpected ingress can be exploited.</li>
+<li>Zero-trust environments rely on strict control and observability of ingress.</li>
+<li>Compliance and auditing require accurate records of what’s accessible.</li>
+</ul>
+<p><code>Question</code> 3. Why is it so important to understand the behaviors of processes that are
+connecting on those ingress points?</p>
+<p><code>Answer</code></p>
+<ul>
+<li>Security posture depends on visibility</li>
+<li>Attackers scan for overlooked vulnerabilities</li>
+<li>Automation tools (e.g., Ansible, Terraform) can introduce new ingress points unknowingly during updates.</li>
+<li>Incident response is much faster and more effective when engineers understand the network surface.</li>
+</ul>
+<hr>
+
+
+
+<h3 id="discussion-post-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc2/#discussion-post-2"><code>Discussion Post 2</code></a>
+</h3>
+<p>Intro to the scenario<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<p>Read this: <a href="https://ciq.com/blog/demystifying-and-">https://ciq.com/blog/demystifying-and-</a>
+troubleshooting-name-resolution-in-rocky-linux/ or similar blogs on DNS and host file
+configurations.</p>
+<ul>
+<li>
+<p>What is the significance of the nsswitch.conf file?</p>
+</li>
+<li>
+<p>What are security problems associated with DNS and common exploits? (May have
+to look into some more blogs or posts for this)</p>
+</li>
+</ul>
+<hr>
+
+
+
+<h3 id="definitions">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc2/#definitions">Definitions</a>
+</h3>
+<ul>
+<li><code>sysctl</code>: Linux interface to modify kernel parameters at runtime for system performance and security. <a href="https://en.wikipedia.org/wiki/Sysctl">https://en.wikipedia.org/wiki/Sysctl</a></li>
+<li><code>nsswitch.conf</code>: Configuration file controlling the order of name service lookups (e.g., DNS, files, LDAP). <a href="https://en.wikipedia.org/wiki/Nsswitch.conf">https://en.wikipedia.org/wiki/Nsswitch.conf</a></li>
+<li><code>DNS: Domain Name System</code> — translates human-readable domain names into IP addresses. <a href="https://en.wikipedia.org/wiki/Domain_Name_System">https://en.wikipedia.org/wiki/Domain_Name_System</a></li>
+<li><code>Openscap</code>: Open-source framework for automated vulnerability scanning, compliance checking, and security auditing. <a href="https://en.wikipedia.org/wiki/OpenSCAP">https://en.wikipedia.org/wiki/OpenSCAP</a></li>
+<li><code>CIS Benchmarks</code>: Prescriptive security configuration guidelines provided by the Center for Internet Security. <a href="https://en.wikipedia.org/wiki/Center_for_Internet_Security">https://en.wikipedia.org/wiki/Center_for_Internet_Security</a></li>
+<li><code>ss/netstat</code>: Command-line tools to display network sockets, connections, and statistics on Unix-like systems. <a href="https://en.wikipedia.org/wiki/Netstat">https://en.wikipedia.org/wiki/Netstat</a></li>
+<li><code>tcpdump</code>: Command-line packet analyzer for capturing and inspecting network traffic in real-time. <a href="https://en.wikipedia.org/wiki/Tcpdump">https://en.wikipedia.org/wiki/Tcpdump</a></li>
+<li><code>ngrep</code>: Network packet analyzer like grep, allowing pattern matching on network traffic payloads. <a href="https://en.wikipedia.org/wiki/Ngrep">https://en.wikipedia.org/wiki/Ngrep</a></li>
+</ul>
+
+
+
+<h2 id="lab">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc2/#lab">Lab</a>
+</h2>
+<hr>
+
+
+
+<h3 id="prolug-links-">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc2/#prolug-links-">ProLUG Links ⛓️</a>
+</h3>
+<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
+Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
+Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
+ProLUG PSC Repo: <a href="https://github.com/ProfessionalLinuxUsersGroup/psc">https://github.com/ProfessionalLinuxUsersGroup/psc</a>
+ProLUG PSC Book: <a href="https://professionallinuxusersgroup.github.io/psc/">https://professionallinuxusersgroup.github.io/psc/</a>
+ProLUG Book of Labs: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
+KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
+<hr>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Example Title <a href="Link">Format</a> Source, 2025.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+  
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/security/" rel="tag">Security</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+  
+  
+
+
+
+      </div>
+    </div>
+  </main>
+  
+</body>
+
+</html>

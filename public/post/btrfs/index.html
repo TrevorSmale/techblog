@@ -21,7 +21,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.140.2">
+<meta name="generator" content="Hugo 0.145.0">
   <title>Why Btrfs 🤔 | Tech Blog</title>
   <link rel="canonical" href="http://localhost:1313/techblog/post/btrfs/">
 
@@ -131,13 +131,11 @@
 <p>As Valerie Aurora explained:</p>
 <blockquote>
 <p>&ldquo;To start with, B-trees in their native form are wildly incompatible with COW. The leaves of the tree are linked together, so when the location of one leaf changes (via a write—which implies a copy to a new block), the link in the adjacent leaf changes, which triggers another copy-on-write and location change, which changes the link in the next leaf&hellip; The result is that the entire B-tree, from top to bottom, has to be rewritten every time one leaf is changed.&rdquo;<br>
-– Valerie Aurora<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
-</blockquote>
+– Valerie Aurora<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p></blockquote>
 <p><strong>Chris Mason</strong>, a core developer of the <strong>Reiser Filesystem</strong>, liked the idea and saw an opportunity to move beyond Reiser, which used B-trees but wasn’t optimized for COW. Mason brought the idea to his new job at Oracle, where development of Btrfs began in earnest.</p>
 <blockquote>
 <p>&ldquo;I started Btrfs soon after joining Oracle. I had a unique opportunity to take a detailed look at the features missing from Linux, and felt that Btrfs was the best way to solve them.&rdquo;<br>
-– Chris Mason<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
-</blockquote>
+– Chris Mason<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p></blockquote>
 <p>In collaboration with Oracle colleague <strong>Zach Brown</strong>, they drafted the initial version of Btrfs.</p>
 
 

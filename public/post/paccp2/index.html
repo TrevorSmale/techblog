@@ -21,7 +21,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.140.2">
+<meta name="generator" content="Hugo 0.145.0">
   <title>ProLUG Admin Course Capstone Project Stage 2 🐧 | Tech Blog</title>
   <link rel="canonical" href="http://localhost:1313/techblog/post/paccp2/">
 
@@ -218,9 +218,9 @@
 
   
 
-<pre tabindex="0"><code class="language-csv" data-lang="csv">Johny,Exampleseed,ProLUG Admin Course,2024-11-15,f078b6c4f26a2fae59d50fdb7c761a7f9523d240b2c18b332aac11e0
-Kate,Testinger,ProLUG Admin Course,2024-11-15,a523e6d1ece5bb2758f71993ba1a460024dcd10243fa17654af90257
-Het, Tanis, ProLUG Admin Course,2015-11-02,a523e6d1ece5bb2758f71993ba1a460024dcd10243fa17324af90257</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csv" data-lang="csv"><span class="line"><span class="cl"><span class="s">Johny</span><span class="p">,</span><span class="s">Exampleseed</span><span class="p">,</span><span class="s">ProLUG Admin Course</span><span class="p">,</span><span class="s">2024-11-15</span><span class="p">,</span><span class="s">f078b6c4f26a2fae59d50fdb7c761a7f9523d240b2c18b332aac11e0</span><span class="p">
+</span></span></span><span class="line"><span class="cl"><span class="p"></span><span class="s">Kate</span><span class="p">,</span><span class="s">Testinger</span><span class="p">,</span><span class="s">ProLUG Admin Course</span><span class="p">,</span><span class="s">2024-11-15</span><span class="p">,</span><span class="s">a523e6d1ece5bb2758f71993ba1a460024dcd10243fa17654af90257</span><span class="p">
+</span></span></span><span class="line"><span class="cl"><span class="p"></span><span class="s">Het</span><span class="p">,</span><span class="s"> Tanis</span><span class="p">,</span><span class="s"> ProLUG Admin Course</span><span class="p">,</span><span class="s">2015-11-02</span><span class="p">,</span><span class="s">a523e6d1ece5bb2758f71993ba1a460024dcd10243fa17324af90257</span></span></span></code></pre></div>
 
 
 
@@ -230,58 +230,58 @@ Het, Tanis, ProLUG Admin Course,2015-11-02,a523e6d1ece5bb2758f71993ba1a460024dcd
 
   
 
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// Certificate verification handler
-</span></span></span><span class="line"><span class="cl"><span class="c1">// This function is the HTTP handler responsible for verifying certificates.
-</span></span></span><span class="line"><span class="cl"><span class="c1">// It is triggered when a user accesses the relevant URL and checks for a certificate based on a hash parameter.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="nf">certHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// Certificate verification handler</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// This function is the HTTP handler responsible for verifying certificates.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// It is triggered when a user accesses the relevant URL and checks for a certificate based on a hash parameter.</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">certHandler</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">// Extract hash value from the URL query parameters.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// The hash is used to identify the certificate to verify.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">hash</span> <span class="o">:=</span> <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nf">Query</span><span class="p">().</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;hash&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Extract hash value from the URL query parameters.</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// The hash is used to identify the certificate to verify.</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">hash</span> <span class="o">:=</span> <span class="nx">r</span><span class="p">.</span><span class="nx">URL</span><span class="p">.</span><span class="nf">Query</span><span class="p">().</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;hash&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">// If no hash is provided in the query, return a &#34;Bad Request&#34; error.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="nx">hash</span> <span class="o">==</span> <span class="s">&#34;&#34;</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">// Send an HTTP error response indicating that the hash is missing.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">http</span><span class="p">.</span><span class="nf">Error</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;Hash not provided&#34;</span><span class="p">,</span> <span class="nx">http</span><span class="p">.</span><span class="nx">StatusBadRequest</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="c1">// Exit the handler function since no hash is available.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// If no hash is provided in the query, return a &#34;Bad Request&#34; error.</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nx">hash</span> <span class="o">==</span> <span class="s">&#34;&#34;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Send an HTTP error response indicating that the hash is missing.</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">http</span><span class="p">.</span><span class="nf">Error</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;Hash not provided&#34;</span><span class="p">,</span> <span class="nx">http</span><span class="p">.</span><span class="nx">StatusBadRequest</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="c1">// Exit the handler function since no hash is available.</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">// Load certificates from a CSV file.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// This function attempts to retrieve all certificates stored in the &#34;certificates.csv&#34; file.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">certificates</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">LoadCertificates</span><span class="p">(</span><span class="s">&#34;certificates.csv&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Load certificates from a CSV file.</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// This function attempts to retrieve all certificates stored in the &#34;certificates.csv&#34; file.</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">certificates</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">LoadCertificates</span><span class="p">(</span><span class="s">&#34;certificates.csv&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="c1">// If there&#39;s an error loading the certificates (e.g., file not found or corrupted), log the error.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">// Log the error message to the server logs and return a &#34;Server Error&#34; to the client.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Error loading certificates: %v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// If there&#39;s an error loading the certificates (e.g., file not found or corrupted), log the error.</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Log the error message to the server logs and return a &#34;Server Error&#34; to the client.</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Error loading certificates: %v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="nx">http</span><span class="p">.</span><span class="nf">Error</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;Server Error&#34;</span><span class="p">,</span> <span class="nx">http</span><span class="p">.</span><span class="nx">StatusInternalServerError</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="c1">// Exit the handler function due to the error.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="c1">// Exit the handler function due to the error.</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">// Initialize a pointer to a Certificate struct.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// This will hold the matching certificate if a valid hash is found.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">var</span> <span class="nx">cert</span> <span class="o">*</span><span class="nx">Certificate</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Initialize a pointer to a Certificate struct.</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// This will hold the matching certificate if a valid hash is found.</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">cert</span> <span class="o">*</span><span class="nx">Certificate</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">// Iterate over all loaded certificates.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// Check each certificate&#39;s hash to see if it matches the one provided in the query.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">c</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">certificates</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Iterate over all loaded certificates.</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Check each certificate&#39;s hash to see if it matches the one provided in the query.</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">c</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">certificates</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nx">c</span><span class="p">.</span><span class="nx">Hash</span> <span class="o">==</span> <span class="nx">hash</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="c1">// If a matching certificate is found, assign it to the &#39;cert&#39; pointer and break the loop.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="nx">cert</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">c</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// If a matching certificate is found, assign it to the &#39;cert&#39; pointer and break the loop.</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">cert</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">c</span>
 </span></span><span class="line"><span class="cl">            <span class="k">break</span>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">// Render the result page using the template engine.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// Pass the certificate (or nil if not found) to the template &#34;result.html&#34; for display.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">err</span> <span class="p">=</span> <span class="nx">templates</span><span class="p">.</span><span class="nf">ExecuteTemplate</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;result.html&#34;</span><span class="p">,</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}{</span>
-</span></span><span class="line"><span class="cl">        <span class="s">&#34;Certificate&#34;</span><span class="p">:</span> <span class="nx">cert</span><span class="p">,</span> <span class="c1">// Include the certificate as part of the template data.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Render the result page using the template engine.</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Pass the certificate (or nil if not found) to the template &#34;result.html&#34; for display.</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">err</span> <span class="p">=</span> <span class="nx">templates</span><span class="p">.</span><span class="nf">ExecuteTemplate</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;result.html&#34;</span><span class="p">,</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}{</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;Certificate&#34;</span><span class="p">:</span> <span class="nx">cert</span><span class="p">,</span> <span class="c1">// Include the certificate as part of the template data.</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">// If there&#39;s an error rendering the page (e.g., template not found or syntax error), log the issue.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">// Log the error message to the server logs and return an &#34;Internal Server Error&#34; to the client.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Error rendering verification page: %v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// If there&#39;s an error rendering the page (e.g., template not found or syntax error), log the issue.</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Log the error message to the server logs and return an &#34;Internal Server Error&#34; to the client.</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Error rendering verification page: %v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="nx">http</span><span class="p">.</span><span class="nf">Error</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;Internal Server Error&#34;</span><span class="p">,</span> <span class="nx">http</span><span class="p">.</span><span class="nx">StatusInternalServerError</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
@@ -290,8 +290,8 @@ Het, Tanis, ProLUG Admin Course,2015-11-02,a523e6d1ece5bb2758f71993ba1a460024dcd
 
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-GO" data-lang="GO"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// Certificate represents a learning certificate with associated data.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">type</span> <span class="nx">Certificate</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Certificate represents a learning certificate with associated data.</span>
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">Certificate</span> <span class="kd">struct</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="nx">FirstName</span>     <span class="kt">string</span>
 </span></span><span class="line"><span class="cl">	<span class="nx">LastName</span>      <span class="kt">string</span>
 </span></span><span class="line"><span class="cl">	<span class="nx">CertType</span>      <span class="kt">string</span>

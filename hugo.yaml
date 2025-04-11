@@ -4,7 +4,7 @@ languageCode: en-us
 theme: hf
 
 params:
-  color: midnightblue           # Any color in CSS syntax
+  color: rgb(145, 79, 30)          # Any color in CSS syntax
   width: 42rem          # Any length in CSS syntax / leave empty to span page
   divider: \2500\2500   # Any string in CSS syntax / leave empty for no divider
   footer: >-            # HTML spaces (&#32;) are needed before HTML elements

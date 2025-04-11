@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/techblog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=techblog/livereload" data-no-instant defer></script>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <meta name="description" content="First week of the PSC we hit the ground running with getting set up with STIG tools">
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.145.0">
+  <title>ProLUG Security Engineering Course Unit 1 | Tech Blog</title>
+  <link rel="canonical" href="http://localhost:1313/techblog/post/psc1-copy/">
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+    <link rel="stylesheet" href="/techblog/css/base.css">
+
+    <link rel="stylesheet" href="/techblog/css/syntax.css">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <a class="Banner-link u-clickable" href="/techblog/">Tech Blog</a>
+      </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/about/">About</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/post/">Posts</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/tags/">Tags</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/categories/">Categories</a>
+        </li>
+      
+        
+        
+          
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/feed.xml">RSS</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/psc1-copy/" rel="bookmark">ProLUG Security Engineering Course Unit 1</a>
+  </h1>
+  
+    <time datetime="2025-03-23T00:00:00Z">March 23, 2025</time>
+  
+</header>
+  <h1 id="intro-">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1-copy/#intro-">Intro 👋</a>
+</h1>
+<p>I&rsquo;ve just started a new <strong>Security Engineering</strong> course created by Scott Champine through ProLUG. As a graduate of his <strong>Linux Administration</strong> course and an active contributor to the <strong>Professional Linux User Group</strong>, I felt compelled to make time for this new course—I&rsquo;ve learned a great deal from his teachings in the past.</p>
+<hr>
+
+
+
+<h2 id="worksheet">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1-copy/#worksheet">Worksheet</a>
+</h2>
+
+
+
+<h3 id="discussion-post-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1-copy/#discussion-post-1"><code>Discussion Post 1</code></a>
+</h3>
+<ul>
+<li>What is Security?</li>
+</ul>
+<p><strong>Response:</strong></p>
+<p>In regards to Cyber Security, Integrating protective measures throughout the system lifecycle to ensure the system maintains its mission/operational effectiveness, even in the presence of adversarial threats.</p>
+<ul>
+<li>Describe the CIA Triad.</li>
+</ul>
+<p><strong>Response:</strong></p>
+<p>The <strong>CIA Triad</strong> is a core model in systems security engineering.</p>
+<ol>
+<li>
+<p><strong>Confidentiality</strong> – Preventing unauthorized disclosure of system data or resources, often enforced through access control, encryption, and information flow policies.</p>
+</li>
+<li>
+<p><strong>Integrity</strong> – Ensuring that system data and operations are not altered in an unauthorized or undetected way, including protection against both accidental and intentional modification.</p>
+</li>
+<li>
+<p><strong>Availability</strong> – Ensuring reliable access to system services and resources when required, even under attack or component failure.</p>
+</li>
+</ol>
+<ul>
+<li>What is the relationship between Authority, Will, and Force as they relate to security?</li>
+</ul>
+<p><strong>Response:</strong></p>
+<p>In systems security engineering:</p>
+<ul>
+<li>
+<p><strong>Authority</strong> is derived from policy and design requirements—what the system <em>must</em> enforce according to mission objectives, laws, or standards.</p>
+</li>
+<li>
+<p><strong>Will</strong> represents the commitment of system stakeholders to implement and maintain security measures.</p>
+</li>
+<li>
+<p><strong>Force</strong> is the application of engineered mechanisms—technical, administrative, or procedural—that ensure security objectives are realized in practice.</p>
+</li>
+<li>
+<p>What are the types of controls and how do they relate to the above question?</p>
+</li>
+</ul>
+<p><strong>Response:</strong></p>
+<p>In systems security engineering, <strong>controls</strong> are safeguards built into the system to achieve security objectives. They align with <strong>Authority, Will, and Force</strong> as follows:</p>
+<ol>
+<li><strong>Administrative Controls</strong> – Derived from organizational policy (Authority) and guide design, personnel roles, and security governance.</li>
+<li><strong>Technical Controls</strong> – Engineered into the system as part of architecture and software/hardware features (Force), e.g., encryption, access enforcement, secure boot.</li>
+<li><strong>Operational Controls</strong> – Rely on human procedures and configurations to maintain secure operations (Will and Force), such as patch management and monitoring.</li>
+<li><strong>Physical Controls</strong> – Provide physical protection to system components (Force), e.g., secure facilities or tamper-evident hardware.</li>
+</ol>
+<hr>
+
+
+
+<h3 id="discussion-post-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1-copy/#discussion-post-2"><code>Discussion Post 2</code></a>
+</h3>
+<p>Intro to the scenario<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<p>Find a STIG or compliance requirement that you do not agree is necessary for a server or service build.</p>
+<ol>
+<li><strong>What is the STIG or compliance requirement trying to do?</strong></li>
+</ol>
+<p><code>Response</code>
+The compliance requirement encourages users to set up automated CVE patch updates from trusted providers within a 24-hour timeframe.</p>
+<ol start="2">
+<li><strong>What category and type of control is it?</strong></li>
+</ol>
+<p><code>Response</code><br>
+This STIG is an administrative control. Since it is not built into the system by default, it must be applied and managed manually.</p>
+<ol start="3">
+<li><strong>Defend why you think it is not necessary. (What type of defenses do you think you could present?)</strong></li>
+</ol>
+<p><code>Response</code>
+Initially, I found it difficult to identify a STIG procedural that I disagreed with. However, after extensive review, I selected this one. I believe automated patching is not ideal, especially for production systems. Patches can introduce unexpected behaviors in dependent systems. Additionally, relying on automation can foster complacency or a lack of awareness over time.</p>
+
+
+
+<h3 id="stig">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1-copy/#stig">STIG</a>
+</h3>
+
+  
+
+<pre tabindex="0"><code class="language-stig" data-lang="stig">
+Apache Server 2.4 UNIX Server Security Technical Implementation Guide :: Version 3, Release: 2 Benchmark Date: 30 Jan 2025
+Vul ID: V-214270           Rule ID: SV-214270r961683_rule           STIG ID: AS24-U1-000930       
+Severity: CAT II           Classification: Unclass           Legacy IDs: V-92749; SV-102837
+
+Group Title: SRG-APP-000456-WSR-000187
+
+Rule Title: The Apache web server must install security-relevant software updates within the configured time period directed by an authoritative source (e.g., IAVM, CTOs, DTMs, and STIGs).
+
+Discussion: Security flaws with software applications are discovered daily. Vendors are constantly updating and patching their products to address newly discovered security vulnerabilities. Organizations (including any contractor to the organization) are required to promptly install security-relevant software updates (e.g., patches, service packs, and hot fixes). Flaws discovered during security assessments, continuous monitoring, incident response activities, or information system error handling must also be addressed expeditiously.
+
+The Apache web server will be configured to check for and install security-relevant software updates from an authoritative source within an identified time period from the availability of the update. By default, this time period will be every 24 hours.
+
+Check Text: Determine the most recent patch level of the Apache Web Server 2.4 software, as posted on the Apache HTTP Server Project website. If the Apache installation is a proprietary installation supporting an application and is supported by a vendor, determine the most recent patch level of the vendor’s installation.
+
+In a command line, type &#34;httpd -v&#34;.
+
+If the version is more than one version behind the most recent patch level, this is a finding.</code></pre>
+<hr>
+
+
+
+<h3 id="definitions">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1-copy/#definitions">Definitions</a>
+</h3>
+<ul>
+<li>Def 1: Explainer</li>
+<li>Def 2: Explainer</li>
+<li>Def 3: Explainer</li>
+</ul>
+
+
+
+<h2 id="lab">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1-copy/#lab">Lab</a>
+</h2>
+
+
+
+<h3 id="1-getting-stig-viewer">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1-copy/#1-getting-stig-viewer">1. Getting Stig Viewer</a>
+</h3>
+<p>STIG Viewer 2.18 (download from <a href="https://public.cyber.mil/stigs/downloads/">https://public.cyber.mil/stigs/downloads/</a> )</p>
+
+
+
+<h3 id="2-download-the-stig-for-mariadb">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1-copy/#2-download-the-stig-for-mariadb">2. Download the STIG for Mariadb</a>
+</h3>
+<p>Import it into your STIG viewer</p>
+
+
+
+<h3 id="warmup">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1-copy/#warmup">Warmup</a>
+</h3>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mount <span class="p">|</span> grep -i noexec
+</span></span><span class="line"><span class="cl">mount <span class="p">|</span> grep -i nodev
+</span></span><span class="line"><span class="cl">mount <span class="p">|</span> grep -i nosuid
+</span></span><span class="line"><span class="cl"><span class="c1"># Approximately how many of your mounted filesystems have each of these values?</span></span></span></code></pre></div>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sysctl -a <span class="p">|</span> grep -i ipv4
+</span></span><span class="line"><span class="cl">sysctl -a <span class="p">|</span> grep -i ipv6
+</span></span><span class="line"><span class="cl"><span class="c1">#How many of each are there?</span></span></span></code></pre></div>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sysctl -a <span class="p">|</span> grep -i ipv4 <span class="p">|</span> grep -i forward
+</span></span><span class="line"><span class="cl"><span class="c1">#Does IPv4 forward on interfaces?</span>
+</span></span><span class="line"><span class="cl">lsmod <span class="p">|</span> grep -i tables
+</span></span><span class="line"><span class="cl"><span class="c1">#What type of tables exist?</span></span></span></code></pre></div>
+
+
+
+<h2 id="lab-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1-copy/#lab-1">LAB</a>
+</h2>
+
+
+
+<h3 id="mariadb-service-configuration">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1-copy/#mariadb-service-configuration">MariaDB Service configuration:</a>
+</h3>
+<ol>
+<li>Connect to a hammer server</li>
+<li>Install MariaDB</li>
+</ol>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">dnf install mariadb-server</span></span></code></pre></div>
+<ol start="4">
+<li>Ensure that it is running</li>
+</ol>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">systemctl start mariadb
+</span></span><span class="line"><span class="cl">systemctl status mariadb
+</span></span><span class="line"><span class="cl">ss -ntulp <span class="p">|</span> grep <span class="m">3306</span></span></span></code></pre></div>
+<hr>
+
+
+
+<h3 id="prolug-links-">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1-copy/#prolug-links-">ProLUG Links ⛓️</a>
+</h3>
+<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
+Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
+Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
+ProLUG PSC Repo: <a href="https://github.com/ProfessionalLinuxUsersGroup/psc">https://github.com/ProfessionalLinuxUsersGroup/psc</a>
+ProLUG PSC Book: <a href="https://professionallinuxusersgroup.github.io/psc/">https://professionallinuxusersgroup.github.io/psc/</a>
+ProLUG Book of Labs: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
+KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
+<hr>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Example Title <a href="Link">Format</a> Source, 2025.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+  
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/security/" rel="tag">Security</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+  
+  
+
+
+
+      </div>
+    </div>
+  </main>
+  
+</body>
+
+</html>

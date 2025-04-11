@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/techblog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=techblog/livereload" data-no-instant defer></script>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <meta name="description" content="First week of the PSC we hit the ground running with getting set up with STIG tools">
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.145.0">
+  <title>ProLUG Security Engineering Course Unit 1 | Tech Blog</title>
+  <link rel="canonical" href="http://localhost:1313/techblog/post/psc1/">
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+    <link rel="stylesheet" href="/techblog/css/base.css">
+
+    <link rel="stylesheet" href="/techblog/css/syntax.css">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <a class="Banner-link u-clickable" href="/techblog/">Tech Blog</a>
+      </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/about/">About</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/post/">Posts</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/tags/">Tags</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/categories/">Categories</a>
+        </li>
+      
+        
+        
+          
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/feed.xml">RSS</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/psc1/" rel="bookmark">ProLUG Security Engineering Course Unit 1</a>
+  </h1>
+  
+    <time datetime="2025-03-23T00:00:00Z">March 23, 2025</time>
+  
+</header>
+  <h1 id="intro-">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1/#intro-">Intro 👋</a>
+</h1>
+<p>I&rsquo;ve just started a new <strong>Security Engineering</strong> course created by Scott Champine through ProLUG. As a graduate of his <strong>Linux Administration</strong> course and an active contributor to the <strong>Professional Linux User Group</strong>, I felt compelled to make time for this new course—I&rsquo;ve learned a great deal from his teachings in the past.</p>
+<hr>
+
+
+
+<h2 id="worksheet">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1/#worksheet">Worksheet</a>
+</h2>
+
+
+
+<h3 id="discussion-post-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1/#discussion-post-1"><code>Discussion Post 1</code></a>
+</h3>
+<ul>
+<li>What is Security?</li>
+</ul>
+<p><strong>Response:</strong></p>
+<p>In regards to Cyber Security, Integrating protective measures throughout the system lifecycle to ensure the system maintains its mission/operational effectiveness, even in the presence of adversarial threats.</p>
+<ul>
+<li>Describe the CIA Triad.</li>
+</ul>
+<p><strong>Response:</strong></p>
+<p>The <strong>CIA Triad</strong> is a core model in systems security engineering.</p>
+<ol>
+<li>
+<p><strong>Confidentiality</strong> – Preventing unauthorized disclosure of system data or resources, often enforced through access control, encryption, and information flow policies.</p>
+</li>
+<li>
+<p><strong>Integrity</strong> – Ensuring that system data and operations are not altered in an unauthorized or undetected way, including protection against both accidental and intentional modification.</p>
+</li>
+<li>
+<p><strong>Availability</strong> – Ensuring reliable access to system services and resources when required, even under attack or component failure.</p>
+</li>
+</ol>
+<ul>
+<li>What is the relationship between Authority, Will, and Force as they relate to security?</li>
+</ul>
+<p><strong>Response:</strong></p>
+<p>In systems security engineering:</p>
+<ul>
+<li>
+<p><strong>Authority</strong> is derived from policy and design requirements—what the system <em>must</em> enforce according to mission objectives, laws, or standards.</p>
+</li>
+<li>
+<p><strong>Will</strong> represents the commitment of system stakeholders to implement and maintain security measures.</p>
+</li>
+<li>
+<p><strong>Force</strong> is the application of engineered mechanisms—technical, administrative, or procedural—that ensure security objectives are realized in practice.</p>
+</li>
+<li>
+<p>What are the types of controls and how do they relate to the above question?</p>
+</li>
+</ul>
+<p><strong>Response:</strong></p>
+<p>In systems security engineering, <strong>controls</strong> are safeguards built into the system to achieve security objectives. They align with <strong>Authority, Will, and Force</strong> as follows:</p>
+<ol>
+<li><strong>Administrative Controls</strong> – Derived from organizational policy (Authority) and guide design, personnel roles, and security governance.</li>
+<li><strong>Technical Controls</strong> – Engineered into the system as part of architecture and software/hardware features (Force), e.g., encryption, access enforcement, secure boot.</li>
+<li><strong>Operational Controls</strong> – Rely on human procedures and configurations to maintain secure operations (Will and Force), such as patch management and monitoring.</li>
+<li><strong>Physical Controls</strong> – Provide physical protection to system components (Force), e.g., secure facilities or tamper-evident hardware.</li>
+</ol>
+<hr>
+
+
+
+<h3 id="discussion-post-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1/#discussion-post-2"><code>Discussion Post 2</code></a>
+</h3>
+<p>Intro to the scenario[^3]</p>
+<p>Find a STIG or compliance requirement that you do not agree is necessary for a server or service build.</p>
+<ol>
+<li><strong>What is the STIG or compliance requirement trying to do?</strong></li>
+</ol>
+<p><code>Response</code>
+The compliance requirement encourages users to set up automated CVE patch updates from trusted providers within a 24-hour timeframe.</p>
+<ol start="2">
+<li><strong>What category and type of control is it?</strong></li>
+</ol>
+<p><code>Response</code><br>
+This STIG is an administrative control. Since it is not built into the system by default, it must be applied and managed manually.</p>
+<ol start="3">
+<li><strong>Defend why you think it is not necessary. (What type of defenses do you think you could present?)</strong></li>
+</ol>
+<p><code>Response</code>
+Initially, I found it difficult to identify a STIG procedural that I disagreed with. However, after extensive review, I selected this one. I believe automated patching is not ideal, especially for production systems. Patches can introduce unexpected behaviors in dependent systems. Additionally, relying on automation can foster complacency or a lack of awareness over time.</p>
+
+
+
+<h3 id="stig">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1/#stig">STIG</a>
+</h3>
+
+  
+
+<pre tabindex="0"><code class="language-stig" data-lang="stig">
+Apache Server 2.4 UNIX Server Security Technical Implementation Guide :: Version 3, Release: 2 Benchmark Date: 30 Jan 2025
+Vul ID: V-214270           Rule ID: SV-214270r961683_rule           STIG ID: AS24-U1-000930       
+Severity: CAT II           Classification: Unclass           Legacy IDs: V-92749; SV-102837
+
+Group Title: SRG-APP-000456-WSR-000187
+
+Rule Title: The Apache web server must install security-relevant software updates within the configured time period directed by an authoritative source (e.g., IAVM, CTOs, DTMs, and STIGs).
+
+Discussion: Security flaws with software applications are discovered daily. Vendors are constantly updating and patching their products to address newly discovered security vulnerabilities. Organizations (including any contractor to the organization) are required to promptly install security-relevant software updates (e.g., patches, service packs, and hot fixes). Flaws discovered during security assessments, continuous monitoring, incident response activities, or information system error handling must also be addressed expeditiously.
+
+The Apache web server will be configured to check for and install security-relevant software updates from an authoritative source within an identified time period from the availability of the update. By default, this time period will be every 24 hours.
+
+Check Text: Determine the most recent patch level of the Apache Web Server 2.4 software, as posted on the Apache HTTP Server Project website. If the Apache installation is a proprietary installation supporting an application and is supported by a vendor, determine the most recent patch level of the vendor’s installation.
+
+In a command line, type &#34;httpd -v&#34;.
+
+If the version is more than one version behind the most recent patch level, this is a finding.</code></pre>
+<hr>
+
+
+
+<h3 id="definitions">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1/#definitions">Definitions</a>
+</h3>
+<ul>
+<li><code>CIA Triad</code>: Core principles of security — Confidentiality, Integrity, and Availability — guiding protection of information systems.</li>
+<li><code>Regulatory Compliance</code>: Adhering to laws and regulations governing data privacy, security, and operational practices.</li>
+<li><code>HIPAA</code>: U.S. healthcare regulation enforcing privacy and security of patient health information. <a href="https://en.wikipedia.org/wiki/Health_Insurance_Portability_and_Accountability_Act">https://en.wikipedia.org/wiki/Health_Insurance_Portability_and_Accountability_Act</a></li>
+<li><code>Industry Standards</code>: Best practices and technical guidelines agreed upon within specific industries to ensure consistency and security.</li>
+<li><code>PCI/DSS</code>: Payment Card Industry Data Security Standard for protecting cardholder data during processing, storage, and transmission. <a href="https://en.wikipedia.org/wiki/Payment_Card_Industry_Data_Security_Standard">https://en.wikipedia.org/wiki/Payment_Card_Industry_Data_Security_Standard</a></li>
+<li><code>Security Frameworks</code>: Structured guidelines for managing cybersecurity risks and controls within organizations. <a href="https://en.wikipedia.org/wiki/Information_security_management_system">https://en.wikipedia.org/wiki/Information_security_management_system</a></li>
+<li><code>CIS</code>: Center for Internet Security provides globally recognized benchmarks and security controls. <a href="https://en.wikipedia.org/wiki/Center_for_Internet_Security">https://en.wikipedia.org/wiki/Center_for_Internet_Security</a></li>
+<li><code>STIG</code>: Security Technical Implementation Guide — DoD configuration standards for securing IT systems and software. <a href="https://en.wikipedia.org/wiki/Security_Technical_Implementation_Guide">https://en.wikipedia.org/wiki/Security_Technical_Implementation_Guide</a></li>
+</ul>
+
+
+
+<h2 id="lab">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1/#lab">Lab</a>
+</h2>
+
+
+
+<h2 id="signing-into-remote-host">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1/#signing-into-remote-host">Signing into Remote Host</a>
+</h2>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">- sudo ssh mchammer@prolug.asuscomm.com
+</span></span><span class="line"><span class="cl">- SecLab12#<span class="nv">$5</span></span></span></code></pre></div>
+
+
+
+<h2 id="install-helpful-tooling">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1/#install-helpful-tooling">Install Helpful Tooling</a>
+</h2>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">dnf install tmux vim -y</span></span></code></pre></div>
+
+
+
+<h2 id="enter-tmux-for-nohup">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1/#enter-tmux-for-nohup">Enter tmux for <code>nohup</code></a>
+</h2>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tmux</span></span></code></pre></div>
+
+
+
+<h2 id="install-mariadb-server">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1/#install-mariadb-server">Install MariaDB Server</a>
+</h2>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">dnf install mariadb-server
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Ensure that it is running</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">systemctl start mariadb
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">systemctl status mariadb
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">ss -ntulp <span class="p">|</span> grep <span class="m">3306</span></span></span></code></pre></div>
+
+
+
+<h2 id="open-mariadb-cli">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1/#open-mariadb-cli">Open MariaDB CLI</a>
+</h2>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-mariadb" data-lang="mariadb"><span class="line"><span class="cl"><span class="n">mariadb</span></span></span></code></pre></div>
+
+
+
+<h2 id="remediating-v-253666">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1/#remediating-v-253666">Remediating V-253666</a>
+</h2>
+
+
+
+<h3 id="listing-users-and-max-connections">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1/#listing-users-and-max-connections">Listing Users and Max Connections:</a>
+</h3>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-mariadb" data-lang="mariadb"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">mysql</span><span class="p">.</span><span class="k">user</span><span class="p">;</span></span></span></code></pre></div>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-mariadb" data-lang="mariadb"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">user</span><span class="p">,</span><span class="w"> </span><span class="n">max_user_connections</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">mysql</span><span class="p">.</span><span class="k">user</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">#Exit mariadb sub shell
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">exit</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">#Exit mariadb CLI
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">exit</span><span class="p">;</span></span></span></code></pre></div>
+<hr>
+
+
+
+<h2 id="answering-questions">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1/#answering-questions">Answering Questions</a>
+</h2>
+
+
+
+<h3 id="v-253677-stig">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1/#v-253677-stig">V-253677 STIG</a>
+</h3>
+<p><strong>Rule Title:</strong>
+MariaDB must by default shut down upon audit failure, to include the unavailability of space for more audit log records; or must be configurable to shut down upon audit failure.</p>
+
+
+
+<h3 id="what-is-the-problem">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1/#what-is-the-problem">What is the problem?</a>
+</h3>
+<p><strong>Discussion:</strong>
+It is critical that when MariaDB is at risk of failing to process audit logs as required, an action is taken to mitigate the failure. Audit processing failures include software/hardware errors; failures in the audit capturing mechanisms; and audit storage capacity being reached or exceeded. Responses to audit failure depend upon the nature of the failure mode.
+When the need for system availability does not outweigh the need for a complete audit trail, the DBMS should shut down immediately, rolling back all in-flight transactions.
+Systems where audit trail completeness is paramount will most likely be at a lower MAC level than MAC I; the final determination is the prerogative of the application owner, subject to Authorizing Official concurrence. In any case, sufficient auditing resources must be allocated to avoid a shutdown in all but the most extreme situations.</p>
+
+
+
+<h3 id="what-is-the-fix">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1/#what-is-the-fix">What is the fix?</a>
+</h3>
+<p><strong>Fix Text:</strong></p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-mariadb" data-lang="mariadb"><span class="line"><span class="cl"><span class="n">Modify</span><span class="w"> </span><span class="n">DBMS</span><span class="p">,</span><span class="w"> </span><span class="n">OS</span><span class="p">,</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="n">third</span><span class="o">-</span><span class="n">party</span><span class="w"> </span><span class="n">logging</span><span class="w"> </span><span class="n">application</span><span class="w"> </span><span class="n">settings</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">alert</span><span class="w"> </span><span class="n">appropriate</span><span class="w"> </span><span class="n">personnel</span><span class="w"> </span><span class="k">when</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">specific</span><span class="w"> </span><span class="n">percentage</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">log</span><span class="w"> </span><span class="n">storage</span><span class="w"> </span><span class="n">capacity</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">reached</span><span class="p">.</span></span></span></code></pre></div>
+
+
+
+<h3 id="what-type-of-control-is-being-implemented">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1/#what-type-of-control-is-being-implemented">What type of control is being implemented?</a>
+</h3>
+
+
+
+<h3 id="todo-is-it-set-properly-on-your-system">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1/#todo-is-it-set-properly-on-your-system">Todo is it set properly on your system?</a>
+</h3>
+<hr>
+
+
+
+<h3 id="v-253678-stig">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1/#v-253678-stig">V-253678 STIG</a>
+</h3>
+<p><strong>Rule Title:</strong>
+MariaDB must be configurable to overwrite audit log records, oldest first (First-In-First-Out - FIFO), in the event of unavailability of space for more audit log records.</p>
+
+
+
+<h3 id="what-is-the-problem-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1/#what-is-the-problem-1">What is the problem?</a>
+</h3>
+<p><strong>Discussion:</strong>
+It is critical that when MariaDB is at risk of failing to process audit logs as required, it take action to mitigate the failure. Audit processing failures include software/hardware errors; failures in the audit capturing mechanisms; and audit storage capacity being reached or exceeded. Responses to audit failure depend upon the nature of the failure mode.
+When availability is an overriding concern, approved actions in response to an audit failure are as follows:
+(i) If the failure was caused by the lack of audit record storage capacity, the DBMS must continue generating audit records, if possible (automatically restarting the audit service if necessary), overwriting the oldest audit records in a first-in-first-out manner.
+(ii) If audit records are sent to a centralized collection server and communication with this server is lost or the server fails, the DBMS must queue audit records locally until communication is restored or until the audit records are retrieved manually. Upon restoration of the connection to the centralized collection server, action should be taken to synchronize the local audit data with the collection server.
+Systems where availability is paramount will most likely be MAC I; the final determination is the prerogative of the application owner, subject to Authorizing Official concurrence. In any case, sufficient auditing resources must be allocated to avoid audit data loss in all but the most extreme situations.</p>
+
+
+
+<h3 id="what-is-the-fix-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1/#what-is-the-fix-1">What is the fix?</a>
+</h3>
+<p><strong>Fix Text:</strong></p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-mariadb" data-lang="mariadb"><span class="line"><span class="cl"><span class="n">Establish</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">process</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">accompanying</span><span class="w"> </span><span class="n">tools</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">monitoring</span><span class="w"> </span><span class="n">available</span><span class="w"> </span><span class="n">disk</span><span class="w"> </span><span class="n">space</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">ensuring</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">sufficient</span><span class="w"> </span><span class="n">disk</span><span class="w"> </span><span class="n">space</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">maintained</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">continue</span><span class="w"> </span><span class="n">generating</span><span class="w"> </span><span class="n">audit</span><span class="w"> </span><span class="n">logs</span><span class="p">,</span><span class="w"> </span><span class="n">overwriting</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">oldest</span><span class="w"> </span><span class="n">existing</span><span class="w"> </span><span class="n">records</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">necessary</span><span class="p">.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">-</span><span class="w"> </span><span class="k">To</span><span class="w"> </span><span class="kt">set</span><span class="w"> </span><span class="n">up</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">audit</span><span class="w"> </span><span class="n">logs</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">write</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">sylog</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">-</span><span class="w"> </span><span class="n">Edit</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">mariadb</span><span class="o">-</span><span class="n">enterprise</span><span class="p">.</span><span class="n">cnf</span><span class="w"> </span><span class="n">file</span><span class="p">.</span><span class="w"> </span><span class="k">Add</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">following</span><span class="w"> </span><span class="n">under</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="p">[</span><span class="n">mariadb</span><span class="p">]</span><span class="w"> </span><span class="n">section</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">-</span><span class="w"> </span><span class="n">server_audit_output_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;syslog&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">-</span><span class="w"> </span><span class="n">After</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="p">.</span><span class="n">cnf</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">updated</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">saved</span><span class="p">,</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">mariadb</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">service</span><span class="w"> </span><span class="n">must</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">restarted</span><span class="p">.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">-</span><span class="w"> </span><span class="k">If</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="n">writing</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">syslog</span><span class="p">,</span><span class="w"> </span><span class="n">log</span><span class="w"> </span><span class="n">rotation</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">purging</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">configured</span><span class="p">.</span></span></span></code></pre></div>
+
+
+
+<h3 id="what-type-of-control-is-being-implemented-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1/#what-type-of-control-is-being-implemented-1">What type of control is being implemented?</a>
+</h3>
+
+
+
+<h3 id="todo-is-it-set-properly-on-your-system-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1/#todo-is-it-set-properly-on-your-system-1">Todo is it set properly on your system?</a>
+</h3>
+<hr>
+
+
+
+<h3 id="v-253754">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1/#v-253754">V-253754</a>
+</h3>
+
+
+
+<h3 id="rule-title">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1/#rule-title"><strong>Rule Title:</strong></a>
+</h3>
+<p>MariaDB must generate audit records when security objects are modified.</p>
+
+
+
+<h3 id="what-is-the-problem-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1/#what-is-the-problem-2">What is the Problem?</a>
+</h3>
+<p><strong>Discussion:</strong>
+Changes in the database objects (tables, views, procedures, functions) that record and control permissions, privileges, and roles granted to users and roles must be tracked. Without an audit trail, unauthorized changes to the security subsystem could go undetected. The database could be severely compromised or rendered inoperative.</p>
+
+
+
+<h3 id="what-is-the-fix-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1/#what-is-the-fix-2">What is the Fix?</a>
+</h3>
+<p><strong>Fix Text:</strong></p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-mariadb" data-lang="mariadb"><span class="line"><span class="cl"><span class="n">The</span><span class="w"> </span><span class="n">MariaDB</span><span class="w"> </span><span class="n">Enterprise</span><span class="w"> </span><span class="n">Audit</span><span class="w"> </span><span class="n">plugin</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">configured</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">audit</span><span class="w"> </span><span class="n">these</span><span class="w"> </span><span class="n">changes</span><span class="p">.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">-</span><span class="w"> </span><span class="k">Update</span><span class="w"> </span><span class="n">necessary</span><span class="w"> </span><span class="n">audit</span><span class="w"> </span><span class="n">filters</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">include</span><span class="w"> </span><span class="n">query_event</span><span class="w"> </span><span class="k">ALL</span><span class="p">.</span><span class="w"> </span><span class="n">Example</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">-</span><span class="w"> </span><span class="n">MariaDB</span><span class="o">&gt;</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">mysql</span><span class="p">.</span><span class="n">server_audit_filters</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">filtername</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;default&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">-</span><span class="w"> </span><span class="n">MariaDB</span><span class="o">&gt;</span><span class="w"> </span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">mysql</span><span class="p">.</span><span class="nf">server_audit_filters</span><span class="w"> </span><span class="p">(</span><span class="n">filtername</span><span class="p">,</span><span class="w"> </span><span class="n">rule</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nf">JSON_COMPACT</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="s1">&#39;{
+</span></span></span><span class="line"><span class="cl"><span class="s1">          &#34;connect_event&#34;: [
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &#34;CONNECT&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s1">             &#34;DISCONNECT&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s1">          ],
+</span></span></span><span class="line"><span class="cl"><span class="s1">          &#34;query_event&#34;: [
+</span></span></span><span class="line"><span class="cl"><span class="s1">              &#34;ALL&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s1">          ]
+</span></span></span><span class="line"><span class="cl"><span class="s1">       }&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">));</span></span></span></code></pre></div>
+
+
+
+<h3 id="what-type-of-control-is-being-implemented-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1/#what-type-of-control-is-being-implemented-2">What type of control is being implemented?</a>
+</h3>
+
+
+
+<h3 id="todo-is-it-set-properly-on-your-system-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc1/#todo-is-it-set-properly-on-your-system-2">Todo is it set properly on your system?</a>
+</h3>
+<hr>
+  
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/security/" rel="tag">Security</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+  
+  
+
+
+
+      </div>
+    </div>
+  </main>
+  
+</body>
+
+</html>
