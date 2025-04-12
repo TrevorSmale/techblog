@@ -2,40 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/techblog/categories/</loc>
-    <lastmod>2025-04-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/techblog/tags/engineering/</loc>
-    <lastmod>2025-04-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/techblog/categories/learning/</loc>
-    <lastmod>2025-04-05T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/techblog/post/</loc>
-    <lastmod>2025-04-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/techblog/tags/prolug-course/</loc>
-    <lastmod>2025-04-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/techblog/post/psc2/</loc>
-    <lastmod>2025-04-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/techblog/tags/security/</loc>
-    <lastmod>2025-04-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/techblog/tags/</loc>
-    <lastmod>2025-04-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/techblog/tags/tech/</loc>
     <lastmod>2025-04-05T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/techblog/</loc>
     <lastmod>2025-04-05T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/techblog/categories/</loc>
+    <lastmod>2025-03-23T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/techblog/tags/engineering/</loc>
+    <lastmod>2025-03-23T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/techblog/categories/learning/</loc>
+    <lastmod>2025-03-23T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/techblog/tags/prolug-course/</loc>
+    <lastmod>2025-03-23T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/techblog/post/psc0/</loc>
     <lastmod>2025-03-23T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/techblog/post/psc1/</loc>
+    <lastmod>2025-03-23T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/techblog/tags/security/</loc>
+    <lastmod>2025-03-23T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/techblog/tags/</loc>
+    <lastmod>2025-03-23T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/techblog/tags/tech/</loc>
     <lastmod>2025-03-23T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/techblog/post/go25/</loc>
