@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/techblog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=techblog/livereload" data-no-instant defer></script>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <meta name="description" content="Monitoring &amp; Parsing Logs">
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.147.3">
+  <title>ProLUG Security Engineering Course Unit 7 | Tech Blog</title>
+  <link rel="canonical" href="http://localhost:1313/techblog/post/psc7/">
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+    <link rel="stylesheet" href="/techblog/css/base.css">
+
+    <link rel="stylesheet" href="/techblog/css/syntax.css">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <a class="Banner-link u-clickable" href="/techblog/">Tech Blog</a>
+      </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/about/">About</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/post/">Posts</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/tags/">Tags</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/categories/">Categories</a>
+        </li>
+      
+        
+        
+          
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/feed.xml">RSS</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/psc7/" rel="bookmark">ProLUG Security Engineering Course Unit 7</a>
+  </h1>
+  
+    <time datetime="2025-05-11T00:00:00Z">May 11, 2025</time>
+  
+</header>
+  <h2 id="intro-">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc7/#intro-">Intro 👋</a>
+</h2>
+<p>This is the 2 sentence intro Footnote<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<hr>
+
+
+
+<h2 id="worksheet">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc7/#worksheet">Worksheet</a>
+</h2>
+
+
+
+<h3 id="discussion-post-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc7/#discussion-post-1"><code>Discussion Post 1</code></a>
+</h3>
+<p>Intro to the scenario</p>
+<p>Read about telemetry, logs, and traces<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup><sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>.</p>
+<p><code>Question</code></p>
+<ul>
+<li>How does the usage guidance of that blog align with your understanding of these three items?</li>
+</ul>
+<p><code>Answer</code></p>
+<p>Though the concepts involved in telemetry are really quite simple, they took me some time to internalize and fully understand.
+I can&rsquo;t say it paralleled my own understanding as my understanding was very limited. Prior to the lectures, if I were to hear the word telemetry, I would think of non GPS tracking techniques or some sort of secret tracking by Palantir.</p>
+<p>My simplified outline of these 3 things:</p>
+<ul>
+<li>A metric represents a point in time measurement of a particular source</li>
+<li>Logs are discrete and event triggered occurrences.</li>
+<li>Traces follow a program’s flow and data progression.</li>
+</ul>
+<p><code>Question</code></p>
+<ul>
+<li>What other useful blogs or AI write-ups were you able to find?</li>
+</ul>
+<p><code>Answer</code></p>
+<ul>
+<li>Yes Grafana has a good writeup on the subject.</li>
+<li><a href="https://grafana.com/docs/tempo/latest/introduction/telemetry/">https://grafana.com/docs/tempo/latest/introduction/telemetry/</a></li>
+</ul>
+<p><code>Question</code></p>
+<ul>
+<li>What is the usefulness of this in securing your system?</li>
+</ul>
+<p><code>Answer</code></p>
+<ul>
+<li>Securing a System is useful in many ways.</li>
+<li>Prevents unwanted access.</li>
+<li>Potentially mitigates Data Exfiltration.</li>
+<li>Potentially mitigates unwanted Data Infiltration.</li>
+<li>Prevents miss-use by users.</li>
+<li>Can simply mitigate the overload of available resources.</li>
+<li>Not only does the attack surface shrink when a system is properly secured, but the monitoring tasks reduce.</li>
+<li>Secure systems are more predictable systems.</li>
+</ul>
+
+
+
+<h3 id="discussion-post-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc7/#discussion-post-2"><code>Discussion Post 2</code></a>
+</h3>
+<p>Intro to the scenario</p>
+<p>When we think of our systems, sometimes an airgapped system is simple to think about because everything is closed in. The idea of alerting or reporting is the opposite. We are trying to get the correct, timely, and important information out of the system when and where it is needed.</p>
+<p>Read the summary at the top<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>.</p>
+<p><code>Question</code></p>
+<ul>
+<li>What is the litmus test for a page? (Sending something out of the system?)</li>
+</ul>
+<p><code>Answer</code></p>
+<ul>
+<li>The page must be pertaining to an imminent, actionable situation that must be addressed quickly.</li>
+</ul>
+<p><code>Question</code></p>
+<ul>
+<li>What is over-monitoring v. under-monitoring. Do you agree with the assessment of the paper? Why or why not, in your experience?</li>
+</ul>
+<p><code>Answer</code></p>
+<ul>
+<li>
+<p>Over-monitoring can be compared to hyper-vigilance. Over time it works against you as fatigue or indifference sets in. Furthermore over-monitoring includes the transporting, receiving and dissemination of too much information, causing cognitive overload, leading to poor decision making. Furthermore, the additional information being broadcast leaves a system more susceptible/vulnerable from a security stand-point.</p>
+</li>
+<li>
+<p>Under monitoring would be lack of contextual reporting, responsiveness and diligence needed in order to keep a system from going down.</p>
+</li>
+<li>
+<p>From reading this article, it seems to me that one must turn monitoring into a spectrum of detail. Hypercritical indicators like uptime, load, capacity should be reported daily with a pre-determined baseline. Estimations can be made from this allowing for prediction. While major changes &ndash;those outside the predicted norm, could trigger alerts. Paging should be reserved for the utmost critical issues.</p>
+</li>
+</ul>
+<p><code>Question</code></p>
+<ul>
+<li>What is cause-based v. symptom-based and where do they belong? Do you agree?</li>
+</ul>
+<p><code>Answer</code></p>
+<ul>
+<li>
+<p>Cause based is the analysis/investigation of the root cause of a certain outcome. In the context of systems operating and security, it is finding the vulnerability, infiltration/exfilration point or cause of failure like hitting memory/cpu/disc space limitations.</p>
+</li>
+<li>
+<p>Symptom based analysis would be to observe the effects of an unknown origins ie. systems going down, data loss etc&hellip;
+Bringing the system back up, or restoring data from backups does nothing to address the root cause, it only remediates the effects.</p>
+</li>
+</ul>
+<hr>
+
+
+
+<h3 id="definitions">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc7/#definitions">Definitions</a>
+</h3>
+<ul>
+<li>
+<p>Def 1: Explainer</p>
+</li>
+<li>
+<p>Def 2: Explainer</p>
+</li>
+<li>
+<p>Def 3: Explainer</p>
+</li>
+<li>
+<p>Telemetry</p>
+</li>
+<li>
+<p>Tracing
+Span
+Label</p>
+</li>
+<li>
+<p>Time Series Database (TSDB)</p>
+</li>
+<li>
+<p>Queue</p>
+</li>
+<li>
+<p>Upper control limit / Lower control limit (UCL/LCL)</p>
+</li>
+<li>
+<p>Aggregation</p>
+</li>
+<li>
+<p>SLO, SLA, SLI</p>
+</li>
+<li>
+<p>Push v. Pull of data</p>
+</li>
+<li>
+<p>Alerting rules</p>
+</li>
+<li>
+<p>Alertmanager</p>
+<p>Alert template
+Routing
+Throttling</p>
+</li>
+<li>
+<p>Monitoring for defensive operations</p>
+<p>SIEM
+Intrusion Detection Systems - IDS
+Intrusion Prevention Systems - IPS</p>
+</li>
+</ul>
+
+
+
+<h2 id="lab">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc7/#lab">Lab</a>
+</h2>
+<p>Install fail2ban</p>
+<p>apt install -y fail2ban</p>
+<p>Verify the version number of fail2ban client</p>
+<p>fail2ban-client &ndash;version</p>
+<p>Configure fail2ban for sshd jail.</p>
+<p>vi /etc/fail2ban/jail.conf</p>
+<p>#Uncomment [sshd] and enter the following lines under [sshd] section</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">     <span class="o">[</span>sshd<span class="o">]</span>
+</span></span><span class="line"><span class="cl">     <span class="nv">enabled</span> <span class="o">=</span> <span class="nb">true</span>
+</span></span><span class="line"><span class="cl">     <span class="nv">maxretry</span> <span class="o">=</span>  <span class="m">5</span>
+</span></span><span class="line"><span class="cl">     <span class="nv">findtime</span> <span class="o">=</span> <span class="m">10</span>
+</span></span><span class="line"><span class="cl">     <span class="nv">bantime</span> <span class="o">=</span> 4h</span></span></code></pre></div>
+<p>#Check the rest of the file and ensure that there is no [sshd] config later in the file, delete or comment it out.</p>
+<p>Review the configurations for apache and nginx to see what other types of jails are available in fail2ban.</p>
+<p>Restart the service and verify that it is running properly.</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">systemctl restart fail2ban</span></span></code></pre></div>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">systemctl status fail2ban --no-pager</span></span></code></pre></div>
+<p>Test the fail2ban is properly working by trying to connect back to the controlplane server from node01 as a fake account.</p>
+<p>ssh node01</p>
+<p>Run a for loop and keep trying to connect back to controlplane. You will have to hit enter on each password line until lockout occurs.</p>
+<p>for i in {1..6}; do ssh invaliduser@controlplane; done</p>
+<p>You will have to hit &lsquo;ctrl + c&rsquo; to exit when it stops trying to connect to the far end.</p>
+<p>Exit back to controlplane and check the logs and fail status.</p>
+<p>Check the log of fail2ban</p>
+<p>tail -20 /var/log/fail2ban.log</p>
+<p>Verify that you see the banned IP.</p>
+<p>fail2ban-client get sshd banned</p>
+<p>Do you see the IP address that you expect? Why do you think that is?</p>
+<p>Unban the ip address from the logs. You must manually enter the correct IP address below from the upper output</p>
+<p>fail2ban-client set sshd unbanip <!-- raw HTML omitted --></p>
+<p>Test that the unban has happened correctly.</p>
+<p>ssh node01</p>
+<p>Try to connect back to controlplane with a correct user, the root user.</p>
+<p>ssh controlplane</p>
+<p>Did you connect back correctly? If so, move on to the next part of the lab.</p>
+
+
+
+<h3 id="prolug-links-">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc7/#prolug-links-">ProLUG Links ⛓️</a>
+</h3>
+<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
+Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
+Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
+ProLUG PSC Repo: <a href="https://github.com/ProfessionalLinuxUsersGroup/psc">https://github.com/ProfessionalLinuxUsersGroup/psc</a>
+ProLUG PSC Book: <a href="https://professionallinuxusersgroup.github.io/psc/">https://professionallinuxusersgroup.github.io/psc/</a>
+ProLUG Book of Labs: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
+KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
+<hr>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Example Title <a href="Link">Format</a> Source, 2025.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>Example Title <a href="https://microsoft.github.io/code-with-engineering-playbook/observability/log-vs-metric-vs-trace/">Format</a> Source, 2025.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>Example Title <a href="https://grafana.com/docs/tempo/latest/introduction/telemetry/">Format</a> Source, 2025.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4">
+<p>Example Title <a href="https://docs.google.com/document/d/199PqyG3UsyXlwieHaqbGiWVa8eMWi8zzAn0YfcApr8Q/edit?tab=t.0">Format</a> Source, 2025.&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+  
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/capstoneproject/" rel="tag">CapstoneProject</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+  
+  
+
+
+
+      </div>
+    </div>
+  </main>
+  
+</body>
+
+</html>

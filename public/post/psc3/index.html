@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/techblog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=techblog/livereload" data-no-instant defer></script>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <meta name="description" content="This is a Template for Reporting on ProLUG Courses">
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.147.3">
+  <title>ProLUG Security Engineering Course Unit 3 | Tech Blog</title>
+  <link rel="canonical" href="http://localhost:1313/techblog/post/psc3/">
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+    <link rel="stylesheet" href="/techblog/css/base.css">
+
+    <link rel="stylesheet" href="/techblog/css/syntax.css">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <a class="Banner-link u-clickable" href="/techblog/">Tech Blog</a>
+      </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/about/">About</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/post/">Posts</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/tags/">Tags</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/categories/">Categories</a>
+        </li>
+      
+        
+        
+          
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/feed.xml">RSS</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/psc3/" rel="bookmark">ProLUG Security Engineering Course Unit 3</a>
+  </h1>
+  
+    <time datetime="2025-04-13T00:00:00Z">April 13, 2025</time>
+  
+</header>
+  <h2 id="intro-">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#intro-">Intro 👋</a>
+</h2>
+<p>This is the 2 sentence intro Footnote<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<hr>
+
+
+
+<h2 id="worksheet">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#worksheet">Worksheet</a>
+</h2>
+
+
+
+<h3 id="discussion-post-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#discussion-post-1"><code>Discussion Post 1</code></a>
+</h3>
+<p>There are 16 Stigs that involve PAM for RHEL 9<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>.</p>
+<p><code>Question</code></p>
+<ul>
+<li>What are the mechanisms and how do they affect PAM functionality?</li>
+</ul>
+<p><code>Answer</code></p>
+
+
+
+<h4 id="hardening-defaults">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#hardening-defaults">Hardening Defaults</a>
+</h4>
+<p>STIGs replace permissive PAM modules with stricter ones. 2 Categories/Areas are covered in regards to Stig&rsquo;ing PAMs</p>
+<ol>
+<li>Lockout Policies that effect login frequency and failure.</li>
+<li>Password Strength Enforcement that effects password complexity and re-use.</li>
+</ol>
+
+
+
+<h4 id="review-etcpamdsshd-on-a-linux-system">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#review-etcpamdsshd-on-a-linux-system">Review /etc/pam.d/sshd on a Linux system.</a>
+</h4>
+<p><code>Question</code></p>
+<ul>
+<li>What is happening in that file relative to these functionalities?</li>
+</ul>
+<p><code>Answer</code></p>
+<ul>
+<li>This file specifies the PAM module control flags that sshd uses during authentication.</li>
+</ul>
+<p><code>Question</code></p>
+<ul>
+<li>What are the common PAM modules?</li>
+</ul>
+<p><code>Answer</code></p>
+<ul>
+<li>pam_sepermit.so, pam_nologin.so, apassword-auth and postlogin.</li>
+</ul>
+<p><code>Question</code></p>
+<ul>
+<li>Look for a blog post or article about PAM that discusses real world application. ost it here and give us a quick synopsis.</li>
+</ul>
+<p><code>Answer</code></p>
+<p><a href="https://www.redhat.com/en/blog/pluggable-authentication-modules-pam?utm_source=chatgpt.com">https://www.redhat.com/en/blog/pluggable-authentication-modules-pam?utm_source=chatgpt.com</a></p>
+<p><code>Synopsis:</code></p>
+<p>PAM are a modular and flexible framework for integrating authentication methods into applications. By seperating / abstracting authentication mechanisms from application code, PAM allows admins to manage authentication policies centrally. PAM also allows from customized authentication processes (Security through obscurity)</p>
+
+
+
+<h3 id="discussion-post-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#discussion-post-2"><code>Discussion Post 2</code></a>
+</h3>
+<p>Intro to the scenario</p>
+<p>Read about active directory (or LDAP) configurations of Linux via sssd<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup> 👍</p>
+<p><code>Question</code></p>
+<ul>
+<li>Why do we not want to just use local authentication in Linux? Or really any system?</li>
+</ul>
+<p><code>Answer</code></p>
+<ul>
+<li>Local authentication presents several problems. Firstly, there is no federated access, so there is fragmentation of systems. Secondly, scalability is an issue as each local system manages that local system&rsquo;s users, requiring individual account provisioning and password management. Thirdly, it complicates auditing and compliance, since there is no centralized logging or consistent policy enforcement. Additionally, stale or orphaned accounts can accumulate unnoticed, increasing security risks. Finally, it prevents the implementation of modern security practices such as single sign-on (SSO), multi-factor authentication (MFA), and role-based access control across a distributed environment.</li>
+</ul>
+<p><code>Question</code></p>
+<ul>
+<li>There are 4 SSSD STIGS.</li>
+</ul>
+<p><code>Response</code></p>
+
+
+
+<h4 id="vuln-id-258122">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#vuln-id-258122">Vuln ID 258122</a>
+</h4>
+<p><strong>Enforce Smart Card Authentication</strong> – Require certificate-based smart card login to implement multi-factor authentication and enhance access security.</p>
+
+
+
+<h4 id="vuln-id-248131">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#vuln-id-248131">Vuln ID 248131</a>
+</h4>
+<p><strong>Validate Certificate Chains</strong> – Ensure that certificates used for PKI-based authentication are properly validated by building a complete certification path to a trusted root.</p>
+
+
+
+<h4 id="vuln-id-258132">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#vuln-id-258132">Vuln ID 258132</a>
+</h4>
+<p><strong>Associate Certificates with User Accounts</strong> – Confirm that every authentication certificate is explicitly mapped to a valid user account to maintain identity integrity.</p>
+
+
+
+<h4 id="vuln-id-258133">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#vuln-id-258133">Vuln ID 258133</a>
+</h4>
+<p><strong>Restrict Credential Caching Duration</strong> – Limit the validity period of cached authentication credentials to a maximum of 24 hours to reduce risk in the event of compromise.</p>
+<hr>
+
+
+
+<h3 id="definitions">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#definitions">Definitions</a>
+</h3>
+<ul>
+<li><strong>PAM:</strong> Pluggable Authentication Modules provide a flexible mechanism for authenticating users on Unix-like systems.</li>
+<li><strong>AD:</strong> Active Directory is Microsoft&rsquo;s centralized directory service for authentication, authorization, and resource management.</li>
+<li><strong>LDAP:</strong> Lightweight Directory Access Protocol is an open, vendor-neutral protocol for accessing and maintaining distributed directory information services.</li>
+<li><strong>sssd:</strong> System Security Services Daemon provides access to remote identity and authentication providers like LDAP or Kerberos.</li>
+<li><strong>oddjob:</strong> A D-Bus service used to perform privileged tasks on behalf of unprivileged users, often for domain enrollment or home directory creation.</li>
+<li><strong>krb5:</strong> Kerberos 5 is a network authentication protocol that uses tickets for securely proving identity over untrusted networks.</li>
+<li><strong>realm/realmd:</strong> A tool that simplifies joining and managing a system in a domain like Active Directory or IPA using standard services.</li>
+<li><strong>wheel (system group in RHEL):</strong> A special administrative group whose members are allowed to execute privileged commands using <code>sudo</code>.</li>
+</ul>
+
+
+
+<h2 id="lab">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#lab">Lab</a>
+</h2>
+
+
+
+<h4 id="examine-stig-v-257986">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#examine-stig-v-257986">Examine STIG V-257986</a>
+</h4>
+<p><code>Question</code></p>
+<ul>
+<li>What is the problem?</li>
+</ul>
+<p><code>Answer</code></p>
+<ul>
+<li>TODO</li>
+</ul>
+<p><code>Question</code></p>
+<ul>
+<li>What is the fix?</li>
+</ul>
+<p><code>Answer</code></p>
+<ul>
+<li>TODO</li>
+</ul>
+<p><code>Question</code></p>
+<ul>
+<li>What type of control is being implemented?</li>
+</ul>
+<p><code>Answer</code></p>
+<ul>
+<li>TODO</li>
+</ul>
+<p><code>Question</code></p>
+<ul>
+<li>Is it set properly on your system?</li>
+</ul>
+<p><code>Answer</code></p>
+<ul>
+<li>TODO</li>
+</ul>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">grep -i pam /etc/ssh/sshd_config</span></span></code></pre></div>
+<p><code>Question</code></p>
+<ul>
+<li>Can you remediate this finding?</li>
+</ul>
+
+
+
+<h4 id="check-and-remediate-stig-v-258055">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#check-and-remediate-stig-v-258055">Check and remediate STIG V-258055</a>
+</h4>
+<p><code>Questions</code></p>
+<ul>
+<li>What is the problem?</li>
+<li>What is the fix?</li>
+<li>What type of control is being implemented?</li>
+<li>Are there any major implications to think about with this change on your system? Why or why not?</li>
+<li>Is it set properly on your system?</li>
+<li>How would you go about remediating this on your system?</li>
+</ul>
+<p><code>Answers</code></p>
+<ul>
+<li>TODO</li>
+</ul>
+
+
+
+<h4 id="check-and-remediate-stig-v-258098">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#check-and-remediate-stig-v-258098">Check and remediate STIG V-258098</a>
+</h4>
+<p><code>Questions</code></p>
+<ul>
+<li>What is the problem?</li>
+<li>What is the fix?</li>
+<li>What type of control is being implemented?</li>
+<li>Is it set properly on your system?</li>
+</ul>
+<p><code>Answers</code></p>
+<ul>
+<li>TODO</li>
+</ul>
+
+
+
+<h4 id="filter-stigs-by-password-complexity">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#filter-stigs-by-password-complexity">Filter STIGS by “password complexity”</a>
+</h4>
+<p><code>Questions</code></p>
+<ul>
+<li>How many are there?</li>
+<li>What are the password complexity rules?</li>
+<li>Are there any you haven’t seen before?</li>
+</ul>
+<p><code>Answers</code></p>
+<ul>
+<li>TODO</li>
+</ul>
+
+
+
+<h4 id="openldap-setup">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#openldap-setup">OpenLDAP Setup</a>
+</h4>
+<p>You will likely not build an LDAP server in a real world environment. We are doing it for understanding and ability to complete the lab. In a normal corporate environment this is likely Active Directory.</p>
+<p>To simplify some of the typing in this lab, there is a file located at /lab_work/identity_and_access_management.tar.gz that you can pull down to your system with the correct .ldif files.</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># cp /lab_work/identity_and_access_management.tar.gz .</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># tar -xzvf identity_and_access_management.tar </span></span></span></code></pre></div>
+
+
+
+<h5 id="1-stop-the-warewulf-client">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#1-stop-the-warewulf-client">1. Stop the warewulf client</a>
+</h5>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># systemctl stop wwclient</span></span></span></code></pre></div>
+
+
+
+<h5 id="2-edit-your-etchosts-file">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#2-edit-your-etchosts-file">2. Edit your /etc/hosts file</a>
+</h5>
+<p>Look for and edit the line that has your current server</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># vi /etc/hosts</span></span></span></code></pre></div>
+<p>Entry for hammer1 for example:</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">192.168.200.151 hammer1 hammer1-default ldap.prolug.lan ldap</span></span></code></pre></div>
+
+
+
+<h5 id="3-setup-dnf-repo">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#3-setup-dnf-repo">3. Setup dnf repo</a>
+</h5>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># dnf config-manager --set-enabled plus</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># dnf repolist</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># dnf -y install openldap-servers openldap-clients openldap</span></span></span></code></pre></div>
+
+
+
+<h5 id="4-start-slapd-systemctl">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#4-start-slapd-systemctl">4. Start slapd systemctl</a>
+</h5>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># systemctl start slapd</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># ss -ntulp | grep slapd</span></span></span></code></pre></div>
+
+
+
+<h5 id="5-allow-ldap-through-the-firewall">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#5-allow-ldap-through-the-firewall">5. Allow ldap through the firewall</a>
+</h5>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># firewall-cmd --add-service={ldap,ldaps} --permanent</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># firewall-cmd --reload</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># firewall-cmd --list-all</span></span></span></code></pre></div>
+
+
+
+<h5 id="6-generate-a-password-our-example-uses-testpassword-this-will-return-a-salted-ssha-password-save-this-password-and-stalted-hash-for-later-input">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#6-generate-a-password-our-example-uses-testpassword-this-will-return-a-salted-ssha-password-save-this-password-and-stalted-hash-for-later-input">6. Generate a password (Our example uses testpassword) This will return a salted SSHA password. Save this password and stalted hash for later input</a>
+</h5>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># slappasswd</span></span></span></code></pre></div>
+<p>Output:</p>
+<p><code>New password:   Re-enter new password:   {SSHA}wpRvODvIC/EPYf2GqHUlQMDdsFIW5yig</code></p>
+
+
+
+<h5 id="7-change-the-password">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#7-change-the-password">7. Change the password</a>
+</h5>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># vi changerootpass.ldif</span></span></span></code></pre></div>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">dn</span><span class="p">:</span><span class="w"> </span><span class="l">olcDatabase={0}config,cn=config</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">changetype</span><span class="p">:</span><span class="w"> </span><span class="l">modify</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">replace</span><span class="p">:</span><span class="w"> </span><span class="l">olcRootPW</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">olcRootPW</span><span class="p">:</span><span class="w"> </span>{<span class="l">SSHA}vKobSZO1HDGxp2OElzli/xfAzY4jSDMZ</span></span></span></code></pre></div>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># ldapadd -Y EXTERNAL -H ldapi:/// -f changerootpass.ldif </span></span></span></code></pre></div>
+<p>Output:</p>
+<p><code>SASL/EXTERNAL authentication started</code>
+<code>SASL username: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth</code><br>
+<code>SASL SSF: 0</code><br>
+<code>modifying entry &quot;olcDatabase={0}config,cn=config&quot;</code></p>
+
+
+
+<h5 id="8-generate-basic-schemas">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#8-generate-basic-schemas">8. Generate basic schemas</a>
+</h5>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/cosine.ldif
+</span></span><span class="line"><span class="cl">ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/nis.ldif
+</span></span><span class="line"><span class="cl">ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/inetorgperson.ldif</span></span></code></pre></div>
+
+
+
+<h5 id="9-set-up-the-domain-use-the-password-you-generated-earlier">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#9-set-up-the-domain-use-the-password-you-generated-earlier">9. Set up the domain (USE THE PASSWORD YOU GENERATED EARLIER)</a>
+</h5>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># vi setdomain.ldif</span></span></span></code></pre></div>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">dn</span><span class="p">:</span><span class="w"> </span><span class="l">olcDatabase={1}monitor,cn=config</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">changetype</span><span class="p">:</span><span class="w"> </span><span class="l">modify</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">replace</span><span class="p">:</span><span class="w"> </span><span class="l">olcAccess</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">olcAccess</span><span class="p">:</span><span class="w"> </span>{<span class="m">0</span>}<span class="l">to * by dn.base=&#34;gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">read by dn.base=&#34;cn=Manager,dc=prolug,dc=lan&#34; read by * none</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">dn</span><span class="p">:</span><span class="w"> </span><span class="l">olcDatabase={2}mdb,cn=config</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">changetype</span><span class="p">:</span><span class="w"> </span><span class="l">modify</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">replace</span><span class="p">:</span><span class="w"> </span><span class="l">olcSuffix</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">olcSuffix</span><span class="p">:</span><span class="w"> </span><span class="l">dc=prolug,dc=lan</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">dn</span><span class="p">:</span><span class="w"> </span><span class="l">olcDatabase={2}mdb,cn=config</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">changetype</span><span class="p">:</span><span class="w"> </span><span class="l">modify</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">replace</span><span class="p">:</span><span class="w"> </span><span class="l">olcRootDN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">olcRootDN</span><span class="p">:</span><span class="w"> </span><span class="l">cn=Manager,dc=prolug,dc=lan</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">dn</span><span class="p">:</span><span class="w"> </span><span class="l">olcDatabase={2}mdb,cn=config</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">changetype</span><span class="p">:</span><span class="w"> </span><span class="l">modify</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">add</span><span class="p">:</span><span class="w"> </span><span class="l">olcRootPW</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">olcRootPW</span><span class="p">:</span><span class="w"> </span>{<span class="l">SSHA}s4x6uAxcAPZN/4e3pGnU7UEIiADY0/Ob</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">dn</span><span class="p">:</span><span class="w"> </span><span class="l">olcDatabase={2}mdb,cn=config</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">changetype</span><span class="p">:</span><span class="w"> </span><span class="l">modify</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">add</span><span class="p">:</span><span class="w"> </span><span class="l">olcAccess</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">olcAccess</span><span class="p">:</span><span class="w"> </span>{<span class="m">0</span>}<span class="l">to attrs=userPassword,shadowLastChange by</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">dn=&#34;cn=Manager,dc=prolug,dc=lan&#34; write by anonymous auth by self write by * none</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">olcAccess</span><span class="p">:</span><span class="w"> </span>{<span class="m">1</span>}<span class="l">to dn.base=&#34;&#34; by * read</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">olcAccess</span><span class="p">:</span><span class="w"> </span>{<span class="m">2</span>}<span class="l">to * by dn=&#34;cn=Manager,dc=prolug,dc=lan&#34; write by * read</span></span></span></code></pre></div>
+
+
+
+<h5 id="10-run-it">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#10-run-it">10. Run it</a>
+</h5>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># ldapmodify -Y EXTERNAL -H ldapi:/// -f setdomain.ldif</span></span></span></code></pre></div>
+<p>Output:</p>
+<p><code>SASL/EXTERNAL authentication started</code><br>
+<code>SASL username: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth</code><br>
+<code>SASL SSF: 0</code><br>
+<code>modifying entry &quot;olcDatabase={1}monitor,cn=config</code><br>
+<code>modifying entry &quot;olcDatabase={2}mdb,cn=config</code><br>
+<code>modifying entry &quot;olcDatabase={2}mdb,cn=config</code><br>
+<code>modifying entry &quot;olcDatabase={2}mdb,cn=config</code><br>
+<code>modifying entry &quot;olcDatabase={2}mdb,cn=config</code></p>
+<!-- raw HTML omitted -->
+
+
+
+<h5 id="11-search-and-verify-the-domain-is-working">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#11-search-and-verify-the-domain-is-working">11. Search and verify the domain is working.</a>
+</h5>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># ldapsearch -H ldap:// -x -s base -b &#34;&#34; -LLL &#34;namingContexts&#34;</span></span></span></code></pre></div>
+<p>Output:</p>
+<p><code>dn:</code>
+<code>namingContexts: dc=prolug,dc=lan</code></p>
+
+
+
+<h5 id="12-add-the-base-group-and-organization">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#12-add-the-base-group-and-organization">12. Add the base group and organization.</a>
+</h5>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># vi addou.ldif</span></span></span></code></pre></div>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">dn</span><span class="p">:</span><span class="w"> </span><span class="l">dc=prolug,dc=lan</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">objectClass</span><span class="p">:</span><span class="w"> </span><span class="l">top</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">objectClass</span><span class="p">:</span><span class="w"> </span><span class="l">dcObject</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">objectclass</span><span class="p">:</span><span class="w"> </span><span class="l">organization</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">o</span><span class="p">:</span><span class="w"> </span><span class="l">My prolug Organisation</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">dc</span><span class="p">:</span><span class="w"> </span><span class="l">prolug</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">dn</span><span class="p">:</span><span class="w"> </span><span class="l">cn=Manager,dc=prolug,dc=lan</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">objectClass</span><span class="p">:</span><span class="w"> </span><span class="l">organizationalRole</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">cn</span><span class="p">:</span><span class="w"> </span><span class="l">Manager</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l">OpenLDAP Manager</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">dn</span><span class="p">:</span><span class="w"> </span><span class="l">ou=People,dc=prolug,dc=lan</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">objectClass</span><span class="p">:</span><span class="w"> </span><span class="l">organizationalUnit</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">ou</span><span class="p">:</span><span class="w"> </span><span class="l">People</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">dn</span><span class="p">:</span><span class="w"> </span><span class="l">ou=Group,dc=prolug,dc=lan</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">objectClass</span><span class="p">:</span><span class="w"> </span><span class="l">organizationalUnit</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">ou</span><span class="p">:</span><span class="w"> </span><span class="l">Group</span></span></span></code></pre></div>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># ldapadd -x -D cn=Manager,dc=prolug,dc=lan -W -f addou.ldif</span></span></span></code></pre></div>
+
+
+
+<h5 id="13-verifying">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#13-verifying">13. Verifying</a>
+</h5>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># ldapsearch -H ldap:// -x -s base -b &#34;&#34; -LLL &#34;+&#34;  </span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># ldapsearch -x -b &#34;dc=prolug,dc=lan&#34; ou</span></span></span></code></pre></div>
+
+
+
+<h5 id="14-add-a-user">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#14-add-a-user">14. Add a user</a>
+</h5>
+<p>Generate a password  (use testuser1234)</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># slappasswd </span></span></span></code></pre></div>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># vi adduser.ldif</span></span></span></code></pre></div>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">dn</span><span class="p">:</span><span class="w"> </span><span class="l">uid=testuser,ou=People,dc=prolug,dc=lan</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">objectClass</span><span class="p">:</span><span class="w"> </span><span class="l">inetOrgPerson</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">objectClass</span><span class="p">:</span><span class="w"> </span><span class="l">posixAccount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">objectClass</span><span class="p">:</span><span class="w"> </span><span class="l">shadowAccount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">cn</span><span class="p">:</span><span class="w"> </span><span class="l">testuser</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">sn</span><span class="p">:</span><span class="w"> </span><span class="l">temp</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">userPassword</span><span class="p">:</span><span class="w"> </span>{<span class="l">SSHA}yb6e0ICSdlZaMef3zizvysEzXRGozQOK</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">loginShell</span><span class="p">:</span><span class="w"> </span><span class="l">/bin/bash</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">uidNumber</span><span class="p">:</span><span class="w"> </span><span class="m">15000</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">gidNumber</span><span class="p">:</span><span class="w"> </span><span class="m">15000</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">homeDirectory</span><span class="p">:</span><span class="w"> </span><span class="l">/home/testuser</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">shadowLastChange</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">shadowMax</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">shadowWarning</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">dn</span><span class="p">:</span><span class="w"> </span><span class="l">cn=testuser,ou=Group,dc=prolug,dc=lan</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">objectClass</span><span class="p">:</span><span class="w"> </span><span class="l">posixGroup</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">cn</span><span class="p">:</span><span class="w"> </span><span class="l">testuser</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">gidNumber</span><span class="p">:</span><span class="w"> </span><span class="m">15000</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">memberUid</span><span class="p">:</span><span class="w"> </span><span class="l">testuser</span></span></span></code></pre></div>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># ldapadd -x -D cn=Manager,dc=prolug,dc=lan -W -f adduser.ldif</span></span></span></code></pre></div>
+
+
+
+<h5 id="16-verify-that-your-user-is-in-the-system">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#16-verify-that-your-user-is-in-the-system">16. Verify that your user is in the system.</a>
+</h5>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># ldapsearch -x -b &#34;ou=People,dc=prolug,dc=lan&#34;</span></span></span></code></pre></div>
+
+
+
+<h5 id="17-secure-the-system-with-tls-accept-all-defaults">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#17-secure-the-system-with-tls-accept-all-defaults">17. Secure the system with TLS (accept all defaults)</a>
+</h5>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/pki/tls/ldapserver.key -out /etc/pki/tls/ldapserver.crt</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># chown ldap:ldap /etc/pki/tls/{ldapserver.crt,ldapserver.key}</span></span></span></code></pre></div>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># ls -l /etc/pki/tls/ldap*</span></span></span></code></pre></div>
+<p>Output:</p>
+<p><code>-rw-r--r--. 1 ldap ldap 1224 Apr 12 18:23 /etc/pki/tls/ldapserver.crt </code>
+<code>-rw-------. 1 ldap ldap 1704 Apr 12 18:22 /etc/pki/tls/ldapserver.key</code></p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># vi tls.ldif</span></span></span></code></pre></div>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">dn</span><span class="p">:</span><span class="w"> </span><span class="l">cn=config</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">changetype</span><span class="p">:</span><span class="w"> </span><span class="l">modify</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">add</span><span class="p">:</span><span class="w"> </span><span class="l">olcTLSCACertificateFile</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">olcTLSCACertificateFile</span><span class="p">:</span><span class="w"> </span><span class="l">/etc/pki/tls/ldapserver.crt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">add</span><span class="p">:</span><span class="w"> </span><span class="l">olcTLSCertificateKeyFile</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">olcTLSCertificateKeyFile</span><span class="p">:</span><span class="w"> </span><span class="l">/etc/pki/tls/ldapserver.key</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">add</span><span class="p">:</span><span class="w"> </span><span class="l">olcTLSCertificateFile</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">olcTLSCertificateFile</span><span class="p">:</span><span class="w"> </span><span class="l">/etc/pki/tls/ldapserver.crt</span></span></span></code></pre></div>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># ldapadd -Y EXTERNAL -H ldapi:/// -f tls.ldif</span></span></span></code></pre></div>
+
+
+
+<h5 id="18-fix-the-etcopenldapldapconf-to-allow-for-certs">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#18-fix-the-etcopenldapldapconf-to-allow-for-certs">18. Fix the /etc/openldap/ldap.conf to allow for certs</a>
+</h5>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># vi /etc/openldap/ldap.conf</span></span></span></code></pre></div>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># LDAP Defaults</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># See ldap.conf(5) for details</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># This file should be world readable but not world writable.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#BASE dc=example,dc=com</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#URI ldap://ldap.example.com ldap://ldap-master.example.com:666</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#SIZELIMIT 12</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#TIMELIMIT 15</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#DEREF never</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># When no CA certificates are specified the Shared System Certificates</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># are in use. In order to have these available along with the ones specified # by TLS_CACERTDIR one has to include them explicitly:</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">TLS_CACERT /etc/pki/tls/ldapserver.crt
+</span></span><span class="line"><span class="cl">TLS_REQCERT never
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># System-wide Crypto Policies provide up to date cipher suite which should</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># be used unless one needs a finer grinded selection of ciphers. Hence, the</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># PROFILE=SYSTEM value represents the default behavior which is in place</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># when no explicit setting is used. (see openssl-ciphers(1) for more info)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#TLS_CIPHER_SUITE PROFILE=SYSTEM</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Turning this off breaks GSSAPI used with krb5 when rdns = false</span>
+</span></span><span class="line"><span class="cl">SASL_NOCANON on</span></span></code></pre></div>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># systemctl restart slapd</span></span></span></code></pre></div>
+
+
+
+<h4 id="sssd-configuration-and-realmd-join-to-ldap">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#sssd-configuration-and-realmd-join-to-ldap">SSSD Configuration and Realmd join to LDAP</a>
+</h4>
+<p>SSSD can connect a server to a trusted LDAP system and authenticate users for access to
+local resources. You will likely do this during your career and it is a valuable skill to work with.</p>
+
+
+
+<h5 id="1-install-sssd-configure-and-validate-that-the-user-is-seen-by-the-system">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#1-install-sssd-configure-and-validate-that-the-user-is-seen-by-the-system">1. Install sssd, configure, and validate that the user is seen by the system</a>
+</h5>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># dnf install openldap-clients sssd sssd-ldap oddjob-mkhomedir authselect</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># authselect select sssd with-mkhomedir --force</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># systemctl enable --now oddjobd.service</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># systemctl status oddjobd.service</span></span></span></code></pre></div>
+
+
+
+<h5 id="2-uncomment-and-fix-the-lines-in-etcopenldapldapconf">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#2-uncomment-and-fix-the-lines-in-etcopenldapldapconf">2. Uncomment and fix the lines in /etc/openldap/ldap.conf</a>
+</h5>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># vi /etc/openldap/ldap.conf</span></span></span></code></pre></div>
+<p>Output:</p>
+<p><code>BASE dc=prolug,dc=lan</code>
+<code>URI ldap://ldap.ldap.lan/</code></p>
+
+
+
+<h5 id="3-edit-the-sssdconf-file">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#3-edit-the-sssdconf-file">3. Edit the sssd.conf file</a>
+</h5>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># vi /etc/sssd/sssd.conf</span></span></span></code></pre></div>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="p">[</span><span class="l">domain/default]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">id_provider = ldap</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">autofs_provider = ldap</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">auth_provider = ldap</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">chpass_provider = ldap</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">ldap_uri = ldap://ldap.prolug.lan/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">ldap_search_base = dc=prolug,dc=lan</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#ldap_id_use_start_tls = True</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#ldap_tls_cacertdir = /etc/openldap/certs</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">cache_credentials = True</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#ldap_tls_reqcert = allow</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">[</span><span class="l">sssd]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">services = nss, pam, autofs</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">domains = default</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">[</span><span class="l">nss]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">homedir_substring = /home</span></span></span></code></pre></div>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># chmod 0600 /etc/sssd/sssd.conf</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># systemctl start sssd</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># systemctl status sssd</span></span></span></code></pre></div>
+
+
+
+<h4 id="4-validate-that-the-user-can-be-seen">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#4-validate-that-the-user-can-be-seen">4. Validate that the user can be seen</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@hammer1 ~<span class="o">]</span><span class="c1"># id testuser</span></span></span></code></pre></div>
+<p>Output:</p>
+<p><code>uid=15000(testuser) gid=15000 groups=15000</code></p>
+<p>Congratulations! Look at you, doing all the Linux.</p>
+
+
+
+<h4 id="please-reboot-the-the-lab-machine-when-done">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#please-reboot-the-the-lab-machine-when-done">Please reboot the the lab machine when done.</a>
+</h4>
+
+
+
+<h3 id="prolug-links-">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc3/#prolug-links-">ProLUG Links ⛓️</a>
+</h3>
+<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
+Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
+Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
+ProLUG PSC Repo: <a href="https://github.com/ProfessionalLinuxUsersGroup/psc">https://github.com/ProfessionalLinuxUsersGroup/psc</a>
+ProLUG PSC Book: <a href="https://professionallinuxusersgroup.github.io/psc/">https://professionallinuxusersgroup.github.io/psc/</a>
+ProLUG Book of Labs: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
+KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
+<hr>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Example Title <a href="https://professionallinuxusersgroup.github.io/psc/u3ws.html">Format</a> Source, 2025.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>Stigs that involve PAM for RHEL 9 [Webstie](<a href="https://docs.rockylinux.org/guides/security/pam/">https://docs.rockylinux.org/guides/security/pam/</a> Source, 2025.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>configurations of Linux via sssd <a href="https://docs.rockylinux.org/guides/security/authentication/active_directory_authentication">Website</a> Source, 2025.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+  
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/capstoneproject/" rel="tag">CapstoneProject</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+  
+  
+
+
+
+      </div>
+    </div>
+  </main>
+  
+</body>
+
+</html>

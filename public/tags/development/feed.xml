@@ -5,10 +5,2183 @@
     <title>Development on Tech Blog</title>
     <link>http://localhost:1313/techblog/tags/development/</link>
     <description>Recent content in Development on Tech Blog</description>
-    <generator>Hugo 0.145.0</generator>
+    <generator>Hugo 0.147.3</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 12 Jan 2025 00:00:00 +0000</lastBuildDate>
     <atom:link rel="self" href="http://localhost:1313/techblog/tags/development/feed.xml" type="application/rss+xml" />
+    <item>
+      <title>Monitoring &amp; Parsing Logs</title>
+      <link>http://localhost:1313/techblog/post/psc7/</link>
+      <pubDate>Sun, 11 May 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/techblog/post/psc7/</guid>
+      <description>&lt;h2 id=&#34;intro-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc7/#intro-&#34;&gt;Intro 👋&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;This is the 2 sentence intro Footnote&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;worksheet&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc7/#worksheet&#34;&gt;Worksheet&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;discussion-post-1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc7/#discussion-post-1&#34;&gt;&lt;code&gt;Discussion Post 1&lt;/code&gt;&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Intro to the scenario&lt;/p&gt;
+&lt;p&gt;Read about telemetry, logs, and traces&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;sup id=&#34;fnref:3&#34;&gt;&lt;a href=&#34;#fn:3&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;How does the usage guidance of that blog align with your understanding of these three items?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Though the concepts involved in telemetry are really quite simple, they took me some time to internalize and fully understand.
+I can&amp;rsquo;t say it paralleled my own understanding as my understanding was very limited. Prior to the lectures, if I were to hear the word telemetry, I would think of non GPS tracking techniques or some sort of secret tracking by Palantir.&lt;/p&gt;
+&lt;p&gt;My simplified outline of these 3 things:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A metric represents a point in time measurement of a particular source&lt;/li&gt;
+&lt;li&gt;Logs are discrete and event triggered occurrences.&lt;/li&gt;
+&lt;li&gt;Traces follow a program’s flow and data progression.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What other useful blogs or AI write-ups were you able to find?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Yes Grafana has a good writeup on the subject.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://grafana.com/docs/tempo/latest/introduction/telemetry/&#34;&gt;https://grafana.com/docs/tempo/latest/introduction/telemetry/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What is the usefulness of this in securing your system?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Securing a System is useful in many ways.&lt;/li&gt;
+&lt;li&gt;Prevents unwanted access.&lt;/li&gt;
+&lt;li&gt;Potentially mitigates Data Exfiltration.&lt;/li&gt;
+&lt;li&gt;Potentially mitigates unwanted Data Infiltration.&lt;/li&gt;
+&lt;li&gt;Prevents miss-use by users.&lt;/li&gt;
+&lt;li&gt;Can simply mitigate the overload of available resources.&lt;/li&gt;
+&lt;li&gt;Not only does the attack surface shrink when a system is properly secured, but the monitoring tasks reduce.&lt;/li&gt;
+&lt;li&gt;Secure systems are more predictable systems.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;discussion-post-2&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc7/#discussion-post-2&#34;&gt;&lt;code&gt;Discussion Post 2&lt;/code&gt;&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Intro to the scenario&lt;/p&gt;
+&lt;p&gt;When we think of our systems, sometimes an airgapped system is simple to think about because everything is closed in. The idea of alerting or reporting is the opposite. We are trying to get the correct, timely, and important information out of the system when and where it is needed.&lt;/p&gt;
+&lt;p&gt;Read the summary at the top&lt;sup id=&#34;fnref:4&#34;&gt;&lt;a href=&#34;#fn:4&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;4&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What is the litmus test for a page? (Sending something out of the system?)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The page must be pertaining to an imminent, actionable situation that must be addressed quickly.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What is over-monitoring v. under-monitoring. Do you agree with the assessment of the paper? Why or why not, in your experience?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Over-monitoring can be compared to hyper-vigilance. Over time it works against you as fatigue or indifference sets in. Furthermore over-monitoring includes the transporting, receiving and dissemination of too much information, causing cognitive overload, leading to poor decision making. Furthermore, the additional information being broadcast leaves a system more susceptible/vulnerable from a security stand-point.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Under monitoring would be lack of contextual reporting, responsiveness and diligence needed in order to keep a system from going down.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;From reading this article, it seems to me that one must turn monitoring into a spectrum of detail. Hypercritical indicators like uptime, load, capacity should be reported daily with a pre-determined baseline. Estimations can be made from this allowing for prediction. While major changes &amp;ndash;those outside the predicted norm, could trigger alerts. Paging should be reserved for the utmost critical issues.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What is cause-based v. symptom-based and where do they belong? Do you agree?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Cause based is the analysis/investigation of the root cause of a certain outcome. In the context of systems operating and security, it is finding the vulnerability, infiltration/exfilration point or cause of failure like hitting memory/cpu/disc space limitations.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Symptom based analysis would be to observe the effects of an unknown origins ie. systems going down, data loss etc&amp;hellip;
+Bringing the system back up, or restoring data from backups does nothing to address the root cause, it only remediates the effects.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+
+
+
+&lt;h3 id=&#34;definitions&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc7/#definitions&#34;&gt;Definitions&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Def 1: Explainer&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Def 2: Explainer&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Def 3: Explainer&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Telemetry&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Tracing
+Span
+Label&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Time Series Database (TSDB)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Queue&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Upper control limit / Lower control limit (UCL/LCL)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Aggregation&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;SLO, SLA, SLI&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Push v. Pull of data&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Alerting rules&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Alertmanager&lt;/p&gt;
+&lt;p&gt;Alert template
+Routing
+Throttling&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Monitoring for defensive operations&lt;/p&gt;
+&lt;p&gt;SIEM
+Intrusion Detection Systems - IDS
+Intrusion Prevention Systems - IPS&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 id=&#34;lab&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc7/#lab&#34;&gt;Lab&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Install fail2ban&lt;/p&gt;
+&lt;p&gt;apt install -y fail2ban&lt;/p&gt;
+&lt;p&gt;Verify the version number of fail2ban client&lt;/p&gt;
+&lt;p&gt;fail2ban-client &amp;ndash;version&lt;/p&gt;
+&lt;p&gt;Configure fail2ban for sshd jail.&lt;/p&gt;
+&lt;p&gt;vi /etc/fail2ban/jail.conf&lt;/p&gt;
+&lt;p&gt;#Uncomment [sshd] and enter the following lines under [sshd] section&lt;/p&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;sshd&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     &lt;span class=&#34;nv&#34;&gt;enabled&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     &lt;span class=&#34;nv&#34;&gt;maxretry&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;  &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     &lt;span class=&#34;nv&#34;&gt;findtime&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;10&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     &lt;span class=&#34;nv&#34;&gt;bantime&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; 4h&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;#Check the rest of the file and ensure that there is no [sshd] config later in the file, delete or comment it out.&lt;/p&gt;
+&lt;p&gt;Review the configurations for apache and nginx to see what other types of jails are available in fail2ban.&lt;/p&gt;
+&lt;p&gt;Restart the service and verify that it is running properly.&lt;/p&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl restart fail2ban&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl status fail2ban --no-pager&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Test the fail2ban is properly working by trying to connect back to the controlplane server from node01 as a fake account.&lt;/p&gt;
+&lt;p&gt;ssh node01&lt;/p&gt;
+&lt;p&gt;Run a for loop and keep trying to connect back to controlplane. You will have to hit enter on each password line until lockout occurs.&lt;/p&gt;
+&lt;p&gt;for i in {1..6}; do ssh invaliduser@controlplane; done&lt;/p&gt;
+&lt;p&gt;You will have to hit &amp;lsquo;ctrl + c&amp;rsquo; to exit when it stops trying to connect to the far end.&lt;/p&gt;
+&lt;p&gt;Exit back to controlplane and check the logs and fail status.&lt;/p&gt;
+&lt;p&gt;Check the log of fail2ban&lt;/p&gt;
+&lt;p&gt;tail -20 /var/log/fail2ban.log&lt;/p&gt;
+&lt;p&gt;Verify that you see the banned IP.&lt;/p&gt;
+&lt;p&gt;fail2ban-client get sshd banned&lt;/p&gt;
+&lt;p&gt;Do you see the IP address that you expect? Why do you think that is?&lt;/p&gt;
+&lt;p&gt;Unban the ip address from the logs. You must manually enter the correct IP address below from the upper output&lt;/p&gt;
+&lt;p&gt;fail2ban-client set sshd unbanip &lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;Test that the unban has happened correctly.&lt;/p&gt;
+&lt;p&gt;ssh node01&lt;/p&gt;
+&lt;p&gt;Try to connect back to controlplane with a correct user, the root user.&lt;/p&gt;
+&lt;p&gt;ssh controlplane&lt;/p&gt;
+&lt;p&gt;Did you connect back correctly? If so, move on to the next part of the lab.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;prolug-links-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc7/#prolug-links-&#34;&gt;ProLUG Links ⛓️&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Discord: &lt;a href=&#34;https://discord.com/invite/m6VPPD9usw&#34;&gt;https://discord.com/invite/m6VPPD9usw&lt;/a&gt;
+Youtube: &lt;a href=&#34;https://www.youtube.com/@het_tanis8213&#34;&gt;https://www.youtube.com/@het_tanis8213&lt;/a&gt;
+Twitch: &lt;a href=&#34;https://www.twitch.tv/het_tanis&#34;&gt;https://www.twitch.tv/het_tanis&lt;/a&gt;
+ProLUG PSC Repo: &lt;a href=&#34;https://github.com/ProfessionalLinuxUsersGroup/psc&#34;&gt;https://github.com/ProfessionalLinuxUsersGroup/psc&lt;/a&gt;
+ProLUG PSC Book: &lt;a href=&#34;https://professionallinuxusersgroup.github.io/psc/&#34;&gt;https://professionallinuxusersgroup.github.io/psc/&lt;/a&gt;
+ProLUG Book of Labs: &lt;a href=&#34;https://leanpub.com/theprolugbigbookoflabs&#34;&gt;https://leanpub.com/theprolugbigbookoflabs&lt;/a&gt;
+KillerCoda: &lt;a href=&#34;https://killercoda.com/het-tanis&#34;&gt;https://killercoda.com/het-tanis&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;div class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;
+&lt;p&gt;Example Title &lt;a href=&#34;Link&#34;&gt;Format&lt;/a&gt; Source, 2025.&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:2&#34;&gt;
+&lt;p&gt;Example Title &lt;a href=&#34;https://microsoft.github.io/code-with-engineering-playbook/observability/log-vs-metric-vs-trace/&#34;&gt;Format&lt;/a&gt; Source, 2025.&amp;#160;&lt;a href=&#34;#fnref:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:3&#34;&gt;
+&lt;p&gt;Example Title &lt;a href=&#34;https://grafana.com/docs/tempo/latest/introduction/telemetry/&#34;&gt;Format&lt;/a&gt; Source, 2025.&amp;#160;&lt;a href=&#34;#fnref:3&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:4&#34;&gt;
+&lt;p&gt;Example Title &lt;a href=&#34;https://docs.google.com/document/d/199PqyG3UsyXlwieHaqbGiWVa8eMWi8zzAn0YfcApr8Q/edit?tab=t.0&#34;&gt;Format&lt;/a&gt; Source, 2025.&amp;#160;&lt;a href=&#34;#fnref:4&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+    </item>
+    <item>
+      <title>Template for ProLUG Reports</title>
+      <link>http://localhost:1313/techblog/post/psc6/</link>
+      <pubDate>Sun, 04 May 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/techblog/post/psc6/</guid>
+      <description>&lt;h2 id=&#34;intro-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc6/#intro-&#34;&gt;Intro 👋&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;This is the 2 sentence intro Footnote&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;worksheet&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc6/#worksheet&#34;&gt;Worksheet&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;discussion-post-1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc6/#discussion-post-1&#34;&gt;&lt;code&gt;Discussion Post 1&lt;/code&gt;&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Review chapter 15 of the SRE book:&lt;br&gt;
+&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;There are 14 references at the end of the chapter. Follow them for more information. One of them by Julia Evans &lt;sup id=&#34;fnref:3&#34;&gt;&lt;a href=&#34;#fn:3&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;should be reviewed for question “c”.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What are some concepts that are new to you?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Core dumps, Memory dumps, or Stack traces.&lt;/p&gt;
+&lt;p&gt;I have heard the terms before and understand the concepts to a basic degree. I decided to do a bit of further reading to understand each of the dumps and traces so here is a gist.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A core dump&lt;/strong&gt; is a snapshot of the processes state at the time of downing.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A Memory dump&lt;/strong&gt; is a snapshot of the Random Access Memory (RAM) at the time of downing.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A Stack trace&lt;/strong&gt; is the process of tracing function calls through the stack from end (error) to beginning (Call). The way I personally conceptualize this is through comparison to root cause analysis, something I am familiar with.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Host intrusion detection systems (HIDS)&lt;/strong&gt; or &lt;strong&gt;Host Agents&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;A few ideas from the book&lt;sup id=&#34;fnref1:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;
+&amp;ldquo;Modern (sometimes referred to as “next-gen”) host agents use innovative techniques aimed at detecting increasingly sophisticated threats. Some agents blend system and user behavior modeling, machine learning, and threat intelligence to identify previously unknown attacks.&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;&amp;ldquo;Host agents always impact performance, and are often a source of friction between end users and IT teams. Generally speaking, the more data an agent can gather, the greater its performance impact may be because of deeper platform integration and more on-host processing.&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;There are 5 conclusions drawn, do you agree with them? Would you add or remove anything from the list?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;To begin with, here are the conclusions drawn:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;&amp;ldquo;Debugging is an essential activity whereby systematic techniques—not guesswork—achieve results.&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Security investigations are different from debugging. They involve different people, tactics, and risks.&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Centralized logging is useful for debugging purposes, critical for investigations, and often useful for business analysis.&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Iterate by looking at some recent investigations and asking yourself what information would have helped you debug an issue or investigate a concern.&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Design for safety. You need logs. Debuggers need access to systems and stored data. However, as the amount of data you store increases, both logs and debugging endpoints can become targets for adversaries.&amp;rdquo;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Firstly, I would like to preface this answer with a disclaimer. I lack the competency to critisize and/or disect O&amp;rsquo;Relly&amp;rsquo;s book. With that out of the way. I am going to target the first point.&lt;/p&gt;
+&lt;p&gt;My only criticism here is that the point is very broad in scope as compared to the more granular and topics specific to this book/chapter.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;In Julia Evan’s debugging blog, which shows that debugging is just another form of troubleshooting, what useful things do you learn about the relationship between these topics?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Both debugging and troubleshooting involve:&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Proceduralization&lt;/strong&gt;: If a clear procedure doesn’t exist, begin documenting and formalizing the process into a repeatable method.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Humility&lt;/strong&gt;: Acknowledge that you might be the cause of the problem. This is especially important in development.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Methodical Experimentation&lt;/strong&gt;: Form a hypothesis, then devise a controlled method to test it—use unit tests in development, or targeted scripts and commands when debugging.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;One Step at a Time&lt;/strong&gt;: Tackle problems incrementally—“eat the elephant one bite at a time.”&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Strong Foundations&lt;/strong&gt;: Write debuggable code and build robust systems. A good foundation makes issues easier to isolate.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;More Is Better&lt;/strong&gt;: Verbose error messages provide more clues—enable detailed output when possible.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Are there any techniques you already do that this helps solidify for you?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Yes, I try to create excellent documentation with respect for my future self or others I may need to share it with. This involves numbered procedural steps with inputs and outputs, if that is the nature of the work. Otherwise, I write in a general manner that is legible to others.&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;discussion-post-2&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc6/#discussion-post-2&#34;&gt;&lt;code&gt;Discussion Post 2&lt;/code&gt;&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Read Monitoring Distributed Systems &lt;sup id=&#34;fnref:4&#34;&gt;&lt;a href=&#34;#fn:4&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What interesting or new things do you learn in this reading? What may you want to know more about?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Interesting Concept:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;One of the general themes I gathered from this article is &lt;em&gt;low cognitive overhead&lt;/em&gt;. It’s a concept I’m very familiar with from accessibility-focused design. Too much information overwhelms our ability to observe, absorb, and decide effectively.&lt;/p&gt;
+&lt;p&gt;For example, public signage must be simple, legible, and self-descriptive through clear graphic composition—guiding the eye where to look first and in which direction to proceed. This closely parallels the need for simplicity in monitoring and alerting systems. When such systems become overly complex, they can lead to misinterpretation, miscommunication, and fatigue due to information overload.&lt;/p&gt;
+&lt;p&gt;Information must be derived and presented in a way that is easily consumable, where errors are unmistakable—without exhausting the viewer.&lt;/p&gt;
+&lt;p&gt;New concepts&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;White box monitoring systems vs. Black box monitoring systems.&lt;/li&gt;
+&lt;li&gt;Conducting ad hoc retrospective analysis (ie. Debugging)&lt;/li&gt;
+&lt;li&gt;(4 Golden signals) Latency, Traffic, Saturation, Errors
+&lt;ul&gt;
+&lt;li&gt;This one in particular relates strongly to the &lt;code&gt;USE&lt;/code&gt; acronym I had recently picked up from Het, &lt;code&gt;Utilization, Saturation, Errors&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What are the “4 golden signals”?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Latency&lt;/li&gt;
+&lt;li&gt;Traffic&lt;/li&gt;
+&lt;li&gt;Saturation&lt;/li&gt;
+&lt;li&gt;Errors&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;After reading these, why is immutability so important to logging?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Tamper Resistance&lt;/strong&gt;: Immutable logs cannot be altered or deleted without detection, which helps prevent covering up malicious activity or mistakes.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Auditability&lt;/strong&gt;: Logs serve as historical records. If they can be changed, audits and investigations lose their value.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Debugging Integrity&lt;/strong&gt;: Developers and operators rely on logs to trace errors. Mutable logs can introduce false positives or hide root causes.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Regulatory Compliance&lt;/strong&gt;: Standards like HIPAA, PCI-DSS, and GDPR often require tamper-evident or immutable log storage.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Forensic Value&lt;/strong&gt;: In incident response, immutable logs serve as trustworthy evidence for timelines and breach analysis.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What do you think the other required items are for logging to be effective?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;In order to be effective, log must be:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Trustworthy&lt;/strong&gt;: Logs should be &lt;strong&gt;immutable&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Time-stamped&lt;/strong&gt;: Every entry needs a synced timestamp.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Clear levels&lt;/strong&gt;: Use &lt;code&gt;INFO&lt;/code&gt;, &lt;code&gt;ERROR&lt;/code&gt;, &lt;code&gt;DEBUG&lt;/code&gt;, etc., to show importance.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Structured&lt;/strong&gt;: Format logs so machines and humans can read them.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Context-rich&lt;/strong&gt;: Include request IDs, user info, IPs—anything that helps trace the story.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Centralized&lt;/strong&gt;: Gather logs in one place for easy searching and alerting.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Searchable&lt;/strong&gt;: You should be able to find issues fast with good queries.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Safe&lt;/strong&gt;: Control who can see logs—some contain sensitive info.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Durable&lt;/strong&gt;: Logs shouldn’t disappear in a crash—use backups and redundancy.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Noise-controlled&lt;/strong&gt;: Avoid flooding—rotate logs and cap log rates.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+
+
+
+&lt;h3 id=&#34;definitions&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc6/#definitions&#34;&gt;Definitions&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Def 1: Explainer&lt;/li&gt;
+&lt;li&gt;Def 2: Explainer&lt;/li&gt;
+&lt;li&gt;Def 3: Explainer&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Types of logs&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Application
+Host
+Network
+DB
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Immutable&lt;/p&gt;
+&lt;p&gt;Structure of Logs&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;RFC 3164 BSD Syslog
+RFC 5424 IETF Syslog
+Systemd Journal
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Log rotation&lt;/p&gt;
+&lt;p&gt;Rsyslog&lt;/p&gt;
+&lt;p&gt;Log aggregation&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ELK
+Splunk
+Graylog
+Loki
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;SIEM&lt;/p&gt;
+
+
+
+&lt;h2 id=&#34;lab-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc6/#lab-&#34;&gt;Lab 🧪🥼&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;rsyslog&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc6/#rsyslog&#34;&gt;RSYSLOG&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Reliable System and Kernel Logging System&lt;/p&gt;
+&lt;p&gt;Basic Steps:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Ensure Rsyslog is installed and running on both the control-plane and target node.&lt;/li&gt;
+&lt;li&gt;Configure sending of logs over UDP Port.&lt;/li&gt;
+&lt;li&gt;Editing Rsyslog config to split out logs.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;h3 id=&#34;prolug-links-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc6/#prolug-links-&#34;&gt;ProLUG Links ⛓️&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Discord: &lt;a href=&#34;https://discord.com/invite/m6VPPD9usw&#34;&gt;https://discord.com/invite/m6VPPD9usw&lt;/a&gt;
+Youtube: &lt;a href=&#34;https://www.youtube.com/@het_tanis8213&#34;&gt;https://www.youtube.com/@het_tanis8213&lt;/a&gt;
+Twitch: &lt;a href=&#34;https://www.twitch.tv/het_tanis&#34;&gt;https://www.twitch.tv/het_tanis&lt;/a&gt;
+ProLUG PSC Repo: &lt;a href=&#34;https://github.com/ProfessionalLinuxUsersGroup/psc&#34;&gt;https://github.com/ProfessionalLinuxUsersGroup/psc&lt;/a&gt;
+ProLUG PSC Book: &lt;a href=&#34;https://professionallinuxusersgroup.github.io/psc/&#34;&gt;https://professionallinuxusersgroup.github.io/psc/&lt;/a&gt;
+ProLUG Book of Labs: &lt;a href=&#34;https://leanpub.com/theprolugbigbookoflabs&#34;&gt;https://leanpub.com/theprolugbigbookoflabs&lt;/a&gt;
+KillerCoda: &lt;a href=&#34;https://killercoda.com/het-tanis&#34;&gt;https://killercoda.com/het-tanis&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;div class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;
+&lt;p&gt;Example Title &lt;a href=&#34;https://professionallinuxusersgroup.github.io/psc/u6ws.html&#34;&gt;Format&lt;/a&gt; Source, 2025.&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:2&#34;&gt;
+&lt;p&gt;Example Title &lt;a href=&#34;https://google.github.io/building-secure-and-reliable-systems/raw/ch15.html#collect_appropriate_and_useful_logs&#34;&gt;Format&lt;/a&gt; Source, 2025.&amp;#160;&lt;a href=&#34;#fnref:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&amp;#160;&lt;a href=&#34;#fnref1:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:3&#34;&gt;
+&lt;p&gt;Example Title &lt;a href=&#34;https://jvns.ca/blog/2019/06/23/a-few-debugging-resources/&#34;&gt;Format&lt;/a&gt; Source, 2025.&amp;#160;&lt;a href=&#34;#fnref:3&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:4&#34;&gt;
+&lt;p&gt;Example Title &lt;a href=&#34;https://sre.google/sre-book/monitoring-distributed-systems/&#34;&gt;Format&lt;/a&gt; Source, 2025.&amp;#160;&lt;a href=&#34;#fnref:4&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+    </item>
+    <item>
+      <title>ProLUG Security Engineering Course Unit 5</title>
+      <link>http://localhost:1313/techblog/post/psc5/</link>
+      <pubDate>Sun, 27 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/techblog/post/psc5/</guid>
+      <description>&lt;h2 id=&#34;intro-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc5/#intro-&#34;&gt;Intro 👋&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Repositories and Patching is the general theme of this unit. We dive into creating internally audited repositories for safe enterprise operation. This configuration allows for greater security scrutiny and compatibility testing before schedule patching takes place. For example, a company would like to skip every other version of a package in order to reduce update cadence, giving more time for assessment, correction and troubleshooting of internal software. Much like any enterprise decision regarding cost and effort and analysis must take place. &lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;worksheet&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc5/#worksheet&#34;&gt;Worksheet&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;discussion-post-1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc5/#discussion-post-1&#34;&gt;&lt;code&gt;Discussion Post 1&lt;/code&gt;&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Review the rocky documentation on Software management in Linux.&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What do you already understand about the process?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I had gained a decent understanding of the package management systems of both RHEL and DEBIAN based distros through both studying for the LPIC 1 and completing the ELAC course through this group. From this I had learned about versioning and dependency management including modules. The differences between RPM, YUM, and DNF and how these evolutions of package management came into being.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What new things did you learn or pick up?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;I did not understand the depth to which RPM packages tracked package data.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;I did not know that headers could be edited in the package in order to add custom labeling.&lt;/li&gt;
+&lt;li&gt;I had basic awareness and high level understanding of internal package management. Prior to our lecture, I had not seen an internal package server/relay be setup/configured.&lt;/li&gt;
+&lt;li&gt;I did not know much about EPEL beyond having to call it in the CLI for additional packages outside of DNF.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What are the DNF plugins? What is the use of the versionlock plugin?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;DNF plugins are external modules that extend the functionality of DNF. I have some experience activating the &lt;code&gt;COPR&lt;/code&gt; repo using DNF plugins. Furthermore, &lt;code&gt;versionlock&lt;/code&gt; is a specific plugin that allows for an admin/engineer/dev to lock a particular package to a specified version so that it is not mistakenly changed/overwritten. This is typically done in software development in my experience, with software development many dependencies might be needed. Breaking updates were common place, so most modern software projects contain a &lt;code&gt;lock&lt;/code&gt; file that indicates what specific dependency version must be used in order to build or interpret the project.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What is an EPEL? Why do you need to consider this when using one?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;EPEL&lt;/code&gt; stands for Extra Packages for Enterprise Linux. These packages exist outside of the core enterprise offering and are therefore potentially issue causing. Unlike core packages, these extra packages could introduce possible incompatibility issues, resulting in rejection by endorsed support specialists.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;discussion-post-2&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc5/#discussion-post-2&#34;&gt;&lt;code&gt;Discussion Post 2&lt;/code&gt;&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Do a google search for “patching enterprise Linux”&lt;sup id=&#34;fnref:3&#34;&gt;&lt;a href=&#34;#fn:3&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What blogs (or AI) do you find that enumerates a list of steps or checklists to consider?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I used to sources that I had found to be concise
+&lt;ul&gt;
+&lt;li&gt;RedHat Documentation&lt;sup id=&#34;fnref:4&#34;&gt;&lt;a href=&#34;#fn:4&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;li&gt;Chat*ippity&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;After looking at that, how does patching a fleet of systems in the enterprise differ from pushing “update now” on your local desktop?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Patching a fleet of systems involves the systematic updating of installed software to fix security vulnerabilities, improve stability, and introduce minor enhancements. The process is governed by organizational policies to ensure uptime and compliance.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Because changes affect many systems simultaneously, patching acts as an amplifier of problems if not handled carefully. Therefore, enterprise patching must be strategic, managed, and auditable.&lt;/p&gt;
+&lt;p&gt;In contrast, running updates on a personal system is typically an automated, low-risk operation, with little concern for version conflicts or trust in the source. Additionally, modern filesystems like ZFS and Btrfs provide the ability to quickly roll back changes if something fails.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What seems to be the major considerations? What seems to be the major roadblocks?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Major Considerations&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Uptime and Service Continuity&lt;/li&gt;
+&lt;li&gt;Security and Compliance&lt;/li&gt;
+&lt;li&gt;Testing and Validation&lt;/li&gt;
+&lt;li&gt;Dependency Management&lt;/li&gt;
+&lt;li&gt;Rollback and Recovery Planning&lt;/li&gt;
+&lt;li&gt;Orchestration and Scalability&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Major Roadblocks&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Legacy Systems&lt;/li&gt;
+&lt;li&gt;Change Resistance&lt;/li&gt;
+&lt;li&gt;Incomplete Asset Inventory&lt;/li&gt;
+&lt;li&gt;Tight Maintenance Windows&lt;/li&gt;
+&lt;li&gt;Patch Quality and vendor Bugs&lt;/li&gt;
+&lt;li&gt;Complex Dependencies and Integration Points&lt;/li&gt;
+&lt;li&gt;Resource Constraints&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+
+
+
+&lt;h3 id=&#34;definitions&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc5/#definitions&#34;&gt;Definitions&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Def 1: Explainer&lt;/li&gt;
+&lt;li&gt;Def 2: Explainer&lt;/li&gt;
+&lt;li&gt;Def 3: Explainer&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Patching&lt;/p&gt;
+&lt;p&gt;Repos&lt;/p&gt;
+&lt;p&gt;Software&lt;/p&gt;
+&lt;p&gt;EPEL&lt;/p&gt;
+&lt;p&gt;BaseOS v. Appstream (in RHEL/Rocky)&lt;/p&gt;
+&lt;p&gt;Other types you can find?&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;httpd
+patching
+GPG Key
+DNF/YUM
+&lt;/code&gt;&lt;/pre&gt;
+
+
+
+&lt;h2 id=&#34;lab-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc5/#lab-&#34;&gt;Lab 🧪🥼&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;apache-stigs-review&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc5/#apache-stigs-review&#34;&gt;Apache STIGs Review&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Look at the 4 STIGs for “tls”&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;What file is fixed for all of them to be remediated?&lt;/li&gt;
+&lt;/ul&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Install httpd on your Rocky server&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl stop wwclient
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;dnf install -y httpd
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl start httpd&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;Check STIG V-214234&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What is the problem?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Event logging can fail.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What is the fix?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;This can be fixed by implementing failure alerts.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What type of control is being implemented?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;This type of control would be a &lt;code&gt;Detective Control&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Is it set properly on your system?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;No, this is not setup by default, it must be implemented after installation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Check STIG V-214248&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What is the problem?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;By default, sensitive information including security controls may be available to all users because privelaged user access controls have not been implemented.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What is the fix?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Develop roles for privelaged users and define access policies.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What type of control is being implemented?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;This is a preventative type control.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Is it set properly on your system?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;No, not by default. Of course super user has special priveledges. However, beyond that there are no other tiers of access.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;How do you think SELINUX will help implement this control in an enforcing state? Or
+will it not affect it?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SELINUX allows for strong group creation and control. So it would help batch users and apply granular control mechanisms.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+
+
+
+&lt;h3 id=&#34;building-repos&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc5/#building-repos&#34;&gt;Building repos&lt;/a&gt;
+&lt;/h3&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Start out by removing all your active repos&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; /etc/yum.repos.d
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mkdir old_archive
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mv *.repo old_archive
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;dnf repolist&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Mount the local repository and make a local repo&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mount -o loop /lab_work/repos_and_patching/Rocky-9.5-x86_64-dvd.iso /mnt
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;df -h &lt;span class=&#34;c1&#34;&gt;#should see the mount point&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ls -l /mnt
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;touch /etc/yum.repos.d/rocky9.repo
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;vi /etc/yum.repos.d/rocky9.repo&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+  
+
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-rocky9.repo&#34; data-lang=&#34;rocky9.repo&#34;&gt;[BaseOS]
+name=BaseOS Packages Rocky Linux 9
+metadata_expire=-1
+gpgcheck=1
+enabled=1
+baseurl=file:///mnt/BaseOS/
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+[AppStream]
+name=AppStream Packages Rocky Linux 9
+metadata_expire=-1
+gpgcheck=1
+enabled=1
+baseurl=file:///mnt/AppStream/
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+#Save with esc :wq or “shift + ZZ”&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Do the paths you’re using here make sense to you based off what you saw
+with the ls -l? Why or why not?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;TODO&lt;/li&gt;
+&lt;/ul&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chmod &lt;span class=&#34;m&#34;&gt;644&lt;/span&gt; /etc/yum.repos.d/rocky9.repo
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;dnf clean all
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Test the local repository&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;dnf repolist
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;dnf --disablerepo&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;*&amp;#34;&lt;/span&gt; --enablerepo&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;AppStream&amp;#34;&lt;/span&gt; list available
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Approximately how many are available?
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;dnf --disablerepo&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;*&amp;#34;&lt;/span&gt; --enablerepo&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;AppStream&amp;#34;&lt;/span&gt; list available &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; nl
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;dnf --disablerepo&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;*&amp;#34;&lt;/span&gt; --enablerepo&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;AppStream&amp;#34;&lt;/span&gt; list available &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; nl &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; head
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;dnf --disablerepo&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;*&amp;#34;&lt;/span&gt; --enablerepo&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;BaseOS&amp;#34;&lt;/span&gt; list available
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Approximately how many are available?
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;dnf --disablerepo&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;*&amp;#34;&lt;/span&gt; --enablerepo&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;BaseOS&amp;#34;&lt;/span&gt; list available &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; nl
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;dnf --disablerepo&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;*&amp;#34;&lt;/span&gt; --enablerepo&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;BaseOS&amp;#34;&lt;/span&gt; list available &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; nl &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; head
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Try to install something&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;dnf --disablerepo&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;*&amp;#34;&lt;/span&gt; --enablerepo&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;BaseOS AppStream&amp;#34;&lt;/span&gt; install gimp
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hit “n”&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;How many packages does it want to install?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;TODO&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;How can you tell they’re from different repos?&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;TODO&lt;/li&gt;
+&lt;/ul&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Share out the local repository for your internal systems (tested on just this one system)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;rpm -qa &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -i httpd
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl status httpd
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ss -ntulp &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep &lt;span class=&#34;m&#34;&gt;80&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;lsof -i :80
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; /etc/httpd/conf.d
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;vi repos.conf&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+  
+
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-repos.conf&#34; data-lang=&#34;repos.conf&#34;&gt;&amp;lt;Directory &amp;#34;/mnt&amp;#34;&amp;gt;
+Options Indexes FollowSymLinks
+AllowOverride None
+Require all granted
+&amp;lt;/Directory&amp;gt;
+Alias /repo /mnt
+&amp;lt;Location /repo&amp;gt;
+Options Indexes FollowSymLinks
+AllowOverride None
+Require all granted
+&amp;lt;/Location&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl restart httpd
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;vi /etc/yum.repos.d/rocky9.repo&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+  
+
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-rocky9.repo&#34; data-lang=&#34;rocky9.repo&#34;&gt;###USE YOUR HAMMER MACHINE IN BASEURL###
+[BaseOS]
+name=BaseOS Packages Rocky Linux 9
+metadata_expire=-1
+gpgcheck=1
+enabled=1
+#baseurl=file:///mnt/BaseOS/
+baseurl=http://hammer25/repo/BaseOS/
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+[AppStream]
+name=AppStream Packages Rocky Linux 9
+metadata_expire=-1
+gpgcheck=1
+enabled=1
+#baseurl=file:///mnt/AppStream/
+baseurl=http://hammer25/repo/AppStream/
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Do the paths you’ve modified at baseurl make sense to you? If not, what do you need to better understand?&lt;/li&gt;
+&lt;/ul&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;dnf clean all
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;dnf repolist
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Try to install something&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;dnf --disablerepo&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;*&amp;#34;&lt;/span&gt; --enablerepo&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;BaseOS AppStream&amp;#34;&lt;/span&gt; install gimp&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+&lt;h3 id=&#34;digging-deeper&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc5/#digging-deeper&#34;&gt;Digging Deeper&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You’ve set up a local repository and you’ve shared that repo out to other systems that might want to
+connect. Why might you need this if you’re going to fully air-gap systems? Is it still necessary even if
+your enterprise patching solution is well designed? Why or why not?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;TODO&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Can you add the Mellanox ISO that is included in the /lab_work/repos_and_patching section to be a
+repository that your systems can access? If you have trouble, troubleshoot and ask the group for
+help.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;TODO&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;prolug-links-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc5/#prolug-links-&#34;&gt;ProLUG Links ⛓️&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Discord: &lt;a href=&#34;https://discord.com/invite/m6VPPD9usw&#34;&gt;https://discord.com/invite/m6VPPD9usw&lt;/a&gt;
+Youtube: &lt;a href=&#34;https://www.youtube.com/@het_tanis8213&#34;&gt;https://www.youtube.com/@het_tanis8213&lt;/a&gt;
+Twitch: &lt;a href=&#34;https://www.twitch.tv/het_tanis&#34;&gt;https://www.twitch.tv/het_tanis&lt;/a&gt;
+ProLUG PSC Repo: &lt;a href=&#34;https://github.com/ProfessionalLinuxUsersGroup/psc&#34;&gt;https://github.com/ProfessionalLinuxUsersGroup/psc&lt;/a&gt;
+ProLUG PSC Book: &lt;a href=&#34;https://professionallinuxusersgroup.github.io/psc/&#34;&gt;https://professionallinuxusersgroup.github.io/psc/&lt;/a&gt;
+ProLUG Book of Labs: &lt;a href=&#34;https://leanpub.com/theprolugbigbookoflabs&#34;&gt;https://leanpub.com/theprolugbigbookoflabs&lt;/a&gt;
+KillerCoda: &lt;a href=&#34;https://killercoda.com/het-tanis&#34;&gt;https://killercoda.com/het-tanis&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;div class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;
+&lt;p&gt;Example Title &lt;a href=&#34;https://professionallinuxusersgroup.github.io/psc/u5ws.html&#34;&gt;Format&lt;/a&gt; Source, 2025.&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:2&#34;&gt;
+&lt;p&gt;Rocky Documentation: Software Management &lt;a href=&#34;https://docs.rockylinux.org/books/admin_guide/13-softwares/&#34;&gt;Website&lt;/a&gt; Rocky Docs, 2025.&amp;#160;&lt;a href=&#34;#fnref:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:3&#34;&gt;
+&lt;p&gt;Example Title &lt;a href=&#34;Link&#34;&gt;Format&lt;/a&gt; Source, 2025.&amp;#160;&lt;a href=&#34;#fnref:3&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:4&#34;&gt;
+&lt;p&gt;Example Title &lt;a href=&#34;Link&#34;&gt;Format&lt;/a&gt; Source, 2025.&amp;#160;&lt;a href=&#34;#fnref:4&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+    </item>
+    <item>
+      <title>ProLUG Security Engineering Course Unit 4</title>
+      <link>http://localhost:1313/techblog/post/psc4/</link>
+      <pubDate>Mon, 21 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/techblog/post/psc4/</guid>
+      <description>&lt;h2 id=&#34;intro-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc4/#intro-&#34;&gt;Intro 👋&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;This is the 2 sentence intro Footnote&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;worksheet&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc4/#worksheet&#34;&gt;Worksheet&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;discussion-post-1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc4/#discussion-post-1&#34;&gt;&lt;code&gt;Discussion Post 1&lt;/code&gt;&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://aws.amazon.com/search/?searchQuery=air+gapped#facet_type=blogs&amp;amp;page=1&#34;&gt;https://aws.amazon.com/search/?searchQuery=air+gapped#facet_type=blogs&amp;amp;page=1&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://aws.amazon.com/blogs/security/tag/bastion-host/&#34;&gt;https://aws.amazon.com/blogs/security/tag/bastion-host/&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Or find some on your own about air-gapped systems.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What seems to be the theme of air-gapped systems?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Air gapped systems are highly controlled and isolated systems. The degree of isolation directly correlates to the level of operational burden as modern productive systems are typically highly connected to either LANs and/or WANs.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Blocking/Limiting/Bottlenecking Network Traffic&lt;/li&gt;
+&lt;li&gt;Limiting Services to Bare Essentials&lt;/li&gt;
+&lt;li&gt;Mitigating Data Egress&lt;/li&gt;
+&lt;li&gt;Quardening off un-expected behavior&lt;/li&gt;
+&lt;li&gt;Logging use events&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What seems to be their purpose?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;To limit attack surface, mitigate malicious access and/or data infiltration/exfiltraion&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;If you use google, or an AI, what are some of the common themes that come up when asked about air-gapped or bastion systems?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Common Themes in Air-Gapped Systems&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Data Transfer Procedures&lt;/li&gt;
+&lt;li&gt;Patch Management &amp;amp; Updates&lt;/li&gt;
+&lt;li&gt;Logging and Auditing&lt;/li&gt;
+&lt;li&gt;Threat Models&lt;/li&gt;
+&lt;li&gt;Authentication &amp;amp; Access&lt;/li&gt;
+&lt;li&gt;Compliance &amp;amp; Certification&lt;/li&gt;
+&lt;li&gt;Operational Burden&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Common Themes in Bastion Hosts&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Network Segmentation&lt;/li&gt;
+&lt;li&gt;Hardened OS Configuration&lt;/li&gt;
+&lt;li&gt;Jump Host Architecture&lt;/li&gt;
+&lt;li&gt;Access Control &amp;amp; MFA&lt;/li&gt;
+&lt;li&gt;Monitoring and Alerting&lt;/li&gt;
+&lt;li&gt;Change Management&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Shared Themes&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Both require strict access control&lt;/li&gt;
+&lt;li&gt;Emphasis on tamper resistance and detection&lt;/li&gt;
+&lt;li&gt;Tradeoffs between security vs. usability&lt;/li&gt;
+&lt;li&gt;Often part of zero-trust or defense-in-depth architectures&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;discussion-post-2&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc4/#discussion-post-2&#34;&gt;&lt;code&gt;Discussion Post 2&lt;/code&gt;&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Do a Google or AI search of topics around jailing a user or processes in Linux.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;User Jailing Techniques&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;chroot&lt;/li&gt;
+&lt;li&gt;Namespaces&lt;/li&gt;
+&lt;li&gt;Control groups (cgroups)&lt;/li&gt;
+&lt;li&gt;Seccomp&lt;/li&gt;
+&lt;li&gt;AppArmor / SELinux&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Container and Jail Environments&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;LXC&lt;/li&gt;
+&lt;li&gt;Docker / Podman&lt;/li&gt;
+&lt;li&gt;Firejail&lt;/li&gt;
+&lt;li&gt;Bubblewrap (bwrap) Flatpak unpriveledged namespaces&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Use Cases&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Jailed SSH users: Using chroot in sshd_config to restrict access.&lt;/li&gt;
+&lt;li&gt;systemd-nspawn: Lightweight containers for sandboxed environments.&lt;/li&gt;
+&lt;li&gt;Flatpak / Snap: Sandboxed app delivery systems for desktop applications.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Related Tools &amp;amp; Commands&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;chroot, unshare, setfacl, auditd&lt;/li&gt;
+&lt;li&gt;firejail, bwrap, systemd-nspawn&lt;/li&gt;
+&lt;li&gt;docker, podman, lxc-start&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Can you enumerate the methods of jailing users?&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Yes there are 5 possible avenues that I know of.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Can you think of when you’ve been jailed as a Linux user? If not, can you think of the useful ways to use a jail?&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;No I have not experienced being jailed as a user. However, if I could think of some use-cases, perhaps one would be as a honeypot for observability. Another usecase I think could work would be to trap crawlers/bots.&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;lab-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc4/#lab-&#34;&gt;Lab 🧪🥼&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;process of chroot jail build&lt;/p&gt;
+&lt;p&gt;nf -1 in awk = number of fields -1
+What seems to be the theme of air-gapped systems?
+What seems to be their purpose?
+If you use google, or an AI, what are some of the common themes that come up when asked about air-gapped or bastion systems?&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;prolug-links-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc4/#prolug-links-&#34;&gt;ProLUG Links ⛓️&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Discord: &lt;a href=&#34;https://discord.com/invite/m6VPPD9usw&#34;&gt;https://discord.com/invite/m6VPPD9usw&lt;/a&gt;
+Youtube: &lt;a href=&#34;https://www.youtube.com/@het_tanis8213&#34;&gt;https://www.youtube.com/@het_tanis8213&lt;/a&gt;
+Twitch: &lt;a href=&#34;https://www.twitch.tv/het_tanis&#34;&gt;https://www.twitch.tv/het_tanis&lt;/a&gt;
+ProLUG PSC Repo: &lt;a href=&#34;https://github.com/ProfessionalLinuxUsersGroup/psc&#34;&gt;https://github.com/ProfessionalLinuxUsersGroup/psc&lt;/a&gt;
+ProLUG PSC Book: &lt;a href=&#34;https://professionallinuxusersgroup.github.io/psc/&#34;&gt;https://professionallinuxusersgroup.github.io/psc/&lt;/a&gt;
+ProLUG Book of Labs: &lt;a href=&#34;https://leanpub.com/theprolugbigbookoflabs&#34;&gt;https://leanpub.com/theprolugbigbookoflabs&lt;/a&gt;
+KillerCoda: &lt;a href=&#34;https://killercoda.com/het-tanis&#34;&gt;https://killercoda.com/het-tanis&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;div class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;
+&lt;p&gt;Example Title &lt;a href=&#34;https://professionallinuxusersgroup.github.io/psc/u4ws.html&#34;&gt;Format&lt;/a&gt; Source, 2025.&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+    </item>
+    <item>
+      <title>ProLUG Security Engineering Course Unit 3</title>
+      <link>http://localhost:1313/techblog/post/psc3/</link>
+      <pubDate>Sun, 13 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/techblog/post/psc3/</guid>
+      <description>&lt;h2 id=&#34;intro-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#intro-&#34;&gt;Intro 👋&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;This is the 2 sentence intro Footnote&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;worksheet&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#worksheet&#34;&gt;Worksheet&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;discussion-post-1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#discussion-post-1&#34;&gt;&lt;code&gt;Discussion Post 1&lt;/code&gt;&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;There are 16 Stigs that involve PAM for RHEL 9&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What are the mechanisms and how do they affect PAM functionality?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+
+
+
+&lt;h4 id=&#34;hardening-defaults&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#hardening-defaults&#34;&gt;Hardening Defaults&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;STIGs replace permissive PAM modules with stricter ones. 2 Categories/Areas are covered in regards to Stig&amp;rsquo;ing PAMs&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Lockout Policies that effect login frequency and failure.&lt;/li&gt;
+&lt;li&gt;Password Strength Enforcement that effects password complexity and re-use.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+
+&lt;h4 id=&#34;review-etcpamdsshd-on-a-linux-system&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#review-etcpamdsshd-on-a-linux-system&#34;&gt;Review /etc/pam.d/sshd on a Linux system.&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What is happening in that file relative to these functionalities?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;This file specifies the PAM module control flags that sshd uses during authentication.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What are the common PAM modules?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;pam_sepermit.so, pam_nologin.so, apassword-auth and postlogin.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Look for a blog post or article about PAM that discusses real world application. ost it here and give us a quick synopsis.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.redhat.com/en/blog/pluggable-authentication-modules-pam?utm_source=chatgpt.com&#34;&gt;https://www.redhat.com/en/blog/pluggable-authentication-modules-pam?utm_source=chatgpt.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Synopsis:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;PAM are a modular and flexible framework for integrating authentication methods into applications. By seperating / abstracting authentication mechanisms from application code, PAM allows admins to manage authentication policies centrally. PAM also allows from customized authentication processes (Security through obscurity)&lt;/p&gt;
+
+
+
+&lt;h3 id=&#34;discussion-post-2&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#discussion-post-2&#34;&gt;&lt;code&gt;Discussion Post 2&lt;/code&gt;&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Intro to the scenario&lt;/p&gt;
+&lt;p&gt;Read about active directory (or LDAP) configurations of Linux via sssd&lt;sup id=&#34;fnref:3&#34;&gt;&lt;a href=&#34;#fn:3&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;3&lt;/a&gt;&lt;/sup&gt; 👍&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Why do we not want to just use local authentication in Linux? Or really any system?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Local authentication presents several problems. Firstly, there is no federated access, so there is fragmentation of systems. Secondly, scalability is an issue as each local system manages that local system&amp;rsquo;s users, requiring individual account provisioning and password management. Thirdly, it complicates auditing and compliance, since there is no centralized logging or consistent policy enforcement. Additionally, stale or orphaned accounts can accumulate unnoticed, increasing security risks. Finally, it prevents the implementation of modern security practices such as single sign-on (SSO), multi-factor authentication (MFA), and role-based access control across a distributed environment.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;There are 4 SSSD STIGS.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Response&lt;/code&gt;&lt;/p&gt;
+
+
+
+&lt;h4 id=&#34;vuln-id-258122&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#vuln-id-258122&#34;&gt;Vuln ID 258122&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Enforce Smart Card Authentication&lt;/strong&gt; – Require certificate-based smart card login to implement multi-factor authentication and enhance access security.&lt;/p&gt;
+
+
+
+&lt;h4 id=&#34;vuln-id-248131&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#vuln-id-248131&#34;&gt;Vuln ID 248131&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Validate Certificate Chains&lt;/strong&gt; – Ensure that certificates used for PKI-based authentication are properly validated by building a complete certification path to a trusted root.&lt;/p&gt;
+
+
+
+&lt;h4 id=&#34;vuln-id-258132&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#vuln-id-258132&#34;&gt;Vuln ID 258132&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Associate Certificates with User Accounts&lt;/strong&gt; – Confirm that every authentication certificate is explicitly mapped to a valid user account to maintain identity integrity.&lt;/p&gt;
+
+
+
+&lt;h4 id=&#34;vuln-id-258133&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#vuln-id-258133&#34;&gt;Vuln ID 258133&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Restrict Credential Caching Duration&lt;/strong&gt; – Limit the validity period of cached authentication credentials to a maximum of 24 hours to reduce risk in the event of compromise.&lt;/p&gt;
+&lt;hr&gt;
+
+
+
+&lt;h3 id=&#34;definitions&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#definitions&#34;&gt;Definitions&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;PAM:&lt;/strong&gt; Pluggable Authentication Modules provide a flexible mechanism for authenticating users on Unix-like systems.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;AD:&lt;/strong&gt; Active Directory is Microsoft&amp;rsquo;s centralized directory service for authentication, authorization, and resource management.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;LDAP:&lt;/strong&gt; Lightweight Directory Access Protocol is an open, vendor-neutral protocol for accessing and maintaining distributed directory information services.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;sssd:&lt;/strong&gt; System Security Services Daemon provides access to remote identity and authentication providers like LDAP or Kerberos.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;oddjob:&lt;/strong&gt; A D-Bus service used to perform privileged tasks on behalf of unprivileged users, often for domain enrollment or home directory creation.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;krb5:&lt;/strong&gt; Kerberos 5 is a network authentication protocol that uses tickets for securely proving identity over untrusted networks.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;realm/realmd:&lt;/strong&gt; A tool that simplifies joining and managing a system in a domain like Active Directory or IPA using standard services.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;wheel (system group in RHEL):&lt;/strong&gt; A special administrative group whose members are allowed to execute privileged commands using &lt;code&gt;sudo&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 id=&#34;lab&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#lab&#34;&gt;Lab&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h4 id=&#34;examine-stig-v-257986&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#examine-stig-v-257986&#34;&gt;Examine STIG V-257986&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What is the problem?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;TODO&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What is the fix?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;TODO&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What type of control is being implemented?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;TODO&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Is it set properly on your system?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;TODO&lt;/li&gt;
+&lt;/ul&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;grep -i pam /etc/ssh/sshd_config&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Can you remediate this finding?&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h4 id=&#34;check-and-remediate-stig-v-258055&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#check-and-remediate-stig-v-258055&#34;&gt;Check and remediate STIG V-258055&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;Questions&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What is the problem?&lt;/li&gt;
+&lt;li&gt;What is the fix?&lt;/li&gt;
+&lt;li&gt;What type of control is being implemented?&lt;/li&gt;
+&lt;li&gt;Are there any major implications to think about with this change on your system? Why or why not?&lt;/li&gt;
+&lt;li&gt;Is it set properly on your system?&lt;/li&gt;
+&lt;li&gt;How would you go about remediating this on your system?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answers&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;TODO&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h4 id=&#34;check-and-remediate-stig-v-258098&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#check-and-remediate-stig-v-258098&#34;&gt;Check and remediate STIG V-258098&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;Questions&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What is the problem?&lt;/li&gt;
+&lt;li&gt;What is the fix?&lt;/li&gt;
+&lt;li&gt;What type of control is being implemented?&lt;/li&gt;
+&lt;li&gt;Is it set properly on your system?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answers&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;TODO&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h4 id=&#34;filter-stigs-by-password-complexity&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#filter-stigs-by-password-complexity&#34;&gt;Filter STIGS by “password complexity”&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;Questions&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;How many are there?&lt;/li&gt;
+&lt;li&gt;What are the password complexity rules?&lt;/li&gt;
+&lt;li&gt;Are there any you haven’t seen before?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Answers&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;TODO&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h4 id=&#34;openldap-setup&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#openldap-setup&#34;&gt;OpenLDAP Setup&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;You will likely not build an LDAP server in a real world environment. We are doing it for understanding and ability to complete the lab. In a normal corporate environment this is likely Active Directory.&lt;/p&gt;
+&lt;p&gt;To simplify some of the typing in this lab, there is a file located at /lab_work/identity_and_access_management.tar.gz that you can pull down to your system with the correct .ldif files.&lt;/p&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# cp /lab_work/identity_and_access_management.tar.gz .&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# tar -xzvf identity_and_access_management.tar &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+&lt;h5 id=&#34;1-stop-the-warewulf-client&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#1-stop-the-warewulf-client&#34;&gt;1. Stop the warewulf client&lt;/a&gt;
+&lt;/h5&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# systemctl stop wwclient&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+&lt;h5 id=&#34;2-edit-your-etchosts-file&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#2-edit-your-etchosts-file&#34;&gt;2. Edit your /etc/hosts file&lt;/a&gt;
+&lt;/h5&gt;
+&lt;p&gt;Look for and edit the line that has your current server&lt;/p&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# vi /etc/hosts&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Entry for hammer1 for example:&lt;/p&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;192.168.200.151 hammer1 hammer1-default ldap.prolug.lan ldap&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+&lt;h5 id=&#34;3-setup-dnf-repo&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#3-setup-dnf-repo&#34;&gt;3. Setup dnf repo&lt;/a&gt;
+&lt;/h5&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# dnf config-manager --set-enabled plus&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# dnf repolist&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# dnf -y install openldap-servers openldap-clients openldap&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+&lt;h5 id=&#34;4-start-slapd-systemctl&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#4-start-slapd-systemctl&#34;&gt;4. Start slapd systemctl&lt;/a&gt;
+&lt;/h5&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# systemctl start slapd&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# ss -ntulp | grep slapd&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+&lt;h5 id=&#34;5-allow-ldap-through-the-firewall&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#5-allow-ldap-through-the-firewall&#34;&gt;5. Allow ldap through the firewall&lt;/a&gt;
+&lt;/h5&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# firewall-cmd --add-service={ldap,ldaps} --permanent&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# firewall-cmd --reload&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# firewall-cmd --list-all&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+&lt;h5 id=&#34;6-generate-a-password-our-example-uses-testpassword-this-will-return-a-salted-ssha-password-save-this-password-and-stalted-hash-for-later-input&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#6-generate-a-password-our-example-uses-testpassword-this-will-return-a-salted-ssha-password-save-this-password-and-stalted-hash-for-later-input&#34;&gt;6. Generate a password (Our example uses testpassword) This will return a salted SSHA password. Save this password and stalted hash for later input&lt;/a&gt;
+&lt;/h5&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# slappasswd&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Output:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;New password:   Re-enter new password:   {SSHA}wpRvODvIC/EPYf2GqHUlQMDdsFIW5yig&lt;/code&gt;&lt;/p&gt;
+
+
+
+&lt;h5 id=&#34;7-change-the-password&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#7-change-the-password&#34;&gt;7. Change the password&lt;/a&gt;
+&lt;/h5&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# vi changerootpass.ldif&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;dn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;olcDatabase={0}config,cn=config&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;changetype&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;modify&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;replace&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;olcRootPW&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;olcRootPW&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;{&lt;span class=&#34;l&#34;&gt;SSHA}vKobSZO1HDGxp2OElzli/xfAzY4jSDMZ&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# ldapadd -Y EXTERNAL -H ldapi:/// -f changerootpass.ldif &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Output:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;SASL/EXTERNAL authentication started&lt;/code&gt;
+&lt;code&gt;SASL username: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth&lt;/code&gt;&lt;br&gt;
+&lt;code&gt;SASL SSF: 0&lt;/code&gt;&lt;br&gt;
+&lt;code&gt;modifying entry &amp;quot;olcDatabase={0}config,cn=config&amp;quot;&lt;/code&gt;&lt;/p&gt;
+
+
+
+&lt;h5 id=&#34;8-generate-basic-schemas&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#8-generate-basic-schemas&#34;&gt;8. Generate basic schemas&lt;/a&gt;
+&lt;/h5&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/cosine.ldif
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/nis.ldif
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/inetorgperson.ldif&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+&lt;h5 id=&#34;9-set-up-the-domain-use-the-password-you-generated-earlier&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#9-set-up-the-domain-use-the-password-you-generated-earlier&#34;&gt;9. Set up the domain (USE THE PASSWORD YOU GENERATED EARLIER)&lt;/a&gt;
+&lt;/h5&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# vi setdomain.ldif&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;dn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;olcDatabase={1}monitor,cn=config&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;changetype&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;modify&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;replace&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;olcAccess&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;olcAccess&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;{&lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;}&lt;span class=&#34;l&#34;&gt;to * by dn.base=&amp;#34;gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;l&#34;&gt;read by dn.base=&amp;#34;cn=Manager,dc=prolug,dc=lan&amp;#34; read by * none&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;dn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;olcDatabase={2}mdb,cn=config&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;changetype&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;modify&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;replace&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;olcSuffix&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;olcSuffix&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;dc=prolug,dc=lan&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;dn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;olcDatabase={2}mdb,cn=config&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;changetype&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;modify&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;replace&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;olcRootDN&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;olcRootDN&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;cn=Manager,dc=prolug,dc=lan&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;dn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;olcDatabase={2}mdb,cn=config&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;changetype&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;modify&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;add&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;olcRootPW&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;olcRootPW&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;{&lt;span class=&#34;l&#34;&gt;SSHA}s4x6uAxcAPZN/4e3pGnU7UEIiADY0/Ob&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;dn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;olcDatabase={2}mdb,cn=config&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;changetype&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;modify&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;add&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;olcAccess&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;olcAccess&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;{&lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;}&lt;span class=&#34;l&#34;&gt;to attrs=userPassword,shadowLastChange by&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;l&#34;&gt;dn=&amp;#34;cn=Manager,dc=prolug,dc=lan&amp;#34; write by anonymous auth by self write by * none&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;olcAccess&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;{&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;}&lt;span class=&#34;l&#34;&gt;to dn.base=&amp;#34;&amp;#34; by * read&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;olcAccess&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;{&lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;}&lt;span class=&#34;l&#34;&gt;to * by dn=&amp;#34;cn=Manager,dc=prolug,dc=lan&amp;#34; write by * read&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+&lt;h5 id=&#34;10-run-it&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#10-run-it&#34;&gt;10. Run it&lt;/a&gt;
+&lt;/h5&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# ldapmodify -Y EXTERNAL -H ldapi:/// -f setdomain.ldif&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Output:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;SASL/EXTERNAL authentication started&lt;/code&gt;&lt;br&gt;
+&lt;code&gt;SASL username: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth&lt;/code&gt;&lt;br&gt;
+&lt;code&gt;SASL SSF: 0&lt;/code&gt;&lt;br&gt;
+&lt;code&gt;modifying entry &amp;quot;olcDatabase={1}monitor,cn=config&lt;/code&gt;&lt;br&gt;
+&lt;code&gt;modifying entry &amp;quot;olcDatabase={2}mdb,cn=config&lt;/code&gt;&lt;br&gt;
+&lt;code&gt;modifying entry &amp;quot;olcDatabase={2}mdb,cn=config&lt;/code&gt;&lt;br&gt;
+&lt;code&gt;modifying entry &amp;quot;olcDatabase={2}mdb,cn=config&lt;/code&gt;&lt;br&gt;
+&lt;code&gt;modifying entry &amp;quot;olcDatabase={2}mdb,cn=config&lt;/code&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+
+
+
+&lt;h5 id=&#34;11-search-and-verify-the-domain-is-working&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#11-search-and-verify-the-domain-is-working&#34;&gt;11. Search and verify the domain is working.&lt;/a&gt;
+&lt;/h5&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# ldapsearch -H ldap:// -x -s base -b &amp;#34;&amp;#34; -LLL &amp;#34;namingContexts&amp;#34;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Output:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;dn:&lt;/code&gt;
+&lt;code&gt;namingContexts: dc=prolug,dc=lan&lt;/code&gt;&lt;/p&gt;
+
+
+
+&lt;h5 id=&#34;12-add-the-base-group-and-organization&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#12-add-the-base-group-and-organization&#34;&gt;12. Add the base group and organization.&lt;/a&gt;
+&lt;/h5&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# vi addou.ldif&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;dn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;dc=prolug,dc=lan&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;objectClass&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;top&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;objectClass&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;dcObject&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;objectclass&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;organization&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;My prolug Organisation&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;dc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;prolug&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;dn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;cn=Manager,dc=prolug,dc=lan&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;objectClass&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;organizationalRole&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;cn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;Manager&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;description&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;OpenLDAP Manager&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;dn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;ou=People,dc=prolug,dc=lan&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;objectClass&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;organizationalUnit&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;ou&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;People&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;dn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;ou=Group,dc=prolug,dc=lan&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;objectClass&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;organizationalUnit&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;ou&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;Group&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# ldapadd -x -D cn=Manager,dc=prolug,dc=lan -W -f addou.ldif&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+&lt;h5 id=&#34;13-verifying&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#13-verifying&#34;&gt;13. Verifying&lt;/a&gt;
+&lt;/h5&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# ldapsearch -H ldap:// -x -s base -b &amp;#34;&amp;#34; -LLL &amp;#34;+&amp;#34;  &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# ldapsearch -x -b &amp;#34;dc=prolug,dc=lan&amp;#34; ou&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+&lt;h5 id=&#34;14-add-a-user&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#14-add-a-user&#34;&gt;14. Add a user&lt;/a&gt;
+&lt;/h5&gt;
+&lt;p&gt;Generate a password  (use testuser1234)&lt;/p&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# slappasswd &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# vi adduser.ldif&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;dn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;uid=testuser,ou=People,dc=prolug,dc=lan&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;objectClass&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;inetOrgPerson&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;objectClass&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;posixAccount&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;objectClass&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;shadowAccount&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;cn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;testuser&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;sn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;temp&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;userPassword&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;{&lt;span class=&#34;l&#34;&gt;SSHA}yb6e0ICSdlZaMef3zizvysEzXRGozQOK&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;loginShell&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;/bin/bash&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;uidNumber&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;m&#34;&gt;15000&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;gidNumber&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;m&#34;&gt;15000&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;homeDirectory&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;/home/testuser&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;shadowLastChange&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;shadowMax&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;shadowWarning&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;dn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;cn=testuser,ou=Group,dc=prolug,dc=lan&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;objectClass&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;posixGroup&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;cn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;testuser&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;gidNumber&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;m&#34;&gt;15000&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;memberUid&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;testuser&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# ldapadd -x -D cn=Manager,dc=prolug,dc=lan -W -f adduser.ldif&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+&lt;h5 id=&#34;16-verify-that-your-user-is-in-the-system&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#16-verify-that-your-user-is-in-the-system&#34;&gt;16. Verify that your user is in the system.&lt;/a&gt;
+&lt;/h5&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# ldapsearch -x -b &amp;#34;ou=People,dc=prolug,dc=lan&amp;#34;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+&lt;h5 id=&#34;17-secure-the-system-with-tls-accept-all-defaults&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#17-secure-the-system-with-tls-accept-all-defaults&#34;&gt;17. Secure the system with TLS (accept all defaults)&lt;/a&gt;
+&lt;/h5&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/pki/tls/ldapserver.key -out /etc/pki/tls/ldapserver.crt&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# chown ldap:ldap /etc/pki/tls/{ldapserver.crt,ldapserver.key}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# ls -l /etc/pki/tls/ldap*&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Output:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;-rw-r--r--. 1 ldap ldap 1224 Apr 12 18:23 /etc/pki/tls/ldapserver.crt &lt;/code&gt;
+&lt;code&gt;-rw-------. 1 ldap ldap 1704 Apr 12 18:22 /etc/pki/tls/ldapserver.key&lt;/code&gt;&lt;/p&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# vi tls.ldif&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;dn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;cn=config&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;changetype&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;modify&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;add&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;olcTLSCACertificateFile&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;olcTLSCACertificateFile&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;/etc/pki/tls/ldapserver.crt&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;add&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;olcTLSCertificateKeyFile&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;olcTLSCertificateKeyFile&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;/etc/pki/tls/ldapserver.key&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;add&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;olcTLSCertificateFile&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;olcTLSCertificateFile&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;/etc/pki/tls/ldapserver.crt&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# ldapadd -Y EXTERNAL -H ldapi:/// -f tls.ldif&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+&lt;h5 id=&#34;18-fix-the-etcopenldapldapconf-to-allow-for-certs&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#18-fix-the-etcopenldapldapconf-to-allow-for-certs&#34;&gt;18. Fix the /etc/openldap/ldap.conf to allow for certs&lt;/a&gt;
+&lt;/h5&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# vi /etc/openldap/ldap.conf&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# LDAP Defaults&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# See ldap.conf(5) for details&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# This file should be world readable but not world writable.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#BASE dc=example,dc=com&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#URI ldap://ldap.example.com ldap://ldap-master.example.com:666&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#SIZELIMIT 12&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#TIMELIMIT 15&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#DEREF never&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# When no CA certificates are specified the Shared System Certificates&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# are in use. In order to have these available along with the ones specified # by TLS_CACERTDIR one has to include them explicitly:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;TLS_CACERT /etc/pki/tls/ldapserver.crt
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;TLS_REQCERT never
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# System-wide Crypto Policies provide up to date cipher suite which should&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# be used unless one needs a finer grinded selection of ciphers. Hence, the&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# PROFILE=SYSTEM value represents the default behavior which is in place&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# when no explicit setting is used. (see openssl-ciphers(1) for more info)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#TLS_CIPHER_SUITE PROFILE=SYSTEM&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Turning this off breaks GSSAPI used with krb5 when rdns = false&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;SASL_NOCANON on&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# systemctl restart slapd&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+&lt;h4 id=&#34;sssd-configuration-and-realmd-join-to-ldap&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#sssd-configuration-and-realmd-join-to-ldap&#34;&gt;SSSD Configuration and Realmd join to LDAP&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;SSSD can connect a server to a trusted LDAP system and authenticate users for access to
+local resources. You will likely do this during your career and it is a valuable skill to work with.&lt;/p&gt;
+
+
+
+&lt;h5 id=&#34;1-install-sssd-configure-and-validate-that-the-user-is-seen-by-the-system&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#1-install-sssd-configure-and-validate-that-the-user-is-seen-by-the-system&#34;&gt;1. Install sssd, configure, and validate that the user is seen by the system&lt;/a&gt;
+&lt;/h5&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# dnf install openldap-clients sssd sssd-ldap oddjob-mkhomedir authselect&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# authselect select sssd with-mkhomedir --force&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# systemctl enable --now oddjobd.service&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# systemctl status oddjobd.service&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+&lt;h5 id=&#34;2-uncomment-and-fix-the-lines-in-etcopenldapldapconf&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#2-uncomment-and-fix-the-lines-in-etcopenldapldapconf&#34;&gt;2. Uncomment and fix the lines in /etc/openldap/ldap.conf&lt;/a&gt;
+&lt;/h5&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# vi /etc/openldap/ldap.conf&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Output:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;BASE dc=prolug,dc=lan&lt;/code&gt;
+&lt;code&gt;URI ldap://ldap.ldap.lan/&lt;/code&gt;&lt;/p&gt;
+
+
+
+&lt;h5 id=&#34;3-edit-the-sssdconf-file&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#3-edit-the-sssdconf-file&#34;&gt;3. Edit the sssd.conf file&lt;/a&gt;
+&lt;/h5&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# vi /etc/sssd/sssd.conf&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;l&#34;&gt;domain/default]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;l&#34;&gt;id_provider = ldap&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;l&#34;&gt;autofs_provider = ldap&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;l&#34;&gt;auth_provider = ldap&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;l&#34;&gt;chpass_provider = ldap&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;l&#34;&gt;ldap_uri = ldap://ldap.prolug.lan/&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;l&#34;&gt;ldap_search_base = dc=prolug,dc=lan&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;c&#34;&gt;#ldap_id_use_start_tls = True&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;c&#34;&gt;#ldap_tls_cacertdir = /etc/openldap/certs&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;l&#34;&gt;cache_credentials = True&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;c&#34;&gt;#ldap_tls_reqcert = allow&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;l&#34;&gt;sssd]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;l&#34;&gt;services = nss, pam, autofs&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;l&#34;&gt;domains = default&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;l&#34;&gt;nss]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;l&#34;&gt;homedir_substring = /home&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# chmod 0600 /etc/sssd/sssd.conf&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# systemctl start sssd&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# systemctl status sssd&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+&lt;h4 id=&#34;4-validate-that-the-user-can-be-seen&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#4-validate-that-the-user-can-be-seen&#34;&gt;4. Validate that the user can be seen&lt;/a&gt;
+&lt;/h4&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer1 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# id testuser&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Output:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;uid=15000(testuser) gid=15000 groups=15000&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Congratulations! Look at you, doing all the Linux.&lt;/p&gt;
+
+
+
+&lt;h4 id=&#34;please-reboot-the-the-lab-machine-when-done&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#please-reboot-the-the-lab-machine-when-done&#34;&gt;Please reboot the the lab machine when done.&lt;/a&gt;
+&lt;/h4&gt;
+
+
+
+&lt;h3 id=&#34;prolug-links-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc3/#prolug-links-&#34;&gt;ProLUG Links ⛓️&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Discord: &lt;a href=&#34;https://discord.com/invite/m6VPPD9usw&#34;&gt;https://discord.com/invite/m6VPPD9usw&lt;/a&gt;
+Youtube: &lt;a href=&#34;https://www.youtube.com/@het_tanis8213&#34;&gt;https://www.youtube.com/@het_tanis8213&lt;/a&gt;
+Twitch: &lt;a href=&#34;https://www.twitch.tv/het_tanis&#34;&gt;https://www.twitch.tv/het_tanis&lt;/a&gt;
+ProLUG PSC Repo: &lt;a href=&#34;https://github.com/ProfessionalLinuxUsersGroup/psc&#34;&gt;https://github.com/ProfessionalLinuxUsersGroup/psc&lt;/a&gt;
+ProLUG PSC Book: &lt;a href=&#34;https://professionallinuxusersgroup.github.io/psc/&#34;&gt;https://professionallinuxusersgroup.github.io/psc/&lt;/a&gt;
+ProLUG Book of Labs: &lt;a href=&#34;https://leanpub.com/theprolugbigbookoflabs&#34;&gt;https://leanpub.com/theprolugbigbookoflabs&lt;/a&gt;
+KillerCoda: &lt;a href=&#34;https://killercoda.com/het-tanis&#34;&gt;https://killercoda.com/het-tanis&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;div class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;
+&lt;p&gt;Example Title &lt;a href=&#34;https://professionallinuxusersgroup.github.io/psc/u3ws.html&#34;&gt;Format&lt;/a&gt; Source, 2025.&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:2&#34;&gt;
+&lt;p&gt;Stigs that involve PAM for RHEL 9 [Webstie](&lt;a href=&#34;https://docs.rockylinux.org/guides/security/pam/&#34;&gt;https://docs.rockylinux.org/guides/security/pam/&lt;/a&gt; Source, 2025.&amp;#160;&lt;a href=&#34;#fnref:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:3&#34;&gt;
+&lt;p&gt;configurations of Linux via sssd &lt;a href=&#34;https://docs.rockylinux.org/guides/security/authentication/active_directory_authentication&#34;&gt;Website&lt;/a&gt; Source, 2025.&amp;#160;&lt;a href=&#34;#fnref:3&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description>
+    </item>
+    <item>
+      <title>ProLUG Security Engineering Course Unit 2</title>
+      <link>http://localhost:1313/techblog/post/psc2/</link>
+      <pubDate>Sat, 05 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/techblog/post/psc2/</guid>
+      <description>&lt;h1 id=&#34;intro-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc2/#intro-&#34;&gt;Intro 👋&lt;/a&gt;
+&lt;/h1&gt;
+&lt;hr&gt;
+
+
+
+&lt;h3 id=&#34;discussion-post-1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc2/#discussion-post-1&#34;&gt;&lt;code&gt;Discussion Post 1&lt;/code&gt;&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;Preface&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;There are 401 stigs for RHEL 9. If you filter in your stig viewer for sysctl there are 33 (mostly network focused), ssh - 39, and network - 58. Now there are some overlaps between those, but review them and answer these questions&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt; 1. As systems engineers why are we focused on protecting the network portion of our
+server builds?&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Most attacks come through the network&lt;/li&gt;
+&lt;li&gt;Misconfigured services can expose critical ports.&lt;/li&gt;
+&lt;li&gt;Data in transit is vulnerable without proper encryption and access control.&lt;/li&gt;
+&lt;li&gt;External exposure often increases the attack surface for things like brute-force attempts, malware injection, or unauthorized access.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt; 2. Why is it important to understand all the possible ingress points to our servers that
+exist?&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ingress points = potential paths of attack. Unexpected ingress can be exploited.&lt;/li&gt;
+&lt;li&gt;Zero-trust environments rely on strict control and observability of ingress.&lt;/li&gt;
+&lt;li&gt;Compliance and auditing require accurate records of what’s accessible.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Question&lt;/code&gt; 3. Why is it so important to understand the behaviors of processes that are
+connecting on those ingress points?&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Answer&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Security posture depends on visibility&lt;/li&gt;
+&lt;li&gt;Attackers scan for overlooked vulnerabilities&lt;/li&gt;
+&lt;li&gt;Automation tools (e.g., Ansible, Terraform) can introduce new ingress points unknowingly during updates.&lt;/li&gt;
+&lt;li&gt;Incident response is much faster and more effective when engineers understand the network surface.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+
+
+
+&lt;h3 id=&#34;discussion-post-2&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc2/#discussion-post-2&#34;&gt;&lt;code&gt;Discussion Post 2&lt;/code&gt;&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Intro to the scenario[^3]&lt;/p&gt;
+&lt;p&gt;Read this: &lt;a href=&#34;https://ciq.com/blog/demystifying-and-&#34;&gt;https://ciq.com/blog/demystifying-and-&lt;/a&gt;
+troubleshooting-name-resolution-in-rocky-linux/ or similar blogs on DNS and host file
+configurations.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;What is the significance of the nsswitch.conf file?&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;What are security problems associated with DNS and common exploits? (May have
+to look into some more blogs or posts for this)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+
+
+
+&lt;h3 id=&#34;definitions&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc2/#definitions&#34;&gt;Definitions&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;sysctl&lt;/code&gt;: Linux interface to modify kernel parameters at runtime for system performance and security. &lt;a href=&#34;https://en.wikipedia.org/wiki/Sysctl&#34;&gt;https://en.wikipedia.org/wiki/Sysctl&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;nsswitch.conf&lt;/code&gt;: Configuration file controlling the order of name service lookups (e.g., DNS, files, LDAP). &lt;a href=&#34;https://en.wikipedia.org/wiki/Nsswitch.conf&#34;&gt;https://en.wikipedia.org/wiki/Nsswitch.conf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;DNS: Domain Name System&lt;/code&gt; — translates human-readable domain names into IP addresses. &lt;a href=&#34;https://en.wikipedia.org/wiki/Domain_Name_System&#34;&gt;https://en.wikipedia.org/wiki/Domain_Name_System&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Openscap&lt;/code&gt;: Open-source framework for automated vulnerability scanning, compliance checking, and security auditing. &lt;a href=&#34;https://en.wikipedia.org/wiki/OpenSCAP&#34;&gt;https://en.wikipedia.org/wiki/OpenSCAP&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;CIS Benchmarks&lt;/code&gt;: Prescriptive security configuration guidelines provided by the Center for Internet Security. &lt;a href=&#34;https://en.wikipedia.org/wiki/Center_for_Internet_Security&#34;&gt;https://en.wikipedia.org/wiki/Center_for_Internet_Security&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ss/netstat&lt;/code&gt;: Command-line tools to display network sockets, connections, and statistics on Unix-like systems. &lt;a href=&#34;https://en.wikipedia.org/wiki/Netstat&#34;&gt;https://en.wikipedia.org/wiki/Netstat&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tcpdump&lt;/code&gt;: Command-line packet analyzer for capturing and inspecting network traffic in real-time. &lt;a href=&#34;https://en.wikipedia.org/wiki/Tcpdump&#34;&gt;https://en.wikipedia.org/wiki/Tcpdump&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ngrep&lt;/code&gt;: Network packet analyzer like grep, allowing pattern matching on network traffic payloads. &lt;a href=&#34;https://en.wikipedia.org/wiki/Ngrep&#34;&gt;https://en.wikipedia.org/wiki/Ngrep&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h2 id=&#34;lab-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc2/#lab-&#34;&gt;Lab 🧪🥼&lt;/a&gt;
+&lt;/h2&gt;
+
+
+
+&lt;h3 id=&#34;warmup&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc2/#warmup&#34;&gt;Warmup&lt;/a&gt;
+&lt;/h3&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sysctl -a &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -i ipv4 &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -i forward
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Does this system appear to be set to forward? Why or why not?&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+&lt;h4 id=&#34;output&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc2/#output&#34;&gt;Output:&lt;/a&gt;
+&lt;/h4&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer2 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# sysctl -a | grep -i ipv4 | grep -i forward&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;net.ipv4.conf.all.bc_forwarding &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;net.ipv4.conf.all.forwarding &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;net.ipv4.conf.all.mc_forwarding &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;net.ipv4.conf.default.bc_forwarding &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;net.ipv4.conf.default.forwarding &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;net.ipv4.conf.default.mc_forwarding &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;net.ipv4.conf.eth0.bc_forwarding &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;net.ipv4.conf.eth0.forwarding &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;net.ipv4.conf.eth0.mc_forwarding &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;net.ipv4.conf.lo.bc_forwarding &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;net.ipv4.conf.lo.forwarding &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;net.ipv4.conf.lo.mc_forwarding &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;net.ipv4.ip_forward &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;net.ipv4.ip_forward_update_priority &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;net.ipv4.ip_forward_use_pmtu &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+&lt;h4 id=&#34;answer-i-dont-think-so&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc2/#answer-i-dont-think-so&#34;&gt;&lt;strong&gt;Answer:&lt;/strong&gt; I don&amp;rsquo;t think so&lt;/a&gt;
+&lt;/h4&gt;
+&lt;hr&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sysctl -a &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -i ipv4 &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -i martian
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# What are martians and is this system allowing them?&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+&lt;h4 id=&#34;output-1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc2/#output-1&#34;&gt;Output:&lt;/a&gt;
+&lt;/h4&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer2 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# sysctl -a | grep -i ipv4 | grep -i martian&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;net.ipv4.conf.all.log_martians &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;net.ipv4.conf.default.log_martians &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;net.ipv4.conf.eth0.log_martians &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;net.ipv4.conf.lo.log_martians &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+&lt;h4 id=&#34;answer&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc2/#answer&#34;&gt;&lt;strong&gt;Answer:&lt;/strong&gt;&lt;/a&gt;
+&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;In Linux networking, martians refer to packets with bogus, invalid, or impossible source or destination IP addresses.&lt;/li&gt;
+&lt;li&gt;If setting is 0 we allow martians and do not log them.&lt;/li&gt;
+&lt;/ul&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sysctl -a &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -i panic
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# How does this system handle panics?&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer2 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# sysctl -a | grep -i panic&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;kernel.hardlockup_panic &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;kernel.hung_task_panic &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;kernel.max_rcu_stall_to_panic &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;kernel.panic &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;kernel.panic_on_io_nmi &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;kernel.panic_on_oops &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;kernel.panic_on_rcu_stall &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;kernel.panic_on_unrecovered_nmi &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;kernel.panic_on_warn &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;kernel.panic_print &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;kernel.softlockup_panic &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;kernel.unknown_nmi_panic &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;vm.panic_on_oom &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer2 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# sysctl -a | grep -i crypto&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;crypto.fips_enabled &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;crypto.fips_name &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; Rocky Linux &lt;span class=&#34;m&#34;&gt;9&lt;/span&gt; - Kernel Cryptographic API
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;crypto.fips_version &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; 5.14.0-427.18.1.el9_4.x86_64
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# What are the settings you see? Is FIPS enabled? NO&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# TODO Read about FIPS&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+&lt;h4 id=&#34;todo&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc2/#todo&#34;&gt;TODO&lt;/a&gt;
+&lt;/h4&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cat /proc/cmdline
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cat /proc/cmdline
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;initrd&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;initramfs  rd.neednet&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;root&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;wwinit wwinit.container&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;http://192.168.200.25:9873/provision/96:96:7f:c7:80:f7?assetkey&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;uuid&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;6e139023-6602-20e9-6e9b-cd87a1be8649&lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;stage&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;container&lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;compress&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;gz wwinit.system&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;http://192.168.200.25:9873/provision/96:96:7f:c7:80:f7?assetkey&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;uuid&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;6e139023-6602-20e9-6e9b-cd87a1be8649&lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;stage&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;system&lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;compress&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;gz wwinit.runtime&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;http://192.168.200.25:9873/provision/96:96:7f:c7:80:f7?assetkey&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;uuid&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;6e139023-6602-20e9-6e9b-cd87a1be8649&lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;stage&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;runtime&lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;compress&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;gz &lt;span class=&#34;nv&#34;&gt;init&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/init &lt;span class=&#34;nv&#34;&gt;wwid&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;96:96:7f:c7:80:f7 quiet &lt;span class=&#34;nv&#34;&gt;crashkernel&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;no &lt;span class=&#34;nv&#34;&gt;vga&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;791&lt;/span&gt; net.naming-scheme&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;v238
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;fips-mode-setup --check
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sestatus
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cat /etc/selinux/config&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;hr&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;V-257957
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Rule Title:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;RHEL &lt;span class=&#34;m&#34;&gt;9&lt;/span&gt; must be configured to use TCP syncookies.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Discussion:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Denial of service &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;DoS&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; is a condition when a resource is not available &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; legitimate users. When this occurs, the organization either cannot accomplish its mission or must operate at degraded capacity. 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Managing excess capacity ensures that sufficient capacity is available to counter flooding attacks. Employing increased capacity and service redundancy may reduce the susceptibility to some DoS attacks. Managing excess capacity may include, &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; example, establishing selected usage priorities, quotas, or partitioning.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Satisfies: SRG-OS-000480-GPOS-00227, SRG-OS-000420-GPOS-00186, SRG-OS-000142-GPOS-00071
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Check Text:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Verify RHEL &lt;span class=&#34;m&#34;&gt;9&lt;/span&gt; is configured to use IPv4 TCP syncookies.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Determine &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; syncookies are used with the following command:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Check the status of the kernel.perf_event_paranoid kernel parameter.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ sudo sysctl net.ipv4.tcp_syncookies
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;net.ipv4.tcp_syncookies &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Check that the configuration files are present to &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; this kernel parameter.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ sudo /usr/lib/systemd/systemd-sysctl --cat-config &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; egrep -v &lt;span class=&#34;s1&#34;&gt;&amp;#39;^(#|;)&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -F net.ipv4.tcp_syncookies &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tail -1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;net.ipv4.tcp_syncookies &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;If the network parameter &lt;span class=&#34;s2&#34;&gt;&amp;#34;ipv4.tcp_syncookies&amp;#34;&lt;/span&gt; is not equal to &lt;span class=&#34;s2&#34;&gt;&amp;#34;1&amp;#34;&lt;/span&gt; or nothing is returned, this is a finding.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Fix Text:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Configure RHEL &lt;span class=&#34;m&#34;&gt;9&lt;/span&gt; to use TCP syncookies.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Add or edit the following line in a system configuration file in the &lt;span class=&#34;s2&#34;&gt;&amp;#34;/etc/sysctl.d/&amp;#34;&lt;/span&gt; directory:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; net.ipv4.tcp_syncookies &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Load settings from all system configuration files with the following command:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ sudo sysctl --system&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@hammer2 ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# sysctl -a | grep -i ipv4 | grep -i syncookies&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;net.ipv4.tcp_syncookies &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+  
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;V-257958
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Rule Title:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;RHEL &lt;span class=&#34;m&#34;&gt;9&lt;/span&gt; must ignore Internet Protocol version &lt;span class=&#34;m&#34;&gt;4&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;IPv4&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; Internet Control Message Protocol &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;ICMP&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; redirect messages.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Discussion:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ICMP redirect messages are used by routers to inform hosts that a more direct route exists &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; a particular destination. These messages modify the host&lt;span class=&#34;s1&#34;&gt;&amp;#39;s route table and are unauthenticated. An illicit ICMP redirect message could result in a man-in-the-middle attack.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;This feature of the IPv4 protocol has few legitimate uses. It should be disabled unless absolutely required.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;Check Text:
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;Verify RHEL 9 will not accept IPv4 ICMP redirect messages.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;Check the value of the all &amp;#34;accept_redirects&amp;#34; variables with the following command:
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;$ sudo sysctl net.ipv4.conf.all.accept_redirects
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;net.ipv4.conf.all.accept_redirects = 0
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;If the returned line does not have a value of &amp;#34;0&amp;#34;, a line is not returned, or the line is commented out, this is a finding.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;Check that the configuration files are present to enable this network parameter.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;$ sudo /usr/lib/systemd/systemd-sysctl --cat-config | egrep -v &amp;#39;&lt;/span&gt;^&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;#|;)&amp;#39; | grep -F net.ipv4.conf.all.accept_redirects | tail -1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;net.ipv4.conf.all.accept_redirects &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;If &lt;span class=&#34;s2&#34;&gt;&amp;#34;net.ipv4.conf.all.accept_redirects&amp;#34;&lt;/span&gt; is not &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; to &lt;span class=&#34;s2&#34;&gt;&amp;#34;0&amp;#34;&lt;/span&gt; or is missing, this is a finding.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Fix Text:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Configure RHEL &lt;span class=&#34;m&#34;&gt;9&lt;/span&gt; to ignore IPv4 ICMP redirect messages.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Add or edit the following line in a single system configuration file, in the &lt;span class=&#34;s2&#34;&gt;&amp;#34;/etc/sysctl.d/&amp;#34;&lt;/span&gt; directory:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;net.ipv4.conf.all.accept_redirects &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Load settings from all system configuration files with the following command:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ sudo sysctl --system&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+&lt;h4 id=&#34;answer-1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc2/#answer-1&#34;&gt;Answer&lt;/a&gt;
+&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Not fully knowing the meaning of these parameters. I used ChatGPT to decipher&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+&lt;h3 id=&#34;prolug-links-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc2/#prolug-links-&#34;&gt;ProLUG Links ⛓️&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Discord: &lt;a href=&#34;https://discord.com/invite/m6VPPD9usw&#34;&gt;https://discord.com/invite/m6VPPD9usw&lt;/a&gt;
+Youtube: &lt;a href=&#34;https://www.youtube.com/@het_tanis8213&#34;&gt;https://www.youtube.com/@het_tanis8213&lt;/a&gt;
+Twitch: &lt;a href=&#34;https://www.twitch.tv/het_tanis&#34;&gt;https://www.twitch.tv/het_tanis&lt;/a&gt;
+ProLUG PSC Repo: &lt;a href=&#34;https://github.com/ProfessionalLinuxUsersGroup/psc&#34;&gt;https://github.com/ProfessionalLinuxUsersGroup/psc&lt;/a&gt;
+ProLUG PSC Book: &lt;a href=&#34;https://professionallinuxusersgroup.github.io/psc/&#34;&gt;https://professionallinuxusersgroup.github.io/psc/&lt;/a&gt;
+ProLUG Book of Labs: &lt;a href=&#34;https://leanpub.com/theprolugbigbookoflabs&#34;&gt;https://leanpub.com/theprolugbigbookoflabs&lt;/a&gt;
+KillerCoda: &lt;a href=&#34;https://killercoda.com/het-tanis&#34;&gt;https://killercoda.com/het-tanis&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>ProLUG Security Engineering Course Intro🐧</title>
       <link>http://localhost:1313/techblog/post/psc0/</link>
@@ -201,8 +2374,8 @@ If the version is more than one version behind the most recent patch level, this
 
 
 
-&lt;h2 id=&#34;lab&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc1/#lab&#34;&gt;Lab&lt;/a&gt;
+&lt;h2 id=&#34;lab-&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc1/#lab-&#34;&gt;Lab 🧪🥼&lt;/a&gt;
 &lt;/h2&gt;
 
 
@@ -331,13 +2504,19 @@ Systems where audit trail completeness is paramount will most likely be at a low
 &lt;h3 id=&#34;what-type-of-control-is-being-implemented&#34;&gt;
   &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc1/#what-type-of-control-is-being-implemented&#34;&gt;What type of control is being implemented?&lt;/a&gt;
 &lt;/h3&gt;
+&lt;p&gt;The type of control being used here is a technical detective form of control&lt;/p&gt;
 
 
 
-&lt;h3 id=&#34;todo-is-it-set-properly-on-your-system&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc1/#todo-is-it-set-properly-on-your-system&#34;&gt;Todo is it set properly on your system?&lt;/a&gt;
+&lt;h3 id=&#34;is-it-set-properly-on-your-system&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc1/#is-it-set-properly-on-your-system&#34;&gt;Is it set properly on your system?&lt;/a&gt;
 &lt;/h3&gt;
-&lt;hr&gt;
+
+
+
+&lt;h2 id=&#34;no-by-default-is-what-not-however-there-is-a-short-script-that-enables-logs-to-roll-over-and-given-a-lack-of-space&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc1/#no-by-default-is-what-not-however-there-is-a-short-script-that-enables-logs-to-roll-over-and-given-a-lack-of-space&#34;&gt;No, by default is what not. However, there is a short script that enables logs to roll over and given a lack of space.&lt;/a&gt;
+&lt;/h2&gt;
 
 
 
@@ -380,11 +2559,12 @@ Systems where availability is paramount will most likely be MAC I; the final det
 &lt;h3 id=&#34;what-type-of-control-is-being-implemented-1&#34;&gt;
   &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc1/#what-type-of-control-is-being-implemented-1&#34;&gt;What type of control is being implemented?&lt;/a&gt;
 &lt;/h3&gt;
+&lt;p&gt;Also a technical detective control&lt;/p&gt;
 
 
 
-&lt;h3 id=&#34;todo-is-it-set-properly-on-your-system-1&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc1/#todo-is-it-set-properly-on-your-system-1&#34;&gt;Todo is it set properly on your system?&lt;/a&gt;
+&lt;h3 id=&#34;is-it-set-properly-on-your-system-1&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc1/#is-it-set-properly-on-your-system-1&#34;&gt;is it set properly on your system?&lt;/a&gt;
 &lt;/h3&gt;
 &lt;hr&gt;
 
@@ -440,12 +2620,14 @@ Changes in the database objects (tables, views, procedures, functions) that reco
 &lt;h3 id=&#34;what-type-of-control-is-being-implemented-2&#34;&gt;
   &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc1/#what-type-of-control-is-being-implemented-2&#34;&gt;What type of control is being implemented?&lt;/a&gt;
 &lt;/h3&gt;
+&lt;p&gt;Also a technical and detective form of control here.&lt;/p&gt;
 
 
 
-&lt;h3 id=&#34;todo-is-it-set-properly-on-your-system-2&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc1/#todo-is-it-set-properly-on-your-system-2&#34;&gt;Todo is it set properly on your system?&lt;/a&gt;
+&lt;h3 id=&#34;is-it-set-properly-on-your-system-2&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;http://localhost:1313/techblog/post/psc1/#is-it-set-properly-on-your-system-2&#34;&gt;is it set properly on your system?&lt;/a&gt;
 &lt;/h3&gt;
+&lt;p&gt;Not by default, however this was setup on a remote server.&lt;/p&gt;
 &lt;hr&gt;</description>
     </item>
     <item>

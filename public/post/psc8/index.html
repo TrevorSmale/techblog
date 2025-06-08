@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/techblog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=techblog/livereload" data-no-instant defer></script>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <meta name="description" content="Monitoring &amp; Parsing Logs">
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.147.3">
+  <title>ProLUG Security Engineering Course Unit 8 | Tech Blog</title>
+  <link rel="canonical" href="http://localhost:1313/techblog/post/psc8/">
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+    <link rel="stylesheet" href="/techblog/css/base.css">
+
+    <link rel="stylesheet" href="/techblog/css/syntax.css">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <a class="Banner-link u-clickable" href="/techblog/">Tech Blog</a>
+      </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/about/">About</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/post/">Posts</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/tags/">Tags</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/categories/">Categories</a>
+        </li>
+      
+        
+        
+          
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/feed.xml">RSS</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/psc8/" rel="bookmark">ProLUG Security Engineering Course Unit 8</a>
+  </h1>
+  
+    <time datetime="2025-05-11T00:00:00Z">May 11, 2025</time>
+  
+</header>
+  <h2 id="intro-">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc8/#intro-">Intro 👋</a>
+</h2>
+<p>This is the 2 sentence intro Footnote<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<hr>
+
+
+
+<h2 id="worksheet">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc8/#worksheet">Worksheet</a>
+</h2>
+
+
+
+<h3 id="discussion-post-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc8/#discussion-post-1"><code>Discussion Post 1</code></a>
+</h3>
+<p>Read about configuration management here: <a href="https://en.wikipedia.org/wiki/Configuration_management">https://en.wikipedia.org/wiki/Configuration_management</a></p>
+<p>What overlap of terms and concepts do you see from this week’s meeting?</p>
+<p>What are some of the standards and guidelines organizations involved with configuration management?
+Do you recognize them from other IT activities?</p>
+
+
+
+<h3 id="discussion-post-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc8/#discussion-post-2"><code>Discussion Post 2</code></a>
+</h3>
+<p>Review the SRE guide to treating configurations as code.
+Read as much as you like, but focus down on the “Practical Advice” section: <a href="https://google.github.io/building-secure-and-reliable-systems/raw/ch14.html#treat_configuration_as_code">https://google.github.io/building-secure-and-reliable-systems/raw/ch14.html#treat_configuration_as_code</a></p>
+<pre><code>What are the best practices that you can use in your configuration management adherence?
+
+What are the security threats and how can you mitigate them?
+
+Why might it be good to know this as you design a CMDB or CI/CD pipeline?
+</code></pre>
+
+
+
+<h3 id="definitions">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc8/#definitions">Definitions</a>
+</h3>
+<ul>
+<li>
+<p>Def 1: Explainer</p>
+</li>
+<li>
+<p>Def 2: Explainer</p>
+</li>
+<li>
+<p>Def 3: Explainer</p>
+</li>
+<li>
+<p>Telemetry</p>
+</li>
+<li>
+<p>Tracing
+Span
+Label</p>
+</li>
+<li>
+<p>Time Series Database (TSDB)</p>
+</li>
+<li>
+<p>Queue</p>
+</li>
+<li>
+<p>Upper control limit / Lower control limit (UCL/LCL)</p>
+</li>
+<li>
+<p>Aggregation</p>
+</li>
+<li>
+<p>SLO, SLA, SLI</p>
+</li>
+<li>
+<p>Push v. Pull of data</p>
+</li>
+<li>
+<p>Alerting rules</p>
+</li>
+<li>
+<p>Alertmanager</p>
+<p>Alert template
+Routing
+Throttling</p>
+</li>
+<li>
+<p>Monitoring for defensive operations</p>
+<p>SIEM
+Intrusion Detection Systems - IDS
+Intrusion Prevention Systems - IPS</p>
+</li>
+</ul>
+
+
+
+<h2 id="lab">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc8/#lab">Lab</a>
+</h2>
+<p>Install fail2ban</p>
+<p>apt install -y fail2ban</p>
+<p>Verify the version number of fail2ban client</p>
+<p>fail2ban-client &ndash;version</p>
+<p>Configure fail2ban for sshd jail.</p>
+<p>vi /etc/fail2ban/jail.conf</p>
+<p>#Uncomment [sshd] and enter the following lines under [sshd] section</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">     <span class="o">[</span>sshd<span class="o">]</span>
+</span></span><span class="line"><span class="cl">     <span class="nv">enabled</span> <span class="o">=</span> <span class="nb">true</span>
+</span></span><span class="line"><span class="cl">     <span class="nv">maxretry</span> <span class="o">=</span>  <span class="m">5</span>
+</span></span><span class="line"><span class="cl">     <span class="nv">findtime</span> <span class="o">=</span> <span class="m">10</span>
+</span></span><span class="line"><span class="cl">     <span class="nv">bantime</span> <span class="o">=</span> 4h</span></span></code></pre></div>
+<p>#Check the rest of the file and ensure that there is no [sshd] config later in the file, delete or comment it out.</p>
+<p>Review the configurations for apache and nginx to see what other types of jails are available in fail2ban.</p>
+<p>Restart the service and verify that it is running properly.</p>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">systemctl restart fail2ban</span></span></code></pre></div>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">systemctl status fail2ban --no-pager</span></span></code></pre></div>
+<p>Test the fail2ban is properly working by trying to connect back to the controlplane server from node01 as a fake account.</p>
+<p>ssh node01</p>
+<p>Run a for loop and keep trying to connect back to controlplane. You will have to hit enter on each password line until lockout occurs.</p>
+<p>for i in {1..6}; do ssh invaliduser@controlplane; done</p>
+<p>You will have to hit &lsquo;ctrl + c&rsquo; to exit when it stops trying to connect to the far end.</p>
+<p>Exit back to controlplane and check the logs and fail status.</p>
+<p>Check the log of fail2ban</p>
+<p>tail -20 /var/log/fail2ban.log</p>
+<p>Verify that you see the banned IP.</p>
+<p>fail2ban-client get sshd banned</p>
+<p>Do you see the IP address that you expect? Why do you think that is?</p>
+<p>Unban the ip address from the logs. You must manually enter the correct IP address below from the upper output</p>
+<p>fail2ban-client set sshd unbanip <!-- raw HTML omitted --></p>
+<p>Test that the unban has happened correctly.</p>
+<p>ssh node01</p>
+<p>Try to connect back to controlplane with a correct user, the root user.</p>
+<p>ssh controlplane</p>
+<p>Did you connect back correctly? If so, move on to the next part of the lab.</p>
+
+
+
+<h3 id="prolug-links-">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc8/#prolug-links-">ProLUG Links ⛓️</a>
+</h3>
+<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
+Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
+Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
+ProLUG PSC Repo: <a href="https://github.com/ProfessionalLinuxUsersGroup/psc">https://github.com/ProfessionalLinuxUsersGroup/psc</a>
+ProLUG PSC Book: <a href="https://professionallinuxusersgroup.github.io/psc/">https://professionallinuxusersgroup.github.io/psc/</a>
+ProLUG Book of Labs: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
+KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
+<hr>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Example Title <a href="Link">Format</a> Source, 2025.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+  
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+  
+  
+
+
+
+      </div>
+    </div>
+  </main>
+  
+</body>
+
+</html>

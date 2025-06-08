@@ -21,7 +21,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.145.0">
+<meta name="generator" content="Hugo 0.147.3">
   <title>ProLUG Security Engineering Course Unit 2 | Tech Blog</title>
   <link rel="canonical" href="http://localhost:1313/techblog/post/psc2/">
 
@@ -42,6 +42,8 @@
   
   
     <link rel="stylesheet" href="/techblog/css/base.css">
+
+    <link rel="stylesheet" href="/techblog/css/syntax.css">
 
 
 
@@ -149,7 +151,7 @@ connecting on those ingress points?</p>
 <h3 id="discussion-post-2">
   <a class="Heading-link u-clickable" href="/techblog/post/psc2/#discussion-post-2"><code>Discussion Post 2</code></a>
 </h3>
-<p>Intro to the scenario<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<p>Intro to the scenario[^3]</p>
 <p>Read this: <a href="https://ciq.com/blog/demystifying-and-">https://ciq.com/blog/demystifying-and-</a>
 troubleshooting-name-resolution-in-rocky-linux/ or similar blogs on DNS and host file
 configurations.</p>
@@ -182,10 +184,229 @@ to look into some more blogs or posts for this)</p>
 
 
 
-<h2 id="lab">
-  <a class="Heading-link u-clickable" href="/techblog/post/psc2/#lab">Lab</a>
+<h2 id="lab-">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc2/#lab-">Lab 🧪🥼</a>
 </h2>
+
+
+
+<h3 id="warmup">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc2/#warmup">Warmup</a>
+</h3>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sysctl -a <span class="p">|</span> grep -i ipv4 <span class="p">|</span> grep -i forward
+</span></span><span class="line"><span class="cl"><span class="c1"># Does this system appear to be set to forward? Why or why not?</span></span></span></code></pre></div>
+
+
+
+<h4 id="output">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc2/#output">Output:</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@hammer2 ~<span class="o">]</span><span class="c1"># sysctl -a | grep -i ipv4 | grep -i forward</span>
+</span></span><span class="line"><span class="cl">net.ipv4.conf.all.bc_forwarding <span class="o">=</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">net.ipv4.conf.all.forwarding <span class="o">=</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">net.ipv4.conf.all.mc_forwarding <span class="o">=</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">net.ipv4.conf.default.bc_forwarding <span class="o">=</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">net.ipv4.conf.default.forwarding <span class="o">=</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">net.ipv4.conf.default.mc_forwarding <span class="o">=</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">net.ipv4.conf.eth0.bc_forwarding <span class="o">=</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">net.ipv4.conf.eth0.forwarding <span class="o">=</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">net.ipv4.conf.eth0.mc_forwarding <span class="o">=</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">net.ipv4.conf.lo.bc_forwarding <span class="o">=</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">net.ipv4.conf.lo.forwarding <span class="o">=</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">net.ipv4.conf.lo.mc_forwarding <span class="o">=</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">net.ipv4.ip_forward <span class="o">=</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">net.ipv4.ip_forward_update_priority <span class="o">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">net.ipv4.ip_forward_use_pmtu <span class="o">=</span> <span class="m">0</span></span></span></code></pre></div>
+
+
+
+<h4 id="answer-i-dont-think-so">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc2/#answer-i-dont-think-so"><strong>Answer:</strong> I don&rsquo;t think so</a>
+</h4>
 <hr>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sysctl -a <span class="p">|</span> grep -i ipv4 <span class="p">|</span> grep -i martian
+</span></span><span class="line"><span class="cl"><span class="c1"># What are martians and is this system allowing them?</span></span></span></code></pre></div>
+
+
+
+<h4 id="output-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc2/#output-1">Output:</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@hammer2 ~<span class="o">]</span><span class="c1"># sysctl -a | grep -i ipv4 | grep -i martian</span>
+</span></span><span class="line"><span class="cl">net.ipv4.conf.all.log_martians <span class="o">=</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">net.ipv4.conf.default.log_martians <span class="o">=</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">net.ipv4.conf.eth0.log_martians <span class="o">=</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">net.ipv4.conf.lo.log_martians <span class="o">=</span> <span class="m">0</span></span></span></code></pre></div>
+
+
+
+<h4 id="answer">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc2/#answer"><strong>Answer:</strong></a>
+</h4>
+<ul>
+<li>In Linux networking, martians refer to packets with bogus, invalid, or impossible source or destination IP addresses.</li>
+<li>If setting is 0 we allow martians and do not log them.</li>
+</ul>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sysctl -a <span class="p">|</span> grep -i panic
+</span></span><span class="line"><span class="cl"><span class="c1"># How does this system handle panics?</span></span></span></code></pre></div>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@hammer2 ~<span class="o">]</span><span class="c1"># sysctl -a | grep -i panic</span>
+</span></span><span class="line"><span class="cl">kernel.hardlockup_panic <span class="o">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">kernel.hung_task_panic <span class="o">=</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">kernel.max_rcu_stall_to_panic <span class="o">=</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">kernel.panic <span class="o">=</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">kernel.panic_on_io_nmi <span class="o">=</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">kernel.panic_on_oops <span class="o">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">kernel.panic_on_rcu_stall <span class="o">=</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">kernel.panic_on_unrecovered_nmi <span class="o">=</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">kernel.panic_on_warn <span class="o">=</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">kernel.panic_print <span class="o">=</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">kernel.softlockup_panic <span class="o">=</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">kernel.unknown_nmi_panic <span class="o">=</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">vm.panic_on_oom <span class="o">=</span> <span class="m">0</span></span></span></code></pre></div>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@hammer2 ~<span class="o">]</span><span class="c1"># sysctl -a | grep -i crypto</span></span></span></code></pre></div>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">crypto.fips_enabled <span class="o">=</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">crypto.fips_name <span class="o">=</span> Rocky Linux <span class="m">9</span> - Kernel Cryptographic API
+</span></span><span class="line"><span class="cl">crypto.fips_version <span class="o">=</span> 5.14.0-427.18.1.el9_4.x86_64
+</span></span><span class="line"><span class="cl"><span class="c1"># What are the settings you see? Is FIPS enabled? NO</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># TODO Read about FIPS</span></span></span></code></pre></div>
+
+
+
+<h4 id="todo">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc2/#todo">TODO</a>
+</h4>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat /proc/cmdline
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">cat /proc/cmdline
+</span></span><span class="line"><span class="cl"><span class="nv">initrd</span><span class="o">=</span>initramfs  rd.neednet<span class="o">=</span><span class="m">1</span> <span class="nv">root</span><span class="o">=</span>wwinit wwinit.container<span class="o">=</span>http://192.168.200.25:9873/provision/96:96:7f:c7:80:f7?assetkey<span class="o">=</span><span class="p">&amp;</span><span class="nv">uuid</span><span class="o">=</span>6e139023-6602-20e9-6e9b-cd87a1be8649<span class="p">&amp;</span><span class="nv">stage</span><span class="o">=</span>container<span class="p">&amp;</span><span class="nv">compress</span><span class="o">=</span>gz wwinit.system<span class="o">=</span>http://192.168.200.25:9873/provision/96:96:7f:c7:80:f7?assetkey<span class="o">=</span><span class="p">&amp;</span><span class="nv">uuid</span><span class="o">=</span>6e139023-6602-20e9-6e9b-cd87a1be8649<span class="p">&amp;</span><span class="nv">stage</span><span class="o">=</span>system<span class="p">&amp;</span><span class="nv">compress</span><span class="o">=</span>gz wwinit.runtime<span class="o">=</span>http://192.168.200.25:9873/provision/96:96:7f:c7:80:f7?assetkey<span class="o">=</span><span class="p">&amp;</span><span class="nv">uuid</span><span class="o">=</span>6e139023-6602-20e9-6e9b-cd87a1be8649<span class="p">&amp;</span><span class="nv">stage</span><span class="o">=</span>runtime<span class="p">&amp;</span><span class="nv">compress</span><span class="o">=</span>gz <span class="nv">init</span><span class="o">=</span>/init <span class="nv">wwid</span><span class="o">=</span>96:96:7f:c7:80:f7 quiet <span class="nv">crashkernel</span><span class="o">=</span>no <span class="nv">vga</span><span class="o">=</span><span class="m">791</span> net.naming-scheme<span class="o">=</span>v238
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">fips-mode-setup --check
+</span></span><span class="line"><span class="cl">sestatus
+</span></span><span class="line"><span class="cl">cat /etc/selinux/config</span></span></code></pre></div>
+<hr>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">V-257957
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Rule Title:
+</span></span><span class="line"><span class="cl">RHEL <span class="m">9</span> must be configured to use TCP syncookies.
+</span></span><span class="line"><span class="cl">Discussion:
+</span></span><span class="line"><span class="cl">Denial of service <span class="o">(</span>DoS<span class="o">)</span> is a condition when a resource is not available <span class="k">for</span> legitimate users. When this occurs, the organization either cannot accomplish its mission or must operate at degraded capacity. 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Managing excess capacity ensures that sufficient capacity is available to counter flooding attacks. Employing increased capacity and service redundancy may reduce the susceptibility to some DoS attacks. Managing excess capacity may include, <span class="k">for</span> example, establishing selected usage priorities, quotas, or partitioning.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Satisfies: SRG-OS-000480-GPOS-00227, SRG-OS-000420-GPOS-00186, SRG-OS-000142-GPOS-00071
+</span></span><span class="line"><span class="cl">Check Text:
+</span></span><span class="line"><span class="cl">Verify RHEL <span class="m">9</span> is configured to use IPv4 TCP syncookies.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Determine <span class="k">if</span> syncookies are used with the following command:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Check the status of the kernel.perf_event_paranoid kernel parameter.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ sudo sysctl net.ipv4.tcp_syncookies
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">net.ipv4.tcp_syncookies <span class="o">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Check that the configuration files are present to <span class="nb">enable</span> this kernel parameter.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ sudo /usr/lib/systemd/systemd-sysctl --cat-config <span class="p">|</span> egrep -v <span class="s1">&#39;^(#|;)&#39;</span> <span class="p">|</span> grep -F net.ipv4.tcp_syncookies <span class="p">|</span> tail -1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">net.ipv4.tcp_syncookies <span class="o">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">If the network parameter <span class="s2">&#34;ipv4.tcp_syncookies&#34;</span> is not equal to <span class="s2">&#34;1&#34;</span> or nothing is returned, this is a finding.
+</span></span><span class="line"><span class="cl">Fix Text:
+</span></span><span class="line"><span class="cl">Configure RHEL <span class="m">9</span> to use TCP syncookies.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Add or edit the following line in a system configuration file in the <span class="s2">&#34;/etc/sysctl.d/&#34;</span> directory:
+</span></span><span class="line"><span class="cl"> net.ipv4.tcp_syncookies <span class="o">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Load settings from all system configuration files with the following command:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ sudo sysctl --system</span></span></code></pre></div>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@hammer2 ~<span class="o">]</span><span class="c1"># sysctl -a | grep -i ipv4 | grep -i syncookies</span>
+</span></span><span class="line"><span class="cl">net.ipv4.tcp_syncookies <span class="o">=</span> <span class="m">1</span></span></span></code></pre></div>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">V-257958
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Rule Title:
+</span></span><span class="line"><span class="cl">RHEL <span class="m">9</span> must ignore Internet Protocol version <span class="m">4</span> <span class="o">(</span>IPv4<span class="o">)</span> Internet Control Message Protocol <span class="o">(</span>ICMP<span class="o">)</span> redirect messages.
+</span></span><span class="line"><span class="cl">Discussion:
+</span></span><span class="line"><span class="cl">ICMP redirect messages are used by routers to inform hosts that a more direct route exists <span class="k">for</span> a particular destination. These messages modify the host<span class="s1">&#39;s route table and are unauthenticated. An illicit ICMP redirect message could result in a man-in-the-middle attack.
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">This feature of the IPv4 protocol has few legitimate uses. It should be disabled unless absolutely required.
+</span></span></span><span class="line"><span class="cl"><span class="s1">Check Text:
+</span></span></span><span class="line"><span class="cl"><span class="s1">Verify RHEL 9 will not accept IPv4 ICMP redirect messages.
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">Check the value of the all &#34;accept_redirects&#34; variables with the following command:
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">$ sudo sysctl net.ipv4.conf.all.accept_redirects
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">net.ipv4.conf.all.accept_redirects = 0
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">If the returned line does not have a value of &#34;0&#34;, a line is not returned, or the line is commented out, this is a finding.
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">Check that the configuration files are present to enable this network parameter.
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">$ sudo /usr/lib/systemd/systemd-sysctl --cat-config | egrep -v &#39;</span>^<span class="o">(</span><span class="c1">#|;)&#39; | grep -F net.ipv4.conf.all.accept_redirects | tail -1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">net.ipv4.conf.all.accept_redirects <span class="o">=</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">If <span class="s2">&#34;net.ipv4.conf.all.accept_redirects&#34;</span> is not <span class="nb">set</span> to <span class="s2">&#34;0&#34;</span> or is missing, this is a finding.
+</span></span><span class="line"><span class="cl">Fix Text:
+</span></span><span class="line"><span class="cl">Configure RHEL <span class="m">9</span> to ignore IPv4 ICMP redirect messages.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Add or edit the following line in a single system configuration file, in the <span class="s2">&#34;/etc/sysctl.d/&#34;</span> directory:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">net.ipv4.conf.all.accept_redirects <span class="o">=</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Load settings from all system configuration files with the following command:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ sudo sysctl --system</span></span></code></pre></div>
+
+
+
+<h4 id="answer-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc2/#answer-1">Answer</a>
+</h4>
+<ul>
+<li>Not fully knowing the meaning of these parameters. I used ChatGPT to decipher</li>
+</ul>
 
 
 
@@ -199,15 +420,6 @@ ProLUG PSC Repo: <a href="https://github.com/ProfessionalLinuxUsersGroup/psc">ht
 ProLUG PSC Book: <a href="https://professionallinuxusersgroup.github.io/psc/">https://professionallinuxusersgroup.github.io/psc/</a>
 ProLUG Book of Labs: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
 KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
-<hr>
-<div class="footnotes" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn:1">
-<p>Example Title <a href="Link">Format</a> Source, 2025.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-</ol>
-</div>
   
 
   

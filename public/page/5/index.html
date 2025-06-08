@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/techblog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=techblog/livereload" data-no-instant defer></script>
+  
+
+  
+  
+
+
+  <meta charset="utf-8">
+
+
+  <meta name="robots" content="noindex, nofollow, noarchive">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  
+    
+  
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.147.3">
+  <title>Tech Blog</title>
+  <link rel="canonical" href="http://localhost:1313/techblog/">
+
+
+
+
+  <link rel="alternate" href="/techblog/feed.xml" type="application/rss+xml">
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+    
+    
+    
+      
+      
+    
+    
+    
+  
+    
+    
+    
+      
+      
+    
+    
+    
+  
+
+
+  
+    <link rel="stylesheet" href="/techblog/css/base.css">
+
+    <link rel="stylesheet" href="/techblog/css/syntax.css">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <a class="Banner-link u-clickable" href="/techblog/">Tech Blog</a>
+      </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/about/">About</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/post/">Posts</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/tags/">Tags</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/categories/">Categories</a>
+        </li>
+      
+        
+        
+          
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/feed.xml">RSS</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  
+    <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/" rel="bookmark">Tech Blog</a>
+  </h1>
+  
+    <time datetime="2025-05-11T00:00:00Z">May 11, 2025</time>
+  
+</header>
+  
+
+  
+
+  
+  
+    <article>
+      <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/fs/" rel="bookmark">Linux File Systems Overview 💾</a>
+  </h1>
+  
+    <time datetime="2024-08-25T00:00:00Z">August 25, 2024</time>
+  
+</header>
+      
+        
+
+
+<h2 id="1-ext4--linux-bsd">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#1-ext4--linux-bsd">1. ext4 💾 (Linux, BSD)</a>
+</h2>
+
+
+
+<h3 id="intro">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#intro">Intro</a>
+</h3>
+<p><strong>ext4</strong> (Extended File System version 4) is the default file system for many Linux distributions.</p>
+
+
+
+<h3 id="links">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#links">Links</a>
+</h3>
+<p><a href="https://en.wikipedia.org/wiki/Ext4">https://en.wikipedia.org/wiki/Ext4</a>
+<a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/6/html/storage_administration_guide/ch-ext4#ch-ext4">https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/6/html/storage_administration_guide/ch-ext4#ch-ext4</a></p>
+
+
+
+<h3 id="technical-features-">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#technical-features-">Technical Features: 🔍</a>
+</h3>
+<ul>
+<li>Journaling</li>
+<li>Extent-Based Allocation</li>
+<li>Delayed Allocation</li>
+<li>Persistent Pre-allocation</li>
+<li>Multi-block Allocation</li>
+<li>Online Resizing</li>
+<li>64-bit File System Support</li>
+<li>Directory Indexing with HTree</li>
+<li>Defragmentation</li>
+<li>Backward Compatibility with ext2/ext3</li>
+<li>Barriers for Data Integrity</li>
+<li>Large File Support (up to 16 TiB)</li>
+<li>Metadata Checksumming (optional)</li>
+<li>Quotas</li>
+</ul>
+
+
+
+<h3 id="advantages-">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#advantages-">Advantages 👍</a>
+</h3>
+<ul>
+<li><strong>Mature and Stable</strong>: ext4 is a well-tested and widely-used file system with a long history of stability.</li>
+<li><strong>Performance</strong>: It offers good performance for most workloads, especially for general-purpose usage.</li>
+<li><strong>Backward Compatibility</strong>: Supports ext3 and ext2 file systems, making it easy to upgrade.</li>
+<li><strong>Journaling</strong>: Provides a journaling feature that helps to prevent data corruption in case of a crash.</li>
+<li><strong>Wide Support</strong>: Supported by almost all Linux distributions and has a large community.</li>
+</ul>
+
+
+
+<h3 id="downsides-">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#downsides-">Downsides 👎</a>
+</h3>
+<ul>
+<li><strong>Limited Scalability</strong>: While adequate for most users, ext4 doesn&rsquo;t scale as well as newer file systems for very large volumes and large numbers of files.</li>
+<li><strong>Lack of Advanced Features</strong>: ext4 lacks features like snapshotting and built-in data integrity checks (e.g., checksums).</li>
+</ul>
+
+
+
+<h3 id="scale">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#scale">Scale</a>
+</h3>
+<ul>
+<li><strong>Maximum File Size</strong>: 16 TiB</li>
+<li><strong>Maximum Volume Size</strong>: 1 EiB</li>
+</ul>
+
+
+
+<h3 id="distro-usage">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#distro-usage">Distro Usage</a>
+</h3>
+<ul>
+<li>ext4 is the most widely used format spanning Linux and BSD.</li>
+</ul>
+
+
+
+<h2 id="2-xfs--linux-bsd">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#2-xfs--linux-bsd">2. XFS 💾 (Linux, BSD)</a>
+</h2>
+
+
+
+<h3 id="intro-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#intro-1">Intro</a>
+</h3>
+<p><strong>XFS</strong> is a high-performance file system designed for parallel I/O operations, often used in enterprise environments.</p>
+
+
+
+<h3 id="links-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#links-1">Links</a>
+</h3>
+<p><a href="https://en.wikipedia.org/wiki/XFS">https://en.wikipedia.org/wiki/XFS</a>
+<a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/storage_administration_guide/ch-xfs">https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/storage_administration_guide/ch-xfs</a></p>
+
+
+
+<h3 id="technical-features--1">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#technical-features--1">Technical Features: 🔍</a>
+</h3>
+<ul>
+<li>Extent-Based Allocation</li>
+<li>Journaling (Metadata Journaling)</li>
+<li>Delayed Allocation</li>
+<li>Persistent Pre-allocation</li>
+<li>Online Resizing (grow only)</li>
+<li>Dynamic Inode Allocation</li>
+<li>B+ Tree Directory Structure - (Quick Access B Tree)</li>
+<li>Direct I/O Support</li>
+<li>Data Striping for Performance</li>
+<li>Advanced Metadata Management</li>
+<li>Large File and Volume Support (up to 8 EiB)</li>
+<li>Online Defragmentation</li>
+<li>Quotas and Project Quotas</li>
+<li>Realtime Subvolume for Real-Time I/O</li>
+</ul>
+
+
+
+<h3 id="advantages--1">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#advantages--1">Advantages 👍</a>
+</h3>
+<ul>
+<li><strong>High Performance</strong>: Optimized for large files and supports high-performance parallel I/O, making it ideal for environments with large data sets.</li>
+<li><strong>Scalability</strong>: Scales well with large volumes and large numbers of files, supporting file systems up to 500 TB.</li>
+<li><strong>Journaling</strong>: Uses journaling to help prevent data corruption.</li>
+<li><strong>Online Resizing</strong>: Supports online resizing of file systems (only grow).</li>
+</ul>
+
+
+
+<h3 id="downsides--1">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#downsides--1">Downsides 👎</a>
+</h3>
+<ul>
+<li><strong>Complexity</strong>: XFS is more complex to manage compared to ext4.</li>
+<li><strong>Limited Snapshot Support</strong>: Has limited support for snapshots compared to Btrfs and OpenZFS.</li>
+<li><strong>Potential Data Loss on Power Failure</strong>: In certain configurations, XFS may be more susceptible to data loss in the event of a sudden power loss.</li>
+</ul>
+
+
+
+<h3 id="technical-details-">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#technical-details-">Technical Details 🔍</a>
+</h3>
+<ul>
+<li><strong>Maximum File Size</strong>: 8 EiB</li>
+<li><strong>Maximum Volume Size</strong>: 8 EiB</li>
+</ul>
+
+
+
+<h3 id="distro-usage-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#distro-usage-1">Distro Usage</a>
+</h3>
+<p>XFS has been in the Linux Kernel since 2001
+It is the default file system for RHEL</p>
+
+
+
+<h2 id="3-btrfs--linux">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#3-btrfs--linux">3. Btrfs 💾 (Linux)</a>
+</h2>
+
+
+
+<h3 id="intro-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#intro-2">Intro</a>
+</h3>
+<p>Btrfs (B-tree File System) is a modern, copy-on-write file system designed for Linux that offers advanced features like snapshots, RAID support, self-healing, and efficient storage management, making it suitable for scalable and reliable data storage.</p>
+
+
+
+<h3 id="links-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#links-2">Links</a>
+</h3>
+<p><a href="https://en.wikipedia.org/wiki/Btrfs">https://en.wikipedia.org/wiki/Btrfs</a>
+<a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/6/html/storage_administration_guide/ch-btrfs">https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/6/html/storage_administration_guide/ch-btrfs</a>
+<a href="https://docs.kernel.org/filesystems/btrfs.html">https://docs.kernel.org/filesystems/btrfs.html</a></p>
+
+
+
+<h3 id="technical-features--2">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#technical-features--2">Technical Features: 🔍</a>
+</h3>
+<ul>
+<li>Journaling</li>
+<li>Extent Base Allocation</li>
+<li>Persistent Pre-allocation</li>
+<li>Delayed Allocation</li>
+<li>Multi-block Allocation</li>
+<li>Stripe-aware Allocation</li>
+<li>Resizeable with resize2fs</li>
+<li>*B-tree Balancing Algorithm - Different from XFS (COW B Tee)</li>
+<li>Copy-on-Write (COW)</li>
+<li>Snapshots and Clones</li>
+<li>Built-in RAID Support</li>
+<li>Data and Metadata Checksumming</li>
+<li>Self-Healing</li>
+<li>Dynamic Subvolumes</li>
+<li>Online Resizing</li>
+<li>Compression (LZO. ZLIB. ZSTD)</li>
+<li>Deduplication</li>
+</ul>
+
+
+
+<h3 id="advantages--2">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#advantages--2">Advantages 👍</a>
+</h3>
+<ul>
+<li><strong>Snapshot Support</strong>: Provides built-in support for snapshots, allowing for quick backups and rollbacks.</li>
+<li><strong>Data Integrity</strong>: Includes checksumming of data and metadata, which helps to ensure data integrity.</li>
+<li><strong>Self-Healing</strong>: With RAID support, Btrfs can automatically repair corrupted data.</li>
+<li><strong>Dynamic Storage</strong>: Allows for the dynamic addition and removal of storage devices.</li>
+</ul>
+
+
+
+<h3 id="downsides--2">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#downsides--2">Downsides 👎</a>
+</h3>
+<ul>
+<li><strong>Stability</strong>: Btrfs is considered less mature than ext4 or XFS, particularly for certain features like RAID 5/6.</li>
+<li><strong>Performance</strong>: May not perform as well as XFS or ext4 in certain high-performance scenarios, particularly with heavy random writes.</li>
+<li><strong>Complexity</strong>: The advanced features of Btrfs come with increased complexity.</li>
+</ul>
+
+
+
+<h3 id="technical-details--1">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#technical-details--1">Technical Details 🔍</a>
+</h3>
+<ul>
+<li><strong>Maximum File Size</strong>: 16 EiB</li>
+<li><strong>Maximum Volume Size</strong>: 16 EiB</li>
+<li><strong>Better on SSDs</strong>: Btrfs is well-suited for flash/solid-state storage because of TRIM support and CoW, which reduces write amplification.</li>
+</ul>
+
+
+
+<h3 id="distro-usage-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#distro-usage-2">Distro Usage</a>
+</h3>
+<p>Btrfs has been in the mainline linux Kernel since 2008
+it is the default file system for SUSE and Fedora</p>
+
+
+
+<h2 id="4-openzfs--unix">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#4-openzfs--unix">4. OpenZFS 💾 (Unix)</a>
+</h2>
+
+
+
+<h3 id="intro-3">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#intro-3">Intro</a>
+</h3>
+<p><strong>OpenZFS</strong> is an advanced file system and volume manager that originated from Sun Microsystems&rsquo; ZFS and is now maintained by the OpenZFS project.</p>
+
+
+
+<h3 id="links-3">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#links-3">Links</a>
+</h3>
+<p><a href="https://en.wikipedia.org/wiki/OpenZFS">https://en.wikipedia.org/wiki/OpenZFS</a>
+<a href="https://openzfs.org/wiki/Main_Page">https://openzfs.org/wiki/Main_Page</a></p>
+
+
+
+<h3 id="technical-features--3">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#technical-features--3">Technical Features: 🔍</a>
+</h3>
+<ul>
+<li>Copy-on-Write (COW)</li>
+<li>Snapshots and Clones</li>
+<li>Pooled Storage (ZFS Storage Pools)</li>
+<li>Dynamic Striping</li>
+<li>Built-in RAID Support (RAID-Z1, RAID-Z2, RAID-Z3)</li>
+<li>Data and Metadata Checksumming</li>
+<li>Self-Healing</li>
+<li>Deduplication</li>
+<li>Compression (LZ4, GZIP, ZLE, etc.)</li>
+<li>Online Resizing</li>
+<li>Dynamic Block Size</li>
+<li>End-to-End Data Integrity</li>
+<li>ZFS Datasets (File Systems and Volumes)</li>
+<li>Adaptive Replacement Cache (ARC)</li>
+<li>Transparent Data Encryption</li>
+<li>ZFS Send/Receive for Backup and Replication</li>
+</ul>
+
+
+
+<h3 id="advantages--3">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#advantages--3">Advantages 👍</a>
+</h3>
+<ul>
+<li><strong>Data Integrity</strong>: Uses end-to-end checksums for all data, ensuring high data integrity.</li>
+<li><strong>Snapshots and Clones</strong>: Supports efficient, low-overhead snapshots and clones, useful for backups and development.</li>
+<li><strong>RAID-Z Support</strong>: Offers advanced RAID options (RAID-Z1, RAID-Z2, RAID-Z3), providing redundancy and fault tolerance.</li>
+<li><strong>Compression</strong>: Built-in compression can save space and improve performance in certain workloads.</li>
+<li><strong>Scalability</strong>: Designed to handle very large data sets and scales well with both size and number of files.</li>
+</ul>
+
+
+
+<h3 id="downsides--3">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#downsides--3">Downsides 👎</a>
+</h3>
+<ul>
+<li><strong>Resource Intensive</strong>: Can be resource-intensive, particularly in terms of memory usage.</li>
+<li><strong>Complexity</strong>: The advanced features and flexibility of OpenZFS come with a steep learning curve.</li>
+<li><strong>Portability</strong>: While available on many platforms, it is not as natively supported in Linux as ext4 or XFS.</li>
+<li><strong>Licensing</strong>: OpenZFS is licensed under CDDL, which is incompatible with the GPL.</li>
+</ul>
+
+
+
+<h3 id="technical-details--2">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#technical-details--2">Technical Details 🔍</a>
+</h3>
+<ul>
+<li><strong>Maximum File Size</strong>: 16 EiB</li>
+<li><strong>Maximum Volume Size</strong>: 256 ZiB (theoretical)</li>
+</ul>
+
+
+
+<h3 id="distro-usage-3">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#distro-usage-3">Distro Usage</a>
+</h3>
+<p>Open ZFS is <strong>Not</strong> available in the mainline Linux Kernel. Rather, it is available through a 3rd party module.
+Works on Linux, BSD, and Mac</p>
+
+
+
+<h2 id="hammer2--dragonflybsd">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#hammer2--dragonflybsd">HAMMER2 💾 (DragonflyBSD)</a>
+</h2>
+
+
+
+<h3 id="intro-4">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#intro-4">Intro</a>
+</h3>
+<p><strong>Hammer2</strong> is a modern, advanced file system designed for high-performance and scalable storage solutions, particularly in clustered environments. It features robust capabilities such as copy-on-write, data deduplication, and built-in snapshots, providing high data integrity, efficient storage management, and instant crash recovery.</p>
+
+
+
+<h3 id="links-4">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#links-4">Links</a>
+</h3>
+<p><a href="https://en.wikipedia.org/wiki/HAMMER2">Wikipedia: HAMMER2</a>
+<a href="https://www.dragonflybsd.org/hammer/">DragonFly BSD Hammer2</a></p>
+
+
+
+<h3 id="technical-features--4">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#technical-features--4">Technical Features: 🔍</a>
+</h3>
+<ul>
+<li>Clustered File System Support</li>
+<li>Snapshot and Cloning Support</li>
+<li>Copy-on-Write (COW)</li>
+<li>Data Deduplication</li>
+<li>Data Compression (LZ4, ZLIB)</li>
+<li>Data and Metadata Checksumming</li>
+<li>Multi-Volume Support</li>
+<li>Instant Crash Recovery</li>
+<li>Fine-Grained Locking (for SMP scalability)</li>
+<li>RAID Support (1, 1+0)</li>
+<li>Thin Provisioning</li>
+<li>Asynchronous Bulk-Freeing</li>
+<li>Large Directory Support</li>
+<li>Built-in Data Integrity and Self-Healing</li>
+</ul>
+
+
+
+<h3 id="advantages--4">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#advantages--4">Advantages 👍</a>
+</h3>
+<ul>
+<li><strong>High Performance</strong>: Optimized for high-performance and scalable storage solutions.</li>
+<li><strong>Data Integrity</strong>: Incorporates checksumming and self-healing features to maintain data integrity.</li>
+<li><strong>Efficient Storage Management</strong>: Offers advanced features like data deduplication and compression to manage storage efficiently.</li>
+<li><strong>Scalability</strong>: Designed to handle large volumes of data and support clustered environments.</li>
+</ul>
+
+
+
+<h3 id="downsides--4">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#downsides--4">Downsides 👎</a>
+</h3>
+<ul>
+<li><strong>Complexity</strong>: The advanced features and configuration options can introduce complexity.</li>
+<li><strong>Maturity</strong>: As a newer file system, it may have fewer tools and less mature support compared to more established file systems.</li>
+<li><strong>Limited Adoption</strong>: Less commonly used than other file systems, which may affect community support and documentation.</li>
+</ul>
+
+
+
+<h3 id="technical-details--3">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#technical-details--3">Technical Details 🔍</a>
+</h3>
+<ul>
+<li><strong>Maximum File Size</strong>: Not explicitly defined, but supports very large files.</li>
+<li><strong>Maximum Volume Size</strong>: Not explicitly defined, but designed for large-scale storage.</li>
+</ul>
+
+
+
+<h3 id="distro-usage-4">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#distro-usage-4">Distro Usage</a>
+</h3>
+<ul>
+<li><strong>DragonFly BSD</strong>: The primary platform where Hammer2 is used and supported.</li>
+<li><strong>Limited Availability</strong>: Not available in mainstream Linux distributions; primarily associated with DragonFly BSD.</li>
+</ul>
+
+
+
+<h2 id="key-concepts--glossary-">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#key-concepts--glossary-">Key Concepts / Glossary 🔑</a>
+</h2>
+
+
+
+<h3 id="snapshots-">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#snapshots-">Snapshots 📸</a>
+</h3>
+<ul>
+<li><strong>Snapshots</strong> are read-only copies of a file system at a specific point in time, allowing users to save the state of the file system for backup and recovery purposes. They are efficient and consume minimal space, as only the differences between the current state and the snapshot are stored.</li>
+</ul>
+
+
+
+<h3 id="clones-vs-snapshots-">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#clones-vs-snapshots-">Clones vs. Snapshots 📸🧬</a>
+</h3>
+<ul>
+<li><strong>Snapshots</strong>: Read-only copies of the file system at a specific time.</li>
+<li><strong>Clones</strong>: Writable copies of snapshots that can be modified independently.</li>
+</ul>
+
+
+
+<h3 id="raid-z-levels-">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#raid-z-levels-">RAID-Z Levels ⛓️</a>
+</h3>
+<ul>
+<li><strong>RAID-Z1</strong>: Single parity; can tolerate the loss of one disk.</li>
+<li><strong>RAID-Z2</strong>: Double parity; can tolerate the loss of two disks.</li>
+<li><strong>RAID-Z3</strong>: Triple parity; can tolerate the loss of three disks.</li>
+</ul>
+
+
+
+<h3 id="raid-5-and-raid-6-">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#raid-5-and-raid-6-">RAID 5 and RAID 6 ⛓️</a>
+</h3>
+<ul>
+<li><strong>RAID 5</strong>: Stripes data across disks with single parity; can tolerate the loss of one disk.</li>
+<li><strong>RAID 6</strong>: Stripes data across disks with double parity; can tolerate the loss of two disks.</li>
+</ul>
+
+
+
+<h3 id="issues-with-raid-56-in-btrfs">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#issues-with-raid-56-in-btrfs">Issues with RAID 5/6 in Btrfs</a>
+</h3>
+<p>Btrfs&rsquo;s implementation of RAID 5/6 is considered unstable due to issues like the write hole problem, making it less reliable for production use. Data integrity may be compromised, leading to potential data loss.</p>
+
+
+
+<h3 id="cddl-license-">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#cddl-license-">CDDL License 🪪</a>
+</h3>
+<p>The <strong>Common Development and Distribution License (CDDL)</strong> is an open-source license created by Sun Microsystems. It is incompatible with the GPL, which can complicate integration with Linux.</p>
+
+
+
+<h3 id="btrfs-self-healing-">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#btrfs-self-healing-">Btrfs Self-Healing ❤️‍🩹</a>
+</h3>
+<p><strong>Self-Healing</strong> in Btrfs works by verifying data against checksums and repairing any detected corruption using redundant data stored on other disks in a RAID configuration.</p>
+
+
+
+<h3 id="dynamic-storage-">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#dynamic-storage-">Dynamic Storage 🧱</a>
+</h3>
+<p><strong>Dynamic Storage</strong> refers to the ability to manage multiple storage devices within a single file system, allowing for on-the-fly addition and removal of devices, with the file system automatically balancing data across them.</p>
+
+
+
+<h3 id="online-resizing-">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#online-resizing-">Online Resizing 🗺️</a>
+</h3>
+<p><strong>Online Resizing</strong> allows the resizing of a file system while it is mounted and in use. XFS supports growing the file system online, while Btrfs supports both growing and shrinking.</p>
+
+
+
+<h3 id="b-trees-">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#b-trees-">B-Trees ⚖️</a>
+</h3>
+<p>A <strong>B-tree</strong> is a self-balancing tree data structure that maintains sorted data and allows efficient insertion, deletion, and search operations. B-trees are used in file systems like Btrfs to manage metadata and data blocks.</p>
+
+
+
+<h3 id="extent-base-allocation-">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#extent-base-allocation-">Extent Base Allocation 👠</a>
+</h3>
+<p>is a method used by modern file systems to manage data storage efficiently. Instead of tracking individual fixed-size blocks, the file system groups contiguous blocks into larger units called extents.</p>
+
+
+
+<h3 id="persistent-pre-allocation-">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#persistent-pre-allocation-">Persistent Pre-allocation 🎟️</a>
+</h3>
+<p>This technique reserves a specific amount of disk space for a file in advance, ensuring that the allocated space remains available, which helps in reducing fragmentation and guaranteeing storage for large files.</p>
+
+
+
+<h3 id="delayed-allocation-">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#delayed-allocation-">Delayed Allocation ⏱️</a>
+</h3>
+<p>Delayed allocation defers the assignment of specific disk blocks to file data until the data is flushed to disk, optimizing the allocation process and reducing fragmentation by allowing the file system to make better decisions about where to place data.</p>
+
+
+
+<h3 id="multi-block-allocation-">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#multi-block-allocation-">Multi-block Allocation ⋔</a>
+</h3>
+<p>Multi-block allocation allows a file system to allocate multiple contiguous blocks at once, rather than individually, improving performance and reducing fragmentation, especially for large files.</p>
+
+
+
+<h3 id="stripe-aware-allocation-">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#stripe-aware-allocation-">Stripe-aware Allocation 🧠</a>
+</h3>
+<p>Stripe-aware allocation is used in RAID configurations to ensure that data is distributed evenly across all disks in the array, optimizing performance by aligning data placement with the underlying stripe size of the RAID setup.</p>
+
+
+
+<h3 id="fine-grained-locking-for-smp-scalability-">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#fine-grained-locking-for-smp-scalability-">Fine-Grained Locking (for SMP Scalability) 🚀</a>
+</h3>
+<p>Fine-grained locking applies locks at a granular level, allowing multiple processors to concurrently access different parts of the file system, enhancing performance and scalability in multi-core environments.</p>
+
+
+
+<h3 id="raid-10-">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#raid-10-">RAID 1+0 🖇️</a>
+</h3>
+<p>RAID support includes configurations such as RAID 1 for data mirroring and RAID 1+0 for combining mirroring with striping to provide both redundancy and improved performance.</p>
+
+
+
+<h3 id="thin-provisioning-">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#thin-provisioning-">Thin Provisioning 🔮</a>
+</h3>
+<p>Thin provisioning allocates disk space on-demand rather than reserving it all upfront, optimizing storage utilization by only using the space actually required by data.</p>
+
+
+
+<h3 id="asynchronous-bulk-freeing-">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#asynchronous-bulk-freeing-">Asynchronous Bulk-Freeing 🗑️</a>
+</h3>
+<p>Asynchronous bulk-freeing performs large-scale space reclamation in the background, allowing the file system to manage deletions efficiently without impacting overall performance.</p>
+
+
+
+<h3 id="large-directory-support-">
+  <a class="Heading-link u-clickable" href="/techblog/post/fs/#large-directory-support-">Large Directory Support 🏢</a>
+</h3>
+<p>Large directory support enables efficient management of directories with a vast number of entries, using optimized data structures to ensure fast performance for directory operations.</p>
+
+      
+      
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/unix/" rel="tag">Unix</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/filesystems/" rel="tag">FileSystems</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/notes/" rel="tag">Notes</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+    </article>
+    
+      <div class="Divider"></div>
+    
+  
+    <article>
+      <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/ws/" rel="bookmark">My WebDev Preferences 👍</a>
+  </h1>
+  
+    <time datetime="2024-08-24T00:00:00Z">August 24, 2024</time>
+  
+</header>
+      
+        
+
+
+<h3 id="intro">
+  <a class="Heading-link u-clickable" href="/techblog/post/ws/#intro">Intro</a>
+</h3>
+<p>This blog will likely be dominated by Linux talk as that is what I spend most of my time with. However, I do full-stack web development on occlusion.
+In fact, I have worked as a professional web Designer/Developer on and off, doing simple full stack projects in a range of languages. Recently, I have been stepping up my game with the intention of creating web applications with great GUIs, not only information pages. I think that with mature Javascript frameworks like NextJS or React and WASM (Web Assembly), we are going to see high performance desktop applications transition to being web-apps. This potential has me excited about learning more sophisticated tools.</p>
+
+
+
+<h3 id="go">
+  <a class="Heading-link u-clickable" href="/techblog/post/ws/#go">GO</a>
+</h3>
+<p>Golang is a dead simple systems focused language created by GOATED Unix contributors. When I started picking up Go a few years back, it was not really popular. Web development was dominated by NodeJS on the backend and there were no job posting for the skill. However, I tend to have good instincts and decided to eschew Node in favor of GO. I am very happy with this decision as it is clear, strongly typed, easy to set up and fast as hell.
+You can classify me as a GO enjoyer and back-ned deployer. GO now has a built-in HTTPs service and muxer, so it is my go-to for serving static and dynamic content.</p>
+
+
+
+<h3 id="tailwind">
+  <a class="Heading-link u-clickable" href="/techblog/post/ws/#tailwind">TailWind</a>
+</h3>
+<p>I really regret not checking out TailWind CSS earlier, it is so nice. I totally had the wrong idea and thought that it was just another annoying framework that over complicates and I was sorely wrong. It really helps in combination with GO templates to create beautiful responsive layouts. There is not much too a simple TW setup, just a simple call-out in the header. When things needs to be more expansive, one can use a config file to specify rules.
+I think I will be using a lot more TW in the future.</p>
+
+
+
+<h3 id="react">
+  <a class="Heading-link u-clickable" href="/techblog/post/ws/#react">React</a>
+</h3>
+<p>I am not a major fan of JS because I am a fan of simplicity, alas it is the language of the Web, so I must tango with wild syntax. Most web experiences  require reactive interaction and content delivery. I am not locked into react as there are so many similar frameworks, but I am saying it is a must in ones stack.</p>
+
+
+
+<h3 id="vscode">
+  <a class="Heading-link u-clickable" href="/techblog/post/ws/#vscode">VSCode</a>
+</h3>
+<p>Having a customizable proper IDE is important for getting things done. As much as I like learning Vim, Helix, or even Sublime, I know that no-matter the level of configuration it wont even come close to a proper IDE that lints, detects bugs, has a large ecosystem of plug-ins and comfy features like workspaces and built in problem console. If you just want to make stuff, then reduce your cognitive overhead and utilize a user friendly IDE.</p>
+
+      
+      
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/tools/" rel="tag">Tools</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/stacks/" rel="tag">Stacks</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/webdev/" rel="tag">WebDev</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/webdev/" rel="tag">WebDev</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/design/" rel="tag">Design</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/techstack/" rel="tag">TechStack</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/go/" rel="tag">GO</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tailwind/" rel="tag">TailWind</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+    </article>
+    
+  
+
+  
+  <nav>
+    
+    
+      <a class="Pagination Pagination--right u-clickable" href="/techblog/page/4/" rel="next">Next »</a>
+    
+  </nav>
+
+
+
+
+      </div>
+    </div>
+  </main>
+  
+</body>
+
+</html>

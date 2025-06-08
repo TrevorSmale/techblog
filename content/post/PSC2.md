@@ -3,7 +3,7 @@ author = "Hugo Authors"
 title = "ProLUG Security Engineering Course Unit 2"
 date = "2025-04-05"
 description = "Second week of the PSC we get deeper into STIGs"
-draft = "true"
+draft = "false"
 tags = [
   "Tech", "Engineering", "Security", "ProLUG Course"
 ]
@@ -17,6 +17,9 @@ series = ["Learning"]
 <!--more-->
 
 # Intro 👋
+
+This week covers more implementation of Secure Technical Implementation Guidelines and we look at LDAP (Light Directory Access Protocol) Installation and Setup.
+This unit also introduces foundational knowledge on analyzing, configuring, and hardening networking components using tools and frameworks like STIGs, OpenSCAP, and DNS configurations.
 
 ---
 
@@ -65,30 +68,134 @@ Read this: https://ciq.com/blog/demystifying-and-
 troubleshooting-name-resolution-in-rocky-linux/ or similar blogs on DNS and host file
 configurations.
 
+`Question`
+
 - What is the significance of the nsswitch.conf file?
+
+`Answer`
+
+The /etc/nsswitch.conf file controls the order in which name resolution methods are use
+
+`Question`
 
 - What are security problems associated with DNS and common exploits? (May have
 to look into some more blogs or posts for this)
+
+`Answer`
+
+Core issues with DNS:
+
+Traditional DNS can be spoofed due to a lack of built in verification.,
+Queries and Responses are sent in plaintext making confidentiality an issue.,
+No way to validate the source of the DNS data.,
+Centralized, single point of failure.,
+
+Common Exploits:
+
+Spoofing (False record injection),
+Flooding (Overwhelming the resolver),
+Tunneling (Query based Exfiltration),
+Hijacking (Modifying domain registration data),
+Typosquatting (Registering similar domains) New phrase for me
 
 ---
 
 ### Definitions
 
-- `sysctl`: Linux interface to modify kernel parameters at runtime for system performance and security. [https://en.wikipedia.org/wiki/Sysctl](https://en.wikipedia.org/wiki/Sysctl)
-- `nsswitch.conf`: Configuration file controlling the order of name service lookups (e.g., DNS, files, LDAP). [https://en.wikipedia.org/wiki/Nsswitch.conf](https://en.wikipedia.org/wiki/Nsswitch.conf)
-- `DNS: Domain Name System` — translates human-readable domain names into IP addresses. [https://en.wikipedia.org/wiki/Domain_Name_System](https://en.wikipedia.org/wiki/Domain_Name_System)
-- `Openscap`: Open-source framework for automated vulnerability scanning, compliance checking, and security auditing. [https://en.wikipedia.org/wiki/OpenSCAP](https://en.wikipedia.org/wiki/OpenSCAP)
-- `CIS Benchmarks`: Prescriptive security configuration guidelines provided by the Center for Internet Security. [https://en.wikipedia.org/wiki/Center_for_Internet_Security](https://en.wikipedia.org/wiki/Center_for_Internet_Security)
-- `ss/netstat`: Command-line tools to display network sockets, connections, and statistics on Unix-like systems. [https://en.wikipedia.org/wiki/Netstat](https://en.wikipedia.org/wiki/Netstat)
-- `tcpdump`: Command-line packet analyzer for capturing and inspecting network traffic in real-time. [https://en.wikipedia.org/wiki/Tcpdump](https://en.wikipedia.org/wiki/Tcpdump)
-- `ngrep`: Network packet analyzer like grep, allowing pattern matching on network traffic payloads. [https://en.wikipedia.org/wiki/Ngrep](https://en.wikipedia.org/wiki/Ngrep)
+- `sysctl` Linux interface to modify kernel parameters at runtime for system performance and security. 
+- `nsswitch.conf` Configuration file controlling the order of name service lookups (e.g., DNS, files, LDAP). 
+- `DNS: Domain Name System` translates human-readable domain names into IP addresses. 
+- `Openscap` Open-source framework for automated vulnerability scanning, compliance checking, and security auditing.
+- `CIS Benchmarks` Prescriptive security configuration guidelines provided by the Center for Internet Security. 
+- `ss/netstat` Command-line tools to display network sockets, connections, and statistics on Unix-like systems. 
+- `tcpdump` Command-line packet analyzer for capturing and inspecting network traffic in real-time. 
+- `ngrep` Network packet analyzer like grep, allowing pattern matching on network traffic payloads.
 
-## Lab
+## Lab 🧪
+
+### IP Forwarding
+
+`Question`
+- Does this system appear to be set to forward? Why or why not?
+
+`Answer`
+- No. All relevant `net.ipv4.conf.*.forwarding` and `net.ipv4.ip_forward` values are set to `0`.
+
+### Martians
+
+`Question`
+- What are martians and is this system allowing them?
+
+`Answer`
+- Martians are packets with invalid or bogus source/destination addresses. This system is not logging them (`log_martians = 0`), but whether they're allowed depends on other rules. Logging is disabled.
 
 
+### Kernel Panic Behavior
 
+`Question`
+- How does this system handle kernel panics?
 
----
+`Answer`
+- `kernel.panic = 0` means the system won’t auto-reboot on panic. `panic_on_oops = 1` indicates it will panic on kernel oops errors. Other panic triggers are mostly disabled.
+
+### FIPS Mode
+
+`Question`
+- Is FIPS mode enabled?
+
+`Answer`
+- No. `crypto.fips_enabled = 0`.
+
+`Question`
+- What should be read about to better understand FIPS?
+
+`Answer`
+- TODO
+
+## Kernel Command Line
+
+`Question`
+- What are the active boot parameters from `/proc/cmdline`?
+
+`Answer`
+- TODO (values include initrd paths, UUIDs, FIPS status not explicitly shown).
+
+### Security Settings & STIGs
+
+##### V-257957 – TCP Syncookies
+
+`Question`
+- Is the system using TCP syncookies?
+
+`Answer`
+- Yes. `net.ipv4.tcp_syncookies = 1`.
+
+`Question`
+- How to make this setting persistent?
+
+`Answer`
+- Add `net.ipv4.tcp_syncookies = 1` to a file in `/etc/sysctl.d/`, then run `sysctl --system`.
+
+##### V-257958 – ICMP Redirects
+
+`Question`
+- Is the system accepting ICMP redirect messages?
+
+`Answer`
+- No. `net.ipv4.conf.all.accept_redirects = 0`
+
+`Question`
+- How to harden this?
+
+`Answer`
+- Add `net.ipv4.conf.all.accept_redirects = 0` to `/etc/sysctl.d/`, then reload settings with `sysctl --system`.
+
+`Question`
+- Did you fully understand all parameter meanings?
+
+`Answer`
+- No. Some were clarified using ChatGPT.
+
 
 ### ProLUG Links ⛓️
 
@@ -100,11 +207,5 @@ ProLUG PSC Book: https://professionallinuxusersgroup.github.io/psc/
 ProLUG Book of Labs: https://leanpub.com/theprolugbigbookoflabs
 KillerCoda: https://killercoda.com/het-tanis
 
----
-
-[^1]: Example Title [Format](Link) Source, 2025.
-[^2]: Example Title [Format](Link) Source, 2025.
-[^3]: Example Title [Format](Link) Source, 2025.
-[^4]: Example Title [Format](Link) Source, 2025.
-
+[^1]: Professional Linux User Group Security Engineering Unit 2 [Web Book](https://professionallinuxusersgroup.github.io/psc/u2ws.html) ProLUG, 2025.
 

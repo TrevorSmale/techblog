@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/techblog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=techblog/livereload" data-no-instant defer></script>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <meta name="description" content="Bastions and Jailing Users">
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.147.3">
+  <title>ProLUG Security Engineering Course Unit 4 | Tech Blog</title>
+  <link rel="canonical" href="http://localhost:1313/techblog/post/psc4/">
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+    <link rel="stylesheet" href="/techblog/css/base.css">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <a class="Banner-link u-clickable" href="/techblog/">Tech Blog</a>
+      </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/about/">About</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/post/">Posts</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/tags/">Tags</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/categories/">Categories</a>
+        </li>
+      
+        
+        
+          
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/feed.xml">RSS</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/psc4/" rel="bookmark">ProLUG Security Engineering Course Unit 4</a>
+  </h1>
+  
+    <time datetime="2025-04-21T00:00:00Z">April 21, 2025</time>
+  
+</header>
+  <h2 id="intro-">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc4/#intro-">Intro 👋</a>
+</h2>
+<p>This is the 2 sentence intro Footnote<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<hr>
+
+
+
+<h2 id="worksheet">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc4/#worksheet">Worksheet</a>
+</h2>
+
+
+
+<h3 id="discussion-post-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc4/#discussion-post-1"><code>Discussion Post 1</code></a>
+</h3>
+<p><a href="https://aws.amazon.com/search/?searchQuery=air+gapped#facet_type=blogs&amp;page=1">https://aws.amazon.com/search/?searchQuery=air+gapped#facet_type=blogs&amp;page=1</a></p>
+<p><a href="https://aws.amazon.com/blogs/security/tag/bastion-host/">https://aws.amazon.com/blogs/security/tag/bastion-host/</a></p>
+<ul>
+<li>Or find some on your own about air-gapped systems.</li>
+</ul>
+<p><code>Question</code></p>
+<ul>
+<li>What seems to be the theme of air-gapped systems?</li>
+</ul>
+<p><code>Answer</code></p>
+<p>Air gapped systems are highly controlled and isolated systems. The degree of isolation directly correlates to the level of operational burden as modern productive systems are typically highly connected to either LANs and/or WANs.</p>
+<ul>
+<li>Blocking/Limiting/Bottlenecking Network Traffic</li>
+<li>Limiting Services to Bare Essentials</li>
+<li>Mitigating Data Egress</li>
+<li>Quardening off un-expected behavior</li>
+<li>Logging use events</li>
+</ul>
+<p><code>Question</code></p>
+<ul>
+<li>What seems to be their purpose?</li>
+</ul>
+<p><code>Answer</code></p>
+<ul>
+<li>To limit attack surface, mitigate malicious access and/or data infiltration/exfiltraion</li>
+</ul>
+<p><code>Question</code></p>
+<ul>
+<li>If you use google, or an AI, what are some of the common themes that come up when asked about air-gapped or bastion systems?</li>
+</ul>
+<p><code>Answer</code></p>
+<ul>
+<li>
+<p><strong>Common Themes in Air-Gapped Systems</strong></p>
+<ul>
+<li>Data Transfer Procedures</li>
+<li>Patch Management &amp; Updates</li>
+<li>Logging and Auditing</li>
+<li>Threat Models</li>
+<li>Authentication &amp; Access</li>
+<li>Compliance &amp; Certification</li>
+<li>Operational Burden</li>
+</ul>
+</li>
+<li>
+<p><strong>Common Themes in Bastion Hosts</strong></p>
+<ul>
+<li>Network Segmentation</li>
+<li>Hardened OS Configuration</li>
+<li>Jump Host Architecture</li>
+<li>Access Control &amp; MFA</li>
+<li>Monitoring and Alerting</li>
+<li>Change Management</li>
+</ul>
+</li>
+<li>
+<p><strong>Shared Themes</strong></p>
+<ul>
+<li>Both require strict access control</li>
+<li>Emphasis on tamper resistance and detection</li>
+<li>Tradeoffs between security vs. usability</li>
+<li>Often part of zero-trust or defense-in-depth architectures</li>
+</ul>
+</li>
+</ul>
+
+
+
+<h3 id="discussion-post-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc4/#discussion-post-2"><code>Discussion Post 2</code></a>
+</h3>
+<p><code>Question</code></p>
+<p>Do a Google or AI search of topics around jailing a user or processes in Linux.</p>
+<p><code>Answer</code></p>
+<p><strong>User Jailing Techniques</strong></p>
+<ul>
+<li>chroot</li>
+<li>Namespaces</li>
+<li>Control groups (cgroups)</li>
+<li>Seccomp</li>
+<li>AppArmor / SELinux</li>
+</ul>
+<p><strong>Container and Jail Environments</strong></p>
+<ul>
+<li>LXC</li>
+<li>Docker / Podman</li>
+<li>Firejail</li>
+<li>Bubblewrap (bwrap) Flatpak unpriveledged namespaces</li>
+</ul>
+<p><strong>Use Cases</strong></p>
+<ul>
+<li>Jailed SSH users: Using chroot in sshd_config to restrict access.</li>
+<li>systemd-nspawn: Lightweight containers for sandboxed environments.</li>
+<li>Flatpak / Snap: Sandboxed app delivery systems for desktop applications.</li>
+</ul>
+<p><strong>Related Tools &amp; Commands</strong></p>
+<ul>
+<li>chroot, unshare, setfacl, auditd</li>
+<li>firejail, bwrap, systemd-nspawn</li>
+<li>docker, podman, lxc-start</li>
+</ul>
+<p><code>Question</code></p>
+<p>Can you enumerate the methods of jailing users?</p>
+<p><code>Answer</code></p>
+<p>Yes there are 5 possible avenues that I know of.</p>
+<p><code>Question</code></p>
+<p>Can you think of when you’ve been jailed as a Linux user? If not, can you think of the useful ways to use a jail?</p>
+<p><code>Answer</code></p>
+<p>No I have not experienced being jailed as a user. However, if I could think of some use-cases, perhaps one would be as a honeypot for observability. Another usecase I think could work would be to trap crawlers/bots.</p>
+<hr>
+
+
+
+<h2 id="lab-">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc4/#lab-">Lab 🧪🥼</a>
+</h2>
+<p>process of chroot jail build</p>
+<p>nf -1 in awk = number of fields -1
+What seems to be the theme of air-gapped systems?
+What seems to be their purpose?
+If you use google, or an AI, what are some of the common themes that come up when asked about air-gapped or bastion systems?</p>
+
+
+
+<h3 id="prolug-links-">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc4/#prolug-links-">ProLUG Links ⛓️</a>
+</h3>
+<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
+Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
+Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
+ProLUG PSC Repo: <a href="https://github.com/ProfessionalLinuxUsersGroup/psc">https://github.com/ProfessionalLinuxUsersGroup/psc</a>
+ProLUG PSC Book: <a href="https://professionallinuxusersgroup.github.io/psc/">https://professionallinuxusersgroup.github.io/psc/</a>
+ProLUG Book of Labs: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
+KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
+<hr>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Example Title <a href="https://professionallinuxusersgroup.github.io/psc/u4ws.html">Format</a> Source, 2025.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+  
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/capstoneproject/" rel="tag">CapstoneProject</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+  
+  
+
+
+
+      </div>
+    </div>
+  </main>
+  
+</body>
+
+</html>

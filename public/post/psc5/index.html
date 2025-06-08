@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><script src="/techblog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=techblog/livereload" data-no-instant defer></script>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <meta name="description" content="Repos &amp; Patching">
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.147.3">
+  <title>ProLUG Security Engineering Course Unit 5 | Tech Blog</title>
+  <link rel="canonical" href="http://localhost:1313/techblog/post/psc5/">
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+    <link rel="stylesheet" href="/techblog/css/base.css">
+
+    <link rel="stylesheet" href="/techblog/css/syntax.css">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <a class="Banner-link u-clickable" href="/techblog/">Tech Blog</a>
+      </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/about/">About</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/post/">Posts</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/tags/">Tags</a>
+        </li>
+      
+        
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/categories/">Categories</a>
+        </li>
+      
+        
+        
+          
+        
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/techblog/feed.xml">RSS</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <header class="Heading">
+  <h1 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/techblog/post/psc5/" rel="bookmark">ProLUG Security Engineering Course Unit 5</a>
+  </h1>
+  
+    <time datetime="2025-04-27T00:00:00Z">April 27, 2025</time>
+  
+</header>
+  <h2 id="intro-">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc5/#intro-">Intro 👋</a>
+</h2>
+<p>Repositories and Patching is the general theme of this unit. We dive into creating internally audited repositories for safe enterprise operation. This configuration allows for greater security scrutiny and compatibility testing before schedule patching takes place. For example, a company would like to skip every other version of a package in order to reduce update cadence, giving more time for assessment, correction and troubleshooting of internal software. Much like any enterprise decision regarding cost and effort and analysis must take place. <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<hr>
+
+
+
+<h2 id="worksheet">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc5/#worksheet">Worksheet</a>
+</h2>
+
+
+
+<h3 id="discussion-post-1">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc5/#discussion-post-1"><code>Discussion Post 1</code></a>
+</h3>
+<p>Review the rocky documentation on Software management in Linux.<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
+<p><code>Question</code></p>
+<ul>
+<li>What do you already understand about the process?</li>
+</ul>
+<p><code>Answer</code></p>
+<ul>
+<li>I had gained a decent understanding of the package management systems of both RHEL and DEBIAN based distros through both studying for the LPIC 1 and completing the ELAC course through this group. From this I had learned about versioning and dependency management including modules. The differences between RPM, YUM, and DNF and how these evolutions of package management came into being.</li>
+</ul>
+<p><code>Question</code></p>
+<ul>
+<li>What new things did you learn or pick up?</li>
+</ul>
+<p><code>Answer</code></p>
+<ul>
+<li>
+<ul>
+<li>I did not understand the depth to which RPM packages tracked package data.</li>
+</ul>
+</li>
+<li>I did not know that headers could be edited in the package in order to add custom labeling.</li>
+<li>I had basic awareness and high level understanding of internal package management. Prior to our lecture, I had not seen an internal package server/relay be setup/configured.</li>
+<li>I did not know much about EPEL beyond having to call it in the CLI for additional packages outside of DNF.</li>
+</ul>
+<p><code>Question</code></p>
+<ul>
+<li>What are the DNF plugins? What is the use of the versionlock plugin?</li>
+</ul>
+<p><code>Answer</code></p>
+<ul>
+<li>DNF plugins are external modules that extend the functionality of DNF. I have some experience activating the <code>COPR</code> repo using DNF plugins. Furthermore, <code>versionlock</code> is a specific plugin that allows for an admin/engineer/dev to lock a particular package to a specified version so that it is not mistakenly changed/overwritten. This is typically done in software development in my experience, with software development many dependencies might be needed. Breaking updates were common place, so most modern software projects contain a <code>lock</code> file that indicates what specific dependency version must be used in order to build or interpret the project.</li>
+</ul>
+<p><code>Question</code></p>
+<ul>
+<li>What is an EPEL? Why do you need to consider this when using one?</li>
+</ul>
+<p><code>Answer</code></p>
+<ul>
+<li><code>EPEL</code> stands for Extra Packages for Enterprise Linux. These packages exist outside of the core enterprise offering and are therefore potentially issue causing. Unlike core packages, these extra packages could introduce possible incompatibility issues, resulting in rejection by endorsed support specialists.</li>
+</ul>
+
+
+
+<h3 id="discussion-post-2">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc5/#discussion-post-2"><code>Discussion Post 2</code></a>
+</h3>
+<p>Do a google search for “patching enterprise Linux”<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
+<p><code>Question</code></p>
+<ul>
+<li>What blogs (or AI) do you find that enumerates a list of steps or checklists to consider?</li>
+</ul>
+<p><code>Answer</code></p>
+<ul>
+<li>I used to sources that I had found to be concise
+<ul>
+<li>RedHat Documentation<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup></li>
+<li>Chat*ippity</li>
+</ul>
+</li>
+</ul>
+<p><code>Question</code></p>
+<ul>
+<li>After looking at that, how does patching a fleet of systems in the enterprise differ from pushing “update now” on your local desktop?</li>
+</ul>
+<p><code>Answer</code></p>
+<ul>
+<li>Patching a fleet of systems involves the systematic updating of installed software to fix security vulnerabilities, improve stability, and introduce minor enhancements. The process is governed by organizational policies to ensure uptime and compliance.</li>
+</ul>
+<p>Because changes affect many systems simultaneously, patching acts as an amplifier of problems if not handled carefully. Therefore, enterprise patching must be strategic, managed, and auditable.</p>
+<p>In contrast, running updates on a personal system is typically an automated, low-risk operation, with little concern for version conflicts or trust in the source. Additionally, modern filesystems like ZFS and Btrfs provide the ability to quickly roll back changes if something fails.</p>
+<p><code>Question</code></p>
+<ul>
+<li>What seems to be the major considerations? What seems to be the major roadblocks?</li>
+</ul>
+<p><code>Answer</code></p>
+<ul>
+<li>
+<p>Major Considerations</p>
+<ul>
+<li>Uptime and Service Continuity</li>
+<li>Security and Compliance</li>
+<li>Testing and Validation</li>
+<li>Dependency Management</li>
+<li>Rollback and Recovery Planning</li>
+<li>Orchestration and Scalability</li>
+</ul>
+</li>
+<li>
+<p>Major Roadblocks</p>
+<ul>
+<li>Legacy Systems</li>
+<li>Change Resistance</li>
+<li>Incomplete Asset Inventory</li>
+<li>Tight Maintenance Windows</li>
+<li>Patch Quality and vendor Bugs</li>
+<li>Complex Dependencies and Integration Points</li>
+<li>Resource Constraints</li>
+</ul>
+</li>
+</ul>
+<hr>
+
+
+
+<h3 id="definitions">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc5/#definitions">Definitions</a>
+</h3>
+<ul>
+<li>Def 1: Explainer</li>
+<li>Def 2: Explainer</li>
+<li>Def 3: Explainer</li>
+</ul>
+<p>Patching</p>
+<p>Repos</p>
+<p>Software</p>
+<p>EPEL</p>
+<p>BaseOS v. Appstream (in RHEL/Rocky)</p>
+<p>Other types you can find?</p>
+<pre><code>httpd
+patching
+GPG Key
+DNF/YUM
+</code></pre>
+
+
+
+<h2 id="lab-">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc5/#lab-">Lab 🧪🥼</a>
+</h2>
+
+
+
+<h3 id="apache-stigs-review">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc5/#apache-stigs-review">Apache STIGs Review</a>
+</h3>
+<ol>
+<li>Look at the 4 STIGs for “tls”</li>
+</ol>
+<ul>
+<li>What file is fixed for all of them to be remediated?</li>
+</ul>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Install httpd on your Rocky server</span>
+</span></span><span class="line"><span class="cl">systemctl stop wwclient
+</span></span><span class="line"><span class="cl">dnf install -y httpd
+</span></span><span class="line"><span class="cl">systemctl start httpd</span></span></code></pre></div>
+<ol start="2">
+<li>Check STIG V-214234</li>
+</ol>
+<p><code>Question</code></p>
+<ul>
+<li>What is the problem?</li>
+</ul>
+<p><code>Answer</code></p>
+<ul>
+<li>Event logging can fail.</li>
+</ul>
+<p><code>Question</code></p>
+<ul>
+<li>What is the fix?</li>
+</ul>
+<p><code>Answer</code></p>
+<ul>
+<li>This can be fixed by implementing failure alerts.</li>
+</ul>
+<p><code>Question</code></p>
+<ul>
+<li>What type of control is being implemented?</li>
+</ul>
+<p><code>Answer</code></p>
+<ul>
+<li>This type of control would be a <code>Detective Control</code></li>
+</ul>
+<p><code>Question</code></p>
+<ul>
+<li>Is it set properly on your system?</li>
+</ul>
+<p><code>Answer</code></p>
+<ul>
+<li>No, this is not setup by default, it must be implemented after installation.</li>
+</ul>
+<p>Check STIG V-214248</p>
+<p><code>Question</code></p>
+<ul>
+<li>What is the problem?</li>
+</ul>
+<p><code>Answer</code></p>
+<ul>
+<li>By default, sensitive information including security controls may be available to all users because privelaged user access controls have not been implemented.</li>
+</ul>
+<p><code>Question</code></p>
+<ul>
+<li>What is the fix?</li>
+</ul>
+<p><code>Answer</code></p>
+<ul>
+<li>Develop roles for privelaged users and define access policies.</li>
+</ul>
+<p><code>Question</code></p>
+<ul>
+<li>What type of control is being implemented?</li>
+</ul>
+<p><code>Answer</code></p>
+<ul>
+<li>This is a preventative type control.</li>
+</ul>
+<p><code>Question</code></p>
+<ul>
+<li>Is it set properly on your system?</li>
+</ul>
+<p><code>Answer</code></p>
+<ul>
+<li>No, not by default. Of course super user has special priveledges. However, beyond that there are no other tiers of access.</li>
+</ul>
+<p><code>Question</code></p>
+<ul>
+<li>How do you think SELINUX will help implement this control in an enforcing state? Or
+will it not affect it?</li>
+</ul>
+<p><code>Answer</code></p>
+<ul>
+<li>SELINUX allows for strong group creation and control. So it would help batch users and apply granular control mechanisms.</li>
+</ul>
+<hr>
+
+
+
+<h3 id="building-repos">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc5/#building-repos">Building repos</a>
+</h3>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Start out by removing all your active repos</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /etc/yum.repos.d
+</span></span><span class="line"><span class="cl">mkdir old_archive
+</span></span><span class="line"><span class="cl">mv *.repo old_archive
+</span></span><span class="line"><span class="cl">dnf repolist</span></span></code></pre></div>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Mount the local repository and make a local repo</span>
+</span></span><span class="line"><span class="cl">mount -o loop /lab_work/repos_and_patching/Rocky-9.5-x86_64-dvd.iso /mnt
+</span></span><span class="line"><span class="cl">df -h <span class="c1">#should see the mount point</span>
+</span></span><span class="line"><span class="cl">ls -l /mnt
+</span></span><span class="line"><span class="cl">touch /etc/yum.repos.d/rocky9.repo
+</span></span><span class="line"><span class="cl">vi /etc/yum.repos.d/rocky9.repo</span></span></code></pre></div>
+
+  
+
+<pre tabindex="0"><code class="language-rocky9.repo" data-lang="rocky9.repo">[BaseOS]
+name=BaseOS Packages Rocky Linux 9
+metadata_expire=-1
+gpgcheck=1
+enabled=1
+baseurl=file:///mnt/BaseOS/
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+[AppStream]
+name=AppStream Packages Rocky Linux 9
+metadata_expire=-1
+gpgcheck=1
+enabled=1
+baseurl=file:///mnt/AppStream/
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+#Save with esc :wq or “shift + ZZ”</code></pre>
+<p><code>Question</code></p>
+<ul>
+<li>Do the paths you’re using here make sense to you based off what you saw
+with the ls -l? Why or why not?</li>
+</ul>
+<p><code>Answer</code></p>
+<ul>
+<li>TODO</li>
+</ul>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">chmod <span class="m">644</span> /etc/yum.repos.d/rocky9.repo
+</span></span><span class="line"><span class="cl">dnf clean all
+</span></span><span class="line"><span class="cl"><span class="c1"># Test the local repository</span>
+</span></span><span class="line"><span class="cl">dnf repolist
+</span></span><span class="line"><span class="cl">dnf --disablerepo<span class="o">=</span><span class="s2">&#34;*&#34;</span> --enablerepo<span class="o">=</span><span class="s2">&#34;AppStream&#34;</span> list available
+</span></span><span class="line"><span class="cl">Approximately how many are available?
+</span></span><span class="line"><span class="cl">dnf --disablerepo<span class="o">=</span><span class="s2">&#34;*&#34;</span> --enablerepo<span class="o">=</span><span class="s2">&#34;AppStream&#34;</span> list available <span class="p">|</span> nl
+</span></span><span class="line"><span class="cl">dnf --disablerepo<span class="o">=</span><span class="s2">&#34;*&#34;</span> --enablerepo<span class="o">=</span><span class="s2">&#34;AppStream&#34;</span> list available <span class="p">|</span> nl <span class="p">|</span> head
+</span></span><span class="line"><span class="cl">dnf --disablerepo<span class="o">=</span><span class="s2">&#34;*&#34;</span> --enablerepo<span class="o">=</span><span class="s2">&#34;BaseOS&#34;</span> list available
+</span></span><span class="line"><span class="cl">Approximately how many are available?
+</span></span><span class="line"><span class="cl">dnf --disablerepo<span class="o">=</span><span class="s2">&#34;*&#34;</span> --enablerepo<span class="o">=</span><span class="s2">&#34;BaseOS&#34;</span> list available <span class="p">|</span> nl
+</span></span><span class="line"><span class="cl">dnf --disablerepo<span class="o">=</span><span class="s2">&#34;*&#34;</span> --enablerepo<span class="o">=</span><span class="s2">&#34;BaseOS&#34;</span> list available <span class="p">|</span> nl <span class="p">|</span> head
+</span></span><span class="line"><span class="cl"><span class="c1"># Try to install something</span>
+</span></span><span class="line"><span class="cl">dnf --disablerepo<span class="o">=</span><span class="s2">&#34;*&#34;</span> --enablerepo<span class="o">=</span><span class="s2">&#34;BaseOS AppStream&#34;</span> install gimp
+</span></span><span class="line"><span class="cl">hit “n”</span></span></code></pre></div>
+<p><code>Question</code></p>
+<ul>
+<li>How many packages does it want to install?</li>
+</ul>
+<p><code>Answer</code></p>
+<ul>
+<li>TODO</li>
+</ul>
+<p><code>Question</code></p>
+<p>How can you tell they’re from different repos?</p>
+<p><code>Answer</code></p>
+<ul>
+<li>TODO</li>
+</ul>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Share out the local repository for your internal systems (tested on just this one system)</span>
+</span></span><span class="line"><span class="cl">rpm -qa <span class="p">|</span> grep -i httpd
+</span></span><span class="line"><span class="cl">systemctl status httpd
+</span></span><span class="line"><span class="cl">ss -ntulp <span class="p">|</span> grep <span class="m">80</span>
+</span></span><span class="line"><span class="cl">lsof -i :80
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /etc/httpd/conf.d
+</span></span><span class="line"><span class="cl">vi repos.conf</span></span></code></pre></div>
+
+  
+
+<pre tabindex="0"><code class="language-repos.conf" data-lang="repos.conf">&lt;Directory &#34;/mnt&#34;&gt;
+Options Indexes FollowSymLinks
+AllowOverride None
+Require all granted
+&lt;/Directory&gt;
+Alias /repo /mnt
+&lt;Location /repo&gt;
+Options Indexes FollowSymLinks
+AllowOverride None
+Require all granted
+&lt;/Location&gt;</code></pre>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">systemctl restart httpd
+</span></span><span class="line"><span class="cl">vi /etc/yum.repos.d/rocky9.repo</span></span></code></pre></div>
+
+  
+
+<pre tabindex="0"><code class="language-rocky9.repo" data-lang="rocky9.repo">###USE YOUR HAMMER MACHINE IN BASEURL###
+[BaseOS]
+name=BaseOS Packages Rocky Linux 9
+metadata_expire=-1
+gpgcheck=1
+enabled=1
+#baseurl=file:///mnt/BaseOS/
+baseurl=http://hammer25/repo/BaseOS/
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+[AppStream]
+name=AppStream Packages Rocky Linux 9
+metadata_expire=-1
+gpgcheck=1
+enabled=1
+#baseurl=file:///mnt/AppStream/
+baseurl=http://hammer25/repo/AppStream/
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release</code></pre>
+<p><code>Question</code></p>
+<ul>
+<li>Do the paths you’ve modified at baseurl make sense to you? If not, what do you need to better understand?</li>
+</ul>
+
+  
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">dnf clean all
+</span></span><span class="line"><span class="cl">dnf repolist
+</span></span><span class="line"><span class="cl"><span class="c1"># Try to install something</span>
+</span></span><span class="line"><span class="cl">dnf --disablerepo<span class="o">=</span><span class="s2">&#34;*&#34;</span> --enablerepo<span class="o">=</span><span class="s2">&#34;BaseOS AppStream&#34;</span> install gimp</span></span></code></pre></div>
+
+
+
+<h3 id="digging-deeper">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc5/#digging-deeper">Digging Deeper</a>
+</h3>
+<p><code>Question</code></p>
+<ul>
+<li>You’ve set up a local repository and you’ve shared that repo out to other systems that might want to
+connect. Why might you need this if you’re going to fully air-gap systems? Is it still necessary even if
+your enterprise patching solution is well designed? Why or why not?</li>
+</ul>
+<p><code>Answer</code></p>
+<ul>
+<li>TODO</li>
+</ul>
+<p><code>Question</code></p>
+<ul>
+<li>Can you add the Mellanox ISO that is included in the /lab_work/repos_and_patching section to be a
+repository that your systems can access? If you have trouble, troubleshoot and ask the group for
+help.</li>
+</ul>
+<p><code>Answer</code></p>
+<ul>
+<li>TODO</li>
+</ul>
+
+
+
+<h3 id="prolug-links-">
+  <a class="Heading-link u-clickable" href="/techblog/post/psc5/#prolug-links-">ProLUG Links ⛓️</a>
+</h3>
+<p>Discord: <a href="https://discord.com/invite/m6VPPD9usw">https://discord.com/invite/m6VPPD9usw</a>
+Youtube: <a href="https://www.youtube.com/@het_tanis8213">https://www.youtube.com/@het_tanis8213</a>
+Twitch: <a href="https://www.twitch.tv/het_tanis">https://www.twitch.tv/het_tanis</a>
+ProLUG PSC Repo: <a href="https://github.com/ProfessionalLinuxUsersGroup/psc">https://github.com/ProfessionalLinuxUsersGroup/psc</a>
+ProLUG PSC Book: <a href="https://professionallinuxusersgroup.github.io/psc/">https://professionallinuxusersgroup.github.io/psc/</a>
+ProLUG Book of Labs: <a href="https://leanpub.com/theprolugbigbookoflabs">https://leanpub.com/theprolugbigbookoflabs</a>
+KillerCoda: <a href="https://killercoda.com/het-tanis">https://killercoda.com/het-tanis</a></p>
+<hr>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Example Title <a href="https://professionallinuxusersgroup.github.io/psc/u5ws.html">Format</a> Source, 2025.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>Rocky Documentation: Software Management <a href="https://docs.rockylinux.org/books/admin_guide/13-softwares/">Website</a> Rocky Docs, 2025.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>Example Title <a href="Link">Format</a> Source, 2025.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4">
+<p>Example Title <a href="Link">Format</a> Source, 2025.&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+  
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/categories/learning/" rel="tag">Learning</a>
+            </li>
+          
+        </ul>
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/tech/" rel="tag">Tech</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/linux/" rel="tag">Linux</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/administration/" rel="tag">Administration</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/engineering/" rel="tag">Engineering</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/prolug-course/" rel="tag">ProLUG Course</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/techblog/tags/capstoneproject/" rel="tag">CapstoneProject</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+  
+  
+
+
+
+      </div>
+    </div>
+  </main>
+  
+</body>
+
+</html>
