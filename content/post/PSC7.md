@@ -1,6 +1,6 @@
 +++
 author = "Hugo Authors"
-title = "ProLUG Security Engineering Course Unit 7 🔒"
+title = "ProLUG SEC Unit 7 🔒"
 date = "2025-05-11"
 description = "Monitoring & Alerting"
 draft = "false"

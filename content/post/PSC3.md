@@ -1,6 +1,6 @@
 +++
 author = "Hugo Authors"
-title = "ProLUG Security Engineering Course Unit 3 🔒"
+title = "ProLUG SEC Unit 3 🔒"
 date = "2025-04-13"
 description = "This is a Template for Reporting on ProLUG Courses"
 draft = "false"

@@ -1,6 +1,6 @@
 +++
 author = "Hugo Authors"
-title = "Security Engineering Capstone 🔒"
+title = "ProLUG SEC Unit 10 Capstone 🔒"
 date = "2025-04-02"
 description = "ProLUG Security Engineering Course Capstone Project"
 draft = "true"
