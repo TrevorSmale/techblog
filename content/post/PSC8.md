@@ -1,6 +1,6 @@
 +++
 author = "Hugo Authors"
-title = "ProLUG Security Engineering Course Unit 8 - Configuration Drift & Remediation"
+title = "ProLUG Security Engineering Course Unit 8 🔒"
 date = "2025-05-11"
 description = "Configuration Drift & Remediation"
 draft = "false"

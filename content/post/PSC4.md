@@ -1,6 +1,6 @@
 +++
 author = "Hugo Authors"
-title = "ProLUG Security Engineering Course Unit 4"
+title = "ProLUG Security Engineering Course Unit 4 🔒"
 date = "2025-04-21"
 description = "Bastions and Jailing Users"
 draft = "false"

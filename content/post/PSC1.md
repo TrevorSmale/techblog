@@ -1,6 +1,6 @@
 +++
 author = "Hugo Authors"
-title = "ProLUG Security Engineering Course Unit 1"
+title = "ProLUG Security Engineering Course Unit 1 🔒"
 date = "2025-03-23"
 description = "First week of the PSC we hit the ground running with getting set up with STIG tools"
 draft = "false"

@@ -1,6 +1,6 @@
 +++
 author = "Hugo Authors"
-title = "ProLUG Security Engineering Course Intro🐧"
+title = "ProLUG Security Engineering Course Intro 🔒"
 date = "2025-03-23"
 description = "I Enrolled in an in-depth hands on 10-week course in Security Engineer"
 draft = "false"
