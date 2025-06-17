@@ -3,7 +3,7 @@ author = "Hugo Authors"
 title = "ProLUG SEC Unit 10 🔒"
 date = "2025-06-17"
 description = "ProLUG Security Engineering Course Capstone Project"
-draft = "true"
+draft = "false"
 tags = [
   "Tech", "Linux", "Administration", "Engineering", "ProLUG Course", "Security"
 ]
